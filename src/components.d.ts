@@ -6,56 +6,128 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    /**
+     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * Template information from GraphQL (see Readme).
+     * Alex Weinle
+     */
+    interface LsEditor {
         /**
-          * The first name
+          * The intial data for the template.
          */
-        "first": string;
+        "initialData": object;
         /**
-          * The last name
+          * Page forward {MouseEvent} e
          */
-        "last": string;
+        "pageNext": (e: MouseEvent) => Promise<void>;
         /**
-          * The middle name
+          * Page backward e
          */
-        "middle": string;
+        "pagePrev": (e: MouseEvent) => Promise<void>;
+        /**
+          * Rotate the PDF in degrees {number}
+         */
+        "rotation": 0 | 90 | 180 | 270 | 360;
+        /**
+          * Src of the PDF to load and render {number}
+         */
+        "src"?: string;
+        /**
+          * The template title
+         */
+        "templateTitle": string;
+    }
+    interface LsSender {
     }
 }
+export interface LsEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsEditorElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLLsEditorElementEventMap {
+        "pageRendered": number;
+        "pageChange": number;
+        "fieldChange": object;
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    /**
+     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * Template information from GraphQL (see Readme).
+     * Alex Weinle
+     */
+    interface HTMLLsEditorElement extends Components.LsEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsEditorElementEventMap>(type: K, listener: (this: HTMLLsEditorElement, ev: LsEditorCustomEvent<HTMLLsEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsEditorElementEventMap>(type: K, listener: (this: HTMLLsEditorElement, ev: LsEditorCustomEvent<HTMLLsEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsEditorElement: {
+        prototype: HTMLLsEditorElement;
+        new (): HTMLLsEditorElement;
+    };
+    interface HTMLLsSenderElement extends Components.LsSender, HTMLStencilElement {
+    }
+    var HTMLLsSenderElement: {
+        prototype: HTMLLsSenderElement;
+        new (): HTMLLsSenderElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ls-editor": HTMLLsEditorElement;
+        "ls-sender": HTMLLsSenderElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    /**
+     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * Template information from GraphQL (see Readme).
+     * Alex Weinle
+     */
+    interface LsEditor {
         /**
-          * The first name
+          * The intial data for the template.
          */
-        "first"?: string;
+        "initialData"?: object;
         /**
-          * The last name
+          * The field change event. Bind this to a mutation.
          */
-        "last"?: string;
+        "onFieldChange"?: (event: LsEditorCustomEvent<object>) => void;
+        "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
+        "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
         /**
-          * The middle name
+          * Rotate the PDF in degrees {number}
          */
-        "middle"?: string;
+        "rotation"?: 0 | 90 | 180 | 270 | 360;
+        /**
+          * Src of the PDF to load and render {number}
+         */
+        "src"?: string;
+        /**
+          * The template title
+         */
+        "templateTitle"?: string;
+    }
+    interface LsSender {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "ls-editor": LsEditor;
+        "ls-sender": LsSender;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            /**
+             * The basic Legalesign page viewer converted to stencil. To use pass the standard
+             * Template information from GraphQL (see Readme).
+             * Alex Weinle
+             */
+            "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
+            "ls-sender": LocalJSX.LsSender & JSXBase.HTMLAttributes<HTMLLsSenderElement>;
         }
     }
 }
