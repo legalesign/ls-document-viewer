@@ -39,6 +39,14 @@ export namespace Components {
     }
     interface LsSender {
     }
+    interface LsToolboxField {
+        /**
+          * Src of the PDF to load and render {number}
+         */
+        "value": string;
+    }
+    interface LsZoomBox {
+    }
 }
 export interface LsEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -75,9 +83,23 @@ declare global {
         prototype: HTMLLsSenderElement;
         new (): HTMLLsSenderElement;
     };
+    interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
+    }
+    var HTMLLsToolboxFieldElement: {
+        prototype: HTMLLsToolboxFieldElement;
+        new (): HTMLLsToolboxFieldElement;
+    };
+    interface HTMLLsZoomBoxElement extends Components.LsZoomBox, HTMLStencilElement {
+    }
+    var HTMLLsZoomBoxElement: {
+        prototype: HTMLLsZoomBoxElement;
+        new (): HTMLLsZoomBoxElement;
+    };
     interface HTMLElementTagNameMap {
         "ls-editor": HTMLLsEditorElement;
         "ls-sender": HTMLLsSenderElement;
+        "ls-toolbox-field": HTMLLsToolboxFieldElement;
+        "ls-zoom-box": HTMLLsZoomBoxElement;
     }
 }
 declare namespace LocalJSX {
@@ -112,9 +134,19 @@ declare namespace LocalJSX {
     }
     interface LsSender {
     }
+    interface LsToolboxField {
+        /**
+          * Src of the PDF to load and render {number}
+         */
+        "value"?: string;
+    }
+    interface LsZoomBox {
+    }
     interface IntrinsicElements {
         "ls-editor": LsEditor;
         "ls-sender": LsSender;
+        "ls-toolbox-field": LsToolboxField;
+        "ls-zoom-box": LsZoomBox;
     }
 }
 export { LocalJSX as JSX };
@@ -128,6 +160,8 @@ declare module "@stencil/core" {
              */
             "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
             "ls-sender": LocalJSX.LsSender & JSXBase.HTMLAttributes<HTMLLsSenderElement>;
+            "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
+            "ls-zoom-box": LocalJSX.LsZoomBox & JSXBase.HTMLAttributes<HTMLLsZoomBoxElement>;
         }
     }
 }

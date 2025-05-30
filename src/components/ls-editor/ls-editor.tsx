@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Watch, h, Element, Method } from '@stencil/core';
+import { Component, Host, Prop, Watch, h, Element, Method, Listen } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { PDFDocument } from 'pdf-lib'
 import {
@@ -15,12 +15,12 @@ import 'pdfjs-dist/web/pdf_viewer';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
-  /**
-   * The basic Legalesign page viewer converted to stencil. To use pass the standard
-   * Template information from GraphQL (see Readme).
-   * 
-   * Alex Weinle
-   */
+/**
+ * The basic Legalesign page viewer converted to stencil. To use pass the standard
+ * Template information from GraphQL (see Readme).
+ * 
+ * Alex Weinle
+ */
 
 @Component({
   tag: 'ls-editor',
@@ -66,7 +66,7 @@ export class LsEditor {
       return;
     }
     // this.loadAndRender(newValue);
-  } 
+  }
 
   //
   // --- Event Emitters --- //
@@ -161,7 +161,7 @@ export class LsEditor {
     }
   }
 
-  
+
   private loadAndRender(src: string): void {
     getDocument(src).promise
       .then((pdfDocument: PDFDocumentProxy) => {
@@ -191,8 +191,6 @@ export class LsEditor {
 
 
   componentDidLoad() {
-      console.log('built')
-
     PDFDocument.create().then(pdfDoc => {
       const page = pdfDoc.addPage([650, 600]);
       page.moveTo(50, 410);
@@ -204,14 +202,65 @@ export class LsEditor {
         this.loadAndRender(pdfDataUri);
       });
     });
+
+
+    var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+
+    dropTarget.addEventListener("dragenter", (event) => {
+      event.preventDefault();
+    });
+
+    dropTarget.addEventListener("dragover", (event) => {
+      event.preventDefault();
+    });
+
+    dropTarget.addEventListener("drop", (event) => {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text/plain");
+      const doc = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+      const node = document.createElement("div");
+      node.style.zIndex = "1000";
+      node.style.position = "absolute";
+      node.style.border = "1px solid red";
+
+      node.style.top = event.offsetY.toString() + "px";
+      node.style.left = (event.offsetX).toString()  + "px";
+
+      // node.style.top = "10px";
+      // node.style.left = "10px";
+
+      const textnode = document.createTextNode(data);
+      node.appendChild(textnode);
+      doc.appendChild(node);
+      console.log(doc.clientTop, doc.clientWidth);
+      console.log(event.clientY, event.clientX);
+      console.log(event);
+    });
   }
+
+  handleDblClick(e) {
+    console.log(e)
+  }
+
 
   render() {
     return (
-      <Host>
-        <button id="prevButton" onClick={this.pagePrev.bind(this)}>Prev</button>
-        <button id="nextButton" onClick={this.pageNext.bind(this)}>Next</button>
-        <canvas id="pdf-canvas" />
+      <Host onDblClick={(e) => this.handleDblClick(e)}>
+        <div class="leftBox">
+          <ls-toolbox-field value="Signature" />
+          <ls-toolbox-field value="Text" />
+          <ls-toolbox-field value="Number" />
+          <ls-toolbox-field value="Regex" />
+          <ls-toolbox-field value="Date" />
+          <ls-toolbox-field value="Autodate" />
+          <ls-toolbox-field value="File" />
+        </div>
+        <div id="ls-document-frame" >       
+        <canvas id="pdf-canvas" >       </canvas>
+        </div>
+        <div class="rightBox">
+          Properties
+        </div>
       </Host>
     );
   }
