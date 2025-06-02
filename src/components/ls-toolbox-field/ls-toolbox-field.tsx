@@ -1,4 +1,5 @@
 import { Component, Host, Listen, Prop, h } from '@stencil/core';
+import { LsIcon } from 'legalesign-ui/dist/components/ls-icon.js';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -32,6 +33,7 @@ export class LsToolboxField {
   render() {
     return (
       <Host draggable="true">
+        <LsIcon name='zoom-in-icon'></LsIcon>
         {this.value}
       </Host>
     );
