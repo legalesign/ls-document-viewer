@@ -18,7 +18,7 @@ Alex Weinle
 | --------------- | ---------------- | ------------------------------------------ | ------------------------------ | ----------- |
 | `initialData`   | `initial-data`   | The intial data for the template.          | `object`                       | `undefined` |
 | `rotation`      | `rotation`       | Rotate the PDF in degrees {number}         | `0 \| 180 \| 270 \| 360 \| 90` | `0`         |
-| `src`           | `src`            | Src of the PDF to load and render {number} | `string`                       | `undefined` |
+| `showToolBox`   | `show-tool-box`  | Src of the PDF to load and render {number} | `boolean`                      | `true`      |
 | `templateTitle` | `template-title` | The template title                         | `string`                       | `undefined` |
 
 
@@ -72,11 +72,13 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ls-editor-field](../ls-editor-field)
 - [ls-toolbox-field](../ls-toolbox-field)
 
 ### Graph
 ```mermaid
 graph TD;
+  ls-editor --> ls-editor-field
   ls-editor --> ls-toolbox-field
   style ls-editor fill:#f9f,stroke:#333,stroke-width:4px
 ```

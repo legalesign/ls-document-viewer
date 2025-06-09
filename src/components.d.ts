@@ -31,19 +31,40 @@ export namespace Components {
         /**
           * Src of the PDF to load and render {number}
          */
-        "src"?: string;
+        "showToolBox"?: boolean;
         /**
           * The template title
          */
         "templateTitle": string;
     }
+    interface LsEditorField {
+        "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "value": string;
+    }
+    interface LsFieldProperties {
+    }
+    interface LsSend {
+        "format": 'compact' | 'standard';
+    }
     interface LsSender {
     }
     interface LsToolboxField {
         /**
-          * Src of the PDF to load and render {number}
+          * The starting height of this control type in pixels.
          */
-        "value": string;
+        "defaultHeight": number;
+        /**
+          * The starting width of this control type in pixels.
+         */
+        "defaultWidth": number;
+        /**
+          * The text to display for this field type.
+         */
+        "label": string;
+        /**
+          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
+         */
+        "type": string;
     }
     interface LsZoomBox {
     }
@@ -77,6 +98,24 @@ declare global {
         prototype: HTMLLsEditorElement;
         new (): HTMLLsEditorElement;
     };
+    interface HTMLLsEditorFieldElement extends Components.LsEditorField, HTMLStencilElement {
+    }
+    var HTMLLsEditorFieldElement: {
+        prototype: HTMLLsEditorFieldElement;
+        new (): HTMLLsEditorFieldElement;
+    };
+    interface HTMLLsFieldPropertiesElement extends Components.LsFieldProperties, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesElement: {
+        prototype: HTMLLsFieldPropertiesElement;
+        new (): HTMLLsFieldPropertiesElement;
+    };
+    interface HTMLLsSendElement extends Components.LsSend, HTMLStencilElement {
+    }
+    var HTMLLsSendElement: {
+        prototype: HTMLLsSendElement;
+        new (): HTMLLsSendElement;
+    };
     interface HTMLLsSenderElement extends Components.LsSender, HTMLStencilElement {
     }
     var HTMLLsSenderElement: {
@@ -97,6 +136,9 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ls-editor": HTMLLsEditorElement;
+        "ls-editor-field": HTMLLsEditorFieldElement;
+        "ls-field-properties": HTMLLsFieldPropertiesElement;
+        "ls-send": HTMLLsSendElement;
         "ls-sender": HTMLLsSenderElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
         "ls-zoom-box": HTMLLsZoomBoxElement;
@@ -126,24 +168,48 @@ declare namespace LocalJSX {
         /**
           * Src of the PDF to load and render {number}
          */
-        "src"?: string;
+        "showToolBox"?: boolean;
         /**
           * The template title
          */
         "templateTitle"?: string;
     }
+    interface LsEditorField {
+        "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "value"?: string;
+    }
+    interface LsFieldProperties {
+    }
+    interface LsSend {
+        "format"?: 'compact' | 'standard';
+    }
     interface LsSender {
     }
     interface LsToolboxField {
         /**
-          * Src of the PDF to load and render {number}
+          * The starting height of this control type in pixels.
          */
-        "value"?: string;
+        "defaultHeight"?: number;
+        /**
+          * The starting width of this control type in pixels.
+         */
+        "defaultWidth"?: number;
+        /**
+          * The text to display for this field type.
+         */
+        "label"?: string;
+        /**
+          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
+         */
+        "type"?: string;
     }
     interface LsZoomBox {
     }
     interface IntrinsicElements {
         "ls-editor": LsEditor;
+        "ls-editor-field": LsEditorField;
+        "ls-field-properties": LsFieldProperties;
+        "ls-send": LsSend;
         "ls-sender": LsSender;
         "ls-toolbox-field": LsToolboxField;
         "ls-zoom-box": LsZoomBox;
@@ -159,6 +225,9 @@ declare module "@stencil/core" {
              * Alex Weinle
              */
             "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
+            "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
+            "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
+            "ls-send": LocalJSX.LsSend & JSXBase.HTMLAttributes<HTMLLsSendElement>;
             "ls-sender": LocalJSX.LsSender & JSXBase.HTMLAttributes<HTMLLsSenderElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
             "ls-zoom-box": LocalJSX.LsZoomBox & JSXBase.HTMLAttributes<HTMLLsZoomBoxElement>;

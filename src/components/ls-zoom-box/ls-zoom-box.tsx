@@ -1,5 +1,4 @@
 import { Component, Host, h } from '@stencil/core';
-import { LsIcon } from 'legalesign-ui/dist/components/ls-icon.js';
 
 @Component({
   tag: 'ls-zoom-box',
@@ -11,10 +10,10 @@ export class LsZoomBox {
     return (
       <Host>
       <button>
-        <LsIcon name='zoom-in-icon'></LsIcon>
+        +
       </button>
       <button>
-        <LsIcon name='zoom-out-icon'></LsIcon>
+        -
       </button>
       </Host>
     );

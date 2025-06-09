@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Watch, h, Element, Method, Listen } from '@stencil/core';
+import { Component, Host, Prop, Watch, h, Element, Method } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { PDFDocument } from 'pdf-lib'
 import {
@@ -52,7 +52,7 @@ export class LsEditor {
    * Src of the PDF to load and render
    * {number}
    */
-  @Prop() src?: string;
+  @Prop() showToolBox?: boolean = true;
 
   /**
    * Listen for changes to src
@@ -192,13 +192,14 @@ export class LsEditor {
 
   componentDidLoad() {
     PDFDocument.create().then(pdfDoc => {
-      const page = pdfDoc.addPage([650, 600]);
+      const page = pdfDoc.addPage([842, 595]);
       page.moveTo(50, 410);
       page.drawText('Welcome to Legalesign!');
       pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
         this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+        this.canvas.style.height = "842px"
+        this.canvas.style.width = "595px"
         this.ctx = this.canvas.getContext('2d');
-        console.log(pdfDataUri)
         this.loadAndRender(pdfDataUri);
       });
     });
@@ -216,25 +217,27 @@ export class LsEditor {
 
     dropTarget.addEventListener("drop", (event) => {
       event.preventDefault();
-      const data = event.dataTransfer.getData("text/plain");
+      console.log("drop ls-editor", event);
+
+      try {
+      const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
+      
       const doc = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
-      const node = document.createElement("div");
-      node.style.zIndex = "1000";
+      const node = document.createElement("ls-editor-field");
+      node.setAttribute("type", data.type)
+      node.setAttribute("value", "")
+      node.style.zIndex = "100";
       node.style.position = "absolute";
-      node.style.border = "1px solid red";
 
       node.style.top = event.offsetY.toString() + "px";
       node.style.left = (event.offsetX).toString()  + "px";
-
-      // node.style.top = "10px";
-      // node.style.left = "10px";
-
-      const textnode = document.createTextNode(data);
-      node.appendChild(textnode);
+      node.style.height = data.defaultHeight.toString() + "px";
+      node.style.width = (data.defaultWidth).toString()  + "px";
       doc.appendChild(node);
-      console.log(doc.clientTop, doc.clientWidth);
-      console.log(event.clientY, event.clientX);
-      console.log(event);
+
+      } catch(e) {
+        console.log(e)
+      }
     });
   }
 
@@ -247,19 +250,22 @@ export class LsEditor {
     return (
       <Host onDblClick={(e) => this.handleDblClick(e)}>
         <div class="leftBox">
-          <ls-toolbox-field value="Signature" />
-          <ls-toolbox-field value="Text" />
-          <ls-toolbox-field value="Number" />
-          <ls-toolbox-field value="Regex" />
-          <ls-toolbox-field value="Date" />
-          <ls-toolbox-field value="Autodate" />
-          <ls-toolbox-field value="File" />
+          <ls-toolbox-field type="signature" label="Signature" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="text" label="Text" defaultHeight={27} defaultWidth={320} />
+          <ls-toolbox-field type="number" label="Number" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="date" label="Date" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} />
+          <ls-toolbox-field type="selfsign" label="My Signature" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="regex" label="Regex" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="image" label="Image" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="autodate" label="Autodate" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="file" label="File" defaultHeight={27} defaultWidth={120} />
         </div>
         <div id="ls-document-frame" >       
         <canvas id="pdf-canvas" >       </canvas>
         </div>
         <div class="rightBox">
-          Properties
+          <slot></slot>
         </div>
       </Host>
     );

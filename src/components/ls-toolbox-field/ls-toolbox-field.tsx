@@ -1,5 +1,4 @@
 import { Component, Host, Listen, Prop, h } from '@stencil/core';
-import { LsIcon } from 'legalesign-ui/dist/components/ls-icon.js';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -9,21 +8,42 @@ import { LsIcon } from 'legalesign-ui/dist/components/ls-icon.js';
 export class LsToolboxField {
 
   /**
-   * Src of the PDF to load and render
-   * {number}
+   * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
    */
-  @Prop() value: string;
+  @Prop() type: string;
+
+  /**
+  * The text to display for this field type.
+   */
+  @Prop() label: string;
+
+  /**
+   * The starting height of this control type in pixels.
+   */
+  @Prop() defaultHeight: number;
+  /**
+   * The starting width of this control type in pixels.
+   */
+  @Prop() defaultWidth: number;
+  
 
   @Listen('dragstart')
-  handleDragStart(ev) {
+  handleDragStart(event) {
+    console.log("dragstart ls-toolbox-field", event, this.type)
     // Add the target element's id to the data transfer object
-    ev.dataTransfer.setData("text/plain", this.value);
-    ev.dataTransfer.dropEffect = "copy";
+    event.dataTransfer.setData("application/json", JSON.stringify({
+      type: this.type,
+      defaultHeight: this.defaultHeight,
+      defaultWidth: this.defaultWidth,
+
+    }));
+    event.dataTransfer.dropEffect = "copy";
+
   }
 
   @Listen('keydown')
-  handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'ArrowDown') {
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
       console.log('down arrow pressed')
     }
   }
@@ -33,8 +53,7 @@ export class LsToolboxField {
   render() {
     return (
       <Host draggable="true">
-        <LsIcon name='zoom-in-icon'></LsIcon>
-        {this.value}
+        {this.label}
       </Host>
     );
   }
