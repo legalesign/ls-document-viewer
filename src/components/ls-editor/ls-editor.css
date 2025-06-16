@@ -17,6 +17,11 @@
   border: 1px gray solid;
 }
 
+.ls-editor-infobox {
+  padding: 2px 8px 2px 8px;
+  color: #727272;
+}
+
 #pdf-canvas {
   top: 0px;
   left: 0px;

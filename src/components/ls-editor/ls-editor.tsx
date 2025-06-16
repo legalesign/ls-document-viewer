@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Watch, h, Element, Method } from '@stencil/core';
+import { Component, Host, Prop, Watch, h, Element, Method, Listen } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { PDFDocument } from 'pdf-lib'
 import {
@@ -37,7 +37,9 @@ export class LsEditor {
   private ctx: CanvasRenderingContext2D;
   private scale: number = 1; // hardcoded to scale the document to full canvas size
   private pageNum: number = 1; // hardcoded to start at the page 1
-
+  private edgeField: HTMLElement;
+  private edgeSide: string;
+  private edgeStart: { left: number, top: number, height: number, width: number, x: number, y: number };
   //
   // --- Properties / Inputs --- //
   //
@@ -49,10 +51,10 @@ export class LsEditor {
   @Prop() rotation: 0 | 90 | 180 | 270 | 360 = 0;
 
   /**
-   * Src of the PDF to load and render
-   * {number}
+   * Whether the left hand toolbox is displayer.
+   * {boolean}
    */
-  @Prop() showToolBox?: boolean = true;
+  @Prop() showtoolbox?: boolean = false;
 
   /**
    * Listen for changes to src
@@ -169,26 +171,11 @@ export class LsEditor {
         this.renderPage(this.pageNum);
       });
   }
-  /**
-   * The template title
-   */
-  @Prop() templateTitle: string;
 
   /**
  * The intial data for the template.
  */
   @Prop() initialData: object;
-
-
-  /**
-   * The field change event. Bind this to a mutation.
-   */
-  @Event() fieldChange: EventEmitter<object>;
-
-  todoCompletedHandler(field: object) {
-    this.fieldChange.emit(field);
-  }
-
 
   componentDidLoad() {
     PDFDocument.create().then(pdfDoc => {
@@ -204,8 +191,72 @@ export class LsEditor {
       });
     });
 
-
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+
+    dropTarget.addEventListener("mousedown", (e) => {
+
+      if(e.offsetX < 0 || e.offsetY < 0) return;
+
+      // Find if this is a hit on a field and allow edges to be resized.
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+      fields.forEach(f => {
+        const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
+        const fdims ={ left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY } 
+        console.log(fdims)
+        this.edgeStart = fdims;
+        // west edge
+        if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
+          this.edgeSide = "w"
+          this.edgeField = f;
+          // right edge
+        } else if (Math.abs(e.clientX - right) < 5 && e.clientY >= top && e.clientY <= bottom) {
+          this.edgeSide = "e"
+          this.edgeField = f;
+          console.log(this.edgeSide, this.edgeField, this.edgeStart)
+          // north edge
+        } else if (Math.abs(e.clientY - top) < 5 && e.clientX >= left && e.clientX <= right) {
+          this.edgeSide = "n"
+          this.edgeField = f;
+          console.log(this.edgeSide, this.edgeField, this.edgeStart)
+          // south edge
+        } else if (Math.abs(e.clientY - bottom) < 5 && e.clientX >= left && e.clientX <= right) {
+          this.edgeSide = "s"
+          this.edgeField = f;
+        }
+      })
+    })
+
+    dropTarget.addEventListener("mousemove", (event) => {
+      event.preventDefault();
+      // We have the mouse held down on a field edge to resize it.
+      if (this.edgeField && this.edgeSide && this.edgeStart) {
+        const movedX = (event.screenX - this.edgeStart.x);
+        const movedY = ( event.screenY - this.edgeStart.y);
+
+        switch (this.edgeSide) {
+          case "n":
+            this.edgeField.style.top = (this.edgeStart.top + movedY) + "px"
+            this.edgeField.style.height = ( this.edgeStart.height - movedY) + "px"
+            break;
+          case "s":
+            this.edgeField.style.height = this.edgeStart.height + movedY + "px"
+            break;
+          case "e":
+            this.edgeField.style.width = (this.edgeStart.width + movedX) + "px"
+            break;
+          case "w":
+            this.edgeField.style.left = (this.edgeStart.left + movedX) + "px"
+            this.edgeField.style.width = (this.edgeStart.width - movedX) + "px"
+            break;
+        }
+      }
+    });
+
+    dropTarget.addEventListener("mouseup", (_event) => {
+      this.edgeSide = null;
+      this.edgeField = null;
+      this.edgeStart = null;
+    });
 
     dropTarget.addEventListener("dragenter", (event) => {
       event.preventDefault();
@@ -220,36 +271,34 @@ export class LsEditor {
       console.log("drop ls-editor", event);
 
       try {
-      const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
-      
-      const doc = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
-      const node = document.createElement("ls-editor-field");
-      node.setAttribute("type", data.type)
-      node.setAttribute("value", "")
-      node.style.zIndex = "100";
-      node.style.position = "absolute";
+        const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
 
-      node.style.top = event.offsetY.toString() + "px";
-      node.style.left = (event.offsetX).toString()  + "px";
-      node.style.height = data.defaultHeight.toString() + "px";
-      node.style.width = (data.defaultWidth).toString()  + "px";
-      doc.appendChild(node);
+        const doc = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+        const node = document.createElement("ls-editor-field");
+        node.setAttribute("type", data.type)
+        node.setAttribute("value", "")
+        node.style.zIndex = "100";
+        node.style.position = "absolute";
 
-      } catch(e) {
+        node.style.top = event.offsetY.toString() + "px";
+        node.style.left = (event.offsetX).toString() + "px";
+        node.style.height = data.defaultHeight.toString() + "px";
+        node.style.width = data.defaultWidth.toString() + "px";
+        doc.appendChild(node);
+
+      } catch (e) {
         console.log(e)
       }
     });
   }
 
-  handleDblClick(e) {
-    console.log(e)
-  }
 
 
   render() {
     return (
-      <Host onDblClick={(e) => this.handleDblClick(e)}>
-        <div class="leftBox">
+      <Host>
+        {this.showtoolbox === true ? <div class="leftBox">
+          <div class="ls-editor-infobox">Drag to Add...</div>
           <ls-toolbox-field type="signature" label="Signature" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="text" label="Text" defaultHeight={27} defaultWidth={320} />
           <ls-toolbox-field type="number" label="Number" defaultHeight={27} defaultWidth={120} />
@@ -261,8 +310,12 @@ export class LsEditor {
           <ls-toolbox-field type="autodate" label="Autodate" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="file" label="File" defaultHeight={27} defaultWidth={120} />
         </div>
-        <div id="ls-document-frame" >       
-        <canvas id="pdf-canvas" >       </canvas>
+          :
+          <></>
+        }
+        <div id="ls-document-frame" >
+          <canvas id="pdf-canvas" >       </canvas>
+          <div id="ls-box-selector"></div>
         </div>
         <div class="rightBox">
           <slot></slot>

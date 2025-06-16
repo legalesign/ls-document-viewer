@@ -1,5 +1,8 @@
 :host {
   display: block;
+  border: 1px dashed rgb(74, 60, 60);
+  margin: 0px;
+  padding: 0px;
 }
 
 .ls-editor-field-editable {
@@ -15,18 +18,19 @@
   /* default widths */
   min-width: 2em;
   background-color: white;
+      height: 100%;
+  width: 100%;
 }
 .ls-editor-field-editable:focus {
   outline: none;
+  cursor: auto;
 }
 
 .ls-editor-field-draggable {
-  display: inline-block;
+  display: block;
   font-family: 'IBM Plex';
   font-size: 16pt;
   border: 1px rgb(176, 176, 176) solid;
-  /* make resizable */
-  resize: both;
   overflow: hidden;
 
   /* no extra spaces */
@@ -34,10 +38,18 @@
   background-color: white;
 
   /* default widths */
-  min-width: 2em;
+  min-width: 2px;
+  height: 98%;
+  width: 98%;
 }
 
 
 .hidden-field {
   display: none;
+}
+
+.draggable-input {
+  position: relative;
+  height: 95%;
+  width: 95%;
 }

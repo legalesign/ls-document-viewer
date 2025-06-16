@@ -29,13 +29,9 @@ export namespace Components {
          */
         "rotation": 0 | 90 | 180 | 270 | 360;
         /**
-          * Src of the PDF to load and render {number}
+          * Whether the left hand toolbox is displayer. {boolean}
          */
-        "showToolBox"?: boolean;
-        /**
-          * The template title
-         */
-        "templateTitle": string;
+        "showtoolbox"?: boolean;
     }
     interface LsEditorField {
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
@@ -77,7 +73,6 @@ declare global {
     interface HTMLLsEditorElementEventMap {
         "pageRendered": number;
         "pageChange": number;
-        "fieldChange": object;
     }
     /**
      * The basic Legalesign page viewer converted to stencil. To use pass the standard
@@ -155,10 +150,6 @@ declare namespace LocalJSX {
           * The intial data for the template.
          */
         "initialData"?: object;
-        /**
-          * The field change event. Bind this to a mutation.
-         */
-        "onFieldChange"?: (event: LsEditorCustomEvent<object>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
         /**
@@ -166,13 +157,9 @@ declare namespace LocalJSX {
          */
         "rotation"?: 0 | 90 | 180 | 270 | 360;
         /**
-          * Src of the PDF to load and render {number}
+          * Whether the left hand toolbox is displayer. {boolean}
          */
-        "showToolBox"?: boolean;
-        /**
-          * The template title
-         */
-        "templateTitle"?: string;
+        "showtoolbox"?: boolean;
     }
     interface LsEditorField {
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
