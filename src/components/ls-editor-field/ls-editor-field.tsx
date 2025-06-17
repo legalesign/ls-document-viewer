@@ -9,6 +9,7 @@ import { LSApiElement } from '../../components';
 export class LsEditorField {
   @Element() component: HTMLElement;
   @Prop() dataItem: LSApiElement;
+  @Prop() selected: boolean;
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @State() isEditing: boolean = false;
@@ -16,8 +17,6 @@ export class LsEditorField {
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
   private sizeObserver: ResizeObserver;
-  private componentObserver: ResizeObserver;
-  
 
   @Listen('keydown', { capture: true })
   handleKeyDown(e) {
@@ -89,6 +88,12 @@ export class LsEditorField {
     //editbox.setSelectionRange(editbox.value.length,editbox.value.length,"forward")
     editbox.selectionStart = 0
     editbox.selectionEnd = 0
+  }
+
+    @Watch('selected')
+    watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
+    if(_newValue) this.component.style.border = "1px dashed red";
+    else this.component.style.border = "1px solid black";
   }
 
   onInputChange(e) {

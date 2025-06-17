@@ -31,6 +31,10 @@ export namespace Components {
          */
         "pagePrev": (e: MouseEvent) => Promise<void>;
         /**
+          * Allows you to change the colours used for each role in the template. {SignerColor[]}
+         */
+        "roleColors"?: RoleColor[];
+        /**
           * Whether the left hand toolbox is displayed. {boolean}
          */
         "showtoolbox"?: boolean;
@@ -41,6 +45,7 @@ export namespace Components {
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
+        "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFieldProperties {
@@ -161,6 +166,10 @@ declare namespace LocalJSX {
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
         /**
+          * Allows you to change the colours used for each role in the template. {SignerColor[]}
+         */
+        "roleColors"?: RoleColor[];
+        /**
           * Whether the left hand toolbox is displayed. {boolean}
          */
         "showtoolbox"?: boolean;
@@ -171,6 +180,7 @@ declare namespace LocalJSX {
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
+        "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFieldProperties {

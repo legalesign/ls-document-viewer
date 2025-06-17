@@ -63,6 +63,13 @@ export class LsEditor {
    */
   @Prop() showtoolbox?: boolean = false;
 
+    /**
+   * Allows you to change the colours used for each role in the template.
+   * {SignerColor[]}
+   */
+  @Prop() roleColors?: RoleColor[] = defaultPalette;
+
+
   /**
    * Listen for changes to src
    * @param newValue

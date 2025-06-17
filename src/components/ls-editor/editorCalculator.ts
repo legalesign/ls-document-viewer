@@ -4,10 +4,10 @@ export const findIn = (fields: NodeListOf<HTMLLsEditorFieldElement>, selector: H
 
   fields.forEach(f => {
     if (f.getBoundingClientRect().bottom <= bottom && f.getBoundingClientRect().top >= top && f.getBoundingClientRect().left >= left && f.getBoundingClientRect().right <= right) {
-      if (restyle) f.style.borderColor = '#ff0000';
+      if (restyle) f.selected = true;
       selected.push(f);
     } else {
-      if (restyle) f.style.borderColor = '#000000';
+      if (restyle)  f.selected = false;
     }
   });
   console.log(selected);

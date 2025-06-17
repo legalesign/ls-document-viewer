@@ -1,6 +1,6 @@
 :host {
   display: block;
-  border: 1px dashed rgb(74, 60, 60);
+  border: 1px solid rgb(49, 49, 49);
   margin: 0px;
   padding: 0px;
 }
@@ -9,7 +9,6 @@
   display: inline-block;
   font-family: 'IBM Plex';
   font-size: 16pt;
-  border: 1px rgb(176, 176, 176) dashed;
   overflow: hidden;
 
   /* no extra spaces */
@@ -21,6 +20,7 @@
       height: 100%;
   width: 100%;
 }
+
 .ls-editor-field-editable:focus {
   outline: none;
   cursor: auto;
@@ -30,7 +30,24 @@
   display: block;
   font-family: 'IBM Plex';
   font-size: 16pt;
-  border: 1px rgb(176, 176, 176) solid;
+  overflow: hidden;
+
+  /* no extra spaces */
+  white-space: nowrap;
+  background-color: white;
+
+  /* default widths */
+  min-width: 2px;
+  height: 98%;
+  width: 98%;
+}
+
+
+.ls-editor-field-draggable-selected {
+  display: block;
+  font-family: 'IBM Plex';
+  font-size: 16pt;
+  border: 1px rgb(206, 11, 11) solid;
   overflow: hidden;
 
   /* no extra spaces */
