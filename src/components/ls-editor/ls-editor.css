@@ -59,3 +59,10 @@
   z-index: 1000;
 }
 
+#ls-box-selector {
+  position: absolute;
+  visibility: hidden;
+  background-color: transparent;
+  border: 1px rgba(71, 71, 71, 0.716) dashed;
+}
+

@@ -1,4 +1,5 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stencil/core';
+import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-editor-field',
@@ -7,7 +8,7 @@ import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stenci
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
-  @Prop() value: string;
+  @Prop() dataItem: LSApiElement;
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @State() isEditing: boolean = false;
@@ -50,7 +51,7 @@ export class LsEditorField {
     this.heldEdge = null;
     this.isEdgeDragging = false;
     this.sizeObserver.disconnect()
-    this.innerValue = this.innerValue ? this.innerValue : this.value;
+    this.innerValue = this.innerValue ? this.innerValue : this.dataItem?.value;
   }
 
   @Listen('dragstart', { capture: false, passive: false })
@@ -144,7 +145,7 @@ export class LsEditorField {
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
             type='text'
-            value={this.innerValue || this.value}
+            value={this.innerValue || this.dataItem?.value}
             onChange={(e) => this.onInputChange(e)}
           ></input>
           <div id="field-info" class={this.isEditing ? "hidden-field" : "ls-editor-field-draggable"}>

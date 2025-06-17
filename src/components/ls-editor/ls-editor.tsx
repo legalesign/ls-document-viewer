@@ -1,5 +1,6 @@
-import { Component, Host, Prop, Watch, h, Element, Method, Listen } from '@stencil/core';
+import { Component, Host, Prop, Watch, h, Element, Method } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
+import { LSApiElement } from '../../types/LSApiElement'
 import { PDFDocument } from 'pdf-lib'
 import {
   PDFDocumentProxy,
@@ -12,11 +13,14 @@ import {
 } from 'pdfjs-dist';
 
 import 'pdfjs-dist/web/pdf_viewer';
+import { LSApiTemplate } from '../../types/LSApiTemplate';
+import { LsEditorField } from '../ls-editor-field/ls-editor-field';
+import { findIn } from './editorCalculator';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
 /**
- * The basic Legalesign page viewer converted to stencil. To use pass the standard
+ * The Legalesign page viewer converted to stencil. To use pass the standard
  * Template information from GraphQL (see Readme).
  * 
  * Alex Weinle
@@ -31,27 +35,30 @@ export class LsEditor {
   @Element() component: HTMLElement;
 
   private isPageRendering: boolean;
+  private selectionBox: { x: number, y: number } = null;
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private scale: number = 1; // hardcoded to scale the document to full canvas size
   private pageNum: number = 1; // hardcoded to start at the page 1
-  private edgeField: HTMLElement;
+  private hitField: HTMLElement;
   private edgeSide: string;
-  private edgeStart: { left: number, top: number, height: number, width: number, x: number, y: number };
+  private selected: LsEditorField[];
+  private startMouse: { left: number, top: number, height: number, width: number, x: number, y: number };
   //
   // --- Properties / Inputs --- //
   //
 
   /**
-   * Rotate the PDF in degrees
-   * {number}
+   * The initial template data, including the link for background PDF. See README and
+   * example for correct GraphQL query and data structure.
+   * {LSApiTemplate}
    */
-  @Prop() rotation: 0 | 90 | 180 | 270 | 360 = 0;
+  @Prop() template: LSApiTemplate;
 
   /**
-   * Whether the left hand toolbox is displayer.
+   * Whether the left hand toolbox is displayed.
    * {boolean}
    */
   @Prop() showtoolbox?: boolean = false;
@@ -76,6 +83,8 @@ export class LsEditor {
   @Event() pageRendered: EventEmitter<number>;
   // @Event() error: EventEmitter<any>;
   @Event() pageChange: EventEmitter<number>;
+  // Multiple or single select
+  @Event() onSelect: EventEmitter<LSApiElement[]>;
 
   //
   // --- Methods --- //
@@ -123,7 +132,7 @@ export class LsEditor {
       .getPage(pageNumber)
       .then(
         (page: PDFPageProxy) => {
-          const viewport: PDFPageViewport = page.getViewport({ scale: this.scale, rotation: this.rotation });
+          const viewport: PDFPageViewport = page.getViewport({ scale: this.scale, rotation: 0 });
           this.canvas.height = viewport.height;
           this.canvas.width = viewport.width;
 
@@ -195,67 +204,109 @@ export class LsEditor {
 
     dropTarget.addEventListener("mousedown", (e) => {
 
-      if(e.offsetX < 0 || e.offsetY < 0) return;
+      if (e.offsetX < 0 || e.offsetY < 0) return;
 
-      // Find if this is a hit on a field and allow edges to be resized.
+      // Find if this was
+      // - a hit on a field edge RESIZE
+      // - a hit on the middle of a field MOVE
+      // - a hit on the background document SELECTMULTIPLE with a box
+      this.hitField = null;
       const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+
       fields.forEach(f => {
         const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
-        const fdims ={ left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY } 
-        console.log(fdims)
-        this.edgeStart = fdims;
+        const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY }
+        this.startMouse = fdims;
         // west edge
         if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
           this.edgeSide = "w"
-          this.edgeField = f;
-          // right edge
+          this.hitField = f;
+          // right / east edge
         } else if (Math.abs(e.clientX - right) < 5 && e.clientY >= top && e.clientY <= bottom) {
           this.edgeSide = "e"
-          this.edgeField = f;
-          console.log(this.edgeSide, this.edgeField, this.edgeStart)
+          this.hitField = f;
           // north edge
         } else if (Math.abs(e.clientY - top) < 5 && e.clientX >= left && e.clientX <= right) {
           this.edgeSide = "n"
-          this.edgeField = f;
-          console.log(this.edgeSide, this.edgeField, this.edgeStart)
+          this.hitField = f;
           // south edge
         } else if (Math.abs(e.clientY - bottom) < 5 && e.clientX >= left && e.clientX <= right) {
           this.edgeSide = "s"
-          this.edgeField = f;
+          this.hitField = f;
+        } else if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
+          this.edgeSide = null
+          this.hitField = f
+
         }
       })
+
+      if (this.hitField) {
+        const { height, width } = this.hitField.getBoundingClientRect();
+        const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY }
+        this.startMouse = fdims;
+      } else {
+        this.selectionBox = { x: e.clientX, y: e.clientY }
+        this.component.style.cursor = "crosshair"
+      }
     })
 
     dropTarget.addEventListener("mousemove", (event) => {
       event.preventDefault();
       // We have the mouse held down on a field edge to resize it.
-      if (this.edgeField && this.edgeSide && this.edgeStart) {
-        const movedX = (event.screenX - this.edgeStart.x);
-        const movedY = ( event.screenY - this.edgeStart.y);
+      if (this.hitField && this.edgeSide && this.startMouse) {
+        const movedX = (event.screenX - this.startMouse.x);
+        const movedY = (event.screenY - this.startMouse.y);
 
         switch (this.edgeSide) {
           case "n":
-            this.edgeField.style.top = (this.edgeStart.top + movedY) + "px"
-            this.edgeField.style.height = ( this.edgeStart.height - movedY) + "px"
+            this.hitField.style.top = (this.startMouse.top + movedY) + "px"
+            this.hitField.style.height = (this.startMouse.height - movedY) + "px"
             break;
           case "s":
-            this.edgeField.style.height = this.edgeStart.height + movedY + "px"
+            this.hitField.style.height = this.startMouse.height + movedY + "px"
             break;
           case "e":
-            this.edgeField.style.width = (this.edgeStart.width + movedX) + "px"
+            this.hitField.style.width = (this.startMouse.width + movedX) + "px"
             break;
           case "w":
-            this.edgeField.style.left = (this.edgeStart.left + movedX) + "px"
-            this.edgeField.style.width = (this.edgeStart.width - movedX) + "px"
+            this.hitField.style.left = (this.startMouse.left + movedX) + "px"
+            this.hitField.style.width = (this.startMouse.width - movedX) + "px"
             break;
         }
+      } else if (this.selectionBox) {
+        // draw the multiple selection box
+        var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+        var leftOffset = frame.getBoundingClientRect().left
+        const movedX = (event.clientX - this.selectionBox.x);
+        const movedY = (event.clientY - this.selectionBox.y);
+
+        box.style.visibility = "visible"
+        box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset + "px"
+        box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) + "px"
+        box.style.width = Math.abs(movedX) + "px"
+        box.style.height = Math.abs(movedY) + "px"
+
       }
     });
 
     dropTarget.addEventListener("mouseup", (_event) => {
       this.edgeSide = null;
-      this.edgeField = null;
-      this.edgeStart = null;
+      this.hitField = null;
+      this.startMouse = null;
+      this.component.style.cursor = "auto"
+
+      // find what was inside the selection box emit the onSelect event and change their style
+      if (this.selectionBox) {
+        var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+        var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field')
+        box.style.visibility = "hidden"
+
+        const hits = findIn(fields, box, true)
+
+        this.onSelect.emit(hits.map(f => f.dataItem))
+        this.selectionBox = null
+      }
     });
 
     dropTarget.addEventListener("dragenter", (event) => {
@@ -304,7 +355,7 @@ export class LsEditor {
           <ls-toolbox-field type="number" label="Number" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="date" label="Date" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} />
-          <ls-toolbox-field type="selfsign" label="My Signature" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field type="autosign" label="My Signature" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="regex" label="Regex" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="image" label="Image" defaultHeight={27} defaultWidth={120} />
           <ls-toolbox-field type="autodate" label="Autodate" defaultHeight={27} defaultWidth={120} />

@@ -5,9 +5,15 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { LSApiTemplate } from "./types/LSApiTemplate";
+import { LSApiElement } from "./types/LSApiElement";
+import { LSApiElement as LSApiElement1 } from "./components";
+export { LSApiTemplate } from "./types/LSApiTemplate";
+export { LSApiElement } from "./types/LSApiElement";
+export { LSApiElement as LSApiElement1 } from "./components";
 export namespace Components {
     /**
-     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * The Legalesign page viewer converted to stencil. To use pass the standard
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
@@ -25,17 +31,17 @@ export namespace Components {
          */
         "pagePrev": (e: MouseEvent) => Promise<void>;
         /**
-          * Rotate the PDF in degrees {number}
-         */
-        "rotation": 0 | 90 | 180 | 270 | 360;
-        /**
-          * Whether the left hand toolbox is displayer. {boolean}
+          * Whether the left hand toolbox is displayed. {boolean}
          */
         "showtoolbox"?: boolean;
+        /**
+          * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
+         */
+        "template": LSApiTemplate;
     }
     interface LsEditorField {
+        "dataItem": LSApiElement1;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
-        "value": string;
     }
     interface LsFieldProperties {
     }
@@ -73,9 +79,10 @@ declare global {
     interface HTMLLsEditorElementEventMap {
         "pageRendered": number;
         "pageChange": number;
+        "onSelect": LSApiElement[];
     }
     /**
-     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * The Legalesign page viewer converted to stencil. To use pass the standard
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
@@ -141,7 +148,7 @@ declare global {
 }
 declare namespace LocalJSX {
     /**
-     * The basic Legalesign page viewer converted to stencil. To use pass the standard
+     * The Legalesign page viewer converted to stencil. To use pass the standard
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
@@ -150,20 +157,21 @@ declare namespace LocalJSX {
           * The intial data for the template.
          */
         "initialData"?: object;
+        "onOnSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
         /**
-          * Rotate the PDF in degrees {number}
-         */
-        "rotation"?: 0 | 90 | 180 | 270 | 360;
-        /**
-          * Whether the left hand toolbox is displayer. {boolean}
+          * Whether the left hand toolbox is displayed. {boolean}
          */
         "showtoolbox"?: boolean;
+        /**
+          * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate;
     }
     interface LsEditorField {
+        "dataItem"?: LSApiElement1;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
-        "value"?: string;
     }
     interface LsFieldProperties {
     }
@@ -207,7 +215,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             /**
-             * The basic Legalesign page viewer converted to stencil. To use pass the standard
+             * The Legalesign page viewer converted to stencil. To use pass the standard
              * Template information from GraphQL (see Readme).
              * Alex Weinle
              */

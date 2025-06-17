@@ -1,0 +1,32 @@
+import { LSApiRole } from "./LSApiRole";
+
+export type LSApiElement = {
+  id: string;
+  align: string;
+  ax: number;
+  ay: number;
+  bx: number;
+  by: number;
+  elementType: string;
+  fieldOrder: number;
+  fontName: string;
+  fontSize: number;
+  hideBorder: boolean;
+  label: string;
+  labelExtra: string;
+  helpText: string;
+  optional: boolean;
+  options: string;
+  page: number;
+  role: LSApiRole;
+  substantive: boolean;
+  validation: number;
+  value: string;
+  logicGroup: string;
+  logicAction: number;
+  mapTo: string;
+  signer: number;
+  link: string;
+  formElementType: string;
+  roleObject: LSApiRole;
+};
