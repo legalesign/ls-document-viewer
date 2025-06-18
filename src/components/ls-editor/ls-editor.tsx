@@ -107,7 +107,7 @@ export class LsEditor {
   // Multiple or single select
   @Event() onSelect: EventEmitter<LSApiElement[]>;
   // Multiple or single change
-  @Event() onChange: EventEmitter<LSApiElement[]>;
+  @Event() onChange: EventEmitter<{ action: "update"|"create"| "delete", data: LSApiElement}[]>;
 
   //
   // --- Methods --- //
@@ -236,6 +236,8 @@ export class LsEditor {
       // check we're not moving fields
       if (this.isMoving) {
         this.isMoving = false
+        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');             
+        this.onChange.emit(Array.from(fields).filter(fx => fx.selected).map(fx => { return { action: "update", data: fx.dataItem}}))
       } else {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         fields.forEach(f => {

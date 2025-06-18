@@ -87,7 +87,7 @@ declare global {
         "pageRendered": number;
         "pageChange": number;
         "onSelect": LSApiElement[];
-        "onChange": LSApiElement[];
+        "onChange": { action: "update"|"create"| "delete", data: LSApiElement}[];
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -161,7 +161,7 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsEditor {
-        "onOnChange"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
+        "onOnChange"?: (event: LsEditorCustomEvent<{ action: "update"|"create"| "delete", data: LSApiElement}[]>) => void;
         "onOnSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
