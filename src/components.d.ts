@@ -36,6 +36,10 @@ export namespace Components {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "template": string;
+        /**
+          * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
+         */
+        "toolboxFilter"?: string;
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
@@ -83,6 +87,7 @@ declare global {
         "pageRendered": number;
         "pageChange": number;
         "onSelect": LSApiElement[];
+        "onChange": LSApiElement[];
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -156,6 +161,7 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsEditor {
+        "onOnChange"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onOnSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
@@ -171,6 +177,10 @@ declare namespace LocalJSX {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "template"?: string;
+        /**
+          * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
+         */
+        "toolboxFilter"?: string;
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;

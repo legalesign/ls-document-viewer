@@ -33,6 +33,7 @@ query GetTemplate {
                 bx
                 by
                 elementType
+                formElementType
                 fieldOrder
                 fontName
                 fontSize

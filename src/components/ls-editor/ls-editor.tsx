@@ -14,7 +14,6 @@ import {
 
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
-import { LsEditorField } from '../ls-editor-field/ls-editor-field';
 import { addField, findIn } from './editorCalculator';
 import { defaultRolePalette } from './defaultPalette';
 
@@ -47,6 +46,7 @@ export class LsEditor {
   private hitField: HTMLElement;
   private edgeSide: string;
   private selected: HTMLLsEditorFieldElement[];
+  private startLocations: { left: number, top: number, height: number, width: number }[];
   private startMouse: { left: number, top: number, height: number, width: number, x: number, y: number };
   //
   // --- Properties / Inputs --- //
@@ -65,6 +65,12 @@ export class LsEditor {
    * {boolean}
    */
   @Prop() showtoolbox?: boolean = false;
+
+  /**
+ * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials"
+ * {boolean}
+ */
+  @Prop() toolboxFilter?: string = null;
 
   /**
  * Allows you to change the colours used for each role in the template.
@@ -99,6 +105,8 @@ export class LsEditor {
   @Event() pageChange: EventEmitter<number>;
   // Multiple or single select
   @Event() onSelect: EventEmitter<LSApiElement[]>;
+  // Multiple or single change
+  @Event() onChange: EventEmitter<LSApiElement[]>;
 
   //
   // --- Methods --- //
@@ -222,6 +230,26 @@ export class LsEditor {
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
+    // Used for single field selection
+    dropTarget.addEventListener("click", (e) => {
+
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+      fields.forEach(f => {
+        const { left, top, bottom, right } = f.getBoundingClientRect();
+        if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
+          this.edgeSide = null
+          this.hitField = f
+          // check if this is a shift click to add to the current selection
+          if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
+          f.selected = true
+
+          this.selected = Array.from(fields).filter(fx => fx.selected)
+          this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
+
+        }
+      })
+    })
+
     dropTarget.addEventListener("mousedown", (e) => {
 
       if (e.offsetX < 0 || e.offsetY < 0) return;
@@ -255,12 +283,7 @@ export class LsEditor {
           this.hitField = f;
         } else if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
           this.edgeSide = null
-          this.hitField = f
-          // check if this is a shift click to add to the current selection
-          if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
-          f.selected = true
-          this.selected = Array.from(fields).filter(fx => fx.selected)
-          this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
+          this.hitField = f;
         }
       })
 
@@ -268,7 +291,15 @@ export class LsEditor {
         const { height, width } = this.hitField.getBoundingClientRect();
         const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY }
         this.startMouse = fdims;
+        this.startLocations = this.selected.map(f => {
+          const { height, width } = f.getBoundingClientRect();
+          const beHtml = f as HTMLElement
+          return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width }
+        })
+        this.selectionBox = null;
       } else {
+        this.startLocations = null
+        this.startMouse = null
         this.selectionBox = { x: e.clientX, y: e.clientY }
         this.component.style.cursor = "crosshair"
       }
@@ -311,6 +342,16 @@ export class LsEditor {
         box.style.width = Math.abs(movedX) + "px"
         box.style.height = Math.abs(movedY) + "px"
 
+      } else if (this.startLocations && !this.edgeSide && this.startMouse) {
+        // Move one or more selected items
+        const movedX = (event.screenX - this.startMouse.x);
+        const movedY = (event.screenY - this.startMouse.y);
+
+        for (let i = 0; i < this.selected.length; i++) {
+          this.selected[i].style.left = (this.startLocations[i].left + movedX) + "px"
+          this.selected[i].style.top = (this.startLocations[i].top + movedY) + "px"
+        }
+
       }
     });
 
@@ -349,7 +390,7 @@ export class LsEditor {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
 
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
-        const id  = crypto.randomUUID()
+        const id = crypto.randomUUID()
 
         // TODO :: work out a sensible defaults system for this
         const addedField = addField(this.component.shadowRoot.getElementById('ls-document-frame'), {
@@ -364,10 +405,10 @@ export class LsEditor {
           fontSize: 10,
           align: 'left'
         })
-        
+
         const newField = this.component.shadowRoot.getElementById('ls-field-' + id) as HTMLLsEditorFieldElement
         this.onSelect.emit([newField.dataItem])
-        this.selected =[ addedField ]
+        this.selected = [addedField]
 
       } catch (e) {
         console.log(e)
