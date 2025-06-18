@@ -1,4 +1,4 @@
-import { LSApiRole } from "./LSApiRole";
+import { LSApiRole } from './LSApiRole';
 
 export type LSApiElement = {
   id: string;
@@ -7,6 +7,10 @@ export type LSApiElement = {
   ay: number;
   bx: number;
   by: number;
+  left?: number;
+  top?: number;
+  height?: number;
+  width?: number;
   elementType: string;
   fieldOrder: number;
   fontName: string;
@@ -26,7 +30,10 @@ export type LSApiElement = {
   logicAction: number;
   mapTo: string;
   signer: number;
-  link: string;
-  formElementType: string;
-  roleObject: LSApiRole;
+  link?: string;
+  formElementType?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+  roleObject?: LSApiRole;
+  cstyle?: any;
+  divStyle?: any;
+  objectHeight?: string;
 };

@@ -22,5 +22,6 @@ export type LSApiTemplate = {
   modified: Date;
   lastSent: Date;
   pageDimensionArray: [number, number][];
+  pageDimensions: string;
   fixSignatureScale?: boolean;
 };

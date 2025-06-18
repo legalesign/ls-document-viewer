@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Watch, h, Element, Method } from '@stencil/core';
+import { Component, Host, Prop, Watch, h, Element, Method, State } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement'
 import { PDFDocument } from 'pdf-lib'
@@ -15,7 +15,8 @@ import {
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsEditorField } from '../ls-editor-field/ls-editor-field';
-import { findIn } from './editorCalculator';
+import { addField, findIn } from './editorCalculator';
+import { defaultRolePalette } from './defaultPalette';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -42,9 +43,10 @@ export class LsEditor {
   private ctx: CanvasRenderingContext2D;
   private scale: number = 1; // hardcoded to scale the document to full canvas size
   private pageNum: number = 1; // hardcoded to start at the page 1
+  private pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
   private hitField: HTMLElement;
   private edgeSide: string;
-  private selected: LsEditorField[];
+  private selected: HTMLLsEditorFieldElement[];
   private startMouse: { left: number, top: number, height: number, width: number, x: number, y: number };
   //
   // --- Properties / Inputs --- //
@@ -55,7 +57,8 @@ export class LsEditor {
    * example for correct GraphQL query and data structure.
    * {LSApiTemplate}
    */
-  @Prop() template: LSApiTemplate;
+  @Prop() template: string;
+  @State() _template: LSApiTemplate
 
   /**
    * Whether the left hand toolbox is displayed.
@@ -63,25 +66,29 @@ export class LsEditor {
    */
   @Prop() showtoolbox?: boolean = false;
 
-    /**
-   * Allows you to change the colours used for each role in the template.
-   * {SignerColor[]}
-   */
-  @Prop() roleColors?: RoleColor[] = defaultPalette;
-
-
   /**
-   * Listen for changes to src
-   * @param newValue
-   * @param oldValue
-   */
+ * Allows you to change the colours used for each role in the template.
+ * {SignerColor[]}
+ */
+  @Prop() roleColors?: RoleColor[] = defaultRolePalette;
 
-  @Watch('src')
-  doSrc(newValue: string | null, oldValue: string | null): void {
-    if (newValue === oldValue) {
-      return;
-    }
-    // this.loadAndRender(newValue);
+
+  parseTemplate(newValue: string) {
+    const newTemplate = newValue as any as LSApiTemplate
+    const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions))
+
+    // Convert ax,bx,ay etc. into top, left
+    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
+    const fields = newTemplate.elementConnection.templateElements.map(f => {
+      return {
+        ...f,
+        top: f.ay * pages[0].height,
+        left: f.ax * pages[0].width,
+        height: (f.by - f.ay) * pages[0].height,
+        width: (f.bx - f.ax) * pages[0].width
+      }
+    })
+    this._template = { ...newTemplate, elementConnection: { ...newTemplate.elementConnection, templateElements: fields } }
   }
 
   //
@@ -188,10 +195,16 @@ export class LsEditor {
       });
   }
 
-  /**
- * The intial data for the template.
- */
-  @Prop() initialData: object;
+  // Fills in and converts all utility and placement fields
+  prepareElement(newElement: LSApiElement): LSApiElement {
+    return {
+      ...newElement,
+      top: Math.floor(newElement.ay * this.pageDimensions[this.pageNum - 1].height),
+      left: Math.floor(newElement.ax * this.pageDimensions[this.pageNum - 1].width),
+      height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[this.pageNum - 1].height),
+      width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[this.pageNum - 1].width)
+    }
+  }
 
   componentDidLoad() {
     PDFDocument.create().then(pdfDoc => {
@@ -200,8 +213,8 @@ export class LsEditor {
       page.drawText('Welcome to Legalesign!');
       pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
         this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-        this.canvas.style.height = "842px"
-        this.canvas.style.width = "595px"
+        this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height + "px"
+        this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width + "px"
         this.ctx = this.canvas.getContext('2d');
         this.loadAndRender(pdfDataUri);
       });
@@ -243,7 +256,11 @@ export class LsEditor {
         } else if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
           this.edgeSide = null
           this.hitField = f
-
+          // check if this is a shift click to add to the current selection
+          if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
+          f.selected = true
+          this.selected = Array.from(fields).filter(fx => fx.selected)
+          this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
         }
       })
 
@@ -297,7 +314,7 @@ export class LsEditor {
       }
     });
 
-    dropTarget.addEventListener("mouseup", (_event) => {
+    dropTarget.addEventListener("mouseup", (event) => {
       this.edgeSide = null;
       this.hitField = null;
       this.startMouse = null;
@@ -309,10 +326,11 @@ export class LsEditor {
         var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field')
         box.style.visibility = "hidden"
 
-        const hits = findIn(fields, box, true)
+        findIn(fields, box, true, event.shiftKey)
 
-        this.onSelect.emit(hits.map(f => f.dataItem))
+        this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
         this.selectionBox = null
+        this.selected = Array.from(fields).filter(fx => fx.selected)
       }
     });
 
@@ -326,54 +344,83 @@ export class LsEditor {
 
     dropTarget.addEventListener("drop", (event) => {
       event.preventDefault();
-      console.log("drop ls-editor", event);
 
       try {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
 
-        const doc = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
-        const node = document.createElement("ls-editor-field");
-        node.setAttribute("type", data.type)
-        node.setAttribute("value", "")
-        node.style.zIndex = "100";
-        node.style.position = "absolute";
+        this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
+        const id  = crypto.randomUUID()
 
-        node.style.top = event.offsetY.toString() + "px";
-        node.style.left = (event.offsetX).toString() + "px";
-        node.style.height = data.defaultHeight.toString() + "px";
-        node.style.width = data.defaultWidth.toString() + "px";
-        doc.appendChild(node);
+        // TODO :: work out a sensible defaults system for this
+        const addedField = addField(this.component.shadowRoot.getElementById('ls-document-frame'), {
+          ...data,
+          id,
+          value: "",
+          top: event.offsetY,
+          left: event.offsetX,
+          height: data.defaultHeight,
+          width: data.defaultWidth,
+          fontName: "courier",
+          fontSize: 10,
+          align: 'left'
+        })
+        
+        const newField = this.component.shadowRoot.getElementById('ls-field-' + id) as HTMLLsEditorFieldElement
+        this.onSelect.emit([newField.dataItem])
+        this.selected =[ addedField ]
 
       } catch (e) {
         console.log(e)
       }
     });
+
+    this._template.elementConnection.templateElements.forEach(te => {
+      const fte = this.component.shadowRoot.getElementById('ls-field-' + te.id)
+      if (fte) {
+        fte.style.top = te.ay * this.pageDimensions[this.pageNum - 1].height + "px"
+        fte.style.left = te.ax * this.pageDimensions[this.pageNum - 1].width + "px"
+        fte.style.height = (te.by - te.ay) * this.pageDimensions[this.pageNum - 1].height + "px"
+        fte.style.width = (te.bx - te.ax) * this.pageDimensions[this.pageNum - 1].width + "px"
+        fte.style.fontSize = te.fontSize + "px"
+        fte.style.fontFamily = te.fontName
+      }
+
+    })
+
   }
 
-
+  componentWillLoad() {
+    if (this.template) this.parseTemplate(this.template);
+  }
 
   render() {
     return (
       <Host>
         {this.showtoolbox === true ? <div class="leftBox">
           <div class="ls-editor-infobox">Drag to Add...</div>
-          <ls-toolbox-field type="signature" label="Signature" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="text" label="Text" defaultHeight={27} defaultWidth={320} />
-          <ls-toolbox-field type="number" label="Number" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="date" label="Date" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} />
-          <ls-toolbox-field type="autosign" label="My Signature" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="regex" label="Regex" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="image" label="Image" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="autodate" label="Autodate" defaultHeight={27} defaultWidth={120} />
-          <ls-toolbox-field type="file" label="File" defaultHeight={27} defaultWidth={120} />
+          <ls-toolbox-field elementType="signature" formElementType="signature" label="Signature" defaultHeight={27} defaultWidth={120} validation={0} />
+          <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={320} validation={0} />
+          <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={320} validation={1} />
+          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={120} validation={50} />
+          <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={120} validation={2} />
+          <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} />
+          <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} />
+          <ls-toolbox-field elementType="initials" formElementType="initials" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={2000} />
+          <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} />
+          <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} />
+          <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
+          <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} />
         </div>
           :
           <></>
         }
         <div id="ls-document-frame" >
-          <canvas id="pdf-canvas" >       </canvas>
+          <canvas id="pdf-canvas"></canvas>
           <div id="ls-box-selector"></div>
+          {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
+            page={this.pageDimensions[this.pageNum - 1]}
+            type={e.formElementType}
+            dataItem={this.prepareElement(e)} />))}
         </div>
         <div class="rightBox">
           <slot></slot>

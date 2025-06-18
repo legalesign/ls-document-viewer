@@ -10,7 +10,8 @@
 }
 
 .ls-field-properties-section {
-   display: block;
+   display: flex;
+   flex-direction: column;
   min-width: 110px;
   background-color: white;
   border-radius: 0.75rem;

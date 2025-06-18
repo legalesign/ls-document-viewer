@@ -5,10 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSApiElement as LSApiElement1 } from "./components";
-export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSApiElement as LSApiElement1 } from "./components";
 export namespace Components {
@@ -18,10 +16,6 @@ export namespace Components {
      * Alex Weinle
      */
     interface LsEditor {
-        /**
-          * The intial data for the template.
-         */
-        "initialData": object;
         /**
           * Page forward {MouseEvent} e
          */
@@ -41,14 +35,16 @@ export namespace Components {
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
-        "template": LSApiTemplate;
+        "template": string;
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
+        "page": { height: number, width: number};
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFieldProperties {
+        "dataItem": LSApiElement[];
     }
     interface LsSend {
         "format": 'compact' | 'standard';
@@ -64,14 +60,16 @@ export namespace Components {
           * The starting width of this control type in pixels.
          */
         "defaultWidth": number;
+        "elementType": string;
+        /**
+          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
+         */
+        "formElementType": string;
         /**
           * The text to display for this field type.
          */
         "label": string;
-        /**
-          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
-         */
-        "type": string;
+        "validation": number;
     }
     interface LsZoomBox {
     }
@@ -158,10 +156,6 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsEditor {
-        /**
-          * The intial data for the template.
-         */
-        "initialData"?: object;
         "onOnSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
@@ -176,14 +170,16 @@ declare namespace LocalJSX {
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
-        "template"?: LSApiTemplate;
+        "template"?: string;
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
+        "page"?: { height: number, width: number};
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFieldProperties {
+        "dataItem"?: LSApiElement[];
     }
     interface LsSend {
         "format"?: 'compact' | 'standard';
@@ -199,14 +195,16 @@ declare namespace LocalJSX {
           * The starting width of this control type in pixels.
          */
         "defaultWidth"?: number;
+        "elementType"?: string;
+        /**
+          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
+         */
+        "formElementType"?: string;
         /**
           * The text to display for this field type.
          */
         "label"?: string;
-        /**
-          * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
-         */
-        "type"?: string;
+        "validation"?: number;
     }
     interface LsZoomBox {
     }

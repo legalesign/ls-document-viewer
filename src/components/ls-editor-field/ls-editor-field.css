@@ -1,23 +1,26 @@
 :host {
   display: block;
+  position: absolute;
   border: 1px solid rgb(49, 49, 49);
   margin: 0px;
   padding: 0px;
 }
 
 .ls-editor-field-editable {
-  display: inline-block;
-  font-family: 'IBM Plex';
-  font-size: 16pt;
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
   overflow: hidden;
 
   /* no extra spaces */
   white-space: nowrap;
-
+  border: 0px solid #000;
+  margin: 0;
+  padding: 0px 0px 0px 0px;
   /* default widths */
   min-width: 2em;
   background-color: white;
-      height: 100%;
+  height: 100%;
   width: 100%;
 }
 
@@ -28,8 +31,9 @@
 
 .ls-editor-field-draggable {
   display: block;
-  font-family: 'IBM Plex';
-  font-size: 16pt;
+  font-family: inherit;
+  font-size: inherit;
+
   overflow: hidden;
 
   /* no extra spaces */
@@ -42,30 +46,17 @@
   width: 98%;
 }
 
-
-.ls-editor-field-draggable-selected {
-  display: block;
-  font-family: 'IBM Plex';
-  font-size: 16pt;
-  border: 1px rgb(206, 11, 11) solid;
-  overflow: hidden;
-
-  /* no extra spaces */
-  white-space: nowrap;
-  background-color: white;
-
-  /* default widths */
-  min-width: 2px;
-  height: 98%;
-  width: 98%;
+.is-selected {
+    border: 1px dotted rgb(193, 26, 26);
 }
-
 
 .hidden-field {
   display: none;
 }
 
 .draggable-input {
+  font-family: inherit;
+  font-size: inherit;
   position: relative;
   height: 95%;
   width: 95%;

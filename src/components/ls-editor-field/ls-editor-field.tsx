@@ -12,6 +12,7 @@ export class LsEditorField {
   @Prop() selected: boolean;
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+  @Prop() page: { height: number, width: number};
   @State() isEditing: boolean = false;
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
@@ -28,7 +29,7 @@ export class LsEditorField {
 
   @Listen("mousemove", { capture: true })
   handleMouseMove(e) {
-    if(!e.clientX) return;
+    if (!e.clientX) return;
 
     // Determine which edge is being moved over and what cursor to show.
     if (Math.abs(e.offsetX) < 5) {
@@ -55,27 +56,14 @@ export class LsEditorField {
 
   @Listen('dragstart', { capture: false, passive: false })
   handleDragStart(event) {
-      console.log("dragstart ls-editor-field", event, this.type)
-      // Add the target element's id to the data transfer object
-      event.dataTransfer.setData("application/json", JSON.stringify({
-        type: this.type
-      }));
-      event.dataTransfer.dropEffect = "move";
+    console.log("dragstart ls-editor-field", event, this.type)
+    // Add the target element's id to the data transfer object
+    event.dataTransfer.setData("application/json", JSON.stringify({
+      type: this.type
+    }));
+    event.dataTransfer.dropEffect = "move";
   }
 
-  setAll(top: string, left: string, height: string, width: string) {
-    this.setDimensions('editing-input', top, left, height, width)
-    this.setDimensions('field-info', top, left, height, width)
-    this.setDimensions('ls-editor-field-outer', top, left, height, width)
-  }
-
-  setDimensions(id: string, top: string, left: string, height: string, width: string) {
-    const targetToSize = this.component.shadowRoot.getElementById(id) as HTMLElement;
-    targetToSize.style.top = top
-    targetToSize.style.left = left
-    targetToSize.style.height = height
-    targetToSize.style.width = width
-  }
 
   // Apply @Watch() for the component's `numberContainer` member.
   // Whenever `numberContainer` changes, this method will fire.
@@ -83,16 +71,15 @@ export class LsEditorField {
   watchStateHandler(_newValue: boolean, _oldValue: boolean) {
     const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
     editbox.focus();
-    console.log(_newValue, editbox.value)
     editbox.style.cursor = "auto";
     //editbox.setSelectionRange(editbox.value.length,editbox.value.length,"forward")
     editbox.selectionStart = 0
     editbox.selectionEnd = 0
   }
 
-    @Watch('selected')
-    watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
-    if(_newValue) this.component.style.border = "1px dashed red";
+  @Watch('selected')
+  watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
+    if (_newValue) this.component.style.border = "1px dotted red";
     else this.component.style.border = "1px solid black";
   }
 
@@ -102,34 +89,15 @@ export class LsEditorField {
   }
 
   componentDidLoad() {
-    // this.componentObserver = new ResizeObserver((entries) => {
-    //       const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLElement;
-    //       const movebox = this.component.shadowRoot.getElementById('draggable-inner') as HTMLElement;
 
-    //   for (const entry of entries) {
-    //     console.log(entry)
-    //     console.log('resize host')
-    //     if (entry.contentRect) {
-    //       //editbox.style.top = "1px"
-    //       editbox.style.height = entry.contentRect.height - 2 + "px"
-    //       editbox.style.width = entry.contentRect.width -  2 + "px"
-    //       //movebox.style.top = "1px"
-    //       movebox.style.height = entry.contentRect.height - 2 + "px"
-    //       movebox.style.width = entry.contentRect.width - 2 + "px"
-    //     }}
-    // })
-
-    // this.componentObserver.observe(this.component)
-
-    // console.log("ls-editor-field load", this.value)
     this.sizeObserver = new ResizeObserver((entries) => {
 
       for (const entry of entries) {
         if (entry.contentRect) {
-        
+
           const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLElement;
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
-    
+
           editbox.style.height = entry.contentRect.height + "px"
           editbox.style.width = entry.contentRect.width + "px"
 
@@ -141,20 +109,27 @@ export class LsEditorField {
     })
 
     this.sizeObserver.observe(this.component)
+
+    // New dropped components automatically need selecting.
+    if (this.selected) this.component.style.border = "1px dotted red";
+    else this.component.style.border = "1px solid black";
   }
 
   render() {
     return (
-      <Host>
+      <Host class={{
+          'ls-editor-field': true,
+          'is-selected': this.selected
+        }}>
         <div id="ls-editor-field-outer">
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
             type='text'
-            value={this.innerValue || this.dataItem?.value}
+            value={this.dataItem?.value || this.innerValue }
             onChange={(e) => this.onInputChange(e)}
           ></input>
           <div id="field-info" class={this.isEditing ? "hidden-field" : "ls-editor-field-draggable"}>
-            {this.innerValue || this.type}
+            {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType }
           </div>
         </div>
       </Host>

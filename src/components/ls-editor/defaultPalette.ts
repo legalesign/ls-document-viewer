@@ -1,4 +1,4 @@
-const defaultPalette = [
+export const defaultRolePalette: RoleColor[] = [
     { index: 0, color: "#222222"},
     { index: 1, color: "#0000DD"},
     { index: 2, color: "#00DD00"},

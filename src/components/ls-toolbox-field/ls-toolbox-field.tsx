@@ -10,7 +10,10 @@ export class LsToolboxField {
   /**
    * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
    */
-  @Prop() type: string;
+  @Prop() formElementType: string;
+  @Prop() elementType: string;
+  @Prop() validation: number = 0;
+  
 
   /**
   * The text to display for this field type.
@@ -29,10 +32,11 @@ export class LsToolboxField {
 
   @Listen('dragstart')
   handleDragStart(event) {
-    console.log("dragstart ls-toolbox-field", event, this.type)
     // Add the target element's id to the data transfer object
     event.dataTransfer.setData("application/json", JSON.stringify({
-      type: this.type,
+      formElementType: this.formElementType,
+      elementType: this.elementType,
+      validation: this.validation,
       defaultHeight: this.defaultHeight,
       defaultWidth: this.defaultWidth,
 
