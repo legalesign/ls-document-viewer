@@ -9,12 +9,6 @@ import { LSApiElement } from '../../types/LSApiElement';
 export class LsFieldProperties {
   @Prop() dataItem: LSApiElement[];
 
-    @Watch('dataItem')
-    watchStateHandler(_newValue: LSApiElement[], _oldValue: LSApiElement[]) {
-      console.log("properties",_newValue, _oldValue)
-
-    }
-
   render() {
     return (
       <Host>

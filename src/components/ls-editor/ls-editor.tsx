@@ -35,6 +35,7 @@ export class LsEditor {
   @Element() component: HTMLElement;
 
   private isPageRendering: boolean;
+  private isMoving: boolean = false;
   private selectionBox: { x: number, y: number } = null;
   private pdfDocument: any;
   private pageNumPending: number = null;
@@ -232,22 +233,25 @@ export class LsEditor {
 
     // Used for single field selection
     dropTarget.addEventListener("click", (e) => {
+      // check we're not moving fields
+      if (this.isMoving) {
+        this.isMoving = false
+      } else {
+        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+        fields.forEach(f => {
+          const { left, top, bottom, right } = f.getBoundingClientRect();
+          if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
+            this.edgeSide = null
+            this.hitField = f
+            // check if this is a shift click to add to the current selection
+            if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
+            f.selected = true
 
-      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-      fields.forEach(f => {
-        const { left, top, bottom, right } = f.getBoundingClientRect();
-        if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
-          this.edgeSide = null
-          this.hitField = f
-          // check if this is a shift click to add to the current selection
-          if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
-          f.selected = true
-
-          this.selected = Array.from(fields).filter(fx => fx.selected)
-          this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
-
-        }
-      })
+            this.selected = Array.from(fields).filter(fx => fx.selected)
+            this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
+          }
+        })
+      }
     })
 
     dropTarget.addEventListener("mousedown", (e) => {
@@ -307,8 +311,9 @@ export class LsEditor {
 
     dropTarget.addEventListener("mousemove", (event) => {
       event.preventDefault();
+
       // We have the mouse held down on a field edge to resize it.
-      if (this.hitField && this.edgeSide && this.startMouse) {
+      if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
         const movedX = (event.screenX - this.startMouse.x);
         const movedY = (event.screenY - this.startMouse.y);
 
@@ -328,7 +333,7 @@ export class LsEditor {
             this.hitField.style.width = (this.startMouse.width - movedX) + "px"
             break;
         }
-      } else if (this.selectionBox) {
+      } else if (this.selectionBox && event.buttons === 1) {
         // draw the multiple selection box
         var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
@@ -342,7 +347,8 @@ export class LsEditor {
         box.style.width = Math.abs(movedX) + "px"
         box.style.height = Math.abs(movedY) + "px"
 
-      } else if (this.startLocations && !this.edgeSide && this.startMouse) {
+      } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
+        this.isMoving = true;
         // Move one or more selected items
         const movedX = (event.screenX - this.startMouse.x);
         const movedY = (event.screenY - this.startMouse.y);
@@ -357,7 +363,6 @@ export class LsEditor {
 
     dropTarget.addEventListener("mouseup", (event) => {
       this.edgeSide = null;
-      this.hitField = null;
       this.startMouse = null;
       this.component.style.cursor = "auto"
 
@@ -388,7 +393,6 @@ export class LsEditor {
 
       try {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
-
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         const id = crypto.randomUUID()
 

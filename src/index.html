@@ -102,7 +102,7 @@
       }
     };
       componentInstance.addEventListener('onSelect', customEvent => {
-        console.log(customEvent.detail);
+        console.log(customEvent.detail, 'onSelect');
         const editor = document.querySelector('ls-field-properties');
         editor.dataItem = customEvent.detail
       });
