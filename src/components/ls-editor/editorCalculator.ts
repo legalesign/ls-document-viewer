@@ -17,7 +17,7 @@ export const findIn = (fields: NodeListOf<HTMLLsEditorFieldElement>, selector: H
 
 // Used to append new fields (dropped or loaded from template data)
 export const addField = (frame: HTMLElement, data): HTMLLsEditorFieldElement => {
-  const node = document.createElement('ls-editor-field') ;
+  const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);
   node.setAttribute('selected', 'selected');
@@ -32,6 +32,14 @@ export const addField = (frame: HTMLElement, data): HTMLLsEditorFieldElement => 
   frame.appendChild(node);
 
   return node as any as HTMLLsEditorFieldElement;
+};
+
+export const moveField = (item: HTMLLsEditorFieldElement, data) => {
+  item.style.top = data.top + 'px';
+  item.style.left = data.left + 'px';
+  item.style.height = data.height + 'px';
+  item.style.width = data.width + 'px';
+  item.dataItem = data;
 };
 
 // calculates html compatible coords at current zoom level
@@ -81,5 +89,31 @@ export const transformCoordinates = (
       fontSize: viewerWidth < 640 ? `${(fontSize / 24) * zoom}rem` : `${fontSize * zoom}px`,
     },
     objectHeight: `${inputFieldHeight * (by - ay) * zoom}px`,
+  };
+};
+
+// from a field element get all dimension data including LEGACY dimensions
+export const findDimensions = (
+  sourceField: HTMLLsEditorFieldElement,
+  pageHeight: number,
+  pageWidth: number
+): { top: number; left: number; height: number; width: number; ax: number; ay: number; bx: number; by: number } => {
+  const { top, left, height, width } = sourceField.getBoundingClientRect();
+  // Returns X, Y coordinates
+  const ax = left > 0 ? left / pageWidth : 0;
+  const ay = top > 0 ? top / pageHeight : 0;
+  const bx = (left + width) / pageWidth;
+  const by = (top + height) / pageHeight;
+
+  // Return with calculated styles that try to place it as it would appear on legacy signing page
+  return {
+    top,
+    left,
+    height,
+    width,
+    ax,
+    ay,
+    bx,
+    by,
   };
 };

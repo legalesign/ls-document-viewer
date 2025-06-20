@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+button {
+  display: inline-flex;
+  background-color: rgb(254, 254, 255);
+  min-width: 36px;
+  min-height: 36px;
+  -moz-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 0.25rem;
+  width: 37px;  
+  height: 37px;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+button:hover {
+  background-color: gray;
+}

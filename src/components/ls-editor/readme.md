@@ -24,12 +24,13 @@ Alex Weinle
 
 ## Events
 
-| Event          | Description | Type                                                                               |
-| -------------- | ----------- | ---------------------------------------------------------------------------------- |
-| `onChange`     |             | `CustomEvent<{ action: "update" \| "create" \| "delete"; data: LSApiElement; }[]>` |
-| `onSelect`     |             | `CustomEvent<LSApiElement[]>`                                                      |
-| `pageChange`   |             | `CustomEvent<number>`                                                              |
-| `pageRendered` |             | `CustomEvent<number>`                                                              |
+| Event          | Description | Type                           |
+| -------------- | ----------- | ------------------------------ |
+| `mutate`       |             | `CustomEvent<LSMutateEvent[]>` |
+| `pageChange`   |             | `CustomEvent<number>`          |
+| `pageRendered` |             | `CustomEvent<number>`          |
+| `select`       |             | `CustomEvent<LSApiElement[]>`  |
+| `update`       |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Methods

@@ -12,13 +12,7 @@ export class LsFieldPropertiesDate {
     return (
       <Host>
         <div class={"ls-field-properties-section"}>Date Field</div>
-        <div class={"ls-field-properties-section"}>
-          <div>Height: {this.dataItem[0]?.height}</div>
-          <div>Width: {this.dataItem[0]?.width}</div>
-          <div>Top: {this.dataItem[0]?.top}</div>
-          <div>Left: {this.dataItem[0]?.left}</div>
-
-        </div>
+        <ls-field-dimensions dataItem={this.dataItem} />
         <slot></slot>
       </Host>
     );

@@ -13,10 +13,7 @@ export class LsFieldPropertiesSignature {
     return ( 
       <Host>
           <ls-field-dimensions dataItem={this.dataItem} />
-          <div class={"ls-field-properties-section"}>Format</div>
-          <div class={"ls-field-properties-section"}>Placement</div>
-          <div class={"ls-field-properties-section"}>Dimensions</div>
-          <div class={"ls-field-properties-section"}>Advanced</div>
+          <ls-field-format dataItem={this.dataItem} />
         <slot></slot>
       </Host>
     );

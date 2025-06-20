@@ -6,9 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiElement } from "./types/LSApiElement";
-import { LSApiElement as LSApiElement1 } from "./components";
+import { LSMutateEvent } from "./types/LSMutateEvent";
+import { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LSApiElement } from "./types/LSApiElement";
-export { LSApiElement as LSApiElement1 } from "./components";
+export { LSMutateEvent } from "./types/LSMutateEvent";
+export { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export namespace Components {
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -47,8 +49,14 @@ export namespace Components {
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
+    interface LsFieldAlignment {
+        "dataItem": LSApiElement1[];
+    }
     interface LsFieldDimensions {
-        "dataItem": LSApiElement1;
+        "dataItem": LSApiElement1 | LSApiElement1[];
+    }
+    interface LsFieldDistribute {
+        "dataItem": LSApiElement1[];
     }
     interface LsFieldFormat {
         "dataItem": LSApiElement1;
@@ -73,6 +81,9 @@ export namespace Components {
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
+    }
+    interface LsFieldSize {
+        "dataItem": LSApiElement1[];
     }
     interface LsToolboxField {
         /**
@@ -99,12 +110,29 @@ export interface LsEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsEditorElement;
 }
+export interface LsFieldAlignmentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldAlignmentElement;
+}
+export interface LsFieldDimensionsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldDimensionsElement;
+}
+export interface LsFieldDistributeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldDistributeElement;
+}
+export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldSizeElement;
+}
 declare global {
     interface HTMLLsEditorElementEventMap {
         "pageRendered": number;
         "pageChange": number;
         "select": LSApiElement[];
-        "change": { action: "update" | "create" | "delete", data: LSApiElement }[];
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -131,11 +159,59 @@ declare global {
         prototype: HTMLLsEditorFieldElement;
         new (): HTMLLsEditorFieldElement;
     };
+    interface HTMLLsFieldAlignmentElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
+    interface HTMLLsFieldAlignmentElement extends Components.LsFieldAlignment, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldAlignmentElementEventMap>(type: K, listener: (this: HTMLLsFieldAlignmentElement, ev: LsFieldAlignmentCustomEvent<HTMLLsFieldAlignmentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldAlignmentElementEventMap>(type: K, listener: (this: HTMLLsFieldAlignmentElement, ev: LsFieldAlignmentCustomEvent<HTMLLsFieldAlignmentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldAlignmentElement: {
+        prototype: HTMLLsFieldAlignmentElement;
+        new (): HTMLLsFieldAlignmentElement;
+    };
+    interface HTMLLsFieldDimensionsElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsFieldDimensionsElement extends Components.LsFieldDimensions, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldDimensionsElementEventMap>(type: K, listener: (this: HTMLLsFieldDimensionsElement, ev: LsFieldDimensionsCustomEvent<HTMLLsFieldDimensionsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldDimensionsElementEventMap>(type: K, listener: (this: HTMLLsFieldDimensionsElement, ev: LsFieldDimensionsCustomEvent<HTMLLsFieldDimensionsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFieldDimensionsElement: {
         prototype: HTMLLsFieldDimensionsElement;
         new (): HTMLLsFieldDimensionsElement;
+    };
+    interface HTMLLsFieldDistributeElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
+    interface HTMLLsFieldDistributeElement extends Components.LsFieldDistribute, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldDistributeElementEventMap>(type: K, listener: (this: HTMLLsFieldDistributeElement, ev: LsFieldDistributeCustomEvent<HTMLLsFieldDistributeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldDistributeElementEventMap>(type: K, listener: (this: HTMLLsFieldDistributeElement, ev: LsFieldDistributeCustomEvent<HTMLLsFieldDistributeElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldDistributeElement: {
+        prototype: HTMLLsFieldDistributeElement;
+        new (): HTMLLsFieldDistributeElement;
     };
     interface HTMLLsFieldFormatElement extends Components.LsFieldFormat, HTMLStencilElement {
     }
@@ -185,6 +261,24 @@ declare global {
         prototype: HTMLLsFieldPropertiesTextElement;
         new (): HTMLLsFieldPropertiesTextElement;
     };
+    interface HTMLLsFieldSizeElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
+    interface HTMLLsFieldSizeElement extends Components.LsFieldSize, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldSizeElementEventMap>(type: K, listener: (this: HTMLLsFieldSizeElement, ev: LsFieldSizeCustomEvent<HTMLLsFieldSizeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldSizeElementEventMap>(type: K, listener: (this: HTMLLsFieldSizeElement, ev: LsFieldSizeCustomEvent<HTMLLsFieldSizeElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldSizeElement: {
+        prototype: HTMLLsFieldSizeElement;
+        new (): HTMLLsFieldSizeElement;
+    };
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
     }
     var HTMLLsToolboxFieldElement: {
@@ -194,7 +288,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "ls-editor": HTMLLsEditorElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
+        "ls-field-alignment": HTMLLsFieldAlignmentElement;
         "ls-field-dimensions": HTMLLsFieldDimensionsElement;
+        "ls-field-distribute": HTMLLsFieldDistributeElement;
         "ls-field-format": HTMLLsFieldFormatElement;
         "ls-field-properties": HTMLLsFieldPropertiesElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
@@ -203,6 +299,7 @@ declare global {
         "ls-field-properties-number": HTMLLsFieldPropertiesNumberElement;
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
+        "ls-field-size": HTMLLsFieldSizeElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
 }
@@ -213,10 +310,11 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsEditor {
-        "onChange"?: (event: LsEditorCustomEvent<{ action: "update" | "create" | "delete", data: LSApiElement }[]>) => void;
+        "onMutate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
         "onSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
+        "onUpdate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
         /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
          */
@@ -240,8 +338,20 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
+    interface LsFieldAlignment {
+        "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
+    }
     interface LsFieldDimensions {
-        "dataItem"?: LSApiElement1;
+        "dataItem"?: LSApiElement1 | LSApiElement1[];
+        "onMutate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
+    }
+    interface LsFieldDistribute {
+        "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldFormat {
         "dataItem"?: LSApiElement1;
@@ -267,6 +377,11 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
     }
+    interface LsFieldSize {
+        "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
+    }
     interface LsToolboxField {
         /**
           * The starting height of this control type in pixels.
@@ -290,7 +405,9 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ls-editor": LsEditor;
         "ls-editor-field": LsEditorField;
+        "ls-field-alignment": LsFieldAlignment;
         "ls-field-dimensions": LsFieldDimensions;
+        "ls-field-distribute": LsFieldDistribute;
         "ls-field-format": LsFieldFormat;
         "ls-field-properties": LsFieldProperties;
         "ls-field-properties-date": LsFieldPropertiesDate;
@@ -299,6 +416,7 @@ declare namespace LocalJSX {
         "ls-field-properties-number": LsFieldPropertiesNumber;
         "ls-field-properties-signature": LsFieldPropertiesSignature;
         "ls-field-properties-text": LsFieldPropertiesText;
+        "ls-field-size": LsFieldSize;
         "ls-toolbox-field": LsToolboxField;
     }
 }
@@ -313,7 +431,9 @@ declare module "@stencil/core" {
              */
             "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
+            "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
             "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;
+            "ls-field-distribute": LocalJSX.LsFieldDistribute & JSXBase.HTMLAttributes<HTMLLsFieldDistributeElement>;
             "ls-field-format": LocalJSX.LsFieldFormat & JSXBase.HTMLAttributes<HTMLLsFieldFormatElement>;
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
@@ -322,6 +442,7 @@ declare module "@stencil/core" {
             "ls-field-properties-number": LocalJSX.LsFieldPropertiesNumber & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesNumberElement>;
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
+            "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }
     }

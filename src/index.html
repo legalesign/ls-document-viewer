@@ -16,6 +16,7 @@
     <script>
       const componentInstance = document.currentScript.previousElementSibling;
       const editor = document.querySelector('ls-editor');
+      const properties = document.querySelector('ls-field-properties');
       editor.template = {
       "id": "dHBsMTRlOGE4NDEtMzcxYi0xMWYwLTk5MzItMDY5NzZlZmU0MzIx",
       "title": "File Test (Alex)",
@@ -110,6 +111,10 @@
         console.log(customEvent.detail, 'change');
         const editor = document.querySelector('ls-field-properties');
         if(customEvent?.detail) editor.dataItem = customEvent.detail.map(c => c.data)
+      });
+
+      properties.addEventListener('mutate', customEvent => {
+        console.log(customEvent.detail, 'api call');       
       });
       
     </script>

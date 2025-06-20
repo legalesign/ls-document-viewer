@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Element, Method, State } from '@stencil/core';
+import { Component, Host, Prop, h, Element, Method, State, Listen } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement'
 import { PDFDocument } from 'pdf-lib'
@@ -14,8 +14,9 @@ import {
 
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
-import { addField, findIn } from './editorCalculator';
+import { addField, findDimensions, findIn, moveField } from './editorCalculator';
 import { defaultRolePalette } from './defaultPalette';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -106,8 +107,16 @@ export class LsEditor {
   @Event() pageChange: EventEmitter<number>;
   // Multiple or single select
   @Event() select: EventEmitter<LSApiElement[]>;
-  // Multiple or single change
-  @Event() change: EventEmitter<{ action: "update" | "create" | "delete", data: LSApiElement }[]>;
+  // Send an external event to be processed
+  @Event() mutate: EventEmitter<LSMutateEvent[]>;
+  // Send an internal event to be processed
+  @Event() update: EventEmitter<LSMutateEvent[]>;
+
+  // Updates are internal event between LS controls not to be confused with mutate
+  @Listen('update')
+  mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    if (event.detail) event.detail.forEach(fx => this.syncChange(fx))
+  }
 
   //
   // --- Methods --- //
@@ -215,7 +224,29 @@ export class LsEditor {
     }
   }
 
+  // internal forced change
+  syncChange(update: LSMutateEvent) {
+    console.log('syncChange', update)
+
+    if (update.action === 'create') {
+      addField(this.component.shadowRoot.getElementById('ls-document-frame'), update.data)
+      const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
+      this.selected = [newField]
+      this.select.emit([update.data])
+    }
+    else if (update.action === 'update') {
+      const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+      if (fi) moveField(fi, { ...fi.dataItem, ...update.data })
+    } else if (update.action === 'delete') {
+      const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+      this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
+    } else {
+      console.warn('Unrecognised update, check Legalesign documentation. `create`, `update` and `delete` allowed.')
+    }
+  }
+
   componentDidLoad() {
+    // TODO:: Remove and add "real" background
     PDFDocument.create().then(pdfDoc => {
       const page = pdfDoc.addPage([842, 595]);
       page.moveTo(50, 410);
@@ -235,11 +266,21 @@ export class LsEditor {
     dropTarget.addEventListener("click", (e) => {
       // check we're not moving fields
       if (this.isMoving) {
+        // End dragging fields
         this.isMoving = false
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         const selected = Array.from(fields).filter(fx => fx.selected)
+        
         this.select.emit(selected.map(fx => fx.dataItem))
-        this.change.emit(Array.from(fields).filter(fx => fx.selected).map(fx => { return { action: "update", data: fx.dataItem } }))
+        this.mutate.emit(Array.from(fields).filter(fx => fx.selected).map(fx => {
+          // Calculate new positions and update the dataItem on the control
+          const delta = {
+            ...fx.dataItem,
+            ...findDimensions(fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width)
+          }
+          fx.dataItem = delta
+          return { action: "update", data: delta }
+        }))
       } else {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         fields.forEach(f => {
@@ -401,24 +442,26 @@ export class LsEditor {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         const id = crypto.randomUUID()
+        const newData: LSMutateEvent = {
+          action: 'create', data: {
+            ...data,
+            id,
+            value: "",
+            top: event.offsetY,
+            left: event.offsetX,
+            height: data.defaultHeight,
+            width: data.defaultWidth,
+            fontName: "courier",
+            fontSize: 10,
+            align: 'left',
+            signer: 1,
+            elementType: data.type
+          } as LSApiElement
+        }
 
         // TODO :: work out a sensible defaults system for this
-        const addedField = addField(this.component.shadowRoot.getElementById('ls-document-frame'), {
-          ...data,
-          id,
-          value: "",
-          top: event.offsetY,
-          left: event.offsetX,
-          height: data.defaultHeight,
-          width: data.defaultWidth,
-          fontName: "courier",
-          fontSize: 10,
-          align: 'left'
-        })
-
-        const newField = this.component.shadowRoot.getElementById('ls-field-' + id) as HTMLLsEditorFieldElement
-        this.select.emit([newField.dataItem])
-        this.selected = [addedField]
+        this.mutate.emit([newData])
+        this.update.emit([newData])
 
       } catch (e) {
         console.log(e)
@@ -456,7 +499,7 @@ export class LsEditor {
           <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={120} validation={2} />
           <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} />
           <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} />
-          <ls-toolbox-field elementType="initials" formElementType="initials" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={2000} />
+          <ls-toolbox-field elementType="initials" formElementType="initials" label="Initials" defaultHeight={27} defaultWidth={120} validation={2000} />
           <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} />
           <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} />
           <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
