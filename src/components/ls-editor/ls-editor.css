@@ -59,6 +59,13 @@
   z-index: 1000;
 }
 
+.rightBox {
+  width: 270px;
+  min-width: 690px;
+  padding: 4px;
+  font-family: 'IBM Flex';
+}
+
 #ls-box-selector {
   position: absolute;
   visibility: hidden;

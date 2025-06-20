@@ -101,15 +101,15 @@
         "totalCount": 2
       }
     };
-      componentInstance.addEventListener('onSelect', customEvent => {
-        console.log(customEvent.detail, 'onSelect');
+      componentInstance.addEventListener('select', customEvent => {
+        console.log(customEvent.detail, 'select');
         const editor = document.querySelector('ls-field-properties');
         editor.dataItem = customEvent.detail
       });
-      componentInstance.addEventListener('onChange', customEvent => {
-        console.log(customEvent.detail, 'onChange');
+      componentInstance.addEventListener('change', customEvent => {
+        console.log(customEvent.detail, 'change');
         const editor = document.querySelector('ls-field-properties');
-        editor.dataItem = customEvent.detail
+        if(customEvent?.detail) editor.dataItem = customEvent.detail.map(c => c.data)
       });
       
     </script>

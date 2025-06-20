@@ -47,13 +47,32 @@ export namespace Components {
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
+    interface LsFieldDimensions {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldFormat {
+        "dataItem": LSApiElement1;
+    }
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
     }
-    interface LsSend {
-        "format": 'compact' | 'standard';
+    interface LsFieldPropertiesDate {
+        "dataItem": LSApiElement1;
     }
-    interface LsSender {
+    interface LsFieldPropertiesGeneral {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesMultiple {
+        "dataItem": LSApiElement1[];
+    }
+    interface LsFieldPropertiesNumber {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesSignature {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesText {
+        "dataItem": LSApiElement1;
     }
     interface LsToolboxField {
         /**
@@ -75,8 +94,6 @@ export namespace Components {
         "label": string;
         "validation": number;
     }
-    interface LsZoomBox {
-    }
 }
 export interface LsEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -86,8 +103,8 @@ declare global {
     interface HTMLLsEditorElementEventMap {
         "pageRendered": number;
         "pageChange": number;
-        "onSelect": LSApiElement[];
-        "onChange": { action: "update"|"create"| "delete", data: LSApiElement}[];
+        "select": LSApiElement[];
+        "change": { action: "update" | "create" | "delete", data: LSApiElement }[];
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -114,23 +131,59 @@ declare global {
         prototype: HTMLLsEditorFieldElement;
         new (): HTMLLsEditorFieldElement;
     };
+    interface HTMLLsFieldDimensionsElement extends Components.LsFieldDimensions, HTMLStencilElement {
+    }
+    var HTMLLsFieldDimensionsElement: {
+        prototype: HTMLLsFieldDimensionsElement;
+        new (): HTMLLsFieldDimensionsElement;
+    };
+    interface HTMLLsFieldFormatElement extends Components.LsFieldFormat, HTMLStencilElement {
+    }
+    var HTMLLsFieldFormatElement: {
+        prototype: HTMLLsFieldFormatElement;
+        new (): HTMLLsFieldFormatElement;
+    };
     interface HTMLLsFieldPropertiesElement extends Components.LsFieldProperties, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesElement: {
         prototype: HTMLLsFieldPropertiesElement;
         new (): HTMLLsFieldPropertiesElement;
     };
-    interface HTMLLsSendElement extends Components.LsSend, HTMLStencilElement {
+    interface HTMLLsFieldPropertiesDateElement extends Components.LsFieldPropertiesDate, HTMLStencilElement {
     }
-    var HTMLLsSendElement: {
-        prototype: HTMLLsSendElement;
-        new (): HTMLLsSendElement;
+    var HTMLLsFieldPropertiesDateElement: {
+        prototype: HTMLLsFieldPropertiesDateElement;
+        new (): HTMLLsFieldPropertiesDateElement;
     };
-    interface HTMLLsSenderElement extends Components.LsSender, HTMLStencilElement {
+    interface HTMLLsFieldPropertiesGeneralElement extends Components.LsFieldPropertiesGeneral, HTMLStencilElement {
     }
-    var HTMLLsSenderElement: {
-        prototype: HTMLLsSenderElement;
-        new (): HTMLLsSenderElement;
+    var HTMLLsFieldPropertiesGeneralElement: {
+        prototype: HTMLLsFieldPropertiesGeneralElement;
+        new (): HTMLLsFieldPropertiesGeneralElement;
+    };
+    interface HTMLLsFieldPropertiesMultipleElement extends Components.LsFieldPropertiesMultiple, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesMultipleElement: {
+        prototype: HTMLLsFieldPropertiesMultipleElement;
+        new (): HTMLLsFieldPropertiesMultipleElement;
+    };
+    interface HTMLLsFieldPropertiesNumberElement extends Components.LsFieldPropertiesNumber, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesNumberElement: {
+        prototype: HTMLLsFieldPropertiesNumberElement;
+        new (): HTMLLsFieldPropertiesNumberElement;
+    };
+    interface HTMLLsFieldPropertiesSignatureElement extends Components.LsFieldPropertiesSignature, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesSignatureElement: {
+        prototype: HTMLLsFieldPropertiesSignatureElement;
+        new (): HTMLLsFieldPropertiesSignatureElement;
+    };
+    interface HTMLLsFieldPropertiesTextElement extends Components.LsFieldPropertiesText, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesTextElement: {
+        prototype: HTMLLsFieldPropertiesTextElement;
+        new (): HTMLLsFieldPropertiesTextElement;
     };
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
     }
@@ -138,20 +191,19 @@ declare global {
         prototype: HTMLLsToolboxFieldElement;
         new (): HTMLLsToolboxFieldElement;
     };
-    interface HTMLLsZoomBoxElement extends Components.LsZoomBox, HTMLStencilElement {
-    }
-    var HTMLLsZoomBoxElement: {
-        prototype: HTMLLsZoomBoxElement;
-        new (): HTMLLsZoomBoxElement;
-    };
     interface HTMLElementTagNameMap {
         "ls-editor": HTMLLsEditorElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
+        "ls-field-dimensions": HTMLLsFieldDimensionsElement;
+        "ls-field-format": HTMLLsFieldFormatElement;
         "ls-field-properties": HTMLLsFieldPropertiesElement;
-        "ls-send": HTMLLsSendElement;
-        "ls-sender": HTMLLsSenderElement;
+        "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
+        "ls-field-properties-general": HTMLLsFieldPropertiesGeneralElement;
+        "ls-field-properties-multiple": HTMLLsFieldPropertiesMultipleElement;
+        "ls-field-properties-number": HTMLLsFieldPropertiesNumberElement;
+        "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
+        "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
-        "ls-zoom-box": HTMLLsZoomBoxElement;
     }
 }
 declare namespace LocalJSX {
@@ -161,10 +213,10 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsEditor {
-        "onOnChange"?: (event: LsEditorCustomEvent<{ action: "update"|"create"| "delete", data: LSApiElement}[]>) => void;
-        "onOnSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
+        "onChange"?: (event: LsEditorCustomEvent<{ action: "update" | "create" | "delete", data: LSApiElement }[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
+        "onSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
          */
@@ -188,13 +240,32 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
+    interface LsFieldDimensions {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldFormat {
+        "dataItem"?: LSApiElement1;
+    }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
     }
-    interface LsSend {
-        "format"?: 'compact' | 'standard';
+    interface LsFieldPropertiesDate {
+        "dataItem"?: LSApiElement1;
     }
-    interface LsSender {
+    interface LsFieldPropertiesGeneral {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesMultiple {
+        "dataItem"?: LSApiElement1[];
+    }
+    interface LsFieldPropertiesNumber {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesSignature {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesText {
+        "dataItem"?: LSApiElement1;
     }
     interface LsToolboxField {
         /**
@@ -216,16 +287,19 @@ declare namespace LocalJSX {
         "label"?: string;
         "validation"?: number;
     }
-    interface LsZoomBox {
-    }
     interface IntrinsicElements {
         "ls-editor": LsEditor;
         "ls-editor-field": LsEditorField;
+        "ls-field-dimensions": LsFieldDimensions;
+        "ls-field-format": LsFieldFormat;
         "ls-field-properties": LsFieldProperties;
-        "ls-send": LsSend;
-        "ls-sender": LsSender;
+        "ls-field-properties-date": LsFieldPropertiesDate;
+        "ls-field-properties-general": LsFieldPropertiesGeneral;
+        "ls-field-properties-multiple": LsFieldPropertiesMultiple;
+        "ls-field-properties-number": LsFieldPropertiesNumber;
+        "ls-field-properties-signature": LsFieldPropertiesSignature;
+        "ls-field-properties-text": LsFieldPropertiesText;
         "ls-toolbox-field": LsToolboxField;
-        "ls-zoom-box": LsZoomBox;
     }
 }
 export { LocalJSX as JSX };
@@ -239,11 +313,16 @@ declare module "@stencil/core" {
              */
             "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
+            "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;
+            "ls-field-format": LocalJSX.LsFieldFormat & JSXBase.HTMLAttributes<HTMLLsFieldFormatElement>;
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
-            "ls-send": LocalJSX.LsSend & JSXBase.HTMLAttributes<HTMLLsSendElement>;
-            "ls-sender": LocalJSX.LsSender & JSXBase.HTMLAttributes<HTMLLsSenderElement>;
+            "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
+            "ls-field-properties-general": LocalJSX.LsFieldPropertiesGeneral & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesGeneralElement>;
+            "ls-field-properties-multiple": LocalJSX.LsFieldPropertiesMultiple & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesMultipleElement>;
+            "ls-field-properties-number": LocalJSX.LsFieldPropertiesNumber & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesNumberElement>;
+            "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
+            "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
-            "ls-zoom-box": LocalJSX.LsZoomBox & JSXBase.HTMLAttributes<HTMLLsZoomBoxElement>;
         }
     }
 }

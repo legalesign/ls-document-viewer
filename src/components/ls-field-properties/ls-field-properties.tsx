@@ -9,35 +9,38 @@ import { LSApiElement } from '../../types/LSApiElement';
 export class LsFieldProperties {
   @Prop() dataItem: LSApiElement[];
 
+  @Watch('dataItem')
+  watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
+    console.log(_newValue)
+  }
+
+  renderFields() {
+    if(this.dataItem && this.dataItem?.length === 1) {
+      switch(this.dataItem[0].formElementType) {
+        case 'signature':
+            return <ls-field-properties-signature dataItem={this.dataItem[0]}/>
+        case 'date':
+            return <ls-field-properties-date dataItem={this.dataItem[0]}/>
+        case 'autodate':
+            return <ls-field-properties-date dataItem={this.dataItem[0]}/>
+        case 'text':
+            return <ls-field-properties-text dataItem={this.dataItem[0]}/>
+        case 'number':
+            return <ls-field-properties-number dataItem={this.dataItem[0]}/>
+        default:
+            return <ls-field-properties-general dataItem={this.dataItem[0]}/>
+
+      }
+    } else if(this.dataItem && this.dataItem?.length > 1)
+        return <ls-field-properties-multiple dataItem={this.dataItem}/>
+
+  }
+
   render() {
     return (
       <Host>
-        {(this.dataItem && this.dataItem?.length === 1) ? <>
-          <div class={"ls-field-properties-section"}>Single Field</div>
-            <div class={"ls-field-properties-section"}>
-              <div>Height: {this.dataItem[0]?.height}</div>
-              <div>Width: {this.dataItem[0]?.width}</div>
-              <div>Top: {this.dataItem[0]?.top}</div>
-              <div>Left: {this.dataItem[0]?.left}</div>
-
-            </div>
-          <div class={"ls-field-properties-section"}>Format</div>
-          <div class={"ls-field-properties-section"}>Placement</div>
-          <div class={"ls-field-properties-section"}>Dimensions</div>
-          <div class={"ls-field-properties-section"}>Advanced</div>
-
-        </> :
-          this.dataItem ? 
-          <>
-            <div class={"ls-field-properties-section"}>Selected {this.dataItem?.length}</div>
- 
-            <div class={"ls-field-properties-section"}>Placement</div>
-            <div class={"ls-field-properties-section"}>Dimensions</div>
-            <div class={"ls-field-properties-section"}>Advanced</div>
-
-          </>
-          : <></>
-        }
+        {this.dataItem && this.renderFields()}
+        <slot></slot>
       </Host>
     );
   }

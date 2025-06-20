@@ -1,5 +1,4 @@
 import { LSApiElement } from '../../types/LSApiElement';
-import { LsEditorField } from '../ls-editor-field/ls-editor-field';
 
 export const findIn = (fields: NodeListOf<HTMLLsEditorFieldElement>, selector: HTMLElement, restyle: boolean = false, additive: boolean = false): HTMLLsEditorFieldElement[] => {
   const selected: HTMLLsEditorFieldElement[] = new Array();

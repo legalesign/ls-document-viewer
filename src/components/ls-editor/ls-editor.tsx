@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Watch, h, Element, Method, State } from '@stencil/core';
+import { Component, Host, Prop, h, Element, Method, State } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement'
 import { PDFDocument } from 'pdf-lib'
@@ -105,9 +105,9 @@ export class LsEditor {
   // @Event() error: EventEmitter<any>;
   @Event() pageChange: EventEmitter<number>;
   // Multiple or single select
-  @Event() onSelect: EventEmitter<LSApiElement[]>;
+  @Event() select: EventEmitter<LSApiElement[]>;
   // Multiple or single change
-  @Event() onChange: EventEmitter<{ action: "update"|"create"| "delete", data: LSApiElement}[]>;
+  @Event() change: EventEmitter<{ action: "update" | "create" | "delete", data: LSApiElement }[]>;
 
   //
   // --- Methods --- //
@@ -236,8 +236,10 @@ export class LsEditor {
       // check we're not moving fields
       if (this.isMoving) {
         this.isMoving = false
-        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');             
-        this.onChange.emit(Array.from(fields).filter(fx => fx.selected).map(fx => { return { action: "update", data: fx.dataItem}}))
+        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+        const selected = Array.from(fields).filter(fx => fx.selected)
+        this.select.emit(selected.map(fx => fx.dataItem))
+        this.change.emit(Array.from(fields).filter(fx => fx.selected).map(fx => { return { action: "update", data: fx.dataItem } }))
       } else {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         fields.forEach(f => {
@@ -248,11 +250,12 @@ export class LsEditor {
             // check if this is a shift click to add to the current selection
             if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
             f.selected = true
-
-            this.selected = Array.from(fields).filter(fx => fx.selected)
-            this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
           }
         })
+
+        this.selected = Array.from(fields).filter(fx => fx.selected)
+        this.select.emit(this.selected.map(fx => fx.dataItem))
+
       }
     })
 
@@ -297,7 +300,8 @@ export class LsEditor {
         const { height, width } = this.hitField.getBoundingClientRect();
         const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY }
         this.startMouse = fdims;
-        this.startLocations = this.selected.map(f => {
+        const target = this.selected ? this.selected : [this.hitField]
+        this.startLocations = target.map(f => {
           const { height, width } = f.getBoundingClientRect();
           const beHtml = f as HTMLElement
           return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width }
@@ -368,7 +372,7 @@ export class LsEditor {
       this.startMouse = null;
       this.component.style.cursor = "auto"
 
-      // find what was inside the selection box emit the onSelect event and change their style
+      // find what was inside the selection box emit the select event and change their style
       if (this.selectionBox) {
         var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
         var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field')
@@ -376,7 +380,7 @@ export class LsEditor {
 
         findIn(fields, box, true, event.shiftKey)
 
-        this.onSelect.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
+        this.select.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
         this.selectionBox = null
         this.selected = Array.from(fields).filter(fx => fx.selected)
       }
@@ -413,7 +417,7 @@ export class LsEditor {
         })
 
         const newField = this.component.shadowRoot.getElementById('ls-field-' + id) as HTMLLsEditorFieldElement
-        this.onSelect.emit([newField.dataItem])
+        this.select.emit([newField.dataItem])
         this.selected = [addedField]
 
       } catch (e) {
