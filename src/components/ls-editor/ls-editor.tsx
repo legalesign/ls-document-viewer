@@ -493,10 +493,10 @@ export class LsEditor {
         {this.showtoolbox === true ? <div class="leftBox">
           <div class="ls-editor-infobox">Drag to Add...</div>
           <ls-toolbox-field elementType="signature" formElementType="signature" label="Signature" defaultHeight={27} defaultWidth={120} validation={0} />
-          <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={320} validation={0} />
-          <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={320} validation={1} />
-          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={120} validation={50} />
-          <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={120} validation={2} />
+          <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} />
+          <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} />
+          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} />
+          <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} />
           <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} />
           <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} />
           <ls-toolbox-field elementType="initials" formElementType="initials" label="Initials" defaultHeight={27} defaultWidth={120} validation={2000} />

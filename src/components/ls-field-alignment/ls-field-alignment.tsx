@@ -33,24 +33,125 @@ export class LsFieldAlignment {
 
     this.dataItem = diffs.map(d => d.data)
     this.mutate.emit(diffs)
+    this.update.emit(diffs)
   }
 
   right() {
-    const rightmost = this.dataItem.reduce((accumulator, currentValue) => (currentValue.left > accumulator ? currentValue.left : currentValue), 0)
-    this.alter({ left: rightmost})
+    const rightmost = this.dataItem.reduce((rightmost, current) => {
+
+      return (current.left + current.width) < rightmost ? rightmost : (current.left + current.width)
+    }, 0);
+
+    console.log(rightmost)
+
+    const diffs: LSMutateEvent[] = this.dataItem.map((c) => {
+      const newLeft = rightmost - c.width
+
+      return {
+        action: "update", data: {
+          ...c,
+          left: newLeft,
+          ax: newLeft,
+          bx: newLeft + c.width
+        } as LSApiElement
+      }
+    })
+
+    this.dataItem = diffs.map(d => d.data)
+    this.mutate.emit(diffs)
+    this.update.emit(diffs)
   }
 
   center() {
+    const addcentres = this.dataItem.reduce((total, current) => {
+      console.log(total + (current.left + current.width / 2))
+      return total + (current.left + current.width / 2)
+    }, 0);
+    console.log(addcentres)
 
+    const cp = addcentres / this.dataItem.length
+    console.log('centerposition', cp)
+
+    const diffs: LSMutateEvent[] = this.dataItem.map((c) => {
+
+      const newLeft = c.left + (cp - (c.left + c.width / 2))
+      return {
+        action: "update", data: {
+          ...c,
+          left: newLeft,
+          ax: newLeft,
+          bx: newLeft + c.width
+        } as LSApiElement
+      }
+    })
+    console.log(diffs)
+    this.dataItem = diffs.map(d => d.data)
+    this.mutate.emit(diffs)
+    this.update.emit(diffs)
   }
-    
+
+  top() {
+    const topmost = this.dataItem.reduce((most, current) => {
+      return current.top < most ? most : current.top
+    }, 0);
+
+    this.alter({ top: topmost })
+  }
+
+  middle() {
+    const addmiddles = this.dataItem.reduce((total, current) => {
+      console.log(total + (current.top + current.height / 2))
+      return total + (current.top + current.height / 2)
+    }, 0);
+
+    const cp = addmiddles / this.dataItem.length
+
+    const diffs: LSMutateEvent[] = this.dataItem.map((c) => {
+
+      const newTop = c.top + (cp - (c.top + c.height / 2))
+      return {
+        action: "update", data: {
+          ...c,
+          top: newTop,
+          ay: newTop,
+          by: newTop + c.height
+        } as LSApiElement
+      }
+    })
+    this.dataItem = diffs.map(d => d.data)
+    this.mutate.emit(diffs)
+    this.update.emit(diffs)
+  }
+
+  bottom() {
+    const lowest = this.dataItem.reduce((acc, current) => {
+      return acc > (current.top + current.height) ? acc : (current.top + current.height)
+    }, 0);
+
+    const diffs: LSMutateEvent[] = this.dataItem.map((c) => {
+
+      const newTop = lowest - c.height
+      return {
+        action: "update", data: {
+          ...c,
+          top: newTop,
+          ay: newTop,
+          by: newTop + c.height
+        } as LSApiElement
+      }
+    })
+    this.dataItem = diffs.map(d => d.data)
+    this.mutate.emit(diffs)
+    this.update.emit(diffs)
+  }
+
   render() {
     return (
       <Host>
         <div class="flex w-full gap-2 mt-2">
           <div class="flex rounded-[10px] focus:outline-hidden focus:ring-4 focus:ring-offset-0 focus:ring-primary-30 w-full">
             <button
-              onClick={()=> this.alter({left: this.dataItem[0].left})}
+              onClick={() => this.alter({ left: this.dataItem[0].left })}
               class='ls-round-button'
               aria-label="Align selected fields vertically about their left edge."
               data-tooltip-id="le-tooltip"
@@ -69,7 +170,7 @@ export class LsFieldAlignment {
                 </svg>
               </div></button>
             <button
-                            onClick={()=> this.center()} 
+              onClick={() => this.center()}
               class='ls-round-button'
               aria-label="Align selected fields vertically about their centre."
               data-tooltip-id="le-tooltip"
@@ -88,7 +189,7 @@ export class LsFieldAlignment {
                 </svg>
               </div></button>
             <button
-              onClick={()=> this.right()}              
+              onClick={() => { this.right() }}
               aria-label="Align selected fields vertically about their right edge."
               class='ls-round-button'
               data-tooltip-id="le-tooltip"
@@ -110,6 +211,7 @@ export class LsFieldAlignment {
           </div>
           <div class="flex rounded-[10px] focus:outline-hidden focus:ring-4 focus:ring-offset-0 focus:ring-primary-30 w-full">
             <button
+              onClick={() => this.top()}
               class='ls-round-button'
               aria-label="Align selected fields by their top."
               data-tooltip-id="le-tooltip"
@@ -129,6 +231,7 @@ export class LsFieldAlignment {
               </div>
             </button>
             <button
+              onClick={() => this.middle()}
               class='ls-round-button'
               aria-label="Align selected fields by their middles."
               data-tooltip-id="le-tooltip"
@@ -147,6 +250,7 @@ export class LsFieldAlignment {
                 </svg>
               </div></button>
             <button
+              onClick={() => this.bottom()}
               class='ls-round-button'
               aria-label="Align selected fields by their bottoms."
               data-tooltip-id="le-tooltip"
