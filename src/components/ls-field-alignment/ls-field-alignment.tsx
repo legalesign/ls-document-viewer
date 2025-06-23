@@ -98,6 +98,16 @@ export class LsFieldAlignment {
     this.alter({ top: topmost })
   }
 
+
+  left() {
+    const leftmost = this.dataItem.reduce((least, current) => {
+      return current.left < least ?  current.left : least
+    }, this.dataItem[0].left);
+
+    this.alter({ left: leftmost })
+  }
+
+
   middle() {
     const addmiddles = this.dataItem.reduce((total, current) => {
       console.log(total + (current.top + current.height / 2))
@@ -151,7 +161,7 @@ export class LsFieldAlignment {
         <div class="flex w-full gap-2 mt-2">
           <div class="flex rounded-[10px] focus:outline-hidden focus:ring-4 focus:ring-offset-0 focus:ring-primary-30 w-full">
             <button
-              onClick={() => this.alter({ left: this.dataItem[0].left })}
+              onClick={() => this.left()}
               class='ls-round-button'
               aria-label="Align selected fields vertically about their left edge."
               data-tooltip-id="le-tooltip"
