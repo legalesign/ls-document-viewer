@@ -12,6 +12,14 @@
 | `dataItem` | `data-item` |             | `LSApiElement[]` | `undefined` |
 
 
+## Events
+
+| Event    | Description | Type                           |
+| -------- | ----------- | ------------------------------ |
+| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
+| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+
+
 ## Dependencies
 
 ### Used by

@@ -69,6 +69,32 @@ export class LsEditor {
   @Prop() showtoolbox?: boolean = false;
 
   /**
+ * Whether the page previewvertical ribbon will be shown
+ * {boolean}
+ */
+  @Prop() showpagepreview?: boolean = false;
+
+  /**
+* Whether the right panel (which can be default field properties or custom panel) is
+* displayed.
+* {boolean}
+*/
+  @Prop() showrightpanel?: boolean = false;
+
+    /**
+* Whether the right panel (which can be default field properties or custom panel) is
+* displayed.
+* {boolean}
+*/
+  @Prop() readonly?: boolean = false;
+
+  /**
+* Whether the table view of the fields on this template is available to the user.
+* {boolean}
+*/
+  @Prop() showtableview?: boolean = false;
+
+  /**
  * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials"
  * {boolean}
  */
@@ -217,17 +243,16 @@ export class LsEditor {
   prepareElement(newElement: LSApiElement): LSApiElement {
     return {
       ...newElement,
-      top: Math.floor(newElement.ay * this.pageDimensions[this.pageNum - 1].height),
-      left: Math.floor(newElement.ax * this.pageDimensions[this.pageNum - 1].width),
-      height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[this.pageNum - 1].height),
-      width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[this.pageNum - 1].width)
+      top: Math.floor(newElement.ay * this.pageDimensions[newElement.page - 1].height),
+      left: Math.floor(newElement.ax * this.pageDimensions[newElement.page - 1].width),
+      height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[newElement.page - 1].height),
+      width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[newElement.page - 1].width),
+      pageDimensions: this.pageDimensions[newElement.page - 1]
     }
   }
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log('syncChange', update)
-
     if (update.action === 'create') {
       addField(this.component.shadowRoot.getElementById('ls-document-frame'), update.data)
       const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
@@ -241,7 +266,7 @@ export class LsEditor {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
       this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
     } else {
-      console.warn('Unrecognised update, check Legalesign documentation. `create`, `update` and `delete` allowed.')
+      console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.')
     }
   }
 
@@ -270,7 +295,7 @@ export class LsEditor {
         this.isMoving = false
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         const selected = Array.from(fields).filter(fx => fx.selected)
-        
+
         this.select.emit(selected.map(fx => fx.dataItem))
         this.mutate.emit(Array.from(fields).filter(fx => fx.selected).map(fx => {
           // Calculate new positions and update the dataItem on the control
@@ -490,35 +515,41 @@ export class LsEditor {
   render() {
     return (
       <Host>
-        {this.showtoolbox === true ? <div class="leftBox">
-          <div class="ls-editor-infobox">Drag to Add...</div>
-          <ls-toolbox-field elementType="signature" formElementType="signature" label="Signature" defaultHeight={27} defaultWidth={120} validation={0} />
-          <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} />
-          <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} />
-          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} />
-          <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} />
-          <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} />
-          <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} />
-          <ls-toolbox-field elementType="initials" formElementType="initials" label="Initials" defaultHeight={27} defaultWidth={120} validation={2000} />
-          <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} />
-          <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} />
-          <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
-          <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} />
-        </div>
-          :
-          <></>
-        }
-        <div id="ls-document-frame" >
-          <canvas id="pdf-canvas"></canvas>
-          <div id="ls-box-selector"></div>
-          {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
-            page={this.pageDimensions[this.pageNum - 1]}
-            type={e.formElementType}
-            dataItem={this.prepareElement(e)} />))}
-        </div>
-        <div class="rightBox">
-          <slot></slot>
-        </div>
+        <form id="ls-editor-form">
+          {this.showtoolbox === true ? <div class="leftBox">
+            <ls-feature-column />
+            <div id="ls-toolbox">
+            <div class="ls-editor-infobox">Drag to Add...</div>
+            <ls-toolbox-field elementType="signature" formElementType="signature" label="Signature" defaultHeight={27} defaultWidth={120} validation={0} />
+            <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} />
+            <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} />
+            <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} />
+            <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} />
+            <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} />
+            <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} />
+            <ls-toolbox-field elementType="initials" formElementType="initials" label="Initials" defaultHeight={27} defaultWidth={120} validation={2000} />
+            <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} />
+            <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} />
+            <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
+            <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} />
+            </div>
+          </div>
+            :
+            <></>
+          }
+          <div id="ls-document-frame" >
+            <canvas id="pdf-canvas"></canvas>
+            <div id="ls-box-selector"></div>
+            {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
+              page={this.pageDimensions[this.pageNum - 1]}
+              type={e.formElementType}
+              readonly={this.readonly}
+              dataItem={this.prepareElement(e)} />))}
+          </div>
+          {this.showrightpanel && <div class="rightBox">
+            <slot></slot>
+          </div>}
+        </form>
       </Host>
     );
   }

@@ -10,6 +10,7 @@ export class LsEditorField {
   @Element() component: HTMLElement;
   @Prop() dataItem: LSApiElement;
   @Prop() selected: boolean;
+  @Prop() readonly: boolean;
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number, width: number};
@@ -29,6 +30,7 @@ export class LsEditorField {
 
   @Listen("mousemove", { capture: true })
   handleMouseMove(e) {
+    if(this.readonly) return;
     if (!e.clientX) return;
 
     // Determine which edge is being moved over and what cursor to show.
@@ -47,6 +49,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick() {
+    if(this.readonly) return;
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;

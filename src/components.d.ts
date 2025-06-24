@@ -27,9 +27,25 @@ export namespace Components {
          */
         "pagePrev": (e: MouseEvent) => Promise<void>;
         /**
+          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+         */
+        "readonly"?: boolean;
+        /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
          */
         "roleColors"?: RoleColor[];
+        /**
+          * Whether the page previewvertical ribbon will be shown {boolean}
+         */
+        "showpagepreview"?: boolean;
+        /**
+          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+         */
+        "showrightpanel"?: boolean;
+        /**
+          * Whether the table view of the fields on this template is available to the user. {boolean}
+         */
+        "showtableview"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
          */
@@ -46,8 +62,11 @@ export namespace Components {
     interface LsEditorField {
         "dataItem": LSApiElement1;
         "page": { height: number, width: number};
+        "readonly": boolean;
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+    }
+    interface LsFeatureColumn {
     }
     interface LsFieldAlignment {
         "dataItem": LSApiElement1[];
@@ -158,6 +177,12 @@ declare global {
     var HTMLLsEditorFieldElement: {
         prototype: HTMLLsEditorFieldElement;
         new (): HTMLLsEditorFieldElement;
+    };
+    interface HTMLLsFeatureColumnElement extends Components.LsFeatureColumn, HTMLStencilElement {
+    }
+    var HTMLLsFeatureColumnElement: {
+        prototype: HTMLLsFeatureColumnElement;
+        new (): HTMLLsFeatureColumnElement;
     };
     interface HTMLLsFieldAlignmentElementEventMap {
         "mutate": LSMutateEvent1[];
@@ -288,6 +313,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "ls-editor": HTMLLsEditorElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
+        "ls-feature-column": HTMLLsFeatureColumnElement;
         "ls-field-alignment": HTMLLsFieldAlignmentElement;
         "ls-field-dimensions": HTMLLsFieldDimensionsElement;
         "ls-field-distribute": HTMLLsFieldDistributeElement;
@@ -316,9 +342,25 @@ declare namespace LocalJSX {
         "onSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onUpdate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
         /**
+          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+         */
+        "readonly"?: boolean;
+        /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
          */
         "roleColors"?: RoleColor[];
+        /**
+          * Whether the page previewvertical ribbon will be shown {boolean}
+         */
+        "showpagepreview"?: boolean;
+        /**
+          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+         */
+        "showrightpanel"?: boolean;
+        /**
+          * Whether the table view of the fields on this template is available to the user. {boolean}
+         */
+        "showtableview"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
          */
@@ -335,8 +377,11 @@ declare namespace LocalJSX {
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
         "page"?: { height: number, width: number};
+        "readonly"?: boolean;
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+    }
+    interface LsFeatureColumn {
     }
     interface LsFieldAlignment {
         "dataItem"?: LSApiElement1[];
@@ -405,6 +450,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ls-editor": LsEditor;
         "ls-editor-field": LsEditorField;
+        "ls-feature-column": LsFeatureColumn;
         "ls-field-alignment": LsFieldAlignment;
         "ls-field-dimensions": LsFieldDimensions;
         "ls-field-distribute": LsFieldDistribute;
@@ -431,6 +477,7 @@ declare module "@stencil/core" {
              */
             "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
+            "ls-feature-column": LocalJSX.LsFeatureColumn & JSXBase.HTMLAttributes<HTMLLsFeatureColumnElement>;
             "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
             "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;
             "ls-field-distribute": LocalJSX.LsFieldDistribute & JSXBase.HTMLAttributes<HTMLLsFieldDistributeElement>;

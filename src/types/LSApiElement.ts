@@ -36,4 +36,5 @@ export type LSApiElement = {
   cstyle?: any;
   divStyle?: any;
   objectHeight?: string;
+  pageDimensions?: { height: number, width: number}
 };
