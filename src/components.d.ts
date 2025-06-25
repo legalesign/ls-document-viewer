@@ -8,9 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
+import { Icon } from "./types/Icon";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
+export { Icon } from "./types/Icon";
 export namespace Components {
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -103,6 +105,12 @@ export namespace Components {
     }
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
+    }
+    interface LsIcon {
+        "customStyle"?: { [key: string]: string };
+        "name"?: Icon;
+        "size"?: string;
+        "solid"?: boolean;
     }
     interface LsToolboxField {
         /**
@@ -304,6 +312,12 @@ declare global {
         prototype: HTMLLsFieldSizeElement;
         new (): HTMLLsFieldSizeElement;
     };
+    interface HTMLLsIconElement extends Components.LsIcon, HTMLStencilElement {
+    }
+    var HTMLLsIconElement: {
+        prototype: HTMLLsIconElement;
+        new (): HTMLLsIconElement;
+    };
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
     }
     var HTMLLsToolboxFieldElement: {
@@ -326,6 +340,7 @@ declare global {
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
+        "ls-icon": HTMLLsIconElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
 }
@@ -427,6 +442,12 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
     }
+    interface LsIcon {
+        "customStyle"?: { [key: string]: string };
+        "name"?: Icon;
+        "size"?: string;
+        "solid"?: boolean;
+    }
     interface LsToolboxField {
         /**
           * The starting height of this control type in pixels.
@@ -463,6 +484,7 @@ declare namespace LocalJSX {
         "ls-field-properties-signature": LsFieldPropertiesSignature;
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
+        "ls-icon": LsIcon;
         "ls-toolbox-field": LsToolboxField;
     }
 }
@@ -490,6 +512,7 @@ declare module "@stencil/core" {
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
+            "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }
     }

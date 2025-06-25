@@ -88,6 +88,7 @@ graph TD;
   ls-editor --> ls-feature-column
   ls-editor --> ls-toolbox-field
   ls-editor --> ls-editor-field
+  ls-feature-column --> ls-icon
   style ls-editor fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
