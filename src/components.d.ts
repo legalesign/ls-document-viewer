@@ -45,9 +45,17 @@ export namespace Components {
          */
         "showrightpanel"?: boolean;
         /**
+          * Whether the bottom statusbar is displayed. {boolean}
+         */
+        "showstatusbar"?: boolean;
+        /**
           * Whether the table view of the fields on this template is available to the user. {boolean}
          */
         "showtableview"?: boolean;
+        /**
+          * Whether the top toolbar is displayed. {boolean}
+         */
+        "showtoolbar"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
          */
@@ -157,7 +165,7 @@ declare global {
     interface HTMLLsEditorElementEventMap {
         "pageRendered": number;
         "pageChange": number;
-        "select": LSApiElement[];
+        "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
     }
@@ -354,7 +362,7 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
-        "onSelect"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
+        "onSelectFields"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
         "onUpdate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
@@ -373,9 +381,17 @@ declare namespace LocalJSX {
          */
         "showrightpanel"?: boolean;
         /**
+          * Whether the bottom statusbar is displayed. {boolean}
+         */
+        "showstatusbar"?: boolean;
+        /**
           * Whether the table view of the fields on this template is available to the user. {boolean}
          */
         "showtableview"?: boolean;
+        /**
+          * Whether the top toolbar is displayed. {boolean}
+         */
+        "showtoolbar"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
          */

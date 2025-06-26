@@ -69,6 +69,18 @@ export class LsEditor {
   @Prop() showtoolbox?: boolean = false;
 
   /**
+   * Whether the top toolbar is displayed.
+   * {boolean}
+   */
+  @Prop() showtoolbar?: boolean = false;
+
+  /**
+   * Whether the bottom statusbar is displayed.
+   * {boolean}
+   */
+  @Prop() showstatusbar?: boolean = false;
+
+  /**
  * Whether the page previewvertical ribbon will be shown
  * {boolean}
  */
@@ -132,7 +144,7 @@ export class LsEditor {
   // @Event() error: EventEmitter<any>;
   @Event() pageChange: EventEmitter<number>;
   // Multiple or single select
-  @Event() select: EventEmitter<LSApiElement[]>;
+  @Event() selectFields: EventEmitter<LSApiElement[]>;
   // Send an external event to be processed
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
   // Send an internal event to be processed
@@ -257,7 +269,7 @@ export class LsEditor {
       addField(this.component.shadowRoot.getElementById('ls-document-frame'), update.data)
       const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
       this.selected = [newField]
-      this.select.emit([update.data])
+      this.selectFields.emit([update.data])
     }
     else if (update.action === 'update') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
@@ -296,7 +308,7 @@ export class LsEditor {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         const selected = Array.from(fields).filter(fx => fx.selected)
 
-        this.select.emit(selected.map(fx => fx.dataItem))
+        this.selectFields.emit(selected.map(fx => fx.dataItem))
         this.mutate.emit(Array.from(fields).filter(fx => fx.selected).map(fx => {
           // Calculate new positions and update the dataItem on the control
           const delta = {
@@ -320,7 +332,7 @@ export class LsEditor {
         })
 
         this.selected = Array.from(fields).filter(fx => fx.selected)
-        this.select.emit(this.selected.map(fx => fx.dataItem))
+        this.selectFields.emit(this.selected.map(fx => fx.dataItem))
 
       }
     })
@@ -446,7 +458,7 @@ export class LsEditor {
 
         findIn(fields, box, true, event.shiftKey)
 
-        this.select.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
+        this.selectFields.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
         this.selectionBox = null
         this.selected = Array.from(fields).filter(fx => fx.selected)
       }

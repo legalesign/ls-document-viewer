@@ -1,5 +1,5 @@
 {
-  "name": "editframe",
+  "name": "ls-document-viewer",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/editframe/editframe.esm.js",
+  "unpkg": "dist/ls-document-viewer/ls-document-viewer.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/editframe/editframe.esm.js",
-      "require": "./dist/editframe/editframe.cjs.js"
+      "import": "./dist/ls-document-viewer/ls-document-viewer.esm.js",
+      "require": "./dist/ls-document-viewer/ls-document-viewer.cjs.js"
     },
     "./my-component": {
       "import": "./dist/components/my-component.js",
