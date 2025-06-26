@@ -10,12 +10,12 @@
     <script nomodule src="/build/ls-document-viewer.js"></script>
   </head>
   <body style="padding: 0px; margin: 0px">
-    <ls-editor id="my-editor" showrightpanel showtoolbox >
+    <ls-document-viewer id="my-editor" showrightpanel showtoolbox >
       <ls-field-properties id="my-field-panel" />
-    </ls-editor>
+    </ls-document-viewer>
     <script>
       const componentInstance = document.currentScript.previousElementSibling;
-      const editor = document.querySelector('ls-editor');
+      const editor = document.querySelector('ls-document-viewer');
       const properties = document.querySelector('ls-field-properties');
       editor.template = {
         id: 'dHBsMTRlOGE4NDEtMzcxYi0xMWYwLTk5MzItMDY5NzZlZmU0MzIx',

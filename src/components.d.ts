@@ -19,7 +19,11 @@ export namespace Components {
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
-    interface LsEditor {
+    interface LsDocumentViewer {
+        /**
+          * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
+         */
+        "mode": 'preview' | 'editor' | 'custom';
         /**
           * Page forward {MouseEvent} e
          */
@@ -120,6 +124,13 @@ export namespace Components {
         "size"?: string;
         "solid"?: boolean;
     }
+    interface LsParticipantSelect {
+    }
+    interface LsStatusbar {
+    }
+    interface LsToolbar {
+        "dataItem": LSApiElement1[];
+    }
     interface LsToolboxField {
         /**
           * The starting height of this control type in pixels.
@@ -141,9 +152,9 @@ export namespace Components {
         "validation": number;
     }
 }
-export interface LsEditorCustomEvent<T> extends CustomEvent<T> {
+export interface LsDocumentViewerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLLsEditorElement;
+    target: HTMLLsDocumentViewerElement;
 }
 export interface LsFieldAlignmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -162,7 +173,7 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     target: HTMLLsFieldSizeElement;
 }
 declare global {
-    interface HTMLLsEditorElementEventMap {
+    interface HTMLLsDocumentViewerElementEventMap {
         "pageRendered": number;
         "pageChange": number;
         "selectFields": LSApiElement[];
@@ -174,19 +185,19 @@ declare global {
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
-    interface HTMLLsEditorElement extends Components.LsEditor, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLLsEditorElementEventMap>(type: K, listener: (this: HTMLLsEditorElement, ev: LsEditorCustomEvent<HTMLLsEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLLsDocumentViewerElement extends Components.LsDocumentViewer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsDocumentViewerElementEventMap>(type: K, listener: (this: HTMLLsDocumentViewerElement, ev: LsDocumentViewerCustomEvent<HTMLLsDocumentViewerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLLsEditorElementEventMap>(type: K, listener: (this: HTMLLsEditorElement, ev: LsEditorCustomEvent<HTMLLsEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsDocumentViewerElementEventMap>(type: K, listener: (this: HTMLLsDocumentViewerElement, ev: LsDocumentViewerCustomEvent<HTMLLsDocumentViewerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLLsEditorElement: {
-        prototype: HTMLLsEditorElement;
-        new (): HTMLLsEditorElement;
+    var HTMLLsDocumentViewerElement: {
+        prototype: HTMLLsDocumentViewerElement;
+        new (): HTMLLsDocumentViewerElement;
     };
     interface HTMLLsEditorFieldElement extends Components.LsEditorField, HTMLStencilElement {
     }
@@ -326,6 +337,24 @@ declare global {
         prototype: HTMLLsIconElement;
         new (): HTMLLsIconElement;
     };
+    interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
+    }
+    var HTMLLsParticipantSelectElement: {
+        prototype: HTMLLsParticipantSelectElement;
+        new (): HTMLLsParticipantSelectElement;
+    };
+    interface HTMLLsStatusbarElement extends Components.LsStatusbar, HTMLStencilElement {
+    }
+    var HTMLLsStatusbarElement: {
+        prototype: HTMLLsStatusbarElement;
+        new (): HTMLLsStatusbarElement;
+    };
+    interface HTMLLsToolbarElement extends Components.LsToolbar, HTMLStencilElement {
+    }
+    var HTMLLsToolbarElement: {
+        prototype: HTMLLsToolbarElement;
+        new (): HTMLLsToolbarElement;
+    };
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
     }
     var HTMLLsToolboxFieldElement: {
@@ -333,7 +362,7 @@ declare global {
         new (): HTMLLsToolboxFieldElement;
     };
     interface HTMLElementTagNameMap {
-        "ls-editor": HTMLLsEditorElement;
+        "ls-document-viewer": HTMLLsDocumentViewerElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
         "ls-feature-column": HTMLLsFeatureColumnElement;
         "ls-field-alignment": HTMLLsFieldAlignmentElement;
@@ -349,6 +378,9 @@ declare global {
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
         "ls-icon": HTMLLsIconElement;
+        "ls-participant-select": HTMLLsParticipantSelectElement;
+        "ls-statusbar": HTMLLsStatusbarElement;
+        "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
 }
@@ -358,12 +390,16 @@ declare namespace LocalJSX {
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
-    interface LsEditor {
-        "onMutate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
-        "onPageChange"?: (event: LsEditorCustomEvent<number>) => void;
-        "onPageRendered"?: (event: LsEditorCustomEvent<number>) => void;
-        "onSelectFields"?: (event: LsEditorCustomEvent<LSApiElement[]>) => void;
-        "onUpdate"?: (event: LsEditorCustomEvent<LSMutateEvent[]>) => void;
+    interface LsDocumentViewer {
+        /**
+          * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
+         */
+        "mode"?: 'preview' | 'editor' | 'custom';
+        "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
+        "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
+        "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
+        "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
+        "onUpdate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
          */
@@ -464,6 +500,13 @@ declare namespace LocalJSX {
         "size"?: string;
         "solid"?: boolean;
     }
+    interface LsParticipantSelect {
+    }
+    interface LsStatusbar {
+    }
+    interface LsToolbar {
+        "dataItem"?: LSApiElement1[];
+    }
     interface LsToolboxField {
         /**
           * The starting height of this control type in pixels.
@@ -485,7 +528,7 @@ declare namespace LocalJSX {
         "validation"?: number;
     }
     interface IntrinsicElements {
-        "ls-editor": LsEditor;
+        "ls-document-viewer": LsDocumentViewer;
         "ls-editor-field": LsEditorField;
         "ls-feature-column": LsFeatureColumn;
         "ls-field-alignment": LsFieldAlignment;
@@ -501,6 +544,9 @@ declare namespace LocalJSX {
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
         "ls-icon": LsIcon;
+        "ls-participant-select": LsParticipantSelect;
+        "ls-statusbar": LsStatusbar;
+        "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
     }
 }
@@ -513,7 +559,7 @@ declare module "@stencil/core" {
              * Template information from GraphQL (see Readme).
              * Alex Weinle
              */
-            "ls-editor": LocalJSX.LsEditor & JSXBase.HTMLAttributes<HTMLLsEditorElement>;
+            "ls-document-viewer": LocalJSX.LsDocumentViewer & JSXBase.HTMLAttributes<HTMLLsDocumentViewerElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
             "ls-feature-column": LocalJSX.LsFeatureColumn & JSXBase.HTMLAttributes<HTMLLsFeatureColumnElement>;
             "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
@@ -529,6 +575,9 @@ declare module "@stencil/core" {
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
+            "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
+            "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
+            "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }
     }

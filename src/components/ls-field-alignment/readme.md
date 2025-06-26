@@ -24,12 +24,17 @@
 
 ### Used by
 
- - [ls-field-properties-multiple](../ls-field-properties-multiple)
+ - [ls-toolbar](../ls-toolbar)
+
+### Depends on
+
+- [ls-icon](../ls-icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-properties-multiple --> ls-field-alignment
+  ls-field-alignment --> ls-icon
+  ls-toolbar --> ls-field-alignment
   style ls-field-alignment fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

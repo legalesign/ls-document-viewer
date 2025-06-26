@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Element, Method, State, Listen } from '@stencil/core';
+import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement'
 import { PDFDocument } from 'pdf-lib'
@@ -28,11 +28,11 @@ GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2
  */
 
 @Component({
-  tag: 'ls-editor',
-  styleUrl: 'ls-editor.css',
+  tag: 'ls-document-viewer',
+  styleUrl: 'ls-document-viewer.css',
   shadow: true,
 })
-export class LsEditor {
+export class LsDocumentViewer {
   @Element() component: HTMLElement;
 
   private isPageRendering: boolean;
@@ -47,7 +47,6 @@ export class LsEditor {
   private pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
   private hitField: HTMLElement;
   private edgeSide: string;
-  private selected: HTMLLsEditorFieldElement[];
   private startLocations: { left: number, top: number, height: number, width: number }[];
   private startMouse: { left: number, top: number, height: number, width: number, x: number, y: number };
   //
@@ -61,6 +60,39 @@ export class LsEditor {
    */
   @Prop() template: string;
   @State() _template: LSApiTemplate
+  @State() selected: HTMLLsEditorFieldElement[];
+
+
+  /**
+ * An ease of use property that will arrange document-viewer appropraitely.
+ * {'preview' | 'editor' | 'custom'}
+ */
+  @Prop() mode: 'preview' | 'editor' | 'custom' = 'custom';
+
+  // Updates are internal event between LS controls not to be confused with mutate
+  @Watch('mode')
+  modeHandler(_newMode, _oldMode) {
+    if (_newMode === 'preview') {
+      this.showtoolbar = false;
+      this.showtoolbox = false;
+      this.showstatusbar = false;
+      this.showrightpanel = false;
+      this.readonly = true;
+    } else if (_newMode === 'editor') {
+      this.showtoolbar = true;
+      this.showtoolbox = true;
+      this.showstatusbar = true;
+      this.showrightpanel = true;
+      this.readonly = false;
+    }
+
+  }
+
+  @Watch('selected')
+  selectedHandler(_newSelected, _oldSelected) {
+    var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+    toolbar.dataItem = _newSelected
+  }
 
   /**
    * Whether the left hand toolbox is displayed.
@@ -549,16 +581,21 @@ export class LsEditor {
             :
             <></>
           }
-          <div id="ls-document-frame" >
-            <canvas id="pdf-canvas"></canvas>
-            <div id="ls-box-selector"></div>
-            {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
-              page={this.pageDimensions[this.pageNum - 1]}
-              type={e.formElementType}
-              readonly={this.readonly}
-              dataItem={this.prepareElement(e)} />))}
+          <div id="ls-mid-area">
+            <ls-toolbar />
+            <div id="ls-document-frame" >
+              <canvas id="pdf-canvas"></canvas>
+              <div id="ls-box-selector"></div>
+              {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
+                page={this.pageDimensions[this.pageNum - 1]}
+                type={e.formElementType}
+                readonly={this.readonly}
+                dataItem={this.prepareElement(e)} />))}
+
+            </div>
+            <ls-statusbar />
           </div>
-          {this.showrightpanel && <div class="rightBox">
+          {this.showrightpanel && this.selected && this.selected.length > 0 && <div class="rightBox">
             <slot></slot>
           </div>}
         </form>

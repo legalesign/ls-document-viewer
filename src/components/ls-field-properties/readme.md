@@ -40,9 +40,6 @@ graph TD;
   ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
-  ls-field-properties-multiple --> ls-field-alignment
-  ls-field-properties-multiple --> ls-field-distribute
-  ls-field-properties-multiple --> ls-field-size
   style ls-field-properties fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

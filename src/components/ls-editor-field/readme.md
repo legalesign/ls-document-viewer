@@ -20,12 +20,12 @@
 
 ### Used by
 
- - [ls-editor](../ls-editor)
+ - [ls-document-viewer](../ls-document-viewer)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-editor --> ls-editor-field
+  ls-document-viewer --> ls-editor-field
   style ls-editor-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

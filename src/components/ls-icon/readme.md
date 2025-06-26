@@ -20,11 +20,17 @@
 ### Used by
 
  - [ls-feature-column](../ls-feature-column)
+ - [ls-field-alignment](../ls-field-alignment)
+ - [ls-field-distribute](../ls-field-distribute)
+ - [ls-statusbar](../ls-statusbar)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-feature-column --> ls-icon
+  ls-field-alignment --> ls-icon
+  ls-field-distribute --> ls-icon
+  ls-statusbar --> ls-icon
   style ls-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

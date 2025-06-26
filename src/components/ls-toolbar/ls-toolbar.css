@@ -1,0 +1,6 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: rgb(205, 205, 205);
+}

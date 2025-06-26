@@ -14,9 +14,7 @@ export class LsFieldPropertiesMultiple {
       <Host>
         <div>{this.dataItem.length} items</div>
         <ls-field-dimensions dataItem={this.dataItem} />
-        <ls-field-alignment dataItem={this.dataItem} />
-        <ls-field-distribute dataItem={this.dataItem} />
-        <ls-field-size  dataItem={this.dataItem} />
+
         <slot></slot>
       </Host>
     );
