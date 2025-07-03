@@ -11,6 +11,7 @@ export class LsEditorField {
   @Prop() dataItem: LSApiElement;
   @Prop() selected: boolean;
   @Prop() readonly: boolean;
+  @Prop() palette: RoleColor[];
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number, width: number};
@@ -20,9 +21,9 @@ export class LsEditorField {
   @State() innerValue: string;
   private sizeObserver: ResizeObserver;
 
-  @Listen('keydown', { capture: true })
-  handleKeyDown(e) {
-    if (e.code == "Enter") {
+  @Listen('keydown')
+  handleInput(e: KeyboardEvent) {
+    if (e.code === "Enter") {
       this.isEditing = false;
       this.sizeObserver.observe(this.component.shadowRoot.getElementById('field-info'))
     }

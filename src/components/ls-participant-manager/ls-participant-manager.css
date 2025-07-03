@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black
+}
+
+.label-span {
+  position: absolute;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+h1 {
+  font-size: 19px;
+}

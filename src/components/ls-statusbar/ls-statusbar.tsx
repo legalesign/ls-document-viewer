@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-statusbar',
@@ -6,6 +6,14 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class LsStatusbar {
+
+    /**
+     * The zoom or scale level 1.0 === 100%.
+     * {LSApiTemplate}
+     */
+    @Prop() scale: number;
+    
+
   render() {
     return (
       <Host>

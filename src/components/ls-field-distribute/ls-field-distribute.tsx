@@ -40,22 +40,28 @@ export class LsFieldDistribute {
   }
 
 
-  distributeHorizontal(fixed?: number) {
-
-    var space = 0
+  distributeHorizontal() {
+    var spacing = this.component.shadowRoot.getElementById('ls-fix-horizontal-space') as HTMLInputElement;
+    var avgspace = 0;
     const sorted = this.dataItem.sort((a, b) => (a.left - b.left))
-    for (var i = 1; i < sorted.length; i++) {
-      const c1 = sorted[i - 1]
-      const c2 = sorted[i]
-      space = space + (((c2.left - c1.left - c1.width)) <= 0 ? 0 : (c2.left - c1.left - c1.width))
+
+    if(spacing.value !== "") {
+      avgspace = parseInt(spacing.value)
+    } else {
+      var space = 0
+      for (var i = 1; i < sorted.length; i++) {
+        const c1 = sorted[i - 1]
+        const c2 = sorted[i]
+        space = space + (((c2.left - c1.left - c1.width)) <= 0 ? 0 : (c2.left - c1.left - c1.width))
+      }
+      avgspace = Math.floor(space / sorted.length)
     }
-    const avgspace = Math.floor(space / sorted.length)
 
     var nextleft = sorted[0].left
 
     const diffs: LSMutateEvent[] = sorted.map((c) => {
       const newLeft = nextleft
-      nextleft = nextleft + c.width + (fixed ? fixed : avgspace)
+      nextleft = nextleft + c.width + avgspace
 
       return {
         action: "update", data: {
@@ -73,13 +79,13 @@ export class LsFieldDistribute {
   }
 
 
-  distributeVertical(fixed?: number) {
+  distributeVertical() {
     var spacing = this.component.shadowRoot.getElementById('ls-fix-vertical-space') as HTMLInputElement;
     var avgspace = 0;
     const sorted = this.dataItem.sort((a, b) => (a.top - b.top))
 
     if (spacing.value !== '') avgspace = parseInt(spacing.value)
-      else {
+    else {
       var space = 0
       for (var i = 1; i < sorted.length; i++) {
         const c1 = sorted[i - 1]
@@ -94,7 +100,7 @@ export class LsFieldDistribute {
 
     const diffs: LSMutateEvent[] = sorted.map((c) => {
       const newTop = buffer
-      buffer = buffer + c.width + (fixed ? fixed : avgspace)
+      buffer = buffer + c.height + avgspace
 
       return {
         action: "update", data: {

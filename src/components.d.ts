@@ -5,21 +5,33 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { Icon } from "./types/Icon";
+export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { Icon } from "./types/Icon";
 export namespace Components {
+    interface LsDocumentOptions {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template": LSApiTemplate;
+    }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        /**
+          * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+         */
+        "manager": 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
          */
@@ -76,11 +88,16 @@ export namespace Components {
     interface LsEditorField {
         "dataItem": LSApiElement1;
         "page": { height: number, width: number};
+        "palette": RoleColor[];
         "readonly": boolean;
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFeatureColumn {
+        /**
+          * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+         */
+        "manager": 'document' | 'toolbox' | 'participant';
     }
     interface LsFieldAlignment {
         "dataItem": LSApiElement1[];
@@ -118,15 +135,127 @@ export namespace Components {
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
     }
+    interface LsFormfield {
+        "aria"?: string;
+        "as"?: | 'text'
+    | 'select'
+    | 'radio'
+    | 'textarea'
+    | 'password'
+    | 'number'
+    | 'displayonly';
+        "buttonClick"?: () => void;
+        "buttonIcon"?: Icon;
+        "count": boolean;
+        "countMax"?: number;
+        "descriptionText"?: string;
+        "dirty": boolean;
+        "disabled": boolean;
+        "errorText"?: string;
+        "extraLabel": 'optional' | 'required' | 'none';
+        "fieldIcon"?: Icon;
+        "fieldId": string;
+        "hoverTooltipText"?: string;
+        "infoTooltipText"?: string;
+        "inputRef"?: string;
+        "label"?: string;
+        "labelIcon"?: Icon;
+        "name": string;
+        "placeholder"?: string;
+        "required": boolean;
+        "valid": boolean;
+        "value"?: string | number;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         "size"?: string;
         "solid"?: boolean;
     }
+    interface LsNumberInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax": number;
+        "dirty": boolean;
+        "disabled": boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name": string;
+        "placeholder"?: string;
+        "required": boolean;
+        "type": 'basic' | 'ls';
+        "valid": boolean;
+        "value": number;
+    }
+    interface LsParticipantManager {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template": LSApiTemplate;
+    }
     interface LsParticipantSelect {
     }
+    interface LsRadioInput {
+        "checked": boolean;
+        "customStyle"?: { [key: string]: string };
+        "disabled"?: boolean;
+        "icon"?: Icon;
+        "label": string;
+        "name"?: string;
+        "radioId": string;
+    }
+    interface LsSelectInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "dirty": boolean;
+        "disabled": boolean;
+        "displayOnly": boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name": string;
+        "required": boolean;
+        "valid": boolean;
+        "value": string;
+    }
     interface LsStatusbar {
+        /**
+          * The zoom or scale level 1.0 === 100%. {LSApiTemplate}
+         */
+        "scale": number;
+    }
+    interface LsTextInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax": number;
+        "dirty": boolean;
+        "disabled": boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name": string;
+        "placeholder"?: string;
+        "required": boolean;
+        "type": 'default' | 'password' | 'displayonly';
+        "valid": boolean;
+        "value": string;
+    }
+    interface LsTextareaInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax": number;
+        "dirty": boolean;
+        "disabled": boolean;
+        "displayOnly": boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name": string;
+        "placeholder"?: string;
+        "required": boolean;
+        "valid": boolean;
+        "value"?: string;
     }
     interface LsToolbar {
         "dataItem": LSApiElement1[];
@@ -156,6 +285,10 @@ export interface LsDocumentViewerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsDocumentViewerElement;
 }
+export interface LsFeatureColumnCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFeatureColumnElement;
+}
 export interface LsFieldAlignmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldAlignmentElement;
@@ -173,6 +306,12 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     target: HTMLLsFieldSizeElement;
 }
 declare global {
+    interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
+    }
+    var HTMLLsDocumentOptionsElement: {
+        prototype: HTMLLsDocumentOptionsElement;
+        new (): HTMLLsDocumentOptionsElement;
+    };
     interface HTMLLsDocumentViewerElementEventMap {
         "pageRendered": number;
         "pageChange": number;
@@ -205,7 +344,18 @@ declare global {
         prototype: HTMLLsEditorFieldElement;
         new (): HTMLLsEditorFieldElement;
     };
+    interface HTMLLsFeatureColumnElementEventMap {
+        "manage": 'document' | 'toolbox' | 'participant';
+    }
     interface HTMLLsFeatureColumnElement extends Components.LsFeatureColumn, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFeatureColumnElementEventMap>(type: K, listener: (this: HTMLLsFeatureColumnElement, ev: LsFeatureColumnCustomEvent<HTMLLsFeatureColumnElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFeatureColumnElementEventMap>(type: K, listener: (this: HTMLLsFeatureColumnElement, ev: LsFeatureColumnCustomEvent<HTMLLsFeatureColumnElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFeatureColumnElement: {
         prototype: HTMLLsFeatureColumnElement;
@@ -331,11 +481,29 @@ declare global {
         prototype: HTMLLsFieldSizeElement;
         new (): HTMLLsFieldSizeElement;
     };
+    interface HTMLLsFormfieldElement extends Components.LsFormfield, HTMLStencilElement {
+    }
+    var HTMLLsFormfieldElement: {
+        prototype: HTMLLsFormfieldElement;
+        new (): HTMLLsFormfieldElement;
+    };
     interface HTMLLsIconElement extends Components.LsIcon, HTMLStencilElement {
     }
     var HTMLLsIconElement: {
         prototype: HTMLLsIconElement;
         new (): HTMLLsIconElement;
+    };
+    interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
+    }
+    var HTMLLsNumberInputElement: {
+        prototype: HTMLLsNumberInputElement;
+        new (): HTMLLsNumberInputElement;
+    };
+    interface HTMLLsParticipantManagerElement extends Components.LsParticipantManager, HTMLStencilElement {
+    }
+    var HTMLLsParticipantManagerElement: {
+        prototype: HTMLLsParticipantManagerElement;
+        new (): HTMLLsParticipantManagerElement;
     };
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
     }
@@ -343,11 +511,35 @@ declare global {
         prototype: HTMLLsParticipantSelectElement;
         new (): HTMLLsParticipantSelectElement;
     };
+    interface HTMLLsRadioInputElement extends Components.LsRadioInput, HTMLStencilElement {
+    }
+    var HTMLLsRadioInputElement: {
+        prototype: HTMLLsRadioInputElement;
+        new (): HTMLLsRadioInputElement;
+    };
+    interface HTMLLsSelectInputElement extends Components.LsSelectInput, HTMLStencilElement {
+    }
+    var HTMLLsSelectInputElement: {
+        prototype: HTMLLsSelectInputElement;
+        new (): HTMLLsSelectInputElement;
+    };
     interface HTMLLsStatusbarElement extends Components.LsStatusbar, HTMLStencilElement {
     }
     var HTMLLsStatusbarElement: {
         prototype: HTMLLsStatusbarElement;
         new (): HTMLLsStatusbarElement;
+    };
+    interface HTMLLsTextInputElement extends Components.LsTextInput, HTMLStencilElement {
+    }
+    var HTMLLsTextInputElement: {
+        prototype: HTMLLsTextInputElement;
+        new (): HTMLLsTextInputElement;
+    };
+    interface HTMLLsTextareaInputElement extends Components.LsTextareaInput, HTMLStencilElement {
+    }
+    var HTMLLsTextareaInputElement: {
+        prototype: HTMLLsTextareaInputElement;
+        new (): HTMLLsTextareaInputElement;
     };
     interface HTMLLsToolbarElement extends Components.LsToolbar, HTMLStencilElement {
     }
@@ -362,6 +554,7 @@ declare global {
         new (): HTMLLsToolboxFieldElement;
     };
     interface HTMLElementTagNameMap {
+        "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
         "ls-feature-column": HTMLLsFeatureColumnElement;
@@ -377,20 +570,37 @@ declare global {
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
+        "ls-formfield": HTMLLsFormfieldElement;
         "ls-icon": HTMLLsIconElement;
+        "ls-number-input": HTMLLsNumberInputElement;
+        "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
+        "ls-radio-input": HTMLLsRadioInputElement;
+        "ls-select-input": HTMLLsSelectInputElement;
         "ls-statusbar": HTMLLsStatusbarElement;
+        "ls-text-input": HTMLLsTextInputElement;
+        "ls-textarea-input": HTMLLsTextareaInputElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
 }
 declare namespace LocalJSX {
+    interface LsDocumentOptions {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate;
+    }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
      * Template information from GraphQL (see Readme).
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        /**
+          * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+         */
+        "manager"?: 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
          */
@@ -444,11 +654,17 @@ declare namespace LocalJSX {
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
         "page"?: { height: number, width: number};
+        "palette"?: RoleColor[];
         "readonly"?: boolean;
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
     interface LsFeatureColumn {
+        /**
+          * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+         */
+        "manager"?: 'document' | 'toolbox' | 'participant';
+        "onManage"?: (event: LsFeatureColumnCustomEvent<'document' | 'toolbox' | 'participant'>) => void;
     }
     interface LsFieldAlignment {
         "dataItem"?: LSApiElement1[];
@@ -494,15 +710,127 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
     }
+    interface LsFormfield {
+        "aria"?: string;
+        "as"?: | 'text'
+    | 'select'
+    | 'radio'
+    | 'textarea'
+    | 'password'
+    | 'number'
+    | 'displayonly';
+        "buttonClick"?: () => void;
+        "buttonIcon"?: Icon;
+        "count"?: boolean;
+        "countMax"?: number;
+        "descriptionText"?: string;
+        "dirty"?: boolean;
+        "disabled"?: boolean;
+        "errorText"?: string;
+        "extraLabel"?: 'optional' | 'required' | 'none';
+        "fieldIcon"?: Icon;
+        "fieldId"?: string;
+        "hoverTooltipText"?: string;
+        "infoTooltipText"?: string;
+        "inputRef"?: string;
+        "label"?: string;
+        "labelIcon"?: Icon;
+        "name"?: string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "valid"?: boolean;
+        "value"?: string | number;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         "size"?: string;
         "solid"?: boolean;
     }
+    interface LsNumberInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax"?: number;
+        "dirty"?: boolean;
+        "disabled"?: boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name"?: string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "type"?: 'basic' | 'ls';
+        "valid"?: boolean;
+        "value"?: number;
+    }
+    interface LsParticipantManager {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate;
+    }
     interface LsParticipantSelect {
     }
+    interface LsRadioInput {
+        "checked"?: boolean;
+        "customStyle"?: { [key: string]: string };
+        "disabled"?: boolean;
+        "icon"?: Icon;
+        "label"?: string;
+        "name"?: string;
+        "radioId"?: string;
+    }
+    interface LsSelectInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "dirty"?: boolean;
+        "disabled"?: boolean;
+        "displayOnly"?: boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name"?: string;
+        "required"?: boolean;
+        "valid"?: boolean;
+        "value"?: string;
+    }
     interface LsStatusbar {
+        /**
+          * The zoom or scale level 1.0 === 100%. {LSApiTemplate}
+         */
+        "scale"?: number;
+    }
+    interface LsTextInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax"?: number;
+        "dirty"?: boolean;
+        "disabled"?: boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name"?: string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "type"?: 'default' | 'password' | 'displayonly';
+        "valid"?: boolean;
+        "value"?: string;
+    }
+    interface LsTextareaInput {
+        "aria"?: string;
+        "buttonClick"?: any;
+        "buttonIcon"?: Icon;
+        "countMax"?: number;
+        "dirty"?: boolean;
+        "disabled"?: boolean;
+        "displayOnly"?: boolean;
+        "fieldIcon"?: Icon;
+        "inputRef"?: string;
+        "name"?: string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "valid"?: boolean;
+        "value"?: string;
     }
     interface LsToolbar {
         "dataItem"?: LSApiElement1[];
@@ -528,6 +856,7 @@ declare namespace LocalJSX {
         "validation"?: number;
     }
     interface IntrinsicElements {
+        "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
         "ls-editor-field": LsEditorField;
         "ls-feature-column": LsFeatureColumn;
@@ -543,9 +872,16 @@ declare namespace LocalJSX {
         "ls-field-properties-signature": LsFieldPropertiesSignature;
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
+        "ls-formfield": LsFormfield;
         "ls-icon": LsIcon;
+        "ls-number-input": LsNumberInput;
+        "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
+        "ls-radio-input": LsRadioInput;
+        "ls-select-input": LsSelectInput;
         "ls-statusbar": LsStatusbar;
+        "ls-text-input": LsTextInput;
+        "ls-textarea-input": LsTextareaInput;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
     }
@@ -554,6 +890,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ls-document-options": LocalJSX.LsDocumentOptions & JSXBase.HTMLAttributes<HTMLLsDocumentOptionsElement>;
             /**
              * The Legalesign page viewer converted to stencil. To use pass the standard
              * Template information from GraphQL (see Readme).
@@ -574,9 +911,16 @@ declare module "@stencil/core" {
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
+            "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
+            "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
+            "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
+            "ls-radio-input": LocalJSX.LsRadioInput & JSXBase.HTMLAttributes<HTMLLsRadioInputElement>;
+            "ls-select-input": LocalJSX.LsSelectInput & JSXBase.HTMLAttributes<HTMLLsSelectInputElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
+            "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
+            "ls-textarea-input": LocalJSX.LsTextareaInput & JSXBase.HTMLAttributes<HTMLLsTextareaInputElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }

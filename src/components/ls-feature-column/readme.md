@@ -5,6 +5,20 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property  | Attribute | Description                                                                                               | Type                                       | Default     |
+| --------- | --------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
+| `manager` | `manager` | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' } | `"document" \| "participant" \| "toolbox"` | `'toolbox'` |
+
+
+## Events
+
+| Event    | Description | Type                                                    |
+| -------- | ----------- | ------------------------------------------------------- |
+| `manage` |             | `CustomEvent<"document" \| "participant" \| "toolbox">` |
+
+
 ## Dependencies
 
 ### Used by

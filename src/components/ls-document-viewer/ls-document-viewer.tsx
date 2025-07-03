@@ -88,10 +88,17 @@ export class LsDocumentViewer {
 
   }
 
+  /**
+  * Determines / sets which of the far left 'managers' is active.
+  * {'document' | 'toolbox' | 'participant' }
+  */
+  @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' = 'toolbox';
+
+
   @Watch('selected')
-  selectedHandler(_newSelected, _oldSelected) {
+  selectedHandler(newSelected, _oldSelected) {
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
-    toolbar.dataItem = _newSelected
+    toolbar.dataItem = newSelected
   }
 
   /**
@@ -186,6 +193,34 @@ export class LsDocumentViewer {
   @Listen('update')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx))
+  }
+
+  handleKeyDown(ev: KeyboardEvent){
+    if(this.selected?.length > 0) {
+      console.log(ev)
+      if (ev.key === 'ArrowDown'){
+        console.log('down arrow pressed')
+        this.alter((original) => (original.top < this.pageDimensions[original.page].height) ? original.top +1 : this.pageDimensions[original.page].height)
+      } else     if (ev.key === 'ArrowUp'){
+        console.log('up arrow pressed')
+         this.alter((original) => original.top > 0 ? original.top -1 : 0)
+      } else     if (ev.key === 'ArrowRight'){
+        console.log('right arrow pressed')
+      } else     if (ev.key === 'ArrowLeft'){
+        console.log('left arrow pressed')
+      }
+    }
+  }
+
+    // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  alter(diffFn) {
+
+    const diffs: LSMutateEvent[] = this.selected.map(c => {
+      return { action: "update", data: diffFn(c) as LSApiElement }
+    })
+    this.mutate.emit(diffs)
+    this.update.emit(diffs)
   }
 
   //
@@ -300,12 +335,21 @@ export class LsDocumentViewer {
     if (update.action === 'create') {
       addField(this.component.shadowRoot.getElementById('ls-document-frame'), update.data)
       const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
+
       this.selected = [newField]
       this.selectFields.emit([update.data])
     }
     else if (update.action === 'update') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-      if (fi) moveField(fi, { ...fi.dataItem, ...update.data })
+      if (fi) {
+        var newItem = { ...fi.dataItem, ...update.data }
+        moveField(fi, newItem)
+        fi.dataItem = newItem;
+      }
+      // Reselect the fields - this updates the dataItem value passed to child controls
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');      
+      this.selected = Array.from(fields).filter(fx => fx.selected)
+           
     } else if (update.action === 'delete') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
       this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
@@ -330,6 +374,7 @@ export class LsDocumentViewer {
     });
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+
 
     // Used for single field selection
     dropTarget.addEventListener("click", (e) => {
@@ -454,12 +499,13 @@ export class LsDocumentViewer {
         var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
         var leftOffset = frame.getBoundingClientRect().left
+        var topOffset = frame.getBoundingClientRect().top
         const movedX = (event.clientX - this.selectionBox.x);
         const movedY = (event.clientY - this.selectionBox.y);
 
         box.style.visibility = "visible"
         box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset + "px"
-        box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) + "px"
+        box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset + "px"
         box.style.width = Math.abs(movedX) + "px"
         box.style.height = Math.abs(movedY) + "px"
 
@@ -468,12 +514,12 @@ export class LsDocumentViewer {
         // Move one or more selected items
         const movedX = (event.screenX - this.startMouse.x);
         const movedY = (event.screenY - this.startMouse.y);
-
-        for (let i = 0; i < this.selected.length; i++) {
-          this.selected[i].style.left = (this.startLocations[i].left + movedX) + "px"
-          this.selected[i].style.top = (this.startLocations[i].top + movedY) + "px"
+        if (this.selected?.length) {
+          for (let i = 0; i < this.selected.length; i++) {
+            this.selected[i].style.left = (this.startLocations[i].left + movedX) + "px"
+            this.selected[i].style.top = (this.startLocations[i].top + movedY) + "px"
+          }
         }
-
       }
     });
 
@@ -550,10 +596,14 @@ export class LsDocumentViewer {
 
     })
 
+    document.addEventListener("keydown", this.handleKeyDown)
+
   }
 
   componentWillLoad() {
-    if (this.template) this.parseTemplate(this.template);
+    if (this.template) {
+      this.parseTemplate(this.template);
+    }
   }
 
   render() {
@@ -561,8 +611,20 @@ export class LsDocumentViewer {
       <Host>
         <form id="ls-editor-form">
           {this.showtoolbox === true ? <div class="leftBox">
-            <ls-feature-column />
-            <div id="ls-toolbox">
+            <ls-feature-column onManage={(manager) => {
+              console.log(manager)
+
+              if (manager.detail === 'document') {
+                var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
+                documentManager.template = this._template
+              } else if (manager.detail === 'participant') {
+                console.log(this._template)
+                var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+                participantManager.template = this._template
+              }
+              this.manager = manager.detail
+            }} />
+            <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
               <div class="ls-editor-infobox">Drag to Add...</div>
               <ls-toolbox-field elementType="signature" formElementType="signature" label="Signature" defaultHeight={27} defaultWidth={120} validation={0} />
               <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} />
@@ -577,19 +639,22 @@ export class LsDocumentViewer {
               <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
               <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} />
             </div>
+            <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} />
+            <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
           </div>
             :
             <></>
           }
           <div id="ls-mid-area">
-            <ls-toolbar />
-            <div id="ls-document-frame" >
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null}/>
+            <div id="ls-document-frame">
               <canvas id="pdf-canvas"></canvas>
               <div id="ls-box-selector"></div>
               {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
                 page={this.pageDimensions[this.pageNum - 1]}
                 type={e.formElementType}
                 readonly={this.readonly}
+                palette={this.roleColors}
                 dataItem={this.prepareElement(e)} />))}
 
             </div>

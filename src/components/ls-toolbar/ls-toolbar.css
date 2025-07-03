@@ -1,6 +1,13 @@
 :host {
   display: flex;
   flex-direction: row;
+  height: 32px;
   width: 100%;
   background-color: rgb(205, 205, 205);
+}
+
+.rowbox {
+  display: flex;
+  flex-direction: row;
+    vertical-align: middle;
 }

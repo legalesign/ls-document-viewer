@@ -20,6 +20,7 @@
 
 ### Depends on
 
+- [ls-participant-select](../ls-participant-select)
 - [ls-field-alignment](../ls-field-alignment)
 - [ls-field-distribute](../ls-field-distribute)
 - [ls-field-size](../ls-field-size)
@@ -27,6 +28,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ls-toolbar --> ls-participant-select
   ls-toolbar --> ls-field-alignment
   ls-toolbar --> ls-field-distribute
   ls-toolbar --> ls-field-size

@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property | Attribute | Description                                           | Type     | Default     |
+| -------- | --------- | ----------------------------------------------------- | -------- | ----------- |
+| `scale`  | `scale`   | The zoom or scale level 1.0 === 100%. {LSApiTemplate} | `number` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by

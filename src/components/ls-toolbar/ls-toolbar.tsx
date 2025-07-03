@@ -7,15 +7,26 @@ import { LSApiElement } from '../../components';
   shadow: true,
 })
 export class LsToolbar {
-    @Prop({
-      mutable: true
-    }) dataItem: LSApiElement[];
+  @Prop({
+    mutable: true
+  }) dataItem: LSApiElement[];
+
+
   render() {
     return (
       <Host>
-        <ls-field-alignment dataItem={this.dataItem} />
-        <ls-field-distribute dataItem={this.dataItem} />
-        <ls-field-size  dataItem={this.dataItem} />
+        {this.dataItem && this.dataItem.length > 1?
+
+          <div class={"rowbox"}>
+            <ls-participant-select />
+            <ls-field-alignment dataItem={this.dataItem} />
+            <ls-field-distribute dataItem={this.dataItem} />
+            <ls-field-size dataItem={this.dataItem} />
+          </div>
+          :
+          <ls-participant-select />
+
+        }
         <slot></slot>
       </Host>
     );

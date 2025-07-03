@@ -1,5 +1,6 @@
 :host {
-  display: block;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 button {
@@ -9,8 +10,8 @@ button {
   min-height: 24px;
   border-radius: 0.5rem;
   margin: 0.25rem;
-  width: 37px;  
-  height: 37px;
+  width: 27px;  
+  height: 27px;
   justify-content: center;
   vertical-align: middle;
   border: 0;
@@ -22,4 +23,7 @@ button:hover {
 
 .ls-toolbar-numeric {
   width: 45px;
+    max-height: 18px;
+    margin: 0px;
+    padding: 0px;
 }

@@ -22,7 +22,13 @@
  - [ls-feature-column](../ls-feature-column)
  - [ls-field-alignment](../ls-field-alignment)
  - [ls-field-distribute](../ls-field-distribute)
+ - [ls-formfield](../ls-formfield)
+ - [ls-number-input](../ls-formfield/inputs/ls-number-input)
+ - [ls-radio-input](../ls-formfield/inputs/ls-radio-input)
+ - [ls-select-input](../ls-formfield/inputs/ls-select-input)
  - [ls-statusbar](../ls-statusbar)
+ - [ls-text-input](../ls-formfield/inputs/ls-text-input)
+ - [ls-textarea-input](../ls-formfield/inputs/ls-textarea-input)
 
 ### Graph
 ```mermaid
@@ -30,7 +36,13 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
+  ls-formfield --> ls-icon
+  ls-number-input --> ls-icon
+  ls-radio-input --> ls-icon
+  ls-select-input --> ls-icon
   ls-statusbar --> ls-icon
+  ls-text-input --> ls-icon
+  ls-textarea-input --> ls-icon
   style ls-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
