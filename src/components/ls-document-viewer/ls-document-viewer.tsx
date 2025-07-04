@@ -14,9 +14,11 @@ import {
 
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
-import { addField, findDimensions, findIn, moveField } from './editorCalculator';
+import { addField, moveField } from './editorCalculator';
 import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { keyDown } from './keyHandlers';
+import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -36,19 +38,25 @@ export class LsDocumentViewer {
   @Element() component: HTMLElement;
 
   private isPageRendering: boolean;
-  private isMoving: boolean = false;
-  private selectionBox: { x: number, y: number } = null;
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private scale: number = 1; // hardcoded to scale the document to full canvas size
   private pageNum: number = 1; // hardcoded to start at the page 1
   private pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
+  // @ts-ignore
+  private isMoving: boolean = false;
+  // @ts-ignore
+  private selectionBox: { x: number, y: number } = null;
+  // @ts-ignore
   private hitField: HTMLElement;
+  // @ts-ignore
   private edgeSide: string;
+  // @ts-ignore
   private startLocations: { left: number, top: number, height: number, width: number }[];
+  // @ts-ignore
   private startMouse: { left: number, top: number, height: number, width: number, x: number, y: number };
+
   //
   // --- Properties / Inputs --- //
   //
@@ -59,6 +67,8 @@ export class LsDocumentViewer {
    * {LSApiTemplate}
    */
   @Prop() template: string;
+  @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
+
   @State() _template: LSApiTemplate
   @State() selected: HTMLLsEditorFieldElement[];
 
@@ -69,7 +79,6 @@ export class LsDocumentViewer {
  */
   @Prop() mode: 'preview' | 'editor' | 'custom' = 'custom';
 
-  // Updates are internal event between LS controls not to be confused with mutate
   @Watch('mode')
   modeHandler(_newMode, _oldMode) {
     if (_newMode === 'preview') {
@@ -195,33 +204,6 @@ export class LsDocumentViewer {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx))
   }
 
-  handleKeyDown(ev: KeyboardEvent){
-    if(this.selected?.length > 0) {
-      console.log(ev)
-      if (ev.key === 'ArrowDown'){
-        console.log('down arrow pressed')
-        this.alter((original) => (original.top < this.pageDimensions[original.page].height) ? original.top +1 : this.pageDimensions[original.page].height)
-      } else     if (ev.key === 'ArrowUp'){
-        console.log('up arrow pressed')
-         this.alter((original) => original.top > 0 ? original.top -1 : 0)
-      } else     if (ev.key === 'ArrowRight'){
-        console.log('right arrow pressed')
-      } else     if (ev.key === 'ArrowLeft'){
-        console.log('left arrow pressed')
-      }
-    }
-  }
-
-    // Send one or more mutations up the chain
-  // The source of the chain fires the mutation
-  alter(diffFn) {
-
-    const diffs: LSMutateEvent[] = this.selected.map(c => {
-      return { action: "update", data: diffFn(c) as LSApiElement }
-    })
-    this.mutate.emit(diffs)
-    this.update.emit(diffs)
-  }
 
   //
   // --- Methods --- //
@@ -232,14 +214,13 @@ export class LsDocumentViewer {
    * {MouseEvent} e
    */
   @Method()
-  async pageNext(e: MouseEvent) {
-    e.preventDefault();
-
+  async pageNext() {
     if (this.pageNum >= this.pdfDocument.numPages) {
       return;
     }
     this.pageNum += 1;
     this.queueRenderPage(this.pageNum);
+    this.showPageFields()
   }
 
   /**
@@ -247,15 +228,14 @@ export class LsDocumentViewer {
    * e
    */
   @Method()
-  async pagePrev(e: MouseEvent) {
-    e.preventDefault();
-
+  async pagePrev() {
     if (this.pageNum <= 1) {
       return;
     }
 
     this.pageNum -= 1;
     this.queueRenderPage(this.pageNum);
+    this.showPageFields()
   }
 
   /**
@@ -269,9 +249,9 @@ export class LsDocumentViewer {
       .getPage(pageNumber)
       .then(
         (page: PDFPageProxy) => {
-          const viewport: PDFPageViewport = page.getViewport({ scale: this.scale, rotation: 0 });
-          this.canvas.height = viewport.height;
-          this.canvas.width = viewport.width;
+          const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
+          this.canvas.height = viewport.height * this.zoom;
+          this.canvas.width = viewport.width * this.zoom;
 
           // Render PDF page into canvas context
           const renderContext: PDFRenderParams = {
@@ -332,27 +312,33 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
+    console.log('sync')
     if (update.action === 'create') {
-      addField(this.component.shadowRoot.getElementById('ls-document-frame'), update.data)
+      const newData = {...update.data, page: this.pageNum}
+      addField(this.component.shadowRoot.getElementById('ls-document-frame'), newData)
       const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
 
       this.selected = [newField]
-      this.selectFields.emit([update.data])
+      this.selectFields.emit([newData])
     }
     else if (update.action === 'update') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
       if (fi) {
-        var newItem = { ...fi.dataItem, ...update.data }
-        moveField(fi, newItem)
-        fi.dataItem = newItem;
+        moveField(fi, update.data)
+        const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+
+        fu.dataItem = update.data;
+        // Refresh the selected array
+        this.selected = this.selected.map(s => s.dataItem.id === update.data.id ? fu : s)
       }
       // Reselect the fields - this updates the dataItem value passed to child controls
-      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');      
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
       this.selected = Array.from(fields).filter(fx => fx.selected)
-           
+
     } else if (update.action === 'delete') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
       this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
+      this.selected = []
     } else {
       console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.')
     }
@@ -362,8 +348,12 @@ export class LsDocumentViewer {
     // TODO:: Remove and add "real" background
     PDFDocument.create().then(pdfDoc => {
       const page = pdfDoc.addPage([842, 595]);
+      const page2 = pdfDoc.addPage([842, 595]);
       page.moveTo(50, 410);
+
       page.drawText('Welcome to Legalesign!');
+      page2.moveTo(500, 50);
+      page2.drawText('Page 2');
       pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
         this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
         this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height + "px"
@@ -377,179 +367,17 @@ export class LsDocumentViewer {
 
 
     // Used for single field selection
-    dropTarget.addEventListener("click", (e) => {
-      // check we're not moving fields
-      if (this.isMoving) {
-        // End dragging fields
-        this.isMoving = false
-        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-        const selected = Array.from(fields).filter(fx => fx.selected)
-
-        this.selectFields.emit(selected.map(fx => fx.dataItem))
-        this.mutate.emit(Array.from(fields).filter(fx => fx.selected).map(fx => {
-          // Calculate new positions and update the dataItem on the control
-          const delta = {
-            ...fx.dataItem,
-            ...findDimensions(fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width)
-          }
-          fx.dataItem = delta
-          return { action: "update", data: delta }
-        }))
-      } else {
-        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-        fields.forEach(f => {
-          const { left, top, bottom, right } = f.getBoundingClientRect();
-          if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
-            this.edgeSide = null
-            this.hitField = f
-            // check if this is a shift click to add to the current selection
-            if (!e.shiftKey) fields.forEach(ft => ft.selected = false)
-            f.selected = true
-          }
-        })
-
-        this.selected = Array.from(fields).filter(fx => fx.selected)
-        this.selectFields.emit(this.selected.map(fx => fx.dataItem))
-
-      }
-    })
-
-    dropTarget.addEventListener("mousedown", (e) => {
-
-      if (e.offsetX < 0 || e.offsetY < 0) return;
-
-      // Find if this was
-      // - a hit on a field edge RESIZE
-      // - a hit on the middle of a field MOVE
-      // - a hit on the background document SELECTMULTIPLE with a box
-      this.hitField = null;
-      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-
-      fields.forEach(f => {
-        const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
-        const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY }
-        this.startMouse = fdims;
-        // west edge
-        if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
-          this.edgeSide = "w"
-          this.hitField = f;
-          // right / east edge
-        } else if (Math.abs(e.clientX - right) < 5 && e.clientY >= top && e.clientY <= bottom) {
-          this.edgeSide = "e"
-          this.hitField = f;
-          // north edge
-        } else if (Math.abs(e.clientY - top) < 5 && e.clientX >= left && e.clientX <= right) {
-          this.edgeSide = "n"
-          this.hitField = f;
-          // south edge
-        } else if (Math.abs(e.clientY - bottom) < 5 && e.clientX >= left && e.clientX <= right) {
-          this.edgeSide = "s"
-          this.hitField = f;
-        } else if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
-          this.edgeSide = null
-          this.hitField = f;
-        }
-      })
-
-      if (this.hitField) {
-        const { height, width } = this.hitField.getBoundingClientRect();
-        const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY }
-        this.startMouse = fdims;
-        const target = this.selected ? this.selected : [this.hitField]
-        this.startLocations = target.map(f => {
-          const { height, width } = f.getBoundingClientRect();
-          const beHtml = f as HTMLElement
-          return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width }
-        })
-        this.selectionBox = null;
-      } else {
-        this.startLocations = null
-        this.startMouse = null
-        this.selectionBox = { x: e.clientX, y: e.clientY }
-        this.component.style.cursor = "crosshair"
-      }
-    })
-
-    dropTarget.addEventListener("mousemove", (event) => {
-      event.preventDefault();
-
-      // We have the mouse held down on a field edge to resize it.
-      if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
-        const movedX = (event.screenX - this.startMouse.x);
-        const movedY = (event.screenY - this.startMouse.y);
-
-        switch (this.edgeSide) {
-          case "n":
-            this.hitField.style.top = (this.startMouse.top + movedY) + "px"
-            this.hitField.style.height = (this.startMouse.height - movedY) + "px"
-            break;
-          case "s":
-            this.hitField.style.height = this.startMouse.height + movedY + "px"
-            break;
-          case "e":
-            this.hitField.style.width = (this.startMouse.width + movedX) + "px"
-            break;
-          case "w":
-            this.hitField.style.left = (this.startMouse.left + movedX) + "px"
-            this.hitField.style.width = (this.startMouse.width - movedX) + "px"
-            break;
-        }
-      } else if (this.selectionBox && event.buttons === 1) {
-        // draw the multiple selection box
-        var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
-        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-        var leftOffset = frame.getBoundingClientRect().left
-        var topOffset = frame.getBoundingClientRect().top
-        const movedX = (event.clientX - this.selectionBox.x);
-        const movedY = (event.clientY - this.selectionBox.y);
-
-        box.style.visibility = "visible"
-        box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset + "px"
-        box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset + "px"
-        box.style.width = Math.abs(movedX) + "px"
-        box.style.height = Math.abs(movedY) + "px"
-
-      } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
-        this.isMoving = true;
-        // Move one or more selected items
-        const movedX = (event.screenX - this.startMouse.x);
-        const movedY = (event.screenY - this.startMouse.y);
-        if (this.selected?.length) {
-          for (let i = 0; i < this.selected.length; i++) {
-            this.selected[i].style.left = (this.startLocations[i].left + movedX) + "px"
-            this.selected[i].style.top = (this.startLocations[i].top + movedY) + "px"
-          }
-        }
-      }
-    });
-
-    dropTarget.addEventListener("mouseup", (event) => {
-      this.edgeSide = null;
-      this.startMouse = null;
-      this.component.style.cursor = "auto"
-
-      // find what was inside the selection box emit the select event and change their style
-      if (this.selectionBox) {
-        var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
-        var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field')
-        box.style.visibility = "hidden"
-
-        findIn(fields, box, true, event.shiftKey)
-
-        this.selectFields.emit(Array.from(fields).filter(fx => fx.selected).map(fx => fx.dataItem))
-        this.selectionBox = null
-        this.selected = Array.from(fields).filter(fx => fx.selected)
-      }
-    });
-
+    dropTarget.addEventListener("click", mouseClick.bind(this))
+    dropTarget.addEventListener("mousedown", mouseDown.bind(this))
+    dropTarget.addEventListener("mousemove", mouseMove.bind(this))
+    dropTarget.addEventListener("mouseup", mouseUp.bind(this))
+    document.addEventListener("keydown", keyDown.bind(this))
     dropTarget.addEventListener("dragenter", (event) => {
       event.preventDefault();
-    });
-
+    })
     dropTarget.addEventListener("dragover", (event) => {
       event.preventDefault();
-    });
-
+    })
     dropTarget.addEventListener("drop", (event) => {
       event.preventDefault();
 
@@ -566,6 +394,7 @@ export class LsDocumentViewer {
             left: event.offsetX,
             height: data.defaultHeight,
             width: data.defaultWidth,
+            pageDimensions: this.pageDimensions[this.pageNum - 1],
             fontName: "courier",
             fontSize: 10,
             align: 'left',
@@ -581,23 +410,21 @@ export class LsDocumentViewer {
       } catch (e) {
         console.log(e)
       }
-    });
-
-    this._template.elementConnection.templateElements.forEach(te => {
-      const fte = this.component.shadowRoot.getElementById('ls-field-' + te.id)
-      if (fte) {
-        fte.style.top = te.ay * this.pageDimensions[this.pageNum - 1].height + "px"
-        fte.style.left = te.ax * this.pageDimensions[this.pageNum - 1].width + "px"
-        fte.style.height = (te.by - te.ay) * this.pageDimensions[this.pageNum - 1].height + "px"
-        fte.style.width = (te.bx - te.ax) * this.pageDimensions[this.pageNum - 1].width + "px"
-        fte.style.fontSize = te.fontSize + "px"
-        fte.style.fontFamily = te.fontName
-      }
-
     })
 
-    document.addEventListener("keydown", this.handleKeyDown)
 
+    this._template.elementConnection.templateElements.forEach(te => {
+      addField(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
+    })
+
+
+  }
+
+  showPageFields() {
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+      Array.from(fields).forEach(fx => {
+        fx.className = fx.dataItem.page === this.pageNum ? '' : 'hidden'
+      })
   }
 
   componentWillLoad() {
@@ -646,19 +473,12 @@ export class LsDocumentViewer {
             <></>
           }
           <div id="ls-mid-area">
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null}/>
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} />
             <div id="ls-document-frame">
               <canvas id="pdf-canvas"></canvas>
               <div id="ls-box-selector"></div>
-              {(this._template && this.pageDimensions && this._template.elementConnection.templateElements.map(e => <ls-editor-field id={"ls-field-" + e.id}
-                page={this.pageDimensions[this.pageNum - 1]}
-                type={e.formElementType}
-                readonly={this.readonly}
-                palette={this.roleColors}
-                dataItem={this.prepareElement(e)} />))}
-
             </div>
-            <ls-statusbar />
+            <ls-statusbar editor={this} />
           </div>
           {this.showrightpanel && this.selected && this.selected.length > 0 && <div class="rightBox">
             <slot></slot>

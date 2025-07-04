@@ -13,6 +13,7 @@ export class LsFieldPropertiesNumber {
     return (
       <Host>
         <div class={"ls-field-properties-section"}>Number Field</div>
+        <div>Label: <input value={this.dataItem?.label} width="30"/></div>
         <ls-field-dimensions dataItem={this.dataItem} />
         <slot></slot>
       </Host>

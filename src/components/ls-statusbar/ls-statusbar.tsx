@@ -1,4 +1,5 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h, Element } from '@stencil/core';
+import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 
 @Component({
   tag: 'ls-statusbar',
@@ -6,13 +7,18 @@ import { Component, Host, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class LsStatusbar {
+  @Element() component: HTMLElement;
 
-    /**
-     * The zoom or scale level 1.0 === 100%.
-     * {LSApiTemplate}
-     */
-    @Prop() scale: number;
-    
+  /**
+* The zoom or scale level 100 === 100%.
+* {number}
+*/
+  @Prop() editor: LsDocumentViewer;
+
+  handleZoomInput() {
+    const zoomInput = this.component.shadowRoot.getElementById("zoomRange") as HTMLInputElement
+    console.log(zoomInput.value)
+  }
 
   render() {
     return (
@@ -21,13 +27,18 @@ export class LsStatusbar {
         <button><ls-icon name="table" /></button>
         <button><ls-icon name="template" /></button>
 
-        <button><ls-icon name="zoom-in" /></button>
-        <button><ls-icon name="zoom-out" /></button>
 
         <button><ls-icon name="fit-width" /></button>
         <button><ls-icon name="fit-height" /></button>
-        <div><input type="range" min="10" max="300" value="100" class="slider" id="myRange"></input></div>
-        
+        <button onClick={()=> { this.editor.pagePrev()}}><ls-icon name="arrow-left" /></button>
+        <button onClick={()=> { this.editor.pageNext()}}><ls-icon name="arrow-right" /></button>
+
+
+        <button><ls-icon name="zoom-out" /></button>
+        <div><input type="range" min="1" max="300" value={this.editor.zoom} class="slider" id="zoomRange" onInput={() => this.handleZoomInput()} /></div>
+        <button><ls-icon name="zoom-in" /></button>
+
+
         <slot></slot>
       </Host>
     );

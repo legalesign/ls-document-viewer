@@ -10,11 +10,13 @@ import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { Icon } from "./types/Icon";
+import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { Icon } from "./types/Icon";
+export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -39,11 +41,11 @@ export namespace Components {
         /**
           * Page forward {MouseEvent} e
          */
-        "pageNext": (e: MouseEvent) => Promise<void>;
+        "pageNext": () => Promise<void>;
         /**
           * Page backward e
          */
-        "pagePrev": (e: MouseEvent) => Promise<void>;
+        "pagePrev": () => Promise<void>;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
          */
@@ -84,10 +86,11 @@ export namespace Components {
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
          */
         "toolboxFilter"?: string;
+        "zoom": number;
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
-        "page": { height: number, width: number};
+        "page": { height: number, width: number };
         "palette": RoleColor[];
         "readonly": boolean;
         "selected": boolean;
@@ -221,9 +224,9 @@ export namespace Components {
     }
     interface LsStatusbar {
         /**
-          * The zoom or scale level 1.0 === 100%. {LSApiTemplate}
+          * The zoom or scale level 100 === 100%. {number}
          */
-        "scale": number;
+        "editor": LsDocumentViewer;
     }
     interface LsTextInput {
         "aria"?: string;
@@ -650,10 +653,11 @@ declare namespace LocalJSX {
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
          */
         "toolboxFilter"?: string;
+        "zoom"?: number;
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
-        "page"?: { height: number, width: number};
+        "page"?: { height: number, width: number };
         "palette"?: RoleColor[];
         "readonly"?: boolean;
         "selected"?: boolean;
@@ -796,9 +800,9 @@ declare namespace LocalJSX {
     }
     interface LsStatusbar {
         /**
-          * The zoom or scale level 1.0 === 100%. {LSApiTemplate}
+          * The zoom or scale level 100 === 100%. {number}
          */
-        "scale"?: number;
+        "editor"?: LsDocumentViewer;
     }
     interface LsTextInput {
         "aria"?: string;

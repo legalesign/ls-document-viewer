@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description                                           | Type     | Default     |
-| -------- | --------- | ----------------------------------------------------- | -------- | ----------- |
-| `scale`  | `scale`   | The zoom or scale level 1.0 === 100%. {LSApiTemplate} | `number` | `undefined` |
+| Property | Attribute | Description                                    | Type               | Default     |
+| -------- | --------- | ---------------------------------------------- | ------------------ | ----------- |
+| `editor` | `editor`  | The zoom or scale level 100 === 100%. {number} | `LsDocumentViewer` | `undefined` |
 
 
 ## Dependencies

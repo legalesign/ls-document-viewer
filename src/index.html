@@ -10,7 +10,7 @@
     <script nomodule src="/build/ls-document-viewer.js"></script>
   </head>
   <body style="padding: 0px; margin: 0px">
-    <ls-document-viewer id="my-editor" showrightpanel showtoolbox >
+    <ls-document-viewer id="my-editor" showrightpanel showtoolbox>
       <ls-field-properties id="my-field-panel" />
     </ls-document-viewer>
     <script>
@@ -40,12 +40,12 @@
             name: 'Tenant',
             signerIndex: 1,
           },
-                    {
+          {
             id: 'cm9sMTRlOTMxZDgtMzcxYi0xMWYwLTk5MzItMDY5NzZlZmU0MzI2',
             name: 'Tenant Witness',
             signerIndex: 101,
           },
-                    {
+          {
             id: 'cm9sMTRlOTMxZDgtMzcxYi0xMWYwLTk5MzItASDA5NzZlZmU0MzI3',
             name: 'Approver',
             signerIndex: 2,
@@ -119,15 +119,15 @@
         const properties = document.querySelector('ls-field-properties');
         properties.dataItem = customEvent.detail;
       });
-      
-      componentInstance.addEventListener('change', customEvent => {
-        console.log(customEvent.detail, 'change');
-        const properties = document.querySelector('ls-field-properties');
-        if (customEvent?.detail) properties.dataItem = customEvent.detail.map(c => c.data);
+
+      componentInstance.addEventListener('update', customEvent => {
+        console.log(customEvent.detail, 'index update');
       });
 
       componentInstance.addEventListener('mutate', customEvent => {
         console.log(customEvent.detail, 'editor mutate');
+        const properties = document.querySelector('ls-field-properties');
+        if (customEvent?.detail) properties.dataItem = customEvent.detail.map(c => c.data);
       });
 
       properties.addEventListener('mutate', customEvent => {

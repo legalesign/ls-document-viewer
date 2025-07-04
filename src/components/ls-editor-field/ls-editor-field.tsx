@@ -8,13 +8,13 @@ import { LSApiElement } from '../../components';
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
-  @Prop() dataItem: LSApiElement;
+  @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean;
   @Prop() readonly: boolean;
   @Prop() palette: RoleColor[];
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
-  @Prop() page: { height: number, width: number};
+  @Prop() page: { height: number, width: number };
   @State() isEditing: boolean = false;
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
@@ -31,7 +31,7 @@ export class LsEditorField {
 
   @Listen("mousemove", { capture: true })
   handleMouseMove(e) {
-    if(this.readonly) return;
+    if (this.readonly) return;
     if (!e.clientX) return;
 
     // Determine which edge is being moved over and what cursor to show.
@@ -50,7 +50,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick() {
-    if(this.readonly) return;
+    if (this.readonly) return;
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;
@@ -122,18 +122,18 @@ export class LsEditorField {
   render() {
     return (
       <Host class={{
-          'ls-editor-field': true,
-          'is-selected': this.selected
-        }}>
+        'ls-editor-field': true,
+        'is-selected': this.selected
+      }}>
         <div id="ls-editor-field-outer">
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
             type='text'
-            value={this.dataItem?.value || this.innerValue }
+            value={this.dataItem?.value || this.innerValue}
             onChange={(e) => this.onInputChange(e)}
           ></input>
           <div id="field-info" class={this.isEditing ? "hidden-field" : "ls-editor-field-draggable"}>
-            {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType }
+            {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
           </div>
         </div>
       </Host>

@@ -28,6 +28,7 @@ Alex Weinle
 | `showtoolbox`     | `showtoolbox`     | Whether the left hand toolbox is displayed. {boolean}                                                                                                  | `boolean`                                  | `false`              |
 | `template`        | `template`        | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate} | `string`                                   | `undefined`          |
 | `toolboxFilter`   | `toolbox-filter`  | If supplied ONLY items in this \| ("or") delimited list will be shown. i.e. "signature\|intials" {boolean}                                             | `string`                                   | `null`               |
+| `zoom`            | `zoom`            |                                                                                                                                                        | `number`                                   | `2.0`                |
 
 
 ## Events
@@ -43,16 +44,10 @@ Alex Weinle
 
 ## Methods
 
-### `pageNext(e: MouseEvent) => Promise<void>`
+### `pageNext() => Promise<void>`
 
 Page forward
 {MouseEvent} e
-
-#### Parameters
-
-| Name | Type         | Description |
-| ---- | ------------ | ----------- |
-| `e`  | `MouseEvent` |             |
 
 #### Returns
 
@@ -60,16 +55,10 @@ Type: `Promise<void>`
 
 
 
-### `pagePrev(e: MouseEvent) => Promise<void>`
+### `pagePrev() => Promise<void>`
 
 Page backward
 e
-
-#### Parameters
-
-| Name | Type         | Description |
-| ---- | ------------ | ----------- |
-| `e`  | `MouseEvent` |             |
 
 #### Returns
 
