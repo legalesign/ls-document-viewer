@@ -42,6 +42,7 @@ export namespace Components {
           * Page forward {MouseEvent} e
          */
         "pageNext": () => Promise<void>;
+        "pageNum": number;
         /**
           * Page backward e
          */
@@ -192,6 +193,10 @@ export namespace Components {
         "value": number;
     }
     interface LsParticipantManager {
+        /**
+          * The base template information (as JSON). {LSDocumentViewer}
+         */
+        "editor": LsDocumentViewer;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -613,6 +618,7 @@ declare namespace LocalJSX {
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
         "onUpdate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
+        "pageNum"?: number;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
          */
@@ -768,6 +774,10 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface LsParticipantManager {
+        /**
+          * The base template information (as JSON). {LSDocumentViewer}
+         */
+        "editor"?: LsDocumentViewer;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */

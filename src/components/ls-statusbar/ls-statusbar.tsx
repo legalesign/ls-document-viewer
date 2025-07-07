@@ -18,6 +18,8 @@ export class LsStatusbar {
   handleZoomInput() {
     const zoomInput = this.component.shadowRoot.getElementById("zoomRange") as HTMLInputElement
     console.log(zoomInput.value)
+    this.editor.zoom = Math.floor(parseInt(zoomInput.value) / 100)
+    this.editor.renderPage(1)
   }
 
   render() {

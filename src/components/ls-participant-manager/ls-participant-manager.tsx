@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
+import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 
 @Component({
   tag: 'ls-participant-manager',
@@ -9,6 +10,11 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 
 export class LsParticipantManager {
 
+    /**
+   * The base template information (as JSON).
+   * {LSDocumentViewer}
+   */
+  @Prop() editor: LsDocumentViewer;
 
   /**
    * The base template information (as JSON).
@@ -26,7 +32,10 @@ export class LsParticipantManager {
       <Host>
         <h1>Participants</h1>
         {this.template?.roles.map((r, index) => {
-          return <div>{r?.name || 'Signer ' + index}</div>
+          return <button class="card" style={{ 
+            backgroundColor: this.editor.roleColors[index].faded,
+            border: "1px solid " + this.editor.roleColors[index].primary
+          }}>{r?.name || 'Signer ' + index}</button>
           })}
         <slot></slot>
       </Host>

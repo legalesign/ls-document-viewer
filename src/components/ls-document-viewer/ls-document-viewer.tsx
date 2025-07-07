@@ -42,7 +42,6 @@ export class LsDocumentViewer {
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private pageNum: number = 1; // hardcoded to start at the page 1
   private pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
   private isMoving: boolean = false;
@@ -68,6 +67,7 @@ export class LsDocumentViewer {
    */
   @Prop() template: string;
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
+  @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate
   @State() selected: HTMLLsEditorFieldElement[];
@@ -250,8 +250,8 @@ export class LsDocumentViewer {
       .then(
         (page: PDFPageProxy) => {
           const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
-          this.canvas.height = viewport.height * this.zoom;
-          this.canvas.width = viewport.width * this.zoom;
+          this.canvas.height = Math.floor(viewport.height * this.zoom);
+          this.canvas.width = Math.floor(viewport.width * this.zoom);
 
           // Render PDF page into canvas context
           const renderContext: PDFRenderParams = {
@@ -466,7 +466,7 @@ export class LsDocumentViewer {
               <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} />
               <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} />
             </div>
-            <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} />
+            <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
             <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
           </div>
             :

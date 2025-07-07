@@ -1,14 +1,11 @@
 export const defaultRolePalette: RoleColor[] = [
-    { index: 0, color: "#05080d"},
-    { index: 1, color: "#0C3E57"},
-    { index: 2, color: "#00DD00"},
-    { index: 3, color: "#0C1457"},
-    { index: 4, color: "#70350d "},
-    { index: 5, color: "#587a14"},
-    { index: 6, color: "#7a1714"},
-    { index: 7, color: "#7a1451"},
-    { index: 8, color: "#66147a"},
-    { index: 9, color: "#40147A"},
-    { index: 10, color: "#21147a"},
-    
-  ]
+  {primary:'rgb(224, 236, 255)', faded: 'rgb(240, 246, 255)'}, 
+  {primary:'rgb(70, 219, 170)', faded: 'rgb(239, 255, 249)'}, 
+  {primary:'rgb(240, 182, 24)', faded: 'rgb(255, 252, 239)'}, 
+  {primary:'rgb(238, 229, 255)', faded: 'rgb(244, 240, 255)'}, 
+  {primary:'rgb(240, 86, 178)', faded: 'rgb(255, 240, 249)'}, 
+  {primary:'rgb(189, 240, 86)', faded: 'rgb(250, 255, 240)'}, 
+  {primary:'rgb(246, 74, 68)', faded: 'rgb(244, 240, 255)'}, 
+  {primary:'rgb(58, 0, 166)', faded: 'rgb(188, 169, 240)'}, 
+  {primary:'rgba(1, 179, 34, 0.69)', faded: 'rgb(135, 173, 158)'}  
+]

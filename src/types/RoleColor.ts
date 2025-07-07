@@ -1,4 +1,4 @@
 type RoleColor = {
-    index: number
-    color: string
+    primary: string
+    faded: string
 };
