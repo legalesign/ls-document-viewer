@@ -37,6 +37,7 @@ export class LsParticipantManager {
             border: "1px solid " + this.editor.roleColors[index].primary
           }}>{r?.name || 'Signer ' + index}</button>
           })}
+          <button>Add Participant</button>
         <slot></slot>
       </Host>
     );
