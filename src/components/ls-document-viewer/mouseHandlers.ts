@@ -85,12 +85,14 @@ export function mouseMove(event) {
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
     var leftOffset = frame.getBoundingClientRect().left;
     var topOffset = frame.getBoundingClientRect().top;
+    
     const movedX = event.clientX - this.selectionBox.x;
     const movedY = event.clientY - this.selectionBox.y;
 
+    // allow for the frame to be scrolled    
     box.style.visibility = 'visible';
-    box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset + 'px';
-    box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset + 'px';
+    box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset  + frame.scrollLeft + 'px';
+    box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset  + frame.scrollTop + 'px';
     box.style.width = Math.abs(movedX) + 'px';
     box.style.height = Math.abs(movedY) + 'px';
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {

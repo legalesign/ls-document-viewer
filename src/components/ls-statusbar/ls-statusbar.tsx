@@ -36,9 +36,9 @@ export class LsStatusbar {
         <button onClick={()=> { this.editor.pageNext()}}><ls-icon name="arrow-right" /></button>
 
 
-        <button><ls-icon name="zoom-out" /></button>
+        <button onClick={() => this.editor.setZoom(this.editor.zoom * 0.8)}><ls-icon name="zoom-out" /></button>
         <div><input type="range" min="1" max="300" value={Math.floor(this.editor.zoom * 100)} class="slider" id="zoomRange" onInput={() => this.handleZoomInput()} /></div>
-        <button><ls-icon name="zoom-in" /></button>
+        <button onClick={() => this.editor.setZoom(this.editor.zoom / 0.8)}><ls-icon name="zoom-in" /></button>
 
 
         <slot></slot>

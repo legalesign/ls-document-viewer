@@ -8,13 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
-import { LSApiElement as LSApiElement1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { Icon } from "./types/Icon";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
-export { LSApiElement as LSApiElement1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { Icon } from "./types/Icon";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export namespace Components {
@@ -55,6 +55,10 @@ export namespace Components {
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
          */
         "roleColors"?: RoleColor[];
+        /**
+          * Page refresh on zoom change
+         */
+        "setZoom": (z: number) => Promise<void>;
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
          */
@@ -274,6 +278,10 @@ export namespace Components {
           * The base template information (as JSON). {LSDocumentViewer}
          */
         "editor": LsDocumentViewer1;
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template": LSApiTemplate1;
     }
     interface LsToolboxField {
         /**
@@ -862,6 +870,10 @@ declare namespace LocalJSX {
           * The base template information (as JSON). {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate1;
     }
     interface LsToolboxField {
         /**

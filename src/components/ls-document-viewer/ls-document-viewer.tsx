@@ -66,7 +66,7 @@ export class LsDocumentViewer {
    * {LSApiTemplate}
    */
   @Prop() template: string;
-  @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
+  @Prop({ mutable: true }) zoom: number = 2.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate
@@ -239,6 +239,24 @@ export class LsDocumentViewer {
   }
 
   /**
+ * Page refresh on zoom change
+ * 
+ */
+  @Method()
+  async setZoom(z: number) {
+    this.zoom = z
+    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
+
+    // place all fields at new zoom level
+    this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem))
+    
+    this.queueRenderPage(this.pageNum)
+    this.showPageFields()
+  }
+
+  /**
    * Render the page based on pageNumber
    * {number} pageNumber
    */
@@ -250,8 +268,8 @@ export class LsDocumentViewer {
       .then(
         (page: PDFPageProxy) => {
           const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
-          this.canvas.height = Math.floor(viewport.height * this.zoom);
-          this.canvas.width = Math.floor(viewport.width * this.zoom);
+          this.canvas.height = Math.floor(viewport.height / this.zoom);
+          this.canvas.width = Math.floor(viewport.width / this.zoom);
 
           // Render PDF page into canvas context
           const renderContext: PDFRenderParams = {
@@ -314,8 +332,8 @@ export class LsDocumentViewer {
   syncChange(update: LSMutateEvent) {
     console.log('sync')
     if (update.action === 'create') {
-      const newData = {...update.data, page: this.pageNum}
-      addField(this.component.shadowRoot.getElementById('ls-document-frame'), newData)
+      const newData = { ...update.data, page: this.pageNum }
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData)
       const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
 
       this.selected = [newField]
@@ -324,7 +342,7 @@ export class LsDocumentViewer {
     else if (update.action === 'update') {
       const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
       if (fi) {
-        moveField(fi, update.data)
+        moveField.bind(this)(fi, update.data)
         const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
         fu.dataItem = update.data;
@@ -345,6 +363,7 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
+    console.log('Baking your PDF')
     // TODO:: Remove and add "real" background
     PDFDocument.create().then(pdfDoc => {
       const page = pdfDoc.addPage([842, 595]);
@@ -356,8 +375,8 @@ export class LsDocumentViewer {
       page2.drawText('Page 2');
       pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
         this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-        this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height + "px"
-        this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width + "px"
+        this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
+        this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
         this.ctx = this.canvas.getContext('2d');
         this.loadAndRender(pdfDataUri);
       });
@@ -384,14 +403,15 @@ export class LsDocumentViewer {
       try {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
+        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
         const id = crypto.randomUUID()
         const newData: LSMutateEvent = {
           action: 'create', data: {
             ...data,
             id,
             value: "",
-            top: event.offsetY,
-            left: event.offsetX,
+            top: event.offsetY * this.zoom + frame.scrollTop,
+            left: event.offsetX * this.zoom + frame.scrollLeft,
             height: data.defaultHeight,
             width: data.defaultWidth,
             pageDimensions: this.pageDimensions[this.pageNum - 1],
@@ -414,17 +434,17 @@ export class LsDocumentViewer {
 
 
     this._template.elementConnection.templateElements.forEach(te => {
-      addField(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
     })
 
 
   }
 
   showPageFields() {
-      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-      Array.from(fields).forEach(fx => {
-        fx.className = fx.dataItem.page === this.pageNum ? '' : 'hidden'
-      })
+    const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+    Array.from(fields).forEach(fx => {
+      fx.className = fx.dataItem.page === this.pageNum ? '' : 'hidden'
+    })
   }
 
   componentWillLoad() {
@@ -439,8 +459,6 @@ export class LsDocumentViewer {
         <form id="ls-editor-form">
           {this.showtoolbox === true ? <div class="leftBox">
             <ls-feature-column onManage={(manager) => {
-              console.log(manager)
-
               if (manager.detail === 'document') {
                 var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
                 documentManager.template = this._template
@@ -473,7 +491,7 @@ export class LsDocumentViewer {
             <></>
           }
           <div id="ls-mid-area">
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} editor={this} />
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} />
             <div id="ls-document-frame">
               <canvas id="pdf-canvas"></canvas>
               <div id="ls-box-selector"></div>

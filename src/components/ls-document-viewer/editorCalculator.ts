@@ -16,7 +16,7 @@ export const findIn = (fields: NodeListOf<HTMLLsEditorFieldElement>, selector: H
 };
 
 // Used to append new fields (dropped or loaded from template data)
-export const addField = (frame: HTMLElement, data): HTMLLsEditorFieldElement => {
+export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);
@@ -24,21 +24,21 @@ export const addField = (frame: HTMLElement, data): HTMLLsEditorFieldElement => 
   node.style.zIndex = '100';
   node.style.position = 'absolute';
 
-  node.style.top = data.top + 'px';
-  node.style.left = data.left + 'px';
-  node.style.height = data.height + 'px';
-  node.style.width = data.width + 'px';
+  node.style.top = Math.floor(data.top * this.zoom)  +'px';
+  node.style.left = Math.floor(data.left * this.zoom) + 'px';
+  node.style.height = Math.floor(data.height * this.zoom) + 'px';
+  node.style.width = Math.floor(data.width * this.zoom) + 'px';
   node.dataItem = data;
   frame.appendChild(node);
 
   return node as any as HTMLLsEditorFieldElement;
 };
 
-export const moveField = (item: HTMLLsEditorFieldElement, data) => {
-  item.style.top = data.top + 'px';
-  item.style.left = data.left + 'px';
-  item.style.height = data.height + 'px';
-  item.style.width = data.width + 'px';
+export function moveField(item: HTMLLsEditorFieldElement, data){
+  item.style.top = Math.floor(data.top * this.zoom) + 'px';
+  item.style.left = Math.floor(data.left * this.zoom) + 'px';
+  item.style.height = Math.floor(data.height * this.zoom) + 'px';
+  item.style.width = Math.floor(data.width * this.zoom) + 'px';
   item.dataItem = data;
 };
 
