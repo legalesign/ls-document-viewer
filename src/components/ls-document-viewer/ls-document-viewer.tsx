@@ -473,7 +473,7 @@ export class LsDocumentViewer {
             <></>
           }
           <div id="ls-mid-area">
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} />
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} editor={this} />
             <div id="ls-document-frame">
               <canvas id="pdf-canvas"></canvas>
               <div id="ls-box-selector"></div>

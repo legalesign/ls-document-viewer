@@ -8,13 +8,13 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
-import { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
+import { LSApiElement as LSApiElement1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { Icon } from "./types/Icon";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
-export { LSApiElement as LSApiElement1, LSMutateEvent as LSMutateEvent1 } from "./components";
+export { LSApiElement as LSApiElement1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { Icon } from "./types/Icon";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export namespace Components {
@@ -266,7 +266,14 @@ export namespace Components {
         "value"?: string;
     }
     interface LsToolbar {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
         "dataItem": LSApiElement1[];
+        /**
+          * The base template information (as JSON). {LSDocumentViewer}
+         */
+        "editor": LsDocumentViewer1;
     }
     interface LsToolboxField {
         /**
@@ -847,7 +854,14 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface LsToolbar {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
         "dataItem"?: LSApiElement1[];
+        /**
+          * The base template information (as JSON). {LSDocumentViewer}
+         */
+        "editor"?: LsDocumentViewer1;
     }
     interface LsToolboxField {
         /**

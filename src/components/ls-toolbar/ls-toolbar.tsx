@@ -1,5 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
-import { LSApiElement } from '../../components';
+import { LSApiElement, LsDocumentViewer } from '../../components';
 
 @Component({
   tag: 'ls-toolbar',
@@ -7,10 +7,22 @@ import { LSApiElement } from '../../components';
   shadow: true,
 })
 export class LsToolbar {
+  
+  
+      /**
+     * The selected items information (as JSON).
+     * {LSApiElement[]}
+     */
   @Prop({
     mutable: true
   }) dataItem: LSApiElement[];
 
+      /**
+     * The base template information (as JSON).
+     * {LSDocumentViewer}
+     */
+    @Prop() editor: LsDocumentViewer;
+  
 
   render() {
     return (
