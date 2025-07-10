@@ -7,29 +7,46 @@ import { LSApiElement } from '../../components';
   shadow: true,
 })
 export class LsFieldFormat {
- @Prop() dataItem: LSApiElement;
+  @Prop() dataItem: LSApiElement[];
 
   render() {
     return (
       <Host>
-        <div class={"ls-field-properties-section"}>
-          <div>Font: <select>
-              <option value="Arial">Liberation Sans</option>
-              <option value="Courier">Courier</option>
-              <option value="Helvetica">Helvetica</option>
-              <option value="Liberation Sans">Liberation Sans</option>
-              <option value="Verdana">Verdana</option>
+        {this.dataItem && this.dataItem.length > 1 &&
+          <div class={"ls-field-format-bar"}>
+            <select onChange={(input) => {
+              console.log((input.target as HTMLSelectElement).value)             
+            }}>
+              <option value="arial">Arial</option>
+              <option value="liberation sans">Liberation Sans</option>
+              <option value="courier">Courier</option>
+              <option value="helvetica">Helvetica</option>
+              <option value="verdana">Verdana</option>
             </select>
-          </div>
-          <div>Size:  <input value={this.dataItem?.fontSize} width="30"/></div>
-          <div>Align: <select>
+            <input width="30" size={4} />
+            <select>
               <option value="left">Left</option>
               <option value="center">Center</option>
               <option value="right">Right</option>
-            </select></div>
-          <div>Left:  <input value={this.dataItem?.left} width="30"/></div>
-        </div>
-        <slot></slot>
+            </select>
+          </div>}
+        {this.dataItem && this.dataItem.length === 1 &&
+          <div class={"ls-field-format-bar"}>
+            <select>
+              <option value="arial">Arial</option>
+              <option value="liberation sans">Liberation Sans</option>
+              <option value="courier">Courier</option>
+              <option value="helvetica">Helvetica</option>
+              <option value="verdana">Verdana</option>
+            </select>
+            <input width="30" size={4} value={this.dataItem[0].fontSize} />
+            <select>
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+            </select>
+          </div>}
+
       </Host>
     );
   }

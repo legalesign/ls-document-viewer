@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 
@@ -31,7 +31,7 @@ export class LsParticipantManager {
   }
 
   swapHandler(role1, role2) {
-    console.log(role1, 'swap manager')
+    console.log(role1, role2, 'swap manager')
   }
   
   render() {

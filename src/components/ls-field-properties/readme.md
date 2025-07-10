@@ -33,10 +33,8 @@ graph TD;
   ls-field-properties --> ls-field-properties-general
   ls-field-properties --> ls-field-properties-multiple
   ls-field-properties-signature --> ls-field-dimensions
-  ls-field-properties-signature --> ls-field-format
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-text --> ls-field-dimensions
-  ls-field-properties-text --> ls-field-format
   ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions

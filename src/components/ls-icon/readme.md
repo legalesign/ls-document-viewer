@@ -24,6 +24,7 @@
  - [ls-field-distribute](../ls-field-distribute)
  - [ls-formfield](../ls-formfield)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
+ - [ls-participant-manager](../ls-participant-manager)
  - [ls-radio-input](../ls-formfield/inputs/ls-radio-input)
  - [ls-select-input](../ls-formfield/inputs/ls-select-input)
  - [ls-statusbar](../ls-statusbar)
@@ -38,6 +39,7 @@ graph TD;
   ls-field-distribute --> ls-icon
   ls-formfield --> ls-icon
   ls-number-input --> ls-icon
+  ls-participant-manager --> ls-icon
   ls-radio-input --> ls-icon
   ls-select-input --> ls-icon
   ls-statusbar --> ls-icon

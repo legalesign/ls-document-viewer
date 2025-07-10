@@ -19,18 +19,17 @@ export class LsToolbar {
 
 
   /**
- * The base template information (as JSON).
- * {LSDocumentViewer}
- */
-  @Prop() editor: LsDocumentViewer;
-
-  /**
    * The base template information (as JSON).
    * {LSApiTemplate}
    */
   @Prop() template: LSApiTemplate;
 
-
+    /**
+   * The base template information (as JSON).
+   * {LSDocumentViewer}
+   */
+  @Prop() editor: LsDocumentViewer;
+  
   render() {
     return (
       <Host>
@@ -39,17 +38,23 @@ export class LsToolbar {
           <div class={"rowbox"}>
             <select class='ls-participant-select'>
               <option value="0">Sender</option>
-              {this.editor._template.roles.map(r => <option value={r.id}>{r.name}</option>)}
+              {this.template.roles.map(r => <option value={r.id}>{r.name}</option>)}
 
             </select>
-
+            <ls-field-format dataItem={this?.dataItem} />
             <ls-field-alignment dataItem={this.dataItem} />
             <ls-field-distribute dataItem={this.dataItem} />
             <ls-field-size dataItem={this.dataItem} />
+
           </div>
           :
-          <ls-participant-select />
-
+          <div class={"rowbox"}>
+            <select class='ls-participant-select'>
+              <option value="0">Sender</option>
+              {this.template.roles.map(r => <option value={r.id}>{r.name}</option>)}
+            </select>
+            <ls-field-format dataItem={this?.dataItem} />
+          </div>
         }
         <slot></slot>
       </Host>

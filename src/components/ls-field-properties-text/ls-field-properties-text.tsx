@@ -14,7 +14,6 @@ export class LsFieldPropertiesText {
         <div class={"ls-field-properties-section"}>Text Field</div>
         <div>Label: <input value={this.dataItem?.label} width="30"/></div>
         <ls-field-dimensions dataItem={this.dataItem}/>
-        <ls-field-format dataItem={this.dataItem}/>
         <slot></slot>
       </Host>
     );

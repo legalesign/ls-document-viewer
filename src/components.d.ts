@@ -117,7 +117,7 @@ export namespace Components {
         "dataItem": LSApiElement1[];
     }
     interface LsFieldFormat {
-        "dataItem": LSApiElement1;
+        "dataItem": LSApiElement1[];
     }
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
@@ -236,6 +236,7 @@ export namespace Components {
           * The zoom or scale level 100 === 100%. {number}
          */
         "editor": LsDocumentViewer;
+        "zoom": number;
     }
     interface LsTextInput {
         "aria"?: string;
@@ -707,7 +708,7 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldFormat {
-        "dataItem"?: LSApiElement1;
+        "dataItem"?: LSApiElement1[];
     }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
@@ -828,6 +829,7 @@ declare namespace LocalJSX {
           * The zoom or scale level 100 === 100%. {number}
          */
         "editor"?: LsDocumentViewer;
+        "zoom"?: number;
     }
     interface LsTextInput {
         "aria"?: string;

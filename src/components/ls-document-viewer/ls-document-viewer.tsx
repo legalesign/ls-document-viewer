@@ -42,7 +42,7 @@ export class LsDocumentViewer {
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
+  public pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
   private isMoving: boolean = false;
   // @ts-ignore
@@ -491,7 +491,7 @@ export class LsDocumentViewer {
             <></>
           }
           <div id="ls-mid-area">
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} />
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
             <div id="ls-document-frame">
               <canvas id="pdf-canvas"></canvas>
               <div id="ls-box-selector"></div>

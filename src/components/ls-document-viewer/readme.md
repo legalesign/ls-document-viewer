@@ -18,6 +18,7 @@ Alex Weinle
 | ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | -------------------- |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                              | `"document" \| "participant" \| "toolbox"` | `'toolbox'`          |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                           | `"custom" \| "editor" \| "preview"`        | `'custom'`           |
+| `pageNum`         | `page-num`        |                                                                                                                                                        | `number`                                   | `1`                  |
 | `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                | `boolean`                                  | `false`              |
 | `roleColors`      | `role-colors`     | Allows you to change the colours used for each role in the template. {SignerColor[]}                                                                   | `RoleColor[]`                              | `defaultRolePalette` |
 | `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                        | `boolean`                                  | `false`              |
@@ -66,6 +67,22 @@ Type: `Promise<void>`
 
 
 
+### `setZoom(z: number) => Promise<void>`
+
+Page refresh on zoom change
+
+#### Parameters
+
+| Name | Type     | Description |
+| ---- | -------- | ----------- |
+| `z`  | `number` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ## Dependencies
 
@@ -76,8 +93,8 @@ Type: `Promise<void>`
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
 - [ls-toolbar](../ls-toolbar)
-- [ls-editor-field](../ls-editor-field)
 - [ls-statusbar](../ls-statusbar)
+- [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
@@ -87,9 +104,10 @@ graph TD;
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
   ls-document-viewer --> ls-toolbar
-  ls-document-viewer --> ls-editor-field
   ls-document-viewer --> ls-statusbar
+  ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
+  ls-participant-manager --> ls-icon
   ls-document-options --> ls-formfield
   ls-formfield --> ls-icon
   ls-formfield --> ls-text-input
@@ -102,7 +120,7 @@ graph TD;
   ls-radio-input --> ls-icon
   ls-textarea-input --> ls-icon
   ls-number-input --> ls-icon
-  ls-toolbar --> ls-participant-select
+  ls-toolbar --> ls-field-format
   ls-toolbar --> ls-field-alignment
   ls-toolbar --> ls-field-distribute
   ls-toolbar --> ls-field-size

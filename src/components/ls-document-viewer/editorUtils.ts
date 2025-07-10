@@ -31,3 +31,11 @@ export function resetDataItems() {
     this.selected = Array.from(fields).filter(fx => fx.selected);
     this.selectFields.emit(this.selected.map(fx => fx.dataItem));
 }
+
+export function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}

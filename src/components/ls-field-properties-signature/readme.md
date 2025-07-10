@@ -21,13 +21,11 @@
 ### Depends on
 
 - [ls-field-dimensions](../ls-field-dimensions)
-- [ls-field-format](../ls-field-format)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-properties-signature --> ls-field-dimensions
-  ls-field-properties-signature --> ls-field-format
   ls-field-properties --> ls-field-properties-signature
   style ls-field-properties-signature fill:#f9f,stroke:#333,stroke-width:4px
 ```
