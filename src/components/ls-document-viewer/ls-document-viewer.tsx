@@ -19,6 +19,7 @@ import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
+import { getApiType } from './editorUtils';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -66,7 +67,7 @@ export class LsDocumentViewer {
    * {LSApiTemplate}
    */
   @Prop() template: string;
-  @Prop({ mutable: true }) zoom: number = 2.0; // hardcoded to scale the document to full canvas size
+  @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate
@@ -97,6 +98,18 @@ export class LsDocumentViewer {
 
   }
 
+  @Watch('displayTable')
+  tableViewHandler(_newMode, _oldMode) {
+    if (_newMode === true) {
+      this.showPageFields(-1)
+    } else if (_newMode === 'editor') {
+      this.showPageFields(this.pageNum)
+    }
+    this.queueRenderPage(this.pageNum);
+
+
+  }
+
   /**
   * Determines / sets which of the far left 'managers' is active.
   * {'document' | 'toolbox' | 'participant' }
@@ -109,6 +122,12 @@ export class LsDocumentViewer {
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
     toolbar.dataItem = newSelected
   }
+
+  /**
+  * Shows the table view of fields rather than the preview.
+  * {boolean}
+  */
+  @Prop({ mutable: true }) displayTable?: boolean = false;
 
   /**
    * Whether the left hand toolbox is displayed.
@@ -220,7 +239,7 @@ export class LsDocumentViewer {
     }
     this.pageNum += 1;
     this.queueRenderPage(this.pageNum);
-    this.showPageFields()
+    this.showPageFields(this.pageNum)
   }
 
   /**
@@ -235,7 +254,7 @@ export class LsDocumentViewer {
 
     this.pageNum -= 1;
     this.queueRenderPage(this.pageNum);
-    this.showPageFields()
+    this.showPageFields(this.pageNum)
   }
 
   /**
@@ -251,9 +270,9 @@ export class LsDocumentViewer {
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem))
-    
+
     this.queueRenderPage(this.pageNum)
-    this.showPageFields()
+    this.showPageFields(this.pageNum)
   }
 
   /**
@@ -330,35 +349,38 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log('sync')
-    if (update.action === 'create') {
-      const newData = { ...update.data, page: this.pageNum }
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData)
-      const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
+    console.log(getApiType(update.data), 'sync' )
 
-      this.selected = [newField]
-      this.selectFields.emit([newData])
-    }
-    else if (update.action === 'update') {
-      const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-      if (fi) {
-        moveField.bind(this)(fi, update.data)
-        const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+    if (getApiType(update.data) === 'element') {
+      if (update.action === 'create') {
+        const newData = { ...update.data, page: this.pageNum }
+        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData)
+        const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement
 
-        fu.dataItem = update.data;
-        // Refresh the selected array
-        this.selected = this.selected.map(s => s.dataItem.id === update.data.id ? fu : s)
+        this.selected = [newField]
+        this.selectFields.emit([newData as LSApiElement])
       }
-      // Reselect the fields - this updates the dataItem value passed to child controls
-      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-      this.selected = Array.from(fields).filter(fx => fx.selected)
+      else if (update.action === 'update') {
+        const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        if (fi) {
+          moveField.bind(this)(fi, update.data)
+          const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
-    } else if (update.action === 'delete') {
-      const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-      this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
-      this.selected = []
-    } else {
-      console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.')
+          fu.dataItem = update.data as LSApiElement;
+          // Refresh the selected array
+          this.selected = this.selected.map(s => s.dataItem.id === update.data.id ? fu : s)
+        }
+        // Reselect the fields - this updates the dataItem value passed to child controls
+        const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+        this.selected = Array.from(fields).filter(fx => fx.selected)
+
+      } else if (update.action === 'delete') {
+        const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi)
+        this.selected = []
+      } else {
+        console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.')
+      }
     }
   }
 
@@ -404,7 +426,7 @@ export class LsDocumentViewer {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-        const id = crypto.randomUUID()
+        const id = btoa('ele' + crypto.randomUUID())
         const newData: LSMutateEvent = {
           action: 'create', data: {
             ...data,
@@ -440,11 +462,13 @@ export class LsDocumentViewer {
 
   }
 
-  showPageFields() {
+  showPageFields(page: number) {
+
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
-      fx.className = fx.dataItem.page === this.pageNum ? '' : 'hidden'
+      fx.className = fx.dataItem.page === page ? '' : 'hidden'
     })
+
   }
 
   componentWillLoad() {
@@ -493,12 +517,13 @@ export class LsDocumentViewer {
           <div id="ls-mid-area">
             <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
             <div id="ls-document-frame">
-              <canvas id="pdf-canvas"></canvas>
+              <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
+              <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
               <div id="ls-box-selector"></div>
             </div>
             <ls-statusbar editor={this} />
           </div>
-          {this.showrightpanel && this.selected && this.selected.length > 0 && <div class="rightBox">
+          {this.showrightpanel && !this.displayTable && this.selected && this.selected.length > 0 && <div class="rightBox">
             <slot></slot>
           </div>}
         </form>

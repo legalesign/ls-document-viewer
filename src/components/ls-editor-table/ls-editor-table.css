@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+table {
+  background-color: azure;
+  border: 1px solid black
+}
+
+td {
+  border: 1px solid black
+}

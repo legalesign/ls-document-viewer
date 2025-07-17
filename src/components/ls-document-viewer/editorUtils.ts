@@ -27,15 +27,40 @@ export function alter(diffFn) {
 }
 
 export function resetDataItems() {
-    const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];    
-    this.selected = Array.from(fields).filter(fx => fx.selected);
-    this.selectFields.emit(this.selected.map(fx => fx.dataItem));
+  const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
+  this.selected = Array.from(fields).filter(fx => fx.selected);
+  this.selectFields.emit(this.selected.map(fx => fx.dataItem));
 }
 
-export function debounce(func, timeout = 300){
+export function debounce(func, timeout = 300) {
   let timer;
   return (...args) => {
     clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
   };
+}
+
+// Utility function which extracts the type from any API id
+export function getApiType(obj: any) {
+  if (!obj?.id) return 'invalid';
+
+  const apiId = atob(obj.id);
+  if (apiId.length < 3) return 'invalid';
+
+  const prefix = atob(obj.id).substring(0, 3);
+
+  switch (prefix) {
+    case 'ele':
+      return 'element';
+    case 'rol':
+      return 'role';
+    case 'tpl':
+      return 'template';
+    case 'doc':
+      return 'document';
+    default:
+      return 'unknown';
+  }
 }

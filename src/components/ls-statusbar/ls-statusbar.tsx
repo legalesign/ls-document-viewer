@@ -9,10 +9,15 @@ import { debounce } from '../ls-document-viewer/editorUtils';
 })
 export class LsStatusbar {
   @Element() component: HTMLElement;
-  @Prop({ mutable: true }) zoom: number
   /**
 * The zoom or scale level 100 === 100%.
 * {number}
+*/
+  @Prop({ mutable: true }) zoom: number
+
+  /**
+* The parent editor control.
+* {LsDocumentViewer}
 */
   @Prop() editor: LsDocumentViewer;
 
@@ -25,7 +30,7 @@ export class LsStatusbar {
     const zoomInput = this.component.shadowRoot.getElementById("zoomRange") as HTMLInputElement
     console.log(Math.floor(parseInt(zoomInput.value) / 100))
     debounce(this.setZoom(parseInt(zoomInput.value) / 100), 700)
-    
+
   }
 
   fitWidth() {
@@ -39,16 +44,16 @@ export class LsStatusbar {
     this.setZoom(frame.clientHeight / this.editor.pageDimensions[0].height)
   }
 
-   componentDidLoad() {
+  componentDidLoad() {
     this.zoom = this.editor.zoom
-   }
+  }
 
   render() {
     return (
       <Host>
 
-        <button><ls-icon name="table" /></button>
-        <button><ls-icon name="template" /></button>
+        <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
+        <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button>
 
 
         <button onClick={() => this.fitWidth()}><ls-icon name="fit-width" /></button>

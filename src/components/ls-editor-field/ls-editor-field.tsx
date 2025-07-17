@@ -56,6 +56,10 @@ export class LsEditorField {
     this.isEdgeDragging = false;
     this.sizeObserver.disconnect()
     this.innerValue = this.innerValue ? this.innerValue : this.dataItem?.value;
+    
+    const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
+    editbox.className = 'ls-editor-field-editable'
+    editbox.focus();
   }
 
   @Listen('dragstart', { capture: false, passive: false })
@@ -66,19 +70,6 @@ export class LsEditorField {
       type: this.type
     }));
     event.dataTransfer.dropEffect = "move";
-  }
-
-
-  // Apply @Watch() for the component's `numberContainer` member.
-  // Whenever `numberContainer` changes, this method will fire.
-  @Watch('isEditing')
-  watchStateHandler(_newValue: boolean, _oldValue: boolean) {
-    const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
-    editbox.focus();
-    editbox.style.cursor = "auto";
-    //editbox.setSelectionRange(editbox.value.length,editbox.value.length,"forward")
-    editbox.selectionStart = 0
-    editbox.selectionEnd = 0
   }
 
   @Watch('selected')
@@ -125,17 +116,15 @@ export class LsEditorField {
         'ls-editor-field': true,
         'is-selected': this.selected
       }}>
-        <div id="ls-editor-field-outer">
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
             type='text'
             value={this.dataItem?.value || this.innerValue}
             onChange={(e) => this.onInputChange(e)}
-          ></input>
+          />
           <div id="field-info" class={this.isEditing ? "hidden-field" : "ls-editor-field-draggable"}>
             {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
           </div>
-        </div>
       </Host>
     );
   }

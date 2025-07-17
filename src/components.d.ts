@@ -9,14 +9,14 @@ import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
-import { Icon } from "./types/Icon";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
+import { Icon } from "./types/Icon";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
-export { Icon } from "./types/Icon";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
+export { Icon } from "./types/Icon";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -30,6 +30,10 @@ export namespace Components {
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        /**
+          * Shows the table view of fields rather than the preview. {boolean}
+         */
+        "displayTable"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
          */
@@ -100,6 +104,12 @@ export namespace Components {
         "readonly": boolean;
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+    }
+    interface LsEditorTable {
+        /**
+          * The parent editor control. {LsDocumentViewer}
+         */
+        "editor": LsDocumentViewer;
     }
     interface LsFeatureColumn {
         /**
@@ -233,9 +243,12 @@ export namespace Components {
     }
     interface LsStatusbar {
         /**
-          * The zoom or scale level 100 === 100%. {number}
+          * The parent editor control. {LsDocumentViewer}
          */
         "editor": LsDocumentViewer;
+        /**
+          * The zoom or scale level 100 === 100%. {number}
+         */
         "zoom": number;
     }
     interface LsTextInput {
@@ -329,6 +342,10 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
 }
+export interface LsParticipantManagerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsParticipantManagerElement;
+}
 declare global {
     interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
     }
@@ -367,6 +384,12 @@ declare global {
     var HTMLLsEditorFieldElement: {
         prototype: HTMLLsEditorFieldElement;
         new (): HTMLLsEditorFieldElement;
+    };
+    interface HTMLLsEditorTableElement extends Components.LsEditorTable, HTMLStencilElement {
+    }
+    var HTMLLsEditorTableElement: {
+        prototype: HTMLLsEditorTableElement;
+        new (): HTMLLsEditorTableElement;
     };
     interface HTMLLsFeatureColumnElementEventMap {
         "manage": 'document' | 'toolbox' | 'participant';
@@ -523,7 +546,19 @@ declare global {
         prototype: HTMLLsNumberInputElement;
         new (): HTMLLsNumberInputElement;
     };
+    interface HTMLLsParticipantManagerElementEventMap {
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
+    }
     interface HTMLLsParticipantManagerElement extends Components.LsParticipantManager, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsParticipantManagerElementEventMap>(type: K, listener: (this: HTMLLsParticipantManagerElement, ev: LsParticipantManagerCustomEvent<HTMLLsParticipantManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsParticipantManagerElementEventMap>(type: K, listener: (this: HTMLLsParticipantManagerElement, ev: LsParticipantManagerCustomEvent<HTMLLsParticipantManagerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsParticipantManagerElement: {
         prototype: HTMLLsParticipantManagerElement;
@@ -581,6 +616,7 @@ declare global {
         "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
+        "ls-editor-table": HTMLLsEditorTableElement;
         "ls-feature-column": HTMLLsFeatureColumnElement;
         "ls-field-alignment": HTMLLsFieldAlignmentElement;
         "ls-field-dimensions": HTMLLsFieldDimensionsElement;
@@ -621,6 +657,10 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        /**
+          * Shows the table view of fields rather than the preview. {boolean}
+         */
+        "displayTable"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
          */
@@ -684,6 +724,12 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+    }
+    interface LsEditorTable {
+        /**
+          * The parent editor control. {LsDocumentViewer}
+         */
+        "editor"?: LsDocumentViewer;
     }
     interface LsFeatureColumn {
         /**
@@ -794,6 +840,8 @@ declare namespace LocalJSX {
           * The base template information (as JSON). {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
+        "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -826,9 +874,12 @@ declare namespace LocalJSX {
     }
     interface LsStatusbar {
         /**
-          * The zoom or scale level 100 === 100%. {number}
+          * The parent editor control. {LsDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
+        /**
+          * The zoom or scale level 100 === 100%. {number}
+         */
         "zoom"?: number;
     }
     interface LsTextInput {
@@ -901,6 +952,7 @@ declare namespace LocalJSX {
         "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
         "ls-editor-field": LsEditorField;
+        "ls-editor-table": LsEditorTable;
         "ls-feature-column": LsFeatureColumn;
         "ls-field-alignment": LsFieldAlignment;
         "ls-field-dimensions": LsFieldDimensions;
@@ -940,6 +992,7 @@ declare module "@stencil/core" {
              */
             "ls-document-viewer": LocalJSX.LsDocumentViewer & JSXBase.HTMLAttributes<HTMLLsDocumentViewerElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
+            "ls-editor-table": LocalJSX.LsEditorTable & JSXBase.HTMLAttributes<HTMLLsEditorTableElement>;
             "ls-feature-column": LocalJSX.LsFeatureColumn & JSXBase.HTMLAttributes<HTMLLsFeatureColumnElement>;
             "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
             "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;

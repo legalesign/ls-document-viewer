@@ -34,7 +34,7 @@ export class LsFieldDistribute {
       return { action: "update", data: { ...c, ...diff } as LSApiElement }
     })
 
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -73,7 +73,7 @@ export class LsFieldDistribute {
       }
     })
 
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -112,7 +112,7 @@ export class LsFieldDistribute {
       }
     })
 
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }

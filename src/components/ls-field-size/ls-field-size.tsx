@@ -25,14 +25,13 @@ export class LsFieldSize {
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-    console.log(diff)
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       return { action: "update", data: { ...c, ...diff } as LSApiElement }
     })
 
-    this.dataItem = diffs.map(d => d.data)
-    this.mutate.emit(diffs)
+    this.dataItem = diffs.map(d => d.data as LSApiElement)
+    this.mutate.emit(diffs) 
     this.update.emit(diffs)
   }
 

@@ -16,6 +16,7 @@ Alex Weinle
 
 | Property          | Attribute         | Description                                                                                                                                            | Type                                       | Default              |
 | ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | -------------------- |
+| `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                      | `boolean`                                  | `false`              |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                              | `"document" \| "participant" \| "toolbox"` | `'toolbox'`          |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                           | `"custom" \| "editor" \| "preview"`        | `'custom'`           |
 | `pageNum`         | `page-num`        |                                                                                                                                                        | `number`                                   | `1`                  |
@@ -93,6 +94,7 @@ Type: `Promise<void>`
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
 - [ls-toolbar](../ls-toolbar)
+- [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
 - [ls-editor-field](../ls-editor-field)
 
@@ -104,6 +106,7 @@ graph TD;
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
   ls-document-viewer --> ls-toolbar
+  ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon

@@ -39,12 +39,12 @@ export class LsFieldDimensions {
         return { action: "update", data: { ...c, ...diff } as LSApiElement }
       })
       
-      this.dataItem = diffs.map(d => d.data)
+      this.dataItem = diffs.map(d => d.data as LSApiElement)
       this.mutate.emit(diffs)
       this.update.emit(diffs)
     } else {
       const singleDiff = { action: 'update', data: { ...this.dataItem, ...diff } as LSApiElement } as LSMutateEvent
-      this.dataItem = singleDiff.data
+      this.dataItem = singleDiff.data as LSApiElement
       this.mutate.emit([singleDiff])
       this.update.emit([singleDiff])
     }

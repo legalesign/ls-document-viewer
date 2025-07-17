@@ -3,7 +3,8 @@
   position: absolute;
   border: 1px solid rgb(49, 49, 49);
   margin: 0px;
-  padding: 0px;
+  padding: 0px 0px 0px 0px;
+  isolation: isolate;
 }
 
 .ls-editor-field-editable {
@@ -26,7 +27,6 @@
 
 .ls-editor-field-editable:focus {
   outline: none;
-  cursor: auto;
 }
 
 .ls-editor-field-draggable {
@@ -60,4 +60,9 @@
   position: relative;
   height: 95%;
   width: 95%;
+}
+
+.editing-input {
+  caret-color: rgb(15 23 42);
+  caret-shape: auto;
 }

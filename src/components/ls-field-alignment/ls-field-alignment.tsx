@@ -31,7 +31,7 @@ export class LsFieldAlignment {
       return { action: "update", data: { ...c, ...diff } as LSApiElement }
     })
 
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data  as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -57,7 +57,7 @@ export class LsFieldAlignment {
       }
     })
 
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data  as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -85,7 +85,7 @@ export class LsFieldAlignment {
       }
     })
     console.log(diffs)
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data  as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -128,7 +128,7 @@ export class LsFieldAlignment {
         } as LSApiElement
       }
     })
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data  as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
@@ -150,7 +150,7 @@ export class LsFieldAlignment {
         } as LSApiElement
       }
     })
-    this.dataItem = diffs.map(d => d.data)
+    this.dataItem = diffs.map(d => d.data  as LSApiElement)
     this.mutate.emit(diffs)
     this.update.emit(diffs)
   }
