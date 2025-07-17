@@ -427,6 +427,7 @@ export class LsDocumentViewer {
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
         const id = btoa('ele' + crypto.randomUUID())
+        // TODO: Put these defaults somewhere sensible
         const newData: LSMutateEvent = {
           action: 'create', data: {
             ...data,
