@@ -349,7 +349,7 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log(getApiType(update.data), 'sync' )
+    console.log(getApiType(update.data), 'sync')
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
@@ -413,15 +413,10 @@ export class LsDocumentViewer {
     dropTarget.addEventListener("mousemove", mouseMove.bind(this))
     dropTarget.addEventListener("mouseup", mouseUp.bind(this))
     document.addEventListener("keydown", keyDown.bind(this))
-    dropTarget.addEventListener("dragenter", (event) => {
-      event.preventDefault();
-    })
-    dropTarget.addEventListener("dragover", (event) => {
-      event.preventDefault();
-    })
+    dropTarget.addEventListener("dragenter", (event) => { event.preventDefault(); })
+    dropTarget.addEventListener("dragover", (event) => { event.preventDefault(); })
     dropTarget.addEventListener("drop", (event) => {
       event.preventDefault();
-
       try {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
