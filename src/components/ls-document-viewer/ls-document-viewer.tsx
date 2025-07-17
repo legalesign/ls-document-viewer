@@ -421,6 +421,7 @@ export class LsDocumentViewer {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+        // Make a new API compatible id for a template element (prefix 'ele')
         const id = btoa('ele' + crypto.randomUUID())
         // TODO: Put these defaults somewhere sensible
         const newData: LSMutateEvent = {
@@ -441,16 +442,15 @@ export class LsDocumentViewer {
           } as LSApiElement
         }
 
-        // TODO :: work out a sensible defaults system for this
         this.mutate.emit([newData])
         this.update.emit([newData])
 
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     })
 
-
+    // Generate all the field HTML elements that are required (for every page)
     this._template.elementConnection.templateElements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
     })
