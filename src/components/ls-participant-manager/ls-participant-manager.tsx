@@ -23,7 +23,7 @@ export class LsParticipantManager {
    * {LSApiTemplate}
    */
   @Prop() template: LSApiTemplate;
-  
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -36,17 +36,29 @@ export class LsParticipantManager {
     composed: true
   }) update: EventEmitter<LSMutateEvent[]>;
 
-  selectedHandler(role) {
-    console.log(role, 'participant manager')
+  selectedHandler(_role) {
+    //console.log(role, 'participant manager')
   }
 
   deleteHandler(role: LSApiRole) {
-    console.log(role, 'trash manager')
-    this.update.emit([{ action: 'create', data: role }])
+    this.update.emit([{ action: 'delete', data: role }])
   }
 
   swapHandler(role1, role2) {
-    console.log(role1, role2, 'swap manager')
+    this.update.emit([{ action: 'swap', data: role1, data2: role2 }])
+  }
+  createHandler() {
+    this.update.emit([{
+      action: 'create', data: {
+        id: btoa('rol' + crypto.randomUUID()),
+        name: 'Signer ' + this.template.roles.length,
+        roleType: 'SIGNER',
+        signerIndex: 1,
+        ordinal: this.template.roles.length,
+        signerParent: null,
+        experience: ''
+      }
+    }])
   }
 
   render() {
@@ -64,7 +76,7 @@ export class LsParticipantManager {
             {index < this.template.roles.length - 1 ? <button class="innerButton" onClick={() => { this.swapHandler(r, this.template.roles[index + 1]) }}><ls-icon name="arrow-down" size="18" /></button> : <></>}
           </div>
         })}
-        <button>Add Participant</button>
+        <button onClick={() => this.createHandler()}>Add Participant</button>
         <slot></slot>
       </Host>
     );

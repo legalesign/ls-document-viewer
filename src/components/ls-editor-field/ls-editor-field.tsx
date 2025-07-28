@@ -1,5 +1,6 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { getInputType } from '../ls-document-viewer/editorUtils';
 
 @Component({
   tag: 'ls-editor-field',
@@ -110,6 +111,8 @@ export class LsEditorField {
     else this.component.style.border = "1px solid black";
   }
 
+
+
   render() {
     return (
       <Host class={{
@@ -118,7 +121,7 @@ export class LsEditorField {
       }}>
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
-            type='text'
+            type={getInputType(this.dataItem.validation).inputType}
             value={this.dataItem?.value || this.innerValue}
             onChange={(e) => this.onInputChange(e)}
           />

@@ -32,7 +32,9 @@ export class LsFieldFormat {
           </div>}
         {this.dataItem && this.dataItem.length === 1 &&
           <div class={"ls-field-format-bar"}>
-            <select>
+            <select onChange={(input) => {
+              console.log((input.target as HTMLSelectElement).value)             
+            }}>
               <option value="arial">Arial</option>
               <option value="liberation sans">Liberation Sans</option>
               <option value="courier">Courier</option>
