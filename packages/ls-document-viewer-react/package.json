@@ -1,0 +1,39 @@
+{
+  "name": "ls-document-viewer-react",
+  "version": "0.0.1",
+  "description": "Legalesign React Editor / Viewers",
+  "keywords": [
+    "stencilJS",
+    "React",
+    "components",
+    "ui"
+  ],
+  "author": "Alex <alex.weinle@legalesign.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@stencil/react-output-target": "^1.0.2",
+    "@legalesignlab/ls-document-viewer": "^0.0.2"
+  }
+}
