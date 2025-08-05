@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@legalesignlab/ls-document-viewer':
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       '@stencil/react-output-target':
         specifier: ^1.0.2
         version: 1.2.0(@stencil/core@4.36.2)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -33,8 +33,8 @@ packages:
   '@emotion/unitless@0.10.0':
     resolution: {integrity: sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==}
 
-  '@legalesignlab/ls-document-viewer@0.0.2':
-    resolution: {integrity: sha512-7kSbHXHGPIJLuV31W3wilXP0Rbms8ASVT1tvVikhTFPX2fsoAGWvC5bODeRbMs7eKf4EN82B6eZ2uDMen8Fe5w==}
+  '@legalesignlab/ls-document-viewer@0.0.3':
+    resolution: {integrity: sha512-Y3jGxQoY9Dfb4xA4Ji3n9ZDAlrbErojC4FnUZsfTV7BxWSFtem/kMOiaRG+f6+850Pawq28pEaYeHUpZD09WkQ==}
 
   '@lit/react@1.0.8':
     resolution: {integrity: sha512-p2+YcF+JE67SRX3mMlJ1TKCSTsgyOVdAwd/nxp3NuV1+Cb6MWALbN6nT7Ld4tpmYofcE5kcaSY1YBB9erY+6fw==}
@@ -290,7 +290,7 @@ snapshots:
 
   '@emotion/unitless@0.10.0': {}
 
-  '@legalesignlab/ls-document-viewer@0.0.2':
+  '@legalesignlab/ls-document-viewer@0.0.3':
     dependencies:
       clsx: 2.1.1
       pdf-lib: 1.17.1

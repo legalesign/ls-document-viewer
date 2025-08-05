@@ -1,5 +1,5 @@
 {
-  "name": "ls-document-viewer-react",
+  "name": "@legalesignlab/ls-document-viewer-react",
   "version": "0.0.1",
   "description": "Legalesign React Editor / Viewers",
   "keywords": [
@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "@stencil/react-output-target": "^1.0.2",
-    "@legalesignlab/ls-document-viewer": "^0.0.2"
+    "@legalesignlab/ls-document-viewer": "^0.0.3"
   }
 }
