@@ -1,11 +1,12 @@
 {
   "name": "@legalesignlab/ls-document-viewer-react",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Legalesign React Editor / Viewers",
   "keywords": [
     "stencilJS",
     "React",
     "components",
+    "Legalesign",
     "ui"
   ],
   "author": "Alex <alex.weinle@legalesign.com>",
@@ -27,13 +28,16 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/react": "^19.1.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "typescript": "^5.8.3"
+    "@types/react": "^19.1.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typescript": "5"
+  },
+  "overrides": {
+    "@tanstack/react-virtual": "3.9.0"
   },
   "dependencies": {
-    "@stencil/react-output-target": "^1.0.2",
-    "@legalesignlab/ls-document-viewer": "^0.0.3"
+    "@legalesignlab/ls-document-viewer": "^0.0.6",
+    "@stencil/react-output-target": "^1.2.0"
   }
 }

@@ -32,20 +32,26 @@ export namespace Components {
     interface LsDocumentViewer {
         /**
           * Shows the table view of fields rather than the preview. {boolean}
+          * @default false
          */
         "displayTable"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+          * @default 'toolbox'
          */
         "manager": 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
+          * @default 'custom'
          */
         "mode": 'preview' | 'editor' | 'custom';
         /**
           * Page forward {MouseEvent} e
          */
         "pageNext": () => Promise<void>;
+        /**
+          * @default 1
+         */
         "pageNum": number;
         /**
           * Page backward e
@@ -53,10 +59,12 @@ export namespace Components {
         "pagePrev": () => Promise<void>;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
+          * @default defaultRolePalette
          */
         "roleColors"?: RoleColor[];
         /**
@@ -65,26 +73,32 @@ export namespace Components {
         "setZoom": (z: number) => Promise<void>;
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
+          * @default false
          */
         "showpagepreview"?: boolean;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+          * @default false
          */
         "showrightpanel"?: boolean;
         /**
           * Whether the bottom statusbar is displayed. {boolean}
+          * @default false
          */
         "showstatusbar"?: boolean;
         /**
           * Whether the table view of the fields on this template is available to the user. {boolean}
+          * @default false
          */
         "showtableview"?: boolean;
         /**
           * Whether the top toolbar is displayed. {boolean}
+          * @default false
          */
         "showtoolbar"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
+          * @default false
          */
         "showtoolbox"?: boolean;
         /**
@@ -93,8 +107,12 @@ export namespace Components {
         "template": string;
         /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
+          * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * @default 1.0
+         */
         "zoom": number;
     }
     interface LsEditorField {
@@ -114,6 +132,7 @@ export namespace Components {
     interface LsFeatureColumn {
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+          * @default 'toolbox'
          */
         "manager": 'document' | 'toolbox' | 'participant';
     }
@@ -155,6 +174,9 @@ export namespace Components {
     }
     interface LsFormfield {
         "aria"?: string;
+        /**
+          * @default 'text'
+         */
         "as"?: | 'text'
     | 'select'
     | 'radio'
@@ -170,6 +192,9 @@ export namespace Components {
         "dirty": boolean;
         "disabled": boolean;
         "errorText"?: string;
+        /**
+          * @default 'none'
+         */
         "extraLabel": 'optional' | 'required' | 'none';
         "fieldIcon"?: Icon;
         "fieldId": string;
@@ -187,7 +212,13 @@ export namespace Components {
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
+        /**
+          * @default "20"
+         */
         "size"?: string;
+        /**
+          * @default false
+         */
         "solid"?: boolean;
     }
     interface LsNumberInput {
@@ -202,8 +233,14 @@ export namespace Components {
         "name": string;
         "placeholder"?: string;
         "required": boolean;
+        /**
+          * @default 'ls'
+         */
         "type": 'basic' | 'ls';
         "valid": boolean;
+        /**
+          * @default 0
+         */
         "value": number;
     }
     interface LsParticipantManager {
@@ -219,11 +256,20 @@ export namespace Components {
     interface LsParticipantSelect {
     }
     interface LsRadioInput {
+        /**
+          * @default false
+         */
         "checked": boolean;
         "customStyle"?: { [key: string]: string };
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
         "icon"?: Icon;
         "label": string;
+        /**
+          * @default 'name'
+         */
         "name"?: string;
         "radioId": string;
     }
@@ -263,6 +309,9 @@ export namespace Components {
         "name": string;
         "placeholder"?: string;
         "required": boolean;
+        /**
+          * @default 'default'
+         */
         "type": 'default' | 'password' | 'displayonly';
         "valid": boolean;
         "value": string;
@@ -315,6 +364,9 @@ export namespace Components {
           * The text to display for this field type.
          */
         "label": string;
+        /**
+          * @default 0
+         */
         "validation": number;
     }
 }
@@ -675,14 +727,17 @@ declare namespace LocalJSX {
     interface LsDocumentViewer {
         /**
           * Shows the table view of fields rather than the preview. {boolean}
+          * @default false
          */
         "displayTable"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+          * @default 'toolbox'
          */
         "manager"?: 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
+          * @default 'custom'
          */
         "mode"?: 'preview' | 'editor' | 'custom';
         "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
@@ -690,37 +745,48 @@ declare namespace LocalJSX {
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
         "onUpdate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
+        /**
+          * @default 1
+         */
         "pageNum"?: number;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
+          * @default defaultRolePalette
          */
         "roleColors"?: RoleColor[];
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
+          * @default false
          */
         "showpagepreview"?: boolean;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
+          * @default false
          */
         "showrightpanel"?: boolean;
         /**
           * Whether the bottom statusbar is displayed. {boolean}
+          * @default false
          */
         "showstatusbar"?: boolean;
         /**
           * Whether the table view of the fields on this template is available to the user. {boolean}
+          * @default false
          */
         "showtableview"?: boolean;
         /**
           * Whether the top toolbar is displayed. {boolean}
+          * @default false
          */
         "showtoolbar"?: boolean;
         /**
           * Whether the left hand toolbox is displayed. {boolean}
+          * @default false
          */
         "showtoolbox"?: boolean;
         /**
@@ -729,8 +795,12 @@ declare namespace LocalJSX {
         "template"?: string;
         /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
+          * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * @default 1.0
+         */
         "zoom"?: number;
     }
     interface LsEditorField {
@@ -750,6 +820,7 @@ declare namespace LocalJSX {
     interface LsFeatureColumn {
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
+          * @default 'toolbox'
          */
         "manager"?: 'document' | 'toolbox' | 'participant';
         "onManage"?: (event: LsFeatureColumnCustomEvent<'document' | 'toolbox' | 'participant'>) => void;
@@ -802,6 +873,9 @@ declare namespace LocalJSX {
     }
     interface LsFormfield {
         "aria"?: string;
+        /**
+          * @default 'text'
+         */
         "as"?: | 'text'
     | 'select'
     | 'radio'
@@ -817,6 +891,9 @@ declare namespace LocalJSX {
         "dirty"?: boolean;
         "disabled"?: boolean;
         "errorText"?: string;
+        /**
+          * @default 'none'
+         */
         "extraLabel"?: 'optional' | 'required' | 'none';
         "fieldIcon"?: Icon;
         "fieldId"?: string;
@@ -834,7 +911,13 @@ declare namespace LocalJSX {
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
+        /**
+          * @default "20"
+         */
         "size"?: string;
+        /**
+          * @default false
+         */
         "solid"?: boolean;
     }
     interface LsNumberInput {
@@ -849,8 +932,14 @@ declare namespace LocalJSX {
         "name"?: string;
         "placeholder"?: string;
         "required"?: boolean;
+        /**
+          * @default 'ls'
+         */
         "type"?: 'basic' | 'ls';
         "valid"?: boolean;
+        /**
+          * @default 0
+         */
         "value"?: number;
     }
     interface LsParticipantManager {
@@ -868,11 +957,20 @@ declare namespace LocalJSX {
     interface LsParticipantSelect {
     }
     interface LsRadioInput {
+        /**
+          * @default false
+         */
         "checked"?: boolean;
         "customStyle"?: { [key: string]: string };
+        /**
+          * @default false
+         */
         "disabled"?: boolean;
         "icon"?: Icon;
         "label"?: string;
+        /**
+          * @default 'name'
+         */
         "name"?: string;
         "radioId"?: string;
     }
@@ -912,6 +1010,9 @@ declare namespace LocalJSX {
         "name"?: string;
         "placeholder"?: string;
         "required"?: boolean;
+        /**
+          * @default 'default'
+         */
         "type"?: 'default' | 'password' | 'displayonly';
         "valid"?: boolean;
         "value"?: string;
@@ -964,6 +1065,9 @@ declare namespace LocalJSX {
           * The text to display for this field type.
          */
         "label"?: string;
+        /**
+          * @default 0
+         */
         "validation"?: number;
     }
     interface IntrinsicElements {
