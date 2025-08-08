@@ -37,7 +37,7 @@
     "@tanstack/react-virtual": "3.9.0"
   },
   "dependencies": {
-    "@legalesignlab/ls-document-viewer": "^0.0.6",
-    "@stencil/react-output-target": "^1.2.0"
+    "@legalesignlab/ls-document-viewer": "workspace:../ls-document-viewer",
+     "@stencil/react-output-target": "^1.2.0"
   }
 }

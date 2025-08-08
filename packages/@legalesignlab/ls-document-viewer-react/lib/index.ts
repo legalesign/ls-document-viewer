@@ -1,1 +1,1 @@
-export * from './components/stencil-generated/mancomponents';
+export * from './components/stencil-generated/components';

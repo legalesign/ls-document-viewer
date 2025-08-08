@@ -1,6 +1,6 @@
 {
   "name": "@legalesignlab/ls-document-viewer",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Legalesign Document Editor/Viewer",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -51,6 +51,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@jest/transform": "^30.0.5",
     "clsx": "^2.1.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "2.5.207"

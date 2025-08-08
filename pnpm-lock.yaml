@@ -4,16 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@legalesignlab/ls-document-viewer-react': link:packages/@legalesignlab/ls-document-viewer-react
-
 importers:
 
   .:
-    dependencies:
-      '@legalesignlab/ls-document-viewer-react':
-        specifier: link:packages/@legalesignlab/ls-document-viewer-react
-        version: link:packages/@legalesignlab/ls-document-viewer-react
     devDependencies:
       '@types/node':
         specifier: ^22.10.5
