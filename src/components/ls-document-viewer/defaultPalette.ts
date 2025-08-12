@@ -1,3 +1,5 @@
+import { RoleColor } from "../../types/RoleColor";
+
 export const defaultRolePalette: RoleColor[] = [
   {primary:'rgb(50, 124, 244)', faded: 'rgb(240, 246, 255)'}, 
   {primary:'rgb(70, 219, 170)', faded: 'rgb(239, 255, 249)'}, 

@@ -1,12 +1,10 @@
 import { Config } from '@stencil/core';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'ls-document-viewer',
   outputTargets: [
-      reactOutputTarget({
-      // Relative path to where the React components will be generated
+    reactOutputTarget({
       outDir: '../ls-document-viewer-react/lib/components/stencil-generated/',
     }),
     {
@@ -29,9 +27,4 @@ export const config: Config = {
   testing: {
     browserHeadless: "shell",
   },
-  rollupPlugins: {
-    after: [
-      nodePolyfills(),
-    ]
-  }
 };

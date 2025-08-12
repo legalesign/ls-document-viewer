@@ -20,6 +20,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType } from './editorUtils';
+import { RoleColor } from '../../types/RoleColor';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
