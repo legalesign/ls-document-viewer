@@ -1,5 +1,5 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stencil/core';
-import { LSApiElement } from '../../components';
+import { LSApiElement, RoleColor } from '../../components';
 import { getInputType } from '../ls-document-viewer/editorUtils';
 
 @Component({

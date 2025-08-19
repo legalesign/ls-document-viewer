@@ -1,6 +1,6 @@
 {
   "name": "legalesign-document-viewer",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Legalesign Document Editor/Viewer",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -13,9 +13,13 @@
       "import": "./dist/ls-document-viewer/ls-document-viewer.esm.js",
       "require": "./dist/ls-document-viewer/ls-document-viewer.cjs.js"
     },
-    "./ls-document-viewer": {
-      "import": "./dist/components/ls-document-viewer.js",
-      "types": "./dist/components/ls-document-viewer.d.ts"
+    "./dist/*": {
+      "import": "./dist/*",
+      "types": "./dist/*"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
