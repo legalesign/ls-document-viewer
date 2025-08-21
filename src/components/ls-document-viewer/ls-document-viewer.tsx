@@ -1,7 +1,6 @@
 import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement'
-import { PDFDocument } from 'pdf-lib'
 import {
   PDFDocumentProxy,
   PDFPageProxy,
@@ -386,24 +385,25 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
-    console.log('Baking your PDF')
-    // TODO:: Remove and add "real" background
-    PDFDocument.create().then(pdfDoc => {
-      const page = pdfDoc.addPage([842, 595]);
-      const page2 = pdfDoc.addPage([842, 595]);
-      page.moveTo(50, 410);
+    
+    // PDFDocument.create().then(pdfDoc => {
+    //   const page = pdfDoc.addPage([842, 595]);
+    //   const page2 = pdfDoc.addPage([842, 595]);
+    //   page.moveTo(50, 410);
 
-      page.drawText('Welcome to Legalesign!');
-      page2.moveTo(500, 50);
-      page2.drawText('Page 2');
-      pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
-        this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-        this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
-        this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
-        this.ctx = this.canvas.getContext('2d');
-        this.loadAndRender(pdfDataUri);
-      });
-    });
+    //   page.drawText('Welcome to Legalesign!');
+    //   page2.moveTo(500, 50);
+    //   page2.drawText('Page 2');
+    //   pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
+    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
+    this.ctx = this.canvas.getContext('2d');
+    this.loadAndRender(this._template.link)
+
+    //     ;
+    //   });
+    // });
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
@@ -469,9 +469,7 @@ export class LsDocumentViewer {
   }
 
   componentWillLoad() {
-    if (this.template) {
-      this.parseTemplate(this.template);
-    }
+    if (this.template) this.parseTemplate(this.template);
   }
 
   render() {

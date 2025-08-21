@@ -157,9 +157,9 @@ export const validationTypes: any = [
   { id: 3000, description: 'Auto Sign', formType: 'auto sign', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
   { id: 4000, description: 'Text Area', formType: 'textarea', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'readonly' },
 ];
-// See validtion setup in Database - these have to be hard coded for our HTML control
+
+// See validation table in database for latest values - these have to be hard coded for our HTML control - ASW
 export function getInputType(validation: number): ValidationType {
-  console.log(validation, 'validation')
   if (validation === null) return validationTypes[0]
   
   const inputType: ValidationType = validationTypes.find(v => v.id === validation);
