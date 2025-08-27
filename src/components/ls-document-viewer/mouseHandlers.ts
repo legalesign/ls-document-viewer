@@ -152,6 +152,7 @@ export function mouseClick(e) {
             ...fx.dataItem,
             ...findDimensions(fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width),
           };
+          console.log(delta)
           fx.dataItem = delta;
           return { action: 'update', data: delta };
         }),

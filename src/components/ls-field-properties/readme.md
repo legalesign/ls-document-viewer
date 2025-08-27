@@ -14,6 +14,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ls-document-viewer](../ls-document-viewer)
+
 ### Depends on
 
 - [ls-field-properties-signature](../ls-field-properties-signature)
@@ -38,6 +42,7 @@ graph TD;
   ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
+  ls-document-viewer --> ls-field-properties
   style ls-field-properties fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

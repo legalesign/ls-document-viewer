@@ -35,6 +35,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
 };
 
 export function moveField(item: HTMLLsEditorFieldElement, data){
+  console.log(item, data)
   item.style.top = Math.floor(data.top * this.zoom) + 'px';
   item.style.left = Math.floor(data.left * this.zoom) + 'px';
   item.style.height = Math.floor(data.height * this.zoom) + 'px';

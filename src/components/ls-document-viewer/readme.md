@@ -96,6 +96,7 @@ Type: `Promise<void>`
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
+- [ls-field-properties](../ls-field-properties)
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
@@ -108,6 +109,7 @@ graph TD;
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
+  ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
   ls-participant-manager --> ls-icon
@@ -130,6 +132,18 @@ graph TD;
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
   ls-statusbar --> ls-icon
+  ls-field-properties --> ls-field-properties-signature
+  ls-field-properties --> ls-field-properties-date
+  ls-field-properties --> ls-field-properties-text
+  ls-field-properties --> ls-field-properties-number
+  ls-field-properties --> ls-field-properties-general
+  ls-field-properties --> ls-field-properties-multiple
+  ls-field-properties-signature --> ls-field-dimensions
+  ls-field-properties-date --> ls-field-dimensions
+  ls-field-properties-text --> ls-field-dimensions
+  ls-field-properties-number --> ls-field-dimensions
+  ls-field-properties-general --> ls-field-dimensions
+  ls-field-properties-multiple --> ls-field-dimensions
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

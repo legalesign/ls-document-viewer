@@ -117,12 +117,6 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' = 'toolbox';
 
 
-  @Watch('selected')
-  selectedHandler(newSelected, _oldSelected) {
-    var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
-    toolbar.dataItem = newSelected
-  }
-
   /**
   * Shows the table view of fields rather than the preview.
   * {boolean}
@@ -219,8 +213,17 @@ export class LsDocumentViewer {
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('update')
-  mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+  updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx))
+  }
+
+  // Send selection changes to bars and panels if in use.
+  @Listen('selectFields')
+  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
+    var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+    if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[]
+    var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
+    if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[]
   }
 
 
@@ -258,15 +261,15 @@ export class LsDocumentViewer {
   }
 
   /**
- * Page refresh on zoom change
+ * Page and field resize on zoom change
  * 
  */
   @Method()
   async setZoom(z: number) {
     this.zoom = z
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
-    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + "px"
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem))
@@ -281,7 +284,7 @@ export class LsDocumentViewer {
    */
   renderPage(pageNumber: number): void {
     this.isPageRendering = true;
-
+    console.log('rendering at ' + this.zoom)
     this.pdfDocument
       .getPage(pageNumber)
       .then(
@@ -349,7 +352,6 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log(getApiType(update.data), 'sync')
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
@@ -384,29 +386,15 @@ export class LsDocumentViewer {
     }
   }
 
-  componentDidLoad() {
-    
-    // PDFDocument.create().then(pdfDoc => {
-    //   const page = pdfDoc.addPage([842, 595]);
-    //   const page2 = pdfDoc.addPage([842, 595]);
-    //   page.moveTo(50, 410);
-
-    //   page.drawText('Welcome to Legalesign!');
-    //   page2.moveTo(500, 50);
-    //   page2.drawText('Page 2');
-    //   pdfDoc.saveAsBase64({ dataUri: true }).then(pdfDataUri => {
+  componentDidLoad() {    
+    // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
     this.ctx = this.canvas.getContext('2d');
     this.loadAndRender(this._template.link)
 
-    //     ;
-    //   });
-    // });
-
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
-
 
     // Used for single field selection
     dropTarget.addEventListener("click", mouseClick.bind(this))
@@ -482,7 +470,6 @@ export class LsDocumentViewer {
                 var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
                 documentManager.template = this._template
               } else if (manager.detail === 'participant') {
-                console.log(this._template)
                 var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
                 participantManager.template = this._template
               }
@@ -518,7 +505,8 @@ export class LsDocumentViewer {
             </div>
             <ls-statusbar editor={this} />
           </div>
-          {this.showrightpanel && !this.displayTable && this.selected && this.selected.length > 0 && <div class="rightBox">
+          {this.showrightpanel && !this.displayTable && <div class={this.selected && this.selected.length > 0 ? 'rightBox' : 'hidden'}>
+            <ls-field-properties id="my-field-panel"></ls-field-properties>
             <slot></slot>
           </div>}
         </form>

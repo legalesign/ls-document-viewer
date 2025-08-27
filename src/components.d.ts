@@ -70,7 +70,7 @@ export namespace Components {
          */
         "roleColors"?: RoleColor[];
         /**
-          * Page refresh on zoom change
+          * Page and field resize on zoom change
          */
         "setZoom": (z: number) => Promise<void>;
         /**
