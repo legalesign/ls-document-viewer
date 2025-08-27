@@ -35,7 +35,6 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
 };
 
 export function moveField(item: HTMLLsEditorFieldElement, data){
-  console.log(item, data)
   item.style.top = Math.floor(data.top * this.zoom) + 'px';
   item.style.left = Math.floor(data.left * this.zoom) + 'px';
   item.style.height = Math.floor(data.height * this.zoom) + 'px';
@@ -95,11 +94,20 @@ export const transformCoordinates = (
 
 // from a field element get all dimension data including LEGACY dimensions
 export const findDimensions = (
+  frameContainer: HTMLDivElement,
   sourceField: HTMLLsEditorFieldElement,
   pageHeight: number,
   pageWidth: number
 ): { top: number; left: number; height: number; width: number; ax: number; ay: number; bx: number; by: number } => {
-  const { top, left, height, width } = sourceField.getBoundingClientRect();
+
+  // Position of widget frame
+  const frmDims = frameContainer.getBoundingClientRect();
+  // dimensions relative to viewport
+  const { height, width } = sourceField.getBoundingClientRect();
+
+  const top = sourceField.getBoundingClientRect().top - frmDims.top;
+  const left = sourceField.getBoundingClientRect().left - frmDims.left;
+  
   // Returns X, Y coordinates
   const ax = left > 0 ? left / pageWidth : 0;
   const ay = top > 0 ? top / pageHeight : 0;

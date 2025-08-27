@@ -85,14 +85,14 @@ export function mouseMove(event) {
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
     var leftOffset = frame.getBoundingClientRect().left;
     var topOffset = frame.getBoundingClientRect().top;
-    
+
     const movedX = event.clientX - this.selectionBox.x;
     const movedY = event.clientY - this.selectionBox.y;
 
-    // allow for the frame to be scrolled    
+    // allow for the frame to be scrolled
     box.style.visibility = 'visible';
-    box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset  + frame.scrollLeft + 'px';
-    box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset  + frame.scrollTop + 'px';
+    box.style.left = (this.selectionBox.x > event.clientX ? event.clientX : this.selectionBox.x) - leftOffset + frame.scrollLeft + 'px';
+    box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset + frame.scrollTop + 'px';
     box.style.width = Math.abs(movedX) + 'px';
     box.style.height = Math.abs(movedY) + 'px';
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
@@ -140,9 +140,9 @@ export function mouseClick(e) {
     // End dragging fields
     this.isMoving = false;
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
+    const divFrame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
     const selected = Array.from(fields).filter(fx => fx.selected);
 
-    this.selectFields.emit(selected.map(fx => fx.dataItem));
     this.mutate.emit(
       Array.from(fields)
         .filter(fx => fx.selected)
@@ -150,15 +150,17 @@ export function mouseClick(e) {
           // Calculate new positions and update the dataItem on the control
           const delta = {
             ...fx.dataItem,
-            ...findDimensions(fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width),
+            ...findDimensions(divFrame, fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width),
           };
-          console.log(delta)
+          // update the data in the html element
           fx.dataItem = delta;
+          // send an update event to be processed
           return { action: 'update', data: delta };
         }),
     );
+    this.selectFields.emit(selected.map(fx => fx.dataItem));
   } else {
-     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
+    const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     fields.forEach(f => {
       const { left, top, bottom, right } = f.getBoundingClientRect();
       if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
