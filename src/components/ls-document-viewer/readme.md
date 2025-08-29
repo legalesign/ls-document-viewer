@@ -70,7 +70,7 @@ Type: `Promise<void>`
 
 ### `setZoom(z: number) => Promise<void>`
 
-Page refresh on zoom change
+Page and field resize on zoom change
 
 #### Parameters
 

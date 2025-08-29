@@ -152,6 +152,7 @@ export function mouseClick(e) {
             ...fx.dataItem,
             ...findDimensions(divFrame, fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width),
           };
+          // TODO:: out of bounds handler (UNDO)
           // update the data in the html element
           fx.dataItem = delta;
           // send an update event to be processed
