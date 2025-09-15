@@ -35,7 +35,7 @@ export class LsStatusbar {
 
   fitWidth() {
     const frame = this.editor.component.shadowRoot.getElementById('ls-document-frame')
-    this.setZoom(frame.clientWidth / this.editor.pageDimensions[0].width)
+    this.setZoom(frame.clientWidth / (this.editor.pageDimensions[0].width ))
   }
 
 
