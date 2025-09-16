@@ -268,14 +268,14 @@ export class LsDocumentViewer {
   async setZoom(z: number) {
     console.log(z, 'setZoom')
     this.zoom = z
-    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;  
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + "px"
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem))
 
-    console.log(this.pageNum, 'rendering')
+    console.log(this.zoom, 'rendering')
     this.queueRenderPage(this.pageNum)
     this.showPageFields(this.pageNum)
   }
@@ -286,14 +286,15 @@ export class LsDocumentViewer {
    */
   renderPage(pageNumber: number): void {
     this.isPageRendering = true;
-    console.log('rendering page ' + pageNumber)
     this.pdfDocument
       .getPage(pageNumber)
       .then(
         (page: PDFPageProxy) => {
+          console.log('viewport page ', page.getViewport())
+
           const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
-          this.canvas.height = Math.floor(viewport.height * this.zoom);
-          this.canvas.width = Math.floor(viewport.width * this.zoom);
+          this.canvas.height = Math.floor(viewport.height);
+          this.canvas.width = Math.floor(viewport.width);
 
           // Render PDF page into canvas context
           const renderContext: PDFRenderParams = {
@@ -324,10 +325,10 @@ export class LsDocumentViewer {
   }
 
   private queueRenderPage(pageNumber: number): void {
-    console.log(this.isPageRendering,'queueRenderPage')
     if (this.isPageRendering) {
       this.pageNumPending = pageNumber;
     } else {
+      console.log('rerender')
       this.renderPage(pageNumber);
     }
   }
