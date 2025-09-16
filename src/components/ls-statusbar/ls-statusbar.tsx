@@ -35,13 +35,15 @@ export class LsStatusbar {
 
   fitWidth() {
     const frame = this.editor.component.shadowRoot.getElementById('ls-document-frame')
-    this.setZoom(frame.clientWidth / (this.editor.pageDimensions[0].width ))
+    const scale: number = frame.clientWidth / this.editor.pageDimensions[0].width;
+    this.setZoom( Math.round( scale  * 1e2) / 1e2 )
   }
 
 
   fitHeight() {
     const frame = this.editor.component.shadowRoot.getElementById('ls-document-frame')
-    this.setZoom(frame.clientHeight / this.editor.pageDimensions[0].height)
+    const scale: number = frame.clientHeight / this.editor.pageDimensions[0].height
+    this.setZoom( Math.round( scale  * 1e2) / 1e2 )
   }
 
   componentDidLoad() {
@@ -52,8 +54,8 @@ export class LsStatusbar {
     return (
       <Host>
 
-        <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
-        <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button>
+        {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
+        <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
 
 
         <button onClick={() => this.fitWidth()}><ls-icon name="fit-width" /></button>
