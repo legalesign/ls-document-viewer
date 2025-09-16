@@ -10,9 +10,7 @@
     <script nomodule src="/build/ls-document-viewer.js"></script>
   </head>
   <body style="padding: 0px; margin: 0px">
-    <ls-document-viewer id="my-editor" showrightpanel showtoolbox>
-      <ls-field-properties id="my-field-panel" />
-    </ls-document-viewer>
+    <ls-document-viewer id="my-editor" showrightpanel showtoolbox></ls-document-viewer>
     <script>
       const componentInstance = document.currentScript.previousElementSibling;
       const editor = document.querySelector('ls-document-viewer');
@@ -169,25 +167,14 @@
         },
       };
 
-      componentInstance.addEventListener('selectFields', customEvent => {
-        console.log(customEvent.detail, 'selectFields');
-        const properties = document.querySelector('ls-field-properties');
-        properties.dataItem = customEvent.detail;
-      });
-
       componentInstance.addEventListener('update', customEvent => {
         console.log(customEvent.detail, 'index update');
       });
 
       componentInstance.addEventListener('mutate', customEvent => {
         console.log(customEvent.detail, 'editor mutate');
-        const properties = document.querySelector('ls-field-properties');
-        if (customEvent?.detail) properties.dataItem = customEvent.detail.map(c => c.data);
       });
 
-      properties.addEventListener('mutate', customEvent => {
-        console.log(customEvent.detail, 'api call');
-      });
     </script>
   </body>
 </html>

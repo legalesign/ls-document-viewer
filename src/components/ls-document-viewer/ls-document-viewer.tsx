@@ -275,7 +275,6 @@ export class LsDocumentViewer {
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem))
 
-    console.log(this.zoom, 'rendering')
     this.queueRenderPage(this.pageNum)
     this.showPageFields(this.pageNum)
   }
@@ -290,8 +289,6 @@ export class LsDocumentViewer {
       .getPage(pageNumber)
       .then(
         (page: PDFPageProxy) => {
-          console.log('viewport page ', page.getViewport())
-
           const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
           this.canvas.height = Math.floor(viewport.height);
           this.canvas.width = Math.floor(viewport.width);
@@ -328,7 +325,6 @@ export class LsDocumentViewer {
     if (this.isPageRendering) {
       this.pageNumPending = pageNumber;
     } else {
-      console.log('rerender')
       this.renderPage(pageNumber);
     }
   }
