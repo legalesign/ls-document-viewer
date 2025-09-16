@@ -24,6 +24,10 @@
 - [ls-field-properties-date](../ls-field-properties-date)
 - [ls-field-properties-text](../ls-field-properties-text)
 - [ls-field-properties-number](../ls-field-properties-number)
+- [ls-field-properties-autosign](../ls-field-properties-autosign)
+- [ls-field-properties-email](../ls-field-properties-email)
+- [ls-field-properties-image](../ls-field-properties-image)
+- [ls-field-properties-file](../ls-field-properties-file)
 - [ls-field-properties-general](../ls-field-properties-general)
 - [ls-field-properties-multiple](../ls-field-properties-multiple)
 
@@ -34,12 +38,20 @@ graph TD;
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text
   ls-field-properties --> ls-field-properties-number
+  ls-field-properties --> ls-field-properties-autosign
+  ls-field-properties --> ls-field-properties-email
+  ls-field-properties --> ls-field-properties-image
+  ls-field-properties --> ls-field-properties-file
   ls-field-properties --> ls-field-properties-general
   ls-field-properties --> ls-field-properties-multiple
   ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-number --> ls-field-dimensions
+  ls-field-properties-autosign --> ls-field-dimensions
+  ls-field-properties-email --> ls-field-dimensions
+  ls-field-properties-image --> ls-field-dimensions
+  ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
   ls-document-viewer --> ls-field-properties

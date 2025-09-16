@@ -1,4 +1,4 @@
-# ls-field-properties-number
+# ls-field-properties-email
 
 
 
@@ -25,9 +25,9 @@
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-properties-number --> ls-field-dimensions
-  ls-field-properties --> ls-field-properties-number
-  style ls-field-properties-number fill:#f9f,stroke:#333,stroke-width:4px
+  ls-field-properties-email --> ls-field-dimensions
+  ls-field-properties --> ls-field-properties-email
+  style ls-field-properties-email fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

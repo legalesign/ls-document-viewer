@@ -266,7 +266,6 @@ export class LsDocumentViewer {
  */
   @Method()
   async setZoom(z: number) {
-    console.log(z, 'setZoom')
     this.zoom = z
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;  
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"

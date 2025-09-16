@@ -23,6 +23,14 @@ export class LsFieldProperties {
           return <ls-field-properties-text dataItem={this.dataItem[0]} />
         case 'number':
           return <ls-field-properties-number dataItem={this.dataItem[0]} />
+        case 'autosign':
+          return <ls-field-properties-autosign dataItem={this.dataItem[0]} />
+        case 'email':
+          return <ls-field-properties-email dataItem={this.dataItem[0]} />
+        case 'image':
+          return <ls-field-properties-image dataItem={this.dataItem[0]} />
+        case 'file':
+          return <ls-field-properties-file dataItem={this.dataItem[0]} />
         default:
           return <ls-field-properties-general dataItem={this.dataItem[0]} />
 

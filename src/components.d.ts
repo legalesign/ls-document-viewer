@@ -153,10 +153,22 @@ export namespace Components {
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
     }
+    interface LsFieldPropertiesAutosign {
+        "dataItem": LSApiElement1;
+    }
     interface LsFieldPropertiesDate {
         "dataItem": LSApiElement1;
     }
+    interface LsFieldPropertiesEmail {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesFile {
+        "dataItem": LSApiElement1;
+    }
     interface LsFieldPropertiesGeneral {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesImage {
         "dataItem": LSApiElement1;
     }
     interface LsFieldPropertiesMultiple {
@@ -544,17 +556,41 @@ declare global {
         prototype: HTMLLsFieldPropertiesElement;
         new (): HTMLLsFieldPropertiesElement;
     };
+    interface HTMLLsFieldPropertiesAutosignElement extends Components.LsFieldPropertiesAutosign, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesAutosignElement: {
+        prototype: HTMLLsFieldPropertiesAutosignElement;
+        new (): HTMLLsFieldPropertiesAutosignElement;
+    };
     interface HTMLLsFieldPropertiesDateElement extends Components.LsFieldPropertiesDate, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesDateElement: {
         prototype: HTMLLsFieldPropertiesDateElement;
         new (): HTMLLsFieldPropertiesDateElement;
     };
+    interface HTMLLsFieldPropertiesEmailElement extends Components.LsFieldPropertiesEmail, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesEmailElement: {
+        prototype: HTMLLsFieldPropertiesEmailElement;
+        new (): HTMLLsFieldPropertiesEmailElement;
+    };
+    interface HTMLLsFieldPropertiesFileElement extends Components.LsFieldPropertiesFile, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesFileElement: {
+        prototype: HTMLLsFieldPropertiesFileElement;
+        new (): HTMLLsFieldPropertiesFileElement;
+    };
     interface HTMLLsFieldPropertiesGeneralElement extends Components.LsFieldPropertiesGeneral, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesGeneralElement: {
         prototype: HTMLLsFieldPropertiesGeneralElement;
         new (): HTMLLsFieldPropertiesGeneralElement;
+    };
+    interface HTMLLsFieldPropertiesImageElement extends Components.LsFieldPropertiesImage, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesImageElement: {
+        prototype: HTMLLsFieldPropertiesImageElement;
+        new (): HTMLLsFieldPropertiesImageElement;
     };
     interface HTMLLsFieldPropertiesMultipleElement extends Components.LsFieldPropertiesMultiple, HTMLStencilElement {
     }
@@ -693,8 +729,12 @@ declare global {
         "ls-field-distribute": HTMLLsFieldDistributeElement;
         "ls-field-format": HTMLLsFieldFormatElement;
         "ls-field-properties": HTMLLsFieldPropertiesElement;
+        "ls-field-properties-autosign": HTMLLsFieldPropertiesAutosignElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
+        "ls-field-properties-email": HTMLLsFieldPropertiesEmailElement;
+        "ls-field-properties-file": HTMLLsFieldPropertiesFileElement;
         "ls-field-properties-general": HTMLLsFieldPropertiesGeneralElement;
+        "ls-field-properties-image": HTMLLsFieldPropertiesImageElement;
         "ls-field-properties-multiple": HTMLLsFieldPropertiesMultipleElement;
         "ls-field-properties-number": HTMLLsFieldPropertiesNumberElement;
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
@@ -850,10 +890,22 @@ declare namespace LocalJSX {
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
     }
+    interface LsFieldPropertiesAutosign {
+        "dataItem"?: LSApiElement1;
+    }
     interface LsFieldPropertiesDate {
         "dataItem"?: LSApiElement1;
     }
+    interface LsFieldPropertiesEmail {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesFile {
+        "dataItem"?: LSApiElement1;
+    }
     interface LsFieldPropertiesGeneral {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesImage {
         "dataItem"?: LSApiElement1;
     }
     interface LsFieldPropertiesMultiple {
@@ -1083,8 +1135,12 @@ declare namespace LocalJSX {
         "ls-field-distribute": LsFieldDistribute;
         "ls-field-format": LsFieldFormat;
         "ls-field-properties": LsFieldProperties;
+        "ls-field-properties-autosign": LsFieldPropertiesAutosign;
         "ls-field-properties-date": LsFieldPropertiesDate;
+        "ls-field-properties-email": LsFieldPropertiesEmail;
+        "ls-field-properties-file": LsFieldPropertiesFile;
         "ls-field-properties-general": LsFieldPropertiesGeneral;
+        "ls-field-properties-image": LsFieldPropertiesImage;
         "ls-field-properties-multiple": LsFieldPropertiesMultiple;
         "ls-field-properties-number": LsFieldPropertiesNumber;
         "ls-field-properties-signature": LsFieldPropertiesSignature;
@@ -1123,8 +1179,12 @@ declare module "@stencil/core" {
             "ls-field-distribute": LocalJSX.LsFieldDistribute & JSXBase.HTMLAttributes<HTMLLsFieldDistributeElement>;
             "ls-field-format": LocalJSX.LsFieldFormat & JSXBase.HTMLAttributes<HTMLLsFieldFormatElement>;
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
+            "ls-field-properties-autosign": LocalJSX.LsFieldPropertiesAutosign & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAutosignElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
+            "ls-field-properties-email": LocalJSX.LsFieldPropertiesEmail & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesEmailElement>;
+            "ls-field-properties-file": LocalJSX.LsFieldPropertiesFile & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesFileElement>;
             "ls-field-properties-general": LocalJSX.LsFieldPropertiesGeneral & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesGeneralElement>;
+            "ls-field-properties-image": LocalJSX.LsFieldPropertiesImage & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesImageElement>;
             "ls-field-properties-multiple": LocalJSX.LsFieldPropertiesMultiple & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesMultipleElement>;
             "ls-field-properties-number": LocalJSX.LsFieldPropertiesNumber & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesNumberElement>;
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
