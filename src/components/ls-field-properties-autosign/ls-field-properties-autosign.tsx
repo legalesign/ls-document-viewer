@@ -12,7 +12,7 @@ export class LsFieldPropertiesAutosign {
    render() {
      return (
        <Host>
-         <div class={"ls-field-properties-section"}>General Field</div>
+         <div class={"ls-field-properties-section"}>Self Sign Field</div>
          <div>Label: <input value={this.dataItem?.label} width="30"/></div>
          <ls-field-dimensions dataItem={this.dataItem} />
          <slot></slot>
