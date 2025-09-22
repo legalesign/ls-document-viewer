@@ -270,6 +270,7 @@ export namespace Components {
         "template": LSApiTemplate;
     }
     interface LsParticipantSelect {
+        "dataItem": LSApiElement1[];
         /**
           * The current template roles. {LSApiRole}
           * @default []
@@ -431,6 +432,10 @@ export interface LsParticipantManagerCustomEvent<T> extends CustomEvent<T> {
 export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantSelectElement;
+}
+export interface LsToolbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsToolbarElement;
 }
 declare global {
     interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
@@ -687,7 +692,8 @@ declare global {
         new (): HTMLLsParticipantManagerElement;
     };
     interface HTMLLsParticipantSelectElementEventMap {
-        "changeRole": number;
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
     }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -733,7 +739,19 @@ declare global {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
     };
+    interface HTMLLsToolbarElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsToolbarElement extends Components.LsToolbar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsToolbarElementEventMap>(type: K, listener: (this: HTMLLsToolbarElement, ev: LsToolbarCustomEvent<HTMLLsToolbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsToolbarElementEventMap>(type: K, listener: (this: HTMLLsToolbarElement, ev: LsToolbarCustomEvent<HTMLLsToolbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsToolbarElement: {
         prototype: HTMLLsToolbarElement;
@@ -1036,7 +1054,9 @@ declare namespace LocalJSX {
         "template"?: LSApiTemplate;
     }
     interface LsParticipantSelect {
-        "onChangeRole"?: (event: LsParticipantSelectCustomEvent<number>) => void;
+        "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The current template roles. {LSApiRole}
           * @default []
@@ -1134,6 +1154,8 @@ declare namespace LocalJSX {
           * The base template information (as JSON). {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
+        "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
