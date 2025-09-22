@@ -3,6 +3,7 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'ls-document-viewer',
+  globalStyle: 'src/global/global.css',
   outputTargets: [
     reactOutputTarget({
       outDir: '../ls-document-viewer-react/lib/components/stencil-generated/',

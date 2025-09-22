@@ -194,3 +194,20 @@ h6 {
   display: none;
   width: 0px;
 }
+
+.toolbox-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  color: var(--gray-100, #45484d);
+  margin-bottom: 0.25rem;
+}
+
+.toolbox-section-description {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  color: var(--gray-70, #6b7178);
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
