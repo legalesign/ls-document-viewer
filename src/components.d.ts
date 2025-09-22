@@ -12,6 +12,7 @@ import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
+import { LSApiRole } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { RoleColor } from "./types/RoleColor";
 export { LSApiElement } from "./types/LSApiElement";
@@ -19,6 +20,7 @@ export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
+export { LSApiRole } from "./types/LSApiRole";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -268,6 +270,16 @@ export namespace Components {
         "template": LSApiTemplate;
     }
     interface LsParticipantSelect {
+        /**
+          * The current template roles. {LSApiRole}
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        /**
+          * The currently selected role. {number}
+          * @default 0
+         */
+        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**
@@ -415,6 +427,10 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
 export interface LsParticipantManagerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantManagerElement;
+}
+export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsParticipantSelectElement;
 }
 declare global {
     interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
@@ -670,7 +686,18 @@ declare global {
         prototype: HTMLLsParticipantManagerElement;
         new (): HTMLLsParticipantManagerElement;
     };
+    interface HTMLLsParticipantSelectElementEventMap {
+        "changeRole": number;
+    }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsParticipantSelectElement: {
         prototype: HTMLLsParticipantSelectElement;
@@ -1009,6 +1036,17 @@ declare namespace LocalJSX {
         "template"?: LSApiTemplate;
     }
     interface LsParticipantSelect {
+        "onChangeRole"?: (event: LsParticipantSelectCustomEvent<number>) => void;
+        /**
+          * The current template roles. {LSApiRole}
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        /**
+          * The currently selected role. {number}
+          * @default 0
+         */
+        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**

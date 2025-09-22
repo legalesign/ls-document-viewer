@@ -49,10 +49,8 @@ export class LsToolbar {
           </div>
           :
           <div class={"rowbox"}>
-            <select class='ls-participant-select'>
-              <option value="0">Sender</option>
-              {this.template.roles.map(r => <option value={r.id}>{r.name}</option>)}
-            </select>
+            <ls-participant-select roles={this.template.roles} />
+
             <ls-field-format dataItem={this?.dataItem} />
           </div>
         }

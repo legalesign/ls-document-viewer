@@ -39,6 +39,8 @@ export function moveField(item: HTMLLsEditorFieldElement, data){
   item.style.left = Math.floor(data.left * this.zoom) + 'px';
   item.style.height = Math.floor(data.height * this.zoom) + 'px';
   item.style.width = Math.floor(data.width * this.zoom) + 'px';
+  item.style.fontSize = Math.floor(data.fontSize) + 'pt';
+  item.style.fontFamily = data.fontName;
   item.dataItem = data;
 };
 
@@ -97,22 +99,35 @@ export const findDimensions = (
   frameContainer: HTMLDivElement,
   sourceField: HTMLLsEditorFieldElement,
   pageHeight: number,
-  pageWidth: number
+  pageWidth: number,
+  zoom: number
 ): { top: number; left: number; height: number; width: number; ax: number; ay: number; bx: number; by: number } => {
 
   // Position of widget frame
   const frmDims = frameContainer.getBoundingClientRect();
   // dimensions relative to viewport
   const { height, width } = sourceField.getBoundingClientRect();
-
-  const top = sourceField.getBoundingClientRect().top - frmDims.top;
-  const left = sourceField.getBoundingClientRect().left - frmDims.left;
+  const zwidth = width / zoom;
+  const zheight = height / zoom;
+  const top = Math.floor((sourceField.getBoundingClientRect().top - frmDims.top) / zoom);
+  const left = Math.floor((sourceField.getBoundingClientRect().left - frmDims.left) / zoom);
   
   // Returns X, Y coordinates
   const ax = left > 0 ? left / pageWidth : 0;
   const ay = top > 0 ? top / pageHeight : 0;
-  const bx = (left + width) / pageWidth;
-  const by = (top + height) / pageHeight;
+  const bx = (left + zwidth) / pageWidth;
+  const by = (top + zheight) / pageHeight;
+
+  console.log({
+    top,
+    left,
+    zheight,
+    zwidth,
+    ax,
+    ay,
+    bx,
+    by,
+  })
 
   // Return with calculated styles that try to place it as it would appear on legacy signing page
   return {
