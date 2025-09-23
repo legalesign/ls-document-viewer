@@ -12,6 +12,7 @@ import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
+import { LSApiRole } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { RoleColor } from "./types/RoleColor";
 export { LSApiElement } from "./types/LSApiElement";
@@ -19,6 +20,7 @@ export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
+export { LSApiRole } from "./types/LSApiRole";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -59,6 +61,10 @@ export namespace Components {
           * Page backward e
          */
         "pagePrev": () => Promise<void>;
+        /**
+          * The password of the account your want the widget to use. {string}
+         */
+        "password": string;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
@@ -112,6 +118,10 @@ export namespace Components {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * The username of the account your want the widget to use. {string}
+         */
+        "username": string;
         /**
           * @default 1.0
          */
@@ -268,6 +278,17 @@ export namespace Components {
         "template": LSApiTemplate;
     }
     interface LsParticipantSelect {
+        "dataItem": LSApiElement1[];
+        /**
+          * The current template roles. {LSApiRole}
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        /**
+          * The currently selected role. {number}
+          * @default 0
+         */
+        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**
@@ -415,6 +436,14 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
 export interface LsParticipantManagerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantManagerElement;
+}
+export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsParticipantSelectElement;
+}
+export interface LsToolbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsToolbarElement;
 }
 declare global {
     interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
@@ -670,7 +699,19 @@ declare global {
         prototype: HTMLLsParticipantManagerElement;
         new (): HTMLLsParticipantManagerElement;
     };
+    interface HTMLLsParticipantSelectElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsParticipantSelectElement: {
         prototype: HTMLLsParticipantSelectElement;
@@ -706,7 +747,19 @@ declare global {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
     };
+    interface HTMLLsToolbarElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsToolbarElement extends Components.LsToolbar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsToolbarElementEventMap>(type: K, listener: (this: HTMLLsToolbarElement, ev: LsToolbarCustomEvent<HTMLLsToolbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsToolbarElementEventMap>(type: K, listener: (this: HTMLLsToolbarElement, ev: LsToolbarCustomEvent<HTMLLsToolbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsToolbarElement: {
         prototype: HTMLLsToolbarElement;
@@ -792,6 +845,10 @@ declare namespace LocalJSX {
          */
         "pageNum"?: number;
         /**
+          * The password of the account your want the widget to use. {string}
+         */
+        "password"?: string;
+        /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
          */
@@ -840,6 +897,10 @@ declare namespace LocalJSX {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * The username of the account your want the widget to use. {string}
+         */
+        "username"?: string;
         /**
           * @default 1.0
          */
@@ -1009,6 +1070,19 @@ declare namespace LocalJSX {
         "template"?: LSApiTemplate;
     }
     interface LsParticipantSelect {
+        "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * The current template roles. {LSApiRole}
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        /**
+          * The currently selected role. {number}
+          * @default 0
+         */
+        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**
@@ -1096,6 +1170,8 @@ declare namespace LocalJSX {
           * The base template information (as JSON). {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
+        "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */

@@ -62,7 +62,7 @@ export class LsFieldFormat {
         {this.dataItem && this.dataItem.length === 1 &&
           <div class={"ls-field-format-bar"}>
             <select onChange={(input) => {
-              console.log((input.target as HTMLSelectElement).value)             
+              this.alter({fontName: (input.target as HTMLSelectElement).value})             
             }}>
               <option value="arial">Arial</option>
               <option value="liberation sans">Liberation Sans</option>
@@ -70,8 +70,12 @@ export class LsFieldFormat {
               <option value="helvetica">Helvetica</option>
               <option value="verdana">Verdana</option>
             </select>
-            <input width="30" size={4} value={this.dataItem[0].fontSize} />
-            <select>
+            <input width="30" size={4} value={this.dataItem[0].fontSize} onChange={(input) => {
+              this.alter({fontSize: (input.target as HTMLInputElement).value})             
+            }}/>
+            <select onChange={(input) => {
+              this.alter({align: (input.target as HTMLSelectElement).value})             
+            }}>
               <option value="left">Left</option>
               <option value="center">Center</option>
               <option value="right">Right</option>

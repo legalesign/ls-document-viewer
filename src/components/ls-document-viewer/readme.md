@@ -129,6 +129,7 @@ graph TD;
   ls-toolbar --> ls-field-alignment
   ls-toolbar --> ls-field-distribute
   ls-toolbar --> ls-field-size
+  ls-toolbar --> ls-participant-select
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
   ls-statusbar --> ls-icon

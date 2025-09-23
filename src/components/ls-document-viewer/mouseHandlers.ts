@@ -150,7 +150,7 @@ export function mouseClick(e) {
           // Calculate new positions and update the dataItem on the control
           const delta = {
             ...fx.dataItem,
-            ...findDimensions(divFrame, fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width),
+            ...findDimensions(divFrame, fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width, this.zoom),
           };
           // TODO:: out of bounds handler (UNDO)
           // update the data in the html element

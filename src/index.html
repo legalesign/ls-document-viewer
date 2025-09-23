@@ -175,6 +175,9 @@
         console.log(customEvent.detail, 'editor mutate');
       });
 
+      properties.addEventListener('mutate', customEvent => {
+        console.log(customEvent.detail, 'api call');
+      });
     </script>
   </body>
 </html>
