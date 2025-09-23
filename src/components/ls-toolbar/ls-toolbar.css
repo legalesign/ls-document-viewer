@@ -1,4 +1,5 @@
 :host {
+  position: relative;
   display: flex;
   width: 100%;
   align-items: center;
@@ -6,7 +7,8 @@
 }
 
 .rowbox {
-  display: flex;
+  position: absolute;
+  top: 1rem;
   display: flex;
   padding: 0.5rem;
   justify-content: center;
@@ -17,4 +19,5 @@
   border: 1px solid var(--gray-20, #edeff2);
   background: var(--white, #fff);
   margin-bottom: 1rem;
+  z-index: 20;
 }
