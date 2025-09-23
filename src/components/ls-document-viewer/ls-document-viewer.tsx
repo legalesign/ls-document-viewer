@@ -67,6 +67,18 @@ export class LsDocumentViewer {
    * {LSApiTemplate}
    */
   @Prop() template: string;
+
+  /**
+   * The username of the account your want the widget to use.
+   * {string}
+   */
+  @Prop() username: string;
+  /**
+   * The password of the account your want the widget to use.
+   * {string}
+   */
+  @Prop() password: string;
+
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
 

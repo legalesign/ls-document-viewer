@@ -62,6 +62,10 @@ export namespace Components {
          */
         "pagePrev": () => Promise<void>;
         /**
+          * The password of the account your want the widget to use. {string}
+         */
+        "password": string;
+        /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
          */
@@ -114,6 +118,10 @@ export namespace Components {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * The username of the account your want the widget to use. {string}
+         */
+        "username": string;
         /**
           * @default 1.0
          */
@@ -837,6 +845,10 @@ declare namespace LocalJSX {
          */
         "pageNum"?: number;
         /**
+          * The password of the account your want the widget to use. {string}
+         */
+        "password"?: string;
+        /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
          */
@@ -885,6 +897,10 @@ declare namespace LocalJSX {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * The username of the account your want the widget to use. {string}
+         */
+        "username"?: string;
         /**
           * @default 1.0
          */
