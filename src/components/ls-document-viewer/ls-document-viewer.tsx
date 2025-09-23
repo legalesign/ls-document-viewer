@@ -436,7 +436,11 @@ export class LsDocumentViewer {
     return (
       <Host>
         <>
-          <div class="page-header">Template Creation</div>
+          <div class="page-header">
+            <p class="header-text-1">Template Creation</p>
+            <p>/</p>
+            <p class="header-text-2">Template Name</p>
+          </div>
           <form id="ls-editor-form">
             {this.showtoolbox === true ? (
               <div class="leftBox">
@@ -473,12 +477,36 @@ export class LsDocumentViewer {
                       <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
                       <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} icon="calender" />
                       <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} icon="check" />
-                      <ls-toolbox-field elementType="auto sign" formElementType="auto sign" label="Auto Sign" defaultHeight={27} defaultWidth={120} validation={3000} icon='signature' />
-                      <ls-toolbox-field elementType="initials" formElementType="initials" label="Initials" defaultHeight={27} defaultWidth={120} validation={2000} icon='initials' />
-                      <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon='code' />
+                      <ls-toolbox-field
+                        elementType="auto sign"
+                        formElementType="auto sign"
+                        label="Auto Sign"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={3000}
+                        icon="signature"
+                      />
+                      <ls-toolbox-field
+                        elementType="initials"
+                        formElementType="initials"
+                        label="Initials"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={2000}
+                        icon="initials"
+                      />
+                      <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon="code" />
                       <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} icon="photograph" />
-                      <ls-toolbox-field elementType="signing date" formElementType="signing date" label="Signing Date" defaultHeight={27} defaultWidth={120} validation={30} icon='auto-date' />
-                      <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon='upload' />
+                      <ls-toolbox-field
+                        elementType="signing date"
+                        formElementType="signing date"
+                        label="Signing Date"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={30}
+                        icon="auto-date"
+                      />
+                      <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon="upload" />
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
