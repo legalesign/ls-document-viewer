@@ -196,18 +196,24 @@ h6 {
 }
 
 .toolbox-section-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.75rem;
   color: var(--gray-100, #45484d);
-  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.75rem; /* 155.556% */
 }
 
 .toolbox-section-description {
-  font-size: 0.875rem;
+  color: var(--gray-80, #5e6066);
+  font-size: 0.75rem;
+  font-style: normal;
   font-weight: 400;
-  line-height: 1.25rem;
-  color: var(--gray-70, #6b7178);
-  margin-top: 0px;
-  margin-bottom: 0px;
+  line-height: 1rem;
 }
+
+.fields-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+  

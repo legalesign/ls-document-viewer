@@ -1,19 +1,31 @@
 :host {
-  display: block;
-  border: 1px green solid;
-  position: relative;
-  min-width: 110px;
-  padding: 8px;
-  background-color: white;
-  border-radius: 0.75rem;
-  border: 1px solid var(--gray-20, #EDEFF2);
-  background: var(--white, #FFF);
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.10), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
-  color: rgb(76, 75, 75);
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  border-radius: 1rem;
+  border: 1px solid var(--gray-20, #edeff2);
+  background: var(--white, #fff);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-.ls-sixdots {
-  position:absolute;
-  right: 0px;
-  color: inherit;
+.toolbox-field-icon {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  border: 1px solid var(--blue-60, #5684f0);
+  background: var(--blue-10, #f0f6ff);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  color: var(--blue-60, #5684f0);
+}
+
+.toolbox-field-label {
+  color: var(--gray-100, #45484d);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  width: 100%;
+  margin: 0;
 }

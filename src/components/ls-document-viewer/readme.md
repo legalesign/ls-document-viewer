@@ -112,6 +112,7 @@ graph TD;
   ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
+  ls-toolbox-field --> ls-icon
   ls-participant-manager --> ls-icon
   ls-document-options --> ls-formfield
   ls-formfield --> ls-icon

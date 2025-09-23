@@ -375,6 +375,10 @@ export namespace Components {
          */
         "formElementType": string;
         /**
+          * The icon to display for this field type.
+         */
+        "icon": Icon;
+        /**
           * The text to display for this field type.
          */
         "label": string;
@@ -1115,6 +1119,10 @@ declare namespace LocalJSX {
           * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
          */
         "formElementType"?: string;
+        /**
+          * The icon to display for this field type.
+         */
+        "icon"?: Icon;
         /**
           * The text to display for this field type.
          */
