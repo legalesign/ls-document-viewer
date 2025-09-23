@@ -11,14 +11,7 @@ export class LsFormfield {
   @Prop() name: string;
   @Prop() fieldId: string;
   @Prop() label?: string;
-  @Prop() as?:
-    | 'text'
-    | 'select'
-    | 'radio'
-    | 'textarea'
-    | 'password'
-    | 'number'
-    | 'displayonly' = 'text';
+  @Prop() as?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly' = 'text';
   @Prop({ mutable: true }) value?: string | number;
   @Prop() placeholder?: string;
   @Prop() descriptionText?: string;
@@ -79,27 +72,24 @@ export class LsFormfield {
       labelIcon,
     } = this;
 
-    const countClass = 
-      value && value.toString().length > countMax
-        ? 'formfield-count-error'
-        : 'formfield-count';
+    const countClass = value && value.toString().length > countMax ? 'formfield-count-error' : 'formfield-count';
 
     return (
-      <host class='formfield-host'>
-        <div class='formfield-top-elements'>
-          <div class='formfield-left-side'>
-            {labelIcon && <ls-icon name={labelIcon}></ls-icon>}
-            <label htmlFor={name} class='formfield-label'>
-              {label}
-            </label>
-            {infoTooltipText && (
-              <ls-icon name={'information-circle'}></ls-icon>
-            )}
-          </div>
+      <host class="formfield-host">
+        <div class="formfield-top-elements">
+          {label && (
+            <div class="formfield-left-side">
+              {labelIcon && <ls-icon name={labelIcon}></ls-icon>}
+              <label htmlFor={name} class="formfield-label">
+                {label}
+              </label>
+              {infoTooltipText && <ls-icon name={'information-circle'}></ls-icon>}
+            </div>
+          )}
           {extraLabel === 'optional' ? (
-            <ls-label text='Optional' colour='gray' type='low'></ls-label>
+            <ls-label text="Optional" colour="gray" type="low"></ls-label>
           ) : extraLabel === 'required' ? (
-            <ls-label text='Required' colour='gray' type='low'></ls-label>
+            <ls-label text="Required" colour="gray" type="low"></ls-label>
           ) : (
             ''
           )}
@@ -137,13 +127,7 @@ export class LsFormfield {
             <slot></slot>
           </ls-select-input>
         ) : as === 'radio' ? (
-          <ls-radio-input
-            radioId={label}
-            label={value?.toString()}
-            icon={fieldIcon}
-            name={name}
-            disabled={disabled}
-          />
+          <ls-radio-input radioId={label} label={value?.toString()} icon={fieldIcon} name={name} disabled={disabled} />
         ) : as === 'textarea' ? (
           <ls-textarea-input
             id={name}
@@ -162,7 +146,7 @@ export class LsFormfield {
           />
         ) : as === 'password' ? (
           <ls-text-input
-            type='password'
+            type="password"
             id={name}
             name={name}
             value={value?.toString()}
@@ -179,7 +163,7 @@ export class LsFormfield {
           />
         ) : as === 'displayonly' ? (
           <ls-text-input
-            type='displayonly'
+            type="displayonly"
             id={name}
             name={name}
             value={value?.toString()}
@@ -196,7 +180,7 @@ export class LsFormfield {
           />
         ) : as === 'number' ? (
           <ls-number-input
-            type='ls'
+            type="ls"
             id={name}
             name={name}
             value={Number(value)}
@@ -214,26 +198,25 @@ export class LsFormfield {
         ) : (
           <p>placeholder</p>
         )}
-        <div class='formfield-bottom-elements'>
-          {errorText && !valid ? (
-            <p class='formfield-error-text'>{errorText}</p>
-          ) : descriptionText ? (
-            <p class='formfield-description-text'>{descriptionText}</p>
-          ) : (
-            ''
-          )}
-          {count && (
-            <div class='formfield-count-container'>
-              <p class={countClass}>{value?.toString()?.length}</p>
-              {countMax > 0 && (
-                <div class={countClass}>
-                  <p>/</p>
-                  <p>{countMax}</p>
+        {errorText ||
+          count ||
+          countMax ||
+          (descriptionText && (
+            <div class="formfield-bottom-elements">
+              {errorText && !valid ? <p class="formfield-error-text">{errorText}</p> : descriptionText ? <p class="formfield-description-text">{descriptionText}</p> : ''}
+              {count && (
+                <div class="formfield-count-container">
+                  <p class={countClass}>{value?.toString()?.length}</p>
+                  {countMax > 0 && (
+                    <div class={countClass}>
+                      <p>/</p>
+                      <p>{countMax}</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
-          )}
-        </div>
+          ))}
       </host>
     );
   }

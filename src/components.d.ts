@@ -201,13 +201,7 @@ export namespace Components {
         /**
           * @default 'text'
          */
-        "as"?: | 'text'
-    | 'select'
-    | 'radio'
-    | 'textarea'
-    | 'password'
-    | 'number'
-    | 'displayonly';
+        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
         "buttonClick"?: () => void;
         "buttonIcon"?: Icon;
         "count": boolean;
@@ -995,13 +989,7 @@ declare namespace LocalJSX {
         /**
           * @default 'text'
          */
-        "as"?: | 'text'
-    | 'select'
-    | 'radio'
-    | 'textarea'
-    | 'password'
-    | 'number'
-    | 'displayonly';
+        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
         "buttonClick"?: () => void;
         "buttonIcon"?: Icon;
         "count"?: boolean;

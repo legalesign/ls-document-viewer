@@ -530,10 +530,12 @@ export class LsDocumentViewer {
             )}
             <div id="ls-mid-area">
               <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
-              <div id="ls-document-frame">
-                <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
-                <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
-                <div id="ls-box-selector"></div>
+              <div class={'document-frame-wrapper'}>
+                <div id="ls-document-frame">
+                  <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
+                  <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
+                  <div id="ls-box-selector"></div>
+                </div>
               </div>
               <ls-statusbar editor={this} />
             </div>

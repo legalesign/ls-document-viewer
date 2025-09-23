@@ -2,6 +2,43 @@
   display: block;
 }
 
-h1 {
-  font-size: 19px;
-} 
+.ls-editor-infobox {
+  padding: 2px 8px 2px 8px;
+}
+
+.toolbox-section-title {
+  color: var(--gray-100, #45484d);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.75rem; /* 155.556% */
+}
+
+.toolbox-section-description {
+  color: var(--gray-80, #5e6066);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.template-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.template-detail-section {
+  display: flex;
+  padding: 0.75rem;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid var(--gray-30, #e0e2e5);
+  background: var(--white, #fff);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
