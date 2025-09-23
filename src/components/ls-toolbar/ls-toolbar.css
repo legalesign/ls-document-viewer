@@ -1,13 +1,20 @@
 :host {
   display: flex;
-  flex-direction: row;
-  height: 32px;
   width: 100%;
-  background-color: rgb(205, 205, 205);
+  align-items: center;
+  justify-content: center;
 }
 
 .rowbox {
   display: flex;
-  flex-direction: row;
-    vertical-align: middle;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  border-radius: 1rem;
+  border: 1px solid var(--gray-20, #edeff2);
+  background: var(--white, #fff);
+  margin-bottom: 1rem;
 }
