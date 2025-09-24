@@ -76,8 +76,8 @@ export class LsParticipantManager {
             <div
               class="card"
               style={{
-                backgroundColor: this.editor.roleColors[index].faded,
-                border: '1px solid ' + this.editor.roleColors[index].primary,
+                backgroundColor: `var(--${this.editor.roleColors[index]}-10)`,
+                border: '1px solid ' + `var(--${this.editor.roleColors[index]}-40)`,
               }}
             >
               <button

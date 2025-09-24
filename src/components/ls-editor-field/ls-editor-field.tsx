@@ -1,5 +1,5 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stencil/core';
-import { LSApiElement, RoleColor } from '../../components';
+import { LSApiElement } from '../../components';
 import { getInputType } from '../ls-document-viewer/editorUtils';
 
 @Component({
@@ -12,7 +12,7 @@ export class LsEditorField {
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean;
   @Prop() readonly: boolean;
-  @Prop() palette: RoleColor[];
+  @Prop() palette: string[];
 
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number, width: number };

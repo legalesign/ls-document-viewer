@@ -10,7 +10,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType } from './editorUtils';
-import { RoleColor } from '../../types/RoleColor';
+// import { RoleColor } from '../../types/RoleColor';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -175,7 +175,7 @@ export class LsDocumentViewer {
    * Allows you to change the colours used for each role in the template.
    * {SignerColor[]}
    */
-  @Prop() roleColors?: RoleColor[] = defaultRolePalette;
+  @Prop() roleColors?: string[] = defaultRolePalette;
 
   parseTemplate(newValue: string) {
     const newTemplate = newValue as any as LSApiTemplate;

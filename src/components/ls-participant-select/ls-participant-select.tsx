@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-participant-select',
@@ -103,7 +104,17 @@ export class LsParticipantSelect {
               />
             </svg>
             <p class={'placing-fields-text'}>Placing Fields for</p>
-            <div class={'selected-role-label'}>
+            <div
+              class={'selected-role-label'}
+              style={{
+                background: `var(--${
+                  this.selectedRole?.signerIndex > 100 ? defaultRolePalette[this.selectedRole?.signerIndex - 100] : defaultRolePalette[this.selectedRole?.signerIndex || 0]
+                }-20)`,
+                color: `var(--${
+                  this.selectedRole?.signerIndex > 100 ? defaultRolePalette[this.selectedRole?.signerIndex - 100] : defaultRolePalette[this.selectedRole?.signerIndex || 0]
+                }-90)`,
+              }}
+            >
               <ls-icon name={this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
               {this.selectedRole.name}
             </div>
@@ -121,7 +132,13 @@ export class LsParticipantSelect {
                   (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
                 }
               >
-                <div class={'role-icon'}>
+                <div
+                  class={'role-icon'}
+                  style={{
+                    background: `var(--${defaultRolePalette[0]}-40)`,
+                    color: `var(--${defaultRolePalette[0]}-80)`,
+                  }}
+                >
                   <ls-icon name="user" />
                 </div>
                 <div class={'role-text'}>
@@ -142,12 +159,18 @@ export class LsParticipantSelect {
                       ?.setAttribute('name', r.signerIndex !== this.selectedRole?.signerIndex ? 'base-circle' : 'check-circle')
                   }
                 >
-                  <div class={'role-icon'}>
+                  <div
+                    class={'role-icon'}
+                    style={{
+                      background: r.signerIndex > 100 ? `var(--${defaultRolePalette[r.signerIndex - 100]}-30)` : `var(--${defaultRolePalette[r.signerIndex]}-40)`,
+                      color: `var(--${defaultRolePalette[r.signerIndex]}-90)`,
+                    }}
+                  >
                     <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
                   </div>
                   <div class={'role-text'}>
                     <p class={'role-name'}>{r.name}</p>
-                    <p class={'role-type'}>Signer</p>
+                    <p class={'role-type'}>Signer {r.signerIndex}</p>
                   </div>
                   <ls-icon
                     class={'check-icon'}
