@@ -254,6 +254,31 @@ h6 {
   line-height: 1.25rem;
 }
 
+.properties-header {
+  display: flex;
+  padding: 1rem;
+  gap: 0.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-20, #edeff2);
+}
+
+.properties-header-title {
+  color: var(--gray-100, #45484d);
+  width: 100%;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2rem; /* 133.333% */
+}
+
+.properties-header-icon {
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  background: var(--primary-10, #eff4ff);
+  color: var(--primary-60, #4456F6);
+}
+
 /* @media (min-width: 1200px) {
   #ls-mid-area {
     max-width: 40vw;

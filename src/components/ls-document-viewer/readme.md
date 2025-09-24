@@ -95,10 +95,11 @@ Type: `Promise<void>`
 - [ls-toolbox-field](../ls-toolbox-field)
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
+- [ls-icon](../ls-icon)
+- [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
-- [ls-field-properties](../ls-field-properties)
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
@@ -108,10 +109,11 @@ graph TD;
   ls-document-viewer --> ls-toolbox-field
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
+  ls-document-viewer --> ls-icon
+  ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
-  ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
   ls-toolbox-field --> ls-icon
@@ -129,14 +131,6 @@ graph TD;
   ls-radio-input --> ls-icon
   ls-textarea-input --> ls-icon
   ls-number-input --> ls-icon
-  ls-toolbar --> ls-field-format
-  ls-toolbar --> ls-field-alignment
-  ls-toolbar --> ls-field-distribute
-  ls-toolbar --> ls-field-size
-  ls-toolbar --> ls-participant-select
-  ls-field-alignment --> ls-icon
-  ls-field-distribute --> ls-icon
-  ls-statusbar --> ls-icon
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text
@@ -157,6 +151,14 @@ graph TD;
   ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
+  ls-toolbar --> ls-field-format
+  ls-toolbar --> ls-field-alignment
+  ls-toolbar --> ls-field-distribute
+  ls-toolbar --> ls-field-size
+  ls-toolbar --> ls-participant-select
+  ls-field-alignment --> ls-icon
+  ls-field-distribute --> ls-icon
+  ls-statusbar --> ls-icon
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

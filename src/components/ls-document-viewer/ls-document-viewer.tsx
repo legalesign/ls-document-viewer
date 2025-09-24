@@ -456,7 +456,7 @@ export class LsDocumentViewer {
           <form id="ls-editor-form">
             {this.showtoolbox === true ? (
               <div class="leftBox">
-                <div class="left-box-inner">
+                <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
                   <ls-feature-column
                     onManage={manager => {
                       if (manager.detail === 'document') {
@@ -524,6 +524,21 @@ export class LsDocumentViewer {
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                 </div>
+                {this.showrightpanel && !this.displayTable && (
+                  <div class={this.selected && this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
+                    <div class={'properties-header'}>
+                      <div class={'properties-header-icon'}>
+                        <ls-icon name="pre-filled-content" />
+                      </div>
+                      <h1 class={'properties-header-title'}>Properties</h1>
+                      <button class={'tertiaryGrey'} onClick={() => (this.selected = [])}>
+                        <ls-icon name="x" size='20' />
+                      </button>
+                    </div>
+                    <ls-field-properties id="my-field-panel"></ls-field-properties>
+                    <slot></slot>
+                  </div>
+                )}
               </div>
             ) : (
               <></>
@@ -531,7 +546,7 @@ export class LsDocumentViewer {
             <div id="ls-mid-area">
               <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
               <div class={'document-frame-wrapper'}>
-                <div class={"spacer"}></div>
+                <div class={'spacer'}></div>
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
@@ -540,12 +555,6 @@ export class LsDocumentViewer {
               </div>
               <ls-statusbar editor={this} />
             </div>
-            {this.showrightpanel && !this.displayTable && (
-              <div class={this.selected && this.selected.length > 0 ? 'rightBox' : 'hidden'}>
-                <ls-field-properties id="my-field-panel"></ls-field-properties>
-                <slot></slot>
-              </div>
-            )}
           </form>
         </>
       </Host>

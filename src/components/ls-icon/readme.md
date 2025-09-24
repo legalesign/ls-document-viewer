@@ -19,6 +19,7 @@
 
 ### Used by
 
+ - [ls-document-viewer](../ls-document-viewer)
  - [ls-feature-column](../ls-feature-column)
  - [ls-field-alignment](../ls-field-alignment)
  - [ls-field-distribute](../ls-field-distribute)
@@ -35,6 +36,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ls-document-viewer --> ls-icon
   ls-feature-column --> ls-icon
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon

@@ -461,4 +461,17 @@ button {
   background-color: var(--primary-60, #4456f6);
   color: white;
   text-transform: capitalize;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+}
+
+button.tertiaryGrey{
+  border: 1px solid var(--gray-40, #d8d9dc);
+  background-color: white;
+  color: var(--gray-80, #787a80);
+}
+
+button.tertiaryGrey:hover {
+  border: 1px solid var(--gray-50, #c8c9cc);
+  background: var(--gray-10, #f7f8fa);
 }
