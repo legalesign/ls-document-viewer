@@ -76,8 +76,8 @@ export class LsFormfield {
 
     return (
       <host class="formfield-host">
-        <div class="formfield-top-elements">
-          {label && (
+        {label?.length > 1 || extraLabel !== 'none' && (
+          <div class="formfield-top-elements">
             <div class="formfield-left-side">
               {labelIcon && <ls-icon name={labelIcon}></ls-icon>}
               <label htmlFor={name} class="formfield-label">
@@ -85,15 +85,16 @@ export class LsFormfield {
               </label>
               {infoTooltipText && <ls-icon name={'information-circle'}></ls-icon>}
             </div>
-          )}
-          {extraLabel === 'optional' ? (
-            <ls-label text="Optional" colour="gray" type="low"></ls-label>
-          ) : extraLabel === 'required' ? (
-            <ls-label text="Required" colour="gray" type="low"></ls-label>
-          ) : (
-            ''
-          )}
-        </div>
+
+            {extraLabel === 'optional' ? (
+              <ls-label text="Optional" colour="gray" type="low"></ls-label>
+            ) : extraLabel === 'required' ? (
+              <ls-label text="Required" colour="gray" type="low"></ls-label>
+            ) : (
+              ''
+            )}
+          </div>
+        )}
         {as === 'text' ? (
           <ls-text-input
             id={fieldId}

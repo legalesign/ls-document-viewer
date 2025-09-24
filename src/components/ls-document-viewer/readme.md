@@ -117,6 +117,7 @@ graph TD;
   ls-toolbox-field --> ls-icon
   ls-participant-manager --> ls-icon
   ls-document-options --> ls-formfield
+  ls-document-options --> ls-toggle
   ls-formfield --> ls-icon
   ls-formfield --> ls-text-input
   ls-formfield --> ls-select-input

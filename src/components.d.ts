@@ -361,6 +361,8 @@ export namespace Components {
         "valid": boolean;
         "value"?: string;
     }
+    interface LsToggle {
+    }
     interface LsToolbar {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
@@ -745,6 +747,12 @@ declare global {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
     };
+    interface HTMLLsToggleElement extends Components.LsToggle, HTMLStencilElement {
+    }
+    var HTMLLsToggleElement: {
+        prototype: HTMLLsToggleElement;
+        new (): HTMLLsToggleElement;
+    };
     interface HTMLLsToolbarElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
@@ -801,6 +809,7 @@ declare global {
         "ls-statusbar": HTMLLsStatusbarElement;
         "ls-text-input": HTMLLsTextInputElement;
         "ls-textarea-input": HTMLLsTextareaInputElement;
+        "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
@@ -1153,6 +1162,8 @@ declare namespace LocalJSX {
         "valid"?: boolean;
         "value"?: string;
     }
+    interface LsToggle {
+    }
     interface LsToolbar {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
@@ -1228,6 +1239,7 @@ declare namespace LocalJSX {
         "ls-statusbar": LsStatusbar;
         "ls-text-input": LsTextInput;
         "ls-textarea-input": LsTextareaInput;
+        "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
     }
@@ -1272,6 +1284,7 @@ declare module "@stencil/core" {
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
             "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
             "ls-textarea-input": LocalJSX.LsTextareaInput & JSXBase.HTMLAttributes<HTMLLsTextareaInputElement>;
+            "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }
