@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LSApiElement, LSMutateEvent } from '../../components';
 
@@ -9,59 +9,121 @@ import { LSApiElement, LSMutateEvent } from '../../components';
 })
 export class LsParticipantSelect {
   @Prop({
-    mutable: true
-  }) dataItem: LSApiElement[];
+    mutable: true,
+  })
+  dataItem: LSApiElement[];
 
   /**
-* The currently selected role.
-* {number}
-*/
-  @Prop() selectedRole?: number = 0;
+   * The currently selected role.
+   * {number}
+   */
+  @State() selectedRole: { signerIndex: number; name: string } = { signerIndex: 0, name: 'Sender' };
 
   /**
-* The current template roles.
-* {LSApiRole}
-*/
+   * The current template roles.
+   * {LSApiRole}
+   */
   @Prop() roles?: LSApiRole[] = [];
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true
-  }) mutate: EventEmitter<LSMutateEvent[]>;
+  @State() isOpen: boolean = false;
 
   @Event({
     bubbles: true,
     cancelable: true,
-    composed: true
-  }) update: EventEmitter<LSMutateEvent[]>;
+    composed: true,
+  })
+  mutate: EventEmitter<LSMutateEvent[]>;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  update: EventEmitter<LSMutateEvent[]>;
   // @Element() component: HTMLElement;
-
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-    console.log(diff)
+    console.log(diff);
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      return { action: "update", data: { ...c, ...diff } as LSApiElement }
-    })
+      return { action: 'update', data: { ...c, ...diff } as LSApiElement };
+    });
 
-    this.dataItem = diffs.map(d => d.data as LSApiElement)
-    this.mutate.emit(diffs)
-    this.update.emit(diffs)
+    this.dataItem = diffs.map(d => d.data as LSApiElement);
+    this.mutate.emit(diffs);
+    this.update.emit(diffs);
+  }
+
+  toggleDropdown = () => {
+    this.isOpen = !this.isOpen;
+  };
+
+  @Event() roleChanged: EventEmitter<number>;
+
+  selectRole(role: { signerIndex: number; name: string }) {
+    this.selectedRole = role;
+    this.isOpen = false;
+    this.roleChanged.emit(role.signerIndex);
+
+    console.log('Selected role:', this.selectedRole);
   }
 
   render() {
     return (
       <Host>
-        <select onChange={(input) => {
+        {/* <select onChange={(input) => {
           this.alter({ signer: parseInt((input.target as HTMLSelectElement).value) })
         }}>
           <option value="0">Sender</option>
           {this.roles.map(r => <option value={r.signerIndex}>{r.name}</option>)}
 
-        </select>
+        </select> */}
+        <div class="dropdown">
+          <div class="dropdown-header" onClick={this.toggleDropdown}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0.5H6.5C8.433 0.5 10 2.067 10 4V6.5C10 8.433 8.433 10 6.5 10H4C2.067 10 0.5 8.433 0.5 6.5V4C0.5 2.067 2.067 0.5 4 0.5Z" fill="#78A3FA" stroke="#F7F8FA" />
+              <path
+                d="M13.5 0.5H16C17.933 0.5 19.5 2.067 19.5 4V6.5C19.5 8.433 17.933 10 16 10H13.5C11.567 10 10 8.433 10 6.5V4C10 2.067 11.567 0.5 13.5 0.5Z"
+                fill="#46DBAA"
+                stroke="#F7F8FA"
+              />
+              <path
+                d="M4 10H6.5C8.433 10 10 11.567 10 13.5V16C10 17.933 8.433 19.5 6.5 19.5H4C2.067 19.5 0.5 17.933 0.5 16V13.5C0.5 11.567 2.067 10 4 10Z"
+                fill="#FAD232"
+                stroke="#F7F8FA"
+              />
+              <path
+                d="M14.75 12.125V14.75M14.75 14.75V17.375M14.75 14.75H17.375M14.75 14.75L12.125 14.75"
+                stroke="#939599"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class={'placing-fields-text'}>Placing Fields for</p>
+            <div class={'selected-role-label'}>
+              <ls-icon name="signature" />
+              {this.selectedRole.name}{' '}
+            </div>
+            <button class={'tertiaryGrey small'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
+              <ls-icon name={this.isOpen ? 'chevron-up' : 'chevron-down'}></ls-icon>
+            </button>
+          </div>
+          {this.isOpen && (
+            <div class="dropdown-list">
+              <div class="dropdown-item" onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender' })}>
+                Sender
+              </div>
+              {this.roles.map(role => (
+                <div class="dropdown-item" onClick={() => this.selectRole(role)}>
+                  {role.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <slot></slot>
       </Host>
     );

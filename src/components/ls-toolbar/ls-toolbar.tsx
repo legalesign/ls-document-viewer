@@ -61,12 +61,12 @@ export class LsToolbar {
       <Host>
         {this.dataItem && this.dataItem.length > 1 ? (
           <div class={'rowbox'}>
-            <select class="ls-participant-select">
+            {/* <select class="ls-participant-select">
               <option value="0">Sender</option>
               {this.template.roles.map(r => (
                 <option value={r.id}>{r.name}</option>
               ))}
-            </select>
+            </select> */}
             <ls-field-format dataItem={this?.dataItem} />
             <ls-field-alignment dataItem={this.dataItem} />
             <ls-field-distribute dataItem={this.dataItem} />

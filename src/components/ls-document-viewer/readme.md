@@ -159,6 +159,7 @@ graph TD;
   ls-toolbar --> ls-participant-select
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
+  ls-participant-select --> ls-icon
   ls-statusbar --> ls-icon
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
