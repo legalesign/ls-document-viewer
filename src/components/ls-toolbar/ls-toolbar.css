@@ -19,5 +19,5 @@
   border: 1px solid var(--gray-20, #edeff2);
   background: var(--white, #fff);
   margin-bottom: 1rem;
-  z-index: 20;
+  z-index: 200;
 }

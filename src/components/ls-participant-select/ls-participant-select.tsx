@@ -104,21 +104,56 @@ export class LsParticipantSelect {
             </svg>
             <p class={'placing-fields-text'}>Placing Fields for</p>
             <div class={'selected-role-label'}>
-              <ls-icon name="signature" />
-              {this.selectedRole.name}{' '}
+              <ls-icon name={this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
+              {this.selectedRole.name}
             </div>
-            <button class={'tertiaryGrey small'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
+            <button class={'tertiaryGrey'} aria-haspopup="listbox" aria-expanded={this.isOpen} style={{ margin: '-0.125rem' }}>
               <ls-icon name={this.isOpen ? 'chevron-up' : 'chevron-down'}></ls-icon>
             </button>
           </div>
           {this.isOpen && (
             <div class="dropdown-list">
-              <div class="dropdown-item" onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender' })}>
-                Sender
+              <div
+                class={this.selectedRole?.signerIndex === 0 ? 'dropdown-item selected' : 'dropdown-item'}
+                onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender' })}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
+                onMouseLeave={e =>
+                  (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
+                }
+              >
+                <div class={'role-icon'}>
+                  <ls-icon name="user" />
+                </div>
+                <div class={'role-text'}>
+                  <p class={'role-name'}>{'Sender'}</p>
+                  <p class={'role-type'}>You</p>
+                </div>
+
+                <ls-icon class={'check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle' : 'base-circle'} solid={this.selectedRole?.signerIndex === 0} />
               </div>
-              {this.roles.map(role => (
-                <div class="dropdown-item" onClick={() => this.selectRole(role)}>
-                  {role.name}
+              {this.roles.map(r => (
+                <div
+                  class={r.signerIndex === this.selectedRole?.signerIndex ? 'dropdown-item selected' : 'dropdown-item'}
+                  onClick={() => this.selectRole(r)}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
+                  onMouseLeave={e =>
+                    (e.currentTarget as HTMLElement)
+                      .querySelector('.check-icon')
+                      ?.setAttribute('name', r.signerIndex !== this.selectedRole?.signerIndex ? 'base-circle' : 'check-circle')
+                  }
+                >
+                  <div class={'role-icon'}>
+                    <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
+                  </div>
+                  <div class={'role-text'}>
+                    <p class={'role-name'}>{r.name}</p>
+                    <p class={'role-type'}>Signer</p>
+                  </div>
+                  <ls-icon
+                    class={'check-icon'}
+                    name={r.signerIndex === this.selectedRole?.signerIndex ? 'check-circle' : 'base-circle'}
+                    solid={r.signerIndex === this.selectedRole?.signerIndex}
+                  />
                 </div>
               ))}
             </div>
