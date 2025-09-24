@@ -23,6 +23,7 @@
  - [ls-feature-column](../ls-feature-column)
  - [ls-field-alignment](../ls-field-alignment)
  - [ls-field-distribute](../ls-field-distribute)
+ - [ls-field-properties-signature](../ls-field-properties-signature)
  - [ls-formfield](../ls-formfield)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
  - [ls-participant-manager](../ls-participant-manager)
@@ -40,6 +41,7 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
+  ls-field-properties-signature --> ls-icon
   ls-formfield --> ls-icon
   ls-number-input --> ls-icon
   ls-participant-manager --> ls-icon

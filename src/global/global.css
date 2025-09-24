@@ -301,7 +301,7 @@ textarea {
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
-  border-radius: var(--radius-xs);
+  border-radius: 0.5rem;
   color: var(--gray-100, #45484d);
   font-weight: 400;
 }
