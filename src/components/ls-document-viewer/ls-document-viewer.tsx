@@ -530,7 +530,7 @@ export class LsDocumentViewer {
                       <div class={'properties-header-icon'}>
                         <ls-icon name="pre-filled-content" />
                       </div>
-                      <h1 class={'properties-header-title'}>Properties</h1>
+                      <h1 class={'properties-header-title'}>Field Properties</h1>
                       <button class={'tertiaryGrey'} onClick={() => (this.selected = [])}>
                         <ls-icon name="x" size='20' />
                       </button>
