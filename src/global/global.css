@@ -70,7 +70,7 @@
   --pink-90: #ad2376;
   --pink-100: #7a1451;
 
-  --red-10: #564f4f;
+  --red-10: #fff0f0;
   --red-20: #ffe1e0;
   --red-30: #ffc9c7;
   --red-40: #ffa19e;
@@ -465,7 +465,7 @@ button {
   min-width: 2.25rem;
 }
 
-button.tertiaryGrey{
+button.tertiaryGrey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);

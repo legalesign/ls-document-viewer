@@ -3,6 +3,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-participant-manager',
@@ -64,6 +65,10 @@ export class LsParticipantManager {
     ]);
   }
 
+  participantColor = (index: number) => {
+    return index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+  };
+
   render() {
     return (
       <Host>
@@ -74,20 +79,26 @@ export class LsParticipantManager {
         {this.template?.roles.map((r, index) => {
           return (
             <div
-              class="card"
+              class="participant-card"
+              onClick={() => {
+                this.selectedHandler(r);
+              }}
               style={{
-                backgroundColor: `var(--${this.editor.roleColors[index]}-10)`,
-                border: '1px solid ' + `var(--${this.editor.roleColors[index]}-40)`,
+                background: `var(--${this.participantColor(r?.signerIndex)}-10)`,
+                border: '1px solid ' + `var(--${this.participantColor(r?.signerIndex)}-60)`,
               }}
             >
-              <button
-                class="titleButton"
-                onClick={() => {
-                  this.selectedHandler(r);
+              <div
+                class={'role-label'}
+                style={{
+                  background: `var(--${this.participantColor(r?.signerIndex)}-20)`,
+                  color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
                 }}
               >
-                {r?.name || 'Signer ' + index}
-              </button>
+                <ls-icon name={r?.signerIndex > 100 ? 'eye' : 'signature'} />
+                {'Participant ' + (index + 1)}
+              </div>
+              <div class="titleButton">{r.name || `${r.signerIndex > 100 ? 'Witness' : 'Signer'} ${index + 1}`}</div>
               <button
                 class="innerButton"
                 onClick={() => {
