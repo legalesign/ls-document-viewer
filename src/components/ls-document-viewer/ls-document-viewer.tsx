@@ -354,7 +354,8 @@ export class LsDocumentViewer {
       left: Math.floor(newElement.ax * this.pageDimensions[newElement.page - 1].width),
       height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[newElement.page - 1].height),
       width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[newElement.page - 1].width),
-      pageDimensions: this.pageDimensions[newElement.page - 1]
+      pageDimensions: this.pageDimensions[newElement.page - 1],
+      templateId: this._template.id
     }
   }
 
