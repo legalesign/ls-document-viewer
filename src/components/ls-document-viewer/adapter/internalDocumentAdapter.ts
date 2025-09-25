@@ -5,6 +5,7 @@ import { LSApiElement } from '../../../types/LSApiElement';
 import { Parameters } from './parameters';
 import { createElement, deleteElement, updateElement } from './elementActions';
 import { createRole, deleteRole, updateRole } from './roleActions';
+import { updateTemplate } from './templateActions';
 
 export class LsDocumentAdapter {
   handleEvent = (event: LSMutateEvent, accessToken: string) => {
@@ -43,7 +44,7 @@ export class LsDocumentAdapter {
       case 'tpl':
         switch (event.action) {
           case 'update':
-          // return updateTemplate()
+           return this.execute(accessToken, updateTemplate(obj));
         }
         return 'unknown';
       default:
