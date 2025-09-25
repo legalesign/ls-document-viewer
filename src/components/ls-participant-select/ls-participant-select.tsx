@@ -71,6 +71,10 @@ export class LsParticipantSelect {
     console.log('Selected role:', this.selectedRole);
   }
 
+  participantColor = (index: number) => {
+    return index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+  };
+
   render() {
     return (
       <Host>
@@ -107,12 +111,8 @@ export class LsParticipantSelect {
             <div
               class={'selected-role-label'}
               style={{
-                background: `var(--${
-                  this.selectedRole?.signerIndex > 100 ? defaultRolePalette[this.selectedRole?.signerIndex - 100] : defaultRolePalette[this.selectedRole?.signerIndex || 0]
-                }-20)`,
-                color: `var(--${
-                  this.selectedRole?.signerIndex > 100 ? defaultRolePalette[this.selectedRole?.signerIndex - 100] : defaultRolePalette[this.selectedRole?.signerIndex || 0]
-                }-90)`,
+                background: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-20)`,
+                color: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-90)`,
               }}
             >
               <ls-icon name={this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
@@ -162,8 +162,8 @@ export class LsParticipantSelect {
                   <div
                     class={'role-icon'}
                     style={{
-                      background: r.signerIndex > 100 ? `var(--${defaultRolePalette[r.signerIndex - 100]}-30)` : `var(--${defaultRolePalette[r.signerIndex]}-40)`,
-                      color: `var(--${defaultRolePalette[r.signerIndex]}-90)`,
+                      background: r.signerIndex > 100 ? `var(--${this.participantColor(r?.signerIndex)}-30)` : `var(--${this.participantColor(r?.signerIndex)}-40)`,
+                      color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
                     }}
                   >
                     <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />

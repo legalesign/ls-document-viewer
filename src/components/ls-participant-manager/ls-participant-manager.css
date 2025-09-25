@@ -15,6 +15,18 @@
   margin: 0;
 }
 
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.participant-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 .participant-card {
   display: flex;
   padding: 0.625rem;
@@ -41,8 +53,30 @@
 .innerButton {
   margin: 0px;
   padding: 0px;
+  max-height: 1.25rem !important;
+  max-width: 1.25rem !important;
   background-color: transparent;
   border: none;
+}
+
+.participant-card-top-items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participant-text-description {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.participant-text-type {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
 }
 
 .titleButton {
@@ -70,4 +104,29 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1rem;
+}
+
+.add-participant-button {
+  position: sticky;
+  display: flex;
+  padding: 0.75rem 0;
+  margin-bottom: -0.75rem;
+  margin-top: -0.75rem;
+  bottom: -0.75rem;
+  background-image: linear-gradient(to top, var(--gray-10, #f7f8fa) 0%, var(--gray-10, #f7f8fa) 80%, transparent 100%);
+}
+
+.add-participant-button button {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 2px dashed var(--gray-20, #edeff2);
+  background: var(--white, #fff);
+  color: var(--gray-80, #6c6e73);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
 }
