@@ -38,6 +38,11 @@ export namespace Components {
          */
         "displayTable"?: boolean;
         /**
+          * Whether or not the fields list is expanded. {boolean}
+          * @default false
+         */
+        "expandfields"?: boolean;
+        /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
@@ -826,6 +831,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "displayTable"?: boolean;
+        /**
+          * Whether or not the fields list is expanded. {boolean}
+          * @default false
+         */
+        "expandfields"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'

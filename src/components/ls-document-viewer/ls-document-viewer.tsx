@@ -153,6 +153,12 @@ export class LsDocumentViewer {
   @Prop() showrightpanel?: boolean = false;
 
   /**
+   * Whether or not the fields list is expanded.
+   * {boolean}
+   */
+  @Prop() expandfields?: boolean = false;
+
+  /**
    * Whether the right panel (which can be default field properties or custom panel) is
    * displayed.
    * {boolean}
@@ -484,10 +490,30 @@ export class LsDocumentViewer {
                         validation={0}
                         icon="signature"
                       />
-                      <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} icon="text" />
-                      <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} icon="at-symbol" />
-                      <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
+                      <ls-toolbox-field
+                        elementType="initials"
+                        formElementType="initials"
+                        label="Initials"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={2000}
+                        icon="initials"
+                      />
                       <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} icon="calender" />
+                      <ls-toolbox-field
+                        elementType="signing date"
+                        formElementType="signing date"
+                        label="Signing Date"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={30}
+                        icon="auto-date"
+                      />
+                      <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} icon="at-symbol" />
+                      <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} icon="text" />
+
+                      <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
+
                       <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} icon="check" />
                       <ls-toolbox-field
                         elementType="auto sign"
@@ -498,26 +524,10 @@ export class LsDocumentViewer {
                         validation={3000}
                         icon="signature"
                       />
-                      <ls-toolbox-field
-                        elementType="initials"
-                        formElementType="initials"
-                        label="Initials"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={2000}
-                        icon="initials"
-                      />
+
                       <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon="code" />
                       <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} icon="photograph" />
-                      <ls-toolbox-field
-                        elementType="signing date"
-                        formElementType="signing date"
-                        label="Signing Date"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={30}
-                        icon="auto-date"
-                      />
+
                       <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon="upload" />
                     </div>
                   </div>
@@ -532,7 +542,7 @@ export class LsDocumentViewer {
                       </div>
                       <h1 class={'properties-header-title'}>Field Properties</h1>
                       <button class={'tertiaryGrey'} onClick={() => (this.selected = [])}>
-                        <ls-icon name="x" size='20' />
+                        <ls-icon name="x" size="20" />
                       </button>
                     </div>
                     <ls-field-properties id="my-field-panel"></ls-field-properties>
