@@ -20,6 +20,7 @@ import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType } from './editorUtils';
 import { RoleColor } from '../../types/RoleColor';
+import { LSApiRole } from '../../types/LSApiRole';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -193,6 +194,8 @@ export class LsDocumentViewer {
     const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions))
 
     // Convert ax,bx,ay etc. into top, left
+    // We also add the templateId into every object so that all the information
+    // required to mutate is in each object.
     this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
     const fields = newTemplate.elementConnection.templateElements.map(f => {
       return {
@@ -204,7 +207,13 @@ export class LsDocumentViewer {
         templateId: newTemplate.id
       }
     })
-    this._template = { ...newTemplate, elementConnection: { ...newTemplate.elementConnection, templateElements: fields } }
+
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro:LSApiRole) =>  { return {...ro, templateId: newTemplate.id}})
+
+    this._template = { ...newTemplate, 
+      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
+      roles: preparedRoles
+    }
   }
 
   //

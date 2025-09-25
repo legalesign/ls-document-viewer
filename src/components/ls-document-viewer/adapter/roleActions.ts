@@ -1,74 +1,60 @@
-// Construct all mutations for a template element.
-const createRole = element => {
-  return JSON.stringify(`
-  mutation AddField {
-    createTemplateElement(input: {
-      templateId: "${element.templateId}", 
-      ax: ${element.ax}, 
-      ay: ${element.ay}, 
-      bx: ${element.bx}, 
-      by: ${element.by}, 
-      elementType: ${JSON.stringify(element.elementType)}, 
-      label: ${JSON.stringify(element.label)}, 
-      page: ${element.page}, 
-      fieldOrder: ${element.fieldOrder}, 
-      fontName: ${JSON.stringify(element.fontName)}, 
-      fontSize: ${element.fontSize}, 
-      helpText: ${JSON.stringify(element.helpText)}, 
-      hideBorder: ${element.hideBorder}, 
-      logicGroup: ${JSON.stringify(element.logicGroup)}, 
-      mapTo: ${JSON.stringify(element.mapTo)}, 
-      optional: ${element.optional}, 
-      options: ${JSON.stringify(element.options)}, 
-      role: ${JSON.stringify(element.role)}, 
-      substantive: ${element.substantive}, 
-      validation: ${element.validation}, 
-      value: ${JSON.stringify(element.value)}, 
-      align: ${JSON.stringify(element.align)}, 
-      signer: ${element.signer}, 
-      logicAction: ${element.logicAction}, 
-      labelExtra: ${JSON.stringify(element.labelExtra)}})
-  }`);
+
+// Add a role
+const createRole = (role) => {
+  const newParent = role?.signerParent ? `"${role.signerParent}"` : 'null';
+  return `
+  mutation AddRole {
+    createTemplateRole(input: {
+      templateId: "${role.templateId}"       
+        signerIndex: ${role.signerIndex}
+        signerParent: ${newParent}
+        name: ${JSON.stringify(role.name)}
+        ordinal: ${role.ordinal}
+        roleType: ${role.roleType}
+        experience: "${role.experience}"
+     })
+  }`  
 };
 
-// Save any changes to an element
-const updateRole = element => {
-  return JSON.stringify(`mutation ChangeField {
-  updateTemplateElement(input: {
-    templateElementId: "${element.id}", 
-    ax: ${element.ax}, 
-    ay: ${element.ay}, 
-    bx: ${element.bx}, 
-    by: ${element.by}, 
-    elementType: ${JSON.stringify(element.elementType)}, 
-    label: ${JSON.stringify(element.label)}, 
-    page: ${element.page}, 
-    fieldOrder: ${element.fieldOrder ? element.fieldOrder : null}, 
-    fontName: ${JSON.stringify(element.fontName)}, 
-    fontSize: ${element.fontSize}, 
-    helpText: "${element.helpText}", 
-    hideBorder: ${element.hideBorder}, 
-    logicGroup: ${JSON.stringify(element.logicGroup)}, 
-    mapTo: "${element.mapTo}", 
-    optional: ${element.optional}, 
-    options: ${JSON.stringify(element.options)}, 
-    role: ${JSON.stringify(element.role)}, 
-    substantive: ${element.substantive}, 
-    validation: ${element.validation === '0' ? 'null' : element.validation}, 
-    value: "${element.value}", 
-    align: "${element.align}", 
-    signer: ${element.signer}, 
-    logicAction: ${element.logicAction}, 
-    labelExtra: "${element.labelExtra}"})
-}`);
+// Remove a role
+const deleteRole = (role) => {
+  return `
+    mutation removeRole {
+      deleteTemplateRole(input: {
+        templateRoleId: "${role.id}"       
+       })
+    }`
 };
 
-// Save any changes to an element
-const deleteRole = id => {
-  return JSON.stringify(`mutation DeleteField {
-  deleteTemplateElement(input: {
-    templateElementId: "${id}"})
-  }`);
+// Save any changes to an role
+const updateRole = (role) => {
+  const newParent = role?.signerParent ? `"${role.signerParent}"` : 'null';
+  return `
+    mutation updateRole {
+      updateTemplateRole(input: {
+        templateRoleId: "${role.id}"       
+        signerIndex: ${role.signerIndex}
+        ordinal: ${role.ordinal}
+        signerParent: ${newParent}
+        name: ${JSON.stringify(role.name)}
+        roleType: ${role.roleType}
+        experience: "${role.experience}"
+       })
+    }`
 };
 
-export { createRole, updateRole, deleteRole };
+// swap two adjacent roles
+const swapRoles = (roleId1, roleId2) => {
+
+  return `
+    mutation swapRole {
+      swapRoles(input: {
+        roleId1: "${roleId1}"       
+        roleId2: "${roleId2}"
+       })
+    }`;
+
+};
+
+
+export { createRole, updateRole, deleteRole, swapRoles };

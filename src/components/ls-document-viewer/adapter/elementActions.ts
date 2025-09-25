@@ -1,6 +1,6 @@
 // Construct all mutations for a template element.
 const createElement = element => {
-  return JSON.stringify(`
+  return `
   mutation AddField {
     createTemplateElement(input: {
       templateId: "${element.templateId}", 
@@ -28,12 +28,12 @@ const createElement = element => {
       signer: ${element.signer}, 
       logicAction: ${element.logicAction}, 
       labelExtra: ${JSON.stringify(element.labelExtra)}})
-  }`);
+  }`;
 };
 
 // Save any changes to an element
 const updateElement = element => {
-  return JSON.stringify(`mutation ChangeField {
+  return `mutation ChangeField {
   updateTemplateElement(input: {
     templateElementId: "${element.id}", 
     ax: ${element.ax}, 
@@ -60,15 +60,15 @@ const updateElement = element => {
     signer: ${element.signer}, 
     logicAction: ${element.logicAction}, 
     labelExtra: "${element.labelExtra}"})
-}`);
+}`;
 };
 
 // Save any changes to an element
 const deleteElement = id => {
-  return JSON.stringify(`mutation DeleteField {
+  return `mutation DeleteField {
   deleteTemplateElement(input: {
     templateElementId: "${id}"})
-  }`);
+  }`;
 };
 
 export { createElement, updateElement, deleteElement };
