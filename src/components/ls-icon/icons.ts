@@ -3,29 +3,11 @@ export const icons = [
   // Hero Icons
   {
     name: 'mail',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2.00333 5.88355L9.99995 9.88186L17.9967 5.8835C17.9363 4.83315 17.0655 4 16 4H4C2.93452 4 2.06363 4.83318 2.00333 5.88355Z"
-        fill="currentColor"
-      />
-      <path
-        d="M18 8.1179L9.99995 12.1179L2 8.11796V14C2 15.1046 2.89543 16 4 16H16C17.1046 16 18 15.1046 18 14V8.1179Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2.00333 5.88355L9.99995 9.88186L17.9967 5.8835C17.9363 4.83315 17.0655 4 16 4H4C2.93452 4 2.06363 4.83318 2.00333 5.88355Z" fill="currentColor" />
+      <path d="M18 8.1179L9.99995 12.1179L2 8.11796V14C2 15.1046 2.89543 16 4 16H16C17.1046 16 18 15.1046 18 14V8.1179Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 6.66675L9.0755 11.0504C9.63533 11.4236 10.3647 11.4236 10.9245 11.0504L17.5 6.66675M4.16667 15.8334H15.8333C16.7538 15.8334 17.5 15.0872 17.5 14.1667V5.83341C17.5 4.91294 16.7538 4.16675 15.8333 4.16675H4.16667C3.24619 4.16675 2.5 4.91294 2.5 5.83341V14.1667C2.5 15.0872 3.24619 15.8334 4.16667 15.8334Z"
         stroke="currentColor"
@@ -37,29 +19,14 @@ export const icons = [
   },
   {
     name: 'bell',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 2C6.68632 2 4.00003 4.68629 4.00003 8V11.5858L3.29292 12.2929C3.00692 12.5789 2.92137 13.009 3.07615 13.3827C3.23093 13.7564 3.59557 14 4.00003 14H16C16.4045 14 16.7691 13.7564 16.9239 13.3827C17.0787 13.009 16.9931 12.5789 16.7071 12.2929L16 11.5858V8C16 4.68629 13.3137 2 10 2Z"
         fill="currentColor"
       />
-      <path
-        d="M10 18C8.34315 18 7 16.6569 7 15H13C13 16.6569 11.6569 18 10 18Z"
-        fill="currentColor"
-      />
+      <path d="M10 18C8.34315 18 7 16.6569 7 15H13C13 16.6569 11.6569 18 10 18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 14.1668H16.6667L15.4959 12.996C15.1784 12.6785 15 12.2479 15 11.7988V9.16679C15 6.98976 13.6087 5.1377 11.6667 4.4513V4.16679C11.6667 3.24631 10.9205 2.50012 10 2.50012C9.07954 2.50012 8.33334 3.24631 8.33334 4.16679V4.4513C6.39136 5.1377 5.00001 6.98976 5.00001 9.16679V11.7988C5.00001 12.2479 4.82163 12.6785 4.50412 12.996L3.33334 14.1668H7.50001M12.5 14.1668V15.0001C12.5 16.3808 11.3807 17.5001 10 17.5001C8.6193 17.5001 7.50001 16.3808 7.50001 15.0001V14.1668M12.5 14.1668H7.50001"
         stroke="currentColor"
@@ -71,25 +38,13 @@ export const icons = [
   },
   {
     name: 'home',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.7071 2.29289C10.3166 1.90237 9.68342 1.90237 9.29289 2.29289L2.29289 9.29289C1.90237 9.68342 1.90237 10.3166 2.29289 10.7071C2.68342 11.0976 3.31658 11.0976 3.70711 10.7071L4 10.4142V17C4 17.5523 4.44772 18 5 18H7C7.55228 18 8 17.5523 8 17V15C8 14.4477 8.44772 14 9 14H11C11.5523 14 12 14.4477 12 15V17C12 17.5523 12.4477 18 13 18H15C15.5523 18 16 17.5523 16 17V10.4142L16.2929 10.7071C16.6834 11.0976 17.3166 11.0976 17.7071 10.7071C18.0976 10.3166 18.0976 9.68342 17.7071 9.29289L10.7071 2.29289Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 10.0001L4.16667 8.33345M4.16667 8.33345L10 2.50012L15.8333 8.33345M4.16667 8.33345V16.6668C4.16667 17.127 4.53976 17.5001 5 17.5001H7.5M15.8333 8.33345L17.5 10.0001M15.8333 8.33345V16.6668C15.8333 17.127 15.4602 17.5001 15 17.5001H12.5M7.5 17.5001C7.96024 17.5001 8.33333 17.127 8.33333 16.6668V13.3335C8.33333 12.8732 8.70643 12.5001 9.16667 12.5001H10.8333C11.2936 12.5001 11.6667 12.8732 11.6667 13.3335V16.6668C11.6667 17.127 12.0398 17.5001 12.5 17.5001M7.5 17.5001H12.5"
         stroke="currentColor"
@@ -101,13 +56,7 @@ export const icons = [
   },
   {
     name: 'briefcase',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -119,13 +68,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_22_850)">
         <path
           d="M17.5 11.0463C15.1839 11.9838 12.6523 12.5001 10 12.5001C7.34775 12.5001 4.81608 11.9838 2.5 11.0463M13.3333 5.00008V3.33341C13.3333 2.41294 12.5871 1.66675 11.6667 1.66675H8.33333C7.41286 1.66675 6.66667 2.41294 6.66667 3.33341V5.00008M10 10.0001H10.0083M4.16667 16.6667H15.8333C16.7538 16.6667 17.5 15.9206 17.5 15.0001V6.66675C17.5 5.74627 16.7538 5.00008 15.8333 5.00008H4.16667C3.24619 5.00008 2.5 5.74627 2.5 6.66675V15.0001C2.5 15.9206 3.24619 16.6667 4.16667 16.6667Z"
@@ -144,13 +87,7 @@ export const icons = [
   },
   {
     name: 'shield-check',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -158,13 +95,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 10.0001L9.16667 11.6668L12.5 8.33346M17.1816 4.98707C17.011 4.99572 16.8394 5.0001 16.6667 5.0001C14.1055 5.0001 11.7691 4.03723 9.99994 2.45374C8.23076 4.03717 5.89449 5 3.33333 5C3.16065 5 2.98898 4.99562 2.81844 4.98697C2.61059 5.78998 2.5 6.63214 2.5 7.50013C2.5 12.1597 5.68693 16.075 10 17.1851C14.3131 16.075 17.5 12.1597 17.5 7.50013C17.5 6.63218 17.3894 5.79005 17.1816 4.98707Z"
         stroke="currentColor"
@@ -176,13 +107,7 @@ export const icons = [
   },
   {
     name: 'shield-exclamation',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -190,13 +115,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 7.50013V9.1668M10 12.5001H10.0083M17.1816 4.98707C17.011 4.99572 16.8394 5.0001 16.6667 5.0001C14.1055 5.0001 11.7691 4.03723 9.99994 2.45374C8.23076 4.03717 5.89449 5 3.33333 5C3.16065 5 2.98898 4.99562 2.81844 4.98697C2.61059 5.78998 2.5 6.63214 2.5 7.50013C2.5 12.1597 5.68693 16.075 10 17.1851C14.3131 16.075 17.5 12.1597 17.5 7.50013C17.5 6.63218 17.3894 5.79005 17.1816 4.98707Z"
         stroke="currentColor"
@@ -208,13 +127,7 @@ export const icons = [
   },
   {
     name: 'cog',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -222,13 +135,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.60384 3.59788C8.95917 2.1342 11.0408 2.1342 11.3961 3.59788C11.6257 4.5434 12.7089 4.9921 13.5398 4.48583C14.8261 3.70211 16.298 5.17404 15.5143 6.46028C15.008 7.29117 15.4567 8.37444 16.4022 8.60398C17.8659 8.95931 17.8659 11.0409 16.4022 11.3963C15.4567 11.6258 15.008 12.7091 15.5143 13.54C16.298 14.8262 14.8261 16.2981 13.5398 15.5144C12.7089 15.0081 11.6257 15.4568 11.3961 16.4024C11.0408 17.866 8.95917 17.866 8.60384 16.4024C8.3743 15.4568 7.29103 15.0081 6.46014 15.5144C5.1739 16.2981 3.70198 14.8262 4.48569 13.54C4.99196 12.7091 4.54326 11.6258 3.59774 11.3963C2.13407 11.0409 2.13407 8.95931 3.59774 8.60398C4.54326 8.37444 4.99196 7.29117 4.48569 6.46028C3.70198 5.17404 5.1739 3.70211 6.46014 4.48583C7.29103 4.9921 8.3743 4.5434 8.60384 3.59788Z"
         stroke="currentColor"
@@ -247,13 +154,7 @@ export const icons = [
   },
   {
     name: 'check',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -261,31 +162,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4.16663 10.8334L7.49997 14.1668L15.8333 5.83345"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4.16663 10.8334L7.49997 14.1668L15.8333 5.83345" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'translate',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -293,13 +176,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49997 4.16679H12.5M7.49997 2.50012V4.16679M8.37346 12.0835C7.10066 10.7649 6.06724 9.21383 5.34319 7.50012M10.4166 15.0001H16.25M9.16664 17.5001L13.3333 9.16679L17.5 17.5001M10.6259 4.16679C9.81919 8.97531 6.72471 13.0081 2.49997 15.1076"
         stroke="currentColor"
@@ -311,17 +188,8 @@ export const icons = [
   },
   {
     name: 'cash',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4 4C2.89543 4 2 4.89543 2 6V10C2 11.1046 2.89543 12 4 12L4 6H14C14 4.89543 13.1046 4 12 4H4Z"
-        fill="currentColor"
-      />
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4 4C2.89543 4 2 4.89543 2 6V10C2 11.1046 2.89543 12 4 12L4 6H14C14 4.89543 13.1046 4 12 4H4Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -329,13 +197,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1666 7.50013V5.83346C14.1666 4.91299 13.4204 4.16679 12.5 4.16679H4.16664C3.24616 4.16679 2.49997 4.91299 2.49997 5.83346V10.8335C2.49997 11.7539 3.24616 12.5001 4.16664 12.5001H5.8333M7.49997 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V9.16679C17.5 8.24632 16.7538 7.50013 15.8333 7.50013H7.49997C6.57949 7.50013 5.8333 8.24632 5.8333 9.16679V14.1668C5.8333 15.0873 6.57949 15.8335 7.49997 15.8335ZM13.3333 11.6668C13.3333 12.5873 12.5871 13.3335 11.6666 13.3335C10.7462 13.3335 9.99997 12.5873 9.99997 11.6668C9.99997 10.7463 10.7462 10.0001 11.6666 10.0001C12.5871 10.0001 13.3333 10.7463 13.3333 11.6668Z"
         stroke="currentColor"
@@ -347,13 +209,7 @@ export const icons = [
   },
   {
     name: 'location-marker',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -361,13 +217,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.714 13.8808C13.9335 14.6613 12.3013 16.2936 11.1781 17.4167C10.5273 18.0676 9.47303 18.0679 8.82216 17.4171C7.71859 16.3135 6.11796 14.7129 5.28592 13.8808C2.68243 11.2773 2.68243 7.05624 5.28592 4.45274C7.88942 1.84925 12.1105 1.84925 14.714 4.45274C17.3175 7.05624 17.3175 11.2773 14.714 13.8808Z"
         stroke="currentColor"
@@ -386,29 +236,11 @@ export const icons = [
   },
   {
     name: 'user',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z"
-        fill="currentColor"
-      />
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M10 9C11.6569 9 13 7.65685 13 6C13 4.34315 11.6569 3 10 3C8.34315 3 7 4.34315 7 6C7 7.65685 8.34315 9 10 9Z" fill="currentColor" />
+      <path d="M3 18C3 14.134 6.13401 11 10 11C13.866 11 17 14.134 17 18H3Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 5.83346C13.3333 7.6744 11.8409 9.16679 9.99999 9.16679C8.15904 9.16679 6.66666 7.6744 6.66666 5.83346C6.66666 3.99251 8.15904 2.50012 9.99999 2.50012C11.8409 2.50012 13.3333 3.99251 13.3333 5.83346Z"
         stroke="currentColor"
@@ -427,37 +259,16 @@ export const icons = [
   },
   {
     name: 'users',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M9 6C9 7.65685 7.65685 9 6 9C4.34315 9 3 7.65685 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M17 6C17 7.65685 15.6569 9 14 9C12.3431 9 11 7.65685 11 6C11 4.34315 12.3431 3 14 3C15.6569 3 17 4.34315 17 6Z"
-        fill="currentColor"
-      />
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M9 6C9 7.65685 7.65685 9 6 9C4.34315 9 3 7.65685 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6Z" fill="currentColor" />
+      <path d="M17 6C17 7.65685 15.6569 9 14 9C12.3431 9 11 7.65685 11 6C11 4.34315 12.3431 3 14 3C15.6569 3 17 4.34315 17 6Z" fill="currentColor" />
       <path
         d="M12.9291 17C12.9758 16.6734 13 16.3395 13 16C13 14.3648 12.4393 12.8606 11.4998 11.6691C12.2352 11.2435 13.0892 11 14 11C16.7614 11 19 13.2386 19 16V17H12.9291Z"
         fill="currentColor"
       />
-      <path
-        d="M6 11C8.76142 11 11 13.2386 11 16V17H1V16C1 13.2386 3.23858 11 6 11Z"
-        fill="currentColor"
-      />
+      <path d="M6 11C8.76142 11 11 13.2386 11 16V17H1V16C1 13.2386 3.23858 11 6 11Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 3.6286C10.6108 2.93658 11.5044 2.50012 12.5 2.50012C14.3409 2.50012 15.8333 3.99251 15.8333 5.83346C15.8333 7.6744 14.3409 9.16679 12.5 9.16679C11.5044 9.16679 10.6108 8.73033 10 8.03831M12.5 17.5001H2.5V16.6668C2.5 13.9054 4.73858 11.6668 7.5 11.6668C10.2614 11.6668 12.5 13.9054 12.5 16.6668V17.5001ZM12.5 17.5001H17.5V16.6668C17.5 13.9054 15.2614 11.6668 12.5 11.6668C11.5893 11.6668 10.7354 11.9103 10 12.3357M10.8333 5.83346C10.8333 7.6744 9.34095 9.16679 7.5 9.16679C5.65905 9.16679 4.16667 7.6744 4.16667 5.83346C4.16667 3.99251 5.65905 2.50012 7.5 2.50012C9.34095 2.50012 10.8333 3.99251 10.8333 5.83346Z"
         stroke="currentColor"
@@ -469,45 +280,15 @@ export const icons = [
   },
   {
     name: 'user-group',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M13 6C13 7.65685 11.6569 9 10 9C8.34315 9 7 7.65685 7 6C7 4.34315 8.34315 3 10 3C11.6569 3 13 4.34315 13 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M18 8C18 9.10457 17.1046 10 16 10C14.8954 10 14 9.10457 14 8C14 6.89543 14.8954 6 16 6C17.1046 6 18 6.89543 18 8Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14 15C14 12.7909 12.2091 11 10 11C7.79086 11 6 12.7909 6 15V18H14V15Z"
-        fill="currentColor"
-      />
-      <path
-        d="M6 8C6 9.10457 5.10457 10 4 10C2.89543 10 2 9.10457 2 8C2 6.89543 2.89543 6 4 6C5.10457 6 6 6.89543 6 8Z"
-        fill="currentColor"
-      />
-      <path
-        d="M16 18V15C16 13.9459 15.7282 12.9552 15.2507 12.0943C15.4902 12.0327 15.7413 12 16 12C17.6569 12 19 13.3431 19 15V18H16Z"
-        fill="currentColor"
-      />
-      <path
-        d="M4.74926 12.0943C4.27185 12.9552 4 13.9459 4 15V18H1V15C1 13.3431 2.34315 12 4 12C4.25871 12 4.50977 12.0327 4.74926 12.0943Z"
-        fill="currentColor"
-      />
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M13 6C13 7.65685 11.6569 9 10 9C8.34315 9 7 7.65685 7 6C7 4.34315 8.34315 3 10 3C11.6569 3 13 4.34315 13 6Z" fill="currentColor" />
+      <path d="M18 8C18 9.10457 17.1046 10 16 10C14.8954 10 14 9.10457 14 8C14 6.89543 14.8954 6 16 6C17.1046 6 18 6.89543 18 8Z" fill="currentColor" />
+      <path d="M14 15C14 12.7909 12.2091 11 10 11C7.79086 11 6 12.7909 6 15V18H14V15Z" fill="currentColor" />
+      <path d="M6 8C6 9.10457 5.10457 10 4 10C2.89543 10 2 9.10457 2 8C2 6.89543 2.89543 6 4 6C5.10457 6 6 6.89543 6 8Z" fill="currentColor" />
+      <path d="M16 18V15C16 13.9459 15.7282 12.9552 15.2507 12.0943C15.4902 12.0327 15.7413 12 16 12C17.6569 12 19 13.3431 19 15V18H16Z" fill="currentColor" />
+      <path d="M4.74926 12.0943C4.27185 12.9552 4 13.9459 4 15V18H1V15C1 13.3431 2.34315 12 4 12C4.25871 12 4.50977 12.0327 4.74926 12.0943Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_6_183)">
         <path
           d="M14.1667 16.6668H18.3333V15.0001C18.3333 13.6194 17.214 12.5001 15.8333 12.5001C15.037 12.5001 14.3276 12.8724 13.8698 13.4525M14.1667 16.6668H5.83332M14.1667 16.6668V15.0001C14.1667 14.4532 14.0613 13.931 13.8698 13.4525M5.83332 16.6668H1.66666V15.0001C1.66666 13.6194 2.78594 12.5001 4.16666 12.5001C4.963 12.5001 5.67237 12.8724 6.13019 13.4525M5.83332 16.6668V15.0001C5.83332 14.4532 5.93868 13.931 6.13019 13.4525M6.13019 13.4525C6.74457 11.9176 8.24567 10.8334 9.99999 10.8334C11.7543 10.8334 13.2554 11.9176 13.8698 13.4525M12.5 5.83345C12.5 7.21416 11.3807 8.33345 9.99999 8.33345C8.61928 8.33345 7.49999 7.21416 7.49999 5.83345C7.49999 4.45274 8.61928 3.33345 9.99999 3.33345C11.3807 3.33345 12.5 4.45274 12.5 5.83345ZM17.5 8.33345C17.5 9.25392 16.7538 10.0001 15.8333 10.0001C14.9128 10.0001 14.1667 9.25392 14.1667 8.33345C14.1667 7.41298 14.9128 6.66678 15.8333 6.66678C16.7538 6.66678 17.5 7.41298 17.5 8.33345ZM5.83332 8.33345C5.83332 9.25392 5.08713 10.0001 4.16666 10.0001C3.24618 10.0001 2.49999 9.25392 2.49999 8.33345C2.49999 7.41298 3.24618 6.66678 4.16666 6.66678C5.08713 6.66678 5.83332 7.41298 5.83332 8.33345Z"
@@ -526,13 +307,7 @@ export const icons = [
   },
   {
     name: 'office-building',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -540,13 +315,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 17.5001V4.16679C15.8333 3.24631 15.0871 2.50012 14.1667 2.50012H5.83333C4.91286 2.50012 4.16667 3.24631 4.16667 4.16679V17.5001M15.8333 17.5001L17.5 17.5001M15.8333 17.5001H11.6667M4.16667 17.5001L2.5 17.5001M4.16667 17.5001H8.33333M7.5 5.83344H8.33333M7.5 9.16677H8.33333M11.6667 5.83344H12.5M11.6667 9.16677H12.5M8.33333 17.5001V13.3334C8.33333 12.8732 8.70643 12.5001 9.16667 12.5001H10.8333C11.2936 12.5001 11.6667 12.8732 11.6667 13.3334V17.5001M8.33333 17.5001H11.6667"
         stroke="currentColor"
@@ -558,13 +327,7 @@ export const icons = [
   },
   {
     name: 'scale',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -572,13 +335,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 5.00012L4.99998 5.83346M4.99998 5.83346L2.49998 13.3335C3.97709 14.4446 6.02387 14.4446 7.50098 13.3335M4.99998 5.83346L7.50003 13.3335M4.99998 5.83346L9.99998 4.16679M15 5.83346L17.5 5.00012M15 5.83346L12.5 13.3335C13.9771 14.4446 16.0239 14.4446 17.501 13.3335M15 5.83346L17.5 13.3335M15 5.83346L9.99998 4.16679M9.99998 2.50012V4.16679M9.99998 17.5001V4.16679M9.99998 17.5001H7.49998M9.99998 17.5001H12.5"
         stroke="currentColor"
@@ -590,13 +347,7 @@ export const icons = [
   },
   {
     name: 'pencil-alt',
-    svgSolid: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.4142 2.58579C16.6332 1.80474 15.3668 1.80474 14.5858 2.58579L7 10.1716V13H9.82842L17.4142 5.41421C18.1953 4.63316 18.1953 3.36683 17.4142 2.58579Z"
         fill="currentColor"
@@ -608,13 +359,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html` <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html` <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16665 4.16679H4.99998C4.07951 4.16679 3.33331 4.91298 3.33331 5.83346V15.0001C3.33331 15.9206 4.07951 16.6668 4.99998 16.6668H14.1666C15.0871 16.6668 15.8333 15.9206 15.8333 15.0001V10.8335M14.6548 2.98828C15.3057 2.3374 16.3609 2.3374 17.0118 2.98828C17.6627 3.63915 17.6627 4.69443 17.0118 5.3453L9.857 12.5001H7.49998L7.49998 10.1431L14.6548 2.98828Z"
         stroke="currentColor"
@@ -626,29 +371,14 @@ export const icons = [
   },
   {
     name: 'pencil',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.5858 3.58579C14.3668 2.80474 15.6332 2.80474 16.4142 3.58579C17.1953 4.36683 17.1953 5.63316 16.4142 6.41421L15.6213 7.20711L12.7929 4.37868L13.5858 3.58579Z"
         fill="CurrentColor"
       />
-      <path
-        d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z"
-        fill="CurrentColor"
-      />
+      <path d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z" fill="CurrentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.6935 4.36032L15.6398 7.30659M13.9435 3.11032C14.7571 2.29672 16.0762 2.29672 16.8898 3.11032C17.7034 3.92391 17.7034 5.243 16.8898 6.05659L5.4167 17.5297H2.50003V14.5538L13.9435 3.11032Z"
         stroke="CurrentColor"
@@ -660,17 +390,8 @@ export const icons = [
   },
   {
     name: 'eye',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8C8.89544 8 8.00001 8.89543 8.00001 10C8.00001 11.1046 8.89544 12 10 12Z"
-        fill="CurrentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8C8.89544 8 8.00001 8.89543 8.00001 10C8.00001 11.1046 8.89544 12 10 12Z" fill="CurrentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -678,13 +399,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 10.0001C12.5 11.3808 11.3807 12.5001 9.99997 12.5001C8.61926 12.5001 7.49997 11.3808 7.49997 10.0001C7.49997 8.61942 8.61926 7.50013 9.99997 7.50013C11.3807 7.50013 12.5 8.61942 12.5 10.0001Z"
         stroke="CurrentColor"
@@ -703,25 +418,10 @@ export const icons = [
   },
   {
     name: 'bookmark',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M5 4C5 2.89543 5.89543 2 7 2H13C14.1046 2 15 2.89543 15 4V18L10 15.5L5 18V4Z"
-        fill="CurrentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M5 4C5 2.89543 5.89543 2 7 2H13C14.1046 2 15 2.89543 15 4V18L10 15.5L5 18V4Z" fill="CurrentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16663 4.16679C4.16663 3.24631 4.91283 2.50012 5.8333 2.50012H14.1666C15.0871 2.50012 15.8333 3.24631 15.8333 4.16679V17.5001L9.99997 14.5835L4.16663 17.5001V4.16679Z"
         stroke="CurrentColor"
@@ -733,13 +433,7 @@ export const icons = [
   },
   {
     name: 'color-swatch',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -750,18 +444,9 @@ export const icons = [
         d="M10 14.2426L14.8995 9.34308C15.6805 8.56203 15.6805 7.2957 14.8995 6.51465L13.4853 5.10044C12.7042 4.31939 11.4379 4.31939 10.6568 5.10044L10 5.75728V14.2426Z"
         fill="CurrentColor"
       />
-      <path
-        d="M16 18H9.07104L15.071 12H16C17.1046 12 18 12.8954 18 14V16C18 17.1046 17.1046 18 16 18Z"
-        fill="CurrentColor"
-      />
+      <path d="M16 18H9.07104L15.071 12H16C17.1046 12 18 12.8954 18 14V16C18 17.1046 17.1046 18 16 18Z" fill="CurrentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.8333 17.5001C3.99235 17.5001 2.49997 16.0077 2.49997 14.1668V4.16679C2.49997 3.24631 3.24616 2.50012 4.16664 2.50012H7.49997C8.42044 2.50012 9.16664 3.24631 9.16664 4.16679V14.1668C9.16664 16.0077 7.67425 17.5001 5.8333 17.5001ZM5.8333 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335V12.5001C17.5 11.5796 16.7538 10.8335 15.8333 10.8335H13.8807M9.16665 6.11939L10.5473 4.7387C11.1982 4.08782 12.2535 4.08782 12.9044 4.7387L15.2614 7.09572C15.9123 7.74659 15.9123 8.80187 15.2614 9.45274L8.19033 16.5238M5.8333 14.1668H5.84164"
         stroke="CurrentColor"
@@ -773,13 +458,7 @@ export const icons = [
   },
   {
     name: 'inbox',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -788,13 +467,7 @@ export const icons = [
       />
       <path d="M4 12H7L8 14H12L13 12H16V16H4V12Z" fill="CurrentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M16.6666 10.8334V5.00012C16.6666 4.07964 15.9204 3.33345 15 3.33345H4.99997C4.07949 3.33345 3.3333 4.07964 3.3333 5.00012V10.8334M16.6666 10.8334V15.0001C16.6666 15.9206 15.9204 16.6668 15 16.6668H4.99997C4.07949 16.6668 3.3333 15.9206 3.3333 15.0001V10.8334M16.6666 10.8334H14.5118C14.2908 10.8334 14.0788 10.9212 13.9226 11.0775L11.9107 13.0894C11.7544 13.2457 11.5425 13.3334 11.3215 13.3334H8.67848C8.45747 13.3334 8.2455 13.2457 8.08922 13.0894L6.07738 11.0775C5.9211 10.9212 5.70914 10.8334 5.48812 10.8334H3.3333"
         stroke="CurrentColor"
@@ -806,13 +479,7 @@ export const icons = [
   },
   {
     name: 'inbox-in',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -825,13 +492,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66668 3.33346H5.00001C4.07954 3.33346 3.33334 4.07965 3.33334 5.00012V15.0001C3.33334 15.9206 4.07954 16.6668 5.00001 16.6668H15C15.9205 16.6668 16.6667 15.9206 16.6667 15.0001V5.00012C16.6667 4.07965 15.9205 3.33346 15 3.33346H13.3333M10 2.50012V9.16679M10 9.16679L12.5 6.66679M10 9.16679L7.50001 6.66679M3.33334 10.8335H5.48817C5.70918 10.8335 5.92114 10.9213 6.07742 11.0775L8.08927 13.0894C8.24555 13.2457 8.45751 13.3335 8.67852 13.3335H11.3215C11.5425 13.3335 11.7545 13.2457 11.9108 13.0894L13.9226 11.0775C14.0789 10.9213 14.2908 10.8335 14.5119 10.8335H16.6667"
         stroke="CurrentColor"
@@ -843,17 +504,8 @@ export const icons = [
   },
   {
     name: 'archive',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4 3C2.89543 3 2 3.89543 2 5C2 6.10457 2.89543 7 4 7H16C17.1046 7 18 6.10457 18 5C18 3.89543 17.1046 3 16 3H4Z"
-        fill="CurrentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4 3C2.89543 3 2 3.89543 2 5C2 6.10457 2.89543 7 4 7H16C17.1046 7 18 6.10457 18 5C18 3.89543 17.1046 3 16 3H4Z" fill="CurrentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -861,13 +513,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16667 6.66678H15.8333M4.16667 6.66678C3.24619 6.66678 2.5 5.92059 2.5 5.00012C2.5 4.07964 3.24619 3.33345 4.16667 3.33345H15.8333C16.7538 3.33345 17.5 4.07964 17.5 5.00012C17.5 5.92059 16.7538 6.66678 15.8333 6.66678M4.16667 6.66678L4.16667 15.0001C4.16667 15.9206 4.91286 16.6668 5.83333 16.6668H14.1667C15.0871 16.6668 15.8333 15.9206 15.8333 15.0001V6.66678M8.33333 10.0001H11.6667"
         stroke="CurrentColor"
@@ -879,13 +525,7 @@ export const icons = [
   },
   {
     name: 'clock',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -893,13 +533,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 6.66679V10.0001L12.5 12.5001M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="CurrentColor"
@@ -911,13 +545,7 @@ export const icons = [
   },
   {
     name: 'photograph',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -925,13 +553,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33333 13.3334L7.15482 9.51196C7.80569 8.86109 8.86097 8.86109 9.51184 9.51196L13.3333 13.3334M11.6667 11.6668L12.9881 10.3453C13.639 9.69442 14.6943 9.69442 15.3452 10.3453L16.6667 11.6668M11.6667 6.66678H11.675M4.99999 16.6668H15C15.9205 16.6668 16.6667 15.9206 16.6667 15.0001V5.00012C16.6667 4.07964 15.9205 3.33345 15 3.33345H4.99999C4.07952 3.33345 3.33333 4.07964 3.33333 5.00012V15.0001C3.33333 15.9206 4.07952 16.6668 4.99999 16.6668Z"
         stroke="CurrentColor"
@@ -943,13 +565,7 @@ export const icons = [
   },
   {
     name: 'tag',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -957,13 +573,7 @@ export const icons = [
         fill="CurrentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.25 3.06436L10.6252 3.61581C10.6366 3.62878 10.6485 3.64139 10.6607 3.65362L11.25 3.06436ZM16.9357 11.2501L16.3843 10.6253C16.3713 10.6368 16.3587 10.6486 16.3465 10.6609L16.9357 11.2501ZM17.0833 8.89769L17.7081 8.34625C17.6967 8.33328 17.6848 8.32067 17.6726 8.30844L17.0833 8.89769ZM8.89756 17.0835L8.3083 17.6727C8.32053 17.6849 8.33314 17.6968 8.34611 17.7082L8.89756 17.0835ZM11.1024 17.0835L11.6539 17.7082C11.6668 17.6968 11.6794 17.6849 11.6917 17.6727L11.1024 17.0835ZM3.06422 11.2501L3.65348 10.6609L3.63513 10.6425L3.61567 10.6253L3.06422 11.2501ZM5.83332 5.00012C5.37308 5.00012 4.99998 5.37322 4.99998 5.83346C4.99998 6.29369 5.37308 6.66679 5.83332 6.66679V5.00012ZM5.84165 6.66679C6.30189 6.66679 6.67498 6.29369 6.67498 5.83346C6.67498 5.37322 6.30189 5.00012 5.84165 5.00012V6.66679ZM3.33332 5.83346C3.33332 4.45274 4.45261 3.33346 5.83332 3.33346V1.66679C3.53213 1.66679 1.66665 3.53227 1.66665 5.83346H3.33332ZM3.33332 10.0001V5.83346H1.66665V10.0001H3.33332ZM5.83332 3.33346H9.99998V1.66679H5.83332V3.33346ZM9.99998 3.33346C10.2488 3.33346 10.4713 3.44142 10.6252 3.61581L11.8748 2.51292C11.4179 1.99529 10.7468 1.66679 9.99998 1.66679V3.33346ZM16.6667 10.0001C16.6667 10.2489 16.5587 10.4714 16.3843 10.6253L17.4872 11.8749C18.0048 11.418 18.3333 10.7469 18.3333 10.0001H16.6667ZM16.4585 9.44914C16.5886 9.59655 16.6667 9.78821 16.6667 10.0001H18.3333C18.3333 9.36666 18.0966 8.78645 17.7081 8.34625L16.4585 9.44914ZM9.99998 16.6668C9.78807 16.6668 9.59641 16.5888 9.449 16.4587L8.34611 17.7082C8.78632 18.0968 9.36653 18.3335 9.99998 18.3335V16.6668ZM10.551 16.4587C10.4036 16.5888 10.2119 16.6668 9.99998 16.6668V18.3335C10.6334 18.3335 11.2137 18.0968 11.6539 17.7082L10.551 16.4587ZM3.61567 10.6253C3.44128 10.4714 3.33332 10.2489 3.33332 10.0001H1.66665C1.66665 10.7469 1.99515 11.418 2.51278 11.8749L3.61567 10.6253ZM10.6607 3.65362L16.4941 9.48695L17.6726 8.30844L11.8392 2.47511L10.6607 3.65362ZM9.48681 16.4942L3.65348 10.6609L2.47497 11.8394L8.3083 17.6727L9.48681 16.4942ZM16.3465 10.6609L10.5132 16.4942L11.6917 17.6727L17.525 11.8394L16.3465 10.6609ZM5.83332 6.66679H5.84165V5.00012H5.83332V6.66679Z"
         fill="CurrentColor"
@@ -972,25 +582,13 @@ export const icons = [
   },
   {
     name: 'phone',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2 3C2 2.44772 2.44772 2 3 2H5.15287C5.64171 2 6.0589 2.35341 6.13927 2.8356L6.87858 7.27147C6.95075 7.70451 6.73206 8.13397 6.3394 8.3303L4.79126 9.10437C5.90756 11.8783 8.12168 14.0924 10.8956 15.2087L11.6697 13.6606C11.866 13.2679 12.2955 13.0492 12.7285 13.1214L17.1644 13.8607C17.6466 13.9411 18 14.3583 18 14.8471V17C18 17.5523 17.5523 18 17 18H15C7.8203 18 2 12.1797 2 5V3Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 4.16679C2.49998 3.24631 3.24618 2.50012 4.16665 2.50012H6.89935C7.25804 2.50012 7.57649 2.72965 7.68992 3.06993L8.9381 6.81446C9.06924 7.20789 8.89113 7.63788 8.52021 7.82334L6.63916 8.76387C7.55769 10.8011 9.19897 12.4424 11.2362 13.3609L12.1768 11.4799C12.3622 11.109 12.7922 10.9309 13.1856 11.062L16.9302 12.3102C17.2705 12.4236 17.5 12.7421 17.5 13.1008V15.8335C17.5 16.7539 16.7538 17.5001 15.8333 17.5001H15C8.09642 17.5001 2.49998 11.9037 2.49998 5.00012V4.16679Z"
         stroke="currentColor"
@@ -1002,13 +600,7 @@ export const icons = [
   },
   {
     name: 'phone-incoming',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.4142 7L17.7071 3.70711C18.0976 3.31658 18.0976 2.68342 17.7071 2.29289C17.3166 1.90237 16.6834 1.90237 16.2929 2.29289L13 5.58579V4C13 3.44772 12.5523 3 12 3C11.4477 3 11 3.44772 11 4V7.99931C11 8.00031 11 8.002 11 8.003C11.0004 8.1375 11.0273 8.26575 11.0759 8.38278C11.1236 8.49805 11.1937 8.6062 11.2864 8.70055C11.2907 8.70494 11.2951 8.70929 11.2995 8.7136C11.3938 8.80626 11.502 8.87643 11.6172 8.92412C11.7351 8.97301 11.8644 9 12 9H16C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7H14.4142Z"
         fill="currentColor"
@@ -1018,13 +610,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 2.50012L12.5 7.50012M12.5 7.50012V3.33346M12.5 7.50012H16.6666M4.16664 2.50012C3.24616 2.50012 2.49997 3.24631 2.49997 4.16679V5.00012C2.49997 11.9037 8.09641 17.5001 15 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335V13.1008C17.5 12.7421 17.2704 12.4236 16.9302 12.3102L13.1856 11.062C12.7922 10.9309 12.3622 11.109 12.1767 11.4799L11.2362 13.3609C9.19895 12.4424 7.55768 10.8011 6.63914 8.76387L8.52019 7.82334C8.89112 7.63788 9.06923 7.20789 8.93808 6.81446L7.68991 3.06993C7.57648 2.72965 7.25803 2.50012 6.89934 2.50012H4.16664Z"
         stroke="currentColor"
@@ -1036,13 +622,7 @@ export const icons = [
   },
   {
     name: 'phone-outgoing',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.9241 2.61722C17.8757 2.50014 17.804 2.3904 17.7092 2.29502C17.7078 2.2936 17.7064 2.29219 17.705 2.29078C17.5242 2.11106 17.2751 2 17 2H13C12.4477 2 12 2.44772 12 3C12 3.55228 12.4477 4 13 4H14.5858L11.2929 7.29289C10.9024 7.68342 10.9024 8.31658 11.2929 8.70711C11.6834 9.09763 12.3166 9.09763 12.7071 8.70711L16 5.41421V7C16 7.55228 16.4477 8 17 8C17.5523 8 18 7.55228 18 7V3C18 2.86441 17.973 2.73512 17.9241 2.61722Z"
         fill="currentColor"
@@ -1052,13 +632,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 2.50012H17.5M17.5 2.50012V6.66679M17.5 2.50012L12.5 7.50012M4.16665 2.50012C3.24618 2.50012 2.49998 3.24631 2.49998 4.16679V5.00012C2.49998 11.9037 8.09642 17.5001 15 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335V13.1008C17.5 12.7421 17.2705 12.4236 16.9302 12.3102L13.1856 11.062C12.7922 10.9309 12.3622 11.109 12.1768 11.4799L11.2362 13.3609C9.19897 12.4424 7.55769 10.8011 6.63916 8.76387L8.52021 7.82334C8.89113 7.63788 9.06924 7.20789 8.9381 6.81446L7.68992 3.06993C7.57649 2.72965 7.25804 2.50012 6.89935 2.50012H4.16665Z"
         stroke="currentColor"
@@ -1070,13 +644,7 @@ export const icons = [
   },
   {
     name: 'menu',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1096,31 +664,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3.3333 5.00012H16.6666M3.3333 10.0001H16.6666M3.3333 15.0001H16.6666"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3.3333 5.00012H16.6666M3.3333 10.0001H16.6666M3.3333 15.0001H16.6666" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'menu-alt-1',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1140,31 +690,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3.3333 5.00012H16.6666M3.3333 10.0001H9.99997M3.3333 15.0001H16.6666"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3.3333 5.00012H16.6666M3.3333 10.0001H9.99997M3.3333 15.0001H16.6666" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'menu-alt-2',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1184,31 +716,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3.3333 5.00012H16.6666M3.3333 10.0001H16.6666M3.3333 15.0001H9.16663"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3.3333 5.00012H16.6666M3.3333 10.0001H16.6666M3.3333 15.0001H9.16663" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'menu-alt-3',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1228,13 +742,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33334 5.00012H16.6667M3.33334 10.0001H16.6667M10.8333 15.0001H16.6667"
         stroke="currentColor"
@@ -1246,13 +754,7 @@ export const icons = [
   },
   {
     name: 'menu-alt-4',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1266,31 +768,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3.33334 6.66679H16.6667M3.33334 13.3335H16.6667"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3.33334 6.66679H16.6667M3.33334 13.3335H16.6667" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'switch-vertical',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 12C5 12.5523 5.44771 13 6 13C6.55228 13 7 12.5523 7 12L7 6.41421L8.29289 7.70711C8.68342 8.09763 9.31658 8.09763 9.70711 7.70711C10.0976 7.31658 10.0976 6.68342 9.70711 6.29289L6.70711 3.29289C6.51957 3.10536 6.26522 3 6 3C5.73478 3 5.48043 3.10536 5.29289 3.29289L2.29289 6.29289C1.90237 6.68342 1.90237 7.31658 2.29289 7.70711C2.68342 8.09763 3.31658 8.09763 3.70711 7.70711L5 6.41421L5 12Z"
         fill="currentColor"
@@ -1300,13 +784,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83333 13.3335V3.33346M5.83333 3.33346L2.5 6.66679M5.83333 3.33346L9.16667 6.66679M14.1667 6.66679V16.6668M14.1667 16.6668L17.5 13.3335M14.1667 16.6668L10.8333 13.3335"
         stroke="currentColor"
@@ -1318,13 +796,7 @@ export const icons = [
   },
   {
     name: 'switch-horizontal',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8 5C7.44772 5 7 5.44771 7 6C7 6.55228 7.44772 7 8 7L13.5858 7L12.2929 8.29289C11.9024 8.68342 11.9024 9.31658 12.2929 9.70711C12.6834 10.0976 13.3166 10.0976 13.7071 9.70711L16.7071 6.70711C16.8946 6.51957 17 6.26522 17 6C17 5.73478 16.8946 5.48043 16.7071 5.29289L13.7071 2.29289C13.3166 1.90237 12.6834 1.90237 12.2929 2.29289C11.9024 2.68342 11.9024 3.31658 12.2929 3.70711L13.5858 5L8 5Z"
         fill="currentColor"
@@ -1334,13 +806,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66666 5.83345L16.6667 5.83346M16.6667 5.83346L13.3333 2.50012M16.6667 5.83346L13.3333 9.16679M13.3333 14.1668L3.33332 14.1668M3.33332 14.1668L6.66666 17.5001M3.33332 14.1668L6.66666 10.8335"
         stroke="currentColor"
@@ -1352,13 +818,7 @@ export const icons = [
   },
   {
     name: 'x',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1366,31 +826,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4.99998 15.0001L15 5.00012M4.99998 5.00012L15 15.0001"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4.99998 15.0001L15 5.00012M4.99998 5.00012L15 15.0001" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'plus',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1398,31 +840,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M9.99998 3.33346V16.6668M16.6666 10.0001L3.33331 10.0001"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M9.99998 3.33346V16.6668M16.6666 10.0001L3.33331 10.0001" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'refresh',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1430,13 +854,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 3.33346V7.50012H3.81791M16.6151 9.16679C16.205 5.8782 13.3997 3.33346 9.99998 3.33346C7.20216 3.33346 4.80689 5.05693 3.81791 7.50012M3.81791 7.50012H7.49998M16.6666 16.6668V12.5001H16.182M16.182 12.5001C15.1931 14.9433 12.7978 16.6668 9.99998 16.6668C6.6003 16.6668 3.79497 14.1221 3.38489 10.8335M16.182 12.5001H12.5"
         stroke="currentColor"
@@ -1448,13 +866,7 @@ export const icons = [
   },
   {
     name: 'question-mark-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1462,13 +874,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.36757 7.36653C7.76725 6.34754 8.64708 5.75701 10.0984 5.75701C11.9394 5.75701 12.7439 7.03706 12.6582 8.13743C12.5809 9.13047 11.7598 10.0968 10.6656 10.215C10.4348 10.24 10.184 10.3038 10.091 10.5165C9.96318 10.8091 10.0061 11.1608 10 11.6668M9.99997 14.1668H10.0083M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -1480,13 +886,7 @@ export const icons = [
   },
   {
     name: 'exclamation',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1494,13 +894,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 7.50012V9.16679M10 12.5001H10.0083M4.2265 15.8335H15.7735C17.0565 15.8335 17.8584 14.4446 17.2169 13.3335L11.4434 3.33346C10.8019 2.22234 9.19812 2.22234 8.55662 3.33346L2.78312 13.3335C2.14162 14.4446 2.9435 15.8335 4.2265 15.8335Z"
         stroke="currentColor"
@@ -1512,29 +906,14 @@ export const icons = [
   },
   {
     name: 'cloud-upload',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.5 13C3.567 13 2 11.433 2 9.5C2 7.69163 3.37146 6.20358 5.13102 6.01922C5.04553 5.69382 5 5.35223 5 5C5 2.79086 6.79086 1 9 1C10.8788 1 12.4551 2.29538 12.8845 4.04175C13.0857 4.01422 13.2912 4 13.5 4C15.9853 4 18 6.01472 18 8.5C18 10.9853 15.9853 13 13.5 13H11V9.41421L12.2929 10.7071C12.6834 11.0976 13.3166 11.0976 13.7071 10.7071C14.0976 10.3166 14.0976 9.68342 13.7071 9.29289L10.7071 6.29289C10.3166 5.90237 9.68342 5.90237 9.29289 6.29289L6.29289 9.29289C5.90237 9.68342 5.90237 10.3166 6.29289 10.7071C6.68342 11.0976 7.31658 11.0976 7.70711 10.7071L9 9.41421L9 13H5.5Z"
         fill="currentColor"
       />
-      <path
-        d="M9 13H11L11 18C11 18.5523 10.5523 19 10 19C9.44772 19 9 18.5523 9 18L9 13Z"
-        fill="currentColor"
-      />
+      <path d="M9 13H11L11 18C11 18.5523 10.5523 19 10 19C9.44772 19 9 18.5523 9 18L9 13Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_6_786)">
         <path
           d="M5.8333 13.3335C3.99235 13.3335 2.49997 11.8411 2.49997 10.0001C2.49997 8.41092 3.61211 7.08146 5.10056 6.74759C5.03471 6.45342 4.99997 6.14749 4.99997 5.83346C4.99997 3.53227 6.86545 1.66679 9.16664 1.66679C11.1827 1.66679 12.8644 3.09867 13.2501 5.00094C13.2778 5.0004 13.3055 5.00013 13.3333 5.00013C15.6345 5.00013 17.5 6.86561 17.5 9.16679C17.5 11.1826 16.0685 12.8641 14.1666 13.2501M12.5 10.8335L9.99997 8.33346M9.99997 8.33346L7.49997 10.8335M9.99997 8.33346L9.99997 18.3335"
@@ -1553,13 +932,7 @@ export const icons = [
   },
   {
     name: 'cloud-download',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1567,13 +940,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_6_844)">
         <path
           d="M5.8333 13.3335C3.99235 13.3335 2.49997 11.8411 2.49997 10.0001C2.49997 8.41092 3.61211 7.08146 5.10056 6.74759C5.03471 6.45342 4.99997 6.14749 4.99997 5.83346C4.99997 3.53227 6.86545 1.66679 9.16664 1.66679C11.1827 1.66679 12.8644 3.09867 13.2501 5.00094C13.2778 5.0004 13.3055 5.00013 13.3333 5.00013C15.6345 5.00013 17.5 6.86561 17.5 9.16679C17.5 11.1826 16.0685 12.8641 14.1666 13.2501M7.49997 15.8335L9.99997 18.3335M9.99997 18.3335L12.5 15.8335M9.99997 18.3335V8.33346"
@@ -1592,29 +959,11 @@ export const icons = [
   },
   {
     name: 'chart-pie',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 10C2 5.58172 5.58172 2 10 2V10H18C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10Z"
-        fill="currentColor"
-      />
-      <path
-        d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 10C2 5.58172 5.58172 2 10 2V10H18C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10Z" fill="currentColor" />
+      <path d="M12 2.25195C14.8113 2.97552 17.0245 5.18877 17.748 8.00004H12V2.25195Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 2.5459C5.41671 2.96044 2.5 6.13966 2.5 10.0001C2.5 14.1423 5.85786 17.5001 10 17.5001C13.8605 17.5001 17.0397 14.5834 17.4542 10.8335H9.16667V2.5459Z"
         stroke="currentColor"
@@ -1633,13 +982,7 @@ export const icons = [
   },
   {
     name: 'document',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1647,13 +990,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83332 17.5001H14.1667C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V7.8453C15.8333 7.62429 15.7455 7.41232 15.5892 7.25604L11.0774 2.7442C10.9211 2.58792 10.7092 2.50012 10.4881 2.50012H5.83332C4.91285 2.50012 4.16666 3.24631 4.16666 4.16679V15.8335C4.16666 16.7539 4.91285 17.5001 5.83332 17.5001Z"
         stroke="currentColor"
@@ -1665,13 +1002,7 @@ export const icons = [
   },
   {
     name: 'document-download',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1679,13 +1010,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99999 8.33345V13.3335M9.99999 13.3335L7.49999 10.8335M9.99999 13.3335L12.5 10.8335M14.1667 17.5001H5.83332C4.91285 17.5001 4.16666 16.7539 4.16666 15.8335V4.16679C4.16666 3.24631 4.91285 2.50012 5.83332 2.50012H10.4881C10.7092 2.50012 10.9211 2.58792 11.0774 2.7442L15.5892 7.25604C15.7455 7.41232 15.8333 7.62429 15.8333 7.8453V15.8335C15.8333 16.7539 15.0871 17.5001 14.1667 17.5001Z"
         stroke="currentColor"
@@ -1697,13 +1022,7 @@ export const icons = [
   },
   {
     name: 'document-add',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1711,13 +1030,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.50001 10.8335H12.5M10 8.33345L10 13.3335M14.1667 17.5001H5.83334C4.91286 17.5001 4.16667 16.7539 4.16667 15.8335V4.16679C4.16667 3.24631 4.91286 2.50012 5.83334 2.50012H10.4882C10.7092 2.50012 10.9211 2.58792 11.0774 2.7442L15.5893 7.25604C15.7455 7.41232 15.8333 7.62429 15.8333 7.8453V15.8335C15.8333 16.7539 15.0871 17.5001 14.1667 17.5001Z"
         stroke="currentColor"
@@ -1729,13 +1042,7 @@ export const icons = [
   },
   {
     name: 'document-remove',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1743,13 +1050,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49999 10.8335H12.5M14.1667 17.5001H5.83332C4.91285 17.5001 4.16666 16.7539 4.16666 15.8335V4.16679C4.16666 3.24631 4.91285 2.50012 5.83332 2.50012H10.4881C10.7092 2.50012 10.9211 2.58792 11.0774 2.7442L15.5892 7.25604C15.7455 7.41232 15.8333 7.62429 15.8333 7.8453V15.8335C15.8333 16.7539 15.0871 17.5001 14.1667 17.5001Z"
         stroke="currentColor"
@@ -1761,13 +1062,7 @@ export const icons = [
   },
   {
     name: 'calender',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1775,13 +1070,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66665 5.83346V2.50012M13.3333 5.83346V2.50012M5.83332 9.16679H14.1667M4.16665 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335V5.83346C17.5 4.91298 16.7538 4.16679 15.8333 4.16679H4.16665C3.24618 4.16679 2.49998 4.91298 2.49998 5.83346V15.8335C2.49998 16.7539 3.24618 17.5001 4.16665 17.5001Z"
         stroke="currentColor"
@@ -1793,13 +1082,7 @@ export const icons = [
   },
   {
     name: 'globe-alt',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1807,13 +1090,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001M17.5 10.0001C17.5 5.85799 14.1421 2.50012 9.99997 2.50012M17.5 10.0001H2.49997M9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001M9.99997 17.5001C11.3807 17.5001 12.5 14.1423 12.5 10.0001C12.5 5.85799 11.3807 2.50012 9.99997 2.50012M9.99997 17.5001C8.61926 17.5001 7.49997 14.1423 7.49997 10.0001C7.49997 5.85799 8.61926 2.50012 9.99997 2.50012M2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012"
         stroke="currentColor"
@@ -1825,29 +1102,11 @@ export const icons = [
   },
   {
     name: 'duplicate',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7 9C7 7.89543 7.89543 7 9 7H15C16.1046 7 17 7.89543 17 9V15C17 16.1046 16.1046 17 15 17H9C7.89543 17 7 16.1046 7 15V9Z"
-        fill="currentColor"
-      />
-      <path
-        d="M5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13L5 5H13C13 3.89543 12.1046 3 11 3H5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7 9C7 7.89543 7.89543 7 9 7H15C16.1046 7 17 7.89543 17 9V15C17 16.1046 16.1046 17 15 17H9C7.89543 17 7 16.1046 7 15V9Z" fill="currentColor" />
+      <path d="M5 3C3.89543 3 3 3.89543 3 5V11C3 12.1046 3.89543 13 5 13L5 5H13C13 3.89543 12.1046 3 11 3H5Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66663 13.3335H4.99997C4.07949 13.3335 3.3333 12.5873 3.3333 11.6668V5.00012C3.3333 4.07965 4.07949 3.33346 4.99997 3.33346H11.6666C12.5871 3.33346 13.3333 4.07965 13.3333 5.00012V6.66679M8.3333 16.6668H15C15.9204 16.6668 16.6666 15.9206 16.6666 15.0001V8.33346C16.6666 7.41298 15.9204 6.66679 15 6.66679H8.3333C7.41283 6.66679 6.66663 7.41298 6.66663 8.33346V15.0001C6.66663 15.9206 7.41283 16.6668 8.3333 16.6668Z"
         stroke="currentColor"
@@ -1859,25 +1118,13 @@ export const icons = [
   },
   {
     name: 'share',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15 8C16.6569 8 18 6.65685 18 5C18 3.34315 16.6569 2 15 2C13.3431 2 12 3.34315 12 5C12 5.12548 12.0077 5.24917 12.0227 5.37061L7.08259 7.84064C6.54303 7.32015 5.8089 7 5 7C3.34315 7 2 8.34315 2 10C2 11.6569 3.34315 13 5 13C5.80892 13 6.54306 12.6798 7.08263 12.1593L12.0227 14.6293C12.0077 14.7508 12 14.8745 12 15C12 16.6569 13.3431 18 15 18C16.6569 18 18 16.6569 18 15C18 13.3431 16.6569 12 15 12C14.1911 12 13.457 12.3201 12.9174 12.8406L7.97733 10.3706C7.9923 10.2492 8 10.1255 8 10C8 9.8745 7.99229 9.7508 7.97733 9.62934L12.9174 7.15932C13.4569 7.67984 14.1911 8 15 8Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.23653 11.1184C7.4051 10.7819 7.49997 10.4021 7.49997 10.0001C7.49997 9.59815 7.4051 9.21833 7.23653 8.88184M7.23653 11.1184C6.82608 11.9377 5.97871 12.5001 4.99997 12.5001C3.61926 12.5001 2.49997 11.3808 2.49997 10.0001C2.49997 8.61941 3.61926 7.50012 4.99997 7.50012C5.97871 7.50012 6.82608 8.06255 7.23653 8.88184M7.23653 11.1184L12.7634 13.8818M7.23653 8.88184L12.7634 6.1184M12.7634 6.1184C13.1739 6.93769 14.0212 7.50012 15 7.50012C16.3807 7.50012 17.5 6.38083 17.5 5.00012C17.5 3.61941 16.3807 2.50012 15 2.50012C13.6193 2.50012 12.5 3.61941 12.5 5.00012C12.5 5.4021 12.5948 5.78191 12.7634 6.1184ZM12.7634 13.8818C12.5948 14.2183 12.5 14.5981 12.5 15.0001C12.5 16.3808 13.6193 17.5001 15 17.5001C16.3807 17.5001 17.5 16.3808 17.5 15.0001C17.5 13.6194 16.3807 12.5001 15 12.5001C14.0212 12.5001 13.1739 13.0626 12.7634 13.8818Z"
         stroke="currentColor"
@@ -1889,13 +1136,7 @@ export const icons = [
   },
   {
     name: 'heart',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1903,13 +1144,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.59832 5.26514C2.13385 6.7296 2.13385 9.10397 3.59832 10.5684L10 16.9701L16.4016 10.5684C17.8661 9.10397 17.8661 6.7296 16.4016 5.26514C14.9372 3.80067 12.5628 3.80067 11.0983 5.26514L10 6.36353L8.90162 5.26514C7.43715 3.80067 5.06278 3.80067 3.59832 5.26514Z"
         stroke="currentColor"
@@ -1921,13 +1156,7 @@ export const icons = [
   },
   {
     name: 'globe',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1935,13 +1164,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.54577 9.16679H4.16667C5.08714 9.16679 5.83333 9.91298 5.83333 10.8335V11.6668C5.83333 12.5873 6.57953 13.3335 7.5 13.3335C8.42047 13.3335 9.16667 14.0796 9.16667 15.0001V17.4543M6.66667 3.27972V4.58346C6.66667 5.73405 7.59941 6.66679 8.75 6.66679H9.16667C10.0871 6.66679 10.8333 7.41298 10.8333 8.33345C10.8333 9.25393 11.5795 10.0001 12.5 10.0001C13.4205 10.0001 14.1667 9.25393 14.1667 8.33345C14.1667 7.41298 14.9129 6.66679 15.8333 6.66679L16.7204 6.66679M12.5 17.0734V15.0001C12.5 14.0796 13.2462 13.3335 14.1667 13.3335H16.7204M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -1953,13 +1176,7 @@ export const icons = [
   },
   {
     name: 'volume-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -1973,13 +1190,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.9463 7.05385C14.5735 8.68104 14.5735 11.3192 12.9463 12.9464M15.3033 4.69678C18.2323 7.62571 18.2323 12.3744 15.3033 15.3034M4.65482 12.5002H3.33333C2.8731 12.5002 2.5 12.1271 2.5 11.6668V8.3335C2.5 7.87326 2.8731 7.50017 3.33333 7.50017H4.65482L8.57741 3.57758C9.10238 3.05261 10 3.42441 10 4.16683V15.8335C10 16.5759 9.10238 16.9477 8.57741 16.4228L4.65482 12.5002Z"
         stroke="currentColor"
@@ -1991,13 +1202,7 @@ export const icons = [
   },
   {
     name: 'volume-off',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2011,13 +1216,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 11.6668L15.8333 10.0001M15.8333 10.0001L17.5 8.33346M15.8333 10.0001L14.1667 8.33346M15.8333 10.0001L17.5 11.6668M4.65482 12.5002H3.33333C2.8731 12.5002 2.5 12.1271 2.5 11.6668V8.3335C2.5 7.87326 2.8731 7.50017 3.33333 7.50017H4.65482L8.57741 3.57758C9.10238 3.05261 10 3.42441 10 4.16683V15.8335C10 16.5759 9.10238 16.9477 8.57741 16.4228L4.65482 12.5002Z"
         stroke="currentColor"
@@ -2029,13 +1228,7 @@ export const icons = [
   },
   {
     name: 'adjustments',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 4C5 3.44772 4.55228 3 4 3C3.44772 3 3 3.44772 3 4V11.2676C2.4022 11.6134 2 12.2597 2 13C2 13.7403 2.4022 14.3866 3 14.7324V16C3 16.5523 3.44772 17 4 17C4.55228 17 5 16.5523 5 16V14.7324C5.5978 14.3866 6 13.7403 6 13C6 12.2597 5.5978 11.6134 5 11.2676V4Z"
         fill="currentColor"
@@ -2049,13 +1242,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99999 5.00012V3.33345M9.99999 5.00012C9.07952 5.00012 8.33333 5.74631 8.33333 6.66679C8.33333 7.58726 9.07952 8.33345 9.99999 8.33345M9.99999 5.00012C10.9205 5.00012 11.6667 5.74631 11.6667 6.66679C11.6667 7.58726 10.9205 8.33345 9.99999 8.33345M4.99999 15.0001C5.92047 15.0001 6.66666 14.2539 6.66666 13.3335C6.66666 12.413 5.92047 11.6668 4.99999 11.6668M4.99999 15.0001C4.07952 15.0001 3.33333 14.2539 3.33333 13.3335C3.33333 12.413 4.07952 11.6668 4.99999 11.6668M4.99999 15.0001V16.6668M4.99999 11.6668V3.33345M9.99999 8.33345V16.6668M15 15.0001C15.9205 15.0001 16.6667 14.2539 16.6667 13.3335C16.6667 12.413 15.9205 11.6668 15 11.6668M15 15.0001C14.0795 15.0001 13.3333 14.2539 13.3333 13.3335C13.3333 12.413 14.0795 11.6668 15 11.6668M15 15.0001V16.6668M15 11.6668V3.33345"
         stroke="currentColor"
@@ -2067,13 +1254,7 @@ export const icons = [
   },
   {
     name: 'link',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5858 4.58579C13.3668 3.80474 14.6331 3.80474 15.4142 4.58579C16.1952 5.36684 16.1952 6.63316 15.4142 7.41421L12.4142 10.4142C11.6331 11.1953 10.3668 11.1953 9.58577 10.4142C9.19524 10.0237 8.56208 10.0237 8.17156 10.4142C7.78103 10.8047 7.78103 11.4379 8.17156 11.8284C9.73365 13.3905 12.2663 13.3905 13.8284 11.8284L16.8284 8.82843C18.3905 7.26633 18.3905 4.73367 16.8284 3.17157C15.2663 1.60948 12.7337 1.60948 11.1716 3.17157L9.67156 4.67157C9.28103 5.0621 9.28103 5.69526 9.67156 6.08579C10.0621 6.47631 10.6952 6.47631 11.0858 6.08579L12.5858 4.58579Z"
         fill="currentColor"
@@ -2083,13 +1264,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.5237 8.47643C10.2219 7.17468 8.11138 7.17468 6.80963 8.47643L3.4763 11.8098C2.17455 13.1115 2.17455 15.2221 3.4763 16.5238C4.77804 17.8256 6.88859 17.8256 8.19034 16.5238L9.10831 15.6058M8.47629 11.5238C9.77804 12.8256 11.8886 12.8256 13.1903 11.5238L16.5237 8.19048C17.8254 6.88873 17.8254 4.77818 16.5237 3.47643C15.2219 2.17469 13.1114 2.17469 11.8096 3.47643L10.8933 4.39277"
         stroke="currentColor"
@@ -2101,13 +1276,7 @@ export const icons = [
   },
   {
     name: 'mail-open',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2115,13 +1284,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 15.8335V8.3921C2.49998 7.83484 2.77849 7.31445 3.24215 7.00534L9.07548 3.11646C9.63532 2.74323 10.3647 2.74323 10.9245 3.11646L16.7578 7.00534C17.2215 7.31445 17.5 7.83484 17.5 8.3921V15.8335M2.49998 15.8335C2.49998 16.7539 3.24618 17.5001 4.16665 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335M2.49998 15.8335L8.12498 12.0835M17.5 15.8335L11.875 12.0835M2.49998 8.33346L8.12498 12.0835M17.5 8.33346L11.875 12.0835M11.875 12.0835L10.9245 12.7171C10.3647 13.0903 9.63532 13.0903 9.07548 12.7171L8.12498 12.0835"
         stroke="currentColor"
@@ -2133,29 +1296,14 @@ export const icons = [
   },
   {
     name: 'document-duplicate',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9 2C7.89543 2 7 2.89543 7 4V12C7 13.1046 7.89543 14 9 14H15C16.1046 14 17 13.1046 17 12V6.41421C17 5.88378 16.7893 5.37507 16.4142 5L14 2.58579C13.6249 2.21071 13.1162 2 12.5858 2H9Z"
         fill="currentColor"
       />
-      <path
-        d="M3 8C3 6.89543 3.89543 6 5 6V16H13C13 17.1046 12.1046 18 11 18H5C3.89543 18 3 17.1046 3 16V8Z"
-        fill="currentColor"
-      />
+      <path d="M3 8C3 6.89543 3.89543 6 5 6V16H13C13 17.1046 12.1046 18 11 18H5C3.89543 18 3 17.1046 3 16V8Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66665 5.83381V12.5005C6.66665 13.4209 7.41284 14.1671 8.33331 14.1671H13.3333M6.66665 5.83381V4.16714C6.66665 3.24666 7.41284 2.50047 8.33331 2.50047H12.1548C12.3758 2.50047 12.5878 2.58827 12.7441 2.74455L16.4226 6.42306C16.5788 6.57934 16.6666 6.7913 16.6666 7.01232V12.5005C16.6666 13.4209 15.9205 14.1671 15 14.1671H13.3333M6.66665 5.83381H4.99998C4.07951 5.83381 3.33331 6.58 3.33331 7.50047V15.8338C3.33331 16.7543 4.07951 17.5005 4.99998 17.5005H11.6666C12.5871 17.5005 13.3333 16.7543 13.3333 15.8338V14.1671"
         stroke="currentColor"
@@ -2167,17 +1315,8 @@ export const icons = [
   },
   {
     name: 'credit-card',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2185,13 +1324,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49997 8.33345H17.5M5.8333 12.5001H6.66664M9.99997 12.5001H10.8333M4.99997 15.8335H15C16.3807 15.8335 17.5 14.7142 17.5 13.3335V6.66679C17.5 5.28607 16.3807 4.16679 15 4.16679H4.99997C3.61926 4.16679 2.49997 5.28607 2.49997 6.66679V13.3335C2.49997 14.7142 3.61926 15.8335 4.99997 15.8335Z"
         stroke="currentColor"
@@ -2203,13 +1336,7 @@ export const icons = [
   },
   {
     name: 'lock-closed',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2217,13 +1344,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99997 12.5001V14.1668M4.99997 17.5001H15C15.9204 17.5001 16.6666 16.7539 16.6666 15.8335V10.8335C16.6666 9.91298 15.9204 9.16679 15 9.16679H4.99997C4.07949 9.16679 3.3333 9.91298 3.3333 10.8335V15.8335C3.3333 16.7539 4.07949 17.5001 4.99997 17.5001ZM13.3333 9.16679V5.83346C13.3333 3.99251 11.8409 2.50012 9.99997 2.50012C8.15902 2.50012 6.66663 3.99251 6.66663 5.83346V9.16679H13.3333Z"
         stroke="currentColor"
@@ -2234,13 +1355,7 @@ export const icons = [
   },
   {
     name: 'trending-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2248,13 +1363,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 5.83345H17.5M17.5 5.83345V12.5001M17.5 5.83345L10.8333 12.5001L7.49997 9.16679L2.49997 14.1668"
         stroke="currentColor"
@@ -2266,13 +1375,7 @@ export const icons = [
   },
   {
     name: 'trending-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2280,13 +1383,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 14.1668H17.5M17.5 14.1668V7.50012M17.5 14.1668L10.8333 7.50012L7.49997 10.8335L2.49997 5.83345"
         stroke="currentColor"
@@ -2298,13 +1395,7 @@ export const icons = [
   },
   {
     name: 'camera',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2312,13 +1403,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 7.50012C2.49998 6.57965 3.24618 5.83346 4.16665 5.83346H4.94134C5.4986 5.83346 6.01899 5.55496 6.3281 5.09129L7.00521 4.07562C7.31432 3.61196 7.8347 3.33346 8.39196 3.33346H11.608C12.1653 3.33346 12.6857 3.61196 12.9948 4.07562L13.6719 5.09129C13.981 5.55496 14.5014 5.83346 15.0586 5.83346H15.8333C16.7538 5.83346 17.5 6.57965 17.5 7.50012V15.0001C17.5 15.9206 16.7538 16.6668 15.8333 16.6668H4.16665C3.24618 16.6668 2.49998 15.9206 2.49998 15.0001V7.50012Z"
         stroke="currentColor"
@@ -2337,13 +1422,7 @@ export const icons = [
   },
   {
     name: 'filter',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2351,13 +1430,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 3.33345C2.5 2.87322 2.8731 2.50012 3.33333 2.50012H16.6667C17.1269 2.50012 17.5 2.87322 17.5 3.33346V5.48828C17.5 5.70929 17.4122 5.92125 17.2559 6.07753L11.9107 11.4227C11.7545 11.579 11.6667 11.791 11.6667 12.012V14.1668L8.33333 17.5001V12.012C8.33333 11.791 8.24554 11.579 8.08926 11.4227L2.74408 6.07753C2.5878 5.92125 2.5 5.70929 2.5 5.48828V3.33345Z"
         stroke="currentColor"
@@ -2369,13 +1442,7 @@ export const icons = [
   },
   {
     name: 'at-symbol',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2383,13 +1450,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 10.0001C13.3333 8.15917 11.8409 6.66679 10 6.66679C8.15905 6.66679 6.66667 8.15917 6.66667 10.0001C6.66667 11.8411 8.15905 13.3335 10 13.3335C11.8409 13.3335 13.3333 11.8411 13.3333 10.0001ZM13.3333 10.0001V11.2501C13.3333 12.4007 14.2661 13.3335 15.4167 13.3335C16.5673 13.3335 17.5 12.4007 17.5 11.2501V10.0001C17.5 5.85799 14.1421 2.50012 10 2.50012C5.85786 2.50012 2.5 5.85799 2.5 10.0001C2.5 14.1423 5.85786 17.5001 10 17.5001M13.75 16.4953C12.5667 17.1785 11.2746 17.5026 9.99997 17.5014"
         stroke="currentColor"
@@ -2401,13 +1462,7 @@ export const icons = [
   },
   {
     name: 'trash',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2415,13 +1470,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 5.83346L15.1106 15.9522C15.0483 16.8244 14.3225 17.5001 13.4481 17.5001H6.55187C5.67748 17.5001 4.95174 16.8244 4.88944 15.9522L4.16668 5.83346M8.33334 9.16679V14.1668M11.6667 9.16679V14.1668M12.5 5.83346V3.33346C12.5 2.87322 12.1269 2.50012 11.6667 2.50012H8.33334C7.87311 2.50012 7.50001 2.87322 7.50001 3.33346V5.83346M3.33334 5.83346H16.6667"
         stroke="currentColor"
@@ -2433,13 +1482,7 @@ export const icons = [
   },
   {
     name: 'information-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2447,13 +1490,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 13.3335H10V10.0001H9.16667M10 6.66679H10.0083M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2465,13 +1502,7 @@ export const icons = [
   },
   {
     name: 'arrow-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2479,13 +1510,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16666 8.33345L9.99999 2.50012M9.99999 2.50012L15.8333 8.33345M9.99999 2.50012V17.5001"
         stroke="currentColor"
@@ -2497,13 +1522,7 @@ export const icons = [
   },
   {
     name: 'arrow-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2511,13 +1530,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 4.16679L17.5 10.0001M17.5 10.0001L11.6666 15.8335M17.5 10.0001L2.49998 10.0001"
         stroke="currentColor"
@@ -2529,13 +1542,7 @@ export const icons = [
   },
   {
     name: 'arrow-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2543,13 +1550,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 11.6668L9.99999 17.5001M9.99999 17.5001L4.16666 11.6668M9.99999 17.5001L9.99999 2.50012"
         stroke="currentColor"
@@ -2561,13 +1562,7 @@ export const icons = [
   },
   {
     name: 'arrow-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2575,13 +1570,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.3333 15.8335L2.49997 10.0001M2.49997 10.0001L8.3333 4.16679M2.49997 10.0001L17.5 10.0001"
         stroke="currentColor"
@@ -2593,13 +1582,7 @@ export const icons = [
   },
   {
     name: 'arrow-circle-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2607,13 +1590,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 7.50012L13.3333 10.0001M13.3333 10.0001L10.8333 12.5001M13.3333 10.0001L6.66664 10.0001M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2625,13 +1602,7 @@ export const icons = [
   },
   {
     name: 'arrow-circle-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2639,13 +1610,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 10.8335L9.99997 13.3335M9.99997 13.3335L7.49997 10.8335M9.99997 13.3335L9.99997 6.66679M9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001Z"
         stroke="currentColor"
@@ -2657,13 +1622,7 @@ export const icons = [
   },
   {
     name: 'arrow-circle-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2671,13 +1630,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16664 12.5001L6.66664 10.0001M6.66664 10.0001L9.16664 7.50012M6.66664 10.0001L13.3333 10.0001M2.49997 10.0001C2.49997 5.85798 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001Z"
         stroke="currentColor"
@@ -2689,13 +1642,7 @@ export const icons = [
   },
   {
     name: 'arrow-circle-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2703,13 +1650,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 9.16679L10 6.66679M10 6.66679L12.5 9.16679M10 6.66679L10 13.3335M10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012Z"
         stroke="currentColor"
@@ -2721,37 +1662,16 @@ export const icons = [
   },
   {
     name: 'sort-ascending',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3 3C2.44772 3 2 3.44772 2 4C2 4.55228 2.44772 5 3 5H14C14.5523 5 15 4.55228 15 4C15 3.44772 14.5523 3 14 3H3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9H8C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7H3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H7C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11H3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3 3C2.44772 3 2 3.44772 2 4C2 4.55228 2.44772 5 3 5H14C14.5523 5 15 4.55228 15 4C15 3.44772 14.5523 3 14 3H3Z" fill="currentColor" />
+      <path d="M3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9H8C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7H3Z" fill="currentColor" />
+      <path d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H7C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11H3Z" fill="currentColor" />
       <path
         d="M13 16C13 16.5523 13.4477 17 14 17C14.5523 17 15 16.5523 15 16L15 10.4142L16.2929 11.7071C16.6834 12.0976 17.3166 12.0976 17.7071 11.7071C18.0976 11.3166 18.0976 10.6834 17.7071 10.2929L14.7071 7.29289C14.5196 7.10536 14.2652 7 14 7C13.7348 7 13.4804 7.10536 13.2929 7.29289L10.2929 10.2929C9.90237 10.6834 9.90237 11.3166 10.2929 11.7071C10.6834 12.0976 11.3166 12.0976 11.7071 11.7071L13 10.4142L13 16Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 3.33345H13.3333M2.5 6.66679H10M2.5 10.0001H7.5M10.8333 10.0001L14.1667 6.66679M14.1667 6.66679L17.5 10.0001M14.1667 6.66679V16.6668"
         stroke="currentColor"
@@ -2763,37 +1683,16 @@ export const icons = [
   },
   {
     name: 'sort-descending',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3 3C2.44772 3 2 3.44772 2 4C2 4.55228 2.44772 5 3 5H14C14.5523 5 15 4.55228 15 4C15 3.44772 14.5523 3 14 3H3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9H10C10.5523 9 11 8.55228 11 8C11 7.44772 10.5523 7 10 7H3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H7C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11H3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3 3C2.44772 3 2 3.44772 2 4C2 4.55228 2.44772 5 3 5H14C14.5523 5 15 4.55228 15 4C15 3.44772 14.5523 3 14 3H3Z" fill="currentColor" />
+      <path d="M3 7C2.44772 7 2 7.44772 2 8C2 8.55228 2.44772 9 3 9H10C10.5523 9 11 8.55228 11 8C11 7.44772 10.5523 7 10 7H3Z" fill="currentColor" />
+      <path d="M3 11C2.44772 11 2 11.4477 2 12C2 12.5523 2.44772 13 3 13H7C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11H3Z" fill="currentColor" />
       <path
         d="M15 8C15 7.44772 14.5523 7 14 7C13.4477 7 13 7.44771 13 8L13 13.5858L11.7071 12.2929C11.3166 11.9024 10.6834 11.9024 10.2929 12.2929C9.90237 12.6834 9.90237 13.3166 10.2929 13.7071L13.2929 16.7071C13.4804 16.8946 13.7348 17 14 17C14.2652 17 14.5196 16.8946 14.7071 16.7071L17.7071 13.7071C18.0976 13.3166 18.0976 12.6834 17.7071 12.2929C17.3166 11.9024 16.6834 11.9024 16.2929 12.2929L15 13.5858L15 8Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 3.33345H13.3333M2.5 6.66679H10M2.5 10.0001H7.5M10.8333 10.0001L14.1667 6.66679M14.1667 6.66679L17.5 10.0001M14.1667 6.66679V16.6668"
         stroke="currentColor"
@@ -2805,13 +1704,7 @@ export const icons = [
   },
   {
     name: 'x-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2819,13 +1712,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33333 11.6668L10 10.0001M10 10.0001L11.6667 8.33345M10 10.0001L8.33333 8.33345M10 10.0001L11.6667 11.6668M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2837,13 +1724,7 @@ export const icons = [
   },
   {
     name: 'check-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2851,13 +1732,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49998 10.0001L9.16665 11.6668L12.5 8.33345M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2869,13 +1744,7 @@ export const icons = [
   },
   {
     name: 'exclamation-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2883,13 +1752,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99998 6.66679V10.0001M9.99998 13.3335H10.0083M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2901,13 +1764,7 @@ export const icons = [
   },
   {
     name: 'plus-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2915,13 +1772,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99998 7.50012V10.0001M9.99998 10.0001V12.5001M9.99998 10.0001H12.5M9.99998 10.0001H7.49998M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2933,13 +1784,7 @@ export const icons = [
   },
   {
     name: 'minus-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2947,13 +1792,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 10.0001H7.49997M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2965,13 +1804,7 @@ export const icons = [
   },
   {
     name: 'user-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -2979,13 +1812,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.2675 14.8366C5.96052 13.8796 7.91647 13.3335 9.99997 13.3335C12.0835 13.3335 14.0394 13.8796 15.7324 14.8366M12.5 8.33345C12.5 9.71417 11.3807 10.8335 9.99997 10.8335C8.61926 10.8335 7.49997 9.71417 7.49997 8.33345C7.49997 6.95274 8.61926 5.83346 9.99997 5.83346C11.3807 5.83346 12.5 6.95274 12.5 8.33345ZM17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85783 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85783 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -2997,13 +1824,7 @@ export const icons = [
   },
   {
     name: 'zoom-in',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 8C5 7.44772 5.44772 7 6 7H7V6C7 5.44772 7.44772 5 8 5C8.55228 5 9 5.44772 9 6V7H10C10.5523 7 11 7.44772 11 8C11 8.55228 10.5523 9 10 9H9V10C9 10.5523 8.55228 11 8 11C7.44771 11 7 10.5523 7 10V9H6C5.44772 9 5 8.55228 5 8Z"
         fill="currentColor"
@@ -3015,13 +1836,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 17.5001L12.5 12.5001M8.3333 5.83346V8.33345M8.3333 8.33345V10.8335M8.3333 8.33345H10.8333M8.3333 8.33345H5.8333M14.1666 8.33345C14.1666 11.5551 11.555 14.1668 8.3333 14.1668C5.11164 14.1668 2.49997 11.5551 2.49997 8.33345C2.49997 5.11179 5.11164 2.50012 8.3333 2.50012C11.555 2.50012 14.1666 5.11179 14.1666 8.33345Z"
         stroke="currentColor"
@@ -3033,13 +1848,7 @@ export const icons = [
   },
   {
     name: 'zoom-out',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3053,13 +1862,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 17.5001L12.5 12.5001M10.8333 8.33345H5.8333M14.1666 8.33345C14.1666 11.5551 11.555 14.1668 8.3333 14.1668C5.11164 14.1668 2.49997 11.5551 2.49997 8.33345C2.49997 5.11179 5.11164 2.50012 8.3333 2.50012C11.555 2.50012 14.1666 5.11179 14.1666 8.33345Z"
         stroke="currentColor"
@@ -3071,13 +1874,7 @@ export const icons = [
   },
   {
     name: 'search',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3085,13 +1882,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 17.5001L12.5 12.5001M14.1667 8.33345C14.1667 11.5551 11.555 14.1668 8.33333 14.1668C5.11167 14.1668 2.5 11.5551 2.5 8.33345C2.5 5.11179 5.11167 2.50012 8.33333 2.50012C11.555 2.50012 14.1667 5.11179 14.1667 8.33345Z"
         stroke="currentColor"
@@ -3103,33 +1894,15 @@ export const icons = [
   },
   {
     name: 'user-add',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M8 9C9.65685 9 11 7.65685 11 6C11 4.34315 9.65685 3 8 3C6.34315 3 5 4.34315 5 6C5 7.65685 6.34315 9 8 9Z"
-        fill="currentColor"
-      />
-      <path
-        d="M8 11C11.3137 11 14 13.6863 14 17H2C2 13.6863 4.68629 11 8 11Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M8 9C9.65685 9 11 7.65685 11 6C11 4.34315 9.65685 3 8 3C6.34315 3 5 4.34315 5 6C5 7.65685 6.34315 9 8 9Z" fill="currentColor" />
+      <path d="M8 11C11.3137 11 14 13.6863 14 17H2C2 13.6863 4.68629 11 8 11Z" fill="currentColor" />
       <path
         d="M16 7C16 6.44772 15.5523 6 15 6C14.4477 6 14 6.44772 14 7V8H13C12.4477 8 12 8.44771 12 9C12 9.55228 12.4477 10 13 10H14V11C14 11.5523 14.4477 12 15 12C15.5523 12 16 11.5523 16 11V10H17C17.5523 10 18 9.55228 18 9C18 8.44772 17.5523 8 17 8H16V7Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15 7.50012V10.0001M15 10.0001V12.5001M15 10.0001H17.5M15 10.0001H12.5M10.8333 5.83346C10.8333 7.6744 9.34095 9.16679 7.5 9.16679C5.65905 9.16679 4.16667 7.6744 4.16667 5.83346C4.16667 3.99251 5.65905 2.50012 7.5 2.50012C9.34095 2.50012 10.8333 3.99251 10.8333 5.83346ZM2.5 16.6668C2.5 13.9054 4.73858 11.6668 7.5 11.6668C10.2614 11.6668 12.5 13.9054 12.5 16.6668V17.5001H2.5V16.6668Z"
         stroke="currentColor"
@@ -3141,33 +1914,12 @@ export const icons = [
   },
   {
     name: 'dots-horizontal',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M6 10C6 11.1046 5.10457 12 4 12C2.89543 12 2 11.1046 2 10C2 8.89543 2.89543 8 4 8C5.10457 8 6 8.89543 6 10Z"
-        fill="currentColor"
-      />
-      <path
-        d="M12 10C12 11.1046 11.1046 12 10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10Z"
-        fill="currentColor"
-      />
-      <path
-        d="M16 12C17.1046 12 18 11.1046 18 10C18 8.89543 17.1046 8 16 8C14.8954 8 14 8.89543 14 10C14 11.1046 14.8954 12 16 12Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M6 10C6 11.1046 5.10457 12 4 12C2.89543 12 2 11.1046 2 10C2 8.89543 2.89543 8 4 8C5.10457 8 6 8.89543 6 10Z" fill="currentColor" />
+      <path d="M12 10C12 11.1046 11.1046 12 10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10Z" fill="currentColor" />
+      <path d="M16 12C17.1046 12 18 11.1046 18 10C18 8.89543 17.1046 8 16 8C14.8954 8 14 8.89543 14 10C14 11.1046 14.8954 12 16 12Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16668 10.0001H4.17501M10 10.0001H10.0083M15.8333 10.0001H15.8417M5.00001 10.0001C5.00001 10.4604 4.62691 10.8335 4.16668 10.8335C3.70644 10.8335 3.33334 10.4604 3.33334 10.0001C3.33334 9.53988 3.70644 9.16679 4.16668 9.16679C4.62691 9.16679 5.00001 9.53988 5.00001 10.0001ZM10.8333 10.0001C10.8333 10.4604 10.4602 10.8335 10 10.8335C9.53977 10.8335 9.16668 10.4604 9.16668 10.0001C9.16668 9.53988 9.53977 9.16679 10 9.16679C10.4602 9.16679 10.8333 9.53988 10.8333 10.0001ZM16.6667 10.0001C16.6667 10.4604 16.2936 10.8335 15.8333 10.8335C15.3731 10.8335 15 10.4604 15 10.0001C15 9.53988 15.3731 9.16679 15.8333 9.16679C16.2936 9.16679 16.6667 9.53988 16.6667 10.0001Z"
         stroke="currentColor"
@@ -3179,33 +1931,12 @@ export const icons = [
   },
   {
     name: 'dots-vertical',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z"
-        fill="currentColor"
-      />
-      <path
-        d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M10 6C8.89543 6 8 5.10457 8 4C8 2.89543 8.89543 2 10 2C11.1046 2 12 2.89543 12 4C12 5.10457 11.1046 6 10 6Z" fill="currentColor" />
+      <path d="M10 12C8.89543 12 8 11.1046 8 10C8 8.89543 8.89543 8 10 8C11.1046 8 12 8.89543 12 10C12 11.1046 11.1046 12 10 12Z" fill="currentColor" />
+      <path d="M10 18C8.89543 18 8 17.1046 8 16C8 14.8954 8.89543 14 10 14C11.1046 14 12 14.8954 12 16C12 17.1046 11.1046 18 10 18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99999 4.16679L9.99999 4.17512M9.99999 10.0001L9.99999 10.0085M9.99999 15.8335L9.99999 15.8418M9.99999 5.00012C9.53976 5.00012 9.16666 4.62703 9.16666 4.16679C9.16666 3.70655 9.53976 3.33346 9.99999 3.33346C10.4602 3.33346 10.8333 3.70655 10.8333 4.16679C10.8333 4.62703 10.4602 5.00012 9.99999 5.00012ZM9.99999 10.8335C9.53976 10.8335 9.16666 10.4604 9.16666 10.0001C9.16666 9.53989 9.53976 9.16679 9.99999 9.16679C10.4602 9.16679 10.8333 9.53989 10.8333 10.0001C10.8333 10.4604 10.4602 10.8335 9.99999 10.8335ZM9.99999 16.6668C9.53976 16.6668 9.16666 16.2937 9.16666 15.8335C9.16666 15.3732 9.53976 15.0001 9.99999 15.0001C10.4602 15.0001 10.8333 15.3732 10.8333 15.8335C10.8333 16.2937 10.4602 16.6668 9.99999 16.6668Z"
         stroke="currentColor"
@@ -3217,13 +1948,7 @@ export const icons = [
   },
   {
     name: 'upload',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3231,13 +1956,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 13.3335L3.33331 14.1668C3.33331 15.5475 4.4526 16.6668 5.83331 16.6668L14.1666 16.6668C15.5474 16.6668 16.6666 15.5475 16.6666 14.1668L16.6666 13.3335M13.3333 6.66679L9.99998 3.33345M9.99998 3.33345L6.66665 6.66679M9.99998 3.33345L9.99998 13.3335"
         stroke="currentColor"
@@ -3249,13 +1968,7 @@ export const icons = [
   },
   {
     name: 'download',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3263,13 +1976,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 13.3335L3.33331 14.1668C3.33331 15.5475 4.4526 16.6668 5.83331 16.6668L14.1666 16.6668C15.5474 16.6668 16.6666 15.5475 16.6666 14.1668L16.6666 13.3335M13.3333 10.0001L9.99998 13.3335M9.99998 13.3335L6.66665 10.0001M9.99998 13.3335L9.99998 3.33345"
         stroke="currentColor"
@@ -3281,13 +1988,7 @@ export const icons = [
   },
   {
     name: 'view-list',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3295,13 +1996,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 5.00012H16.6666M3.33331 8.33346H16.6666M3.33331 11.6668H16.6666M3.33331 15.0001H16.6666"
         stroke="currentColor"
@@ -3313,33 +2008,12 @@ export const icons = [
   },
   {
     name: 'view-boards',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 4C2 3.44772 2.44772 3 3 3H5C5.55228 3 6 3.44772 6 4V16C6 16.5523 5.55228 17 5 17H3C2.44772 17 2 16.5523 2 16V4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M8 4C8 3.44772 8.44772 3 9 3H11C11.5523 3 12 3.44772 12 4V16C12 16.5523 11.5523 17 11 17H9C8.44772 17 8 16.5523 8 16V4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M15 3C14.4477 3 14 3.44772 14 4V16C14 16.5523 14.4477 17 15 17H17C17.5523 17 18 16.5523 18 16V4C18 3.44772 17.5523 3 17 3H15Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 4C2 3.44772 2.44772 3 3 3H5C5.55228 3 6 3.44772 6 4V16C6 16.5523 5.55228 17 5 17H3C2.44772 17 2 16.5523 2 16V4Z" fill="currentColor" />
+      <path d="M8 4C8 3.44772 8.44772 3 9 3H11C11.5523 3 12 3.44772 12 4V16C12 16.5523 11.5523 17 11 17H9C8.44772 17 8 16.5523 8 16V4Z" fill="currentColor" />
+      <path d="M15 3C14.4477 3 14 3.44772 14 4V16C14 16.5523 14.4477 17 15 17H17C17.5523 17 18 16.5523 18 16V4C18 3.44772 17.5523 3 17 3H15Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49997 14.1668V5.83345M7.49997 14.1668C7.49997 15.0873 6.75378 15.8335 5.8333 15.8335H4.16664C3.24616 15.8335 2.49997 15.0873 2.49997 14.1668V5.83345C2.49997 4.91298 3.24616 4.16679 4.16664 4.16679H5.8333C6.75378 4.16679 7.49997 4.91298 7.49997 5.83345M7.49997 14.1668C7.49997 15.0873 8.24616 15.8335 9.16664 15.8335H10.8333C11.7538 15.8335 12.5 15.0873 12.5 14.1668M7.49997 5.83345C7.49997 4.91298 8.24616 4.16679 9.16664 4.16679H10.8333C11.7538 4.16679 12.5 4.91298 12.5 5.83345M12.5 14.1668V5.83345M12.5 14.1668C12.5 15.0873 13.2462 15.8335 14.1666 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V5.83345C17.5 4.91298 16.7538 4.16679 15.8333 4.16679H14.1666C13.2462 4.16679 12.5 4.91298 12.5 5.83345"
         stroke="currentColor"
@@ -3351,13 +2025,7 @@ export const icons = [
   },
   {
     name: 'paper-clip',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3365,13 +2033,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.6429 5.83346L7.15479 11.3216C6.50392 11.9725 6.50392 13.0278 7.15479 13.6786C7.80566 14.3295 8.86094 14.3295 9.51181 13.6786L14.857 8.19048C16.1587 6.88873 16.1587 4.77818 14.857 3.47643C13.5552 2.17469 11.4447 2.17469 10.1429 3.47643L4.79777 8.96459C2.84515 10.9172 2.84515 14.083 4.79777 16.0357C6.75039 17.9883 9.91621 17.9883 11.8688 16.0357L17.0833 10.8335"
         stroke="currentColor"
@@ -3383,13 +2045,7 @@ export const icons = [
   },
   {
     name: 'emoji-happy',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3397,13 +2053,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.357 12.3571C11.0552 13.6589 8.9447 13.6589 7.64295 12.3571M7.49997 8.33345H7.5083M12.5 8.33345H12.5083M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85784 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85784 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3415,13 +2065,7 @@ export const icons = [
   },
   {
     name: 'emoji-sad',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3429,13 +2073,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.643 13.4765C8.94474 12.1747 11.0553 12.1747 12.357 13.4765M7.49997 8.33345H7.5083M12.5 8.33345H12.5083M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99997 17.5001C5.85784 17.5001 2.49997 14.1423 2.49997 10.0001C2.49997 5.85799 5.85784 2.50012 9.99997 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3447,13 +2085,7 @@ export const icons = [
   },
   {
     name: 'printer',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3461,13 +2093,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 14.1668H15.8333C16.7538 14.1668 17.5 13.4206 17.5 12.5001V9.16679C17.5 8.24631 16.7538 7.50012 15.8333 7.50012H4.16667C3.24619 7.50012 2.5 8.24631 2.5 9.16679V12.5001C2.5 13.4206 3.24619 14.1668 4.16667 14.1668H5.83333M7.5 17.5001H12.5C13.4205 17.5001 14.1667 16.7539 14.1667 15.8335V12.5001C14.1667 11.5796 13.4205 10.8335 12.5 10.8335H7.5C6.57953 10.8335 5.83333 11.5796 5.83333 12.5001V15.8335C5.83333 16.7539 6.57953 17.5001 7.5 17.5001ZM14.1667 7.50012V4.16679C14.1667 3.24631 13.4205 2.50012 12.5 2.50012H7.5C6.57953 2.50012 5.83333 3.24631 5.83333 4.16679V7.50012H14.1667Z"
         stroke="currentColor"
@@ -3479,13 +2105,7 @@ export const icons = [
   },
   {
     name: 'currency-dollar',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.43338 7.41784C8.58818 7.31464 8.77939 7.2224 9 7.15101L9.00001 8.84899C8.77939 8.7776 8.58818 8.68536 8.43338 8.58216C8.06927 8.33942 8 8.1139 8 8C8 7.8861 8.06927 7.66058 8.43338 7.41784Z"
         fill="currentColor"
@@ -3501,13 +2121,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.5361 8.04627C11.8378 8.39389 12.3641 8.43117 12.7117 8.12954C13.0593 7.82791 13.0966 7.30159 12.795 6.95397L11.5361 8.04627ZM8.46389 11.954C8.16226 11.6064 7.63594 11.5691 7.28832 11.8707C6.94071 12.1723 6.90343 12.6987 7.20505 13.0463L8.46389 11.954ZM10.8333 5.83346C10.8333 5.37322 10.4602 5.00012 10 5.00012C9.53976 5.00012 9.16667 5.37322 9.16667 5.83346H10.8333ZM9.16667 14.1668C9.16666 14.627 9.53974 15.0001 9.99998 15.0001C10.4602 15.0001 10.8333 14.627 10.8333 14.1668L9.16667 14.1668ZM16.6667 10.0001C16.6667 13.682 13.6819 16.6668 10 16.6668V18.3335C14.6024 18.3335 18.3333 14.6025 18.3333 10.0001H16.6667ZM10 16.6668C6.3181 16.6668 3.33333 13.682 3.33333 10.0001H1.66667C1.66667 14.6025 5.39763 18.3335 10 18.3335V16.6668ZM3.33333 10.0001C3.33333 6.31822 6.3181 3.33346 10 3.33346V1.66679C5.39763 1.66679 1.66667 5.39775 1.66667 10.0001H3.33333ZM10 3.33346C13.6819 3.33346 16.6667 6.31822 16.6667 10.0001H18.3333C18.3333 5.39775 14.6024 1.66679 10 1.66679V3.33346ZM10 9.16679C9.45122 9.16679 8.99208 9.01699 8.69448 8.81859C8.39106 8.61631 8.33333 8.42837 8.33333 8.33345H6.66667C6.66667 9.15901 7.16859 9.80441 7.76998 10.2053C8.3772 10.6102 9.16807 10.8335 10 10.8335V9.16679ZM8.33333 8.33345C8.33333 8.23854 8.39106 8.0506 8.69448 7.84832C8.99208 7.64992 9.45122 7.50012 10 7.50012V5.83346C9.16807 5.83346 8.3772 6.05675 7.76998 6.46157C7.16859 6.8625 6.66667 7.5079 6.66667 8.33345H8.33333ZM10 7.50012C10.7531 7.50012 11.3025 7.77705 11.5361 8.04627L12.795 6.95397C12.164 6.22686 11.0976 5.83346 10 5.83346V7.50012ZM10 10.8335C10.5488 10.8335 11.0079 10.9833 11.3055 11.1817C11.609 11.3839 11.6667 11.5719 11.6667 11.6668H13.3333C13.3333 10.8412 12.8314 10.1958 12.23 9.7949C11.6228 9.39009 10.8319 9.16679 10 9.16679V10.8335ZM9.16667 5.83346V6.66679H10.8333V5.83346H9.16667ZM9.16668 13.3334L9.16667 14.1668L10.8333 14.1668L10.8334 13.3335L9.16668 13.3334ZM10 12.5001C9.24687 12.5001 8.69749 12.2232 8.46389 11.954L7.20505 13.0463C7.83597 13.7734 8.90247 14.1668 10 14.1668L10 12.5001ZM11.6667 11.6668C11.6667 11.7617 11.609 11.9496 11.3055 12.1519C11.0079 12.3503 10.5488 12.5001 10 12.5001V14.1668C10.8319 14.1668 11.6228 13.9435 12.23 13.5387C12.8314 13.1377 13.3333 12.4923 13.3333 11.6668H11.6667ZM9.16667 6.66679L9.16668 13.3335L10.8334 13.3335L10.8333 6.66679L9.16667 6.66679Z"
         fill="currentColor"
@@ -3516,13 +2130,7 @@ export const icons = [
   },
   {
     name: 'currency-yen',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3530,13 +2138,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 6.66679L10 10.8335M10 10.8335L12.5 6.66679M10 10.8335V14.1668M7.5 10.0001H12.5M7.5 12.5001H12.5M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3548,13 +2150,7 @@ export const icons = [
   },
   {
     name: 'currency-euro',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3562,13 +2158,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.7678 12.9464C10.7915 14.5736 9.20854 14.5736 8.23223 12.9464C7.25592 11.3192 7.25592 8.68103 8.23223 7.05384C9.20854 5.42666 10.7915 5.42666 11.7678 7.05384M6.66667 8.75012H10M6.66667 11.2501H10M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3580,13 +2170,7 @@ export const icons = [
   },
   {
     name: 'currency-pound',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3594,13 +2178,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 7.50012C12.5 6.57965 11.7538 5.83346 10.8333 5.83346C9.91284 5.83346 9.16665 6.57965 9.16665 7.50012V11.6668C9.16665 12.5873 8.42046 13.3335 7.49998 13.3335H12.5M7.49998 10.0001H10.8333M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3612,13 +2190,7 @@ export const icons = [
   },
   {
     name: 'currency-rupee',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3626,13 +2198,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49998 6.66679H12.5M8.33332 6.66679C9.71403 6.66679 10.8333 7.78608 10.8333 9.16679C10.8333 10.5475 9.71403 11.6668 8.33332 11.6668H7.49998L9.99998 14.1668M7.49998 9.16679H12.5M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3644,13 +2210,7 @@ export const icons = [
   },
   {
     name: 'chevron-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3658,31 +2218,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M15.8333 7.50012L9.99999 13.3335L4.16666 7.50012"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M15.8333 7.50012L9.99999 13.3335L4.16666 7.50012" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'chevron-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3690,31 +2232,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7.49997 4.16678L13.3333 10.0001L7.49997 15.8335"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7.49997 4.16678L13.3333 10.0001L7.49997 15.8335" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'chevron-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3722,31 +2246,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M4.16663 12.5001L9.99997 6.66679L15.8333 12.5001"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M4.16663 12.5001L9.99997 6.66679L15.8333 12.5001" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'chevron-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3754,31 +2260,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M12.5 15.8335L6.66664 10.0001L12.5 4.16679"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M12.5 15.8335L6.66664 10.0001L12.5 4.16679" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'selector',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3786,13 +2274,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66663 7.50013L9.99996 4.16679L13.3333 7.50013M13.3333 12.5001L9.99996 15.8335L6.66663 12.5001"
         stroke="currentColor"
@@ -3804,13 +2286,7 @@ export const icons = [
   },
   {
     name: 'chat',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3818,13 +2294,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 10.0001H6.675M10 10.0001H10.0083M13.3333 10.0001H13.3417M17.5 10.0001C17.5 13.682 14.1421 16.6668 10 16.6668C8.71728 16.6668 7.50976 16.3805 6.45389 15.876L2.5 16.6668L3.66249 13.5668C2.9263 12.5354 2.5 11.312 2.5 10.0001C2.5 6.31822 5.85786 3.33345 10 3.33345C14.1421 3.33345 17.5 6.31822 17.5 10.0001Z"
         stroke="currentColor"
@@ -3836,13 +2306,7 @@ export const icons = [
   },
   {
     name: 'receipt-refund',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3850,13 +2314,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 12.5001V11.6668C13.3333 9.82584 11.8409 8.33345 10 8.33345H6.66667M6.66667 8.33345L9.16666 10.8335M6.66667 8.33345L9.16666 5.83346M16.6667 17.5001V4.16679C16.6667 3.24631 15.9205 2.50012 15 2.50012H5C4.07952 2.50012 3.33333 3.24631 3.33333 4.16679V17.5001L6.66667 15.8335L10 17.5001L13.3333 15.8335L16.6667 17.5001Z"
         stroke="currentColor"
@@ -3868,25 +2326,13 @@ export const icons = [
   },
   {
     name: 'ticket',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2 6C2 4.89543 2.89543 4 4 4H16C17.1046 4 18 4.89543 18 6V8C16.8954 8 16 8.89543 16 10C16 11.1046 16.8954 12 18 12V14C18 15.1046 17.1046 16 16 16H4C2.89543 16 2 15.1046 2 14V12C3.10457 12 4 11.1046 4 10C4 8.89543 3.10457 8 2 8V6Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 4.16679V5.83346M12.5 9.16679V10.8335M12.5 14.1668V15.8335M4.16667 4.16679C3.24619 4.16679 2.5 4.91299 2.5 5.83346V8.33346C3.42047 8.33346 4.16667 9.07965 4.16667 10.0001C4.16667 10.9206 3.42047 11.6668 2.5 11.6668V14.1668C2.5 15.0873 3.24619 15.8335 4.16667 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V11.6668C16.5795 11.6668 15.8333 10.9206 15.8333 10.0001C15.8333 9.07965 16.5795 8.33346 17.5 8.33346V5.83346C17.5 4.91299 16.7538 4.16679 15.8333 4.16679H4.16667Z"
         stroke="currentColor"
@@ -3898,25 +2344,13 @@ export const icons = [
   },
   {
     name: 'lock-open',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 2C7.23858 2 5 4.23858 5 7V9C3.89543 9 3 9.89543 3 11V16C3 17.1046 3.89543 18 5 18H15C16.1046 18 17 17.1046 17 16V11C17 9.89543 16.1046 9 15 9H7V7C7 5.34315 8.34315 4 10 4C11.3965 4 12.5725 4.95512 12.9055 6.24926C13.0432 6.78411 13.5884 7.1061 14.1232 6.96844C14.6581 6.83078 14.9801 6.28559 14.8424 5.75074C14.2874 3.59442 12.3312 2 10 2Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 9.16679V5.83346C6.66667 3.99251 8.15905 2.50012 10 2.50012C11.8409 2.50012 13.3333 3.99251 13.3333 5.83346M10 12.5001V14.1668M5 17.5001H15C15.9205 17.5001 16.6667 16.7539 16.6667 15.8335V10.8335C16.6667 9.91298 15.9205 9.16679 15 9.16679H5C4.07952 9.16679 3.33333 9.91298 3.33333 10.8335V15.8335C3.33333 16.7539 4.07952 17.5001 5 17.5001Z"
         stroke="currentColor"
@@ -3927,13 +2361,7 @@ export const icons = [
   },
   {
     name: 'dots-circle-horizontal',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3941,13 +2369,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66665 10.0001H6.67498M9.99998 10.0001H10.0083M13.3333 10.0001H13.3417M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -3959,13 +2381,7 @@ export const icons = [
   },
   {
     name: 'hashtag',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -3973,13 +2389,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83332 16.6668L9.16665 3.33345M10.8333 16.6668L14.1667 3.33345M4.99999 7.50012H16.6667M3.33332 12.5001H15"
         stroke="currentColor"
@@ -3991,13 +2401,7 @@ export const icons = [
   },
   {
     name: 'qrcode',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4016,42 +2420,21 @@ export const icons = [
         d="M13 3C12.4477 3 12 3.44772 12 4V7C12 7.55228 12.4477 8 13 8H16C16.5523 8 17 7.55228 17 7V4C17 3.44772 16.5523 3 16 3H13ZM14 5V6H15V5H14Z"
         fill="currentColor"
       />
-      <path
-        d="M11 4C11 3.44772 10.5523 3 10 3C9.44772 3 9 3.44772 9 4V5C9 5.55228 9.44772 6 10 6C10.5523 6 11 5.55228 11 5V4Z"
-        fill="currentColor"
-      />
+      <path d="M11 4C11 3.44772 10.5523 3 10 3C9.44772 3 9 3.44772 9 4V5C9 5.55228 9.44772 6 10 6C10.5523 6 11 5.55228 11 5V4Z" fill="currentColor" />
       <path
         d="M10 7C10.5523 7 11 7.44772 11 8V9H13C13.5523 9 14 9.44772 14 10C14 10.5523 13.5523 11 13 11H10C9.44772 11 9 10.5523 9 10V8C9 7.44772 9.44772 7 10 7Z"
         fill="currentColor"
       />
-      <path
-        d="M16 9C15.4477 9 15 9.44772 15 10C15 10.5523 15.4477 11 16 11C16.5523 11 17 10.5523 17 10C17 9.44772 16.5523 9 16 9Z"
-        fill="currentColor"
-      />
+      <path d="M16 9C15.4477 9 15 9.44772 15 10C15 10.5523 15.4477 11 16 11C16.5523 11 17 10.5523 17 10C17 9.44772 16.5523 9 16 9Z" fill="currentColor" />
       <path
         d="M9 13C9 12.4477 9.44772 12 10 12H11C11.5523 12 12 12.4477 12 13C12 13.5523 11.5523 14 11 14V16C11 16.5523 10.5523 17 10 17C9.44772 17 9 16.5523 9 16V13Z"
         fill="currentColor"
       />
-      <path
-        d="M7 11C7.55228 11 8 10.5523 8 10C8 9.44772 7.55228 9 7 9H4C3.44772 9 3 9.44771 3 10C3 10.5523 3.44772 11 4 11H7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M17 13C17 13.5523 16.5523 14 16 14H14C13.4477 14 13 13.5523 13 13C13 12.4477 13.4477 12 14 12H16C16.5523 12 17 12.4477 17 13Z"
-        fill="currentColor"
-      />
-      <path
-        d="M16 17C16.5523 17 17 16.5523 17 16C17 15.4477 16.5523 15 16 15H13C12.4477 15 12 15.4477 12 16C12 16.5523 12.4477 17 13 17H16Z"
-        fill="currentColor"
-      />
+      <path d="M7 11C7.55228 11 8 10.5523 8 10C8 9.44772 7.55228 9 7 9H4C3.44772 9 3 9.44771 3 10C3 10.5523 3.44772 11 4 11H7Z" fill="currentColor" />
+      <path d="M17 13C17 13.5523 16.5523 14 16 14H14C13.4477 14 13 13.5523 13 13C13 12.4477 13.4477 12 14 12H16C16.5523 12 17 12.4477 17 13Z" fill="currentColor" />
+      <path d="M16 17C16.5523 17 17 16.5523 17 16C17 15.4477 16.5523 15 16 15H13C12.4477 15 12 15.4477 12 16C12 16.5523 12.4477 17 13 17H16Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 3.33345C10.8333 2.87321 10.4602 2.50012 9.99998 2.50012C9.53974 2.50012 9.16665 2.87321 9.16665 3.33345H10.8333ZM9.16665 4.16678C9.16665 4.62702 9.53974 5.00012 9.99998 5.00012C10.4602 5.00012 10.8333 4.62702 10.8333 4.16678H9.16665ZM15 12.5001C14.5397 12.5001 14.1666 12.8732 14.1666 13.3334C14.1666 13.7937 14.5397 14.1668 15 14.1668V12.5001ZM16.6666 14.1668C17.1269 14.1668 17.5 13.7937 17.5 13.3334C17.5 12.8732 17.1269 12.5001 16.6666 12.5001V14.1668ZM9.99998 13.3334V12.5001C9.53974 12.5001 9.16665 12.8732 9.16665 13.3334H9.99998ZM11.6666 14.1668C12.1269 14.1668 12.5 13.7937 12.5 13.3334C12.5 12.8732 12.1269 12.5001 11.6666 12.5001V14.1668ZM9.16665 16.6668C9.16665 17.127 9.53974 17.5001 9.99998 17.5001C10.4602 17.5001 10.8333 17.127 10.8333 16.6668H9.16665ZM10.8333 7.50012C10.8333 7.03988 10.4602 6.66678 9.99998 6.66678C9.53974 6.66678 9.16665 7.03988 9.16665 7.50012H10.8333ZM9.99998 10.0001H9.16665C9.16665 10.4604 9.53974 10.8334 9.99998 10.8334V10.0001ZM13.3333 15.8334C12.8731 15.8334 12.5 16.2065 12.5 16.6668C12.5 17.127 12.8731 17.5001 13.3333 17.5001V15.8334ZM16.6666 17.5001C17.1269 17.5001 17.5 17.127 17.5 16.6668C17.5 16.2065 17.1269 15.8334 16.6666 15.8334V17.5001ZM3.33331 9.16678C2.87308 9.16678 2.49998 9.53988 2.49998 10.0001C2.49998 10.4604 2.87308 10.8334 3.33331 10.8334V9.16678ZM6.66665 10.8334C7.12688 10.8334 7.49998 10.4604 7.49998 10.0001C7.49998 9.53988 7.12688 9.16678 6.66665 9.16678V10.8334ZM10.0083 10.8334C10.4685 10.8334 10.8416 10.4604 10.8416 10.0001C10.8416 9.53988 10.4685 9.16678 10.0083 9.16678V10.8334ZM13.3416 10.8334C13.8019 10.8334 14.175 10.4604 14.175 10.0001C14.175 9.53988 13.8019 9.16678 13.3416 9.16678V10.8334ZM16.6666 9.16678C16.2064 9.16678 15.8333 9.53988 15.8333 10.0001C15.8333 10.4604 16.2064 10.8334 16.6666 10.8334V9.16678ZM16.675 10.8334C17.1352 10.8334 17.5083 10.4604 17.5083 10.0001C17.5083 9.53988 17.1352 9.16678 16.675 9.16678V10.8334ZM4.16665 4.16678H5.83331V2.50012H4.16665V4.16678ZM5.83331 4.16678V5.83345H7.49998V4.16678H5.83331ZM5.83331 5.83345H4.16665V7.50012H5.83331V5.83345ZM4.16665 5.83345V4.16678H2.49998V5.83345H4.16665ZM4.16665 5.83345H2.49998C2.49998 6.75392 3.24617 7.50012 4.16665 7.50012V5.83345ZM5.83331 5.83345V7.50012C6.75379 7.50012 7.49998 6.75392 7.49998 5.83345H5.83331ZM5.83331 4.16678H7.49998C7.49998 3.24631 6.75379 2.50012 5.83331 2.50012V4.16678ZM4.16665 2.50012C3.24617 2.50012 2.49998 3.24631 2.49998 4.16678H4.16665V2.50012ZM14.1666 4.16678H15.8333V2.50012H14.1666V4.16678ZM15.8333 4.16678V5.83345H17.5V4.16678H15.8333ZM15.8333 5.83345H14.1666V7.50012H15.8333V5.83345ZM14.1666 5.83345V4.16678H12.5V5.83345H14.1666ZM14.1666 5.83345H12.5C12.5 6.75392 13.2462 7.50012 14.1666 7.50012V5.83345ZM15.8333 5.83345V7.50012C16.7538 7.50012 17.5 6.75392 17.5 5.83345H15.8333ZM15.8333 4.16678H17.5C17.5 3.24631 16.7538 2.50012 15.8333 2.50012V4.16678ZM14.1666 2.50012C13.2462 2.50012 12.5 3.24631 12.5 4.16678H14.1666V2.50012ZM4.16665 14.1668H5.83331V12.5001H4.16665V14.1668ZM5.83331 14.1668V15.8334H7.49998V14.1668H5.83331ZM5.83331 15.8334H4.16665V17.5001H5.83331V15.8334ZM4.16665 15.8334V14.1668H2.49998V15.8334H4.16665ZM4.16665 15.8334H2.49998C2.49998 16.7539 3.24617 17.5001 4.16665 17.5001V15.8334ZM5.83331 15.8334V17.5001C6.75379 17.5001 7.49998 16.7539 7.49998 15.8334H5.83331ZM5.83331 14.1668H7.49998C7.49998 13.2463 6.75379 12.5001 5.83331 12.5001V14.1668ZM4.16665 12.5001C3.24617 12.5001 2.49998 13.2463 2.49998 14.1668H4.16665V12.5001ZM9.16665 3.33345V4.16678H10.8333V3.33345H9.16665ZM15 14.1668H16.6666V12.5001H15V14.1668ZM9.99998 14.1668H11.6666V12.5001H9.99998V14.1668ZM9.16665 13.3334V16.6668H10.8333V13.3334H9.16665ZM9.16665 7.50012V10.0001H10.8333V7.50012H9.16665ZM13.3333 17.5001H16.6666V15.8334H13.3333V17.5001ZM3.33331 10.8334H6.66665V9.16678H3.33331V10.8334ZM9.99998 10.8334H10.0083V9.16678H9.99998V10.8334ZM16.6666 10.8334H16.675V9.16678H16.6666V10.8334ZM9.99998 10.8334H13.3416V9.16678H9.99998V10.8334Z"
         fill="currentColor"
@@ -4060,17 +2443,8 @@ export const icons = [
   },
   {
     name: 'clipboard-check',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4078,13 +2452,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.08923 11.0775C7.76379 10.7521 7.23616 10.7521 6.91072 11.0775C6.58528 11.403 6.58528 11.9306 6.91072 12.256L8.08923 11.0775ZM9.16664 13.3335L8.57739 13.9227C8.90282 14.2481 9.43046 14.2481 9.7559 13.9227L9.16664 13.3335ZM13.0892 10.5894C13.4147 10.2639 13.4147 9.7363 13.0892 9.41087C12.7638 9.08543 12.2362 9.08543 11.9107 9.41087L13.0892 10.5894ZM15 5.83346V15.8335H16.6666V5.83346H15ZM14.1666 16.6668H5.83331V18.3335H14.1666V16.6668ZM4.99997 15.8335V5.83346H3.33331V15.8335H4.99997ZM5.83331 5.00012H7.49997V3.33346H5.83331V5.00012ZM12.5 5.00012H14.1666V3.33346H12.5V5.00012ZM5.83331 16.6668C5.37307 16.6668 4.99997 16.2937 4.99997 15.8335H3.33331C3.33331 17.2142 4.4526 18.3335 5.83331 18.3335V16.6668ZM15 15.8335C15 16.2937 14.6269 16.6668 14.1666 16.6668V18.3335C15.5474 18.3335 16.6666 17.2142 16.6666 15.8335H15ZM16.6666 5.83346C16.6666 4.45274 15.5474 3.33346 14.1666 3.33346V5.00012C14.6269 5.00012 15 5.37322 15 5.83346H16.6666ZM4.99997 5.83346C4.99997 5.37322 5.37307 5.00012 5.83331 5.00012V3.33346C4.4526 3.33346 3.33331 4.45274 3.33331 5.83346H4.99997ZM6.91072 12.256L8.57739 13.9227L9.7559 12.7442L8.08923 11.0775L6.91072 12.256ZM9.7559 13.9227L13.0892 10.5894L11.9107 9.41087L8.57739 12.7442L9.7559 13.9227ZM9.16664 3.33346H10.8333V1.66679H9.16664V3.33346ZM10.8333 5.00012H9.16664V6.66679H10.8333V5.00012ZM9.16664 5.00012C8.7064 5.00012 8.33331 4.62703 8.33331 4.16679H6.66664C6.66664 5.5475 7.78593 6.66679 9.16664 6.66679V5.00012ZM11.6666 4.16679C11.6666 4.62703 11.2935 5.00012 10.8333 5.00012V6.66679C12.214 6.66679 13.3333 5.5475 13.3333 4.16679H11.6666ZM10.8333 3.33346C11.2935 3.33346 11.6666 3.70655 11.6666 4.16679H13.3333C13.3333 2.78608 12.214 1.66679 10.8333 1.66679V3.33346ZM9.16664 1.66679C7.78593 1.66679 6.66664 2.78608 6.66664 4.16679H8.33331C8.33331 3.70655 8.7064 3.33346 9.16664 3.33346V1.66679Z"
         fill="currentColor"
@@ -4093,17 +2461,8 @@ export const icons = [
   },
   {
     name: 'clipboard-list',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4111,13 +2470,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49997 4.16679H5.83331C4.91283 4.16679 4.16664 4.91298 4.16664 5.83346V15.8335C4.16664 16.7539 4.91283 17.5001 5.83331 17.5001H14.1666C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V5.83346C15.8333 4.91298 15.0871 4.16679 14.1666 4.16679H12.5M7.49997 4.16679C7.49997 5.08726 8.24617 5.83346 9.16664 5.83346H10.8333C11.7538 5.83346 12.5 5.08726 12.5 4.16679M7.49997 4.16679C7.49997 3.24631 8.24617 2.50012 9.16664 2.50012H10.8333C11.7538 2.50012 12.5 3.24631 12.5 4.16679M9.99997 10.0001H12.5M9.99997 13.3335H12.5M7.49997 10.0001H7.50831M7.49997 13.3335H7.50831"
         stroke="currentColor"
@@ -4128,29 +2481,14 @@ export const icons = [
   },
   {
     name: 'clipboard',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M8 3C8 2.44772 8.44772 2 9 2H11C11.5523 2 12 2.44772 12 3C12 3.55228 11.5523 4 11 4H9C8.44772 4 8 3.55228 8 3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M8 3C8 2.44772 8.44772 2 9 2H11C11.5523 2 12 2.44772 12 3C12 3.55228 11.5523 4 11 4H9C8.44772 4 8 3.55228 8 3Z" fill="currentColor" />
       <path
         d="M6 3C4.89543 3 4 3.89543 4 5V16C4 17.1046 4.89543 18 6 18H14C15.1046 18 16 17.1046 16 16V5C16 3.89543 15.1046 3 14 3C14 4.65685 12.6569 6 11 6H9C7.34315 6 6 4.65685 6 3Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49996 4.16679H5.83329C4.91282 4.16679 4.16663 4.91298 4.16663 5.83346V15.8335C4.16663 16.7539 4.91282 17.5001 5.83329 17.5001H14.1666C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V5.83346C15.8333 4.91298 15.0871 4.16679 14.1666 4.16679H12.5M7.49996 4.16679C7.49996 5.08726 8.24615 5.83346 9.16663 5.83346H10.8333C11.7538 5.83346 12.5 5.08726 12.5 4.16679M7.49996 4.16679C7.49996 3.24631 8.24615 2.50012 9.16663 2.50012H10.8333C11.7538 2.50012 12.5 3.24631 12.5 4.16679"
         stroke="currentColor"
@@ -4161,13 +2499,7 @@ export const icons = [
   },
   {
     name: 'external-link',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11 3C10.4477 3 10 3.44772 10 4C10 4.55228 10.4477 5 11 5H13.5858L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289 12.7071C7.68342 13.0976 8.31658 13.0976 8.70711 12.7071L15 6.41421V9C15 9.55228 15.4477 10 16 10C16.5523 10 17 9.55228 17 9V4C17 3.44772 16.5523 3 16 3H11Z"
         fill="currentColor"
@@ -4177,13 +2509,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33331 5.00012H4.99998C4.07951 5.00012 3.33331 5.74631 3.33331 6.66678V15.0001C3.33331 15.9206 4.0795 16.6668 4.99998 16.6668H13.3333C14.2538 16.6668 15 15.9206 15 15.0001V11.6668M11.6666 3.33345H16.6666M16.6666 3.33345V8.33345M16.6666 3.33345L8.33331 11.6668"
         stroke="currentColor"
@@ -4195,21 +2521,9 @@ export const icons = [
   },
   {
     name: 'sun',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M10 2C10.5523 2 11 2.44772 11 3V4C11 4.55228 10.5523 5 10 5C9.44772 5 9 4.55228 9 4V3C9 2.44772 9.44772 2 10 2Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14 10C14 12.2091 12.2091 14 10 14C7.79086 14 6 12.2091 6 10C6 7.79086 7.79086 6 10 6C12.2091 6 14 7.79086 14 10Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2C10.5523 2 11 2.44772 11 3V4C11 4.55228 10.5523 5 10 5C9.44772 5 9 4.55228 9 4V3C9 2.44772 9.44772 2 10 2Z" fill="currentColor" />
+      <path d="M14 10C14 12.2091 12.2091 14 10 14C7.79086 14 6 12.2091 6 10C6 7.79086 7.79086 6 10 6C12.2091 6 14 7.79086 14 10Z" fill="currentColor" />
       <path
         d="M13.5356 14.9497L14.2427 15.6568C14.6332 16.0473 15.2664 16.0473 15.6569 15.6568C16.0474 15.2663 16.0474 14.6331 15.6569 14.2426L14.9498 13.5355C14.5593 13.145 13.9261 13.145 13.5356 13.5355C13.1451 13.926 13.1451 14.5592 13.5356 14.9497Z"
         fill="currentColor"
@@ -4218,14 +2532,8 @@ export const icons = [
         d="M15.6568 4.34309C16.0473 4.73362 16.0473 5.36678 15.6568 5.75731L14.9497 6.46441C14.5592 6.85494 13.926 6.85494 13.5355 6.46441C13.145 6.07389 13.145 5.44072 13.5355 5.0502L14.2426 4.34309C14.6331 3.95257 15.2663 3.95257 15.6568 4.34309Z"
         fill="currentColor"
       />
-      <path
-        d="M17 11C17.5523 11 18 10.5523 18 10C18 9.44772 17.5523 9 17 9H16C15.4477 9 15 9.44772 15 10C15 10.5523 15.4477 11 16 11H17Z"
-        fill="currentColor"
-      />
-      <path
-        d="M10 15C10.5523 15 11 15.4477 11 16V17C11 17.5523 10.5523 18 10 18C9.44772 18 9 17.5523 9 17V16C9 15.4477 9.44772 15 10 15Z"
-        fill="currentColor"
-      />
+      <path d="M17 11C17.5523 11 18 10.5523 18 10C18 9.44772 17.5523 9 17 9H16C15.4477 9 15 9.44772 15 10C15 10.5523 15.4477 11 16 11H17Z" fill="currentColor" />
+      <path d="M10 15C10.5523 15 11 15.4477 11 16V17C11 17.5523 10.5523 18 10 18C9.44772 18 9 17.5523 9 17V16C9 15.4477 9.44772 15 10 15Z" fill="currentColor" />
       <path
         d="M5.05031 6.46443C5.44083 6.85496 6.074 6.85496 6.46452 6.46443C6.85505 6.07391 6.85505 5.44074 6.46452 5.05022L5.75742 4.34311C5.36689 3.95259 4.73373 3.95259 4.3432 4.34311C3.95268 4.73363 3.95268 5.3668 4.3432 5.75732L5.05031 6.46443Z"
         fill="currentColor"
@@ -4234,18 +2542,9 @@ export const icons = [
         d="M6.46443 14.9497L5.75732 15.6568C5.3668 16.0473 4.73363 16.0473 4.34311 15.6568C3.95259 15.2663 3.95259 14.6331 4.34311 14.2426L5.05022 13.5355C5.44074 13.145 6.07391 13.145 6.46443 13.5355C6.85496 13.926 6.85496 14.5592 6.46443 14.9497Z"
         fill="currentColor"
       />
-      <path
-        d="M4 11C4.55228 11 5 10.5523 5 10C5 9.44772 4.55228 9 4 9H3C2.44772 9 2 9.44772 2 10C2 10.5523 2.44772 11 3 11H4Z"
-        fill="currentColor"
-      />
+      <path d="M4 11C4.55228 11 5 10.5523 5 10C5 9.44772 4.55228 9 4 9H3C2.44772 9 2 9.44772 2 10C2 10.5523 2.44772 11 3 11H4Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 2.50012V3.33346M10 16.6668V17.5001M17.5 10.0001H16.6667M3.33333 10.0001H2.5M15.3033 15.3034L14.714 14.7142M5.28595 5.28608L4.6967 4.69682M15.3033 4.69687L14.7141 5.28612M5.286 14.7142L4.69674 15.3035M13.3333 10.0001C13.3333 11.8411 11.8409 13.3335 10 13.3335C8.15905 13.3335 6.66667 11.8411 6.66667 10.0001C6.66667 8.15917 8.15905 6.66679 10 6.66679C11.8409 6.66679 13.3333 8.15917 13.3333 10.0001Z"
         stroke="currentColor"
@@ -4257,25 +2556,13 @@ export const icons = [
   },
   {
     name: 'moon',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.2929 13.2929C16.2886 13.7471 15.1738 13.9999 14 13.9999C9.58172 13.9999 6 10.4182 6 5.9999C6 4.82593 6.25287 3.71102 6.70712 2.70667C3.93137 3.96191 2 6.75526 2 9.9997C2 14.418 5.58172 17.9997 10 17.9997C13.2443 17.9997 16.0376 16.0685 17.2929 13.2929Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M16.9618 12.7953C16.098 13.1425 15.1546 13.3335 14.1667 13.3335C10.0245 13.3335 6.66667 9.97564 6.66667 5.8335C6.66667 4.84552 6.8577 3.90216 7.20484 3.03835C4.44707 4.14662 2.5 6.84601 2.5 10.0002C2.5 14.1423 5.85786 17.5002 10 17.5002C13.1542 17.5002 15.8535 15.5531 16.9618 12.7953Z"
         stroke="currentColor"
@@ -4287,33 +2574,15 @@ export const icons = [
   },
   {
     name: 'clipboard-copy',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M8 2C7.44772 2 7 2.44772 7 3C7 3.55228 7.44772 4 8 4H10C10.5523 4 11 3.55228 11 3C11 2.44772 10.5523 2 10 2H8Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M8 2C7.44772 2 7 2.44772 7 3C7 3.55228 7.44772 4 8 4H10C10.5523 4 11 3.55228 11 3C11 2.44772 10.5523 2 10 2H8Z" fill="currentColor" />
       <path
         d="M3 5C3 3.89543 3.89543 3 5 3C5 4.65685 6.34315 6 8 6H10C11.6569 6 13 4.65685 13 3C14.1046 3 15 3.89543 15 5V11H10.4142L11.7071 9.70711C12.0976 9.31658 12.0976 8.68342 11.7071 8.29289C11.3166 7.90237 10.6834 7.90237 10.2929 8.29289L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289 12.7071L10.2929 15.7071C10.6834 16.0976 11.3166 16.0976 11.7071 15.7071C12.0976 15.3166 12.0976 14.6834 11.7071 14.2929L10.4142 13H15V16C15 17.1046 14.1046 18 13 18H5C3.89543 18 3 17.1046 3 16V5Z"
         fill="currentColor"
       />
-      <path
-        d="M15 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H15V11Z"
-        fill="currentColor"
-      />
+      <path d="M15 11H17C17.5523 11 18 11.4477 18 12C18 12.5523 17.5523 13 17 13H15V11Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 4.16679H5C4.07953 4.16679 3.33333 4.91298 3.33333 5.83346V15.8335C3.33333 16.7539 4.07952 17.5001 5 17.5001H13.3333C14.2538 17.5001 15 16.7539 15 15.8335V15.0001M6.66667 4.16679C6.66667 5.08726 7.41286 5.83346 8.33333 5.83346H10C10.9205 5.83346 11.6667 5.08726 11.6667 4.16679M6.66667 4.16679C6.66667 3.24631 7.41286 2.50012 8.33333 2.50012H10C10.9205 2.50012 11.6667 3.24631 11.6667 4.16679M11.6667 4.16679H13.3333C14.2538 4.16679 15 4.91298 15 5.83346V8.33345M16.6667 11.6668H8.33333M8.33333 11.6668L10.8333 9.16679M8.33333 11.6668L10.8333 14.1668"
         stroke="currentColor"
@@ -4325,13 +2594,7 @@ export const icons = [
   },
   {
     name: 'annotation',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4339,13 +2602,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83333 6.66678H14.1667M5.83333 10.0001H9.16667M10 16.6668L6.66667 13.3334H4.16667C3.24619 13.3334 2.5 12.5873 2.5 11.6668V5.00012C2.5 4.07964 3.24619 3.33345 4.16667 3.33345H15.8333C16.7538 3.33345 17.5 4.07964 17.5 5.00012V11.6668C17.5 12.5873 16.7538 13.3334 15.8333 13.3334H13.3333L10 16.6668Z"
         stroke="currentColor"
@@ -4357,13 +2614,7 @@ export const icons = [
   },
   {
     name: 'flag',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4371,13 +2622,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 17.5001V14.1668M2.49998 14.1668V4.16679C2.49998 3.24631 3.24618 2.50012 4.16665 2.50012H9.58332L10.4167 3.33346H17.5L15 8.33345L17.5 13.3335H10.4167L9.58332 12.5001H4.16665C3.24618 12.5001 2.49998 13.2463 2.49998 14.1668ZM9.99998 2.91679V7.50012"
         stroke="currentColor"
@@ -4389,33 +2634,12 @@ export const icons = [
   },
   {
     name: 'collection',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7 3C6.44772 3 6 3.44772 6 4C6 4.55228 6.44772 5 7 5H13C13.5523 5 14 4.55228 14 4C14 3.44772 13.5523 3 13 3H7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M4 7C4 6.44772 4.44772 6 5 6H15C15.5523 6 16 6.44772 16 7C16 7.55228 15.5523 8 15 8H5C4.44772 8 4 7.55228 4 7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M2 11C2 9.89543 2.89543 9 4 9H16C17.1046 9 18 9.89543 18 11V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V11Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7 3C6.44772 3 6 3.44772 6 4C6 4.55228 6.44772 5 7 5H13C13.5523 5 14 4.55228 14 4C14 3.44772 13.5523 3 13 3H7Z" fill="currentColor" />
+      <path d="M4 7C4 6.44772 4.44772 6 5 6H15C15.5523 6 16 6.44772 16 7C16 7.55228 15.5523 8 15 8H5C4.44772 8 4 7.55228 4 7Z" fill="currentColor" />
+      <path d="M2 11C2 9.89543 2.89543 9 4 9H16C17.1046 9 18 9.89543 18 11V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V11Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 9.16679H4.16665M15.8333 9.16679C16.7538 9.16679 17.5 9.91298 17.5 10.8335V15.8335C17.5 16.7539 16.7538 17.5001 15.8333 17.5001H4.16665C3.24618 17.5001 2.49998 16.7539 2.49998 15.8335V10.8335C2.49998 9.91298 3.24618 9.16679 4.16665 9.16679M15.8333 9.16679V7.50012C15.8333 6.57965 15.0871 5.83346 14.1667 5.83346M4.16665 9.16679V7.50012C4.16665 6.57965 4.91284 5.83346 5.83332 5.83346M5.83332 5.83346V4.16679C5.83332 3.24631 6.57951 2.50012 7.49998 2.50012H12.5C13.4205 2.50012 14.1667 3.24631 14.1667 4.16679V5.83346M5.83332 5.83346H14.1667"
         stroke="currentColor"
@@ -4427,25 +2651,13 @@ export const icons = [
   },
   {
     name: 'book-open',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9 4.80423C7.9428 4.28906 6.75516 4 5.5 4C4.24484 4 3.0572 4.28906 2 4.80423V14.8042C3.0572 14.2891 4.24484 14 5.5 14C7.1686 14 8.71789 14.5108 10 15.3847C11.2821 14.5108 12.8314 14 14.5 14C15.7552 14 16.9428 14.2891 18 14.8042V4.80423C16.9428 4.28906 15.7552 4 14.5 4C13.2448 4 12.0572 4.28906 11 4.80423V12C11 12.5523 10.5523 13 10 13C9.44772 13 9 12.5523 9 12V4.80423Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99998 5.21078V16.0441M9.99998 5.21078C9.02674 4.56418 7.70539 4.16679 6.24998 4.16679C4.79457 4.16679 3.47323 4.56418 2.49998 5.21078V16.0441C3.47323 15.3975 4.79457 15.0001 6.24998 15.0001C7.70539 15.0001 9.02674 15.3975 9.99998 16.0441M9.99998 5.21078C10.9732 4.56418 12.2946 4.16679 13.75 4.16679C15.2054 4.16679 16.5267 4.56418 17.5 5.21078V16.0441C16.5267 15.3975 15.2054 15.0001 13.75 15.0001C12.2946 15.0001 10.9732 15.3975 9.99998 16.0441"
         stroke="currentColor"
@@ -4457,13 +2669,7 @@ export const icons = [
   },
   {
     name: 'code',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4471,13 +2677,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_33_1827)">
         <path
           d="M8.33331 16.6668L11.6666 3.33345M15 6.66678L18.3333 10.0001L15 13.3334M4.99997 13.3334L1.66664 10.0001L4.99997 6.66678"
@@ -4496,13 +2696,7 @@ export const icons = [
   },
   {
     name: 'lightning-bolt',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4510,13 +2704,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 8.33345V2.50012L3.3333 11.6668H9.16663L9.16663 17.5001L16.6666 8.33345L10.8333 8.33345Z"
         stroke="currentColor"
@@ -4528,25 +2716,10 @@ export const icons = [
   },
   {
     name: 'folder',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 6C2 4.89543 2.89543 4 4 4H9L11 6H16C17.1046 6 18 6.89543 18 8V14C18 15.1046 17.1046 16 16 16H4C2.89543 16 2 15.1046 2 14V6Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 6C2 4.89543 2.89543 4 4 4H9L11 6H16C17.1046 6 18 6.89543 18 8V14C18 15.1046 17.1046 16 16 16H4C2.89543 16 2 15.1046 2 14V6Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49997 5.83346V14.1668C2.49997 15.0873 3.24616 15.8335 4.16664 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V7.50013C17.5 6.57965 16.7538 5.83346 15.8333 5.83346H10.8333L9.16664 4.16679H4.16664C3.24616 4.16679 2.49997 4.91299 2.49997 5.83346Z"
         stroke="currentColor"
@@ -4558,13 +2731,7 @@ export const icons = [
   },
   {
     name: 'sparkles',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4578,13 +2745,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16664 2.50012V5.83346M2.49997 4.16679H5.8333M4.99997 14.1668V17.5001M3.3333 15.8335H6.66664M10.8333 2.50012L12.7381 8.21441L17.5 10.0001L12.7381 11.7858L10.8333 17.5001L8.92854 11.7858L4.16664 10.0001L8.92854 8.21441L10.8333 2.50012Z"
         stroke="currentColor"
@@ -4596,33 +2757,12 @@ export const icons = [
   },
   {
     name: 'user-remove',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M11 6C11 7.65685 9.65685 9 8 9C6.34315 9 5 7.65685 5 6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14 17C14 13.6863 11.3137 11 8 11C4.68629 11 2 13.6863 2 17H14Z"
-        fill="currentColor"
-      />
-      <path
-        d="M13 8C12.4477 8 12 8.44771 12 9C12 9.55229 12.4477 10 13 10H17C17.5523 10 18 9.55229 18 9C18 8.44771 17.5523 8 17 8H13Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M11 6C11 7.65685 9.65685 9 8 9C6.34315 9 5 7.65685 5 6C5 4.34315 6.34315 3 8 3C9.65685 3 11 4.34315 11 6Z" fill="currentColor" />
+      <path d="M14 17C14 13.6863 11.3137 11 8 11C4.68629 11 2 13.6863 2 17H14Z" fill="currentColor" />
+      <path d="M13 8C12.4477 8 12 8.44771 12 9C12 9.55229 12.4477 10 13 10H17C17.5523 10 18 9.55229 18 9C18 8.44771 17.5523 8 17 8H13Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10.0001H12.5M10.8333 5.83346C10.8333 7.6744 9.34095 9.16679 7.5 9.16679C5.65905 9.16679 4.16667 7.6744 4.16667 5.83346C4.16667 3.99251 5.65905 2.50012 7.5 2.50012C9.34095 2.50012 10.8333 3.99251 10.8333 5.83346ZM2.5 16.6668C2.5 13.9054 4.73858 11.6668 7.5 11.6668C10.2614 11.6668 12.5 13.9054 12.5 16.6668V17.5001H2.5V16.6668Z"
         stroke="currentColor"
@@ -4634,13 +2774,7 @@ export const icons = [
   },
   {
     name: 'arrow-narrow-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4648,13 +2782,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66666 5.83346L10 2.50012M10 2.50012L13.3333 5.83346M10 2.50012V17.5001"
         stroke="currentColor"
@@ -4666,13 +2794,7 @@ export const icons = [
   },
   {
     name: 'arrow-narrow-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4680,13 +2802,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 6.66679L17.5 10.0001M17.5 10.0001L14.1667 13.3335M17.5 10.0001L2.5 10.0001"
         stroke="currentColor"
@@ -4698,13 +2814,7 @@ export const icons = [
   },
   {
     name: 'arrow-narrow-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4712,13 +2822,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 14.1668L10 17.5001M10 17.5001L6.66667 14.1668M10 17.5001L10 2.50012"
         stroke="currentColor"
@@ -4730,13 +2834,7 @@ export const icons = [
   },
   {
     name: 'arrow-narrow-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4744,13 +2842,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83332 13.3335L2.49998 10.0001M2.49998 10.0001L5.83332 6.66679M2.49998 10.0001L17.5 10.0001"
         stroke="currentColor"
@@ -4762,33 +2854,12 @@ export const icons = [
   },
   {
     name: 'template',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 10C3 9.44771 3.44772 9 4 9H10C10.5523 9 11 9.44771 11 10V16C11 16.5523 10.5523 17 10 17H4C3.44772 17 3 16.5523 3 16V10Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14 9C13.4477 9 13 9.44771 13 10V16C13 16.5523 13.4477 17 14 17H16C16.5523 17 17 16.5523 17 16V10C17 9.44771 16.5523 9 16 9H14Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z" fill="currentColor" />
+      <path d="M3 10C3 9.44771 3.44772 9 4 9H10C10.5523 9 11 9.44771 11 10V16C11 16.5523 10.5523 17 10 17H4C3.44772 17 3 16.5523 3 16V10Z" fill="currentColor" />
+      <path d="M14 9C13.4477 9 13 9.44771 13 10V16C13 16.5523 13.4477 17 14 17H16C16.5523 17 17 16.5523 17 16V10C17 9.44771 16.5523 9 16 9H14Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33332 4.16679C3.33332 3.70655 3.70642 3.33346 4.16665 3.33346H15.8333C16.2936 3.33346 16.6667 3.70655 16.6667 4.16679V5.83346C16.6667 6.29369 16.2936 6.66679 15.8333 6.66679H4.16665C3.70642 6.66679 3.33332 6.29369 3.33332 5.83346V4.16679Z"
         stroke="currentColor"
@@ -4814,13 +2885,7 @@ export const icons = [
   },
   {
     name: 'reply',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4828,13 +2893,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 8.33346H10.8333C14.5152 8.33346 17.5 11.3182 17.5 15.0001V16.6668M2.49998 8.33346L7.49998 13.3335M2.49998 8.33346L7.49998 3.33346"
         stroke="currentColor"
@@ -4846,49 +2905,25 @@ export const icons = [
   },
   {
     name: 'light-bulb',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M11 3C11 2.44772 10.5523 2 10 2C9.44771 2 9 2.44772 9 3V4C9 4.55228 9.44771 5 10 5C10.5523 5 11 4.55228 11 4V3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M11 3C11 2.44772 10.5523 2 10 2C9.44771 2 9 2.44772 9 3V4C9 4.55228 9.44771 5 10 5C10.5523 5 11 4.55228 11 4V3Z" fill="currentColor" />
       <path
         d="M15.6568 5.75731C16.0473 5.36678 16.0473 4.73362 15.6568 4.34309C15.2663 3.95257 14.6331 3.95257 14.2426 4.34309L13.5355 5.0502C13.145 5.44072 13.145 6.07389 13.5355 6.46441C13.926 6.85494 14.5592 6.85494 14.9497 6.46441L15.6568 5.75731Z"
         fill="currentColor"
       />
-      <path
-        d="M18 10C18 10.5523 17.5523 11 17 11H16C15.4477 11 15 10.5523 15 10C15 9.44771 15.4477 9 16 9H17C17.5523 9 18 9.44771 18 10Z"
-        fill="currentColor"
-      />
+      <path d="M18 10C18 10.5523 17.5523 11 17 11H16C15.4477 11 15 10.5523 15 10C15 9.44771 15.4477 9 16 9H17C17.5523 9 18 9.44771 18 10Z" fill="currentColor" />
       <path
         d="M5.05019 6.46443C5.44071 6.85496 6.07388 6.85496 6.4644 6.46443C6.85493 6.07391 6.85493 5.44074 6.4644 5.05022L5.7573 4.34311C5.36677 3.95259 4.73361 3.95259 4.34308 4.34311C3.95256 4.73363 3.95256 5.3668 4.34308 5.75732L5.05019 6.46443Z"
         fill="currentColor"
       />
-      <path
-        d="M5 10C5 10.5523 4.55228 11 4 11H3C2.44772 11 2 10.5523 2 10C2 9.44771 2.44772 9 3 9H4C4.55228 9 5 9.44771 5 10Z"
-        fill="currentColor"
-      />
-      <path
-        d="M8 16V15H12V16C12 17.1046 11.1046 18 10 18C8.89543 18 8 17.1046 8 16Z"
-        fill="currentColor"
-      />
+      <path d="M5 10C5 10.5523 4.55228 11 4 11H3C2.44772 11 2 10.5523 2 10C2 9.44771 2.44772 9 3 9H4C4.55228 9 5 9.44771 5 10Z" fill="currentColor" />
+      <path d="M8 16V15H12V16C12 17.1046 11.1046 18 10 18C8.89543 18 8 17.1046 8 16Z" fill="currentColor" />
       <path
         d="M12.0009 14C12.0155 13.6597 12.2076 13.3537 12.4768 13.1411C13.4046 12.4086 14 11.2738 14 10C14 7.79086 12.2091 6 10 6C7.79086 6 6 7.79086 6 10C6 11.2738 6.59545 12.4086 7.52319 13.1411C7.79241 13.3537 7.98451 13.6597 7.99911 14H12.0009Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.05291 14.1668H11.947M9.99997 2.50012V3.33346M15.3033 4.69682L14.714 5.28608M17.5 10.0001H16.6667M3.33335 10.0001H2.50002M5.28592 5.28608L4.69667 4.69682M7.05369 12.9464C5.42651 11.3192 5.42651 8.68105 7.05369 7.05386C8.68088 5.42668 11.3191 5.42668 12.9462 7.05386C14.5734 8.68105 14.5734 11.3192 12.9462 12.9464L12.4903 13.4023C11.9629 13.9297 11.6666 14.6451 11.6666 15.3909V15.8335C11.6666 16.7539 10.9204 17.5001 9.99997 17.5001C9.0795 17.5001 8.3333 16.7539 8.3333 15.8335V15.3909C8.3333 14.6451 8.03701 13.9297 7.50961 13.4023L7.05369 12.9464Z"
         stroke="currentColor"
@@ -4900,13 +2935,7 @@ export const icons = [
   },
   {
     name: 'chat-alt',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4914,13 +2943,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66664 8.33346H6.67497M9.99997 8.33346H10.0083M13.3333 8.33346H13.3416M7.49997 13.3335H4.16664C3.24616 13.3335 2.49997 12.5873 2.49997 11.6668V5.00012C2.49997 4.07965 3.24616 3.33346 4.16664 3.33346H15.8333C16.7538 3.33346 17.5 4.07965 17.5 5.00012V11.6668C17.5 12.5873 16.7538 13.3335 15.8333 13.3335H11.6666L7.49997 17.5001V13.3335Z"
         stroke="currentColor"
@@ -4932,13 +2955,7 @@ export const icons = [
   },
   {
     name: 'document-report',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4946,13 +2963,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49996 14.1668V12.5001M9.99996 14.1668V10.8335M12.5 14.1668V9.16679M14.1666 17.5001H5.83329C4.91282 17.5001 4.16663 16.7539 4.16663 15.8335V4.16679C4.16663 3.24631 4.91282 2.50012 5.83329 2.50012H10.4881C10.7091 2.50012 10.9211 2.58792 11.0774 2.7442L15.5892 7.25604C15.7455 7.41232 15.8333 7.62429 15.8333 7.8453V15.8335C15.8333 16.7539 15.0871 17.5001 14.1666 17.5001Z"
         stroke="currentColor"
@@ -4964,13 +2975,7 @@ export const icons = [
   },
   {
     name: 'logout',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -4978,13 +2983,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16664 13.3335L5.8333 10.0001M5.8333 10.0001L9.16664 6.66679M5.8333 10.0001L17.5 10.0001M13.3333 13.3335V14.1668C13.3333 15.5475 12.214 16.6668 10.8333 16.6668H4.99997C3.61926 16.6668 2.49997 15.5475 2.49997 14.1668V5.83346C2.49997 4.45275 3.61926 3.33346 4.99997 3.33346H10.8333C12.214 3.33346 13.3333 4.45275 13.3333 5.83346V6.66679"
         stroke="currentColor"
@@ -4996,13 +2995,7 @@ export const icons = [
   },
   {
     name: 'key',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5010,13 +3003,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 5.83346C13.4205 5.83346 14.1667 6.57965 14.1667 7.50012M17.5 7.50012C17.5 10.2615 15.2614 12.5001 12.5 12.5001C11.9949 12.5001 11.5072 12.4252 11.0476 12.2859L9.16667 14.1668H7.5V15.8335H5.83333V17.5001H3.33333C2.8731 17.5001 2.5 17.127 2.5 16.6668V14.512C2.5 14.291 2.5878 14.079 2.74408 13.9227L7.71422 8.95256C7.57491 8.49291 7.5 8.00527 7.5 7.50012C7.5 4.7387 9.73858 2.50012 12.5 2.50012C15.2614 2.50012 17.5 4.7387 17.5 7.50012Z"
         stroke="currentColor"
@@ -5028,13 +3015,7 @@ export const icons = [
   },
   {
     name: 'ban',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5042,13 +3023,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.3033 15.3034C18.2322 12.3745 18.2322 7.62575 15.3033 4.69682C12.3744 1.76789 7.62563 1.76789 4.6967 4.69682M15.3033 15.3034C12.3744 18.2324 7.62563 18.2324 4.6967 15.3034C1.76777 12.3745 1.76777 7.62575 4.6967 4.69682M15.3033 15.3034L4.6967 4.69682"
         stroke="currentColor"
@@ -5060,33 +3035,15 @@ export const icons = [
   },
   {
     name: 'shopping-cart',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3 1C2.44772 1 2 1.44772 2 2C2 2.55228 2.44772 3 3 3H4.21922L4.52478 4.22224C4.52799 4.23637 4.5315 4.25039 4.5353 4.26429L5.89253 9.69321L4.99995 10.5858C3.74002 11.8457 4.63235 14 6.41416 14H15C15.5522 14 16 13.5523 16 13C16 12.4477 15.5522 12 15 12L6.41417 12L7.41416 11H14C14.3788 11 14.725 10.786 14.8944 10.4472L17.8944 4.44721C18.0494 4.13723 18.0329 3.76909 17.8507 3.47427C17.6684 3.17945 17.3466 3 17 3H6.28078L5.97014 1.75746C5.85885 1.3123 5.45887 1 5 1H3Z"
         fill="currentColor"
       />
-      <path
-        d="M16 16.5C16 17.3284 15.3284 18 14.5 18C13.6716 18 13 17.3284 13 16.5C13 15.6716 13.6716 15 14.5 15C15.3284 15 16 15.6716 16 16.5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M6.5 18C7.32843 18 8 17.3284 8 16.5C8 15.6716 7.32843 15 6.5 15C5.67157 15 5 15.6716 5 16.5C5 17.3284 5.67157 18 6.5 18Z"
-        fill="currentColor"
-      />
+      <path d="M16 16.5C16 17.3284 15.3284 18 14.5 18C13.6716 18 13 17.3284 13 16.5C13 15.6716 13.6716 15 14.5 15C15.3284 15 16 15.6716 16 16.5Z" fill="currentColor" />
+      <path d="M6.5 18C7.32843 18 8 17.3284 8 16.5C8 15.6716 7.32843 15 6.5 15C5.67157 15 5 15.6716 5 16.5C5 17.3284 5.67157 18 6.5 18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 2.50012H4.16667L4.5 4.16679M5.83333 10.8335H14.1667L17.5 4.16679H4.5M5.83333 10.8335L4.5 4.16679M5.83333 10.8335L3.92259 12.7442C3.39762 13.2692 3.76942 14.1668 4.51184 14.1668H14.1667M14.1667 14.1668C13.2462 14.1668 12.5 14.913 12.5 15.8335C12.5 16.7539 13.2462 17.5001 14.1667 17.5001C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335C15.8333 14.913 15.0871 14.1668 14.1667 14.1668ZM7.5 15.8335C7.5 16.7539 6.75381 17.5001 5.83333 17.5001C4.91286 17.5001 4.16667 16.7539 4.16667 15.8335C4.16667 14.913 4.91286 14.1668 5.83333 14.1668C6.75381 14.1668 7.5 14.913 7.5 15.8335Z"
         stroke="currentColor"
@@ -5098,13 +3055,7 @@ export const icons = [
   },
   {
     name: 'cursor-click',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.67175 1.9115C6.52881 1.37804 5.98047 1.06146 5.44701 1.2044C4.91354 1.34734 4.59696 1.89568 4.7399 2.42914L4.99872 3.39507C5.14166 3.92853 5.69 4.24512 6.22346 4.10217C6.75693 3.95923 7.07351 3.4109 6.93057 2.87743L6.67175 1.9115Z"
         fill="currentColor"
@@ -5126,13 +3077,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 12.5001L10.8333 16.6668L7.49996 7.50012L16.6666 10.8335L12.5 12.5001ZM12.5 12.5001L16.6666 16.6668M5.99015 1.86556L6.6372 4.28038M4.28015 6.63739L1.86534 5.99034M11.6247 3.37537L9.85695 5.14314M5.14298 9.8571L3.37522 11.6249"
         stroke="currentColor"
@@ -5144,29 +3089,14 @@ export const icons = [
   },
   {
     name: 'microphone',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7 4C7 2.34315 8.34315 1 10 1C11.6569 1 13 2.34315 13 4V8C13 9.65685 11.6569 11 10 11C8.34315 11 7 9.65685 7 8V4Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7 4C7 2.34315 8.34315 1 10 1C11.6569 1 13 2.34315 13 4V8C13 9.65685 11.6569 11 10 11C8.34315 11 7 9.65685 7 8V4Z" fill="currentColor" />
       <path
         d="M11 14.9291C14.3923 14.4439 17 11.5265 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 10.7614 12.7614 13 10 13C7.23858 13 5 10.7614 5 8C5 7.44772 4.55228 7 4 7C3.44772 7 3 7.44772 3 8C3 11.5265 5.60771 14.4439 9 14.9291V17H6C5.44772 17 5 17.4477 5 18C5 18.5523 5.44772 19 6 19H14C14.5523 19 15 18.5523 15 18C15 17.4477 14.5523 17 14 17H11V14.9291Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_33_1846)">
         <path
           d="M15.8333 9.16678C15.8333 12.3884 13.2216 15.0001 9.99998 15.0001M9.99998 15.0001C6.77832 15.0001 4.16665 12.3884 4.16665 9.16678M9.99998 15.0001V18.3335M9.99998 18.3335H6.66665M9.99998 18.3335H13.3333M9.99998 11.6668C8.61927 11.6668 7.49998 10.5475 7.49998 9.16678V4.16679C7.49998 2.78607 8.61927 1.66679 9.99998 1.66679C11.3807 1.66679 12.5 2.78607 12.5 4.16679V9.16678C12.5 10.5475 11.3807 11.6668 9.99998 11.6668Z"
@@ -5185,25 +3115,13 @@ export const icons = [
   },
   {
     name: 'speakerphone',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M18 3C18 2.65342 17.8205 2.33156 17.5257 2.14935C17.2309 1.96714 16.8628 1.95058 16.5528 2.10557L8.76393 6H5C3.34315 6 2 7.34315 2 9C2 10.6569 3.34315 12 5 12H5.27925L7.05132 17.3162C7.18744 17.7246 7.56958 18 8.00001 18H9.00001C9.55229 18 10 17.5523 10 17V12.618L16.5528 15.8944C16.8628 16.0494 17.2309 16.0329 17.5257 15.8507C17.8205 15.6684 18 15.3466 18 15V3Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16665 4.90194V16.0336C9.16665 16.8435 8.51007 17.5001 7.70013 17.5001C7.08036 17.5001 6.5275 17.1105 6.31905 16.5268L4.53038 11.4025M15 10.8335C16.3807 10.8335 17.5 9.71417 17.5 8.33345C17.5 6.95274 16.3807 5.83346 15 5.83346M4.53038 11.4025C3.3369 10.8952 2.49998 9.71206 2.49998 8.33345C2.49998 6.4925 3.99237 5.00012 5.83331 5.00012H7.36005C10.7773 5.00012 13.7141 3.97171 15 2.50012L15 14.1668C13.7141 12.6952 10.7773 11.6668 7.36005 11.6668L5.8333 11.6668C5.37097 11.6668 4.93062 11.5727 4.53038 11.4025Z"
         stroke="currentColor"
@@ -5215,13 +3133,7 @@ export const icons = [
   },
   {
     name: 'badge-check',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5229,13 +3141,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49998 10.0001L9.16665 11.6668L12.5 8.33345M6.52893 3.91433C7.12688 3.86661 7.69453 3.63148 8.15108 3.24241C9.21649 2.33448 10.7835 2.33448 11.8489 3.24241C12.3054 3.63148 12.8731 3.86661 13.471 3.91433C14.8664 4.02568 15.9744 5.13371 16.0858 6.52907C16.1335 7.12701 16.3686 7.69467 16.7577 8.15122C17.6656 9.21663 17.6656 10.7836 16.7577 11.849C16.3686 12.3056 16.1335 12.8732 16.0858 13.4712C15.9744 14.8665 14.8664 15.9746 13.471 16.0859C12.8731 16.1336 12.3054 16.3688 11.8489 16.7578C10.7835 17.6658 9.21649 17.6658 8.15108 16.7578C7.69453 16.3688 7.12688 16.1336 6.52893 16.0859C5.13357 15.9746 4.02554 14.8665 3.91419 13.4712C3.86647 12.8732 3.63134 12.3056 3.24227 11.849C2.33434 10.7836 2.33434 9.21663 3.24227 8.15122C3.63134 7.69467 3.86647 7.12702 3.91419 6.52907C4.02554 5.13371 5.13357 4.02568 6.52893 3.91433Z"
         stroke="currentColor"
@@ -5247,13 +3153,7 @@ export const icons = [
   },
   {
     name: 'desktop-computer',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5261,13 +3161,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.12497 14.1668L7.49997 16.6668L6.66664 17.5001H13.3333L12.5 16.6668L11.875 14.1668M2.49997 10.8335H17.5M4.16664 14.1668H15.8333C16.7538 14.1668 17.5 13.4206 17.5 12.5001V4.16679C17.5 3.24631 16.7538 2.50012 15.8333 2.50012H4.16664C3.24616 2.50012 2.49997 3.24631 2.49997 4.16679V12.5001C2.49997 13.4206 3.24616 14.1668 4.16664 14.1668Z"
         stroke="currentColor"
@@ -5279,29 +3173,14 @@ export const icons = [
   },
   {
     name: 'chat-alt-2',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 5C2 3.89543 2.89543 3 4 3H11C12.1046 3 13 3.89543 13 5V9C13 10.1046 12.1046 11 11 11H9L6 14V11H4C2.89543 11 2 10.1046 2 9V5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 5C2 3.89543 2.89543 3 4 3H11C12.1046 3 13 3.89543 13 5V9C13 10.1046 12.1046 11 11 11H9L6 14V11H4C2.89543 11 2 10.1046 2 9V5Z" fill="currentColor" />
       <path
         d="M15 7V9C15 11.2091 13.2091 13 11 13H9.82843L8.06173 14.7667C8.34154 14.9156 8.66091 15 9 15H11L14 18V15H16C17.1046 15 18 14.1046 18 13V9C18 7.89543 17.1046 7 16 7H15Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1666 6.66679H15.8333C16.7538 6.66679 17.5 7.41298 17.5 8.33346V13.3335C17.5 14.2539 16.7538 15.0001 15.8333 15.0001H14.1666V18.3335L10.8333 15.0001H7.49997C7.03973 15.0001 6.62307 14.8136 6.32146 14.512M6.32146 14.512L9.16664 11.6668H12.5C13.4204 11.6668 14.1666 10.9206 14.1666 10.0001V5.00012C14.1666 4.07965 13.4204 3.33346 12.5 3.33346H4.16664C3.24616 3.33346 2.49997 4.07965 2.49997 5.00012V10.0001C2.49997 10.9206 3.24616 11.6668 4.16664 11.6668H5.8333V15.0001L6.32146 14.512Z"
         stroke="currentColor"
@@ -5313,13 +3192,7 @@ export const icons = [
   },
   {
     name: 'support',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5327,13 +3200,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M16.6666 10.0001C16.6666 13.682 13.6819 16.6668 9.99997 16.6668V18.3335C14.6023 18.3335 18.3333 14.6025 18.3333 10.0001H16.6666ZM9.99997 16.6668C6.31807 16.6668 3.3333 13.682 3.3333 10.0001H1.66664C1.66664 14.6025 5.3976 18.3335 9.99997 18.3335V16.6668ZM3.3333 10.0001C3.3333 6.31822 6.31807 3.33346 9.99997 3.33346V1.66679C5.3976 1.66679 1.66664 5.39775 1.66664 10.0001H3.3333ZM9.99997 3.33346C13.6819 3.33346 16.6666 6.31822 16.6666 10.0001H18.3333C18.3333 5.39775 14.6023 1.66679 9.99997 1.66679V3.33346ZM12.5 10.0001C12.5 11.3808 11.3807 12.5001 9.99997 12.5001V14.1668C12.3012 14.1668 14.1666 12.3013 14.1666 10.0001H12.5ZM9.99997 12.5001C8.61926 12.5001 7.49997 11.3808 7.49997 10.0001H5.8333C5.8333 12.3013 7.69878 14.1668 9.99997 14.1668V12.5001ZM7.49997 10.0001C7.49997 8.61941 8.61926 7.50012 9.99997 7.50012V5.83346C7.69878 5.83346 5.8333 7.69894 5.8333 10.0001H7.49997ZM9.99997 7.50012C11.3807 7.50012 12.5 8.61941 12.5 10.0001H14.1666C14.1666 7.69894 12.3012 5.83346 9.99997 5.83346V7.50012ZM14.714 4.10757L11.7677 7.05384L12.9462 8.23235L15.8925 5.28608L14.714 4.10757ZM11.7677 12.9464L14.714 15.8927L15.8925 14.7142L12.9462 11.7679L11.7677 12.9464ZM8.2322 7.05384L5.28592 4.10757L4.10741 5.28608L7.05369 8.23235L8.2322 7.05384ZM7.05369 11.7679L4.10741 14.7142L5.28592 15.8927L8.2322 12.9464L7.05369 11.7679Z"
         fill="currentColor"
@@ -5342,31 +3209,16 @@ export const icons = [
   },
   {
     name: 'newspaper',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M2 5C2 3.89543 2.89543 3 4 3H12C13.1046 3 14 3.89543 14 5V15C14 16.1046 14.8954 17 16 17H4C2.89543 17 2 16.1046 2 15V5ZM5 6H11V10H5V6ZM11 12H5V14H11V12Z"
         fill="currentColor"
       />
-      <path
-        d="M15 7H16C17.1046 7 18 7.89543 18 9V14.5C18 15.3284 17.3284 16 16.5 16C15.6716 16 15 15.3284 15 14.5V7Z"
-        fill="currentColor"
-      />
+      <path d="M15 7H16C17.1046 7 18 7.89543 18 9V14.5C18 15.3284 17.3284 16 16.5 16C15.6716 16 15 15.3284 15 14.5V7Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 16.6668H4.16664C3.24616 16.6668 2.49997 15.9206 2.49997 15.0001L2.49997 5.00012C2.49997 4.07965 3.24616 3.33346 4.16664 3.33346L12.5 3.33346C13.4204 3.33346 14.1666 4.07965 14.1666 5.00012V5.83346M15.8333 16.6668C14.9128 16.6668 14.1666 15.9206 14.1666 15.0001L14.1666 5.83346M15.8333 16.6668C16.7538 16.6668 17.5 15.9206 17.5 15.0001V7.50012C17.5 6.57965 16.7538 5.83346 15.8333 5.83346L14.1666 5.83346M10.8333 3.33346L7.49997 3.33346M5.8333 13.3335H10.8333M5.8333 6.66679H10.8333V10.0001H5.8333V6.66679Z"
         stroke="currentColor"
@@ -5378,13 +3230,7 @@ export const icons = [
   },
   {
     name: 'bookmark-alt',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5392,13 +3238,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 3.33345V13.3335L10 11.6668L6.66667 13.3335V3.33345M5 16.6668H15C15.9205 16.6668 16.6667 15.9206 16.6667 15.0001V5.00012C16.6667 4.07965 15.9205 3.33345 15 3.33345H5C4.07953 3.33345 3.33334 4.07965 3.33334 5.00012V15.0001C3.33334 15.9206 4.07953 16.6668 5 16.6668Z"
         stroke="currentColor"
@@ -5410,37 +3250,16 @@ export const icons = [
   },
   {
     name: 'view-grid-add',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z" fill="currentColor" />
+      <path d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z" fill="currentColor" />
+      <path d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z" fill="currentColor" />
       <path
         d="M14 11C14.5523 11 15 11.4477 15 12V13H16C16.5523 13 17 13.4477 17 14C17 14.5523 16.5523 15 16 15H15V16C15 16.5523 14.5523 17 14 17C13.4477 17 13 16.5523 13 16V15H12C11.4477 15 11 14.5523 11 14C11 13.4477 11.4477 13 12 13H13V12C13 11.4477 13.4477 11 14 11Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 11.6668V16.6668M11.6667 14.1668H16.6667M5 8.33345H6.66667C7.58714 8.33345 8.33333 7.58726 8.33333 6.66679V5.00012C8.33333 4.07965 7.58714 3.33345 6.66667 3.33345H5C4.07952 3.33345 3.33333 4.07965 3.33333 5.00012V6.66679C3.33333 7.58726 4.07952 8.33345 5 8.33345ZM13.3333 8.33345H15C15.9205 8.33345 16.6667 7.58726 16.6667 6.66679V5.00012C16.6667 4.07965 15.9205 3.33345 15 3.33345H13.3333C12.4129 3.33345 11.6667 4.07965 11.6667 5.00012V6.66679C11.6667 7.58726 12.4129 8.33345 13.3333 8.33345ZM5 16.6668H6.66667C7.58714 16.6668 8.33333 15.9206 8.33333 15.0001V13.3335C8.33333 12.413 7.58714 11.6668 6.66667 11.6668H5C4.07952 11.6668 3.33333 12.413 3.33333 13.3335V15.0001C3.33333 15.9206 4.07952 16.6668 5 16.6668Z"
         stroke="currentColor"
@@ -5452,13 +3271,7 @@ export const icons = [
   },
   {
     name: 'library',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5466,13 +3279,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 11.6668V14.1668M10 11.6668V14.1668M13.3333 11.6668V14.1668M2.5 17.5001H17.5M2.5 8.33345H17.5M2.5 5.83346L10 2.50012L17.5 5.83346M3.33333 8.33345H16.6667V17.5001H3.33333V8.33345Z"
         stroke="currentColor"
@@ -5484,13 +3291,7 @@ export const icons = [
   },
   {
     name: 'play',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5498,13 +3299,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.2933 9.30675L9.62892 7.53051C9.07512 7.16131 8.33333 7.55831 8.33333 8.22389V11.7764C8.33333 12.4419 9.07512 12.8389 9.62892 12.4697L12.2933 10.6935C12.788 10.3636 12.788 9.6366 12.2933 9.30675Z"
         stroke="currentColor"
@@ -5523,13 +3318,7 @@ export const icons = [
   },
   {
     name: 'pause',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5537,13 +3326,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33332 7.50012V12.5001M11.6667 7.50012V12.5001M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -5555,13 +3338,7 @@ export const icons = [
   },
   {
     name: 'stop',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5569,13 +3346,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10.0001C17.5 14.1423 14.1421 17.5001 9.99998 17.5001C5.85785 17.5001 2.49998 14.1423 2.49998 10.0001C2.49998 5.85799 5.85785 2.50012 9.99998 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -5594,25 +3365,13 @@ export const icons = [
   },
   {
     name: 'star',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.04896 3.92704C9.34831 3.00573 10.6517 3.00573 10.9511 3.92704L12.0206 7.21883C12.1545 7.63086 12.5385 7.90982 12.9717 7.90982H16.4329C17.4016 7.90982 17.8044 9.14943 17.0207 9.71883L14.2205 11.7533C13.87 12.0079 13.7234 12.4593 13.8572 12.8713L14.9268 16.1631C15.2262 17.0844 14.1717 17.8505 13.388 17.2811L10.5878 15.2467C10.2373 14.9921 9.76272 14.9921 9.41223 15.2467L6.61206 17.2811C5.82835 17.8505 4.77387 17.0844 5.07322 16.1631L6.14279 12.8713C6.27666 12.4593 6.13 12.0079 5.77952 11.7533L2.97935 9.71883C2.19563 9.14943 2.59841 7.90982 3.56713 7.90982H7.02833C7.46156 7.90982 7.84551 7.63086 7.97939 7.21883L9.04896 3.92704Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_33_1859)">
         <path
           d="M9.20745 2.43899C9.45693 1.67127 10.543 1.67127 10.7925 2.43899L12.0582 6.33391C12.1698 6.67724 12.4897 6.90969 12.8507 6.9097L16.9461 6.90985C17.7534 6.90988 18.089 7.94284 17.436 8.41735L14.1228 10.8247C13.8307 11.0369 13.7085 11.413 13.8201 11.7563L15.0855 15.6514C15.3349 16.4191 14.4562 17.0575 13.8031 16.583L10.4898 14.1759C10.1977 13.9638 9.80225 13.9638 9.51019 14.1759L6.19684 16.583C5.54375 17.0575 4.66506 16.4191 4.91448 15.6514L6.17989 11.7563C6.29143 11.413 6.16923 11.0369 5.87718 10.8247L2.56401 8.41735C1.91096 7.94284 2.24659 6.90988 3.05383 6.90985L7.14924 6.9097C7.51024 6.90969 7.83018 6.67724 7.94175 6.33391L9.20745 2.43899Z"
@@ -5629,13 +3388,7 @@ export const icons = [
   },
   {
     name: 'terminal',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5643,13 +3396,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66664 7.50012L9.16664 10.0001L6.66664 12.5001M10.8333 12.5001H13.3333M4.16664 16.6668H15.8333C16.7538 16.6668 17.5 15.9206 17.5 15.0001V5.00012C17.5 4.07965 16.7538 3.33345 15.8333 3.33345H4.16664C3.24616 3.33345 2.49997 4.07965 2.49997 5.00012V15.0001C2.49997 15.9206 3.24616 16.6668 4.16664 16.6668Z"
         stroke="currentColor"
@@ -5661,13 +3408,7 @@ export const icons = [
   },
   {
     name: 'chart-square-bar',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5675,13 +3416,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 6.66679V13.3335M9.99996 9.16679V13.3335M6.66663 11.6668V13.3335M4.99996 16.6668H15C15.9204 16.6668 16.6666 15.9206 16.6666 15.0001V5.00012C16.6666 4.07965 15.9204 3.33345 15 3.33345H4.99996C4.07949 3.33345 3.3333 4.07965 3.3333 5.00012V15.0001C3.3333 15.9206 4.07949 16.6668 4.99996 16.6668Z"
         stroke="currentColor"
@@ -5693,13 +3428,7 @@ export const icons = [
   },
   {
     name: 'eye-off',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5711,13 +3440,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49998 2.50012L5.49095 5.49109M17.5 17.5001L14.5093 14.5094M11.5624 15.6873C11.0564 15.7832 10.5342 15.8335 10.0004 15.8335C6.26898 15.8335 3.1104 13.381 2.04852 10.0001C2.3376 9.0797 2.78207 8.22813 3.35117 7.47611M8.23221 8.23235C8.68462 7.77994 9.30962 7.50012 9.99998 7.50012C11.3807 7.50012 12.5 8.61941 12.5 10.0001C12.5 10.6905 12.2202 11.3155 11.7677 11.7679M8.23221 8.23235L11.7677 11.7679M8.23221 8.23235L5.49095 5.49109M11.7677 11.7679L5.49095 5.49109M11.7677 11.7679L14.5093 14.5094M5.49095 5.49109C6.7908 4.65307 8.33878 4.16679 10.0003 4.16679C13.7317 4.16679 16.8903 6.61922 17.9522 10.0002C17.3631 11.8757 16.1287 13.4655 14.5093 14.5094"
         stroke="currentColor"
@@ -5729,33 +3452,12 @@ export const icons = [
   },
   {
     name: 'chart-bar',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 11C2 10.4477 2.44772 10 3 10H5C5.55228 10 6 10.4477 6 11V16C6 16.5523 5.55228 17 5 17H3C2.44772 17 2 16.5523 2 16V11Z"
-        fill="currentColor"
-      />
-      <path
-        d="M8 7C8 6.44772 8.44772 6 9 6H11C11.5523 6 12 6.44772 12 7V16C12 16.5523 11.5523 17 11 17H9C8.44772 17 8 16.5523 8 16V7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14 4C14 3.44772 14.4477 3 15 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H15C14.4477 17 14 16.5523 14 16V4Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 11C2 10.4477 2.44772 10 3 10H5C5.55228 10 6 10.4477 6 11V16C6 16.5523 5.55228 17 5 17H3C2.44772 17 2 16.5523 2 16V11Z" fill="currentColor" />
+      <path d="M8 7C8 6.44772 8.44772 6 9 6H11C11.5523 6 12 6.44772 12 7V16C12 16.5523 11.5523 17 11 17H9C8.44772 17 8 16.5523 8 16V7Z" fill="currentColor" />
+      <path d="M14 4C14 3.44772 14.4477 3 15 3H17C17.5523 3 18 3.44772 18 4V16C18 16.5523 17.5523 17 17 17H15C14.4477 17 14 16.5523 14 16V4Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49997 15.8335V10.8335C7.49997 9.91298 6.75378 9.16679 5.8333 9.16679H4.16664C3.24616 9.16679 2.49997 9.91298 2.49997 10.8335V15.8335C2.49997 16.7539 3.24616 17.5001 4.16664 17.5001H5.8333C6.75378 17.5001 7.49997 16.7539 7.49997 15.8335ZM7.49997 15.8335V7.50012C7.49997 6.57965 8.24616 5.83346 9.16664 5.83346H10.8333C11.7538 5.83346 12.5 6.57965 12.5 7.50012V15.8335M7.49997 15.8335C7.49997 16.7539 8.24616 17.5001 9.16664 17.5001H10.8333C11.7538 17.5001 12.5 16.7539 12.5 15.8335M12.5 15.8335V4.16679C12.5 3.24631 13.2462 2.50012 14.1666 2.50012H15.8333C16.7538 2.50012 17.5 3.24631 17.5 4.16679V15.8335C17.5 16.7539 16.7538 17.5001 15.8333 17.5001H14.1666C13.2462 17.5001 12.5 16.7539 12.5 15.8335Z"
         stroke="currentColor"
@@ -5767,13 +3469,7 @@ export const icons = [
   },
   {
     name: 'fire',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5781,13 +3477,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.714 15.5475C12.1106 18.151 7.88945 18.151 5.28596 15.5475C3.98421 14.2457 3.33334 12.5396 3.33334 10.8335C3.33333 9.1273 3.98421 7.42115 5.28596 6.1194C5.28596 6.1194 5.83337 7.50008 7.50004 8.33342C7.50004 6.66675 7.91671 4.16675 9.98824 2.50012C11.6667 4.16679 13.4093 4.81466 14.714 6.1194C16.0158 7.42115 16.6667 9.1273 16.6667 10.8335C16.6667 12.5396 16.0158 14.2457 14.714 15.5475Z"
         stroke="currentColor"
@@ -5806,13 +3496,7 @@ export const icons = [
   },
   {
     name: 'shopping-bag',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5820,13 +3504,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 9.16679V5.83346C13.3333 3.99251 11.8409 2.50012 10 2.50012C8.15905 2.50012 6.66667 3.99251 6.66667 5.83346V9.16679M4.16667 7.50012H15.8333L16.6667 17.5001H3.33333L4.16667 7.50012Z"
         stroke="currentColor"
@@ -5838,29 +3516,14 @@ export const icons = [
   },
   {
     name: 'thumb-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 10.5C2 9.67157 2.67157 9 3.5 9C4.32843 9 5 9.67157 5 10.5V16.5C5 17.3284 4.32843 18 3.5 18C2.67157 18 2 17.3284 2 16.5V10.5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 10.5C2 9.67157 2.67157 9 3.5 9C4.32843 9 5 9.67157 5 10.5V16.5C5 17.3284 4.32843 18 3.5 18C2.67157 18 2 17.3284 2 16.5V10.5Z" fill="currentColor" />
       <path
         d="M6 10.3333V15.7639C6 16.5215 6.428 17.214 7.10557 17.5528L7.15542 17.5777C7.71084 17.8554 8.32329 18 8.94427 18H14.3604C15.3138 18 16.1346 17.3271 16.3216 16.3922L17.5216 10.3922C17.7691 9.15465 16.8225 8 15.5604 8H12V4C12 2.89543 11.1046 2 10 2C9.44772 2 9 2.44772 9 3V3.66667C9 4.53215 8.71929 5.37428 8.2 6.06667L6.8 7.93333C6.28071 8.62572 6 9.46785 6 10.3333Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 8.33346H15.6366C16.8756 8.33346 17.6814 9.63731 17.1273 10.7455L14.2107 16.5788C13.9283 17.1435 13.3512 17.5001 12.7199 17.5001H9.37184C9.23557 17.5001 9.09982 17.4834 8.96762 17.4504L5.83333 16.6668M11.6667 8.33346V4.16679C11.6667 3.24632 10.9205 2.50012 10 2.50012H9.92044C9.50414 2.50012 9.16667 2.8376 9.16667 3.2539C9.16667 3.84915 8.99047 4.43108 8.66028 4.92636L5.83333 9.16679V16.6668M11.6667 8.33346H10M5.83333 16.6668H4.16667C3.24619 16.6668 2.5 15.9206 2.5 15.0001V10.0001C2.5 9.07965 3.24619 8.33346 4.16667 8.33346H6.25"
         stroke="currentColor"
@@ -5872,29 +3535,14 @@ export const icons = [
   },
   {
     name: 'thumb-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M18 9.5C18 10.3284 17.3285 11 16.5 11C15.6716 11 15 10.3284 15 9.5V3.5C15 2.67157 15.6716 2 16.5 2C17.3285 2 18 2.67157 18 3.5V9.5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M18 9.5C18 10.3284 17.3285 11 16.5 11C15.6716 11 15 10.3284 15 9.5V3.5C15 2.67157 15.6716 2 16.5 2C17.3285 2 18 2.67157 18 3.5V9.5Z" fill="currentColor" />
       <path
         d="M14 9.66667V4.23607C14 3.47852 13.572 2.786 12.8945 2.44721L12.8446 2.42229C12.2892 2.14458 11.6767 2 11.0558 2L5.63964 2C4.68628 2 3.86545 2.67292 3.67848 3.60777L2.47848 9.60777C2.23097 10.8453 3.17755 12 4.43964 12H8.00004V16C8.00004 17.1046 8.89547 18 10 18C10.5523 18 11 17.5523 11 17V16.3333C11 15.4679 11.2807 14.6257 11.8 13.9333L13.2 12.0667C13.7193 11.3743 14 10.5321 14 9.66667Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33333 11.6668H4.36339C3.12442 11.6668 2.31859 10.3629 2.87268 9.25477L5.78934 3.42144C6.07166 2.85679 6.64877 2.50012 7.28006 2.50012H10.6282C10.7644 2.50012 10.9002 2.51684 11.0324 2.54989L14.1667 3.33346M8.33333 11.6668V15.8335C8.33333 16.7539 9.07952 17.5001 10 17.5001H10.0796C10.4959 17.5001 10.8333 17.1626 10.8333 16.7464C10.8333 16.1511 11.0095 15.5692 11.3397 15.0739L14.1667 10.8335V3.33346M8.33333 11.6668H10M14.1667 3.33346H15.8333C16.7538 3.33346 17.5 4.07965 17.5 5.00012V10.0001C17.5 10.9206 16.7538 11.6668 15.8333 11.6668H13.75"
         stroke="currentColor"
@@ -5906,25 +3554,13 @@ export const icons = [
   },
   {
     name: 'hand',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9 3C9 2.44772 9.44772 2 10 2C10.5523 2 11 2.44772 11 3V8.5C11 8.77614 11.2239 9 11.5 9C11.7761 9 12 8.77614 12 8.5V4C12 3.44772 12.4477 3 13 3C13.5523 3 14 3.44772 14 4V8.5C14 8.77614 14.2239 9 14.5 9C14.7761 9 15 8.77614 15 8.5V6C15 5.44772 15.4477 5 16 5C16.5523 5 17 5.44772 17 6V11C17 14.866 13.866 18 10 18C6.13401 18 3 14.866 3 11V9C3 8.44772 3.44772 8 4 8C4.55228 8 5 8.44772 5 9V11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5V4C6 3.44772 6.44772 3 7 3C7.55228 3 8 3.44772 8 4V8.5C8 8.77614 8.22386 9 8.5 9C8.77614 9 9 8.77614 9 8.5V3Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83332 9.58345V11.6668M5.83332 9.58345V4.58346C5.83332 3.8931 6.39296 3.33346 7.08332 3.33346C7.77368 3.33346 8.33332 3.8931 8.33332 4.58346M5.83332 9.58345C5.83332 8.8931 5.27368 8.33345 4.58332 8.33345C3.89296 8.33345 3.33332 8.8931 3.33332 9.58345V11.2501C3.33332 14.7019 6.13154 17.5001 9.58332 17.5001C13.0351 17.5001 15.8333 14.7019 15.8333 11.2501V7.08345C15.8333 6.3931 15.2737 5.83346 14.5833 5.83346C13.893 5.83346 13.3333 6.3931 13.3333 7.08345M8.33332 4.58346V9.16679M8.33332 4.58346V3.75012C8.33332 3.05977 8.89296 2.50012 9.58332 2.50012C10.2737 2.50012 10.8333 3.05977 10.8333 3.75012V4.58346M10.8333 4.58346V9.16679M10.8333 4.58346C10.8333 3.8931 11.393 3.33346 12.0833 3.33346C12.7737 3.33346 13.3333 3.8931 13.3333 4.58346V7.08345M13.3333 7.08345V9.16679"
         stroke="currentColor"
@@ -5936,13 +3572,7 @@ export const icons = [
   },
   {
     name: 'arrows-expand',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -5950,13 +3580,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33332 6.66679V3.33346M3.33332 3.33346H6.66665M3.33332 3.33346L7.49999 7.50012M16.6667 6.66679V3.33346M16.6667 3.33346H13.3333M16.6667 3.33346L12.5 7.50012M3.33332 13.3335V16.6668M3.33332 16.6668H6.66665M3.33332 16.6668L7.49999 12.5001M16.6667 16.6668L12.5 12.5001M16.6667 16.6668V13.3335M16.6667 16.6668H13.3333"
         stroke="currentColor"
@@ -5968,37 +3592,13 @@ export const icons = [
   },
   {
     name: 'view-grid',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M11 13C11 11.8954 11.8954 11 13 11H15C16.1046 11 17 11.8954 17 13V15C17 16.1046 16.1046 17 15 17H13C11.8954 17 11 16.1046 11 15V13Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M5 3C3.89543 3 3 3.89543 3 5V7C3 8.10457 3.89543 9 5 9H7C8.10457 9 9 8.10457 9 7V5C9 3.89543 8.10457 3 7 3H5Z" fill="currentColor" />
+      <path d="M5 11C3.89543 11 3 11.8954 3 13V15C3 16.1046 3.89543 17 5 17H7C8.10457 17 9 16.1046 9 15V13C9 11.8954 8.10457 11 7 11H5Z" fill="currentColor" />
+      <path d="M11 5C11 3.89543 11.8954 3 13 3H15C16.1046 3 17 3.89543 17 5V7C17 8.10457 16.1046 9 15 9H13C11.8954 9 11 8.10457 11 7V5Z" fill="currentColor" />
+      <path d="M11 13C11 11.8954 11.8954 11 13 11H15C16.1046 11 17 11.8954 17 13V15C17 16.1046 16.1046 17 15 17H13C11.8954 17 11 16.1046 11 15V13Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 5.00012C3.33331 4.07965 4.07951 3.33346 4.99998 3.33346H6.66665C7.58712 3.33346 8.33331 4.07965 8.33331 5.00012V6.66679C8.33331 7.58726 7.58712 8.33345 6.66665 8.33345H4.99998C4.0795 8.33345 3.33331 7.58726 3.33331 6.66679V5.00012Z"
         stroke="currentColor"
@@ -6031,25 +3631,13 @@ export const icons = [
   },
   {
     name: 'puzzle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 3.5C10 2.67157 10.6716 2 11.5 2C12.3284 2 13 2.67157 13 3.5V4C13 4.55228 13.4477 5 14 5H17C17.5523 5 18 5.44772 18 6V9C18 9.55228 17.5523 10 17 10H16.5C15.6716 10 15 10.6716 15 11.5C15 12.3284 15.6716 13 16.5 13H17C17.5523 13 18 13.4477 18 14V17C18 17.5523 17.5523 18 17 18H14C13.4477 18 13 17.5523 13 17V16.5C13 15.6716 12.3284 15 11.5 15C10.6716 15 10 15.6716 10 16.5V17C10 17.5523 9.55228 18 9 18H6C5.44772 18 5 17.5523 5 17V14C5 13.4477 4.55228 13 4 13H3.5C2.67157 13 2 12.3284 2 11.5C2 10.6716 2.67157 10 3.5 10H4C4.55228 10 5 9.55228 5 9V6C5 5.44772 5.44772 5 6 5H9C9.55228 5 10 4.55228 10 4V3.5Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_33_1871)">
         <path
           d="M9.16664 3.33345C9.16664 2.41298 9.91283 1.66679 10.8333 1.66679C11.7538 1.66679 12.5 2.41298 12.5 3.33346V4.16679C12.5 4.62703 12.8731 5.00012 13.3333 5.00012H15.8333C16.2935 5.00012 16.6666 5.37322 16.6666 5.83345V8.33345C16.6666 8.79369 16.2935 9.16679 15.8333 9.16679H15C14.0795 9.16679 13.3333 9.91298 13.3333 10.8335C13.3333 11.7539 14.0795 12.5001 15 12.5001H15.8333C16.2935 12.5001 16.6666 12.8732 16.6666 13.3335V15.8335C16.6666 16.2937 16.2935 16.6668 15.8333 16.6668H13.3333C12.8731 16.6668 12.5 16.2937 12.5 15.8335V15.0001C12.5 14.0796 11.7538 13.3335 10.8333 13.3335C9.91283 13.3335 9.16664 14.0796 9.16664 15.0001V15.8335C9.16664 16.2937 8.79354 16.6668 8.33331 16.6668H5.83331C5.37307 16.6668 4.99997 16.2937 4.99997 15.8335V13.3335C4.99997 12.8732 4.62688 12.5001 4.16664 12.5001H3.33331C2.41283 12.5001 1.66664 11.7539 1.66664 10.8335C1.66664 9.91298 2.41283 9.16679 3.33331 9.16679H4.16664C4.62688 9.16679 4.99997 8.79369 4.99997 8.33345V5.83346C4.99997 5.37322 5.37307 5.00012 5.83331 5.00012H8.33331C8.79354 5.00012 9.16664 4.62703 9.16664 4.16679V3.33345Z"
@@ -6068,13 +3656,7 @@ export const icons = [
   },
   {
     name: 'folder-download',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6082,13 +3664,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99997 8.33345V13.3335M9.99997 13.3335L7.49997 10.8335M9.99997 13.3335L12.5 10.8335M2.49997 14.1668V5.83345C2.49997 4.91298 3.24616 4.16679 4.16664 4.16679H9.16664L10.8333 5.83345H15.8333C16.7538 5.83345 17.5 6.57965 17.5 7.50012V14.1668C17.5 15.0873 16.7538 15.8335 15.8333 15.8335H4.16664C3.24616 15.8335 2.49997 15.0873 2.49997 14.1668Z"
         stroke="currentColor"
@@ -6100,13 +3676,7 @@ export const icons = [
   },
   {
     name: 'folder-add',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6114,13 +3684,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49997 10.8335H12.5M9.99997 8.33345V13.3335M2.49997 14.1668V5.83345C2.49997 4.91298 3.24616 4.16679 4.16664 4.16679H9.16664L10.8333 5.83345H15.8333C16.7538 5.83345 17.5 6.57965 17.5 7.50012V14.1668C17.5 15.0873 16.7538 15.8335 15.8333 15.8335H4.16664C3.24616 15.8335 2.49997 15.0873 2.49997 14.1668Z"
         stroke="currentColor"
@@ -6132,13 +3696,7 @@ export const icons = [
   },
   {
     name: 'folder-remove',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6146,13 +3704,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49997 10.8335H12.5M2.49997 14.1668V5.83345C2.49997 4.91298 3.24616 4.16679 4.16664 4.16679H9.16664L10.8333 5.83345H15.8333C16.7538 5.83345 17.5 6.57965 17.5 7.50012V14.1668C17.5 15.0873 16.7538 15.8335 15.8333 15.8335H4.16664C3.24616 15.8335 2.49997 15.0873 2.49997 14.1668Z"
         stroke="currentColor"
@@ -6164,19 +3716,8 @@ export const icons = [
   },
   {
     name: 'map',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M12 1.58582L8 5.58582V18.4142L12 14.4142V1.58582Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.58582L8 5.58582V18.4142L12 14.4142V1.58582Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6190,13 +3731,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 16.6668L2.96066 14.3971C2.67834 14.256 2.5 13.9674 2.5 13.6518V4.68182C2.5 4.06233 3.15193 3.65942 3.70601 3.93646L7.5 5.83345M7.5 16.6668L12.5 14.1668M7.5 16.6668V5.83345M12.5 14.1668L16.294 16.0638C16.8481 16.3408 17.5 15.9379 17.5 15.3184V6.34848C17.5 6.03284 17.3217 5.74429 17.0393 5.60313L12.5 3.33345M12.5 14.1668V3.33345M12.5 3.33345L7.5 5.83345"
         stroke="currentColor"
@@ -6208,17 +3743,8 @@ export const icons = [
   },
   {
     name: 'identification',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M10 2C9.44772 2 9 2.44772 9 3V4C9 4.55228 9.44772 5 10 5C10.5523 5 11 4.55228 11 4V3C11 2.44772 10.5523 2 10 2Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2C9.44772 2 9 2.44772 9 3V4C9 4.55228 9.44772 5 10 5C10.5523 5 11 4.55228 11 4V3C11 2.44772 10.5523 2 10 2Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6226,13 +3752,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33333 5.00012H4.16667C3.24619 5.00012 2.5 5.74631 2.5 6.66679V14.1668C2.5 15.0873 3.24619 15.8335 4.16667 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V6.66679C17.5 5.74631 16.7538 5.00012 15.8333 5.00012H11.6667M8.33333 5.00012V4.16679C8.33333 3.24631 9.07952 2.50012 10 2.50012C10.9205 2.50012 11.6667 3.24631 11.6667 4.16679V5.00012M8.33333 5.00012C8.33333 5.9206 9.07952 6.66679 10 6.66679C10.9205 6.66679 11.6667 5.9206 11.6667 5.00012M7.5 11.6668C8.42047 11.6668 9.16667 10.9206 9.16667 10.0001C9.16667 9.07965 8.42047 8.33345 7.5 8.33345C6.57952 8.33345 5.83333 9.07965 5.83333 10.0001C5.83333 10.9206 6.57952 11.6668 7.5 11.6668ZM7.5 11.6668C8.58852 11.6668 9.5145 12.3625 9.8577 13.3335M7.5 11.6668C6.41148 11.6668 5.48541 12.3625 5.14221 13.3335M12.5 9.16679H15M12.5 12.5001H14.1667"
         stroke="currentColor"
@@ -6244,13 +3764,7 @@ export const icons = [
   },
   {
     name: 'rss',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 3C4.44772 3 4 3.44772 4 4C4 4.55228 4.44772 5 5 5C10.5228 5 15 9.47715 15 15C15 15.5523 15.4477 16 16 16C16.5523 16 17 15.5523 17 15C17 8.37258 11.6274 3 5 3Z"
         fill="currentColor"
@@ -6259,18 +3773,9 @@ export const icons = [
         d="M4 9C4 8.44772 4.44772 8 5 8C8.86599 8 12 11.134 12 15C12 15.5523 11.5523 16 11 16C10.4477 16 10 15.5523 10 15C10 12.2386 7.76142 10 5 10C4.44772 10 4 9.55228 4 9Z"
         fill="currentColor"
       />
-      <path
-        d="M3 15C3 13.8954 3.89543 13 5 13C6.10457 13 7 13.8954 7 15C7 16.1046 6.10457 17 5 17C3.89543 17 3 16.1046 3 15Z"
-        fill="currentColor"
-      />
+      <path d="M3 15C3 13.8954 3.89543 13 5 13C6.10457 13 7 13.8954 7 15C7 16.1046 6.10457 17 5 17C3.89543 17 3 16.1046 3 15Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 4.16679C10.9831 4.16679 15.8333 9.01703 15.8333 15.0001M5 9.16679C8.22166 9.16679 10.8333 11.7785 10.8333 15.0001M5.83333 15.0001C5.83333 15.4604 5.46024 15.8335 5 15.8335C4.53976 15.8335 4.16667 15.4604 4.16667 15.0001C4.16667 14.5399 4.53976 14.1668 5 14.1668C5.46024 14.1668 5.83333 14.5399 5.83333 15.0001Z"
         stroke="currentColor"
@@ -6282,13 +3787,7 @@ export const icons = [
   },
   {
     name: 'scissors',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6300,13 +3799,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.7678 11.7679L15.8333 15.8335M10 10.0001L15.8333 4.16679M10 10.0001L7.6011 12.399M10 10.0001L7.6011 7.60122M7.6011 12.399C7.14869 11.9466 6.52369 11.6668 5.83333 11.6668C4.45262 11.6668 3.33333 12.7861 3.33333 14.1668C3.33333 15.5475 4.45262 16.6668 5.83333 16.6668C7.21404 16.6668 8.33333 15.5475 8.33333 14.1668C8.33333 13.4764 8.05351 12.8514 7.6011 12.399ZM7.6011 7.60122C8.05351 7.14881 8.33333 6.52381 8.33333 5.83345C8.33333 4.45274 7.21404 3.33345 5.83333 3.33345C4.45262 3.33345 3.33333 4.45274 3.33333 5.83345C3.33333 7.21417 4.45262 8.33345 5.83333 8.33345C6.52369 8.33345 7.14869 8.05363 7.6011 7.60122Z"
         stroke="currentColor"
@@ -6317,25 +3810,13 @@ export const icons = [
   },
   {
     name: 'music-note',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M18 3.00001C18 2.70042 17.8657 2.41661 17.634 2.22667C17.4023 2.03673 17.0977 1.96067 16.8039 2.01943L6.80388 4.01943C6.33646 4.11291 6 4.52333 6 5.00001V14.1138C5.68722 14.0401 5.35064 14 5 14C3.34315 14 2 14.8954 2 16C2 17.1046 3.34315 18 5 18C6.65685 18 7.99999 17.1046 8 16V7.81981L16 6.21981V12.1138C15.6872 12.0401 15.3506 12 15 12C13.3431 12 12 12.8954 12 14C12 15.1046 13.3431 16 15 16C16.6569 16 18 15.1046 18 14V3.00001Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49999 15.8335V5.00012L17.5 2.50012V13.3335M7.49999 15.8335C7.49999 16.7539 6.3807 17.5001 4.99998 17.5001C3.61927 17.5001 2.49998 16.7539 2.49998 15.8335C2.49998 14.913 3.61927 14.1668 4.99998 14.1668C6.3807 14.1668 7.49999 14.913 7.49999 15.8335ZM17.5 13.3335C17.5 14.2539 16.3807 15.0001 15 15.0001C13.6193 15.0001 12.5 14.2539 12.5 13.3335C12.5 12.413 13.6193 11.6668 15 11.6668C16.3807 11.6668 17.5 12.413 17.5 13.3335ZM7.49999 8.33345L17.5 5.83346"
         stroke="currentColor"
@@ -6347,13 +3828,7 @@ export const icons = [
   },
   {
     name: 'film',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6361,13 +3836,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83332 3.33345V16.6668M14.1667 3.33345V16.6668M2.49998 6.66679H5.83332M14.1667 6.66679H17.5M2.49998 10.0001H17.5M2.49998 13.3335H5.83332M14.1667 13.3335H17.5M3.33332 16.6668H16.6667C17.1269 16.6668 17.5 16.2937 17.5 15.8335V4.16679C17.5 3.70655 17.1269 3.33345 16.6667 3.33345H3.33332C2.87308 3.33345 2.49998 3.70655 2.49998 4.16679V15.8335C2.49998 16.2937 2.87308 16.6668 3.33332 16.6668Z"
         stroke="currentColor"
@@ -6377,33 +3846,12 @@ export const icons = [
   },
   {
     name: 'database',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3 12V15C3 16.6569 6.13401 18 10 18C13.866 18 17 16.6569 17 15V12C17 13.6569 13.866 15 10 15C6.13401 15 3 13.6569 3 12Z"
-        fill="currentColor"
-      />
-      <path
-        d="M3 7V10C3 11.6569 6.13401 13 10 13C13.866 13 17 11.6569 17 10V7C17 8.65685 13.866 10 10 10C6.13401 10 3 8.65685 3 7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M17 5C17 6.65685 13.866 8 10 8C6.13401 8 3 6.65685 3 5C3 3.34315 6.13401 2 10 2C13.866 2 17 3.34315 17 5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3 12V15C3 16.6569 6.13401 18 10 18C13.866 18 17 16.6569 17 15V12C17 13.6569 13.866 15 10 15C6.13401 15 3 13.6569 3 12Z" fill="currentColor" />
+      <path d="M3 7V10C3 11.6569 6.13401 13 10 13C13.866 13 17 11.6569 17 10V7C17 8.65685 13.866 10 10 10C6.13401 10 3 8.65685 3 7Z" fill="currentColor" />
+      <path d="M17 5C17 6.65685 13.866 8 10 8C6.13401 8 3 6.65685 3 5C3 3.34315 6.13401 2 10 2C13.866 2 17 3.34315 17 5Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 5.83346V14.1668C3.33331 16.0077 6.31808 17.5001 9.99998 17.5001C13.6819 17.5001 16.6666 16.0077 16.6666 14.1668V5.83346M3.33331 5.83346C3.33331 7.6744 6.31808 9.16679 9.99998 9.16679C13.6819 9.16679 16.6666 7.6744 16.6666 5.83346M3.33331 5.83346C3.33331 3.99251 6.31808 2.50012 9.99998 2.50012C13.6819 2.50012 16.6666 3.99251 16.6666 5.83346M16.6666 10.0001C16.6666 11.8411 13.6819 13.3335 9.99998 13.3335C6.31808 13.3335 3.33331 11.8411 3.33331 10.0001"
         stroke="currentColor"
@@ -6413,13 +3861,7 @@ export const icons = [
   },
   {
     name: 'server',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6433,13 +3875,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16667 10.0001H15.8333M4.16667 10.0001C3.24619 10.0001 2.5 9.25393 2.5 8.33345V5.00012C2.5 4.07965 3.24619 3.33345 4.16667 3.33345H15.8333C16.7538 3.33345 17.5 4.07965 17.5 5.00012V8.33345C17.5 9.25393 16.7538 10.0001 15.8333 10.0001M4.16667 10.0001C3.24619 10.0001 2.5 10.7463 2.5 11.6668V15.0001C2.5 15.9206 3.24619 16.6668 4.16667 16.6668H15.8333C16.7538 16.6668 17.5 15.9206 17.5 15.0001V11.6668C17.5 10.7463 16.7538 10.0001 15.8333 10.0001M14.1667 6.66679H14.175M14.1667 13.3335H14.175"
         stroke="currentColor"
@@ -6451,29 +3887,14 @@ export const icons = [
   },
   {
     name: 'login',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3 3C2.44772 3 2 3.44772 2 4V16C2 16.5523 2.44772 17 3 17C3.55228 17 4 16.5523 4 16V4C4 3.44772 3.55228 3 3 3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3 3C2.44772 3 2 3.44772 2 4V16C2 16.5523 2.44772 17 3 17C3.55228 17 4 16.5523 4 16V4C4 3.44772 3.55228 3 3 3Z" fill="currentColor" />
       <path
         d="M13.2929 12.2929C12.9024 12.6834 12.9024 13.3166 13.2929 13.7071C13.6834 14.0976 14.3166 14.0976 14.7071 13.7071L17.7071 10.7071C17.8946 10.5196 18 10.2652 18 10C18 9.73478 17.8946 9.48043 17.7071 9.29289L14.7071 6.29289C14.3166 5.90237 13.6834 5.90237 13.2929 6.29289C12.9024 6.68342 12.9024 7.31658 13.2929 7.70711L14.5858 9L7 9C6.44771 9 6 9.44772 6 10C6 10.5523 6.44772 11 7 11H14.5858L13.2929 12.2929Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 13.3335L17.5 10.0001M17.5 10.0001L14.1667 6.66679M17.5 10.0001L5.83333 10.0001M10.8333 13.3335V14.1668C10.8333 15.5475 9.71405 16.6668 8.33333 16.6668H5C3.61929 16.6668 2.5 15.5475 2.5 14.1668V5.83345C2.5 4.45274 3.61929 3.33345 5 3.33345H8.33333C9.71405 3.33345 10.8333 4.45274 10.8333 5.83345V6.66679"
         stroke="currentColor"
@@ -6485,13 +3906,7 @@ export const icons = [
   },
   {
     name: 'wifi',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6499,13 +3914,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_33_1884)">
         <path
           d="M6.75921 13.67C8.54912 11.8801 11.4511 11.8801 13.241 13.67M10.0001 16.6668H10.0085M4.10759 10.7742C7.36196 7.51987 12.6383 7.51987 15.8927 10.7742M1.16129 7.82795C6.04284 2.9464 13.9574 2.9464 18.839 7.82795"
@@ -6523,13 +3932,7 @@ export const icons = [
   },
   {
     name: 'backspace',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6537,13 +3940,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 11.6668L11.6667 10.0001M11.6667 10.0001L13.3333 8.33345M11.6667 10.0001L10 8.33345M11.6667 10.0001L13.3333 11.6668M2.5 10.0001L7.84518 15.3453C8.15774 15.6579 8.58166 15.8335 9.02369 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V5.83345C17.5 4.91298 16.7538 4.16679 15.8333 4.16679H9.02369C8.58166 4.16679 8.15774 4.34238 7.84518 4.65494L2.5 10.0001Z"
         stroke="currentColor"
@@ -6555,25 +3952,13 @@ export const icons = [
   },
   {
     name: 'paper-airplane',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8944 2.55279C10.725 2.214 10.3788 2 10 2C9.62124 2 9.27498 2.214 9.10558 2.55279L2.10558 16.5528C1.92823 16.9075 1.97724 17.3335 2.2305 17.6386C2.48376 17.9438 2.89342 18.0705 3.27473 17.9615L8.27472 16.533C8.70402 16.4103 9 16.0179 9 15.5714V11C9 10.4477 9.44772 10 10 10C10.5523 10 11 10.4477 11 11V15.5714C11 16.0179 11.296 16.4103 11.7253 16.533L16.7253 17.9615C17.1066 18.0705 17.5163 17.9438 17.7695 17.6386C18.0228 17.3335 18.0718 16.9075 17.8944 16.5528L10.8944 2.55279Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 15.8335L17.5 17.5001L10 2.50012L2.5 17.5001L10 15.8335ZM10 15.8335V9.16679"
         stroke="currentColor"
@@ -6585,13 +3970,7 @@ export const icons = [
   },
   {
     name: 'device-mobile',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6599,13 +3978,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 15.0001H10.0083M6.66667 17.5001H13.3333C14.2538 17.5001 15 16.7539 15 15.8335V4.16679C15 3.24631 14.2538 2.50012 13.3333 2.50012H6.66667C5.74619 2.50012 5 3.24631 5 4.16679V15.8335C5 16.7539 5.74619 17.5001 6.66667 17.5001Z"
         stroke="currentColor"
@@ -6617,13 +3990,7 @@ export const icons = [
   },
   {
     name: 'device-tablet',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6631,13 +3998,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 15.0001H10.0083M5.83333 17.5001H14.1667C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V4.16679C15.8333 3.24631 15.0871 2.50012 14.1667 2.50012H5.83333C4.91286 2.50012 4.16667 3.24631 4.16667 4.16679V15.8335C4.16667 16.7539 4.91286 17.5001 5.83333 17.5001Z"
         stroke="currentColor"
@@ -6649,13 +4010,7 @@ export const icons = [
   },
   {
     name: 'chevron-double-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6669,13 +4024,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 4.16679L16.6667 10.0001L10.8333 15.8335M4.16667 4.16679L10 10.0001L4.16667 15.8335"
         stroke="currentColor"
@@ -6687,13 +4036,7 @@ export const icons = [
   },
   {
     name: 'chevron-double-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6701,13 +4044,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 10.8335L10 16.6668L4.16666 10.8335M15.8333 4.16679L10 10.0001L4.16666 4.16679"
         stroke="currentColor"
@@ -6719,13 +4056,7 @@ export const icons = [
   },
   {
     name: 'chevron-double-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6733,13 +4064,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 15.8335L3.33334 10.0001L9.16667 4.16679M15.8333 15.8335L10 10.0001L15.8333 4.16679"
         stroke="currentColor"
@@ -6751,13 +4076,7 @@ export const icons = [
   },
   {
     name: 'chevron-double-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6765,13 +4084,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16667 9.16679L10 3.33346L15.8333 9.16679M4.16667 15.8335L10 10.0001L15.8333 15.8335"
         stroke="currentColor"
@@ -6783,13 +4096,7 @@ export const icons = [
   },
   {
     name: 'finger-print',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6809,13 +4116,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99989 9.16679C9.99989 12.0978 9.15924 14.8324 7.70589 17.1428M4.83907 15.4421C4.85382 15.4172 4.86894 15.3925 4.88442 15.3679C6.01316 13.5736 6.66659 11.4516 6.66659 9.16679C6.66659 7.32584 8.15897 5.83346 9.99992 5.83346C11.8409 5.83346 13.3333 7.32584 13.3333 9.16679C13.3333 10.0143 13.2756 10.8489 13.1639 11.6668M11.3993 17.3698C11.9091 16.3523 12.327 15.2809 12.6423 14.1668M15.8414 15.1101C16.3789 13.2215 16.6667 11.2278 16.6667 9.16679C16.6667 5.48489 13.6819 2.50012 10 2.50012C8.78571 2.50012 7.64724 2.82477 6.66667 3.392M2.5 12.8036C3.03388 11.7046 3.33333 10.4707 3.33333 9.16679C3.33333 7.9525 3.65798 6.81403 4.22521 5.83346"
         stroke="currentColor"
@@ -6827,13 +4128,7 @@ export const icons = [
   },
   {
     name: 'cube',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11 17C11 17.3466 11.1795 17.6684 11.4743 17.8507C11.7691 18.0329 12.1372 18.0494 12.4472 17.8944L16.4472 15.8944C16.786 15.725 17 15.3788 17 15V9.23607C17 8.88949 16.8205 8.56762 16.5257 8.38542C16.2309 8.20321 15.8628 8.18665 15.5528 8.34164L11.5528 10.3416C11.214 10.511 11 10.8573 11 11.2361V17Z"
         fill="currentColor"
@@ -6847,13 +4142,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M16.6667 5.83346L9.99999 2.50012L3.33333 5.83346M16.6667 5.83346L9.99999 9.16679M16.6667 5.83346V14.1668L9.99999 17.5001M9.99999 9.16679L3.33333 5.83346M9.99999 9.16679V17.5001M3.33333 5.83346V14.1668L9.99999 17.5001"
         stroke="currentColor"
@@ -6864,31 +4153,16 @@ export const icons = [
   },
   {
     name: 'folder-open',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M2 6C2 4.89543 2.89543 4 4 4H8L10 6H14C15.1046 6 16 6.89543 16 8V9H8C6.34315 9 5 10.3431 5 12V13.5C5 14.3284 4.32843 15 3.5 15C2.67157 15 2 14.3284 2 13.5V6Z"
         fill="currentColor"
       />
-      <path
-        d="M6 12C6 10.8954 6.89543 10 8 10H16C17.1046 10 18 10.8954 18 12V14C18 15.1046 17.1046 16 16 16H2H4C5.10457 16 6 15.1046 6 14V12Z"
-        fill="currentColor"
-      />
+      <path d="M6 12C6 10.8954 6.89543 10 8 10H16C17.1046 10 18 10.8954 18 12V14C18 15.1046 17.1046 16 16 16H2H4C5.10457 16 6 15.1046 6 14V12Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16667 15.8335C3.24619 15.8335 2.5 15.0873 2.5 14.1668V5.83345C2.5 4.91298 3.24619 4.16679 4.16667 4.16679H7.5L9.16667 5.83345H12.5C13.4205 5.83345 14.1667 6.57964 14.1667 7.50012V8.33345M4.16667 15.8335H15.8333C16.7538 15.8335 17.5 15.0873 17.5 14.1668V10.0001C17.5 9.07964 16.7538 8.33345 15.8333 8.33345H7.5C6.57953 8.33345 5.83333 9.07964 5.83333 10.0001V14.1668C5.83333 15.0873 5.08714 15.8335 4.16667 15.8335Z"
         stroke="currentColor"
@@ -6899,29 +4173,14 @@ export const icons = [
   },
   {
     name: 'save',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.70711 10.2929C7.31658 9.90237 6.68342 9.90237 6.29289 10.2929C5.90237 10.6834 5.90237 11.3166 6.29289 11.7071L9.29289 14.7071C9.68342 15.0976 10.3166 15.0976 10.7071 14.7071L13.7071 11.7071C14.0976 11.3166 14.0976 10.6834 13.7071 10.2929C13.3166 9.90237 12.6834 9.90237 12.2929 10.2929L11 11.5858L11 6H16C17.1046 6 18 6.89543 18 8V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V8C2 6.89543 2.89543 6 4 6H9L9 11.5858L7.70711 10.2929Z"
         fill="currentColor"
       />
-      <path
-        d="M9 4C9 3.44772 9.44772 3 10 3C10.5523 3 11 3.44772 11 4L11 6H9L9 4Z"
-        fill="currentColor"
-      />
+      <path d="M9 4C9 3.44772 9.44772 3 10 3C10.5523 3 11 3.44772 11 4L11 6H9L9 4Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 5.83346H4.16667C3.24619 5.83346 2.5 6.57965 2.5 7.50012V15.0001C2.5 15.9206 3.24619 16.6668 4.16667 16.6668H15.8333C16.7538 16.6668 17.5 15.9206 17.5 15.0001V7.50012C17.5 6.57965 16.7538 5.83346 15.8333 5.83346H13.3333M12.5 9.16679L10 11.6668M10 11.6668L7.5 9.16679M10 11.6668L10 3.33346"
         stroke="currentColor"
@@ -6933,33 +4192,15 @@ export const icons = [
   },
   {
     name: 'save-as',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.70711 7.29289C9.31658 6.90237 8.68342 6.90237 8.29289 7.29289C7.90237 7.68342 7.90237 8.31658 8.29289 8.70711L11.2929 11.7071C11.6834 12.0976 12.3166 12.0976 12.7071 11.7071L15.7071 8.70711C16.0976 8.31658 16.0976 7.68342 15.7071 7.29289C15.3166 6.90237 14.6834 6.90237 14.2929 7.29289L13 8.58579L13 5H16C17.1046 5 18 5.89543 18 7V12C18 13.1046 17.1046 14 16 14H8C6.89543 14 6 13.1046 6 12V7C6 5.89543 6.89543 5 8 5H11L11 8.58579L9.70711 7.29289Z"
         fill="currentColor"
       />
-      <path
-        d="M11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 5H11L11 3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M4 9C2.89543 9 2 9.89543 2 11V16C2 17.1046 2.89543 18 4 18H12C13.1046 18 14 17.1046 14 16H4V9Z"
-        fill="currentColor"
-      />
+      <path d="M11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 5H11L11 3Z" fill="currentColor" />
+      <path d="M4 9C2.89543 9 2 9.89543 2 11V16C2 17.1046 2.89543 18 4 18H12C13.1046 18 14 17.1046 14 16H4V9Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 13.3335V15.0001C14.1667 15.9206 13.4205 16.6668 12.5 16.6668H4.16667C3.24619 16.6668 2.5 15.9206 2.5 15.0001V9.16679C2.5 8.24631 3.24619 7.50012 4.16667 7.50012H5.83333M8.33333 4.16679H7.5C6.57953 4.16679 5.83333 4.91298 5.83333 5.83346V11.6668C5.83333 12.5873 6.57953 13.3335 7.5 13.3335H15.8333C16.7538 13.3335 17.5 12.5873 17.5 11.6668V5.83346C17.5 4.91298 16.7538 4.16679 15.8333 4.16679H15M14.1667 7.50012L11.6667 10.0001M11.6667 10.0001L9.16667 7.50012M11.6667 10.0001L11.6667 2.50012"
         stroke="currentColor"
@@ -6971,13 +4212,7 @@ export const icons = [
   },
   {
     name: 'document-text',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -6985,13 +4220,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 10.0001H12.5M7.5 13.3335H12.5M14.1667 17.5001H5.83333C4.91286 17.5001 4.16666 16.7539 4.16666 15.8335V4.16679C4.16666 3.24631 4.91286 2.50012 5.83333 2.50012H10.4882C10.7092 2.50012 10.9211 2.58792 11.0774 2.7442L15.5893 7.25604C15.7455 7.41232 15.8333 7.62429 15.8333 7.8453V15.8335C15.8333 16.7539 15.0871 17.5001 14.1667 17.5001Z"
         stroke="currentColor"
@@ -7003,13 +4232,7 @@ export const icons = [
   },
   {
     name: 'table',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7017,13 +4240,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 8.33346H17.5M2.5 11.6668H17.5M10 8.33346V15.0001M4.16667 15.0001H15.8333C16.7538 15.0001 17.5 14.2539 17.5 13.3335V6.66679C17.5 5.74631 16.7538 5.00012 15.8333 5.00012H4.16667C3.24619 5.00012 2.5 5.74631 2.5 6.66679V13.3335C2.5 14.2539 3.24619 15.0001 4.16667 15.0001Z"
         stroke="currentColor"
@@ -7033,13 +4250,7 @@ export const icons = [
   },
   {
     name: 'calculator',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7047,13 +4258,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 5.83346H12.5M12.5 14.1668V11.6668M10 14.1668H10.0083M7.5 14.1668H7.50834M7.5 11.6668H7.50834M10 11.6668H10.0083M12.5 9.16679H12.5083M10 9.16679H10.0083M7.5 9.16679H7.50834M5.83333 17.5001H14.1667C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V4.16679C15.8333 3.24631 15.0871 2.50012 14.1667 2.50012H5.83333C4.91286 2.50012 4.16667 3.24631 4.16667 4.16679V15.8335C4.16667 16.7539 4.91286 17.5001 5.83333 17.5001Z"
         stroke="currentColor"
@@ -7065,13 +4270,7 @@ export const icons = [
   },
   {
     name: 'beaker',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7079,13 +4278,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M16.19 12.8569C15.9573 12.6243 15.661 12.4657 15.3383 12.4012L13.3487 12.0032C12.2584 11.7852 11.1266 11.9367 10.1321 12.434L9.86759 12.5662C8.8731 13.0635 7.74123 13.2151 6.65094 12.997L5.04115 12.675C4.49472 12.5658 3.92982 12.7368 3.53578 13.1308M6.6665 3.33345H13.3332L12.4998 4.16678V8.47643C12.4998 8.91845 12.6754 9.34238 12.988 9.65494L17.1547 13.8216C18.2046 14.8715 17.461 16.6668 15.9761 16.6668H4.02352C2.53868 16.6668 1.79507 14.8715 2.84501 13.8216L7.01168 9.65494C7.32424 9.34238 7.49983 8.91845 7.49983 8.47643V4.16678L6.6665 3.33345Z"
         stroke="currentColor"
@@ -7097,35 +4290,17 @@ export const icons = [
   },
   {
     name: 'gift',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M5 5C5 3.34315 6.34315 2 8 2C8.76836 2 9.46924 2.28885 10 2.7639C10.5308 2.28885 11.2316 2 12 2C13.6569 2 15 3.34315 15 5C15 5.35064 14.9398 5.68722 14.8293 6H16C17.1046 6 18 6.89543 18 8C18 9.10457 17.1046 10 16 10H11V9C11 8.44772 10.5523 8 10 8C9.44772 8 9 8.44771 9 9V10H4C2.89543 10 2 9.10457 2 8C2 6.89543 2.89543 6 4 6H5.17071C5.06015 5.68722 5 5.35064 5 5ZM9 6V5C9 4.44772 8.55228 4 8 4C7.44772 4 7 4.44772 7 5C7 5.55228 7.44772 6 8 6H9ZM12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5V6H12Z"
         fill="currentColor"
       />
-      <path
-        d="M9 11H3V16C3 17.1046 3.89543 18 5 18H9V11Z"
-        fill="currentColor"
-      />
-      <path
-        d="M11 18H15C16.1046 18 17 17.1046 17 16V11H11V18Z"
-        fill="currentColor"
-      />
+      <path d="M9 11H3V16C3 17.1046 3.89543 18 5 18H9V11Z" fill="currentColor" />
+      <path d="M11 18H15C16.1046 18 17 17.1046 17 16V11H11V18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 6.66679V17.5001M10 6.66679C10 6.66679 10 5.42281 10 5.00012C10 4.07965 10.7462 3.33346 11.6667 3.33346C12.5871 3.33346 13.3333 4.07965 13.3333 5.00012C13.3333 5.9206 12.5871 6.66679 11.6667 6.66679C11.1689 6.66679 10 6.66679 10 6.66679ZM10 6.66679C10 6.66679 10 5.05255 10 4.58346C10 3.43286 9.06726 2.50012 7.91667 2.50012C6.76607 2.50012 5.83333 3.43286 5.83333 4.58346C5.83333 5.73405 6.76607 6.66679 7.91667 6.66679C8.59817 6.66679 10 6.66679 10 6.66679ZM4.16667 10.0001H15.8333M4.16667 10.0001C3.24619 10.0001 2.5 9.25393 2.5 8.33345C2.5 7.41298 3.24619 6.66679 4.16667 6.66679H15.8333C16.7538 6.66679 17.5 7.41298 17.5 8.33345C17.5 9.25393 16.7538 10.0001 15.8333 10.0001M4.16667 10.0001L4.16667 15.8335C4.16667 16.7539 4.91286 17.5001 5.83333 17.5001H14.1667C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V10.0001"
         stroke="currentColor"
@@ -7137,21 +4312,9 @@ export const icons = [
   },
   {
     name: 'truck',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M8 16.5C8 17.3284 7.32843 18 6.5 18C5.67157 18 5 17.3284 5 16.5C5 15.6716 5.67157 15 6.5 15C7.32843 15 8 15.6716 8 16.5Z"
-        fill="currentColor"
-      />
-      <path
-        d="M15 16.5C15 17.3284 14.3284 18 13.5 18C12.6716 18 12 17.3284 12 16.5C12 15.6716 12.6716 15 13.5 15C14.3284 15 15 15.6716 15 16.5Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M8 16.5C8 17.3284 7.32843 18 6.5 18C5.67157 18 5 17.3284 5 16.5C5 15.6716 5.67157 15 6.5 15C7.32843 15 8 15.6716 8 16.5Z" fill="currentColor" />
+      <path d="M15 16.5C15 17.3284 14.3284 18 13.5 18C12.6716 18 12 17.3284 12 16.5C12 15.6716 12.6716 15 13.5 15C14.3284 15 15 15.6716 15 16.5Z" fill="currentColor" />
       <path
         d="M3 4C2.44772 4 2 4.44772 2 5V15C2 15.5523 2.44772 16 3 16H4.05001C4.28164 14.8589 5.29052 14 6.5 14C7.70948 14 8.71836 14.8589 8.94999 16H10C10.5523 16 11 15.5523 11 15V5C11 4.44772 10.5523 4 10 4H3Z"
         fill="currentColor"
@@ -7161,13 +4324,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 13.3335V5.00013C10.8333 4.53989 10.4602 4.16679 10 4.16679H3.33333C2.8731 4.16679 2.5 4.53989 2.5 5.00013V13.3335C2.5 13.7937 2.8731 14.1668 3.33333 14.1668H4.16667M10.8333 13.3335C10.8333 13.7937 10.4602 14.1668 10 14.1668H7.5M10.8333 13.3335L10.8333 6.66679C10.8333 6.20656 11.2064 5.83346 11.6667 5.83346H13.8215C14.0425 5.83346 14.2545 5.92126 14.4107 6.07754L17.2559 8.92272C17.4122 9.079 17.5 9.29096 17.5 9.51197V13.3335C17.5 13.7937 17.1269 14.1668 16.6667 14.1668H15.8333M10.8333 13.3335C10.8333 13.7937 11.2064 14.1668 11.6667 14.1668H12.5M4.16667 14.1668C4.16667 15.0873 4.91286 15.8335 5.83333 15.8335C6.75381 15.8335 7.5 15.0873 7.5 14.1668M4.16667 14.1668C4.16667 13.2463 4.91286 12.5001 5.83333 12.5001C6.75381 12.5001 7.5 13.2463 7.5 14.1668M12.5 14.1668C12.5 15.0873 13.2462 15.8335 14.1667 15.8335C15.0871 15.8335 15.8333 15.0873 15.8333 14.1668M12.5 14.1668C12.5 13.2463 13.2462 12.5001 14.1667 12.5001C15.0871 12.5001 15.8333 13.2463 15.8333 14.1668"
         stroke="currentColor"
@@ -7177,13 +4334,7 @@ export const icons = [
   },
   {
     name: 'currency-bangladeshi',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7191,13 +4342,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 9.16679V7.50012C9.16667 6.57965 8.42047 5.83346 7.5 5.83346M9.16667 9.16679V12.5001C9.16667 13.4206 9.91286 14.1668 10.8333 14.1668C11.7538 14.1668 12.5 13.4206 12.5 12.5001V11.6668M9.16667 9.16679H7.5M9.16667 9.16679H12.5M17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -7209,29 +4354,14 @@ export const icons = [
   },
   {
     name: 'video-camera',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M2 6C2 4.89543 2.89543 4 4 4H10C11.1046 4 12 4.89543 12 6V14C12 15.1046 11.1046 16 10 16H4C2.89543 16 2 15.1046 2 14V6Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M2 6C2 4.89543 2.89543 4 4 4H10C11.1046 4 12 4.89543 12 6V14C12 15.1046 11.1046 16 10 16H4C2.89543 16 2 15.1046 2 14V6Z" fill="currentColor" />
       <path
         d="M14.5528 7.10557C14.214 7.27497 14 7.62123 14 8V12C14 12.3788 14.214 12.725 14.5528 12.8944L16.5528 13.8944C16.8628 14.0494 17.2309 14.0329 17.5257 13.8507C17.8205 13.6684 18 13.3466 18 13V7C18 6.65342 17.8205 6.33156 17.5257 6.14935C17.2309 5.96714 16.8628 5.95058 16.5528 6.10557L14.5528 7.10557Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 8.33346L16.294 6.43646C16.8481 6.15942 17.5 6.56233 17.5 7.18182V12.8184C17.5 13.4379 16.8481 13.8408 16.294 13.5638L12.5 11.6668M4.16667 15.0001H10.8333C11.7538 15.0001 12.5 14.2539 12.5 13.3335V6.66679C12.5 5.74631 11.7538 5.00012 10.8333 5.00012H4.16667C3.24619 5.00012 2.5 5.74631 2.5 6.66679V13.3335C2.5 14.2539 3.24619 15.0001 4.16667 15.0001Z"
         stroke="currentColor"
@@ -7243,25 +4373,13 @@ export const icons = [
   },
   {
     name: 'cloud',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.5 16C3.567 16 2 14.433 2 12.5C2 10.6916 3.37146 9.20358 5.13102 9.01922C5.04553 8.69382 5 8.35223 5 8C5 5.79086 6.79086 4 9 4C10.8788 4 12.4551 5.29538 12.8845 7.04175C13.0857 7.01422 13.2912 7 13.5 7C15.9853 7 18 9.01472 18 11.5C18 13.9853 15.9853 16 13.5 16H5.5Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 12.5001C2.5 14.3411 3.99238 15.8335 5.83333 15.8335H13.3333C15.6345 15.8335 17.5 13.968 17.5 11.6668C17.5 9.36561 15.6345 7.50013 13.3333 7.50013C13.3055 7.50013 13.2778 7.5004 13.2501 7.50094C12.8644 5.59867 11.1828 4.16679 9.16667 4.16679C6.86548 4.16679 5 6.03227 5 8.33346C5 8.6475 5.03474 8.95342 5.10059 9.24759C3.61214 9.58146 2.5 10.9109 2.5 12.5001Z"
         stroke="currentColor"
@@ -7273,13 +4391,7 @@ export const icons = [
   },
   {
     name: 'cube-transparent',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.50386 1.13176C9.81129 0.956081 10.1887 0.956081 10.4961 1.13176L12.2461 2.13176C12.7257 2.40577 12.8923 3.01662 12.6182 3.49614C12.3442 3.97566 11.7334 4.14225 11.2539 3.86824L10 3.15175L8.74614 3.86824C8.26662 4.14225 7.65577 3.97566 7.38176 3.49614C7.10775 3.01662 7.27434 2.40577 7.75386 2.13176L9.50386 1.13176Z"
         fill="currentColor"
@@ -7309,13 +4421,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 8.33345L10 9.16679M10 9.16679L8.33334 8.33345M10 9.16679V11.2501M16.6667 5.83346L15 6.66679M16.6667 5.83346L15 5.00012M16.6667 5.83346V7.91679M11.6667 3.33346L10 2.50012L8.33334 3.33346M3.33334 5.83346L5.00001 5.00012M3.33334 5.83346L5.00001 6.66679M3.33334 5.83346V7.91679M10 17.5001L8.33334 16.6668M10 17.5001L11.6667 16.6668M10 17.5001V15.4168M5.00001 15.0001L3.33334 14.1668V12.0835M15 15.0001L16.6667 14.1668V12.0835"
         stroke="currentColor"
@@ -7327,17 +4433,8 @@ export const icons = [
   },
   {
     name: 'cake',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M6 3C6 2.44772 6.44772 2 7 2H7.01C7.56228 2 8.01 2.44772 8.01 3C8.01 3.55228 7.56228 4 7.01 4H7C6.44772 4 6 3.55228 6 3Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M6 3C6 2.44772 6.44772 2 7 2H7.01C7.56228 2 8.01 2.44772 8.01 3C8.01 3.55228 7.56228 4 7.01 4H7C6.44772 4 6 3.55228 6 3Z" fill="currentColor" />
       <path
         d="M8 6C8 5.44772 7.55228 5 7 5C6.44772 5 6 5.44772 6 6V7C4.89543 7 4 7.89543 4 9V10C2.89543 10 2 10.8954 2 12V12.6833C2.36868 12.7866 2.72499 12.9482 3.0547 13.168C3.62713 13.5496 4.37287 13.5496 4.9453 13.168C6.18953 12.3385 7.81047 12.3385 9.0547 13.168C9.62713 13.5496 10.3729 13.5496 10.9453 13.168C12.1895 12.3385 13.8105 12.3385 15.0547 13.168C15.6271 13.5496 16.3729 13.5496 16.9453 13.168C17.275 12.9482 17.6313 12.7866 18 12.6833V12C18 10.8954 17.1046 10 16 10V9C16 7.89543 15.1046 7 14 7V6C14 5.44772 13.5523 5 13 5C12.4477 5 12 5.44772 12 6V7H11V6C11 5.44772 10.5523 5 10 5C9.44772 5 9 5.44772 9 6V7H8V6Z"
         fill="currentColor"
@@ -7346,22 +4443,10 @@ export const icons = [
         d="M18 14.8679C16.7633 15.6614 15.1714 15.6495 13.9453 14.8321C13.3729 14.4505 12.6271 14.4505 12.0547 14.8321C10.8105 15.6616 9.18953 15.6616 7.9453 14.8321C7.37287 14.4505 6.62713 14.4505 6.0547 14.8321C4.82863 15.6495 3.23675 15.6614 2 14.8679V17C2 17.5523 2.44772 18 3 18H17C17.5523 18 18 17.5523 18 17V14.8679Z"
         fill="currentColor"
       />
-      <path
-        d="M9 3C9 2.44772 9.44772 2 10 2H10.01C10.5623 2 11.01 2.44772 11.01 3C11.01 3.55228 10.5623 4 10.01 4H10C9.44772 4 9 3.55228 9 3Z"
-        fill="currentColor"
-      />
-      <path
-        d="M12 3C12 2.44772 12.4477 2 13 2H13.01C13.5623 2 14.01 2.44772 14.01 3C14.01 3.55228 13.5623 4 13.01 4H13C12.4477 4 12 3.55228 12 3Z"
-        fill="currentColor"
-      />
+      <path d="M9 3C9 2.44772 9.44772 2 10 2H10.01C10.5623 2 11.01 2.44772 11.01 3C11.01 3.55228 10.5623 4 10.01 4H10C9.44772 4 9 3.55228 9 3Z" fill="currentColor" />
+      <path d="M12 3C12 2.44772 12.4477 2 13 2H13.01C13.5623 2 14.01 2.44772 14.01 3C14.01 3.55228 13.5623 4 13.01 4H13C12.4477 4 12 3.55228 12 3Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 12.955C17.0642 12.955 16.6285 13.0811 16.25 13.3335C15.4931 13.8381 14.5069 13.8381 13.75 13.3335C12.9931 12.8288 12.0069 12.8288 11.25 13.3335C10.4931 13.8381 9.50694 13.8381 8.75 13.3335C7.99306 12.8288 7.00694 12.8288 6.25 13.3335C5.49306 13.8381 4.50694 13.8381 3.75 13.3335C3.37153 13.0811 2.93577 12.955 2.5 12.955M7.5 5.00012V6.66679M10 5.00012V6.66679M12.5 5.00012V6.66679M7.5 2.50012H7.50833M10 2.50012H10.0083M12.5 2.50012H12.5083M17.5 17.5001V11.6668C17.5 10.7463 16.7538 10.0001 15.8333 10.0001H4.16667C3.24619 10.0001 2.5 10.7463 2.5 11.6668V17.5001H17.5ZM15 10.0001V8.33345C15 7.41298 14.2538 6.66679 13.3333 6.66679H6.66667C5.74619 6.66679 5 7.41298 5 8.33345V10.0001H15Z"
         stroke="currentColor"
@@ -7373,13 +4458,7 @@ export const icons = [
   },
   {
     name: 'phone-missed-call',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2 3C2 2.44772 2.44772 2 3 2H5.15287C5.64171 2 6.0589 2.35341 6.13927 2.8356L6.87858 7.27147C6.95075 7.70451 6.73206 8.13397 6.3394 8.3303L4.79126 9.10437C5.90756 11.8783 8.12168 14.0924 10.8956 15.2087L11.6697 13.6606C11.866 13.2679 12.2955 13.0492 12.7285 13.1214L17.1644 13.8607C17.6466 13.9411 18 14.3583 18 14.8471V17C18 17.5523 17.5523 18 17 18H15C7.8203 18 2 12.1797 2 5V3Z"
         fill="currentColor"
@@ -7389,13 +4468,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3333 6.66679L15 5.00012M15 5.00012L16.6666 3.33346M15 5.00012L13.3333 3.33346M15 5.00012L16.6666 6.66679M4.16667 2.50012C3.24619 2.50012 2.5 3.24631 2.5 4.16679V5.00012C2.5 11.9037 8.09644 17.5001 15 17.5001H15.8333C16.7538 17.5001 17.5 16.7539 17.5 15.8335V13.1008C17.5 12.7421 17.2705 12.4236 16.9302 12.3102L13.1857 11.062C12.7922 10.9309 12.3622 11.109 12.1768 11.4799L11.2363 13.3609C9.19898 12.4424 7.55771 10.8011 6.63917 8.76387L8.52022 7.82334C8.89115 7.63788 9.06926 7.20789 8.93811 6.81446L7.68994 3.06993C7.57651 2.72965 7.25806 2.50012 6.89937 2.50012H4.16667Z"
         stroke="currentColor"
@@ -7407,13 +4480,7 @@ export const icons = [
   },
   {
     name: 'plus-sm',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7421,13 +4488,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 5.00012V10.0001M10 10.0001V15.0001M10 10.0001H15M10 10.0001L5 10.0001"
         stroke="currentColor"
@@ -7439,13 +4500,7 @@ export const icons = [
   },
   {
     name: 'minus-sm',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7453,31 +4508,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M15 10.0001H5"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M15 10.0001H5" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'receipt-tax',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7485,13 +4522,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 11.6668L12.5 6.66679M7.91669 7.08345H7.92502M12.0834 11.2501H12.0917M15.8333 17.5001V4.16679C15.8333 3.24631 15.0871 2.50012 14.1667 2.50012H5.83333C4.91286 2.50012 4.16666 3.24631 4.16666 4.16679V17.5001L7.08333 15.8335L10 17.5001L12.9167 15.8335L15.8333 17.5001ZM8.33333 7.08345C8.33333 7.31357 8.14678 7.50012 7.91666 7.50012C7.68655 7.50012 7.5 7.31357 7.5 7.08345C7.5 6.85334 7.68655 6.66679 7.91666 6.66679C8.14678 6.66679 8.33333 6.85334 8.33333 7.08345ZM12.5 11.2501C12.5 11.4802 12.3134 11.6668 12.0833 11.6668C11.8532 11.6668 11.6667 11.4802 11.6667 11.2501C11.6667 11.02 11.8532 10.8335 12.0833 10.8335C12.3134 10.8335 12.5 11.02 12.5 11.2501Z"
         stroke="currentColor"
@@ -7503,13 +4534,7 @@ export const icons = [
   },
   {
     name: 'status-online',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7517,13 +4542,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.6967 15.3034C1.76777 12.3745 1.76777 7.62574 4.6967 4.69681M15.3033 4.69681C18.2322 7.62574 18.2322 12.3745 15.3033 15.3034M7.05372 12.9464C5.42654 11.3192 5.42654 8.68101 7.05372 7.05383M12.9463 7.05383C14.5735 8.68101 14.5735 11.3192 12.9463 12.9464M10.8333 10.0001C10.8333 10.4603 10.4602 10.8334 10 10.8334C9.53976 10.8334 9.16667 10.4603 9.16667 10.0001C9.16667 9.53987 9.53976 9.16677 10 9.16677C10.4602 9.16677 10.8333 9.53987 10.8333 10.0001Z"
         stroke="currentColor"
@@ -7535,13 +4554,7 @@ export const icons = [
   },
   {
     name: 'status-offline',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.70711 2.29289C3.31658 1.90237 2.68342 1.90237 2.29289 2.29289C1.90237 2.68342 1.90237 3.31658 2.29289 3.70711L9.21426 10.6285C9.26325 10.6906 9.31947 10.7469 9.38164 10.7958L16.2929 17.7071C16.6834 18.0976 17.3166 18.0976 17.7071 17.7071C18.0976 17.3166 18.0976 16.6834 17.7071 16.2929L17.0323 15.6181C19.8626 12.0844 19.6398 6.91177 16.3641 3.63603C15.9736 3.24551 15.3404 3.24551 14.9499 3.63603C14.5593 4.02656 14.5593 4.65972 14.9499 5.05025C17.4435 7.54386 17.6625 11.4508 15.6068 14.1926L14.172 12.7578C15.4582 10.8164 15.2461 8.17494 13.5357 6.46446C13.1451 6.07394 12.512 6.07394 12.1214 6.46446C11.7309 6.85498 11.7309 7.48815 12.1214 7.87867C13.0451 8.80233 13.2406 10.1784 12.7078 11.2936L10.7164 9.30219C10.7103 9.29595 10.7042 9.28979 10.6979 9.2837L3.70711 2.29289Z"
         fill="currentColor"
@@ -7555,13 +4568,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8926 4.10757C15.5671 3.78214 15.0395 3.78214 14.714 4.10757C14.3886 4.43301 14.3886 4.96065 14.714 5.28608L15.8926 4.10757ZM15.3033 15.3034L14.714 15.8927L14.714 15.8927L15.3033 15.3034ZM13.5355 6.46459C13.2101 6.13916 12.6825 6.13916 12.357 6.46459C12.0316 6.79003 12.0316 7.31767 12.357 7.64311L13.5355 6.46459ZM12.9463 12.9464L12.357 13.5357L12.357 13.5357L12.9463 12.9464ZM6.46447 13.5357C6.7899 13.8611 7.31754 13.8611 7.64298 13.5357C7.96841 13.2102 7.96841 12.6826 7.64298 12.3572L6.46447 13.5357ZM6.69998 10.4719C6.63528 10.0163 6.21344 9.69933 5.75777 9.76403C5.3021 9.82873 4.98516 10.2506 5.04986 10.7062L6.69998 10.4719ZM4.10744 15.8927C4.43288 16.2181 4.96052 16.2181 5.28595 15.8927C5.61139 15.5672 5.61139 15.0396 5.28595 14.7142L4.10744 15.8927ZM3.68086 7.87056C3.82747 7.43429 3.59265 6.96178 3.15639 6.81518C2.72012 6.66858 2.24762 6.90339 2.10101 7.33966L3.68086 7.87056ZM3.08926 1.91087C2.76382 1.58543 2.23618 1.58543 1.91074 1.91087C1.58531 2.2363 1.58531 2.76394 1.91074 3.08938L3.08926 1.91087ZM16.9107 18.0894C17.2362 18.4148 17.7638 18.4148 18.0893 18.0894C18.4147 17.7639 18.4147 17.2363 18.0893 16.9109L16.9107 18.0894ZM14.714 5.28608C17.3175 7.88958 17.3175 12.1107 14.714 14.7142L15.8926 15.8927C19.1469 12.6383 19.1469 7.36194 15.8926 4.10757L14.714 5.28608ZM12.357 7.64311C13.6588 8.94485 13.6588 11.0554 12.357 12.3572L13.5355 13.5357C15.4882 11.583 15.4882 8.41722 13.5355 6.46459L12.357 7.64311ZM10 10.0001H11.6667C11.6667 9.07965 10.9205 8.33346 10 8.33346V10.0001ZM7.64298 12.3572C7.11158 11.8258 6.79794 11.1618 6.69998 10.4719L5.04986 10.7062C5.19684 11.7413 5.66906 12.7403 6.46447 13.5357L7.64298 12.3572ZM5.28595 14.7142C3.43591 12.8641 2.89932 10.1963 3.68086 7.87056L2.10101 7.33966C1.1257 10.242 1.79295 13.5782 4.10744 15.8927L5.28595 14.7142ZM10 10.0001L10 10.0001V8.33346C9.54 8.33346 9.12219 8.52092 8.8215 8.82161L10 10.0001ZM1.91074 3.08938L8.82149 10.0001L10 8.82161L3.08926 1.91087L1.91074 3.08938ZM8.82149 10.0001L10 11.1786L11.1785 10.0001L10 8.82161L8.82149 10.0001ZM10 11.1786L12.357 13.5357L13.5355 12.3572L11.1785 10.0001L10 11.1786ZM12.357 13.5357L14.714 15.8927L15.8926 14.7142L13.5355 12.3572L12.357 13.5357ZM14.714 15.8927L16.9107 18.0894L18.0893 16.9109L15.8926 14.7142L14.714 15.8927ZM10 10.0001L10 10.0001L11.1785 11.1786C11.4792 10.8779 11.6667 10.4601 11.6667 10.0001H10Z"
         fill="currentColor"
@@ -7570,13 +4577,7 @@ export const icons = [
   },
   {
     name: 'presentation-chart-line',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7584,13 +4585,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33333 3.33345V2.50012H2.5V3.33345H3.33333ZM16.6667 3.33345H17.5V2.50012H16.6667V3.33345ZM5.24408 9.41086C4.91864 9.7363 4.91864 10.2639 5.24408 10.5894C5.56951 10.9148 6.09715 10.9148 6.42259 10.5894L5.24408 9.41086ZM8.33333 7.50012L8.92259 6.91086C8.59715 6.58542 8.06951 6.58542 7.74408 6.91086L8.33333 7.50012ZM10.8333 10.0001L10.2441 10.5894C10.5695 10.9148 11.0972 10.9148 11.4226 10.5894L10.8333 10.0001ZM14.7559 7.25604C15.0814 6.9306 15.0814 6.40296 14.7559 6.07753C14.4305 5.75209 13.9028 5.75209 13.5774 6.07753L14.7559 7.25604ZM6.07741 16.9109C5.75197 17.2363 5.75197 17.7639 6.07741 18.0894C6.40285 18.4148 6.93048 18.4148 7.25592 18.0894L6.07741 16.9109ZM10 14.1668L10.5893 13.5775C10.2638 13.2521 9.73618 13.2521 9.41074 13.5775L10 14.1668ZM12.7441 18.0894C13.0695 18.4148 13.5972 18.4148 13.9226 18.0894C14.248 17.7639 14.248 17.2363 13.9226 16.9109L12.7441 18.0894ZM2.5 2.50012C2.03976 2.50012 1.66667 2.87321 1.66667 3.33345C1.66667 3.79369 2.03976 4.16678 2.5 4.16678V2.50012ZM17.5 4.16678C17.9602 4.16678 18.3333 3.79369 18.3333 3.33345C18.3333 2.87321 17.9602 2.50012 17.5 2.50012V4.16678ZM3.33333 4.16678H16.6667V2.50012H3.33333V4.16678ZM15.8333 3.33345V13.3334H17.5V3.33345H15.8333ZM15.8333 13.3334H4.16667V15.0001H15.8333V13.3334ZM4.16667 13.3334V3.33345H2.5V13.3334H4.16667ZM4.16667 13.3334H2.5C2.5 14.2539 3.24619 15.0001 4.16667 15.0001V13.3334ZM15.8333 13.3334V15.0001C16.7538 15.0001 17.5 14.2539 17.5 13.3334H15.8333ZM6.42259 10.5894L8.92259 8.08937L7.74408 6.91086L5.24408 9.41086L6.42259 10.5894ZM7.74408 8.08937L10.2441 10.5894L11.4226 9.41086L8.92259 6.91086L7.74408 8.08937ZM11.4226 10.5894L14.7559 7.25604L13.5774 6.07753L10.2441 9.41086L11.4226 10.5894ZM7.25592 18.0894L10.5893 14.756L9.41074 13.5775L6.07741 16.9109L7.25592 18.0894ZM9.41074 14.756L12.7441 18.0894L13.9226 16.9109L10.5893 13.5775L9.41074 14.756ZM2.5 4.16678H17.5V2.50012H2.5V4.16678Z"
         fill="currentColor"
@@ -7599,13 +4594,7 @@ export const icons = [
   },
   {
     name: 'presentation-chart-bar',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7613,13 +4602,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 10.8334V10.0001M10 10.8334V8.33345M13.3333 10.8334V6.66678M6.66667 17.5001L10 14.1668L13.3333 17.5001M2.5 3.33345H17.5M3.33333 3.33345H16.6667V13.3334C16.6667 13.7937 16.2936 14.1668 15.8333 14.1668H4.16667C3.70643 14.1668 3.33333 13.7937 3.33333 13.3334V3.33345Z"
         stroke="currentColor"
@@ -7631,25 +4614,13 @@ export const icons = [
   },
   {
     name: 'fast-forward',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.5547 5.16795C4.24784 4.96338 3.8533 4.94431 3.52814 5.11833C3.20298 5.29235 3 5.63121 3 6V14C3 14.3688 3.20298 14.7077 3.52814 14.8817C3.8533 15.0557 4.24784 15.0366 4.5547 14.8321L10 11.2019V14C10 14.3688 10.203 14.7077 10.5281 14.8817C10.8533 15.0557 11.2478 15.0366 11.5547 14.8321L17.5547 10.8321C17.8329 10.6466 18 10.3344 18 10C18 9.66565 17.8329 9.35342 17.5547 9.16795L11.5547 5.16795C11.2478 4.96338 10.8533 4.94431 10.5281 5.11833C10.203 5.29235 10 5.63121 10 6V8.79815L4.5547 5.16795Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.94443 10.6668C10.3889 10.3335 10.3889 9.66679 9.94443 9.33345L5.49999 6.00012C4.95063 5.5881 4.16666 5.98008 4.16666 6.66679L4.16666 13.3335C4.16666 14.0202 4.95063 14.4121 5.49999 14.0001L9.94443 10.6668Z"
         stroke="currentColor"
@@ -7668,25 +4639,13 @@ export const icons = [
   },
   {
     name: 'rewind',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.44524 14.8321C8.75209 15.0367 9.14664 15.0558 9.4718 14.8817C9.79695 14.7077 9.99994 14.3689 9.99994 14.0001L9.99994 11.2019L15.4452 14.8321C15.7521 15.0367 16.1466 15.0558 16.4718 14.8817C16.797 14.7077 16.9999 14.3689 16.9999 14.0001V6.00006C16.9999 5.63127 16.797 5.29241 16.4718 5.11839C16.1466 4.94437 15.7521 4.96344 15.4452 5.16801L9.99994 8.79821V6.00006C9.99994 5.63127 9.79695 5.29241 9.4718 5.11839C9.14664 4.94437 8.7521 4.96344 8.44524 5.16801L2.44524 9.16801C2.16704 9.35348 1.99994 9.66571 1.99994 10.0001C1.99994 10.3344 2.16704 10.6466 2.44524 10.8321L8.44524 14.8321Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.0555 9.33345C9.6111 9.66679 9.6111 10.3335 10.0555 10.6668L14.5 14.0001C15.0493 14.4121 15.8333 14.0202 15.8333 13.3335V6.66679C15.8333 5.98008 15.0493 5.5881 14.5 6.00012L10.0555 9.33345Z"
         stroke="currentColor"
@@ -7705,13 +4664,7 @@ export const icons = [
   },
   {
     name: 'chip',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path d="M13 7H7V13H13V7Z" fill="currentColor" />
       <path
         fill-rule="evenodd"
@@ -7720,13 +4673,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 2.50012V4.16679M12.5 2.50012V4.16679M7.5 15.8335V17.5001M12.5 15.8335V17.5001M4.16667 7.50012H2.5M4.16667 12.5001H2.5M17.5 7.50012H15.8333M17.5 12.5001H15.8333M5.83333 15.8335H14.1667C15.0871 15.8335 15.8333 15.0873 15.8333 14.1668V5.83346C15.8333 4.91298 15.0871 4.16679 14.1667 4.16679H5.83333C4.91286 4.16679 4.16667 4.91298 4.16667 5.83346V14.1668C4.16667 15.0873 4.91286 15.8335 5.83333 15.8335ZM7.5 7.50012H12.5V12.5001H7.5V7.50012Z"
         stroke="currentColor"
@@ -7738,13 +4685,7 @@ export const icons = [
   },
   {
     name: 'academic-cap',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.3939 2.08085C10.1424 1.97305 9.85763 1.97305 9.60608 2.08085L2.60608 5.08085C2.2384 5.23843 2 5.59997 2 6C2 6.40003 2.2384 6.76157 2.60608 6.91915L5.25037 8.05241C5.34653 7.94347 5.46706 7.85473 5.60608 7.79515L9.60608 6.08087C10.1137 5.86331 10.7016 6.09846 10.9191 6.60609C11.1367 7.11372 10.9015 7.7016 10.3939 7.91916L7.66668 9.08797L9.60608 9.91915C9.85763 10.027 10.1424 10.027 10.3939 9.91915L17.3939 6.91915C17.7616 6.76157 18 6.40003 18 6C18 5.59997 17.7616 5.23843 17.3939 5.08085L10.3939 2.08085Z"
         fill="currentColor"
@@ -7757,18 +4698,9 @@ export const icons = [
         d="M9.29996 16.5725C8.62708 15.9129 7.85167 15.3584 7 14.9351V10.9781L8.81824 11.7574C9.57289 12.0808 10.4271 12.0808 11.1818 11.7574L16.69 9.39673C16.8926 10.2315 17 11.1033 17 11.9998C17 12.391 16.9795 12.7778 16.9396 13.1591C16.8903 13.6289 16.5191 14.0001 16.0493 14.0494C13.9765 14.2667 12.1124 15.188 10.7 16.5725C10.3112 16.9537 9.68881 16.9537 9.29996 16.5725Z"
         fill="currentColor"
       />
-      <path
-        d="M6 18C6.55228 18 7 17.5523 7 17V14.9351C6.37136 14.6227 5.70117 14.3817 5 14.2226V17C5 17.5523 5.44772 18 6 18Z"
-        fill="currentColor"
-      />
+      <path d="M6 18C6.55228 18 7 17.5523 7 17V14.9351C6.37136 14.6227 5.70117 14.3817 5 14.2226V17C5 17.5523 5.44772 18 6 18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 11.6668L17.5 7.50012L10 3.33345L2.5 7.50012L10 11.6668ZM10 11.6668L15.1326 8.81533C15.5848 9.95561 15.8333 11.1988 15.8333 12.5001C15.8333 13.0845 15.7832 13.6572 15.687 14.2142C13.5119 14.4257 11.5409 15.334 10 16.7131C8.45913 15.334 6.48809 14.4257 4.31301 14.2142C4.2168 13.6572 4.16667 13.0845 4.16667 12.5C4.16667 11.1988 4.4152 9.95558 4.8674 8.81532L10 11.6668ZM6.66667 16.6667V10.4168L10 8.56493"
         stroke="currentColor"
@@ -7780,13 +4712,7 @@ export const icons = [
   },
   {
     name: 'variable',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.6485 3.08366C5.15459 3.30478 5.3856 3.89429 5.16448 4.40038C4.41582 6.11389 4 8.00707 4 10C4 11.9929 4.41582 13.8861 5.16448 15.5996C5.3856 16.1057 5.15459 16.6952 4.6485 16.9164C4.14242 17.1375 3.5529 16.9065 3.33178 16.4004C2.47486 14.4391 2 12.2737 2 10C2 7.72632 2.47486 5.56091 3.33178 3.59964C3.5529 3.09355 4.14242 2.86254 4.6485 3.08366Z"
         fill="currentColor"
@@ -7800,13 +4726,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.0592 3.33345C3.06118 5.34172 2.5 7.60538 2.5 10.0001C2.5 12.3949 3.06118 14.6585 4.0592 16.6668M15.8334 16.6668C16.8314 14.6585 17.3926 12.3949 17.3926 10.0001C17.3926 7.60538 16.8314 5.34171 15.8334 3.33345M7.5 7.50012H8.53808C8.91015 7.50012 9.23714 7.74676 9.33935 8.10452L10.6606 12.7291C10.7629 13.0868 11.0898 13.3334 11.4619 13.3334H12.5M13.3333 7.50012H13.2666C12.78 7.50012 12.3178 7.71272 12.0011 8.08213L7.99887 12.7514C7.68223 13.1208 7.21998 13.3334 6.73344 13.3334H6.66667"
         stroke="currentColor"
@@ -7817,13 +4737,7 @@ export const icons = [
   },
   {
     name: 'document-search',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4 4C4 2.89543 4.89543 2 6 2H10.5858C11.1162 2 11.6249 2.21071 12 2.58579L15.4142 6C15.7893 6.37507 16 6.88378 16 7.41421V16C16 17.1046 15.1046 18 14 18H12.4722C13.4223 16.9385 14 15.5367 14 14C14 10.6863 11.3137 8 8 8C6.46329 8 5.06151 8.57771 4 9.52779V4Z"
         fill="currentColor"
@@ -7835,13 +4749,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33333 17.5001H14.1667C15.0871 17.5001 15.8333 16.7539 15.8333 15.8335V7.8453C15.8333 7.62429 15.7455 7.41232 15.5893 7.25604L11.0774 2.7442C10.9211 2.58792 10.7092 2.50012 10.4882 2.50012H5.83333C4.91286 2.50012 4.16667 3.24631 4.16667 4.16679V13.3335M4.16667 17.5001L8.23223 13.4346M8.23223 13.4346C8.68464 13.887 9.30964 14.1668 10 14.1668C11.3807 14.1668 12.5 13.0475 12.5 11.6668C12.5 10.2861 11.3807 9.16679 10 9.16679C8.61929 9.16679 7.5 10.2861 7.5 11.6668C7.5 12.3571 7.77982 12.9821 8.23223 13.4346Z"
         stroke="currentColor"
@@ -7852,13 +4760,7 @@ export const icons = [
   },
   {
     name: 'search-circle',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9 9C9 7.89543 9.89543 7 11 7C12.1046 7 13 7.89543 13 9C13 10.1046 12.1046 11 11 11C10.4474 11 9.94881 10.7772 9.58579 10.4142C9.22276 10.0512 9 9.55256 9 9Z"
         fill="currentColor"
@@ -7870,13 +4772,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66667 13.3335L9.06557 10.9346M9.06557 10.9346C9.51798 11.387 10.143 11.6668 10.8333 11.6668C12.214 11.6668 13.3333 10.5475 13.3333 9.16679C13.3333 7.78608 12.214 6.66679 10.8333 6.66679C9.45262 6.66679 8.33333 7.78608 8.33333 9.16679C8.33333 9.85714 8.61315 10.4821 9.06557 10.9346ZM17.5 10.0001C17.5 14.1423 14.1421 17.5001 10 17.5001C5.85786 17.5001 2.5 14.1423 2.5 10.0001C2.5 5.85799 5.85786 2.50012 10 2.50012C14.1421 2.50012 17.5 5.85799 17.5 10.0001Z"
         stroke="currentColor"
@@ -7887,13 +4783,7 @@ export const icons = [
   },
   {
     name: 'minus',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7901,31 +4791,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M16.6667 10.0001H3.33334"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M16.6667 10.0001H3.33334" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'arrow-sm-up',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7933,13 +4805,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83333 9.16679L9.99999 5.00012M9.99999 5.00012L14.1667 9.16679M9.99999 5.00012V15.0001"
         stroke="currentColor"
@@ -7951,13 +4817,7 @@ export const icons = [
   },
   {
     name: 'arrow-sm-right',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7965,13 +4825,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 5.83345L15 10.0001M15 10.0001L10.8333 14.1668M15 10.0001L5 10.0001"
         stroke="currentColor"
@@ -7983,13 +4837,7 @@ export const icons = [
   },
   {
     name: 'arrow-sm-down',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -7997,13 +4845,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 10.8335L9.99999 15.0001M9.99999 15.0001L5.83333 10.8335M9.99999 15.0001L10 5.00012"
         stroke="currentColor"
@@ -8015,13 +4857,7 @@ export const icons = [
   },
   {
     name: 'arrow-sm-left',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -8029,13 +4865,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 14.1668L5 10.0001M5 10.0001L9.16667 5.83345M5 10.0001L15 10.0001"
         stroke="currentColor"
@@ -8059,63 +4889,21 @@ export const icons = [
     >
       <circle cx="10.5" cy="10" r="8" fill="currentColor" />
     </svg> `,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <circle
-        cx="10"
-        cy="10"
-        r="7.5"
-        stroke="currentColor"
-        stroke-width="1.66667"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.66667" />
     </svg>`,
   },
   {
     name: 'drag-vertical',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7 6C5.89543 6 5 5.10457 5 4C5 2.89543 5.89543 2 7 2C8.10457 2 9 2.89543 9 4C9 5.10457 8.10457 6 7 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M7 12C5.89543 12 5 11.1046 5 10C5 8.89543 5.89543 8 7 8C8.10457 8 9 8.89543 9 10C9 11.1046 8.10457 12 7 12Z"
-        fill="currentColor"
-      />
-      <path
-        d="M7 18C5.89543 18 5 17.1046 5 16C5 14.8954 5.89543 14 7 14C8.10457 14 9 14.8954 9 16C9 17.1046 8.10457 18 7 18Z"
-        fill="currentColor"
-      />
-      <path
-        d="M13 6C11.8954 6 11 5.10457 11 4C11 2.89543 11.8954 2 13 2C14.1046 2 15 2.89543 15 4C15 5.10457 14.1046 6 13 6Z"
-        fill="currentColor"
-      />
-      <path
-        d="M13 12C11.8954 12 11 11.1046 11 10C11 8.89543 11.8954 8 13 8C14.1046 8 15 8.89543 15 10C15 11.1046 14.1046 12 13 12Z"
-        fill="currentColor"
-      />
-      <path
-        d="M13 18C11.8954 18 11 17.1046 11 16C11 14.8954 11.8954 14 13 14C14.1046 14 15 14.8954 15 16C15 17.1046 14.1046 18 13 18Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7 6C5.89543 6 5 5.10457 5 4C5 2.89543 5.89543 2 7 2C8.10457 2 9 2.89543 9 4C9 5.10457 8.10457 6 7 6Z" fill="currentColor" />
+      <path d="M7 12C5.89543 12 5 11.1046 5 10C5 8.89543 5.89543 8 7 8C8.10457 8 9 8.89543 9 10C9 11.1046 8.10457 12 7 12Z" fill="currentColor" />
+      <path d="M7 18C5.89543 18 5 17.1046 5 16C5 14.8954 5.89543 14 7 14C8.10457 14 9 14.8954 9 16C9 17.1046 8.10457 18 7 18Z" fill="currentColor" />
+      <path d="M13 6C11.8954 6 11 5.10457 11 4C11 2.89543 11.8954 2 13 2C14.1046 2 15 2.89543 15 4C15 5.10457 14.1046 6 13 6Z" fill="currentColor" />
+      <path d="M13 12C11.8954 12 11 11.1046 11 10C11 8.89543 11.8954 8 13 8C14.1046 8 15 8.89543 15 10C15 11.1046 14.1046 12 13 12Z" fill="currentColor" />
+      <path d="M13 18C11.8954 18 11 17.1046 11 16C11 14.8954 11.8954 14 13 14C14.1046 14 15 14.8954 15 16C15 17.1046 14.1046 18 13 18Z" fill="currentColor" />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.50002 4.16671V4.17504M7.50002 10V10.0084M7.50002 15.8334V15.8417M12.5 4.16671V4.17504M12.5 10V10.0084M12.5 15.8334V15.8417M7.50002 5.00004C7.03978 5.00004 6.66669 4.62694 6.66669 4.16671C6.66669 3.70647 7.03978 3.33337 7.50002 3.33337C7.96026 3.33337 8.33335 3.70647 8.33335 4.16671C8.33335 4.62694 7.96026 5.00004 7.50002 5.00004ZM7.50002 10.8334C7.03978 10.8334 6.66669 10.4603 6.66669 10C6.66669 9.5398 7.03978 9.16671 7.50002 9.16671C7.96026 9.16671 8.33335 9.5398 8.33335 10C8.33335 10.4603 7.96026 10.8334 7.50002 10.8334ZM7.50002 16.6667C7.03978 16.6667 6.66669 16.2936 6.66669 15.8334C6.66669 15.3731 7.03978 15 7.50002 15C7.96026 15 8.33335 15.3731 8.33335 15.8334C8.33335 16.2936 7.96026 16.6667 7.50002 16.6667ZM12.5 5.00004C12.0398 5.00004 11.6667 4.62694 11.6667 4.16671C11.6667 3.70647 12.0398 3.33337 12.5 3.33337C12.9603 3.33337 13.3334 3.70647 13.3334 4.16671C13.3334 4.62694 12.9603 5.00004 12.5 5.00004ZM12.5 10.8334C12.0398 10.8334 11.6667 10.4603 11.6667 10C11.6667 9.5398 12.0398 9.16671 12.5 9.16671C12.9603 9.16671 13.3334 9.5398 13.3334 10C13.3334 10.4603 12.9603 10.8334 12.5 10.8334ZM12.5 16.6667C12.0398 16.6667 11.6667 16.2936 11.6667 15.8334C11.6667 15.3731 12.0398 15 12.5 15C12.9603 15 13.3334 15.3731 13.3334 15.8334C13.3334 16.2936 12.9603 16.6667 12.5 16.6667Z"
         stroke="currentColor"
@@ -8128,13 +4916,7 @@ export const icons = [
   {
     name: 'initials',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.1598 4.45819L10.1757 4.42828C10.2537 4.28148 10.3447 4.19121 10.2509 4.32845C10.2254 4.3658 10.1949 4.4092 10.1598 4.45819ZM10.1598 4.45819L7.1052 10.2077C6.39672 11.6196 7.3624 12.4999 8.16793 12.4999H10.8016C10.8016 12.4999 13.1467 10.2787 14.5442 8.75552C16.1075 7.05166 17.0239 5.64851 17.0239 5.64851C17.0239 5.64851 17.0239 7.45316 17.2935 9.27611C17.4966 10.6501 16.303 12.4999 14.9141 12.4999H13.605M10.1598 4.45819C9.11997 5.90955 4.00931 12.2733 2.5 11.9725M17.5 15.8333H2.5"
         stroke="currentColor"
@@ -8147,31 +4929,13 @@ export const icons = [
   {
     name: 'text',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M12.5 15H7.5M15 7.5L15 5H5L5 7.5M10 5V15"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M12.5 15H7.5M15 7.5L15 5H5L5 7.5M10 5V15" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'menu-alt-5',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -8191,32 +4955,14 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M3.33337 5H16.6667M6.66671 10H13.3334M3.33337 15H16.6667"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M3.33337 5H16.6667M6.66671 10H13.3334M3.33337 15H16.6667" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'text-size',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1666 15H9.16663M16.6666 7.5L16.6666 5H6.66663L6.66663 7.5M11.6666 5V15"
         stroke="currentColor"
@@ -8235,25 +4981,13 @@ export const icons = [
   },
   {
     name: 'pin',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4 8.8L6.8 11.6L2.4 16.4L2 18L3.6 17.6L8.4 13.2L11.2 16C11.2 16 12.7675 15.1944 12.4 14C12.1946 13.3323 11.6 12 11.6 12L14.8 9.2L17.2 10L18 9.2L10.8 2L10 2.8L10.8 5.2L8 8.4C8 8.4 6.6677 7.80545 6 7.6C4.80558 7.23249 4 8.8 4 8.8Z"
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.9648 8.9648L6.4111 11.4111C6.55772 11.5577 6.57421 11.7898 6.4498 11.9557L2.01663 17.8666C1.95881 17.9437 2.0562 18.0411 2.13329 17.9833L8.04419 13.5501C8.21008 13.4257 8.4422 13.4422 8.58882 13.5888L11.0351 16.0351C11.1631 16.1631 11.359 16.1936 11.5092 16.0926C11.9532 15.7943 12.7849 15.0927 12.5 14.1666C12.346 13.6662 11.9821 12.8073 11.7902 12.3649C11.7174 12.1972 11.7605 12.0012 11.8981 11.8808L14.8203 9.32383C14.9316 9.22645 15.0861 9.19535 15.2264 9.24212L17.2557 9.91852C17.4054 9.96843 17.5704 9.92947 17.682 9.81787L18.0387 9.46125C18.2014 9.29853 18.2014 9.03472 18.0387 8.872L11.1279 1.96125C10.9652 1.79854 10.7014 1.79854 10.5387 1.96125L10.182 2.31787C10.0705 2.42947 10.0315 2.59454 10.0814 2.74426L10.7578 4.77348C10.8046 4.91377 10.7735 5.06833 10.6761 5.17962L8.11915 8.10184C7.99875 8.23943 7.80277 8.28254 7.63505 8.20976C7.19266 8.01779 6.33375 7.65395 5.83329 7.49996C4.90725 7.21502 4.20559 8.04671 3.9073 8.49068C3.80633 8.64095 3.83679 8.83678 3.9648 8.9648Z"
         stroke="currentColor"
@@ -8263,13 +4997,7 @@ export const icons = [
   },
   {
     name: 'keyboard',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -8277,13 +5005,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 10L14.5833 10M14.1667 12.5L14.5833 12.5M11.6667 12.4917V12.5L8.33333 12.5M11.25 10L11.6667 9.99171M8.33333 7.50004H8.75M8.33333 10L8.75 10M5.41667 7.50004H5.83333M5.41667 10H5.83333M5.41667 12.5H5.83333M11.25 7.50004H11.6667M14.1667 7.50004H14.5833M17.5 14.1667V5.83337C17.5 4.9129 16.7538 4.16671 15.8333 4.16671L4.16667 4.16671C3.24619 4.16671 2.5 4.9129 2.5 5.83337L2.5 14.1667C2.5 15.0872 3.24619 15.8334 4.16667 15.8334L15.8333 15.8334C16.7538 15.8334 17.5 15.0872 17.5 14.1667Z"
         stroke="currentColor"
@@ -8296,13 +5018,7 @@ export const icons = [
   {
     name: 'move-vertical',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3 9.625C3 7.61607 4.32353 6.41071 6.52941 6.41071H10.5M10.5 6.41071L7.85294 4M10.5 6.41071L7.85294 8.82143M15.8334 13.334L4.16671 13.334C3.70647 13.334 3.33337 13.7071 3.33337 14.1673L3.33337 15.834C3.33337 16.2942 3.70647 16.6673 4.16671 16.6673L15.8334 16.6673C16.2936 16.6673 16.6667 16.2942 16.6667 15.834V14.1673C16.6667 13.7071 16.2936 13.334 15.8334 13.334ZM15.8334 3.33398L14.1667 3.33398C13.7065 3.33398 13.3334 3.70708 13.3334 4.16732L13.3334 9.16732C13.3334 9.62755 13.7065 10.0007 14.1667 10.0007H15.8334C16.2936 10.0007 16.6667 9.62755 16.6667 9.16732L16.6667 4.16732C16.6667 3.70708 16.2936 3.33398 15.8334 3.33398Z"
         stroke="currentColor"
@@ -8315,13 +5031,7 @@ export const icons = [
   {
     name: 'move-horizontal',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.83329 3C7.74996 3 6.49996 4.32353 6.49996 6.52941L6.49996 10.5M6.49996 10.5L3.99996 7.85294M6.49996 10.5L8.99996 7.85294M13.3334 4.16797V15.8346C13.3334 16.2949 13.7065 16.668 14.1667 16.668H15.8334C16.2936 16.668 16.6667 16.2949 16.6667 15.8346V4.16797C16.6667 3.70773 16.2936 3.33463 15.8334 3.33463L14.1667 3.33463C13.7065 3.33463 13.3334 3.70773 13.3334 4.16797ZM3.33337 14.168L3.33337 15.8346C3.33337 16.2949 3.70647 16.668 4.16671 16.668H9.16671C9.62694 16.668 10 16.2949 10 15.8346V14.168C10 13.7077 9.62694 13.3346 9.16671 13.3346H4.16671C3.70647 13.3346 3.33337 13.7077 3.33337 14.168Z"
         stroke="currentColor"
@@ -8334,13 +5044,7 @@ export const icons = [
   {
     name: 'rotate-left',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V7.84518C17.5 7.62416 17.4122 7.4122 17.2559 7.25592L12.7441 2.74408C12.5878 2.5878 12.3758 2.5 12.1548 2.5H7.5C6.57952 2.5 5.83333 3.24619 5.83333 4.16667M11.6667 10.8333C11.6667 8.75 10.4167 7.5 8.33333 7.5C6.25 7.5 5 8.82353 5 11.0294L5 15M5 15L2.5 12.3529M5 15L7.5 12.3529"
         stroke="currentColor"
@@ -8353,13 +5057,7 @@ export const icons = [
   {
     name: 'rotate-right',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.0833 17.5H4.16667C3.24619 17.5 2.5 16.7538 2.5 15.8333V4.16667C2.5 3.24619 3.24619 2.5 4.16667 2.5H8.82149C9.0425 2.5 9.25446 2.5878 9.41074 2.74408L10.8333 4.16667M8.33333 11.6667C8.33333 9.58333 9.58333 8.33333 11.6667 8.33333C13.75 8.33333 15 9.58333 15 11.6667V15.4167M15 15.4167L17.5 12.9167M15 15.4167L12.5 12.9167"
         stroke="currentColor"
@@ -8372,13 +5070,7 @@ export const icons = [
   {
     name: 'undo',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 8.33337C2.5 8.33337 8.92678 8.33337 10.8333 8.33337C11.4076 8.33337 12.2407 8.33337 13.1246 8.33337C15.5409 8.33337 17.5 10.2921 17.5 12.7084V12.9167C17.5 15.2179 15.6345 17.0834 13.3333 17.0834V17.0834H10.8333M2.5 8.33337L7.5 13.3334M2.5 8.33337L7.5 3.33337"
         stroke="currentColor"
@@ -8391,13 +5083,7 @@ export const icons = [
   {
     name: 'redo',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 8.33337C2.5 8.33337 8.92678 8.33337 10.8333 8.33337C11.4076 8.33337 12.2407 8.33337 13.1246 8.33337C15.5409 8.33337 17.5 10.2921 17.5 12.7084V12.9167C17.5 15.2179 15.6345 17.0834 13.3333 17.0834V17.0834H10.8333M2.5 8.33337L7.5 13.3334M2.5 8.33337L7.5 3.33337"
         stroke="currentColor"
@@ -8410,13 +5096,7 @@ export const icons = [
   {
     name: 'drag-horizontal',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 7.49996L15.825 7.49996M9.99996 7.49996L9.99163 7.49996M4.16663 7.49996L4.15829 7.49996M15.8333 12.5L15.825 12.5M9.99996 12.5L9.99163 12.5M4.16663 12.5L4.15829 12.5M15 7.49996C15 7.03972 15.3731 6.66663 15.8333 6.66663C16.2935 6.66663 16.6666 7.03972 16.6666 7.49996C16.6666 7.9602 16.2935 8.33329 15.8333 8.33329C15.3731 8.33329 15 7.9602 15 7.49996ZM9.16663 7.49996C9.16663 7.03972 9.53972 6.66663 9.99996 6.66663C10.4602 6.66663 10.8333 7.03972 10.8333 7.49996C10.8333 7.9602 10.4602 8.33329 9.99996 8.33329C9.53972 8.33329 9.16663 7.9602 9.16663 7.49996ZM3.33329 7.49996C3.33329 7.03972 3.70639 6.66663 4.16663 6.66663C4.62686 6.66663 4.99996 7.03972 4.99996 7.49996C4.99996 7.9602 4.62686 8.33329 4.16663 8.33329C3.70639 8.33329 3.33329 7.9602 3.33329 7.49996ZM15 12.5C15 12.0397 15.3731 11.6666 15.8333 11.6666C16.2935 11.6666 16.6666 12.0397 16.6666 12.5C16.6666 12.9602 16.2935 13.3333 15.8333 13.3333C15.3731 13.3333 15 12.9602 15 12.5ZM9.16663 12.5C9.16663 12.0397 9.53972 11.6666 9.99996 11.6666C10.4602 11.6666 10.8333 12.0397 10.8333 12.5C10.8333 12.9602 10.4602 13.3333 9.99996 13.3333C9.53972 13.3333 9.16663 12.9602 9.16663 12.5ZM3.33329 12.5C3.33329 12.0397 3.70639 11.6666 4.16663 11.6666C4.62686 11.6666 4.99996 12.0397 4.99996 12.5C4.99996 12.9602 4.62686 13.3333 4.16663 13.3333C3.70639 13.3333 3.33329 12.9602 3.33329 12.5Z"
         stroke="currentColor"
@@ -8429,13 +5109,7 @@ export const icons = [
   {
     name: 'side-panel-close-left',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_35_2344)">
         <path
           d="M15.8333 17.5L15.8333 18.3333L15.8333 18.3333L15.8333 17.5ZM18.3333 15.8333C18.3333 15.3731 17.9602 15 17.5 15C17.0398 15 16.6667 15.3731 16.6667 15.8333L18.3333 15.8333ZM4.16667 17.5L4.16667 18.3333H4.16667V17.5ZM2.5 15.8333L3.33333 15.8333L2.5 15.8333ZM4.16667 2.5L4.16667 1.66667L4.16667 2.5ZM2.5 4.16667L1.66667 4.16667L2.5 4.16667ZM15.8333 2.5L15.8333 1.66667L15.8333 2.5ZM16.6667 4.16667C16.6667 4.6269 17.0398 5 17.5 5C17.9602 5 18.3333 4.62691 18.3333 4.16667L16.6667 4.16667ZM8.33333 15C8.33333 14.5398 7.96024 14.1667 7.5 14.1667C7.03976 14.1667 6.66667 14.5398 6.66667 15H8.33333ZM6.66667 5C6.66667 5.46024 7.03976 5.83333 7.5 5.83333C7.96024 5.83333 8.33333 5.46024 8.33333 5L6.66667 5ZM6.66667 11.6667C6.66667 12.1269 7.03976 12.5 7.5 12.5C7.96024 12.5 8.33333 12.1269 8.33333 11.6667L6.66667 11.6667ZM8.33333 8.33333C8.33333 7.8731 7.96024 7.5 7.5 7.5C7.03976 7.5 6.66667 7.8731 6.66667 8.33333L8.33333 8.33333ZM12.7441 13.0893C13.0695 13.4147 13.5972 13.4147 13.9226 13.0893C14.248 12.7638 14.248 12.2362 13.9226 11.9107L12.7441 13.0893ZM10.8333 10L10.2441 9.41074C9.91864 9.73618 9.91864 10.2638 10.2441 10.5893L10.8333 10ZM13.9226 8.08926C14.248 7.76382 14.248 7.23618 13.9226 6.91074C13.5972 6.58531 13.0695 6.58531 12.7441 6.91074L13.9226 8.08926ZM18.3333 10.8333C18.7936 10.8333 19.1667 10.4602 19.1667 10C19.1667 9.53976 18.7936 9.16667 18.3333 9.16667L18.3333 10.8333ZM15.8333 18.3333C17.214 18.3333 18.3333 17.214 18.3333 15.8333L16.6667 15.8333C16.6667 16.2936 16.2936 16.6667 15.8333 16.6667L15.8333 18.3333ZM4.16667 18.3333H7.5V16.6667H4.16667V18.3333ZM7.5 18.3333L15.8333 18.3333L15.8333 16.6667L7.5 16.6667L7.5 18.3333ZM1.66667 15.8333C1.66667 17.214 2.78595 18.3333 4.16667 18.3333L4.16667 16.6667C3.70643 16.6667 3.33333 16.2936 3.33333 15.8333L1.66667 15.8333ZM4.16667 1.66667C2.78595 1.66667 1.66667 2.78596 1.66667 4.16667L3.33333 4.16667C3.33333 3.70643 3.70643 3.33333 4.16667 3.33333L4.16667 1.66667ZM15.8333 1.66667L7.5 1.66667L7.5 3.33333L15.8333 3.33333L15.8333 1.66667ZM7.5 1.66667L4.16667 1.66667L4.16667 3.33333L7.5 3.33333L7.5 1.66667ZM18.3333 4.16667C18.3333 2.78596 17.214 1.66667 15.8333 1.66667L15.8333 3.33333C16.2936 3.33333 16.6667 3.70643 16.6667 4.16667L18.3333 4.16667ZM8.33333 17.5V15H6.66667V17.5H8.33333ZM8.33333 5L8.33333 2.5L6.66667 2.5L6.66667 5L8.33333 5ZM3.33333 15.8333L3.33333 4.16667L1.66667 4.16667L1.66667 15.8333L3.33333 15.8333ZM8.33333 11.6667L8.33333 8.33333L6.66667 8.33333L6.66667 11.6667L8.33333 11.6667ZM13.9226 11.9107L11.4226 9.41074L10.2441 10.5893L12.7441 13.0893L13.9226 11.9107ZM11.4226 10.5893L13.9226 8.08926L12.7441 6.91074L10.2441 9.41074L11.4226 10.5893ZM10.8333 10.8333L18.3333 10.8333L18.3333 9.16667L10.8333 9.16667L10.8333 10.8333Z"
@@ -8452,13 +5126,7 @@ export const icons = [
   {
     name: 'side-panel-close-right',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M1.66663 4.16667C1.66663 4.6269 2.03972 5 2.49996 5C2.9602 5 3.33329 4.6269 3.33329 4.16667H1.66663ZM3.33329 15.8333C3.33329 15.3731 2.9602 15 2.49996 15C2.03972 15 1.66663 15.3731 1.66663 15.8333H3.33329ZM11.6666 5C11.6666 5.46024 12.0397 5.83333 12.5 5.83333C12.9602 5.83333 13.3333 5.46024 13.3333 5H11.6666ZM13.3333 15C13.3333 14.5398 12.9602 14.1667 12.5 14.1667C12.0397 14.1667 11.6666 14.5398 11.6666 15H13.3333ZM13.3333 8.33333C13.3333 7.8731 12.9602 7.5 12.5 7.5C12.0397 7.5 11.6666 7.8731 11.6666 8.33333H13.3333ZM11.6666 11.6667C11.6666 12.1269 12.0397 12.5 12.5 12.5C12.9602 12.5 13.3333 12.1269 13.3333 11.6667H11.6666ZM7.25588 6.91074C6.93044 6.58531 6.40281 6.58531 6.07737 6.91074C5.75193 7.23618 5.75193 7.76382 6.07737 8.08926L7.25588 6.91074ZM9.16663 10L9.75588 10.5893C10.0813 10.2638 10.0813 9.73618 9.75588 9.41074L9.16663 10ZM6.07737 11.9107C5.75193 12.2362 5.75193 12.7638 6.07737 13.0893C6.40281 13.4147 6.93044 13.4147 7.25588 13.0893L6.07737 11.9107ZM1.66663 9.16667C1.20639 9.16667 0.833293 9.53976 0.833293 10C0.833293 10.4602 1.20639 10.8333 1.66663 10.8333V9.16667ZM4.16663 1.66667C2.78591 1.66667 1.66663 2.78595 1.66663 4.16667H3.33329C3.33329 3.70643 3.70639 3.33333 4.16663 3.33333V1.66667ZM15.8333 1.66667H12.5V3.33333H15.8333V1.66667ZM12.5 1.66667H4.16663V3.33333H12.5V1.66667ZM18.3333 4.16667C18.3333 2.78596 17.214 1.66667 15.8333 1.66667V3.33333C16.2935 3.33333 16.6666 3.70643 16.6666 4.16667H18.3333ZM15.8333 18.3333C17.214 18.3333 18.3333 17.214 18.3333 15.8333H16.6666C16.6666 16.2936 16.2935 16.6667 15.8333 16.6667V18.3333ZM4.16663 18.3333H12.5V16.6667H4.16663V18.3333ZM12.5 18.3333H15.8333V16.6667H12.5V18.3333ZM1.66663 15.8333C1.66663 17.214 2.78591 18.3333 4.16663 18.3333V16.6667C3.70639 16.6667 3.33329 16.2936 3.33329 15.8333H1.66663ZM11.6666 2.5V5H13.3333V2.5H11.6666ZM11.6666 15V17.5H13.3333V15H11.6666ZM16.6666 4.16667V15.8333H18.3333V4.16667H16.6666ZM11.6666 8.33333V11.6667H13.3333V8.33333H11.6666ZM6.07737 8.08926L8.57737 10.5893L9.75588 9.41074L7.25588 6.91074L6.07737 8.08926ZM8.57737 9.41074L6.07737 11.9107L7.25588 13.0893L9.75588 10.5893L8.57737 9.41074ZM9.16663 9.16667H1.66663V10.8333H9.16663V9.16667Z"
         fill="currentColor"
@@ -8468,13 +5136,7 @@ export const icons = [
   {
     name: 'side-panel-open-left',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_35_2346)">
         <path
           d="M15.8333 17.5L15.8333 18.3333H15.8333V17.5ZM18.3333 15.8333C18.3333 15.3731 17.9602 15 17.5 15C17.0398 15 16.6667 15.3731 16.6667 15.8333H18.3333ZM16.6667 4.16667C16.6667 4.6269 17.0398 5 17.5 5C17.9602 5 18.3333 4.6269 18.3333 4.16667H16.6667ZM8.33333 15C8.33333 14.5398 7.96024 14.1667 7.5 14.1667C7.03976 14.1667 6.66667 14.5398 6.66667 15H8.33333ZM6.66667 5C6.66667 5.46024 7.03976 5.83333 7.5 5.83333C7.96024 5.83333 8.33333 5.46024 8.33333 5L6.66667 5ZM6.66667 11.6667C6.66667 12.1269 7.03976 12.5 7.5 12.5C7.96024 12.5 8.33333 12.1269 8.33333 11.6667L6.66667 11.6667ZM8.33333 8.33333C8.33333 7.8731 7.96024 7.5 7.5 7.5C7.03976 7.5 6.66667 7.8731 6.66667 8.33333L8.33333 8.33333ZM16.4226 6.91075C16.0972 6.58531 15.5695 6.58531 15.2441 6.91075C14.9186 7.23618 14.9186 7.76382 15.2441 8.08926L16.4226 6.91075ZM18.3333 10L18.9226 10.5893C19.248 10.2638 19.248 9.73618 18.9226 9.41075L18.3333 10ZM15.2441 11.9107C14.9186 12.2362 14.9186 12.7638 15.2441 13.0893C15.5695 13.4147 16.0972 13.4147 16.4226 13.0893L15.2441 11.9107ZM10.8333 9.16667C10.3731 9.16667 10 9.53976 10 10C10 10.4602 10.3731 10.8333 10.8333 10.8333V9.16667ZM15.8333 18.3333C17.214 18.3333 18.3333 17.214 18.3333 15.8333H16.6667C16.6667 16.2936 16.2936 16.6667 15.8333 16.6667V18.3333ZM4.16667 18.3333H7.5V16.6667H4.16667V18.3333ZM7.5 18.3333L15.8333 18.3333L15.8333 16.6667L7.5 16.6667L7.5 18.3333ZM1.66667 15.8333C1.66667 17.214 2.78595 18.3333 4.16667 18.3333V16.6667C3.70643 16.6667 3.33333 16.2936 3.33333 15.8333H1.66667ZM4.16667 1.66667C2.78596 1.66667 1.66667 2.78596 1.66667 4.16667H3.33333C3.33333 3.70643 3.70643 3.33333 4.16667 3.33333V1.66667ZM15.8333 1.66667H7.5V3.33333H15.8333V1.66667ZM7.5 1.66667H4.16667V3.33333H7.5V1.66667ZM18.3333 4.16667C18.3333 2.78596 17.214 1.66667 15.8333 1.66667V3.33333C16.2936 3.33333 16.6667 3.70643 16.6667 4.16667H18.3333ZM8.33333 17.5V15H6.66667V17.5H8.33333ZM8.33333 5L8.33333 2.5L6.66667 2.5L6.66667 5L8.33333 5ZM3.33333 15.8333V4.16667H1.66667V15.8333H3.33333ZM8.33333 11.6667L8.33333 8.33333L6.66667 8.33333L6.66667 11.6667L8.33333 11.6667ZM15.2441 8.08926L17.7441 10.5893L18.9226 9.41075L16.4226 6.91075L15.2441 8.08926ZM17.7441 9.41075L15.2441 11.9107L16.4226 13.0893L18.9226 10.5893L17.7441 9.41075ZM18.3333 9.16667H10.8333V10.8333H18.3333V9.16667Z"
@@ -8491,13 +5153,7 @@ export const icons = [
   {
     name: 'side-panel-open-right',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16663 2.5L4.16663 1.66667L4.16663 1.66667L4.16663 2.5ZM1.66663 4.16667C1.66663 4.6269 2.03972 5 2.49996 5C2.9602 5 3.33329 4.6269 3.33329 4.16667L1.66663 4.16667ZM15.8333 2.5L15.8333 3.33334L15.8333 2.5ZM17.5 4.16667L16.6666 4.16667V4.16667L17.5 4.16667ZM15.8333 17.5L15.8333 18.3333L15.8333 18.3333L15.8333 17.5ZM17.5 15.8333L18.3333 15.8333V15.8333L17.5 15.8333ZM4.16662 17.5L4.16662 18.3333H4.16662L4.16662 17.5ZM3.33329 15.8333C3.33329 15.3731 2.96019 15 2.49996 15C2.03972 15 1.66662 15.3731 1.66662 15.8333L3.33329 15.8333ZM11.6666 5C11.6666 5.46024 12.0397 5.83334 12.5 5.83334C12.9602 5.83334 13.3333 5.46024 13.3333 5L11.6666 5ZM13.3333 15C13.3333 14.5398 12.9602 14.1667 12.5 14.1667C12.0397 14.1667 11.6666 14.5398 11.6666 15L13.3333 15ZM13.3333 8.33334C13.3333 7.8731 12.9602 7.5 12.5 7.5C12.0397 7.5 11.6666 7.8731 11.6666 8.33334L13.3333 8.33334ZM11.6666 11.6667C11.6666 12.1269 12.0397 12.5 12.5 12.5C12.9602 12.5 13.3333 12.1269 13.3333 11.6667L11.6666 11.6667ZM3.57737 13.0893C3.90281 13.4147 4.43044 13.4147 4.75588 13.0893C5.08132 12.7638 5.08132 12.2362 4.75588 11.9107L3.57737 13.0893ZM1.66663 10L1.07737 9.41074C0.751934 9.73618 0.751933 10.2638 1.07737 10.5893L1.66663 10ZM4.75588 8.08926C5.08132 7.76382 5.08132 7.23618 4.75588 6.91074C4.43044 6.58531 3.90281 6.58531 3.57737 6.91074L4.75588 8.08926ZM9.16663 10.8333C9.62686 10.8333 9.99996 10.4602 9.99996 10C9.99996 9.53976 9.62686 9.16667 9.16663 9.16667L9.16663 10.8333ZM4.16663 1.66667C2.78592 1.66667 1.66663 2.78595 1.66663 4.16667L3.33329 4.16667C3.33329 3.70643 3.70639 3.33333 4.16663 3.33333L4.16663 1.66667ZM15.8333 1.66667L12.5 1.66667L12.5 3.33334L15.8333 3.33334L15.8333 1.66667ZM12.5 1.66667L4.16663 1.66667L4.16663 3.33333L12.5 3.33334L12.5 1.66667ZM18.3333 4.16667C18.3333 2.78596 17.214 1.66667 15.8333 1.66667L15.8333 3.33334C16.2935 3.33334 16.6666 3.70643 16.6666 4.16667L18.3333 4.16667ZM15.8333 18.3333C17.214 18.3333 18.3333 17.214 18.3333 15.8333L16.6666 15.8333C16.6666 16.2936 16.2935 16.6667 15.8333 16.6667L15.8333 18.3333ZM4.16662 18.3333L12.5 18.3333L12.5 16.6667L4.16662 16.6667L4.16662 18.3333ZM12.5 18.3333L15.8333 18.3333L15.8333 16.6667L12.5 16.6667L12.5 18.3333ZM1.66662 15.8333C1.66662 17.214 2.78591 18.3333 4.16662 18.3333L4.16662 16.6667C3.70639 16.6667 3.33329 16.2936 3.33329 15.8333L1.66662 15.8333ZM11.6666 2.5L11.6666 5L13.3333 5L13.3333 2.5L11.6666 2.5ZM11.6666 15L11.6666 17.5L13.3333 17.5L13.3333 15L11.6666 15ZM16.6666 4.16667L16.6666 15.8333L18.3333 15.8333L18.3333 4.16667L16.6666 4.16667ZM11.6666 8.33334L11.6666 11.6667L13.3333 11.6667L13.3333 8.33334L11.6666 8.33334ZM4.75588 11.9107L2.25588 9.41074L1.07737 10.5893L3.57737 13.0893L4.75588 11.9107ZM2.25588 10.5893L4.75588 8.08926L3.57737 6.91074L1.07737 9.41074L2.25588 10.5893ZM1.66663 10.8333L9.16663 10.8333L9.16663 9.16667L1.66663 9.16667L1.66663 10.8333Z"
         fill="currentColor"
@@ -8507,13 +5163,7 @@ export const icons = [
   {
     name: 'contacts',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 9.16667C10.9205 9.16667 11.6667 8.42047 11.6667 7.5C11.6667 6.57952 10.9205 5.83333 10 5.83333C9.07952 5.83333 8.33333 6.57952 8.33333 7.5C8.33333 8.42047 9.07952 9.16667 10 9.16667ZM10 9.16667C11.0885 9.16667 12.0145 9.86234 12.3577 10.8333M10 9.16667C8.91148 9.16667 7.98541 9.86234 7.64221 10.8333M7.5 13.3333H12.5M2.5 6.25H4.16667M2.5 8.75H4.16667M2.5 11.25H4.16667M2.5 13.75H4.16667M16.6667 4.16667V15.8333C16.6667 16.7538 15.9205 17.5 15 17.5H5C4.07953 17.5 3.33333 16.7538 3.33333 15.8333V4.16667C3.33333 3.24619 4.07953 2.5 5 2.5L15 2.5C15.9205 2.5 16.6667 3.24619 16.6667 4.16667Z"
         stroke="currentColor"
@@ -8526,13 +5176,7 @@ export const icons = [
   {
     name: 'arrow-up-link-out',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.05368 4.69669L15.3033 4.69669M15.3033 4.69669L15.3033 12.9463M15.3033 4.69669L4.69666 15.3033"
         stroke="currentColor"
@@ -8545,13 +5189,7 @@ export const icons = [
   {
     name: 'device-lock',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_35_2353)">
         <path
           d="M10.888 8.31684C11.3482 8.31684 11.7213 7.94374 11.7213 7.4835C11.7213 7.02327 11.3482 6.65017 10.888 6.65017V8.31684ZM1.69708 16.2128L1.02741 15.7169C0.921121 15.8604 0.863749 16.0343 0.863749 16.2128H1.69708ZM16.0105 16.2128H16.8438C16.8438 16.0064 16.7672 15.8073 16.6288 15.6542L16.0105 16.2128ZM15.39 11.45C15.39 10.9898 15.0169 10.6167 14.5566 10.6167C14.0964 10.6167 13.7233 10.9898 13.7233 11.45H15.39ZM13.7233 8.96681C13.7233 9.42705 14.0964 9.80014 14.5566 9.80014C15.0169 9.80014 15.39 9.42705 15.39 8.96681H13.7233ZM15.39 8.61292C15.39 8.15268 15.0169 7.77959 14.5566 7.77959C14.0964 7.77959 13.7233 8.15268 13.7233 8.61292H15.39ZM12.1238 7.02944H17.0671V5.36277H12.1238V7.02944ZM17.4696 7.43192V10.2142H19.1363V7.43192H17.4696ZM17.0671 10.6167H12.1238V12.2834H17.0671V10.6167ZM11.7213 10.2142V7.43192H10.0547V10.2142H11.7213ZM12.1238 10.6167C11.9015 10.6167 11.7213 10.4365 11.7213 10.2142H10.0547C10.0547 11.357 10.9811 12.2834 12.1238 12.2834V10.6167ZM17.4696 10.2142C17.4696 10.4365 17.2894 10.6167 17.0671 10.6167V12.2834C18.2099 12.2834 19.1363 11.357 19.1363 10.2142H17.4696ZM17.0671 7.02944C17.2894 7.02944 17.4696 7.20964 17.4696 7.43192H19.1363C19.1363 6.28916 18.2099 5.36277 17.0671 5.36277V7.02944ZM12.1238 5.36277C10.9811 5.36277 10.0547 6.28916 10.0547 7.43192H11.7213C11.7213 7.20964 11.9015 7.02944 12.1238 7.02944V5.36277ZM16.2338 4.64962V6.1961H17.9004V4.64962H16.2338ZM12.9572 6.1961V4.64962H11.2905V6.1961H12.9572ZM14.5955 3.01131C15.5003 3.01131 16.2338 3.74481 16.2338 4.64962H17.9004C17.9004 2.82433 16.4208 1.34465 14.5955 1.34465V3.01131ZM14.5955 1.34465C12.7702 1.34465 11.2905 2.82433 11.2905 4.64962H12.9572C12.9572 3.74481 13.6907 3.01131 14.5955 3.01131V1.34465ZM4.49786 8.31684H10.888V6.65017H4.49786V8.31684ZM14.4014 16.9886H3.30617V18.6553H14.4014V16.9886ZM3.30617 16.9886C2.87773 16.9886 2.53042 16.6413 2.53042 16.2128H0.863749C0.863749 17.5618 1.95726 18.6553 3.30617 18.6553V16.9886ZM15.1771 16.2128C15.1771 16.6413 14.8298 16.9886 14.4014 16.9886V18.6553C15.7503 18.6553 16.8438 17.5618 16.8438 16.2128H15.1771ZM4.49786 6.65017C3.14895 6.65017 2.05544 7.74368 2.05544 9.09259H3.72211C3.72211 8.66415 4.06943 8.31684 4.49786 8.31684V6.65017ZM2.88878 15.4371H14.5566V13.7704H2.88878V15.4371ZM13.9383 15.1624L15.3921 16.7715L16.6288 15.6542L15.175 14.0451L13.9383 15.1624ZM2.36676 16.7088L3.55845 15.0997L2.2191 14.1078L1.02741 15.7169L2.36676 16.7088ZM3.72211 14.6038V9.09259H2.05544V14.6038H3.72211ZM15.39 14.6038V11.45H13.7233V14.6038H15.39ZM15.39 8.96681V8.61292H13.7233V8.96681H15.39Z"
@@ -8568,13 +5206,7 @@ export const icons = [
   {
     name: 'auto-date',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_35_2354)">
         <path
           d="M6.66667 4.16667H4.16667C3.24619 4.16667 2.5 4.91286 2.5 5.83333V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V13.3333M6.66667 4.16667H13.3333M6.66667 4.16667V5.83333M6.66667 4.16667V2.5M13.3333 4.16667H15.8333M13.3333 4.16667V5.83333M13.3333 4.16667V2.5M5.83333 9.16667H13.3333M15.4882 7.15482C16.139 6.50395 17.1943 6.50395 17.8452 7.15482C18.496 7.8057 18.496 8.86097 17.8452 9.51184L12.357 15H10V12.643L15.4882 7.15482Z"
@@ -8594,13 +5226,7 @@ export const icons = [
   {
     name: 'revert',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16671 3.39665C4.16671 2.93641 3.79361 2.56331 3.33337 2.56331C2.87314 2.56331 2.50004 2.93641 2.50004 3.39665H4.16671ZM3.33337 7.56331H2.50004C2.50004 8.02355 2.87314 8.39665 3.33337 8.39665V7.56331ZM7.50004 8.39665C7.96028 8.39665 8.33337 8.02355 8.33337 7.56331C8.33337 7.10308 7.96028 6.72998 7.50004 6.72998V8.39665ZM3.36952 7.22844C3.19937 7.65607 3.4081 8.14066 3.83573 8.31082C4.26335 8.48097 4.74795 8.27224 4.9181 7.84461L3.36952 7.22844ZM4.81992 11.89C4.6709 11.4546 4.19709 11.2224 3.76165 11.3714C3.32621 11.5204 3.09402 11.9942 3.24305 12.4297L4.81992 11.89ZM2.50004 3.39665V7.56331H4.16671V3.39665H2.50004ZM3.33337 8.39665H7.50004V6.72998H3.33337V8.39665ZM16.1739 10C16.1739 13.2217 13.5622 15.8334 10.3405 15.8334V17.5C14.4827 17.5 17.8405 14.1422 17.8405 10H16.1739ZM10.3405 4.16671C13.5622 4.16671 16.1739 6.77838 16.1739 10H17.8405C17.8405 5.8579 14.4827 2.50004 10.3405 2.50004V4.16671ZM4.9181 7.84461C5.77604 5.68844 7.88158 4.16671 10.3405 4.16671V2.50004C7.17603 2.50004 4.47123 4.45961 3.36952 7.22844L4.9181 7.84461ZM10.3405 15.8334C7.78158 15.8334 5.60544 14.1852 4.81992 11.89L3.24305 12.4297C4.2522 15.3783 7.0475 17.5 10.3405 17.5V15.8334Z"
         fill="currentColor"
@@ -8610,32 +5236,14 @@ export const icons = [
   {
     name: 'guides',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M7.5 3.33337V17.5M16.6667 13.3334H2.5"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M7.5 3.33337V17.5M16.6667 13.3334H2.5" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
   },
   {
     name: 'bulk-send',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1667 13.3333V15C14.1667 15.9204 13.4205 16.6666 12.5 16.6666H4.16667C3.24619 16.6666 2.5 15.9204 2.5 15V9.16663C2.5 8.24615 3.24619 7.49996 4.16667 7.49996H5.83333M17.5 5.83329V11.6666C17.5 12.5871 16.7538 13.3333 15.8333 13.3333H7.5C6.57953 13.3333 5.83333 12.5871 5.83333 11.6666V5.83329M17.5 5.83329C17.5 4.91282 16.7538 4.16663 15.8333 4.16663H7.5C6.57953 4.16663 5.83333 4.91282 5.83333 5.83329M17.5 5.83329L11.6667 9.99996L8.75 7.91663L5.83333 5.83329"
         stroke="currentColor"
@@ -8648,13 +5256,7 @@ export const icons = [
   {
     name: 'field-alignment-left',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.47925 17.5391L2.47925 2.53906M16.6622 11.6679H6.66218C6.20194 11.6679 5.82884 12.041 5.82884 12.5012L5.82884 14.1679C5.82884 14.6281 6.20194 15.0012 6.66218 15.0012H16.6622C17.1224 15.0012 17.4955 14.6281 17.4955 14.1679V12.5012C17.4955 12.041 17.1224 11.6679 16.6622 11.6679ZM12.4955 5.0006L6.66218 5.0006C6.20194 5.0006 5.82884 5.3737 5.82884 5.83393L5.82884 7.5006C5.82884 7.96084 6.20194 8.33393 6.66218 8.33393L12.4955 8.33394C12.9557 8.33394 13.3288 7.96084 13.3288 7.5006V5.83394C13.3288 5.3737 12.9557 5.0006 12.4955 5.0006Z"
         stroke="currentColor"
@@ -8667,13 +5269,7 @@ export const icons = [
   {
     name: 'field-alignment-centre',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M7.83976 11.669H5.33976C4.87952 11.669 4.50643 12.0421 4.50643 12.5023L4.50643 14.169C4.50643 14.6292 4.87952 15.0023 5.33976 15.0023H7.83976M12.8485 11.669H15.3398C15.8 11.669 16.1731 12.0421 16.1731 12.5023V14.169C16.1731 14.6292 15.8 15.0023 15.3398 15.0023H12.8485M7.84564 5.00328L7.01294 5.00331C6.5527 5.00331 6.17961 5.3764 6.17961 5.83664L6.17961 7.50331C6.17961 7.96354 6.5527 8.33664 7.01294 8.33664L7.84564 8.33664M12.8429 5.0033L13.6796 5.00331C14.1398 5.00331 14.5129 5.3764 14.5129 5.83664L14.5129 7.50331C14.5129 7.96355 14.1398 8.33664 13.6796 8.33664H12.8429M10.3359 17.5376L10.3359 2.5376"
         stroke="currentColor"
@@ -8686,13 +5282,7 @@ export const icons = [
   {
     name: 'field-alignment-right',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M17.8365 2.5376V10.0376V17.5376M13.6699 15.0729H3.66988C3.20964 15.0729 2.83655 14.6998 2.83655 14.2396L2.83655 12.5729C2.83655 12.1127 3.20964 11.7396 3.66988 11.7396H13.6699C14.1301 11.7396 14.5032 12.1127 14.5032 12.5729V14.2396C14.5032 14.6998 14.1301 15.0729 13.6699 15.0729ZM13.6699 8.40685L7.83655 8.40685C7.37631 8.40685 7.00321 8.03375 7.00321 7.57351V5.90685C7.00321 5.44661 7.37631 5.07351 7.83655 5.07351L13.6699 5.07351C14.1301 5.07351 14.5032 5.44661 14.5032 5.90685V7.57351C14.5032 8.03375 14.1301 8.40685 13.6699 8.40685Z"
         stroke="currentColor"
@@ -8704,13 +5294,7 @@ export const icons = [
   },
   {
     name: 'accessibility',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -8718,27 +5302,11 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <g clip-path="url(#clip0_35_2563)">
-        <mask
-          id="path-1-outside-1_35_2563"
-          maskUnits="userSpaceOnUse"
-          x="0.5"
-          y="0.5"
-          width="19"
-          height="19"
-          fill="black"
-        >
+        <mask id="path-1-outside-1_35_2563" maskUnits="userSpaceOnUse" x="0.5" y="0.5" width="19" height="19" fill="black">
           <rect fill="white" x="0.5" y="0.5" width="19" height="19" />
-          <path
-            d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z"
-          />
+          <path d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" />
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -8774,13 +5342,7 @@ export const icons = [
   {
     name: 'arrows-minimise',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 11.6667L16.6667 16.6667M11.6667 11.6667V15M11.6667 11.6667H15M11.6667 8.33337L16.6667 3.33337M11.6667 8.33337V5.00004M11.6667 8.33337H15M8.33337 8.33337L3.33337 3.33337M8.33337 8.33337V5.00004M8.33337 8.33337H5.00004M8.33337 11.6667L3.33337 16.6667M8.33337 11.6667V15M8.33337 11.6667H5.00004"
         stroke="currentColor"
@@ -8793,13 +5355,7 @@ export const icons = [
   {
     name: 'document-info',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8333 13.3333H9.99996V10H9.16663M9.99996 6.66667H10.0083M14.1666 17.5H5.83329C4.91282 17.5 4.16663 16.7538 4.16663 15.8333V4.16667C4.16663 3.24619 4.91282 2.5 5.83329 2.5H10.4881C10.7091 2.5 10.9211 2.5878 11.0774 2.74408L15.5892 7.25592C15.7455 7.4122 15.8333 7.62416 15.8333 7.84518V15.8333C15.8333 16.7538 15.0871 17.5 14.1666 17.5Z"
         stroke="currentColor"
@@ -8812,13 +5368,7 @@ export const icons = [
   {
     name: 'document-import-fields',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15 14.1667C15.9205 14.1667 16.6667 13.4205 16.6667 12.5V7.01184C16.6667 6.79083 16.5789 6.57887 16.4226 6.42259L12.7441 2.74408C12.5878 2.5878 12.3758 2.5 12.1548 2.5H8.33334C7.41286 2.5 6.66667 3.24619 6.66667 4.16667V12.5C6.66667 13.4205 7.41286 14.1667 8.33334 14.1667M5 17.5C4.07953 17.5 3.33334 16.7538 3.33334 15.8333M8.20605 14.1619H15.1273M7.51022 17.5H9.1638M3.33334 13.3333V11.7127M11.6666 17.5C12.5871 17.5 13.3333 16.7538 13.3333 15.8333V14.1619M3.33331 9.16667C3.33331 8.24619 4.07951 7.5 4.99998 7.5H9.6548C9.87582 7.5 10.0878 7.5878 10.2441 7.74408L12.5032 10.0033M12.5032 10.0033L12.4803 7.5M12.5032 10.0033L10.0093 10"
         stroke="currentColor"
@@ -8831,13 +5381,7 @@ export const icons = [
   {
     name: 'document-merge-alt2',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.02026 5.83333H5.00001C4.07953 5.83333 3.33334 6.57952 3.33334 7.5V8.33333V12.0833V15.8333C3.33334 16.7538 4.07953 17.5 5 17.5H8.85928H11.6667C12.5871 17.5 13.3333 16.7538 13.3333 15.8333V15.8162L13.3333 10.3452C13.3333 10.1242 13.2455 9.9122 13.0892 9.75592L12.1696 8.83629L9.41072 6.07741C9.25444 5.92113 9.04248 5.83333 8.82147 5.83333H4.99998C4.07951 5.83333 3.33331 6.57953 3.33331 7.5M11.6666 17.5C12.5871 17.5 13.3333 16.7538 13.3333 15.8333M6.66667 10.0262L10.0131 6.67978M7.17466 13.698L12.103 8.76968M10.9143 14.1667L13.3333 11.7477M15 14.1667C15.9205 14.1667 16.6667 13.4205 16.6667 12.5V11.6896V10.8791V7.01184C16.6667 6.79083 16.5789 6.57887 16.4226 6.42259L15.503 5.50296L12.7441 2.74408C12.5878 2.5878 12.3758 2.5 12.1548 2.5H8.33334C7.41286 2.5 6.66667 3.24619 6.66667 4.16667V7.52289V10.8791V12.5C6.66667 13.4205 7.41286 14.1667 8.33334 14.1667H15Z"
         stroke="currentColor"
@@ -8850,13 +5394,7 @@ export const icons = [
   {
     name: 'document-combine',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3334 15.8162V14.1667M5.02032 5.83333H5.00007C4.07959 5.83333 3.3334 6.57952 3.3334 7.5V10.8333V12.0833V15.8333C3.3334 16.7538 4.07959 17.5 5.00007 17.5H11.6667C12.5872 17.5 13.3334 16.7538 13.3334 15.8333M3.33337 7.5C3.33337 6.57953 4.07957 5.83333 5.00004 5.83333H6.66673M10.0001 8.72233H11.6667M11.6667 8.72233H13.3334M11.6667 8.72233V7.05566M11.6667 8.72233V10.389M15.0001 14.1667C15.9205 14.1667 16.6667 13.4205 16.6667 12.5V11.6896V10.8791V7.01184C16.6667 6.79083 16.5789 6.57887 16.4227 6.42259L13.6638 3.66371L12.7441 2.74408C12.5879 2.5878 12.3759 2.5 12.1549 2.5H8.3334C7.41292 2.5 6.66673 3.24619 6.66673 4.16667V10.8791V12.5C6.66673 13.4205 7.41292 14.1667 8.3334 14.1667H15.0001Z"
         stroke="currentColor"
@@ -8869,13 +5407,7 @@ export const icons = [
   {
     name: 'field-alignment-top',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M3.15405 2.53015L18.1541 2.53015M9.02524 16.7131V6.71308C9.02524 6.25284 8.65214 5.87975 8.1919 5.87975L6.52524 5.87975C6.065 5.87975 5.6919 6.25284 5.6919 6.71308V16.7131C5.6919 17.1733 6.065 17.5464 6.52524 17.5464H8.1919C8.65214 17.5464 9.02524 17.1733 9.02524 16.7131ZM15.6925 12.5464L15.6925 6.71308C15.6925 6.25284 15.3194 5.87975 14.8592 5.87975L13.1925 5.87975C12.7323 5.87975 12.3592 6.25284 12.3592 6.71308L12.3592 12.5464C12.3592 13.0067 12.7323 13.3797 13.1925 13.3797H14.8592C15.3194 13.3797 15.6925 13.0067 15.6925 12.5464Z"
         stroke="currentColor"
@@ -8888,13 +5420,7 @@ export const icons = [
   {
     name: 'field-alignment-middle',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M9.0288 7.46171L9.0288 4.96171C9.0288 4.50147 8.6557 4.12838 8.19546 4.12838H6.5288C6.06856 4.12838 5.69546 4.50147 5.69546 4.96171L5.69546 7.46171M9.0288 12.4704V14.9617C9.0288 15.4219 8.6557 15.795 8.19546 15.795H6.5288C6.06856 15.795 5.69546 15.4219 5.69546 14.9617V12.4704M15.6945 7.46759L15.6944 6.63489C15.6944 6.17465 15.3214 5.80155 14.8611 5.80155H13.1944C12.7342 5.80155 12.3611 6.17465 12.3611 6.63489L12.3611 7.46759M15.6945 12.4649L15.6944 13.3016C15.6944 13.7618 15.3213 14.1349 14.8611 14.1349H13.1944C12.7342 14.1349 12.3611 13.7618 12.3611 13.3016V12.4649M3.16016 9.95788L18.1602 9.95789"
         stroke="currentColor"
@@ -8907,13 +5433,7 @@ export const icons = [
   {
     name: 'field-alignment-bottom',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M18.1699 17.5382H10.6699H3.16992M5.63462 13.3715V3.37154C5.63462 2.9113 6.00771 2.53821 6.46795 2.53821L8.13462 2.53821C8.59485 2.53821 8.96795 2.9113 8.96795 3.37154V13.3715C8.96795 13.8318 8.59485 14.2049 8.13462 14.2049H6.46795C6.00771 14.2049 5.63462 13.8318 5.63462 13.3715ZM12.3007 13.3715L12.3007 7.53821C12.3007 7.07797 12.6738 6.70487 13.134 6.70487H14.8007C15.2609 6.70487 15.634 7.07797 15.634 7.53821L15.634 13.3715C15.634 13.8318 15.2609 14.2049 14.8007 14.2049H13.134C12.6738 14.2049 12.3007 13.8318 12.3007 13.3715Z"
         stroke="currentColor"
@@ -8926,13 +5446,7 @@ export const icons = [
   {
     name: 'box-empty',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M4 5.00004C4 4.07957 4.74619 3.33337 5.66667 3.33337H15.6667C16.5871 3.33337 17.3333 4.07957 17.3333 5.00004V15C17.3333 15.9205 16.5871 16.6667 15.6667 16.6667H5.66667C4.74619 16.6667 4 15.9205 4 15V5.00004Z"
         stroke="currentColor"
@@ -8945,13 +5459,7 @@ export const icons = [
   {
     name: 'box-ticked',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M7.33272 10.4763L9.23783 12.3814L14.0006 7.61865M5.66667 16.6667H15.6667C16.5871 16.6667 17.3333 15.9205 17.3333 15V5.00004C17.3333 4.07957 16.5871 3.33337 15.6667 3.33337H5.66667C4.74619 3.33337 4 4.07957 4 5.00004V15C4 15.9205 4.74619 16.6667 5.66667 16.6667Z"
         stroke="currentColor"
@@ -8964,13 +5472,7 @@ export const icons = [
   {
     name: 'box-crossed',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M7.31665 13.3501L10.6667 10M10.6667 10L14.0167 6.65002M10.6667 10L7.31665 6.65002M10.6667 10L14.0167 13.3501M5.66667 16.6667H15.6667C16.5871 16.6667 17.3333 15.9205 17.3333 15V5.00004C17.3333 4.07957 16.5871 3.33337 15.6667 3.33337H5.66667C4.74619 3.33337 4 4.07957 4 5.00004V15C4 15.9205 4.74619 16.6667 5.66667 16.6667Z"
         stroke="currentColor"
@@ -8983,13 +5485,7 @@ export const icons = [
   {
     name: 'sort-alphabetically-a-z',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M8.5831 16.6722H4.41349L8.5831 11.6722H4.41349M4.61409 7.10729H8.38249M4.61409 7.10729L3.99829 8.33889M4.61409 7.10729L6.49829 3.33889L8.38249 7.10729M8.38249 7.10729L8.99829 8.33889M14.8332 3.33875L14.8332 16.6633M14.8332 16.6633L18.1665 13.3299M14.8332 16.6633L11.5058 13.3299"
         stroke="currentColor"
@@ -9002,13 +5498,7 @@ export const icons = [
   {
     name: 'sort-alphabetically-z-a',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.91653 8.33876H3.74692L7.91653 3.33877H3.74693M3.94753 15.4405H7.71592M3.94753 15.4405L3.33173 16.6721M3.94753 15.4405L5.83173 11.6721L7.71592 15.4405M7.71592 15.4405L8.33173 16.6721M14.1666 3.33862L14.1666 16.6631M14.1666 16.6631L17.4999 13.3298M14.1666 16.6631L10.8392 13.3298"
         stroke="currentColor"
@@ -9021,13 +5511,7 @@ export const icons = [
   {
     name: 'linked-document',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16667 17.5403C4.12384 17.5403 4.08139 17.5387 4.03938 17.5355M4.03938 17.5355C3.17837 17.4705 2.5 16.7513 2.5 15.8737V7.54034C2.5 6.61986 3.24619 5.87367 4.16667 5.87367M4.03938 17.5355H10.9606M10.8333 17.5403C10.8762 17.5403 10.9186 17.5387 10.9606 17.5355M10.9606 17.5355C11.8216 17.4705 12.5 16.7513 12.5 15.8737V10.3855C12.5 10.1645 12.4122 9.95254 12.2559 9.79626L10.8333 8.43304M9.16667 14.1766C8.24619 14.1766 7.5 13.4304 7.5 12.5099V4.17655C7.5 3.25608 8.24619 2.50989 9.16667 2.50989H12.9882C13.2092 2.50989 13.4211 2.59769 13.5774 2.75397L17.2559 6.43248C17.4122 6.58876 17.5 6.80072 17.5 7.02173V12.5099C17.5 13.4304 16.7538 14.1766 15.8333 14.1766"
         stroke="currentColor"
@@ -9040,13 +5524,7 @@ export const icons = [
   {
     name: 'document-replace',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.00007 17.5C4.07959 17.5 3.3334 16.7538 3.3334 15.8333M13.3334 15.8162V14.1667M5.02032 5.83333H5.00007C4.07959 5.83333 3.3334 6.57952 3.3334 7.5V8.33333M3.3334 10.8333V12.0833V13.3333M7.50007 17.5H9.16673M11.6667 17.5C12.5872 17.5 13.3334 16.7538 13.3334 15.8333M3.33337 7.5C3.33337 6.57953 4.07957 5.83333 5.00004 5.83333H6.66673M10.0001 8.72233H11.6667M11.6667 8.72233H13.3334M11.6667 8.72233V7.05566M11.6667 8.72233V10.389M15.0001 14.1667C15.9205 14.1667 16.6667 13.4205 16.6667 12.5V11.6896V10.8791V7.01184C16.6667 6.79083 16.5789 6.57887 16.4227 6.42259L15.503 5.50296L12.7441 2.74408C12.5879 2.5878 12.3759 2.5 12.1549 2.5H8.3334C7.41292 2.5 6.66673 3.24619 6.66673 4.16667V10.8791V12.5C6.66673 13.4205 7.41292 14.1667 8.3334 14.1667H15.0001Z"
         stroke="currentColor"
@@ -9059,13 +5537,7 @@ export const icons = [
   {
     name: 'field-scale',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33337 6.66671V3.33337M3.33337 3.33337H6.66671M3.33337 3.33337L6.66671 6.66671M16.6667 6.66671V3.33337M16.6667 3.33337H13.3334M16.6667 3.33337L13.3334 6.66671M3.33337 13.3334V16.6667M3.33337 16.6667H6.66671M3.33337 16.6667L6.66671 13.3334M16.6667 13.3334V16.6667M16.6667 16.6667H13.3334M16.6667 16.6667L13.3334 13.3334M6.66671 6.66671H8.33337M6.66671 6.66671V8.33337M13.3334 6.66671H11.6667M13.3334 6.66671V8.33337M6.66671 13.3334H8.33337M6.66671 13.3334V11.6667M13.3334 13.3334V11.6667M13.3334 13.3334H11.6667"
         stroke="currentColor"
@@ -9078,13 +5550,7 @@ export const icons = [
   {
     name: 'field-match-width',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 7.49996V4.99996C11.6667 4.53972 11.2936 4.16663 10.8334 4.16663H9.16668C8.70645 4.16663 8.33335 4.53972 8.33335 4.99996V7.49996M11.6667 12.5087V15C11.6667 15.4602 11.2936 15.8333 10.8334 15.8333H9.16668C8.70645 15.8333 8.33335 15.4602 8.33335 15V12.5087M5.00627 12.5087L3.3396 9.99996M3.3396 9.99996L5.00627 7.49996M3.3396 9.99996H16.6678M15.0011 12.5087L16.6678 9.99996M16.6678 9.99996L15.0011 7.49996"
         stroke="currentColor"
@@ -9097,13 +5563,7 @@ export const icons = [
   {
     name: 'field-match-height',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.50362 8.33701H5.00362C4.54338 8.33701 4.17029 8.71011 4.17029 9.17035V10.837C4.17029 11.2973 4.54338 11.6703 5.00362 11.6703H7.50362M12.5123 8.33701H15.0036C15.4639 8.33701 15.837 8.71011 15.837 9.17035V10.837C15.837 11.2973 15.4639 11.6703 15.0036 11.6703H12.5123M12.5123 14.9974L10.0036 16.6641M10.0036 16.6641L7.50362 14.9975M10.0036 16.6641V3.33594M12.5123 5.00265L10.0036 3.33594M10.0036 3.33594L7.50362 5.0026"
         stroke="currentColor"
@@ -9115,13 +5575,7 @@ export const icons = [
   },
   {
     name: 'recipient-link',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -9129,13 +5583,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1434 14.1635H11.6632C10.8242 14.1635 10 13.3217 10 12.4956V9.99268L9.99999 7.49926C10 6.67341 9.16666 5.83293 8.31909 5.83293L5.84309 5.83293M17.5082 13.3303V14.9969C17.5082 15.4572 17.1364 15.8303 16.6777 15.8303H15.0073C14.5535 15.8303 14.1749 15.4428 14.1749 14.9969V13.3303C14.1749 12.8351 14.5365 12.4969 15.0073 12.4969H16.6777C17.1364 12.4969 17.5082 12.87 17.5082 13.3303ZM5.83516 4.99959V6.66626C5.83516 7.1265 5.46333 7.49959 5.00464 7.49959H3.33427C2.88043 7.49959 2.50183 7.11214 2.50183 6.66626V4.99959C2.50183 4.50439 2.86349 4.16625 3.33427 4.16626H5.00464C5.46333 4.16626 5.83516 4.53936 5.83516 4.99959Z"
         stroke="currentColor"
@@ -9147,13 +5595,7 @@ export const icons = [
   },
   {
     name: 'recipient-link-broken',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -9161,13 +5603,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 12.4956C10 13.3217 10.8242 14.1635 11.6632 14.1635H14.1434M9.99999 7.49926C10 6.67341 9.16666 5.83293 8.31909 5.83293L5.84309 5.83293M12.5082 9.16885L14.1749 7.49926M5.84309 12.4969L7.50976 10.8274M17.5082 13.3303V14.9969C17.5082 15.4572 17.1364 15.8303 16.6777 15.8303H15.0073C14.5535 15.8303 14.1749 15.4428 14.1749 14.9969V13.3303C14.1749 12.8351 14.5365 12.4969 15.0073 12.4969H16.6777C17.1364 12.4969 17.5082 12.87 17.5082 13.3303ZM5.83516 4.99959V6.66626C5.83516 7.1265 5.46333 7.49959 5.00464 7.49959H3.33427C2.88043 7.49959 2.50183 7.11214 2.50183 6.66626V4.99959C2.50183 4.50439 2.86349 4.16625 3.33427 4.16626H5.00464C5.46333 4.16626 5.83516 4.53936 5.83516 4.99959Z"
         stroke="currentColor"
@@ -9180,13 +5616,7 @@ export const icons = [
   {
     name: 'witness-arrow',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10.0324H13.5294C11.3235 10.0324 10 8.82704 10 6.81812V2.55688M17.5 10.0324L14.8529 12.4431M17.5 10.0324L14.8529 7.62169"
         stroke="currentColor"
@@ -9199,13 +5629,7 @@ export const icons = [
   {
     name: 'branch',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.51052 13.2228C7.51052 11.2139 8.83405 10.0086 11.0399 10.0086H15.0105M7.51052 13.2228V17.5151M7.51052 13.2228V5.9311M15.0105 10.0086L12.3635 7.59785M15.0105 10.0086L12.3635 12.4193M7.51052 17.5151H9.20545M7.51052 17.5151H5.83813M9.17147 3.33236V4.99902C9.17147 5.45926 8.79964 5.83236 8.34095 5.83236H6.67058C6.21674 5.83236 5.83814 5.4449 5.83814 4.99902V3.33236C5.83814 2.83716 6.1998 2.49901 6.67058 2.49902H8.34095C8.79964 2.49902 9.17147 2.87212 9.17147 3.33236Z"
         stroke="currentColor"
@@ -9218,13 +5642,7 @@ export const icons = [
   {
     name: 'variant',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.8279 5.82528L5.83266 14.1667M14.1702 5.83637L14.1702 12.307C14.1702 14.5128 12.9649 15.8364 10.956 15.8364H7.53748M14.1702 5.83637L16.581 8.48342M14.1702 5.83637L11.7595 8.48342M7.49361 3.32528V4.99194C7.49361 5.45218 7.12177 5.82528 6.66309 5.82528H4.99272C4.53888 5.82528 4.16028 5.43782 4.16028 4.99194V3.32528C4.16028 2.83008 4.52194 2.49193 4.99271 2.49194H6.66309C7.12177 2.49194 7.49361 2.86504 7.49361 3.32528ZM7.52759 15.008V16.6747C7.52759 17.1349 7.15575 17.508 6.69706 17.508H5.0267C4.57285 17.508 4.19425 17.1206 4.19425 16.6747V15.008C4.19425 14.5128 4.55591 14.1747 5.02669 14.1747H6.69706C7.15575 14.1747 7.52759 14.5478 7.52759 15.008Z"
         stroke="currentColor"
@@ -9237,13 +5655,7 @@ export const icons = [
   {
     name: 'recipient-details-card',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 8.33333C8.42047 8.33333 9.16667 7.58714 9.16667 6.66667C9.16667 5.74619 8.42047 5 7.5 5C6.57952 5 5.83333 5.74619 5.83333 6.66667C5.83333 7.58714 6.57952 8.33333 7.5 8.33333ZM7.5 8.33333C8.58852 8.33333 9.5145 9.02901 9.8577 10M7.5 8.33333C6.41148 8.33333 5.48541 9.02901 5.14221 10M12.5 5.83333H15M12.5 8.33333H14.1667M4.99939 12.5H15.0007M4.99939 15H10.8171M17.5 4.16667V15.8333C17.5 16.7538 16.7538 17.5 15.8333 17.5H4.16667C3.24619 17.5 2.5 16.7538 2.5 15.8333V4.16667C2.5 3.24619 3.24619 2.5 4.16667 2.5H15.8333C16.7538 2.5 17.5 3.24619 17.5 4.16667Z"
         stroke="currentColor"
@@ -9256,13 +5668,7 @@ export const icons = [
   {
     name: 'recipient-details',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.04435 7.50681C7.42489 7.50681 8.54403 6.38766 8.54403 5.00713C8.54403 3.62659 7.42489 2.50745 6.04435 2.50745C4.66381 2.50745 3.54467 3.62659 3.54467 5.00713C3.54467 6.38766 4.66381 7.50681 6.04435 7.50681ZM6.04435 7.50681C7.67692 7.50681 9.06572 8.55019 9.58045 10.0065M6.04435 7.50681C4.41178 7.50681 3.02285 8.55019 2.50812 10.0065M13.3434 3.33428H17.5057M13.3434 6.67067H16.671M2.50797 14.1672H17.5057M2.50476 17.5232H11.271M13.3434 9.99877H15.0065"
         stroke="currentColor"
@@ -9275,13 +5681,7 @@ export const icons = [
   {
     name: 'field-distribute-vertically',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.17158 7.49935V12.5M4.17158 7.49935L5.83251 7.49965M4.17158 7.49935L2.50281 7.49996M4.17158 12.5H5.83251M4.17158 12.5H2.50281M16.6647 12.5C17.126 12.5 17.5 12.8731 17.5 13.3333V15C17.5 15.4602 17.126 15.8333 16.6647 15.8333H9.99996C9.53864 15.8333 9.16467 15.4602 9.16467 15V13.3333C9.16467 12.8731 9.53864 12.5 9.99996 12.5H16.6647ZM16.6647 4.16602C17.126 4.16602 17.5 4.53911 17.5 4.99935V6.66602C17.5 7.12625 17.126 7.49935 16.6647 7.49935L9.99996 7.49996C9.53864 7.49996 9.16467 7.12686 9.16467 6.66663V4.99996C9.16467 4.53972 9.53864 4.16663 9.99996 4.16663L16.6647 4.16602Z"
         stroke="currentColor"
@@ -9294,13 +5694,7 @@ export const icons = [
   {
     name: 'field-distribute-horizontally',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5003 4.17024H7.49971M12.5003 4.17024L12.5 5.83117M12.5003 4.17024L12.4997 2.50146M7.49971 4.17024V5.83117M7.49971 4.17024V2.50146M6.66638 17.4986H4.99971C4.53948 17.4986 4.16638 17.1246 4.16638 16.6633V9.99861C4.16638 9.5373 4.53948 9.16333 4.99971 9.16333H6.66638C7.12662 9.16333 7.49971 9.5373 7.49971 9.99861V16.6633C7.49971 17.1246 7.12662 17.4986 6.66638 17.4986ZM15.0003 17.4986H13.3337C12.8734 17.4986 12.5003 17.1246 12.5003 16.6633L12.4997 9.99861C12.4997 9.5373 12.8728 9.16333 13.333 9.16333H14.9997C15.46 9.16333 15.833 9.5373 15.833 9.99861L15.8337 16.6633C15.8337 17.1246 15.4606 17.4986 15.0003 17.4986Z"
         stroke="currentColor"
@@ -9313,13 +5707,7 @@ export const icons = [
   {
     name: 'field-duplicate',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.17136 12.5123L11.6714 10.0036M11.6714 10.0036L9.1714 7.50362M11.6714 10.0036L5.837 10.0036M17.5037 15.0036C17.5037 15.4639 17.1306 15.837 16.6703 15.837H15.0037C14.5434 15.837 14.1703 15.4639 14.1703 15.0036M17.5037 5.00362C17.5037 4.54338 17.1306 4.17029 16.6703 4.17029H15.0037C14.5434 4.17029 14.1703 4.54338 14.1703 5.00362M14.1703 8.75362V7.50362M14.1703 12.5036V11.2536M5.837 12.5036V15.0036C5.837 15.4639 5.4639 15.837 5.00366 15.837H3.337C2.87676 15.837 2.50366 15.4639 2.50366 15.0036V5.00362C2.50366 4.54338 2.87676 4.17029 3.337 4.17029H5.00366C5.4639 4.17029 5.837 4.54338 5.837 5.00362V7.50362M17.5037 11.2536V12.5036M17.5037 7.50362V8.75362"
         stroke="currentColor"
@@ -9332,13 +5720,7 @@ export const icons = [
   {
     name: 'pre-filled-content',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.2533 3.33337H10.0033L10.0033 5.20837M6.2533 3.33337H2.5033V5.20837M6.2533 3.33337V10.8334M8.1283 10.8334H6.2533M6.2533 10.8334H4.3783M16.67 17.5735H3.33665C2.87642 17.5735 2.50332 17.2004 2.50332 16.7402L2.50332 15.0735C2.50332 14.6132 2.87642 14.2402 3.33665 14.2402H16.67C17.1302 14.2402 17.5033 14.6132 17.5033 15.0735V16.7402C17.5033 17.2004 17.1302 17.5735 16.67 17.5735ZM16.67 10.9074L12.5033 10.9074C12.0431 10.9074 11.67 10.5343 11.67 10.0741V8.40743C11.67 7.94719 12.0431 7.5741 12.5033 7.5741L16.67 7.5741C17.1302 7.5741 17.5033 7.94719 17.5033 8.40743V10.0741C17.5033 10.5343 17.1302 10.9074 16.67 10.9074Z"
         stroke="currentColor"
@@ -9351,13 +5733,7 @@ export const icons = [
   {
     name: 'typing-input',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.16996 7.49853H3.33663C2.75931 7.49853 2.5033 7.79293 2.5033 8.3326V13.3333C2.5033 13.9192 2.76279 14.1652 3.33663 14.1652H4.16996M10.8366 7.49853H16.67C17.1907 7.49853 17.5033 7.82873 17.5033 8.33329V13.3389C17.5033 13.8748 17.2362 14.1652 16.67 14.1652H10.8366M11.2497 2.49854H7.49971M7.49971 2.49854H3.74969M7.49971 2.49854V17.4985M11.2497 17.4985H7.49971M7.49971 17.4985H3.74971"
         stroke="currentColor"
@@ -9370,13 +5746,7 @@ export const icons = [
   {
     name: 'table-split',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 8.33336H12.5M2.5 11.6667H12.5M7.5 8.33336V15M15.8333 11.6667V13.3333C15.8333 14.2538 16.5795 15 17.5 15L17.5293 15M15.8333 11.6667V8.33333M15.8333 11.6667L17.5293 11.6667M15.8333 8.33333V6.66667C15.8333 5.74619 16.5795 5 17.5 5H17.5293M15.8333 8.33333L17.5293 8.33336M4.16667 15H10.8333C11.7538 15 12.5 14.2538 12.5 13.3334V6.6667C12.5 5.74622 11.7538 5.00003 10.8333 5.00003H4.16667C3.24619 5.00003 2.5 5.74622 2.5 6.6667V13.3334C2.5 14.2538 3.24619 15 4.16667 15Z"
         stroke="currentColor"
@@ -9388,13 +5758,7 @@ export const icons = [
   {
     name: 'add-column-left',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.50005 2.5L7.50005 1.66667H7.50005L7.50005 2.5ZM5.00005 4.16667C5.00005 4.6269 5.37315 5 5.83339 5C6.29362 5 6.66672 4.6269 6.66672 4.16667L5.00005 4.16667ZM15.8334 2.5L15.8334 1.66667L15.8334 2.5ZM17.5001 4.16667H16.6667H17.5001ZM15.8334 17.5L15.8334 18.3333H15.8334L15.8334 17.5ZM17.5001 15.8333H18.3334H17.5001ZM7.50005 17.5V18.3333V17.5ZM6.66672 15.8333C6.66672 15.3731 6.29362 15 5.83338 15C5.37315 15 5.00005 15.3731 5.00005 15.8333L6.66672 15.8333ZM10.8334 5C10.8334 5.46024 11.2065 5.83334 11.6667 5.83334C12.127 5.83334 12.5001 5.46024 12.5001 5H10.8334ZM12.5 15C12.5 14.5398 12.127 14.1667 11.6667 14.1667C11.2065 14.1667 10.8334 14.5398 10.8334 15L12.5 15ZM12.5 8.33334C12.5 7.8731 12.127 7.5 11.6667 7.5C11.2065 7.5 10.8334 7.8731 10.8334 8.33334H12.5ZM10.8334 11.6667C10.8334 12.1269 11.2065 12.5 11.6667 12.5C12.127 12.5 12.5 12.1269 12.5 11.6667H10.8334ZM5.00004 12.5033C5.00004 12.9635 5.37314 13.3366 5.83337 13.3366C6.29361 13.3366 6.66671 12.9635 6.66671 12.5033H5.00004ZM3.33337 9.16667C2.87314 9.16667 2.50004 9.53976 2.50004 10C2.50004 10.4602 2.87314 10.8333 3.33337 10.8333V9.16667ZM8.33338 10.8333C8.79362 10.8333 9.16672 10.4602 9.16672 10C9.16672 9.53976 8.79362 9.16667 8.33338 9.16667L8.33338 10.8333ZM6.66671 7.49674C6.66671 7.03651 6.29361 6.66341 5.83337 6.66341C5.37314 6.66341 5.00004 7.03651 5.00004 7.49674H6.66671ZM7.50005 1.66667C6.11934 1.66667 5.00005 2.78595 5.00005 4.16667L6.66672 4.16667C6.66672 3.70643 7.03982 3.33333 7.50005 3.33333L7.50005 1.66667ZM15.8334 1.66667L11.6667 1.66667L11.6667 3.33334L15.8334 3.33334L15.8334 1.66667ZM11.6667 1.66667L7.50005 1.66667L7.50005 3.33333L11.6667 3.33334L11.6667 1.66667ZM18.3334 4.16667C18.3334 2.78596 17.2141 1.66667 15.8334 1.66667L15.8334 3.33334C16.2936 3.33334 16.6667 3.70643 16.6667 4.16667L18.3334 4.16667ZM15.8334 18.3333C17.2141 18.3333 18.3334 17.214 18.3334 15.8333L16.6667 15.8333C16.6667 16.2936 16.2936 16.6667 15.8334 16.6667L15.8334 18.3333ZM7.50005 18.3333H11.6667V16.6667H7.50005V18.3333ZM11.6667 18.3333L15.8334 18.3333L15.8334 16.6667L11.6667 16.6667L11.6667 18.3333ZM5.00005 15.8333C5.00005 17.214 6.11934 18.3333 7.50005 18.3333L7.50005 16.6667C7.03981 16.6667 6.66672 16.2936 6.66672 15.8333L5.00005 15.8333ZM10.8334 2.5V5H12.5001V2.5H10.8334ZM10.8334 15L10.8334 17.5L12.5 17.5L12.5 15L10.8334 15ZM16.6667 4.16667V15.8333H18.3334V4.16667H16.6667ZM10.8334 8.33334V11.6667H12.5V8.33334H10.8334ZM5.00004 10V12.5033H6.66671V10H5.00004ZM3.33337 10.8333H5.83337V9.16667H3.33337V10.8333ZM5.83337 10.8333L8.33338 10.8333L8.33338 9.16667L5.83337 9.16667L5.83337 10.8333ZM5.00004 7.49674V10H6.66671V7.49674H5.00004Z"
         fill="currentColor"
@@ -9404,13 +5768,7 @@ export const icons = [
   {
     name: 'add-column-right',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 17.5L12.5 18.3333H12.5V17.5ZM15 15.8333C15 15.3731 14.6269 15 14.1667 15C13.7064 15 13.3333 15.3731 13.3333 15.8333L15 15.8333ZM4.16667 17.5L4.16667 16.6667L4.16667 16.6667L4.16667 17.5ZM4.16667 2.5L4.16667 1.66667H4.16667V2.5ZM2.5 4.16667H1.66667H2.5ZM13.3333 4.16667C13.3333 4.62691 13.7064 5 14.1667 5C14.6269 5 15 4.62691 15 4.16667L13.3333 4.16667ZM9.16667 15C9.16667 14.5398 8.79357 14.1667 8.33333 14.1667C7.8731 14.1667 7.5 14.5398 7.5 15H9.16667ZM7.5 5C7.5 5.46024 7.8731 5.83333 8.33333 5.83333C8.79357 5.83333 9.16667 5.46024 9.16667 5L7.5 5ZM7.5 11.6667C7.5 12.1269 7.8731 12.5 8.33333 12.5C8.79357 12.5 9.16667 12.1269 9.16667 11.6667H7.5ZM9.16667 8.33333C9.16667 7.8731 8.79357 7.5 8.33333 7.5C7.8731 7.5 7.5 7.8731 7.5 8.33333H9.16667ZM15 7.49675C15 7.03651 14.6269 6.66341 14.1667 6.66341C13.7064 6.66341 13.3333 7.03651 13.3333 7.49675H15ZM16.6667 10.8333C17.1269 10.8333 17.5 10.4602 17.5 10C17.5 9.53977 17.1269 9.16667 16.6667 9.16667V10.8333ZM11.6667 9.16667C11.2064 9.16667 10.8333 9.53976 10.8333 10C10.8333 10.4602 11.2064 10.8333 11.6667 10.8333L11.6667 9.16667ZM13.3333 12.5033C13.3333 12.9635 13.7064 13.3366 14.1667 13.3366C14.6269 13.3366 15 12.9635 15 12.5033H13.3333ZM12.5 18.3333C13.8807 18.3333 15 17.214 15 15.8333L13.3333 15.8333C13.3333 16.2936 12.9602 16.6667 12.5 16.6667V18.3333ZM4.16667 18.3333L8.33333 18.3333L8.33333 16.6667L4.16667 16.6667L4.16667 18.3333ZM8.33333 18.3333L12.5 18.3333L12.5 16.6667L8.33333 16.6667L8.33333 18.3333ZM1.66667 15.8333C1.66667 17.214 2.78595 18.3333 4.16667 18.3333L4.16667 16.6667C3.70643 16.6667 3.33333 16.2936 3.33333 15.8333H1.66667ZM4.16667 1.66667C2.78596 1.66667 1.66667 2.78596 1.66667 4.16667H3.33333C3.33333 3.70643 3.70643 3.33333 4.16667 3.33333V1.66667ZM12.5 1.66667H8.33334V3.33333H12.5V1.66667ZM8.33334 1.66667L4.16667 1.66667L4.16667 3.33333L8.33334 3.33333L8.33334 1.66667ZM15 4.16667C15 2.78596 13.8807 1.66667 12.5 1.66667V3.33333C12.9602 3.33333 13.3333 3.70643 13.3333 4.16667L15 4.16667ZM9.16667 17.5V15H7.5V17.5H9.16667ZM9.16667 5L9.16667 2.5L7.5 2.5L7.5 5L9.16667 5ZM3.33333 15.8333V4.16667H1.66667V15.8333H3.33333ZM9.16667 11.6667V8.33333H7.5V11.6667H9.16667ZM15 10V7.49675H13.3333V10H15ZM16.6667 9.16667H14.1667V10.8333H16.6667V9.16667ZM14.1667 9.16667L11.6667 9.16667L11.6667 10.8333L14.1667 10.8333L14.1667 9.16667ZM15 12.5033V10H13.3333V12.5033H15Z"
         fill="currentColor"
@@ -9420,13 +5778,7 @@ export const icons = [
   {
     name: 'recipient-links',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1434 14.9973H11.6632C10.8242 14.9973 10 14.1555 10 13.3294V11.6598L9.99999 11.6664C10 10.8405 9.16666 10.0001 8.31909 10.0001H5.84309M9.99999 7.50006V6.66329C9.99999 5.83721 10.8242 4.99538 11.6632 4.99538H14.1434M17.5082 14.1641V15.8307C17.5082 16.291 17.1364 16.6641 16.6777 16.6641H15.0073C14.5535 16.6641 14.1749 16.2766 14.1749 15.8307V14.1641C14.1749 13.6689 14.5365 13.3307 15.0073 13.3307H16.6777C17.1364 13.3307 17.5082 13.7038 17.5082 14.1641ZM5.83516 9.16673V10.8334C5.83516 11.2936 5.46333 11.6667 5.00464 11.6667H3.33427C2.88043 11.6667 2.50183 11.2793 2.50183 10.8334V9.16673C2.50183 8.67153 2.86349 8.33338 3.33427 8.33339H5.00464C5.46333 8.33339 5.83516 8.70649 5.83516 9.16673ZM17.5082 5.82861V4.16195C17.5082 3.70171 17.1364 3.32861 16.6777 3.32861H15.0073C14.5535 3.32861 14.1749 3.71606 14.1749 4.16195V5.82861C14.1749 6.32381 14.5365 6.66196 15.0073 6.66195H16.6777C17.1364 6.66195 17.5082 6.28885 17.5082 5.82861Z"
         stroke="currentColor"
@@ -9439,13 +5791,7 @@ export const icons = [
   {
     name: 'list-order',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M4.17817 16.6619V5.83797M4.17817 16.6619L5.84139 14.9951M4.17817 16.6619L2.51782 14.9951M9.20778 4.17131H17.5134M9.20778 8.33797H17.5134M9.20778 12.5046H17.5134M5.84139 4.17131C5.84139 5.09178 5.0952 5.83797 4.17472 5.83797C3.25425 5.83797 2.50806 5.09178 2.50806 4.17131C2.50806 3.25083 3.25425 2.50464 4.17472 2.50464C5.0952 2.50464 5.84139 3.25083 5.84139 4.17131Z"
         stroke="currentColor"
@@ -9458,13 +5804,7 @@ export const icons = [
   {
     name: 'field-scaling-off',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 6.66671V3.33337H6.66665M16.6666 6.66671V3.33337H13.3333M3.33331 13.3334V16.6667H6.66665M16.6666 13.3334V16.6667H13.3333M5.85337 5.85853V14.1958M5.85337 5.85853H14.1907M5.85337 5.85853L9.99998 10M14.1907 5.85853L9.99998 10M14.1907 5.85853V14.1958M5.85337 14.1958H14.1907M5.85337 14.1958L9.99998 10M9.99998 10L14.1907 14.1958"
         stroke="currentColor"
@@ -9477,13 +5817,7 @@ export const icons = [
   {
     name: 'fit-width',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M15.8333 7.49565L17.4974 9.99565M15.8333 12.4956L17.4974 9.99565M4.16664 7.49565L2.50256 9.99565M4.16664 12.4956L2.50256 9.99565M2.50256 9.99565H17.4974M6.66664 7.49565V5.82898H13.3333V7.49565M6.66664 12.4956V14.1623H13.3333V12.4956"
         stroke="currentColor"
@@ -9496,13 +5830,7 @@ export const icons = [
   {
     name: 'fit-height',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M12.5 15.829L10 17.4931M10 17.4931L7.50004 15.829M10 17.4931V2.49829M10 2.49829L7.50004 4.16237M10 2.49829L12.5 4.16237M7.50004 13.329H5.83337V6.66237H7.50004M12.5 13.329H14.1667V6.66237H12.5"
         stroke="currentColor"
@@ -9515,13 +5843,7 @@ export const icons = [
   {
     name: 'table-quick-edit',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.3699 3.33333C8.83013 3.33333 9.20323 2.96024 9.20323 2.5C9.20323 2.03976 8.83013 1.66667 8.3699 1.66667V3.33333ZM18.3333 11.6667C18.3333 11.2064 17.9602 10.8333 17.5 10.8333C17.0398 10.8333 16.6667 11.2064 16.6667 11.6667H18.3333ZM4.98649 8.33333C5.44673 8.33333 5.81982 7.96024 5.81982 7.5C5.81982 7.03976 5.44673 6.66667 4.98649 6.66667V8.33333ZM8.3699 13.3333C8.83013 13.3333 9.20323 12.9602 9.20323 12.5C9.20323 12.0398 8.83013 11.6667 8.3699 11.6667V13.3333ZM13.4896 6.51042H12.6562C12.6562 6.97065 13.0293 7.34375 13.4896 7.34375L13.4896 6.51042ZM13.4896 2.5H14.3229C14.3229 2.14777 14.1015 1.83358 13.7697 1.71517C13.438 1.59676 13.0677 1.69969 12.8446 1.9723L13.4896 2.5ZM8.33333 8.80208L7.68837 8.27438C7.48447 8.52359 7.44239 8.86797 7.58027 9.15894C7.71816 9.44991 8.01134 9.63542 8.33333 9.63542V8.80208ZM12.3437 8.80208L13.1771 8.80208C13.1771 8.58107 13.0893 8.36911 12.933 8.21283C12.7767 8.05655 12.5648 7.96875 12.3437 7.96875V8.80208ZM12.3437 12.8125L11.5104 12.8125C11.5104 13.1647 11.7319 13.4789 12.0636 13.5973C12.3953 13.7157 12.7657 13.6128 12.9887 13.3402L12.3437 12.8125ZM17.5 6.51042L18.145 7.03811C18.3489 6.78891 18.3909 6.44453 18.2531 6.15356C18.1152 5.86258 17.822 5.67708 17.5 5.67708L17.5 6.51042ZM15.8333 16.6667H4.16667V18.3333H15.8333V16.6667ZM3.33333 15.8333V12.5H1.66667V15.8333H3.33333ZM3.33333 12.5V7.5H1.66667V12.5H3.33333ZM3.33333 7.5V4.16667H1.66667V7.5H3.33333ZM4.16667 16.6667C3.70643 16.6667 3.33333 16.2936 3.33333 15.8333H1.66667C1.66667 17.214 2.78595 18.3333 4.16667 18.3333V16.6667ZM16.6667 15.8333C16.6667 16.2936 16.2936 16.6667 15.8333 16.6667V18.3333C17.214 18.3333 18.3333 17.214 18.3333 15.8333H16.6667ZM4.16667 1.66667C2.78595 1.66667 1.66667 2.78595 1.66667 4.16667H3.33333C3.33333 3.70643 3.70643 3.33333 4.16667 3.33333V1.66667ZM4.16667 3.33333H8.3699V1.66667H4.16667V3.33333ZM16.6667 11.6667V15.8333H18.3333V11.6667H16.6667ZM2.5 8.33333H4.98649V6.66667H2.5V8.33333ZM2.5 13.3333H8.3699V11.6667H2.5V13.3333ZM14.3229 6.51042V2.5H12.6562V6.51042H14.3229ZM12.8446 1.9723L7.68837 8.27438L8.9783 9.32978L14.1345 3.0277L12.8446 1.9723ZM8.33333 9.63542H12.3437V7.96875H8.33333V9.63542ZM11.5104 8.80208L11.5104 12.8125L13.1771 12.8125L13.1771 8.80208L11.5104 8.80208ZM12.9887 13.3402L18.145 7.03811L16.855 5.98272L11.6988 12.2848L12.9887 13.3402ZM17.5 5.67708L13.4896 5.67708L13.4896 7.34375L17.5 7.34375L17.5 5.67708Z"
         fill="currentColor"
@@ -9531,13 +5853,7 @@ export const icons = [
   {
     name: 'table-columns',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.5 16.6667V3.33337M12.5004 16.6667V3.33338M4.16667 16.6667H15.8333C16.7538 16.6667 17.5 15.9205 17.5 15V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V15C2.5 15.9205 3.24619 16.6667 4.16667 16.6667Z"
         stroke="currentColor"
@@ -9549,13 +5865,7 @@ export const icons = [
   {
     name: 'table-rows',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.5 10L17.5 10M2.5 13.3334H17.5M2.5 6.66671L17.5 6.66671M4.16667 16.6667H15.8333C16.7538 16.6667 17.5 15.9205 17.5 15V5.00004C17.5 4.07957 16.7538 3.33337 15.8333 3.33337H4.16667C3.24619 3.33337 2.5 4.07957 2.5 5.00004V15C2.5 15.9205 3.24619 16.6667 4.16667 16.6667Z"
         stroke="currentColor"
@@ -9567,13 +5877,7 @@ export const icons = [
   {
     name: 'apply-all-rows',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M8.33336 16.6667C7.87312 16.6667 7.50002 17.0398 7.50002 17.5C7.50002 17.9602 7.87312 18.3333 8.33336 18.3333V16.6667ZM17.5035 10L18.3369 10.0012L18.3369 9.99883L17.5035 10ZM4.16669 10L3.33336 10L3.33336 10L4.16669 10ZM4.1667 17.5098L3.5763 18.0979C3.73259 18.2548 3.94489 18.343 4.16634 18.3431C4.38779 18.3432 4.60017 18.2551 4.75659 18.0984L4.1667 17.5098ZM6.4198 16.4316C6.74489 16.1058 6.74432 15.5782 6.41854 15.2531C6.09275 14.928 5.56511 14.9286 5.24003 15.2543L6.4198 16.4316ZM3.09674 15.2549C2.77194 14.9288 2.2443 14.9278 1.91824 15.2526C1.59217 15.5774 1.59115 16.105 1.91595 16.4311L3.09674 15.2549ZM4.16669 11.6667C3.70646 11.6667 3.33336 12.0398 3.33336 12.5C3.33336 12.9602 3.70646 13.3333 4.16669 13.3333V11.6667ZM15.8334 16.6667H8.33336V18.3333H15.8334V16.6667ZM16.6667 15.8333C16.6667 16.2936 16.2936 16.6667 15.8334 16.6667V18.3333C17.2141 18.3333 18.3334 17.214 18.3334 15.8333H16.6667ZM5.83336 1.66667C4.45265 1.66667 3.33336 2.78596 3.33336 4.16667H5.00002C5.00002 3.70643 5.37312 3.33333 5.83336 3.33333V1.66667ZM5.83336 3.33333H15.8334V1.66667H5.83336V3.33333ZM16.6667 4.16667V7.5H18.3334V4.16667H16.6667ZM16.6667 7.50117L16.6702 10.0012L18.3369 9.99883L18.3334 7.49883L16.6667 7.50117ZM16.6702 9.99883L16.6667 12.4988L18.3334 12.5012L18.3369 10.0012L16.6702 9.99883ZM16.6667 12.5V15.8333H18.3334V12.5H16.6667ZM15.8334 3.33333C16.2936 3.33333 16.6667 3.70643 16.6667 4.16667H18.3334C18.3334 2.78595 17.2141 1.66667 15.8334 1.66667V3.33333ZM5.00002 10V7.5H3.33336V10H5.00002ZM5.00002 7.5V4.16667H3.33336V7.5H5.00002ZM4.75659 18.0984L6.4198 16.4316L5.24003 15.2543L3.57681 16.9211L4.75659 18.0984ZM4.7571 16.9217L3.09674 15.2549L1.91595 16.4311L3.5763 18.0979L4.7571 16.9217ZM5.00003 17.5098L5.00002 10L3.33336 10L3.33337 17.5098L5.00003 17.5098ZM4.16669 8.33333H17.5V6.66667H4.16669V8.33333ZM4.16669 13.3333H17.5V11.6667H4.16669V13.3333Z"
         fill="currentColor"
@@ -9583,13 +5887,7 @@ export const icons = [
   {
     name: 'pagescroll-preview',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M13.3405 10H14.1764M2.5 10H3.33659M5.83984 10H6.67318M16.6757 10H17.5M9.19374 10H10.8324M5.41667 17.5V15C5.41667 14.0795 6.16286 13.3333 7.08333 13.3333H11.7382C11.9592 13.3333 12.1711 13.4211 12.3274 13.5774L15.1726 16.4226C15.3289 16.5789 15.4167 16.7908 15.4167 17.0118V17.5M5 2.5V5C5 5.92048 5.74619 6.66667 6.66667 6.66667H13.3333C14.2538 6.66667 15 5.92047 15 5V2.5"
         stroke="currentColor"
@@ -9602,13 +5900,7 @@ export const icons = [
   {
     name: 'page-insert-vertical',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.08333 13.3333C6.16286 13.3333 5.41667 14.0795 5.41667 15V17.5M15.4167 17.5V17.0118C15.4167 16.7908 15.3289 16.5789 15.1726 16.4226L13.75 15M6.66667 6.66667C5.74619 6.66667 5 5.92048 5 5V2.5M13.3333 6.66667C14.2538 6.66667 15 5.92047 15 5V2.5M2.5 9.99281H5.82978M8.3366 9.99281L10.0105 9.99281M10.0105 9.99281L11.6875 9.99281M10.0105 9.99281V11.6656M10.0105 9.99281V8.33438M14.18 9.99281L17.5 9.99281"
         stroke="currentColor"
@@ -9621,13 +5913,7 @@ export const icons = [
   {
     name: 'page-insert-horizontal',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5 15.8333C5.04283 15.8333 5.08528 15.8317 5.12729 15.8285M5.12729 15.8285C5.9883 15.7635 6.66667 15.0443 6.66667 14.1667V12.5087M5.12729 15.8285H2.5M2.50001 4.16667H2.98815C3.20917 4.16667 3.42113 4.25446 3.57741 4.41074L5.83333 6.68711M15 15.8333C14.9572 15.8333 14.9147 15.8317 14.8727 15.8285M14.8727 15.8285C14.0117 15.7635 13.3333 15.0443 13.3333 14.1667V12.5136M14.8727 15.8285H17.5M17.5 4.16667H15C14.0795 4.16667 13.3333 4.91286 13.3333 5.83333V7.50936M10.0072 8.3366L10.0072 10.0105M10.0072 10.0105L10.0072 11.6875M10.0072 10.0105H8.3344M10.0072 10.0105H11.6656M10.0072 14.18L10.0072 17.5M10.0072 2.5V5.82978"
         stroke="currentColor"
@@ -9640,13 +5926,7 @@ export const icons = [
   {
     name: 'signature',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.46722 14.9623C9.37103 2.35525 4.14728 1.06293 3.15097 3.4897C2.15465 5.91646 2.21022 18.1038 6.65919 17.502C8.51742 17.2507 10.4335 13.9837 10.4335 11.7404C10.4335 9.17042 8.27199 9.25179 7.72574 10.7183C6.88616 12.9722 7.69845 17.6967 10.4335 17.502C12.0344 17.3881 12.1343 15.7381 12.1343 15.7381C12.1343 15.7381 12.4715 17.4007 13.7475 17.502C15.0235 17.6034 15.4085 16.2251 15.4085 16.2251C15.4085 16.2251 15.8126 17.7482 17.5107 17.502"
         stroke="currentColor"
@@ -9658,13 +5938,7 @@ export const icons = [
   },
   {
     name: 'circle-quarter',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -9672,30 +5946,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" />
     </svg>`,
   },
   {
     name: 'circle-half',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -9703,30 +5960,13 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10"
-        stroke="currentColor"
-        stroke-width="1.66667"
-        stroke-linecap="round"
-      />
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" />
     </svg>`,
   },
   {
     name: 'circle-three-quarter',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -9734,13 +5974,7 @@ export const icons = [
         fill="currentColor"
       />
     </svg>`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5"
         stroke="currentColor"
@@ -9752,13 +5986,7 @@ export const icons = [
   {
     name: 'time-sort-ascending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.1089 6.17385V9.11293L6.90459 11.3172M14.1543 4.83782C12.9413 3.40767 11.1311 2.5 9.1089 2.5C5.45668 2.5 2.49597 5.46071 2.49597 9.11293C2.49597 12.7652 5.45668 15.7259 9.1089 15.7259C9.78479 15.7259 10.437 15.6245 11.0511 15.436M10.8333 11.6713L14.1667 8.33801M14.1667 8.33801L17.5 11.6713M14.1667 8.33801V17.5047"
         stroke="currentColor"
@@ -9771,13 +5999,7 @@ export const icons = [
   {
     name: 'time-sort-descending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.1089 6.17385V9.11293L6.90459 11.3172M14.1543 4.83782C12.9413 3.40767 11.1311 2.5 9.1089 2.5C5.45668 2.5 2.49597 5.46071 2.49597 9.11293C2.49597 12.5011 5.04402 15.2941 8.32839 15.6803M10.8333 14.1713L14.1667 17.5047M14.1667 17.5047L17.5 14.1713M14.1667 17.5047V8.33801"
         stroke="currentColor"
@@ -9790,13 +6012,7 @@ export const icons = [
   {
     name: 'date-sort-ascending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.2037 3.98148H3.98148C3.16328 3.98148 2.5 4.64476 2.5 5.46296V14.3519C2.5 15.1701 3.16328 15.8333 3.98148 15.8333H10.8148M6.2037 3.98148H12.1296M6.2037 3.98148V5.46296M6.2037 3.98148V2.5M12.1296 3.98148H14.3519C15.1701 3.98148 15.8333 4.64476 15.8333 5.46296V5.26156M12.1296 3.98148V5.46296M12.1296 3.98148V2.5M5.46296 8.42593H9.27637M10.8333 11.6667L14.1667 8.33333M14.1667 8.33333L17.5 11.6667M14.1667 8.33333V17.5"
         stroke="currentColor"
@@ -9809,13 +6025,7 @@ export const icons = [
   {
     name: 'date-sort-descending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.2037 3.98148H3.98148C3.16328 3.98148 2.5 4.64476 2.5 5.46296V14.3519C2.5 15.1701 3.16328 15.8333 3.98148 15.8333H8.33333M6.2037 3.98148H12.1296M6.2037 3.98148V5.46296M6.2037 3.98148V2.5M12.1296 3.98148H14.3519C15.1701 3.98148 15.8333 4.64476 15.8333 5.46296V5.26156M12.1296 3.98148V5.46296M12.1296 3.98148V2.5M5.46296 8.42593H10.8148M10.8333 14.1667L14.1667 17.5M14.1667 17.5L17.5 14.1667M14.1667 17.5V8.33333"
         stroke="currentColor"
@@ -9828,13 +6038,7 @@ export const icons = [
   {
     name: 'side-panel-closed',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5113 16.6667C17.5113 17.1269 17.1382 17.5 16.6779 17.5L3.3446 17.5C2.88436 17.5 2.51127 17.1269 2.51127 16.6667L2.51127 15C2.51127 14.5398 2.88436 14.1667 3.3446 14.1667L16.6779 14.1667C17.1382 14.1667 17.5113 14.5398 17.5113 15V16.6667Z"
         stroke="currentColor"
@@ -9861,13 +6065,7 @@ export const icons = [
   {
     name: 'side-panel-open',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M11.6667 4.16667C11.6667 3.24619 12.4129 2.5 13.3333 2.5L15.8333 2.5C16.7538 2.5 17.5 3.2462 17.5 4.16667V15.8333C17.5 16.7538 16.7538 17.5 15.8333 17.5L13.3333 17.5C12.4129 17.5 11.6667 16.7538 11.6667 15.8333L11.6667 4.16667Z"
         stroke="currentColor"
@@ -9901,13 +6099,7 @@ export const icons = [
   {
     name: 'date-sent-sort-ascending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 8.42592V11.3889M11.25 6.66667L10.8333 5.83333L9.16667 2.5L2.5 15.8333L5.83333 15.0926L7.5 14.7222"
         stroke="currentColor"
@@ -9927,13 +6119,7 @@ export const icons = [
   {
     name: 'date-sent-sort-descending',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 8.42592V8.82731M10.8333 14.7222L9.16667 14.3518L2.5 15.8333L9.16667 2.5L10.8333 5.83333L11.1458 6.45833"
         stroke="currentColor"
@@ -9953,13 +6139,7 @@ export const icons = [
   {
     name: 'sort-alphabetically-a-z-alt',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1666 3.33875L14.1666 16.6633M14.1666 16.6633L17.4999 13.3299M14.1666 16.6633L10.8392 13.3299M3.94753 7.10729H7.71592M3.94753 7.10729L3.33173 8.33889M3.94753 7.10729L5.83173 3.33889L7.71592 7.10729M7.71592 7.10729L8.33173 8.33889M7.91653 16.6722H3.74692L7.91653 11.6722H3.74693"
         stroke="currentColor"
@@ -9972,13 +6152,7 @@ export const icons = [
   {
     name: 'sort-alphabetically-z-a-alt',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1725 3.3385L14.1725 16.663M14.1725 3.3385L10.8451 6.67173M14.1725 3.3385L17.5058 6.67194M3.94747 7.10704H7.71586M3.94747 7.10704L3.33167 8.33865M3.94747 7.10704L5.83166 3.33865L7.71586 7.10704M7.71586 7.10704L8.33166 8.33865M7.91647 16.672H3.74686L7.91647 11.672H3.74686"
         stroke="currentColor"
@@ -9991,13 +6165,7 @@ export const icons = [
   {
     name: 'template-sent',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 15.8333L2.5 17.5L10 2.5L12.4609 7.42187M10 15.8333V13.3849M10 15.8333L17.5 17.5L16.1523 14.8047M11.6667 10.5555L13.6111 12.4999L17.5 8.61104"
         stroke="currentColor"
@@ -10010,13 +6178,7 @@ export const icons = [
   {
     name: 'template-not-sent',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 15.8333L2.5 17.5L10 2.5L11.6406 5.78125M10 15.8333V9.2182M10 15.8333L17.5 17.5L16.1523 14.8047M13.3333 12.5L15.4167 10.4167M15.4167 10.4167L17.5 8.33333M15.4167 10.4167L13.3333 8.33333M15.4167 10.4167L17.5 12.5"
         stroke="currentColor"
@@ -10029,13 +6191,7 @@ export const icons = [
   {
     name: 'grid',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M6.66666 3.33333V17.5M17.5 13.3333H2.5M17.5096 7.49394H2.50961M13.3315 3.32727V17.494"
         stroke="currentColor"
@@ -10048,13 +6204,7 @@ export const icons = [
   {
     name: 'linked',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.3476 14.3731L9.41618 15.3045C8.11444 16.6062 6.00389 16.6062 4.70214 15.3045C3.40039 14.0027 3.40039 11.8922 4.70214 10.5904L5.63354 9.65905M9.64907 5.64352L10.5837 4.70885C11.8855 3.40711 13.996 3.40711 15.2978 4.70885C16.5995 6.0106 16.5995 8.12115 15.2978 9.4229L14.3631 10.3576M12.1074 7.89921L7.8925 12.1141"
         stroke="currentColor"
@@ -10067,13 +6217,7 @@ export const icons = [
   {
     name: 'link-broken',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.3476 14.3731L9.41618 15.3045C8.11444 16.6062 6.00389 16.6062 4.70214 15.3045C3.40039 14.0027 3.40039 11.8922 4.70214 10.5904L5.63354 9.65905M9.64907 5.64352L10.5837 4.70885C11.8855 3.40711 13.996 3.40711 15.2978 4.70885C16.5995 6.0106 16.5995 8.12115 15.2978 9.4229L14.3631 10.3576"
         stroke="currentColor"
@@ -10086,13 +6230,7 @@ export const icons = [
   {
     name: 'user-assign',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M17.5 10H12.5M12.5 10L15 12.5M12.5 10L15 7.5M10.8333 5.83333C10.8333 7.67428 9.34095 9.16667 7.5 9.16667C5.65905 9.16667 4.16667 7.67428 4.16667 5.83333C4.16667 3.99238 5.65905 2.5 7.5 2.5C9.34095 2.5 10.8333 3.99238 10.8333 5.83333ZM2.5 16.6667C2.5 13.9052 4.73858 11.6667 7.5 11.6667C10.2614 11.6667 12.5 13.9052 12.5 16.6667V17.5H2.5V16.6667Z"
         stroke="currentColor"
@@ -10105,13 +6243,7 @@ export const icons = [
   {
     name: 'x-letter',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83337 4.1665L10.0001 9.99982M10.0001 9.99982L14.1667 15.8331M10.0001 9.99982L5.83338 15.8331M10.0001 9.99982L14.1667 4.16659"
         stroke="currentColor"
@@ -10124,13 +6256,7 @@ export const icons = [
   {
     name: 'y',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10 9.99979L14.1667 4.16659M10 9.99979L5.83337 4.1665M10 9.99979V15.8331"
         stroke="currentColor"
@@ -10143,13 +6269,7 @@ export const icons = [
   {
     name: 'field-selected',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 6.66671V3.33337H6.66665M16.6666 6.66671V3.33337H13.3333M3.33331 13.3334V16.6667H6.66665M16.6666 13.3334V16.6667H13.3333M13.3333 10.0001C13.3333 11.841 11.8409 13.3334 10 13.3334C8.15905 13.3334 6.66667 11.841 6.66667 10.0001C6.66667 8.15913 8.15905 6.66675 10 6.66675C11.8409 6.66675 13.3333 8.15913 13.3333 10.0001Z"
         stroke="currentColor"
@@ -10162,13 +6282,7 @@ export const icons = [
   {
     name: 'designation',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33331 3.33337V2.50004C3.1123 2.50004 2.90034 2.58784 2.74406 2.74412C2.58778 2.9004 2.49998 3.11236 2.49998 3.33338L3.33331 3.33337ZM6.66665 4.16671C7.12688 4.16671 7.49998 3.79361 7.49998 3.33337C7.49998 2.87314 7.12688 2.50004 6.66665 2.50004V4.16671ZM16.6666 16.6667V17.5C17.1269 17.5 17.5 17.1269 17.5 16.6667H16.6666ZM16.6666 3.33337H17.5C17.5 2.87314 17.1269 2.50004 16.6666 2.50004V3.33337ZM13.3333 2.50004C12.8731 2.50004 12.5 2.87314 12.5 3.33337C12.5 3.79361 12.8731 4.16671 13.3333 4.16671V2.50004ZM3.33333 16.6667L2.5 16.6667C2.5 17.1269 2.87309 17.5 3.33333 17.5V16.6667ZM6.66665 17.5C7.12688 17.5 7.49998 17.1269 7.49998 16.6667C7.49998 16.2065 7.12688 15.8334 6.66665 15.8334V17.5ZM13.3333 15.8334C12.8731 15.8334 12.5 16.2065 12.5 16.6667C12.5 17.1269 12.8731 17.5 13.3333 17.5V15.8334ZM3.33331 4.16671H6.66665V2.50004H3.33331V4.16671ZM17.5 16.6667V3.33337H15.8333V16.6667H17.5ZM16.6666 2.50004H13.3333V4.16671H16.6666V2.50004ZM3.33333 17.5H6.66665V15.8334H3.33333V17.5ZM16.6666 15.8334H13.3333V17.5H16.6666V15.8334ZM4.16666 16.6667L4.16665 3.33337L2.49998 3.33338L2.5 16.6667L4.16666 16.6667ZM12.5 10.0001C12.5 11.3808 11.3807 12.5001 10 12.5001V14.1667C12.3012 14.1667 14.1667 12.3013 14.1667 10.0001H12.5ZM10 12.5001C8.6193 12.5001 7.50002 11.3808 7.50002 10.0001H5.83335C5.83335 12.3013 7.69883 14.1667 10 14.1667V12.5001ZM7.50002 10.0001C7.50002 8.61937 8.6193 7.50008 10 7.50008V5.83341C7.69883 5.83341 5.83335 7.69889 5.83335 10.0001H7.50002ZM10 7.50008C11.3807 7.50008 12.5 8.61937 12.5 10.0001H14.1667C14.1667 7.69889 12.3012 5.83341 10 5.83341V7.50008Z"
         fill="currentColor"
@@ -10178,13 +6292,7 @@ export const icons = [
   {
     name: 'text-alignment',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M5.83319 4.99999H14.1665M5.83319 10H14.1665M5.83319 15H14.1665M2.50269 2.5V17.4986M17.5 2.5V17.4986"
         stroke="currentColor"
@@ -10197,13 +6305,7 @@ export const icons = [
   {
     name: 'field-placement',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M3.33337 6.66671V3.33337H6.66671M16.6667 6.66671V3.33337H13.3334M3.33337 13.3334V16.6667H6.66671M16.6667 13.3334V16.6667H13.3334M6.66671 6.66671V13.3334H13.3334V6.66671H6.66671Z"
         stroke="currentColor"
@@ -10216,13 +6318,7 @@ export const icons = [
   {
     name: 'required',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.99991 2.5V17.5M9.99991 10L3.32374 14.1667M9.99991 10L16.6761 5.83333M9.99991 10L16.6761 14.1667M9.99991 10L3.32373 5.83333"
         stroke="currentColor"
@@ -10235,39 +6331,41 @@ export const icons = [
   {
     name: 'typeface',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    svgOutline: html`<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M7.53826 11.5154H12.4651M7.53826 11.5154L6.48039 14.1596M7.53826 11.5154L10.008 5.342L12.4651 11.5154M12.4651 11.5154L13.5176 14.1596M12.825 14.1596H13.5176M13.5176 14.1596H14.1667M5.83333 14.1596H6.48039M6.48039 14.1596H7.1669M4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V4.16667C17.5 3.24619 16.7538 2.5 15.8333 2.5H4.16667C3.24619 2.5 2.5 3.24619 2.5 4.16667V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5Z"
+        d="M6.9949 12.6109H13.0066M6.9949 12.6109L5.70409 15.8374M6.9949 12.6109L10.0085 5.07812L13.0066 12.6109M13.0066 12.6109L14.2908 15.8374M13.4458 15.8374H14.2908M14.2908 15.8374H15.0829M4.91455 15.8374H5.70409M5.70409 15.8374H6.54176"
         stroke="currentColor"
-        stroke-width="1.66667"
+        stroke-width="2"
         stroke-linecap="square"
         stroke-linejoin="bevel"
       />
       <path
-        d="M13.9816 8.09226L12.5883 4.59167L12.0883 5.84167M13.9816 8.09226L14.5784 9.59167M13.9816 8.09226H13.1339"
+        d="M14.8572 8.43401L13.1571 4.1626L12.5469 5.68784M14.8572 8.43401L15.5854 10.2636M14.8572 8.43401H13.8228"
         stroke="currentColor"
-        stroke-width="0.833333"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
     </svg> `,
   },
   {
+    name: 'typesize',
+    svgSolid: html`No Solid`,
+    svgOutline: html`<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M5.3284 12.6109H11.3401M5.3284 12.6109L4.03758 15.8374M5.3284 12.6109L8.34199 5.07812L11.3401 12.6109M11.3401 12.6109L12.6243 15.8374M11.7793 15.8374H12.6243M12.6243 15.8374H13.4164M3.24805 15.8374H4.03758M4.03758 15.8374H4.87526"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="square"
+        stroke-linejoin="bevel"
+      />
+      <path d="M17.6077 9.57129L15.9445 11.2381L14.2842 9.57129" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M17.6077 7.07715L15.9445 5.41035L14.2842 7.07715" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+    </svg> `,
+  },
+  {
     name: 'page-layout',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M7.49996 17.5V2.5M7.49996 17.5H12.5M7.49996 17.5H5.83329C4.91282 17.5 4.16663 16.7538 4.16663 15.8333V14.1667M7.49996 2.5H5.83329C4.91282 2.5 4.16663 3.24619 4.16663 4.16667V5.82743M7.49996 2.5H10.4881C10.7091 2.5 10.9211 2.5878 11.0774 2.74408L12.5 4.16667M12.5 17.5V4.16667M12.5 17.5H14.1666C15.0871 17.5 15.8333 16.7538 15.8333 15.8333V14.1667M12.5 4.16667L13.3333 5L14.1607 5.82743M14.1607 5.82743H4.16663M14.1607 5.82743L15.5892 7.25592C15.7455 7.4122 15.8333 7.62416 15.8333 7.84518V14.1667M4.16663 5.82743V9.16667V14.1667M15.8333 14.1667H4.16663"
         stroke="currentColor"
@@ -10280,13 +6378,7 @@ export const icons = [
   {
     name: 'field-special',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    svgOutline: html`<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M3.33337 6.66752V3.33419H6.66671M3.33337 13.3342V16.6675H6.66671M16.6667 13.3342V16.6675H13.3334M14.1659 2.50391V4.16348M14.1659 4.16348V5.83128M14.1659 4.16348H12.5032M14.1659 4.16348H15.8327M10 5.00088L11.1905 8.8104L14.1667 10.0009L11.1905 11.1914L10 15.0009L8.80957 11.1914L5.83338 10.0009L8.80957 8.8104L10 5.00088Z"
         stroke="currentColor"
@@ -10306,13 +6398,7 @@ export const icons = [
   {
     name: 'link-value',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.1434 15.831H7.49732C6.65827 15.831 5.83411 14.9891 5.83411 14.163L5.83939 8.32676M14.1434 4.16237L9.1685 4.16705M5.83939 8.32676C5.83939 9.15284 6.66355 9.99468 7.5026 9.99468L14.1434 9.99M5.83939 8.32676L5.8369 5.83371M17.5082 14.9977V16.6644C17.5082 17.1246 17.1364 17.4977 16.6777 17.4977H15.0073C14.5535 17.4977 14.1749 17.1103 14.1749 16.6644V14.9977C14.1749 14.5025 14.5365 14.1644 15.0073 14.1644H16.6777C17.1364 14.1644 17.5082 14.5375 17.5082 14.9977ZM9.1685 3.33372V5.00038C9.1685 5.46061 8.79666 5.83371 8.33797 5.83371H3.33427C2.88043 5.83371 2.50183 5.44626 2.50183 5.00038V3.33372C2.50183 2.83852 2.86349 2.50037 3.33427 2.50038H8.33797C8.79666 2.50038 9.1685 2.87348 9.1685 3.33372ZM17.5082 4.9956V3.32894C17.5082 2.8687 17.1364 2.49561 16.6777 2.49561H15.0073C14.5535 2.49561 14.1749 2.88306 14.1749 3.32894V4.9956C14.1749 5.4908 14.5365 5.82895 15.0073 5.82894H16.6777C17.1364 5.82894 17.5082 5.45584 17.5082 4.9956ZM17.5082 10.8268V9.16013C17.5082 8.69989 17.1364 8.32679 16.6777 8.32679H15.0073C14.5535 8.32679 14.1749 8.71424 14.1749 9.16013V10.8268C14.1749 11.322 14.5365 11.6601 15.0073 11.6601H16.6777C17.1364 11.6601 17.5082 11.287 17.5082 10.8268Z"
         stroke="currentColor"
@@ -10325,13 +6411,7 @@ export const icons = [
   {
     name: 'target',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.8334 2.50146C10.8334 2.04123 10.4603 1.66813 10 1.66813C9.5398 1.66813 9.1667 2.04123 9.1667 2.50146H10.8334ZM9.1667 17.5001C9.1667 17.9603 9.5398 18.3334 10 18.3334C10.4603 18.3334 10.8334 17.9603 10.8334 17.5001H9.1667ZM17.4994 10.834C17.9596 10.834 18.3327 10.4609 18.3327 10.0006C18.3327 9.54041 17.9595 9.16733 17.4993 9.16735L17.4994 10.834ZM2.50077 9.16735C2.04054 9.16733 1.66742 9.54041 1.6674 10.0006C1.66738 10.4609 2.04045 10.834 2.50069 10.834L2.50077 9.16735ZM15 10.0008C15 12.7622 12.7615 15.0008 10 15.0008V16.6674C13.6819 16.6674 16.6667 13.6827 16.6667 10.0008H15ZM10 15.0008C7.23861 15.0008 5.00004 12.7622 5.00004 10.0008H3.33337C3.33337 13.6827 6.31814 16.6674 10 16.6674V15.0008ZM5.00004 10.0008C5.00004 7.23935 7.23861 5.00077 10 5.00077V3.3341C6.31814 3.3341 3.33337 6.31887 3.33337 10.0008H5.00004ZM10 5.00077C12.7615 5.00077 15 7.23935 15 10.0008H16.6667C16.6667 6.31887 13.6819 3.3341 10 3.3341V5.00077ZM11.6667 10.0008C11.6667 10.9212 10.9205 11.6674 10 11.6674V13.3341C11.841 13.3341 13.3334 11.8417 13.3334 10.0008H11.6667ZM10 11.6674C9.07956 11.6674 8.33337 10.9212 8.33337 10.0008H6.6667C6.6667 11.8417 8.15909 13.3341 10 13.3341V11.6674ZM8.33337 10.0008C8.33337 9.0803 9.07956 8.3341 10 8.3341V6.66744C8.15909 6.66744 6.6667 8.15982 6.6667 10.0008H8.33337ZM10 8.3341C10.9205 8.3341 11.6667 9.0803 11.6667 10.0008H13.3334C13.3334 8.15982 11.841 6.66744 10 6.66744V8.3341ZM9.1667 2.50146V4.16744H10.8334V2.50146H9.1667ZM9.1667 15.8341V17.5001H10.8334V15.8341H9.1667ZM15.8334 10.8341L17.4994 10.834L17.4993 9.16735L15.8333 9.16744L15.8334 10.8341ZM2.50069 10.834L4.16666 10.8341L4.16675 9.16744L2.50077 9.16735L2.50069 10.834Z"
         fill="currentColor"
@@ -10341,13 +6421,7 @@ export const icons = [
   {
     name: 'field-order',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16399 15.831H14.1434M7.5026 9.99468L14.1434 9.99M14.1749 4.16227L7.52761 4.16578M4.99347 5.82894L3.33974 5.83128M3.33405 3.33981L4.16742 2.49561V5.82751M4.16035 16.6669V9.17631M4.16035 16.6669L5.82357 15.0001M4.16035 16.6669L2.5 15.0001M17.5082 14.9977V16.6644C17.5082 17.1246 17.1364 17.4977 16.6777 17.4977H15.0073C14.5535 17.4977 14.1749 17.1103 14.1749 16.6644V14.9977C14.1749 14.5025 14.5365 14.1644 15.0073 14.1644H16.6777C17.1364 14.1644 17.5082 14.5375 17.5082 14.9977ZM17.5082 4.9956V3.32894C17.5082 2.8687 17.1364 2.49561 16.6777 2.49561H15.0073C14.5535 2.49561 14.1749 2.88306 14.1749 3.32894V4.9956C14.1749 5.4908 14.5365 5.82895 15.0073 5.82894H16.6777C17.1364 5.82894 17.5082 5.45584 17.5082 4.9956ZM17.5082 10.8268V9.16012C17.5082 8.69989 17.1364 8.32679 16.6777 8.32679H15.0073C14.5535 8.32679 14.1749 8.71424 14.1749 9.16012V10.8268C14.1749 11.322 14.5365 11.6601 15.0073 11.6601H16.6777C17.1364 11.6601 17.5082 11.287 17.5082 10.8268Z"
         stroke="currentColor"
@@ -10360,13 +6434,7 @@ export const icons = [
   {
     name: 'dropdown',
     svgSolid: html`No Solid`,
-    svgOutline: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgOutline: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M2.49731 14.9974H16.6434M2.50259 9.99211H16.6434M10.8415 4.99538L2.5276 4.99889M17.4902 3.33325L15.827 5.00005L14.1667 3.33325"
         stroke="currentColor"
@@ -10380,31 +6448,14 @@ export const icons = [
   // Solid Only
   {
     name: 'send-arrow',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M2 18L9.82532 18L18 9.99998L9.82535 2L2 2.00002L10.1746 9.99998L2 18Z"
-        fill="currentColor"
-      />
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 18L9.82532 18L18 9.99998L9.82535 2L2 2.00002L10.1746 9.99998L2 18Z" fill="currentColor" />
     </svg>`,
     svgOutline: html`No Outline`,
   },
   {
     name: 'sent-progress',
-    svgSolid: html`<svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    svgSolid: html`<svg width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -10470,13 +6521,7 @@ export const icons = [
   },
   {
     name: 'circle-filled-quarter',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -10488,13 +6533,7 @@ export const icons = [
   },
   {
     name: 'circle-filled-half',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -10506,13 +6545,7 @@ export const icons = [
   },
   {
     name: 'circle-filled-three-quarter',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -10524,13 +6557,7 @@ export const icons = [
   },
   {
     name: 'document-viewed',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 21 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 21 20" fill="none">
       <path
         d="M6.49997 2C5.3954 2 4.49997 2.89543 4.49997 4V8.79283C5.46341 8.30621 6.55247 8.0321 7.70556 8.0321C10.8936 8.0321 13.5922 10.1274 14.4995 13.016C13.6132 15.8381 11.017 17.9031 7.92502 17.9967L7.93072 18H14.5C15.6045 18 16.5 17.1046 16.5 16V7.41421C16.5 6.88378 16.2893 6.37507 15.9142 6L12.5 2.58579C12.1249 2.21071 11.6162 2 11.0858 2H6.49997Z"
         fill="currentColor"
@@ -10550,13 +6577,7 @@ export const icons = [
   },
   {
     name: 'collapse',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M14.0378 9.22229C14.533 9.62253 14.533 10.3775 14.0378 10.7777L9.12862 14.7458C8.47468 15.2744 7.5 14.8089 7.5 13.9681L7.5 6.03193C7.5 5.19108 8.47468 4.72564 9.12862 5.25422L14.0378 9.22229Z"
         fill="currentColor"
@@ -10566,13 +6587,7 @@ export const icons = [
   },
   {
     name: 'expand',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M10.7777 14.0378C10.3775 14.533 9.62253 14.533 9.22229 14.0378L5.25422 9.12862C4.72564 8.47468 5.19108 7.5 6.03193 7.5L13.9681 7.5C14.8089 7.5 15.2744 8.47468 14.7458 9.12862L10.7777 14.0378Z"
         fill="currentColor"
@@ -10582,13 +6597,7 @@ export const icons = [
   },
   {
     name: 'logo',
-    svgSolid: html`<svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.11074 0.940012C8.98699 0.868406 8.83443 0.868297 8.71058 0.939725C8.58672 1.01115 8.51041 1.14326 8.51041 1.28623V2.34625C8.51041 2.48927 8.58677 2.62141 8.71068 2.69282L14.6321 6.10546C14.818 6.21257 14.9325 6.41078 14.9325 6.6253V13.4621C14.9325 13.6044 15.0081 13.7359 15.131 13.8076L16.0284 14.3311C16.1521 14.4033 16.305 14.4038 16.4292 14.3325C16.5534 14.2611 16.63 14.1288 16.63 13.9856V5.52152C16.63 5.37876 16.5539 5.24681 16.4303 5.17531L9.11074 0.940012Z"
         fill="currentColor"

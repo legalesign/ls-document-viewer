@@ -118,7 +118,7 @@ export class LsParticipantSelect {
               <ls-icon name={this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
               {this.selectedRole.name}
             </div>
-            <button class={'tertiaryGrey'} aria-haspopup="listbox" aria-expanded={this.isOpen} style={{ margin: '-0.125rem' }}>
+            <button class={'tertiaryGrey'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name={this.isOpen ? 'chevron-up' : 'chevron-down'}></ls-icon>
             </button>
           </div>

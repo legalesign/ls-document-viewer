@@ -293,6 +293,33 @@ select {
   height: 36px;
 }
 
+.input-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+#selectorIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-80, #6c6e73);
+}
+
+#selectLeadingIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-80, #6c6e73);
+}
+
+.has-leading-icon {
+  padding-left: 2.5rem;
+}
+
 input,
 select,
 textarea {
@@ -474,4 +501,38 @@ button.tertiaryGrey {
 button.tertiaryGrey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
+}
+
+.button-group {
+  display: flex;
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray-30, #e0e2e5);
+  background: var(--white, #ffffff);
+  overflow: clip;
+}
+
+.button-group button {
+  display: flex;
+  background: transparent;
+  border-radius: unset;
+  padding: 0.25rem 0.75rem;
+  min-width: 2.156rem;
+  min-height: unset;
+  color: var(--gray-80, #6c6e73);
+}
+
+.button-group button:hover {
+  background: var(--gray-10, #f7f8fa);
+}
+
+.button-group > :first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.button-group > :last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.button-group > :not(:first-child) {
+  border-left: 1px solid var(--gray-30, #e0e2e5);
 }

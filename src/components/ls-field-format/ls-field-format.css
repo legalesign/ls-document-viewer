@@ -4,6 +4,7 @@
 }
 
 .ls-field-format-bar {
-    display: flex;
+  display: flex;
   flex-direction: row;
+  gap: 0.5rem;
 }

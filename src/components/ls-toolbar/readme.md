@@ -44,6 +44,7 @@ graph TD;
   ls-toolbar --> ls-field-distribute
   ls-toolbar --> ls-field-size
   ls-toolbar --> ls-participant-select
+  ls-field-format --> ls-icon
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
   ls-participant-select --> ls-icon
