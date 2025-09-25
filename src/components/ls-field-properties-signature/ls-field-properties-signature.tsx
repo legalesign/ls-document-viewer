@@ -31,7 +31,7 @@ export class LsFieldPropertiesSignature {
             <p class={'ls-field-properties-section-title'}>Field Label</p>
             <p class={'ls-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
           </div>
-          <input value={this.dataItem?.label} width="30" />
+          <input value={this.dataItem?.label} width="30" placeholder='eg. Sign Here' />
         </div>
         <ls-field-dimensions dataItem={this.dataItem} />
         <slot></slot>

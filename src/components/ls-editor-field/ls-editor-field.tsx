@@ -115,9 +115,12 @@ export class LsEditorField {
     else this.component.style.border = "1px solid black";
   }
 
+  
+
 
 
   render() {
+    console.log(this.dataItem);
     return (
       <Host class={{
         'ls-editor-field': true,
