@@ -1,5 +1,5 @@
 // Construct all mutations for a template element.
-const createElement = element => {
+const createRole = element => {
   return JSON.stringify(`
   mutation AddField {
     createTemplateElement(input: {
@@ -32,7 +32,7 @@ const createElement = element => {
 };
 
 // Save any changes to an element
-const updateElement = element => {
+const updateRole = element => {
   return JSON.stringify(`mutation ChangeField {
   updateTemplateElement(input: {
     templateElementId: "${element.id}", 
@@ -64,11 +64,11 @@ const updateElement = element => {
 };
 
 // Save any changes to an element
-const deleteElement = id => {
+const deleteRole = id => {
   return JSON.stringify(`mutation DeleteField {
   deleteTemplateElement(input: {
     templateElementId: "${id}"})
   }`);
 };
 
-export { createElement, updateElement, deleteElement };
+export { createRole, updateRole, deleteRole };
