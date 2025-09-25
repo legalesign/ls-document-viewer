@@ -7,17 +7,19 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                             | Type          | Default |
-| -------------- | --------------- | --------------------------------------- | ------------- | ------- |
-| `roles`        | `roles`         | The current template roles. {LSApiRole} | `LSApiRole[]` | `[]`    |
-| `selectedRole` | `selected-role` | The currently selected role. {number}   | `number`      | `0`     |
+| Property       | Attribute       | Description                             | Type             | Default     |
+| -------------- | --------------- | --------------------------------------- | ---------------- | ----------- |
+| `dataItem`     | `data-item`     |                                         | `LSApiElement[]` | `undefined` |
+| `roles`        | `roles`         | The current template roles. {LSApiRole} | `LSApiRole[]`    | `[]`        |
+| `selectedRole` | `selected-role` | The currently selected role. {number}   | `number`         | `0`         |
 
 
 ## Events
 
-| Event        | Description | Type                  |
-| ------------ | ----------- | --------------------- |
-| `changeRole` |             | `CustomEvent<number>` |
+| Event    | Description | Type                           |
+| -------- | ----------- | ------------------------------ |
+| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
+| `update` |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Dependencies

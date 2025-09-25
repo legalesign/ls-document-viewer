@@ -200,7 +200,8 @@ export class LsDocumentViewer {
         top: f.ay * pages[0].height,
         left: f.ax * pages[0].width,
         height: (f.by - f.ay) * pages[0].height,
-        width: (f.bx - f.ax) * pages[0].width
+        width: (f.bx - f.ax) * pages[0].width,
+        templateId: newTemplate.id
       }
     })
     this._template = { ...newTemplate, elementConnection: { ...newTemplate.elementConnection, templateElements: fields } }
