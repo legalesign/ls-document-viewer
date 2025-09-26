@@ -18,11 +18,12 @@ Alex Weinle
 | ----------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------- |
 | `accessToken`     | `access-token`    | The accessToken of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                   | `undefined`          |
 | `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                                    | `boolean`                                  | `false`              |
+| `expandfields`    | `expandfields`    | Whether or not the fields list is expanded. {boolean}                                                                                                                | `boolean`                                  | `false`              |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                            | `"document" \| "participant" \| "toolbox"` | `'toolbox'`          |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                         | `"custom" \| "editor" \| "preview"`        | `'custom'`           |
 | `pageNum`         | `page-num`        |                                                                                                                                                                      | `number`                                   | `1`                  |
 | `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                              | `boolean`                                  | `false`              |
-| `roleColors`      | `role-colors`     | Allows you to change the colours used for each role in the template. {SignerColor[]}                                                                                 | `RoleColor[]`                              | `defaultRolePalette` |
+| `roleColors`      | `role-colors`     | Allows you to change the colours used for each role in the template. {SignerColor[]}                                                                                 | `string[]`                                 | `defaultRolePalette` |
 | `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                                      | `boolean`                                  | `false`              |
 | `showrightpanel`  | `showrightpanel`  | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                              | `boolean`                                  | `false`              |
 | `showstatusbar`   | `showstatusbar`   | Whether the bottom statusbar is displayed. {boolean}                                                                                                                 | `boolean`                                  | `false`              |
@@ -94,10 +95,11 @@ Type: `Promise<void>`
 - [ls-toolbox-field](../ls-toolbox-field)
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
+- [ls-icon](../ls-icon)
+- [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
-- [ls-field-properties](../ls-field-properties)
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
@@ -107,14 +109,17 @@ graph TD;
   ls-document-viewer --> ls-toolbox-field
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
+  ls-document-viewer --> ls-icon
+  ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
-  ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
+  ls-toolbox-field --> ls-icon
   ls-participant-manager --> ls-icon
   ls-document-options --> ls-formfield
+  ls-document-options --> ls-toggle
   ls-formfield --> ls-icon
   ls-formfield --> ls-text-input
   ls-formfield --> ls-select-input
@@ -126,14 +131,6 @@ graph TD;
   ls-radio-input --> ls-icon
   ls-textarea-input --> ls-icon
   ls-number-input --> ls-icon
-  ls-toolbar --> ls-field-format
-  ls-toolbar --> ls-field-alignment
-  ls-toolbar --> ls-field-distribute
-  ls-toolbar --> ls-field-size
-  ls-toolbar --> ls-participant-select
-  ls-field-alignment --> ls-icon
-  ls-field-distribute --> ls-icon
-  ls-statusbar --> ls-icon
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text
@@ -144,6 +141,7 @@ graph TD;
   ls-field-properties --> ls-field-properties-file
   ls-field-properties --> ls-field-properties-general
   ls-field-properties --> ls-field-properties-multiple
+  ls-field-properties-signature --> ls-icon
   ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-text --> ls-field-dimensions
@@ -154,6 +152,16 @@ graph TD;
   ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
+  ls-toolbar --> ls-field-format
+  ls-toolbar --> ls-field-alignment
+  ls-toolbar --> ls-field-distribute
+  ls-toolbar --> ls-field-size
+  ls-toolbar --> ls-participant-select
+  ls-field-format --> ls-icon
+  ls-field-alignment --> ls-icon
+  ls-field-distribute --> ls-icon
+  ls-participant-select --> ls-icon
+  ls-statusbar --> ls-icon
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

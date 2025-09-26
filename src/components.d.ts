@@ -6,18 +6,16 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
-import { RoleColor } from "./types/RoleColor";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
-import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
+import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
 import { LSApiRole } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
-export { RoleColor } from "./types/RoleColor";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
-export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1, RoleColor as RoleColor1 } from "./components";
+export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
 export { LSApiRole } from "./types/LSApiRole";
@@ -43,6 +41,11 @@ export namespace Components {
           * @default false
          */
         "displayTable"?: boolean;
+        /**
+          * Whether or not the fields list is expanded. {boolean}
+          * @default false
+         */
+        "expandfields"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -74,7 +77,7 @@ export namespace Components {
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
           * @default defaultRolePalette
          */
-        "roleColors"?: RoleColor[];
+        "roleColors"?: string[];
         /**
           * Page and field resize on zoom change
          */
@@ -126,7 +129,7 @@ export namespace Components {
     interface LsEditorField {
         "dataItem": LSApiElement1;
         "page": { height: number, width: number };
-        "palette": RoleColor1[];
+        "palette": string[];
         "readonly": boolean;
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
@@ -197,13 +200,7 @@ export namespace Components {
         /**
           * @default 'text'
          */
-        "as"?: | 'text'
-    | 'select'
-    | 'radio'
-    | 'textarea'
-    | 'password'
-    | 'number'
-    | 'displayonly';
+        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
         "buttonClick"?: () => void;
         "buttonIcon"?: Icon;
         "count": boolean;
@@ -280,11 +277,6 @@ export namespace Components {
           * @default []
          */
         "roles"?: LSApiRole[];
-        /**
-          * The currently selected role. {number}
-          * @default 0
-         */
-        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**
@@ -363,6 +355,8 @@ export namespace Components {
         "valid": boolean;
         "value"?: string;
     }
+    interface LsToggle {
+    }
     interface LsToolbar {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
@@ -391,6 +385,10 @@ export namespace Components {
           * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
          */
         "formElementType": string;
+        /**
+          * The icon to display for this field type.
+         */
+        "icon": Icon;
         /**
           * The text to display for this field type.
          */
@@ -698,6 +696,7 @@ declare global {
     interface HTMLLsParticipantSelectElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
+        "roleChanged": number;
     }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -742,6 +741,12 @@ declare global {
     var HTMLLsTextareaInputElement: {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
+    };
+    interface HTMLLsToggleElement extends Components.LsToggle, HTMLStencilElement {
+    }
+    var HTMLLsToggleElement: {
+        prototype: HTMLLsToggleElement;
+        new (): HTMLLsToggleElement;
     };
     interface HTMLLsToolbarElementEventMap {
         "mutate": LSMutateEvent1[];
@@ -799,6 +804,7 @@ declare global {
         "ls-statusbar": HTMLLsStatusbarElement;
         "ls-text-input": HTMLLsTextInputElement;
         "ls-textarea-input": HTMLLsTextareaInputElement;
+        "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
     }
@@ -825,6 +831,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "displayTable"?: boolean;
+        /**
+          * Whether or not the fields list is expanded. {boolean}
+          * @default false
+         */
+        "expandfields"?: boolean;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -853,7 +864,7 @@ declare namespace LocalJSX {
           * Allows you to change the colours used for each role in the template. {SignerColor[]}
           * @default defaultRolePalette
          */
-        "roleColors"?: RoleColor[];
+        "roleColors"?: string[];
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
           * @default false
@@ -901,7 +912,7 @@ declare namespace LocalJSX {
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
         "page"?: { height: number, width: number };
-        "palette"?: RoleColor1[];
+        "palette"?: string[];
         "readonly"?: boolean;
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
@@ -983,13 +994,7 @@ declare namespace LocalJSX {
         /**
           * @default 'text'
          */
-        "as"?: | 'text'
-    | 'select'
-    | 'radio'
-    | 'textarea'
-    | 'password'
-    | 'number'
-    | 'displayonly';
+        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
         "buttonClick"?: () => void;
         "buttonIcon"?: Icon;
         "count"?: boolean;
@@ -1064,17 +1069,13 @@ declare namespace LocalJSX {
     interface LsParticipantSelect {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
+        "onRoleChanged"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The current template roles. {LSApiRole}
           * @default []
          */
         "roles"?: LSApiRole[];
-        /**
-          * The currently selected role. {number}
-          * @default 0
-         */
-        "selectedRole"?: number;
     }
     interface LsRadioInput {
         /**
@@ -1153,6 +1154,8 @@ declare namespace LocalJSX {
         "valid"?: boolean;
         "value"?: string;
     }
+    interface LsToggle {
+    }
     interface LsToolbar {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
@@ -1183,6 +1186,10 @@ declare namespace LocalJSX {
           * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
          */
         "formElementType"?: string;
+        /**
+          * The icon to display for this field type.
+         */
+        "icon"?: Icon;
         /**
           * The text to display for this field type.
          */
@@ -1224,6 +1231,7 @@ declare namespace LocalJSX {
         "ls-statusbar": LsStatusbar;
         "ls-text-input": LsTextInput;
         "ls-textarea-input": LsTextareaInput;
+        "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
     }
@@ -1268,6 +1276,7 @@ declare module "@stencil/core" {
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
             "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
             "ls-textarea-input": LocalJSX.LsTextareaInput & JSXBase.HTMLAttributes<HTMLLsTextareaInputElement>;
+            "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
         }

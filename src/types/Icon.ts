@@ -337,6 +337,7 @@ enum IconEnum {
   FieldPlacementIcon = 'field-placement',
   RequiredIcon = 'required',
   TypefaceIcon = 'typeface',
+  TypesizeIcon = 'typesize',
   PageLayoutIcon = 'page-layout',
   FieldSpecialIcon = 'field-special',
   LinkValueIcon = 'link-value',

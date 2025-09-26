@@ -1,8 +1,23 @@
 :host {
-  display: block;
-  padding: 4px
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+}
+
+.activeIcon, .defaultIcon {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  color: var(--gray-80, #787A80);
+}
+
+.defaultIcon:hover {
+  background-color: var(--primary-10, #EFF4FF);
+  color: var(--primary-100, #0C1457);
+  cursor: pointer;
 }
 
 .activeIcon {
-  background-color: aliceblue;
+  background-color: var(--primary-60, #4456F6);
+  color: var(--white, #fff);
 }
