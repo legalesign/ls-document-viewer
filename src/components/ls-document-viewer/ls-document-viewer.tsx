@@ -11,6 +11,7 @@ import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType } from './editorUtils';
 // import { RoleColor } from '../../types/RoleColor';
+import { LSApiRole } from '../../types/LSApiRole';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -60,15 +61,11 @@ export class LsDocumentViewer {
   @Prop() template: string;
 
   /**
-   * The username of the account your want the widget to use.
+   * The accessToken of the account your want the widget to use, you should normally
+   * acquire this with a server side call using that accounts login credentials.
    * {string}
    */
-  @Prop() username: string;
-  /**
-   * The password of the account your want the widget to use.
-   * {string}
-   */
-  @Prop() password: string;
+  @Prop() accessToken: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
@@ -188,9 +185,9 @@ export class LsDocumentViewer {
     const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
 
     // Convert ax,bx,ay etc. into top, left
-    this.pageDimensions = pages.map(p => {
-      return { height: p[1], width: p[0] };
-    });
+    // We also add the templateId into every object so that all the information
+    // required to mutate is in each object.
+    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
     const fields = newTemplate.elementConnection.templateElements.map(f => {
       return {
         ...f,
@@ -198,9 +195,16 @@ export class LsDocumentViewer {
         left: f.ax * pages[0].width,
         height: (f.by - f.ay) * pages[0].height,
         width: (f.bx - f.ax) * pages[0].width,
-      };
-    });
-    this._template = { ...newTemplate, elementConnection: { ...newTemplate.elementConnection, templateElements: fields } };
+        templateId: newTemplate.id
+      }
+    })
+
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro:LSApiRole) =>  { return {...ro, templateId: newTemplate.id}})
+
+    this._template = { ...newTemplate, 
+      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
+      roles: preparedRoles
+    }
   }
 
   //
@@ -340,7 +344,8 @@ export class LsDocumentViewer {
       height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[newElement.page - 1].height),
       width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[newElement.page - 1].width),
       pageDimensions: this.pageDimensions[newElement.page - 1],
-    };
+      templateId: this._template.id
+    }
   }
 
   // internal forced change

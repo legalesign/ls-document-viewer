@@ -55,6 +55,7 @@
   "license": "MIT",
   "dependencies": {
     "@jest/transform": "^30.0.5",
+    "axios": "^1.12.2",
     "clsx": "^2.1.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "2.5.207"

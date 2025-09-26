@@ -33,6 +33,10 @@ export namespace Components {
      */
     interface LsDocumentViewer {
         /**
+          * The accessToken of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
+         */
+        "accessToken": string;
+        /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
          */
@@ -64,10 +68,6 @@ export namespace Components {
           * Page backward e
          */
         "pagePrev": () => Promise<void>;
-        /**
-          * The password of the account your want the widget to use. {string}
-         */
-        "password": string;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
@@ -121,10 +121,6 @@ export namespace Components {
           * @default null
          */
         "toolboxFilter"?: string;
-        /**
-          * The username of the account your want the widget to use. {string}
-         */
-        "username": string;
         /**
           * @default 1.0
          */
@@ -827,6 +823,10 @@ declare namespace LocalJSX {
      */
     interface LsDocumentViewer {
         /**
+          * The accessToken of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
+         */
+        "accessToken"?: string;
+        /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
          */
@@ -855,10 +855,6 @@ declare namespace LocalJSX {
           * @default 1
          */
         "pageNum"?: number;
-        /**
-          * The password of the account your want the widget to use. {string}
-         */
-        "password"?: string;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
           * @default false
@@ -908,10 +904,6 @@ declare namespace LocalJSX {
           * @default null
          */
         "toolboxFilter"?: string;
-        /**
-          * The username of the account your want the widget to use. {string}
-         */
-        "username"?: string;
         /**
           * @default 1.0
          */

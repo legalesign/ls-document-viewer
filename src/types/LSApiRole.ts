@@ -9,4 +9,5 @@ export type LSApiRole = {
   ordinal: number;
   signerParent?: string;
   experience: string;
+  templateId?: string;
 };
