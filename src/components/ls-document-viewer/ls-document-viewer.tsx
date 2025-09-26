@@ -36,7 +36,7 @@ export class LsDocumentViewer {
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
-  private adapter: LsDocumentAdapter;
+  private adapter: LsDocumentAdapter = new LsDocumentAdapter();
   private ctx: CanvasRenderingContext2D;
   public pageDimensions: { height: number; width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
@@ -64,17 +64,17 @@ export class LsDocumentViewer {
   @Prop() template: string;
 
   /**
-   * The accessToken of the account your want the widget to use, you should normally
+   * The access token of the account your want the widget to use, you should normally
    * acquire this with a server side call using that accounts login credentials.
    * {string}
    */
-  @Prop() accessToken: string;
+  @Prop() token: string;
 
   /**
  * The id of the template you want to load (if using the internal data adapter).
  * {string}
  */
-  @Prop() templateId: string;
+  @Prop() templateid: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
@@ -190,7 +190,10 @@ export class LsDocumentViewer {
   @Prop() roleColors?: string[] = defaultRolePalette;
 
   parseTemplate(newValue: string) {
-    const newTemplate = newValue as any as LSApiTemplate;
+    
+    const newTemplate:LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
+    console.log(newTemplate)
+    console.log('try amking pages', newTemplate.pageDimensions)
     const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
 
     // Convert ax,bx,ay etc. into top, left
@@ -392,8 +395,8 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
-    console.log(this._template)
     if (this._template) this.initViewer()
+    else this.load()
   }
 
   initViewer() {
@@ -431,17 +434,17 @@ export class LsDocumentViewer {
   }
 
   async load() {
-    console.log('Access Token found. Loading target template.')
-    const result: { data: { Template: LSApiTemplate } } = await this.adapter.execute(this.accessToken, getTemplate(this.templateId)) as any as { data: { Template: LSApiTemplate } }
-    this.parseTemplate(JSON.stringify(result.data.Template))
+    console.log('Access Token found. Loading target template.', this.token)
+    const result: LSApiTemplate = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any as  LSApiTemplate
+    this.parseTemplate(JSON.stringify(result))
 
     this.initViewer()
   }
 
   componentWillLoad() {
-    console.log("will load", this.template)
+    console.log("will load", this.token)
     if (this.template) this.parseTemplate(this.template);
-    else if (this.accessToken) this.load()
+    else if (this.token) this.load()
   }
 
   render() {

@@ -57,7 +57,7 @@ export class LsDocumentAdapter {
    *
    *  @returns a promise of a graphQL request
    */
-  public async execute(accessToken: string, graphQLQuery: string, _graphQLVariables?: object): Promise<object> {
+  public async execute(accessToken: string, graphQLQuery: string, _graphQLVariables?: object): Promise<object> {    
     if (accessToken) {
       const { data } = await axios.post<AxiosResponse>(
         Parameters.endpoints.graphQL,
@@ -72,7 +72,7 @@ export class LsDocumentAdapter {
         },
       );
 
-      return data.data;
+      return data.data.template;
     } else {
       console.warn('UNASSIGNED ACCESS TOKEN');
     }

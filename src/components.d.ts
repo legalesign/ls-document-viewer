@@ -33,10 +33,6 @@ export namespace Components {
      */
     interface LsDocumentViewer {
         /**
-          * The accessToken of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
-         */
-        "accessToken": string;
-        /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
          */
@@ -119,7 +115,11 @@ export namespace Components {
         /**
           * The id of the template you want to load (if using the internal data adapter). {string}
          */
-        "templateId": string;
+        "templateid": string;
+        /**
+          * The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
+         */
+        "token": string;
         /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
           * @default null
@@ -827,10 +827,6 @@ declare namespace LocalJSX {
      */
     interface LsDocumentViewer {
         /**
-          * The accessToken of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
-         */
-        "accessToken"?: string;
-        /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
          */
@@ -906,7 +902,11 @@ declare namespace LocalJSX {
         /**
           * The id of the template you want to load (if using the internal data adapter). {string}
          */
-        "templateId"?: string;
+        "templateid"?: string;
+        /**
+          * The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string}
+         */
+        "token"?: string;
         /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
           * @default null
