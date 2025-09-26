@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
   position: relative;
 }
@@ -10,11 +10,24 @@
   margin: 0;
 }
 
+.field-set {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+} 
+
 .ls-field-properties-section {
   display: flex;
   position: relative;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .ls-field-properties-section-text {
@@ -79,6 +92,40 @@
   line-height: 1.5rem; /* 150% */
 }
 
+.tabs-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  gap: 0.125rem;
+  padding: 0.125rem;
+  border: 1px solid var(--gray-30, #e0e2e5);
+  border-radius: 0.75rem;
+  background: var(--white, #ffffff);
+}
+
+.ls-tab {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  color: var(--gray-80, #6c6e73);
+}
+
+.ls-tab.active {
+  background: var(--primary-10, #eff4ff);
+  color: var(--primary-60, #4456f6);
+}
+
+.ls-tab:not(.active):hover {
+  background: var(--gray-10, #f7f8fa);
+}
 /* Global Styles */
 
 p {
@@ -112,11 +159,15 @@ a:hover {
 select {
   appearance: none;
   height: 36px;
+  width: 100%;
 }
 
 .input-wrapper {
   position: relative;
-  width: fit-content;
+}
+
+.full-width {
+  width: 100%;
 }
 
 #selectorIcon {
