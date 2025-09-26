@@ -19,7 +19,7 @@
   display: flex;
   padding: 0.125rem 0.125rem 0.125rem 0.5rem;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .placing-fields-text {
@@ -46,7 +46,7 @@
 
 .dropdown-list {
   position: absolute;
-  top: 3.5rem;
+  top: 3rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -344,19 +344,18 @@ input[type='checkbox']:disabled:checked {
   color: var(--primary-60, #0c7cba);
 }
 
-button {
+.expand-button {
   border: 0;
-  appearance: button;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  border-radius: 0.5rem;
   justify-content: center;
-  border-radius: var(--radius-lg);
-  background-color: var(--primary-60, #4456f6);
-  color: white;
   text-transform: capitalize;
-  min-height: 2.25rem;
-  min-width: 2.25rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  max-height: 2rem;
+  max-width: 2rem;
 }
 
 button.tertiaryGrey {

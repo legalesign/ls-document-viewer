@@ -115,11 +115,11 @@ export class LsParticipantSelect {
                 color: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-90)`,
               }}
             >
-              <ls-icon size='18' name={this.selectedRole?.signerIndex === 0 ? 'user' : this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
+              <ls-icon size="18" name={this.selectedRole?.signerIndex === 0 ? 'user' : this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
               {this.selectedRole.name}
             </div>
-            <button class={'tertiaryGrey'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
-              <ls-icon name={this.isOpen ? 'chevron-up' : 'chevron-down'}></ls-icon>
+            <button class={'tertiaryGrey expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
+              <ls-icon name="chevron-down"></ls-icon>
             </button>
           </div>
           {this.isOpen && (
