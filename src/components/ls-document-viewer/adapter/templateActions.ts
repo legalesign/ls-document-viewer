@@ -14,4 +14,76 @@ const updateTemplate = (template) => {
   ` 
 };
 
-export { updateTemplate };
+const getTemplate = (id: string) => {
+  return `
+        query GetTemplate {
+          template(id: "${id}") {
+            id
+            title
+            fileName
+            pageDimensions
+            pageCount
+            modified
+            link
+            valid
+            locked
+            autoArchive
+            archived
+            tags
+            created
+            createdBy
+            lastSent
+            fixSignatureScale
+            roles{
+              id
+              signerIndex
+            }
+            elementConnection {
+              templateElements {
+                align
+                ax
+                ay
+                bx
+                by
+                elementType
+                formElementType
+                fieldOrder
+                fontName
+                fontSize
+                helpText
+                hideBorder
+                id
+                label
+                labelExtra
+                logicAction
+                logicGroup
+                mapTo
+                options
+                optional
+                page
+                role
+                signer
+                substantive
+                validation
+                value
+              }
+              totalCount
+            }
+            userSignatureConnection {
+              userSignatureElements {
+                id
+                userId
+                ax
+                ay
+                bx
+                by
+                page
+                link
+              }
+            }
+          }
+        }
+      `;
+}
+
+export { updateTemplate, getTemplate };

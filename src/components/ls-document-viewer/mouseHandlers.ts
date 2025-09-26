@@ -1,3 +1,5 @@
+import { LSApiElement } from '../../types/LSApiElement';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn } from './editorCalculator';
 
 export function mouseDown(e) {
@@ -177,3 +179,39 @@ export function mouseClick(e) {
     this.selectFields.emit(this.selected.map(fx => fx.dataItem));
   }
 }
+
+
+export function mouseDrop(event) {
+      event.preventDefault();
+      try {
+        const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
+        this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
+        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+        // Make a new API compatible id for a template element (prefix 'ele')
+        const id = btoa('ele' + crypto.randomUUID())
+        // TODO: Put these defaults somewhere sensible
+        const newData: LSMutateEvent = {
+          action: 'create', data: {
+            ...data,
+            id,
+            value: "",
+            top: event.offsetY * this.zoom + frame.scrollTop,
+            left: event.offsetX * this.zoom + frame.scrollLeft,
+            height: data.defaultHeight,
+            width: data.defaultWidth,
+            pageDimensions: this.pageDimensions[this.pageNum - 1],
+            fontName: "courier",
+            fontSize: 10,
+            align: 'left',
+            signer: 1,
+            elementType: data.type
+          } as LSApiElement
+        }
+
+        this.mutate.emit([newData])
+        this.update.emit([newData])
+
+      } catch (e) {
+        console.error(e)
+      }
+    }

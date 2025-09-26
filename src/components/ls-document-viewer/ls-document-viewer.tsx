@@ -17,10 +17,12 @@ import { addField, moveField } from './editorCalculator';
 import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
+import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType } from './editorUtils';
 import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole } from '../../types/LSApiRole';
+import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
+import { getTemplate } from './adapter/templateActions';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -43,6 +45,7 @@ export class LsDocumentViewer {
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
+  private adapter: LsDocumentAdapter;
   private ctx: CanvasRenderingContext2D;
   public pageDimensions: { height: number, width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
@@ -75,6 +78,12 @@ export class LsDocumentViewer {
    * {string}
    */
   @Prop() accessToken: string;
+
+  /**
+ * The id of the template you want to load (if using the internal data adapter).
+ * {string}
+ */
+  @Prop() templateId: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
@@ -208,9 +217,10 @@ export class LsDocumentViewer {
       }
     })
 
-    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro:LSApiRole) =>  { return {...ro, templateId: newTemplate.id}})
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => { return { ...ro, templateId: newTemplate.id } })
 
-    this._template = { ...newTemplate, 
+    this._template = {
+      ...newTemplate,
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
       roles: preparedRoles
     }
@@ -285,7 +295,7 @@ export class LsDocumentViewer {
   @Method()
   async setZoom(z: number) {
     this.zoom = z
-    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;  
+    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + "px"
 
@@ -404,13 +414,19 @@ export class LsDocumentViewer {
     }
   }
 
-  componentDidLoad() {    
+  componentDidLoad() {
+    console.log(this._template)
+    if (this._template) this.initViewer()
+  }
+
+  initViewer() {
+    console.log('Init Viewer  ')
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + "px"
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + "px"
     this.ctx = this.canvas.getContext('2d');
-    this.loadAndRender(this._template.link)
+    if(this._template?.link) this.loadAndRender(this._template?.link)
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
@@ -422,60 +438,33 @@ export class LsDocumentViewer {
     document.addEventListener("keydown", keyDown.bind(this))
     dropTarget.addEventListener("dragenter", (event) => { event.preventDefault(); })
     dropTarget.addEventListener("dragover", (event) => { event.preventDefault(); })
-    dropTarget.addEventListener("drop", (event) => {
-      event.preventDefault();
-      try {
-        const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
-        this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
-        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-        // Make a new API compatible id for a template element (prefix 'ele')
-        const id = btoa('ele' + crypto.randomUUID())
-        // TODO: Put these defaults somewhere sensible
-        const newData: LSMutateEvent = {
-          action: 'create', data: {
-            ...data,
-            id,
-            value: "",
-            top: event.offsetY * this.zoom + frame.scrollTop,
-            left: event.offsetX * this.zoom + frame.scrollLeft,
-            height: data.defaultHeight,
-            width: data.defaultWidth,
-            pageDimensions: this.pageDimensions[this.pageNum - 1],
-            fontName: "courier",
-            fontSize: 10,
-            align: 'left',
-            signer: 1,
-            elementType: data.type
-          } as LSApiElement
-        }
-
-        this.mutate.emit([newData])
-        this.update.emit([newData])
-
-      } catch (e) {
-        console.error(e)
-      }
-    })
+    dropTarget.addEventListener("drop", mouseDrop.bind(this))
 
     // Generate all the field HTML elements that are required (for every page)
     this._template.elementConnection.templateElements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
     })
-
-
   }
 
   showPageFields(page: number) {
-
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
       fx.className = fx.dataItem.page === page ? '' : 'hidden'
     })
+  }
 
+  async load() {
+    console.log('Access Token found. Loading target template.')
+    const result: { data: { Template: LSApiTemplate } } = await this.adapter.execute(this.accessToken, getTemplate(this.templateId)) as any as { data: { Template: LSApiTemplate } }
+    this.parseTemplate(JSON.stringify(result.data.Template))
+
+    this.initViewer()
   }
 
   componentWillLoad() {
+    console.log("will load", this.template)
     if (this.template) this.parseTemplate(this.template);
+    else if (this.accessToken) this.load()
   }
 
   render() {

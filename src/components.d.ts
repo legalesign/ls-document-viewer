@@ -114,6 +114,10 @@ export namespace Components {
          */
         "template": string;
         /**
+          * The id of the template you want to load (if using the internal data adapter). {string}
+         */
+        "templateId": string;
+        /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
           * @default null
          */
@@ -888,6 +892,10 @@ declare namespace LocalJSX {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "template"?: string;
+        /**
+          * The id of the template you want to load (if using the internal data adapter). {string}
+         */
+        "templateId"?: string;
         /**
           * If supplied ONLY items in this | ("or") delimited list will be shown. i.e. "signature|intials" {boolean}
           * @default null
