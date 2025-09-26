@@ -21,11 +21,13 @@
 ### Depends on
 
 - [ls-formfield](../ls-formfield)
+- [ls-toggle](../ls-toggle)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-document-options --> ls-formfield
+  ls-document-options --> ls-toggle
   ls-formfield --> ls-icon
   ls-formfield --> ls-text-input
   ls-formfield --> ls-select-input

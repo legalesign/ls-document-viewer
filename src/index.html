@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Legalesign Editor Tester</title>
+    <link rel="stylesheet" href="/build/ls-document-viewer.css" />
 
     <script type="module" src="/build/ls-document-viewer.esm.js"></script>
     <script nomodule src="/build/ls-document-viewer.js"></script>
@@ -174,9 +175,11 @@
         console.log(customEvent.detail, 'editor mutate');
       });
 
-      properties.addEventListener('mutate', customEvent => {
-        console.log(customEvent.detail, 'api call');
-      });
+      if (properties) {
+        properties.addEventListener('mutate', customEvent => {
+          console.log(customEvent.detail, 'api call');
+        });
+      }
     </script>
   </body>
 </html>

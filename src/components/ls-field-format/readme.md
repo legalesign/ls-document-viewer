@@ -26,9 +26,14 @@
 
  - [ls-toolbar](../ls-toolbar)
 
+### Depends on
+
+- [ls-icon](../ls-icon)
+
 ### Graph
 ```mermaid
 graph TD;
+  ls-field-format --> ls-icon
   ls-toolbar --> ls-field-format
   style ls-field-format fill:#f9f,stroke:#333,stroke-width:4px
 ```
