@@ -55,6 +55,12 @@ export function keyDown(ev: KeyboardEvent) {
       });
     } else if (ev.key === 'Delete') {
       const arr = Array.from(this.selected) as LsEditorField[];
+      this.mutate.emit(
+        arr.map(s => {
+          return { action: 'delete', data: s.dataItem };
+        }),
+      );
+
       this.update.emit(
         arr.map(s => {
           return { action: 'delete', data: s.dataItem };

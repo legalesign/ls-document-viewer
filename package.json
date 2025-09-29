@@ -37,7 +37,6 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "postbuild": "cp ./src/00000000-0000-0000-0000-000000000001.pdf www",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",

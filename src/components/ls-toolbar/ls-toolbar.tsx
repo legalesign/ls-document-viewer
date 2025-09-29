@@ -77,7 +77,7 @@ export class LsToolbar {
             {this.dataItem && this.dataItem.length === 1 ? (
               <ls-field-format dataItem={this?.dataItem} />
             ) : (
-              <ls-participant-select roles={this.template.roles} dataItem={this?.dataItem} />
+              <ls-participant-select roles={this.template?.roles} dataItem={this?.dataItem} />
             )}
           </div>
         )}

@@ -8,7 +8,7 @@ import { createRole, deleteRole, updateRole } from './roleActions';
 import { updateTemplate } from './templateActions';
 
 export class LsDocumentAdapter {
-  handleEvent = (event: LSMutateEvent, accessToken: string) => {
+  handleEvent = async (event: LSMutateEvent, accessToken: string) => {
     axios.defaults.headers.common['Authorization'] = accessToken;
 
     // Determine the object type being processed
@@ -19,37 +19,37 @@ export class LsDocumentAdapter {
     if (apiId.length < 3) return 'invalid';
 
     const prefix = atob(obj.id).substring(0, 3);
+    let query = '';
 
     switch (prefix) {
       case 'ele':
         switch (event.action) {
           case 'create':
-            return this.execute(accessToken, createElement(obj));
+            query = createElement(obj);
           case 'update':
-            return this.execute(accessToken, updateElement(obj));
+            query = updateElement(obj);
           case 'delete':
-            return this.execute(accessToken, deleteElement(obj));
+            query = deleteElement(obj);
         }
-        return 'unknown';
       case 'rol':
         switch (event.action) {
           case 'create':
-            return this.execute(accessToken, createRole(obj));
+            query = createRole(obj);
           case 'update':
-            return this.execute(accessToken, updateRole(obj));
+            query = updateRole(obj);
           case 'delete':
-            return this.execute(accessToken, deleteRole(obj));
+            query = deleteRole(obj);
+          case 'swap':
+            query = updateRole(obj);
         }
-        return 'unknown';
       case 'tpl':
         switch (event.action) {
           case 'update':
-           return this.execute(accessToken, updateTemplate(obj));
+            query = updateTemplate(obj);
         }
-        return 'unknown';
-      default:
-        return 'unknown';
     }
+    const result = await this.execute(accessToken, query);
+    return { result, obj };
   };
 
   /**
@@ -59,7 +59,8 @@ export class LsDocumentAdapter {
    */
   public async execute(accessToken: string, graphQLQuery: string, _graphQLVariables?: object): Promise<object> {
     if (accessToken) {
-      const { data } = await axios.post<AxiosResponse>(
+      console.log(graphQLQuery);
+      const res = await axios.post<AxiosResponse>(
         Parameters.endpoints.graphQL,
         {
           query: graphQLQuery,
@@ -71,8 +72,8 @@ export class LsDocumentAdapter {
           },
         },
       );
-
-      return data.data;
+      console.log(res);
+      return res.data.data;
     } else {
       console.warn('UNASSIGNED ACCESS TOKEN');
     }

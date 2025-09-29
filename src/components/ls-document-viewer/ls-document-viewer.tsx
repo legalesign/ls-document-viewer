@@ -8,10 +8,12 @@ import { addField, moveField } from './editorCalculator';
 import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { mouseClick, mouseDown, mouseMove, mouseUp } from './mouseHandlers';
-import { getApiType } from './editorUtils';
+import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
+import { getApiType, matchData } from './editorUtils';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole } from '../../types/LSApiRole';
+import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
+import { getTemplate } from './adapter/templateActions';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -34,6 +36,7 @@ export class LsDocumentViewer {
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
+  private adapter: LsDocumentAdapter = new LsDocumentAdapter();
   private ctx: CanvasRenderingContext2D;
   public pageDimensions: { height: number; width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
@@ -61,11 +64,17 @@ export class LsDocumentViewer {
   @Prop() template: string;
 
   /**
-   * The accessToken of the account your want the widget to use, you should normally
+   * The access token of the account your want the widget to use, you should normally
    * acquire this with a server side call using that accounts login credentials.
    * {string}
    */
-  @Prop() accessToken: string;
+  @Prop() token: string;
+
+  /**
+ * The id of the template you want to load (if using the internal data adapter).
+ * {string}
+ */
+  @Prop() templateid: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
@@ -180,33 +189,6 @@ export class LsDocumentViewer {
    */
   @Prop() roleColors?: string[] = defaultRolePalette;
 
-  parseTemplate(newValue: string) {
-    const newTemplate = newValue as any as LSApiTemplate;
-    const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
-
-    // Convert ax,bx,ay etc. into top, left
-    // We also add the templateId into every object so that all the information
-    // required to mutate is in each object.
-    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
-    const fields = newTemplate.elementConnection.templateElements.map(f => {
-      return {
-        ...f,
-        top: f.ay * pages[0].height,
-        left: f.ax * pages[0].width,
-        height: (f.by - f.ay) * pages[0].height,
-        width: (f.bx - f.ax) * pages[0].width,
-        templateId: newTemplate.id
-      }
-    })
-
-    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro:LSApiRole) =>  { return {...ro, templateId: newTemplate.id}})
-
-    this._template = { ...newTemplate, 
-      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
-      roles: preparedRoles
-    }
-  }
-
   //
   // --- Event Emitters --- //
   //
@@ -219,6 +201,13 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
   // Send an internal event to be processed
   @Event() update: EventEmitter<LSMutateEvent[]>;
+
+    // Updates are internal event between LS controls not to be confused with mutate
+  @Listen('mutate')
+  mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    console.log(event)
+    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+  }
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('update')
@@ -274,16 +263,49 @@ export class LsDocumentViewer {
    */
   @Method()
   async setZoom(z: number) {
-    this.zoom = z;
+    this.zoom = z
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
-    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + "px"
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem));
 
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+  }
+
+    /**
+   * Decorate the template data object with useful transformations.
+   * {string} json of template
+   */
+  parseTemplate(newValue: string) {
+    
+    const newTemplate:LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
+    const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
+
+    // Convert ax,bx,ay etc. into top, left
+    // We also add the templateId into every object so that all the information
+    // required to mutate is in each object.
+    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
+    const fields = newTemplate.elementConnection.templateElements.map(f => {
+      return {
+        ...f,
+        top: f.ay * pages[0].height,
+        left: f.ax * pages[0].width,
+        height: (f.by - f.ay) * pages[0].height,
+        width: (f.bx - f.ax) * pages[0].width,
+        templateId: newTemplate.id
+      }
+    })
+
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => { return { ...ro, templateId: newTemplate.id } })
+
+    this._template = {
+      ...newTemplate,
+      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
+      roles: preparedRoles
+    }
   }
 
   /**
@@ -350,6 +372,7 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
+    console.log('sync')
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
@@ -382,77 +405,60 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
+    if (this._template) this.initViewer()
+    else this.load()
+  }
+
+  initViewer() {
+    console.log('Init Viewer  ')
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + 'px';
     this.ctx = this.canvas.getContext('2d');
-    this.loadAndRender(this._template.link);
+    if(this._template?.link) this.loadAndRender(this._template?.link)
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
     // Used for single field selection
-    dropTarget.addEventListener('click', mouseClick.bind(this));
-    dropTarget.addEventListener('mousedown', mouseDown.bind(this));
-    dropTarget.addEventListener('mousemove', mouseMove.bind(this));
-    dropTarget.addEventListener('mouseup', mouseUp.bind(this));
-    document.addEventListener('keydown', keyDown.bind(this));
-    dropTarget.addEventListener('dragenter', event => {
-      event.preventDefault();
-    });
-    dropTarget.addEventListener('dragover', event => {
-      event.preventDefault();
-    });
-    dropTarget.addEventListener('drop', event => {
-      event.preventDefault();
-      try {
-        const data: IToolboxField = JSON.parse(event.dataTransfer.getData('application/json')) as any as IToolboxField;
-        this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
-        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-        // Make a new API compatible id for a template element (prefix 'ele')
-        const id = btoa('ele' + crypto.randomUUID());
-        // TODO: Put these defaults somewhere sensible
-        const newData: LSMutateEvent = {
-          action: 'create',
-          data: {
-            ...data,
-            id,
-            value: '',
-            top: event.offsetY * this.zoom + frame.scrollTop,
-            left: event.offsetX * this.zoom + frame.scrollLeft,
-            height: data.defaultHeight,
-            width: data.defaultWidth,
-            pageDimensions: this.pageDimensions[this.pageNum - 1],
-            fontName: 'courier',
-            fontSize: 10,
-            align: 'left',
-            signer: 1,
-            elementType: data.type,
-          } as LSApiElement,
-        };
-
-        this.mutate.emit([newData]);
-        this.update.emit([newData]);
-      } catch (e) {
-        console.error(e);
-      }
-    });
+    dropTarget.addEventListener("click", mouseClick.bind(this))
+    dropTarget.addEventListener("mousedown", mouseDown.bind(this))
+    dropTarget.addEventListener("mousemove", mouseMove.bind(this))
+    dropTarget.addEventListener("mouseup", mouseUp.bind(this))
+    document.addEventListener("keydown", keyDown.bind(this))
+    dropTarget.addEventListener("dragenter", (event) => { event.preventDefault(); })
+    dropTarget.addEventListener("dragover", (event) => { event.preventDefault(); })
+    dropTarget.addEventListener("drop", mouseDrop.bind(this))
 
     // Generate all the field HTML elements that are required (for every page)
     this._template.elementConnection.templateElements.forEach(te => {
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
-    });
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
+    })
   }
 
   showPageFields(page: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
-      fx.className = fx.dataItem.page === page ? '' : 'hidden';
-    });
+      fx.className = fx.dataItem.page === page ? '' : 'hidden'
+    })
+  }
+
+  async load() {
+    try {
+   const result = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any
+      console.log(result  )
+    this.parseTemplate(JSON.stringify(result.template))
+
+    this.initViewer()
+ 
+    } catch(e) {
+      console.error('You access token in invalid.', e)
+    }
   }
 
   componentWillLoad() {
     if (this.template) this.parseTemplate(this.template);
+    else if (this.token) this.load()
   }
 
   render() {
@@ -546,7 +552,7 @@ export class LsDocumentViewer {
                         <ls-icon name="pre-filled-content" />
                       </div>
                       <h1 class={'properties-header-title'}>Field Properties</h1>
-                      <button class={'tertiaryGrey'} onClick={() => (this.selected = [])}>
+                      <button class={'tertiaryGrey'} onClick={(e) => {this.selected = []; e.preventDefault()}}>
                         <ls-icon name="x" size="20" />
                       </button>
                     </div>

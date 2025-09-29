@@ -5,7 +5,7 @@
 export const Parameters = {
   endpoints: {
     graphQL:
-      "https://graphql.uk.legalesign.com",
+      "https://k2howlr3ynfy3lbx7oxz4qyrlq.appsync-api.eu-west-2.amazonaws.com/graphql",
     wssHost: "dypxviim4zgwtpev7valhchaem.appsync-api.eu-west-2.amazonaws.com",
     wssRealTime: 'wss://dypxviim4zgwtpev7valhchaem.appsync-realtime-api.eu-west-2.amazonaws.com/graphql'
   },
