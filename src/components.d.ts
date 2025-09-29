@@ -192,6 +192,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesSignature {
         "dataItem": LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
@@ -988,6 +992,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesSignature {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;

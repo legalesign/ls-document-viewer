@@ -43,6 +43,12 @@ export function debounce(func, timeout = 300) {
   };
 }
 
+
+// if a mutation has created a new id then update the dataitem in the control
+export function matchData(newObj: any, oldObj: any) {
+  console.log(newObj, oldObj)
+}
+
 // Utility function which extracts the type from any API id
 export function getApiType(obj: any) {
   if (!obj?.id) return 'invalid';

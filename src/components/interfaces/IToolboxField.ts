@@ -1,6 +1,8 @@
 interface IToolboxField {
     label: string
-    type: string
+    elementType: string
     defaultHeight: number
     defaultWidth: number
+    formElementType: string
+    validation: number
 }

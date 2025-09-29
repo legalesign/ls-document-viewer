@@ -9,7 +9,7 @@ import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
-import { getApiType } from './editorUtils';
+import { getApiType, matchData } from './editorUtils';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
@@ -189,37 +189,6 @@ export class LsDocumentViewer {
    */
   @Prop() roleColors?: string[] = defaultRolePalette;
 
-  parseTemplate(newValue: string) {
-    
-    const newTemplate:LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
-    console.log(newTemplate)
-    console.log('try amking pages', newTemplate.pageDimensions)
-    const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
-
-    // Convert ax,bx,ay etc. into top, left
-    // We also add the templateId into every object so that all the information
-    // required to mutate is in each object.
-    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
-    const fields = newTemplate.elementConnection.templateElements.map(f => {
-      return {
-        ...f,
-        top: f.ay * pages[0].height,
-        left: f.ax * pages[0].width,
-        height: (f.by - f.ay) * pages[0].height,
-        width: (f.bx - f.ax) * pages[0].width,
-        templateId: newTemplate.id
-      }
-    })
-
-    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => { return { ...ro, templateId: newTemplate.id } })
-
-    this._template = {
-      ...newTemplate,
-      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
-      roles: preparedRoles
-    }
-  }
-
   //
   // --- Event Emitters --- //
   //
@@ -232,6 +201,13 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
   // Send an internal event to be processed
   @Event() update: EventEmitter<LSMutateEvent[]>;
+
+    // Updates are internal event between LS controls not to be confused with mutate
+  @Listen('mutate')
+  mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    console.log(event)
+    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+  }
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('update')
@@ -297,6 +273,39 @@ export class LsDocumentViewer {
 
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+  }
+
+    /**
+   * Decorate the template data object with useful transformations.
+   * {string} json of template
+   */
+  parseTemplate(newValue: string) {
+    
+    const newTemplate:LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
+    const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
+
+    // Convert ax,bx,ay etc. into top, left
+    // We also add the templateId into every object so that all the information
+    // required to mutate is in each object.
+    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
+    const fields = newTemplate.elementConnection.templateElements.map(f => {
+      return {
+        ...f,
+        top: f.ay * pages[0].height,
+        left: f.ax * pages[0].width,
+        height: (f.by - f.ay) * pages[0].height,
+        width: (f.bx - f.ax) * pages[0].width,
+        templateId: newTemplate.id
+      }
+    })
+
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => { return { ...ro, templateId: newTemplate.id } })
+
+    this._template = {
+      ...newTemplate,
+      elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
+      roles: preparedRoles
+    }
   }
 
   /**
@@ -435,15 +444,19 @@ export class LsDocumentViewer {
   }
 
   async load() {
-    console.log('Access Token found. Loading target template.', this.token)
-    const result: LSApiTemplate = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any as  LSApiTemplate
-    this.parseTemplate(JSON.stringify(result))
+    try {
+   const result = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any
+      console.log(result  )
+    this.parseTemplate(JSON.stringify(result.template))
 
     this.initViewer()
+ 
+    } catch(e) {
+      console.error('You access token in invalid.', e)
+    }
   }
 
   componentWillLoad() {
-    console.log("will load", this.token)
     if (this.template) this.parseTemplate(this.template);
     else if (this.token) this.load()
   }

@@ -7,7 +7,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
   shadow: true,
 })
 export class LsFieldDimensions {
-  @Prop() dataItem: LSApiElement | LSApiElement[];
+  @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
 
   @Event({
     bubbles: true,

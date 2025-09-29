@@ -185,26 +185,47 @@ export function mouseDrop(event) {
       event.preventDefault();
       try {
         const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
+        // Unselect all current selected items
         this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
         var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
         // Make a new API compatible id for a template element (prefix 'ele')
         const id = btoa('ele' + crypto.randomUUID())
+        const top = event.offsetY * this.zoom + frame.scrollTop;
+        const left = event.offsetX * this.zoom + frame.scrollLeft
         // TODO: Put these defaults somewhere sensible
         const newData: LSMutateEvent = {
           action: 'create', data: {
-            ...data,
             id,
             value: "",
-            top: event.offsetY * this.zoom + frame.scrollTop,
-            left: event.offsetX * this.zoom + frame.scrollLeft,
+            formElementType: data.formElementType,
+            elementType: data.elementType,
+            validation: data.validation,
+            substantive: false,
+            top,
+            left,
+            hideBorder: false,
             height: data.defaultHeight,
             width: data.defaultWidth,
             pageDimensions: this.pageDimensions[this.pageNum - 1],
-            fontName: "courier",
+            fontName: "arial",
             fontSize: 10,
             align: 'left',
             signer: 1,
-            elementType: data.type
+            page: this.pageNum,
+            mapTo: null,
+            label: '',
+            helpText: null,
+            logicGroup: null,
+            optional: false,
+            options: null,
+            logicAction: null,
+            labelExtra: null,
+            fieldOrder: null,
+            ax: left > 0 ? left / this.pageDimensions[this.pageNum - 1].width : 0,
+            ay: top > 0 ? top / this.pageDimensions[this.pageNum - 1].height : 0,
+            bx: (left + data.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
+            by: (top + data.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
+            templateId: this._template.id
           } as LSApiElement
         }
 
