@@ -53,6 +53,7 @@ export class LsStatusbar {
       <Host>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
+        <div class={"status-bar-section"}>
 
         <button onClick={() => this.setZoom(this.editor.zoom * 0.8)}>
           <ls-icon name="zoom-out" />
@@ -63,12 +64,16 @@ export class LsStatusbar {
         <button onClick={() => this.setZoom(this.editor.zoom / 0.8)}>
           <ls-icon name="zoom-in" />
         </button>
+        </div>
+         <div class={"status-bar-section"}>
         <button onClick={() => this.fitWidth()}>
           <ls-icon name="fit-width" />
         </button>
         <button onClick={() => this.fitHeight()}>
           <ls-icon name="fit-height" />
         </button>
+        </div>
+         <div class={"status-bar-section"}>
         <button
           onClick={() => {
             this.editor.pagePrev();
@@ -83,6 +88,7 @@ export class LsStatusbar {
         >
           <ls-icon name="arrow-right" />
         </button>
+        </div>
 
         <slot></slot>
       </Host>
