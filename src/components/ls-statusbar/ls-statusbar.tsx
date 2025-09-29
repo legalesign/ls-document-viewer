@@ -48,7 +48,10 @@ export class LsStatusbar {
     this.zoom = this.editor.zoom;
   }
 
+  
+
   render() {
+    console.log('editor',this.editor);
     return (
       <Host>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
@@ -81,6 +84,7 @@ export class LsStatusbar {
         >
           <ls-icon name="arrow-left" />
         </button>
+        <p>1 / 2</p>
         <button
           onClick={() => {
             this.editor.pageNext();
