@@ -11,7 +11,6 @@ export class LsFieldProperties {
 
   renderFields() {
     if (this.dataItem && this.dataItem?.length === 1) {
-      console.log(this.dataItem)
       switch (this.dataItem[0].formElementType) {
         case 'signature':
           return <ls-field-properties-signature dataItem={this.dataItem[0]} />

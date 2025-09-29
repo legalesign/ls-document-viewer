@@ -363,6 +363,7 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
+    console.log('sync')
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
@@ -538,7 +539,7 @@ export class LsDocumentViewer {
                         <ls-icon name="pre-filled-content" />
                       </div>
                       <h1 class={'properties-header-title'}>Field Properties</h1>
-                      <button class={'tertiaryGrey'} onClick={() => (this.selected = [])}>
+                      <button class={'tertiaryGrey'} onClick={(e) => {this.selected = []; e.preventDefault()}}>
                         <ls-icon name="x" size="20" />
                       </button>
                     </div>

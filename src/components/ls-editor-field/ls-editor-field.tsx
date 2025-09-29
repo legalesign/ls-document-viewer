@@ -120,7 +120,6 @@ export class LsEditorField {
 
 
   render() {
-    console.log(this.dataItem);
     return (
       <Host class={{
         'ls-editor-field': true,
