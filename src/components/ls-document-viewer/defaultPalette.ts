@@ -20,4 +20,4 @@
 //   {primary:'rgba(179, 1, 63, 0.69)', faded: 'rgb(135, 173, 158)'}
 // ]
 
-export const defaultRolePalette: string[] = ['gray','blue', 'green', 'yellow', 'purple', 'teal', 'pink', 'lime', 'red', 'lightblue', 'aubergine', 'burnt', 'trueGreen', 'indigo', 'cyan'];
+export const defaultRolePalette: string[] = ['gray', 'blue', 'green', 'yellow', 'purple', 'teal', 'pink', 'lime', 'red', 'lightblue', 'aubergine', 'burnt', 'trueGreen', 'indigo', 'cyan'];

@@ -178,6 +178,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesDate {
         "dataItem": LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesEmail {
         "dataItem": LSApiElement1;
@@ -1015,6 +1019,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesDate {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesEmail {
         "dataItem"?: LSApiElement1;
