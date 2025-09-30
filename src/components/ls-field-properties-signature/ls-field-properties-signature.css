@@ -10,6 +10,12 @@
   margin: 0;
 }
 
+.properties-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .field-set {
   display: flex;
   flex-direction: column;

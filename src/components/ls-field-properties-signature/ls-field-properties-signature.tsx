@@ -25,7 +25,7 @@ export class LsFieldPropertiesSignature {
           </button>
         </div>
         {this.fieldSet === 'placement' ? (
-          <div>hello</div>
+          <ls-field-placement dataItem={this.dataItem} />
         ) : this.fieldSet === 'dimensions' ? (
           <div class={'field-set'}>
             <ls-field-dimensions dataItem={this.dataItem} />
@@ -77,6 +77,10 @@ export class LsFieldPropertiesSignature {
             </div>
           </div>
         )}
+        <div class={'button-footer'}>
+          <button>Duplicate</button>
+          <button>Delete</button>
+        </div>
 
         <slot></slot>
       </Host>
