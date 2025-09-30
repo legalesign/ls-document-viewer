@@ -94,9 +94,9 @@ Type: `Promise<void>`
 
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
+- [ls-icon](../ls-icon)
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
-- [ls-icon](../ls-icon)
 - [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
@@ -108,9 +108,9 @@ Type: `Promise<void>`
 graph TD;
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
+  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
-  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
@@ -142,9 +142,12 @@ graph TD;
   ls-field-properties --> ls-field-properties-file
   ls-field-properties --> ls-field-properties-general
   ls-field-properties --> ls-field-properties-multiple
+  ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-signature --> ls-icon
   ls-field-properties-signature --> ls-toggle
+  ls-field-placement --> ls-icon
+  ls-field-dimensions --> ls-icon
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-number --> ls-field-dimensions

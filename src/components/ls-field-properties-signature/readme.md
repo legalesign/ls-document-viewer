@@ -21,6 +21,7 @@
 
 ### Depends on
 
+- [ls-field-placement](../ls-field-placement)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-icon](../ls-icon)
 - [ls-toggle](../ls-toggle)
@@ -28,9 +29,12 @@
 ### Graph
 ```mermaid
 graph TD;
+  ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-signature --> ls-icon
   ls-field-properties-signature --> ls-toggle
+  ls-field-placement --> ls-icon
+  ls-field-dimensions --> ls-icon
   ls-field-properties --> ls-field-properties-signature
   style ls-field-properties-signature fill:#f9f,stroke:#333,stroke-width:4px
 ```

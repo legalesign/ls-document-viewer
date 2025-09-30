@@ -52,7 +52,7 @@ const updateElement = element => {
     mapTo: "${element.mapTo}", 
     optional: ${element.optional}, 
     options: ${JSON.stringify(element.options)}, 
-    role: ${JSON.stringify(element.role)}, 
+    role: "1", 
     substantive: ${element.substantive}, 
     validation: ${element.validation === '0' ? 'null' : element.validation}, 
     value: "${element.value}", 

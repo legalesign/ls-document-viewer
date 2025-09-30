@@ -1,4 +1,4 @@
-# ls-field-dimensions
+# ls-field-placement
 
 
 
@@ -24,16 +24,7 @@
 
 ### Used by
 
- - [ls-field-properties-autosign](../ls-field-properties-autosign)
- - [ls-field-properties-date](../ls-field-properties-date)
- - [ls-field-properties-email](../ls-field-properties-email)
- - [ls-field-properties-file](../ls-field-properties-file)
- - [ls-field-properties-general](../ls-field-properties-general)
- - [ls-field-properties-image](../ls-field-properties-image)
- - [ls-field-properties-multiple](../ls-field-properties-multiple)
- - [ls-field-properties-number](../ls-field-properties-number)
  - [ls-field-properties-signature](../ls-field-properties-signature)
- - [ls-field-properties-text](../ls-field-properties-text)
 
 ### Depends on
 
@@ -42,18 +33,9 @@
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-dimensions --> ls-icon
-  ls-field-properties-autosign --> ls-field-dimensions
-  ls-field-properties-date --> ls-field-dimensions
-  ls-field-properties-email --> ls-field-dimensions
-  ls-field-properties-file --> ls-field-dimensions
-  ls-field-properties-general --> ls-field-dimensions
-  ls-field-properties-image --> ls-field-dimensions
-  ls-field-properties-multiple --> ls-field-dimensions
-  ls-field-properties-number --> ls-field-dimensions
-  ls-field-properties-signature --> ls-field-dimensions
-  ls-field-properties-text --> ls-field-dimensions
-  style ls-field-dimensions fill:#f9f,stroke:#333,stroke-width:4px
+  ls-field-placement --> ls-icon
+  ls-field-properties-signature --> ls-field-placement
+  style ls-field-placement fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

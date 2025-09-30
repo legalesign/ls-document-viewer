@@ -22,8 +22,10 @@
  - [ls-document-viewer](../ls-document-viewer)
  - [ls-feature-column](../ls-feature-column)
  - [ls-field-alignment](../ls-field-alignment)
+ - [ls-field-dimensions](../ls-field-dimensions)
  - [ls-field-distribute](../ls-field-distribute)
  - [ls-field-format](../ls-field-format)
+ - [ls-field-placement](../ls-field-placement)
  - [ls-field-properties-signature](../ls-field-properties-signature)
  - [ls-formfield](../ls-formfield)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
@@ -42,8 +44,10 @@ graph TD;
   ls-document-viewer --> ls-icon
   ls-feature-column --> ls-icon
   ls-field-alignment --> ls-icon
+  ls-field-dimensions --> ls-icon
   ls-field-distribute --> ls-icon
   ls-field-format --> ls-icon
+  ls-field-placement --> ls-icon
   ls-field-properties-signature --> ls-icon
   ls-formfield --> ls-icon
   ls-number-input --> ls-icon

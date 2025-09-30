@@ -210,7 +210,7 @@ export function mouseDrop(event) {
             fontName: "arial",
             fontSize: 10,
             align: 'left',
-            signer: 1,
+            signer: this.signer,
             page: this.pageNum,
             mapTo: null,
             label: '',

@@ -26,6 +26,7 @@
 ```mermaid
 graph TD;
   ls-field-properties-text --> ls-field-dimensions
+  ls-field-dimensions --> ls-icon
   ls-field-properties --> ls-field-properties-text
   style ls-field-properties-text fill:#f9f,stroke:#333,stroke-width:4px
 ```
