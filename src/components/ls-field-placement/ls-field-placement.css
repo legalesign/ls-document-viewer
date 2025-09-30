@@ -124,6 +124,16 @@ select {
   color: var(--gray-80, #6c6e73);
 }
 
+#selectLeadingIconDisabled {
+  position: absolute;
+  top: 50%;
+  left: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-50, #d8d9dc);
+}
+
+
 .has-leading-icon {
   padding-left: 2.5rem;
 }
@@ -147,25 +157,25 @@ textarea::placeholder {
   color: var(--gray-60, #afb0b2);
 }
 
-input:hover,
-select:hover,
-textarea:hover {
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
   border-color: var(--gray-50, #c8c9cc);
   background-color: var(--white, #fff);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input:focus:not(:disabled),
+select:focus:not(:disabled),
+textarea:focus:not(:disabled) {
   outline: none;
   box-shadow: 0 0 0 0.25rem var(--primary-40, #79adfc);
   border-color: var(--primary-60, #4456f6);
   background-color: var(--white, #fff);
 }
 
-input:active,
-select:active,
-textarea:active {
+input:active:not(:disabled),
+select:active:not(:disabled),
+textarea:active:not(:disabled) {
   border-color: var(--primary-50, #5185ff);
 }
 
@@ -174,6 +184,8 @@ select:disabled,
 textarea:disabled {
   cursor: not-allowed;
   background-color: var(--gray-10, #f7f8fa);
+  color: var(--gray-50, #d8d9dc);
+  box-shadow: none;
 }
 
 input[type='checkbox'] {

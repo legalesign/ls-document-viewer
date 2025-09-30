@@ -57,12 +57,6 @@ export class LsFieldPlacement {
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-field-properties-section'}>
             <div>
-              Height: <input value={''} onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} width="30" />
-            </div>
-            <div>
-              Width: <input value={''} onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} width="30" />
-            </div>
-            <div>
               Top: <input value={''} onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} width="30" />
             </div>
             <div>
@@ -74,28 +68,31 @@ export class LsFieldPlacement {
           <div class={'field-set'}>
             <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Height and Width</p>
-                <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
+                <p class={'ls-field-properties-section-title'}>Location</p>
+                <p class={'ls-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
               </div>
               <div class={'input-row'}>
                 <div class={'input-wrapper'}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
                   <input
+                    type="number"
                     class={'has-leading-icon'}
-                    aria="field-width"
-                    id="field-width"
-                    value={this.dataItem?.width}
-                    onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })}
+                    aria="top-location"
+                    id="top-location"
+                    value={this.dataItem?.top}
+                    onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
                   />
                 </div>
                 <div class={'input-wrapper'}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
                   <input
+                    type="number"
                     class={'has-leading-icon'}
-                    aria="field-height"
-                    id="field-height"
-                    value={this.dataItem?.height}
-                    onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })}
+                    aria="left-location"
+                    id="left-location"
+                    value={this.dataItem?.left}
+                    onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                    width="30"
                   />
                 </div>
               </div>
@@ -103,33 +100,34 @@ export class LsFieldPlacement {
 
             <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Scale and Resize</p>
-                <p class={'ls-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+                <p class={'ls-field-properties-section-title'}>Distribution</p>
+                <p class={'ls-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
               </div>
               <div class={'button-group'}>
                 <button disabled>
-                  <ls-icon name="field-scale"></ls-icon>
+                  <ls-icon name="field-distribute-vertically"></ls-icon>
                 </button>
                 <button disabled>
-                  <ls-icon name="field-match-width"></ls-icon>
-                </button>
-                <button disabled>
-                  <ls-icon name="field-match-height"></ls-icon>
+                  <ls-icon name="field-distribute-horizontally"></ls-icon>
                 </button>
               </div>
             </div>
 
-            {/* <div>
-              Height: <input value={this.dataItem?.height} onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} width="30" />
-            </div>
-            <div>
-              Width: <input value={this.dataItem?.width} onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} width="30" />
-            </div> */}
-            <div>
-              Top: <input value={this.dataItem?.top} onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} width="30" />
-            </div>
-            <div>
-              Left: <input value={this.dataItem?.left} onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} width="30" />
+            <div class={'ls-field-properties-section'}>
+              <div class={'ls-field-properties-section-text'}>
+                <p class={'ls-field-properties-section-title'}>Scale and Gap</p>
+                <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+              </div>
+              <div class={'input-row'}>
+                <div class={'input-wrapper'}>
+                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
+                  <input type="number" value="0" class={'has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
+                </div>
+                <div class={'input-wrapper'}>
+                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
+                  <input type="number" value="0" class={'has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
+                </div>
+              </div>
             </div>
           </div>
         )}

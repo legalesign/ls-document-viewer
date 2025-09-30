@@ -24,6 +24,7 @@ export class LsFieldPropertiesSignature {
             Dimensions
           </button>
         </div>
+        <div class={'scrolling-container'}>
         {this.fieldSet === 'placement' ? (
           <ls-field-placement dataItem={this.dataItem} />
         ) : this.fieldSet === 'dimensions' ? (
@@ -77,9 +78,16 @@ export class LsFieldPropertiesSignature {
             </div>
           </div>
         )}
+        </div>
         <div class={'button-footer'}>
-          <button>Duplicate</button>
-          <button>Delete</button>
+          <button class={'secondary'}>
+            <ls-icon name="field-duplicate" size="20" />
+            Duplicate
+          </button>
+          <button class={'destructive'}>
+            <ls-icon name="trash" size="20" />
+            Delete
+          </button>
         </div>
 
         <slot></slot>

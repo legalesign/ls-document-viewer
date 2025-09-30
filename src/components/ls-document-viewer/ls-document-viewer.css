@@ -83,6 +83,11 @@ h6 {
   padding: 0px;
 }
 
+#my-field-panel {
+  position: relative;
+  height: calc(100% - 4.313rem);
+}
+
 .leftBox {
   border-radius: 16px;
   border: 1px solid var(--gray-30, #edeff2);
@@ -514,6 +519,11 @@ input[type='checkbox']:disabled:checked {
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
+}
+.field-properties-outer {
+  position: relative;
+  height: 100%;
+
 }
 
 .loading-box {
