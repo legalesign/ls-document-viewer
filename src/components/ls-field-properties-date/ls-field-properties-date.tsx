@@ -1,6 +1,7 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { validationTypes } from '../ls-document-viewer/editorUtils';
 
 @Component({
   tag: 'ls-field-properties-date',
@@ -88,9 +89,13 @@ export class LsFieldPropertiesDate {
                 <div class={'input-wrapper'}>
                   <ls-icon id="selectorIcon" name="selector"></ls-icon>
                   <select>
-                    <option value="text">Text</option>
-                    <option value="email">Email</option>
-                    <option value="signature">Signature</option>
+                    {validationTypes
+                      .filter(type => type.formType === 'date')
+                      .map(type => (
+                        <option selected={this.dataItem?.validation === type.id} value={type.value}>
+                          {type.description}
+                        </option>
+                      ))}
                   </select>
                 </div>
               </div>
