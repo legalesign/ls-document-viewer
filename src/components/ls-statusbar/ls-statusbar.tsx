@@ -82,7 +82,7 @@ export class LsStatusbar {
             this.editor.pagePrev();
           }}
         >
-          <ls-icon name="arrow-left" />
+          <ls-icon name="chevron-left" />
         </button>
         <p>1 / 2</p>
         <button
@@ -90,7 +90,7 @@ export class LsStatusbar {
             this.editor.pageNext();
           }}
         >
-          <ls-icon name="arrow-right" />
+          <ls-icon name="chevron-right" />
         </button>
         </div>
 

@@ -13,7 +13,6 @@ export class LsEditorField {
   @Prop() selected: boolean;
   @Prop() readonly: boolean;
   @Prop() palette: string[];
-
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number, width: number };
   @State() isEditing: boolean = false;
@@ -125,6 +124,7 @@ export class LsEditorField {
         'ls-editor-field': true,
         'is-selected': this.selected
       }}>
+        <div style={this.selected ? { background: "2px dotted red" } : { background: "1px solid black" }}>
           <input id="editing-input"
             class={this.isEditing ? "ls-editor-field-editable" : "hidden-field"}
             type={getInputType(this.dataItem.validation).inputType}
@@ -133,6 +133,7 @@ export class LsEditorField {
           />
           <div id="field-info" class={this.isEditing ? "hidden-field" : "ls-editor-field-draggable"}>
             {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
+          </div>
           </div>
       </Host>
     );
