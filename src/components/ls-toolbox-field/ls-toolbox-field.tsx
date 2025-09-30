@@ -33,6 +33,11 @@ export class LsToolboxField {
    */
   @Prop() defaultWidth: number;
 
+  /**
+   * The signer color of the element
+   */
+  @Prop() color: string = 'primary';
+
   @Listen('dragstart')
   handleDragStart(event) {
     // Add the target element's id to the data transfer object
@@ -59,7 +64,7 @@ export class LsToolboxField {
   render() {
     return (
       <Host draggable="true">
-        <div class="toolbox-field-icon">
+        <div class="toolbox-field-icon" style={{ '--signer-color-light': `var(--${this.color}-10)`, '--signer-color': `var(--${this.color}-60)` }}>
           <ls-icon name={this.icon} size="20" />
         </div>
         <p class="toolbox-field-label">{this.label}</p>

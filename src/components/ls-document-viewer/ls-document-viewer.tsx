@@ -206,10 +206,13 @@ export class LsDocumentViewer {
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    console.log(event)
-    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(
-      result => {if(me.action === "create") matchData.bind(this)(result)}
-    ));
+    console.log(event);
+    if (this.token)
+      event.detail.forEach(me =>
+        this.adapter.handleEvent(me, this.token).then(result => {
+          if (me.action === 'create') matchData.bind(this)(result);
+        }),
+      );
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -230,7 +233,7 @@ export class LsDocumentViewer {
   // Send role selection changes to bars and panels
   @Listen('roleChange')
   roleHandler(event: CustomEvent<number>) {
-   this.signer = event.detail
+    this.signer = event.detail;
   }
 
   //
@@ -470,6 +473,10 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
+  signerColor = (index: number) => {
+    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+  };
+
   render() {
     return (
       <Host>
@@ -509,6 +516,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={0}
                         icon="signature"
+                        color={this.signerColor(this.signer)}
                       />
                       <ls-toolbox-field
                         elementType="initials"
@@ -518,8 +526,18 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={2000}
                         icon="initials"
+                        color={this.signerColor(this.signer)}
                       />
-                      <ls-toolbox-field elementType="date" formElementType="date" label="Date" defaultHeight={27} defaultWidth={80} validation={2} icon="calender" />
+                      <ls-toolbox-field
+                        elementType="date"
+                        formElementType="date"
+                        label="Date"
+                        defaultHeight={27}
+                        defaultWidth={80}
+                        validation={2}
+                        icon="calender"
+                        color={this.signerColor(this.signer)}
+                      />
                       <ls-toolbox-field
                         elementType="signing date"
                         formElementType="signing date"
@@ -528,18 +546,55 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={30}
                         icon="auto-date"
+                        color={this.signerColor(this.signer)}
                       />
-                      <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} icon="at-symbol" />
-                      <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} icon="text" />
+                      <ls-toolbox-field
+                        elementType="email"
+                        formElementType="email"
+                        label="Email"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={1}
+                        icon="at-symbol"
+                        color={this.signerColor(this.signer)}
+                      />
+                      <ls-toolbox-field
+                        elementType="text"
+                        formElementType="text"
+                        label="Text"
+                        defaultHeight={27}
+                        defaultWidth={100}
+                        validation={0}
+                        icon="text"
+                        color={this.signerColor(this.signer)}
+                      />
                       <div class={'expand-fields-row'}>
                         <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid onClick={() => (this.expandfields = !this.expandfields)} />
                         <p>More Field Types</p>
                       </div>
                       {this.expandfields && (
                         <div class="fields-box">
-                          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
+                          <ls-toolbox-field
+                            elementType="number"
+                            formElementType="number"
+                            label="Number"
+                            defaultHeight={27}
+                            defaultWidth={80}
+                            validation={50}
+                            icon="hashtag"
+                            color={this.signerColor(this.signer)}
+                          />
 
-                          <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} icon="check" />
+                          <ls-toolbox-field
+                            elementType="checkbox"
+                            formElementType="checkbox"
+                            label="Checkbox"
+                            defaultHeight={27}
+                            defaultWidth={27}
+                            validation={25}
+                            icon="check"
+                            color={this.signerColor(this.signer)}
+                          />
                           <ls-toolbox-field
                             elementType="auto sign"
                             formElementType="auto sign"
@@ -548,12 +603,40 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={3000}
                             icon="signature"
+                            color={this.signerColor(this.signer)}
                           />
 
-                          <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon="code" />
-                          <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} icon="photograph" />
+                          <ls-toolbox-field
+                            elementType="regex"
+                            formElementType="regex"
+                            label="Regex"
+                            defaultHeight={27}
+                            defaultWidth={120}
+                            validation={93}
+                            icon="code"
+                            color={this.signerColor(this.signer)}
+                          />
+                          <ls-toolbox-field
+                            elementType="image"
+                            formElementType="image"
+                            label="Image"
+                            defaultHeight={27}
+                            defaultWidth={120}
+                            validation={90}
+                            icon="photograph"
+                            color={this.signerColor(this.signer)}
+                          />
 
-                          <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon="upload" />
+                          <ls-toolbox-field
+                            elementType="file"
+                            formElementType="file"
+                            label="File"
+                            defaultHeight={27}
+                            defaultWidth={120}
+                            validation={74}
+                            icon="upload"
+                            color={this.signerColor(this.signer)}
+                          />
                         </div>
                       )}
                     </div>
