@@ -64,10 +64,10 @@ const updateElement = element => {
 };
 
 // Save any changes to an element
-const deleteElement = id => {
+const deleteElement = obj => {
   return `mutation DeleteField {
   deleteTemplateElement(input: {
-    templateElementId: "${id}"})
+    templateElementId: "${obj.id}"})
   }`;
 };
 
