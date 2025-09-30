@@ -49,20 +49,22 @@ export class LsParticipantManager {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
   createHandler() {
-    this.update.emit([
+    const data: LSMutateEvent[] = [
       {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
           name: 'Signer ' + this.template.roles.length,
           roleType: 'SIGNER',
-          signerIndex: 1,
+          signerIndex: this.template.roles.length,
           ordinal: this.template.roles.length,
           signerParent: null,
           experience: '',
         },
       },
-    ]);
+    ]
+    this.update.emit(data);
+    this.mutate.emit(data);
   }
 
   participantColor = (index: number) => {

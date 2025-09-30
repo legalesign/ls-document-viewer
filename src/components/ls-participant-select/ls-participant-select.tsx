@@ -61,13 +61,13 @@ export class LsParticipantSelect {
     this.isOpen = !this.isOpen;
   };
 
-  @Event() roleChanged: EventEmitter<number>;
+  @Event() roleChange: EventEmitter<number>;
 
   selectRole(role: { signerIndex: number; name: string }) {
     this.selectedRole = role;
     this.isOpen = false;
-    this.roleChanged.emit(role.signerIndex);
-    
+    this.roleChange.emit(role.signerIndex);
+
     console.log('Selected role:', this.selectedRole);
   }
 

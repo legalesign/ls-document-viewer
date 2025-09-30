@@ -733,7 +733,7 @@ declare global {
     interface HTMLLsParticipantSelectElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
-        "roleChanged": number;
+        "roleChange": number;
     }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1124,7 +1124,7 @@ declare namespace LocalJSX {
     interface LsParticipantSelect {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
-        "onRoleChanged"?: (event: LsParticipantSelectCustomEvent<number>) => void;
+        "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The current template roles. {LSApiRole}

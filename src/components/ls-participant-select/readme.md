@@ -15,11 +15,11 @@
 
 ## Events
 
-| Event         | Description | Type                           |
-| ------------- | ----------- | ------------------------------ |
-| `mutate`      |             | `CustomEvent<LSMutateEvent[]>` |
-| `roleChanged` |             | `CustomEvent<number>`          |
-| `update`      |             | `CustomEvent<LSMutateEvent[]>` |
+| Event        | Description | Type                           |
+| ------------ | ----------- | ------------------------------ |
+| `mutate`     |             | `CustomEvent<LSMutateEvent[]>` |
+| `roleChange` |             | `CustomEvent<number>`          |
+| `update`     |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Dependencies

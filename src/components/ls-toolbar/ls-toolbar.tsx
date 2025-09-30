@@ -56,6 +56,7 @@ export class LsToolbar {
     this.mutate.emit(diffs);
     this.update.emit(diffs);
   }
+  
   render() {
     return (
       <Host>

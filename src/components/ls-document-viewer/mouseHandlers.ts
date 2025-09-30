@@ -228,7 +228,7 @@ export function mouseDrop(event) {
             templateId: this._template.id
           } as LSApiElement
         }
-
+        console.log(newData)
         this.mutate.emit([newData])
         this.update.emit([newData])
 

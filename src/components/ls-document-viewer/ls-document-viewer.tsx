@@ -227,10 +227,9 @@ export class LsDocumentViewer {
     if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
   }
 
-    // Send selection changes to bars and panels if in use.
+  // Send role selection changes to bars and panels
   @Listen('roleChange')
   roleHandler(event: CustomEvent<number>) {
-    console.log(event.detail)
    this.signer = event.detail
   }
 
