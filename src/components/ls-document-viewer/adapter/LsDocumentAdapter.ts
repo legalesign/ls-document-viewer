@@ -20,7 +20,6 @@ export class LsDocumentAdapter {
 
     const prefix = atob(obj.id).substring(0, 3);
     let query = '';
-    console.log(prefix, 'prefix')
     switch (prefix) {
       case 'ele':
         switch (event.action) {
@@ -70,7 +69,7 @@ export class LsDocumentAdapter {
    */
   public async execute(accessToken: string, graphQLQuery: string, _graphQLVariables?: object): Promise<object> {
     if (accessToken) {
-      console.log(graphQLQuery);
+      //console.log(graphQLQuery);
       const res = await axios.post<AxiosResponse>(
         Parameters.endpoints.graphQL,
         {
@@ -83,7 +82,6 @@ export class LsDocumentAdapter {
           },
         },
       );
-      console.log(res);
       return res.data.data;
     } else {
       console.warn('UNASSIGNED ACCESS TOKEN');

@@ -202,7 +202,7 @@ export class LsDocumentViewer {
   // Send an internal event to be processed
   @Event() update: EventEmitter<LSMutateEvent[]>;
 
-    // Updates are internal event between LS controls not to be confused with mutate
+  // Updates are internal event between LS controls not to be confused with mutate
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     console.log(event)
@@ -275,13 +275,13 @@ export class LsDocumentViewer {
     this.showPageFields(this.pageNum);
   }
 
-    /**
-   * Decorate the template data object with useful transformations.
-   * {string} json of template
-   */
+  /**
+ * Decorate the template data object with useful transformations.
+ * {string} json of template
+ */
   parseTemplate(newValue: string) {
-    
-    const newTemplate:LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
+
+    const newTemplate: LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
     const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
 
     // Convert ax,bx,ay etc. into top, left
@@ -404,11 +404,6 @@ export class LsDocumentViewer {
     }
   }
 
-  componentDidLoad() {
-    if (this._template) this.initViewer()
-    else this.load()
-  }
-
   initViewer() {
     console.log('Init Viewer  ')
     // Generate a canvas to draw the background PDF on.
@@ -416,7 +411,7 @@ export class LsDocumentViewer {
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + 'px';
     this.ctx = this.canvas.getContext('2d');
-    if(this._template?.link) this.loadAndRender(this._template?.link)
+    if (this._template?.link) this.loadAndRender(this._template?.link)
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
@@ -445,20 +440,19 @@ export class LsDocumentViewer {
 
   async load() {
     try {
-   const result = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any
-      console.log(result  )
-    this.parseTemplate(JSON.stringify(result.template))
+      const result = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any
+      
+      this.parseTemplate(JSON.stringify(result.template))
+      console.log(this._template, '_template')
+      this.initViewer()
 
-    this.initViewer()
- 
-    } catch(e) {
-      console.error('You access token in invalid.', e)
+    } catch (e) {
+      console.error('Your access token is invalid.', e)
     }
   }
 
   componentWillLoad() {
-    if (this.template) this.parseTemplate(this.template);
-    else if (this.token) this.load()
+    if (this.token && !this._template) this.load()
   }
 
   render() {
@@ -552,7 +546,7 @@ export class LsDocumentViewer {
                         <ls-icon name="pre-filled-content" />
                       </div>
                       <h1 class={'properties-header-title'}>Field Properties</h1>
-                      <button class={'tertiaryGrey'} onClick={(e) => {this.selected = []; e.preventDefault()}}>
+                      <button class={'tertiaryGrey'} onClick={(e) => { this.selected = []; e.preventDefault() }}>
                         <ls-icon name="x" size="20" />
                       </button>
                     </div>
