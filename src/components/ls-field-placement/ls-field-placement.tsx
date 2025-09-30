@@ -2,11 +2,11 @@ import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 
 @Component({
-  tag: 'ls-field-dimensions',
-  styleUrl: 'ls-field-dimensions.css',
+  tag: 'ls-field-placement',
+  styleUrl: 'ls-field-placement.css',
   shadow: true,
 })
-export class LsFieldDimensions {
+export class LsFieldPlacement {
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
 
   @Event({
@@ -117,6 +117,19 @@ export class LsFieldDimensions {
                   <ls-icon name="field-match-height"></ls-icon>
                 </button>
               </div>
+            </div>
+
+            {/* <div>
+              Height: <input value={this.dataItem?.height} onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} width="30" />
+            </div>
+            <div>
+              Width: <input value={this.dataItem?.width} onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} width="30" />
+            </div> */}
+            <div>
+              Top: <input value={this.dataItem?.top} onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} width="30" />
+            </div>
+            <div>
+              Left: <input value={this.dataItem?.left} onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} width="30" />
             </div>
           </div>
         )}

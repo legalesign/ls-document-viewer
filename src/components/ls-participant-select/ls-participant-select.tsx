@@ -116,7 +116,7 @@ export class LsParticipantSelect {
               }}
             >
               <ls-icon size="18" name={this.selectedRole?.signerIndex === 0 ? 'user' : this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
-              {this.selectedRole.name}
+              {this.selectedRole.name || `Participant ${this.selectedRole.signerIndex}`}
             </div>
             <button class={'tertiaryGrey expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>
@@ -169,8 +169,8 @@ export class LsParticipantSelect {
                     <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
                   </div>
                   <div class={'role-text'}>
-                    <p class={'role-name'}>{r.name}</p>
-                    <p class={'role-type'}>Signer {r.signerIndex}</p>
+                    <p class={'role-name'}>{r.name || `Participant ${r.signerIndex}`}</p>
+                    <p class={'role-type'}>{r.signerIndex > 200 ? 'Approver' : r.signerIndex > 100 ? 'Witness' : 'Signer'}</p>
                   </div>
                   <ls-icon
                     class={'check-icon'}

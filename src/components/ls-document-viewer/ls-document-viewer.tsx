@@ -71,9 +71,9 @@ export class LsDocumentViewer {
   @Prop() token: string;
 
   /**
- * The id of the template you want to load (if using the internal data adapter).
- * {string}
- */
+   * The id of the template you want to load (if using the internal data adapter).
+   * {string}
+   */
   @Prop() templateid: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
@@ -265,10 +265,10 @@ export class LsDocumentViewer {
    */
   @Method()
   async setZoom(z: number) {
-    this.zoom = z
+    this.zoom = z;
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + "px"
-    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + "px"
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem));
@@ -278,18 +278,19 @@ export class LsDocumentViewer {
   }
 
   /**
- * Decorate the template data object with useful transformations.
- * {string} json of template
- */
+   * Decorate the template data object with useful transformations.
+   * {string} json of template
+   */
   parseTemplate(newValue: string) {
-
     const newTemplate: LSApiTemplate = JSON.parse(newValue) as any as LSApiTemplate;
     const pages = JSON.parse(JSON.parse(newTemplate.pageDimensions));
 
     // Convert ax,bx,ay etc. into top, left
     // We also add the templateId into every object so that all the information
     // required to mutate is in each object.
-    this.pageDimensions = pages.map(p => { return { height: p[1], width: p[0] } })
+    this.pageDimensions = pages.map(p => {
+      return { height: p[1], width: p[0] };
+    });
     const fields = newTemplate.elementConnection.templateElements.map(f => {
       return {
         ...f,
@@ -297,17 +298,19 @@ export class LsDocumentViewer {
         left: f.ax * pages[0].width,
         height: (f.by - f.ay) * pages[0].height,
         width: (f.bx - f.ax) * pages[0].width,
-        templateId: newTemplate.id
-      }
-    })
+        templateId: newTemplate.id,
+      };
+    });
 
-    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => { return { ...ro, templateId: newTemplate.id } })
+    const preparedRoles: LSApiRole[] = newTemplate.roles.map((ro: LSApiRole) => {
+      return { ...ro, templateId: newTemplate.id };
+    });
 
     this._template = {
       ...newTemplate,
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
-      roles: preparedRoles
-    }
+      roles: preparedRoles,
+    };
   }
 
   /**
@@ -368,13 +371,13 @@ export class LsDocumentViewer {
       height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[newElement.page - 1].height),
       width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[newElement.page - 1].width),
       pageDimensions: this.pageDimensions[newElement.page - 1],
-      templateId: this._template.id
-    }
+      templateId: this._template.id,
+    };
   }
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log('sync')
+    console.log('sync');
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
@@ -407,54 +410,57 @@ export class LsDocumentViewer {
   }
 
   initViewer() {
-    console.log('Init Viewer  ')
+    console.log('Init Viewer  ');
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + 'px';
     this.ctx = this.canvas.getContext('2d');
-    if (this._template?.link) this.loadAndRender(this._template?.link)
+    if (this._template?.link) this.loadAndRender(this._template?.link);
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
     // Used for single field selection
-    dropTarget.addEventListener("click", mouseClick.bind(this))
-    dropTarget.addEventListener("mousedown", mouseDown.bind(this))
-    dropTarget.addEventListener("mousemove", mouseMove.bind(this))
-    dropTarget.addEventListener("mouseup", mouseUp.bind(this))
-    document.addEventListener("keydown", keyDown.bind(this))
-    dropTarget.addEventListener("dragenter", (event) => { event.preventDefault(); })
-    dropTarget.addEventListener("dragover", (event) => { event.preventDefault(); })
-    dropTarget.addEventListener("drop", mouseDrop.bind(this))
+    dropTarget.addEventListener('click', mouseClick.bind(this));
+    dropTarget.addEventListener('mousedown', mouseDown.bind(this));
+    dropTarget.addEventListener('mousemove', mouseMove.bind(this));
+    dropTarget.addEventListener('mouseup', mouseUp.bind(this));
+    document.addEventListener('keydown', keyDown.bind(this));
+    dropTarget.addEventListener('dragenter', event => {
+      event.preventDefault();
+    });
+    dropTarget.addEventListener('dragover', event => {
+      event.preventDefault();
+    });
+    dropTarget.addEventListener('drop', mouseDrop.bind(this));
 
     // Generate all the field HTML elements that are required (for every page)
     this._template.elementConnection.templateElements.forEach(te => {
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te))
-    })
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
+    });
   }
 
   showPageFields(page: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
-      fx.className = fx.dataItem.page === page ? '' : 'hidden'
-    })
+      fx.className = fx.dataItem.page === page ? '' : 'hidden';
+    });
   }
 
   async load() {
     try {
-      const result = await this.adapter.execute(this.token, getTemplate(this.templateid)) as any
-      
-      this.parseTemplate(JSON.stringify(result.template))
-      console.log(this._template, '_template')
-      this.initViewer()
+      const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
 
+      this.parseTemplate(JSON.stringify(result.template));
+      console.log(this._template, '_template');
+      this.initViewer();
     } catch (e) {
-      console.error('Your access token is invalid.', e)
+      console.error('Your access token is invalid.', e);
     }
   }
 
   componentWillLoad() {
-    if (this.token && !this._template) this.load()
+    if (this.token && !this._template) this.load();
   }
 
   render() {
@@ -518,24 +524,31 @@ export class LsDocumentViewer {
                       />
                       <ls-toolbox-field elementType="email" formElementType="email" label="Email" defaultHeight={27} defaultWidth={120} validation={1} icon="at-symbol" />
                       <ls-toolbox-field elementType="text" formElementType="text" label="Text" defaultHeight={27} defaultWidth={100} validation={0} icon="text" />
+                      <div class={'expand-fields-row'}>
+                        <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid onClick={() => (this.expandfields = !this.expandfields)} />
+                        <p>More Field Types</p>
+                      </div>
+                      {this.expandfields && (
+                        <div class="fields-box">
+                          <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
 
-                      <ls-toolbox-field elementType="number" formElementType="number" label="Number" defaultHeight={27} defaultWidth={80} validation={50} icon="hashtag" />
+                          <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} icon="check" />
+                          <ls-toolbox-field
+                            elementType="auto sign"
+                            formElementType="auto sign"
+                            label="Auto Sign"
+                            defaultHeight={27}
+                            defaultWidth={120}
+                            validation={3000}
+                            icon="signature"
+                          />
 
-                      <ls-toolbox-field elementType="checkbox" formElementType="checkbox" label="Checkbox" defaultHeight={27} defaultWidth={27} validation={25} icon="check" />
-                      <ls-toolbox-field
-                        elementType="auto sign"
-                        formElementType="auto sign"
-                        label="Auto Sign"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={3000}
-                        icon="signature"
-                      />
+                          <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon="code" />
+                          <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} icon="photograph" />
 
-                      <ls-toolbox-field elementType="regex" formElementType="regex" label="Regex" defaultHeight={27} defaultWidth={120} validation={93} icon="code" />
-                      <ls-toolbox-field elementType="image" formElementType="image" label="Image" defaultHeight={27} defaultWidth={120} validation={90} icon="photograph" />
-
-                      <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon="upload" />
+                          <ls-toolbox-field elementType="file" formElementType="file" label="File" defaultHeight={27} defaultWidth={120} validation={74} icon="upload" />
+                        </div>
+                      )}
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
@@ -548,7 +561,13 @@ export class LsDocumentViewer {
                         <ls-icon name="pre-filled-content" />
                       </div>
                       <h1 class={'properties-header-title'}>Field Properties</h1>
-                      <button class={'tertiaryGrey'} onClick={(e) => { this.selected = []; e.preventDefault() }}>
+                      <button
+                        class={'tertiaryGrey'}
+                        onClick={e => {
+                          this.selected = [];
+                          e.preventDefault();
+                        }}
+                      >
                         <ls-icon name="x" size="20" />
                       </button>
                     </div>

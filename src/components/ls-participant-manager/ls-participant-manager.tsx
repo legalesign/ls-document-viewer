@@ -70,7 +70,6 @@ export class LsParticipantManager {
   };
 
   render() {
-    console.log(this.template?.roles);
     return (
       <Host>
         <div class="ls-editor-infobox">
