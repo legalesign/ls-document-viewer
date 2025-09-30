@@ -25,7 +25,7 @@
   padding: 0.5rem 0.75rem;
 }
 
-.status-bar-section:not(:first-child) {
+:host > :not(:nth-child(2)) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
 
