@@ -20,33 +20,44 @@ export class LsDocumentAdapter {
 
     const prefix = atob(obj.id).substring(0, 3);
     let query = '';
-
+    console.log(prefix, 'prefix')
     switch (prefix) {
       case 'ele':
         switch (event.action) {
           case 'create':
             query = createElement(obj);
+            break;
           case 'update':
             query = updateElement(obj);
+            break;
           case 'delete':
             query = deleteElement(obj);
+            break;
         }
+      break;
       case 'rol':
         switch (event.action) {
           case 'create':
             query = createRole(obj);
+            break;
           case 'update':
             query = updateRole(obj);
+            break;
           case 'delete':
             query = deleteRole(obj);
+            break;
           case 'swap':
             query = updateRole(obj);
+            break;
         }
+        break;
       case 'tpl':
         switch (event.action) {
           case 'update':
             query = updateTemplate(obj);
+            break;
         }
+        break;
     }
     const result = await this.execute(accessToken, query);
     return { result, obj };
