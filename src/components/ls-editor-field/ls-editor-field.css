@@ -1,7 +1,6 @@
 :host {
   display: block;
   position: absolute;
-  border: 1px solid rgb(49, 49, 49);
   margin: 0px;
   padding: 0px 0px 0px 0px;
   isolation: isolate;
@@ -15,14 +14,16 @@
 
   /* no extra spaces */
   white-space: nowrap;
-  border: 0px solid #000;
   margin: 0;
   padding: 0px 0px 0px 0px;
   /* default widths */
   min-width: 2em;
-  background-color: white;
   height: 100%;
   width: 100%;
+}
+
+.ls-editor-field {
+  opacity: 0.7;
 }
 
 .ls-editor-field-editable:focus {
@@ -37,7 +38,6 @@
 
   /* no extra spaces */
   white-space: nowrap;
-  background-color: white;
 
   /* default widths */
   min-width: 2px;
@@ -45,12 +45,16 @@
   width: 98%;
 }
 
-.is-selected {
+/* .is-selected {
     border: 1px dotted rgb(193, 26, 26);
-}
+} */
 
 .hidden-field {
   display: none;
+}
+
+input {
+  all: unset;
 }
 
 .draggable-input {

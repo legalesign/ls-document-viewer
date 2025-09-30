@@ -132,7 +132,7 @@ export namespace Components {
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
-        "page": { height: number, width: number };
+        "page": { height: number; width: number };
         "palette": string[];
         "readonly": boolean;
         "selected": boolean;
@@ -923,7 +923,7 @@ declare namespace LocalJSX {
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
-        "page"?: { height: number, width: number };
+        "page"?: { height: number; width: number };
         "palette"?: string[];
         "readonly"?: boolean;
         "selected"?: boolean;
