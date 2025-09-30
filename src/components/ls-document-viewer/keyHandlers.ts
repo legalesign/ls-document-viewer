@@ -7,7 +7,6 @@ export function keyDown(ev: KeyboardEvent) {
     const altbound = alter.bind(this);
 
     if (ev.key === 'ArrowDown') {
-      console.log('down arrow pressed');
       altbound(original => {
         const alterElement = {
           ...original,
@@ -19,7 +18,6 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowUp') {
-      console.log('up arrow pressed');
       altbound(original => {
         const alterElement = {
           ...original,
@@ -31,7 +29,6 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowRight') {
-      console.log('right arrow pressed');
       altbound(original => {
         const alterElement = {
           ...original,
@@ -43,7 +40,6 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowLeft') {
-      console.log('left arrow pressed');
       altbound(original => {
         const alterElement = {
           ...original,

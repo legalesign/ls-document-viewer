@@ -44,9 +44,16 @@ export function debounce(func, timeout = 300) {
 }
 
 
-// if a mutation has created a new id then update the dataitem in the control
-export function matchData(newObj: any, oldObj: any) {
-  console.log(newObj, oldObj)
+// if a mutation has created a new id then update the dataitem with OLD id to the new one
+export function matchData(data: any) {
+  const newObj = data.result;
+  const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
+
+  console.log(fi, data)
+  // because mutations return the ID back with the mutation name we just assume its the first (and only) JSON prop
+  const id = newObj[Object.keys(newObj)[0]]
+  fi.setAttribute('id', 'ls-field-' + id);
+  fi.dataItem = {...data.obj, id};
 }
 
 // Utility function which extracts the type from any API id

@@ -206,7 +206,9 @@ export class LsDocumentViewer {
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     console.log(event)
-    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(
+      result => {if(me.action === "create") matchData.bind(this)(result)}
+    ));
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
