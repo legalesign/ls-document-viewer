@@ -276,7 +276,28 @@ h6 {
   padding: 0.5rem;
   border-radius: 0.625rem;
   background: var(--primary-10, #eff4ff);
-  color: var(--primary-60, #4456F6);
+  color: var(--primary-60, #4456f6);
+}
+
+.expand-fields-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--gray-80, #6c6e73);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.expand-fields-row p {
+  color: var(--gray-100, #45484d);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
 }
 
 /* @media (min-width: 1200px) {
@@ -563,5 +584,3 @@ button.tertiaryGrey:hover {
 .button-group > :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
-
-
