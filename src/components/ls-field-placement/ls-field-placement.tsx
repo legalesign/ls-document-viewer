@@ -30,6 +30,7 @@ export class LsFieldPlacement {
   isMultiple(dt: LSApiElement | LSApiElement[]): dt is LSApiElement[] {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
+  
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
@@ -50,6 +51,7 @@ export class LsFieldPlacement {
       this.update.emit([singleDiff]);
     }
   }
+  
 
   render() {
     return (
@@ -66,6 +68,39 @@ export class LsFieldPlacement {
         )}
         {this.isSingle(this.dataItem) && (
           <div class={'field-set'}>
+            {/* @Alex I couldn't get this to work?? Only Top and Left */}
+
+            {/* <div class={'ls-field-properties-section'}>
+              <div class={'ls-field-properties-section-text'}>
+                <p class={'ls-field-properties-section-title'}>Alignment</p>
+                <p class={'ls-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+              </div>
+              <div class={'multi-button-group-row'}>
+                <div class={'button-group'}>
+                  <button onClick={() => this.alter({ left: 0 })}>
+                    <ls-icon name="field-alignment-left"></ls-icon>
+                  </button>
+                  <button onClick={() => this.alter({ left: this.dataItem[0].pageDimensions.width})}>
+                    <ls-icon name="field-alignment-centre"></ls-icon>
+                  </button>
+                  <button>
+                    <ls-icon name="field-alignment-right"></ls-icon>
+                  </button>
+                </div>
+                <div class={'button-group'}>
+                  <button onClick={() => this.alter({ top: 0 })}>
+                    <ls-icon name="field-alignment-top"></ls-icon>
+                  </button>
+                  <button>
+                    <ls-icon name="field-alignment-middle"></ls-icon>
+                  </button>
+                  <button>
+                    <ls-icon name="field-alignment-bottom"></ls-icon>
+                  </button>
+                </div>
+              </div>
+            </div> */}
+
             <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
                 <p class={'ls-field-properties-section-title'}>Location</p>

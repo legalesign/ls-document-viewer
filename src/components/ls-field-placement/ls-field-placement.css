@@ -31,6 +31,11 @@
   justify-content: space-between;
 }
 
+.multi-button-group-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .ls-field-properties-section-text {
   display: flex;
   flex-direction: column;
@@ -329,6 +334,7 @@ button.tertiaryGrey:hover {
   border: 1px solid var(--gray-30, #e0e2e5);
   background: var(--white, #ffffff);
   overflow: clip;
+  width: 100%;
 }
 
 .button-group button {
