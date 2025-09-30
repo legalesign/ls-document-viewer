@@ -67,7 +67,7 @@ export class LsParticipantSelect {
     this.selectedRole = role;
     this.isOpen = false;
     this.roleChanged.emit(role.signerIndex);
-
+    
     console.log('Selected role:', this.selectedRole);
   }
 

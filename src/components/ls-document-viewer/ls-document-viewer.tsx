@@ -78,6 +78,7 @@ export class LsDocumentViewer {
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
+  @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate;
   @State() selected: HTMLLsEditorFieldElement[];
@@ -224,6 +225,13 @@ export class LsDocumentViewer {
     if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
     if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
+  }
+
+    // Send selection changes to bars and panels if in use.
+  @Listen('roleChange')
+  roleHandler(event: CustomEvent<number>) {
+    console.log(event.detail)
+   this.signer = event.detail
   }
 
   //

@@ -109,6 +109,10 @@ export namespace Components {
          */
         "showtoolbox"?: boolean;
         /**
+          * @default 0
+         */
+        "signer": number;
+        /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "template": string;
@@ -925,6 +929,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "showtoolbox"?: boolean;
+        /**
+          * @default 0
+         */
+        "signer"?: number;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
