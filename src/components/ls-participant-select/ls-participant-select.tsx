@@ -189,7 +189,7 @@ export class LsParticipantSelect {
                       color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
                     }}
                   >
-                    <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
+                    <ls-icon name={r.roleType === 'WITNESS' ? 'eye' : r.roleType === 'APPROVER' ? 'check-circle' : 'signature'} />
                   </div>
                   <div class={'role-text'}>
                     <p
@@ -206,7 +206,7 @@ export class LsParticipantSelect {
                         '--role-type-selected': `var(--${this.participantColor(r?.signerIndex)}-80)`,
                       }}
                     >
-                      {r.signerIndex > 200 ? 'Approver' : r.signerIndex > 100 ? 'Witness' : 'Signer'}
+                      {r.roleType === 'WITNESS' ? 'Witness' : r.roleType === 'APPROVER' ? 'Approver' : 'Signer'}
                     </p>
                   </div>
                   <ls-icon
