@@ -1,5 +1,5 @@
-import { Component, Host, Prop, h } from '@stencil/core';
-import { LSApiElement } from '../../components';
+import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { LSApiElement, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
@@ -10,6 +10,30 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 export class LsFieldPropertiesSignature {
   @Prop() dataItem: LSApiElement;
   @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'content';
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  mutate: EventEmitter<LSMutateEvent[]>;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  update: EventEmitter<LSMutateEvent[]>;
+
+  deleteField = () => {
+    this.update.emit([{ action: 'delete', data: this.dataItem }]);
+    this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
+  }
+
+  duplicateField = () => {
+    this.update.emit([{ action: 'create', data: { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) } }]);
+    this.mutate.emit([{ action: 'create', data: { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) } }]);
+  }
 
   signerColor = (index: number) => {
     return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
@@ -82,11 +106,11 @@ export class LsFieldPropertiesSignature {
           )}
         </div>
         <div class={'button-footer'}>
-          <button class={'secondary'}>
+          <button class={'secondary'} onClick={() => this.duplicateField()}>
             <ls-icon name="field-duplicate" size="20" />
             Duplicate
           </button>
-          <button class={'destructive'}>
+          <button class={'destructive'} onClick={() => this.deleteField()}>
             <ls-icon name="trash" size="20" />
             Delete
           </button>
