@@ -18,7 +18,7 @@ export class LsParticipantSelect {
    * The currently selected role.
    * {number}
    */
-  @State() selectedRole: { signerIndex: number; name: string } = { signerIndex: 0, name: 'Sender' };
+  @State() selectedRole: { signerIndex: number; name: string; roleType?: string } = { signerIndex: 0, name: 'Sender', roleType: 'SENDER' };
 
   /**
    * The current template roles.
@@ -63,7 +63,7 @@ export class LsParticipantSelect {
 
   @Event() roleChange: EventEmitter<number>;
 
-  selectRole(role: { signerIndex: number; name: string }) {
+  selectRole(role: { signerIndex: number; name: string; roleType?: string }) {
     this.selectedRole = role;
     this.isOpen = false;
     this.roleChange.emit(role.signerIndex);
@@ -116,8 +116,9 @@ export class LsParticipantSelect {
                 color: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-90)`,
               }}
             >
-              <ls-icon size="18" name={this.selectedRole?.signerIndex === 0 ? 'user' : this.selectedRole?.signerIndex > 100 ? 'eye' : 'signature'} />
-              {this.selectedRole.name || `Participant ${this.selectedRole.signerIndex}`}
+              <ls-icon size="18" name={this.selectedRole?.roleType === 'SENDER' ? 'user' : this.selectedRole?.roleType === 'APPROVER' ? 'check-circle' : this.selectedRole?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
+              {this.selectedRole.name ||
+                (this.selectedRole.signerIndex > 100 ? `Participant ${this.selectedRole.signerIndex - 100} Witness` : `Participant ${this.selectedRole.signerIndex}`)}
             </div>
             <button class={'tertiaryGrey expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>
@@ -131,7 +132,7 @@ export class LsParticipantSelect {
                   '--background-selected': `var(--${defaultRolePalette[0]}-10)`,
                   '--check-icon-selected': `var(--${defaultRolePalette[0]}-50)`,
                 }}
-                onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender' })}
+                onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender', roleType: 'SENDER' })}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
                 onMouseLeave={e =>
                   (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
@@ -189,7 +190,7 @@ export class LsParticipantSelect {
                       color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
                     }}
                   >
-                    <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
+                    <ls-icon name={r.roleType === 'WITNESS' ? 'eye' : r.roleType === 'APPROVER' ? 'check-circle' : 'signature'} />
                   </div>
                   <div class={'role-text'}>
                     <p
@@ -198,7 +199,7 @@ export class LsParticipantSelect {
                         '--role-name-selected': `var(--${this.participantColor(r?.signerIndex)}-100)`,
                       }}
                     >
-                      {r.name || `Participant ${r.signerIndex}`}
+                      {r.name || r.signerIndex > 100 ? `Participant ${r.signerIndex - 100} Witness` : `Participant ${r.signerIndex}`}
                     </p>
                     <p
                       class={'role-type'}
@@ -206,7 +207,7 @@ export class LsParticipantSelect {
                         '--role-type-selected': `var(--${this.participantColor(r?.signerIndex)}-80)`,
                       }}
                     >
-                      {r.signerIndex > 200 ? 'Approver' : r.signerIndex > 100 ? 'Witness' : 'Signer'}
+                      {r.roleType === 'WITNESS' ? 'Witness' : r.roleType === 'APPROVER' ? 'Approver' : 'Signer'}
                     </p>
                   </div>
                   <ls-icon

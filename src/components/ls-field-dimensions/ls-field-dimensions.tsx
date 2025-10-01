@@ -63,21 +63,11 @@ export class LsFieldDimensions {
             <div class={'input-row'}>
               <div class={'input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
-                <input
-                  class={'has-leading-icon'}
-                  aria="field-width"
-                  id="field-width"
-                  onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })}
-                />
+                <input class={'has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
               <div class={'input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
-                <input
-                  class={'has-leading-icon'}
-                  aria="field-height"
-                  id="field-height"
-                  onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })}
-                />
+                <input class={'has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
             </div>
 
@@ -100,6 +90,7 @@ export class LsFieldDimensions {
                 <div class={'input-wrapper'}>
                   <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
                   <input
+                    type="number"
                     class={'has-leading-icon'}
                     aria="field-width"
                     id="field-width"
@@ -110,6 +101,7 @@ export class LsFieldDimensions {
                 <div class={'input-wrapper'}>
                   <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
                   <input
+                    type="number"
                     class={'has-leading-icon'}
                     aria="field-height"
                     id="field-height"

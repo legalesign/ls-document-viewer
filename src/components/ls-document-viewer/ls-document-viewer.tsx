@@ -226,7 +226,7 @@ export class LsDocumentViewer {
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
   selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
-    console.log(event.detail)
+    console.log(event.detail);
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
     if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
@@ -589,8 +589,8 @@ export class LsDocumentViewer {
                         icon="text"
                         color={this.signerColor(this.signer)}
                       />
-                      <div class={'expand-fields-row'}>
-                        <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid onClick={() => (this.expandfields = !this.expandfields)} />
+                      <div class={'expand-fields-row'} onClick={() => (this.expandfields = !this.expandfields)}>
+                        <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid />
                         <p>More Field Types</p>
                       </div>
                       {this.expandfields && (
