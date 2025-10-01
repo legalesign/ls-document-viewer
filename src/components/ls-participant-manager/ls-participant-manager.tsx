@@ -60,6 +60,7 @@ export class LsParticipantManager {
           ordinal: this.template.roles.length,
           signerParent: null,
           experience: '',
+          templateId: this.template.id
         },
       },
     ]
