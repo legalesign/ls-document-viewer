@@ -30,7 +30,6 @@ export class LsFieldPlacement {
   isMultiple(dt: LSApiElement | LSApiElement[]): dt is LSApiElement[] {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
-  
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
@@ -51,18 +50,31 @@ export class LsFieldPlacement {
       this.update.emit([singleDiff]);
     }
   }
-  
 
   render() {
     return (
       <Host>
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-field-properties-section'}>
-            <div>
-              Top: <input value={''} onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} width="30" />
+            <div class={'ls-field-properties-section-text'}>
+              <p class={'ls-field-properties-section-title'}>Location</p>
+              <p class={'ls-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
             </div>
-            <div>
-              Left: <input value={''} onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} width="30" />
+            <div class={'input-row'}>
+              <div class={'input-wrapper'}>
+                <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
+                <input type="number" class={'has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} />
+              </div>
+              <div class={'input-wrapper'}>
+                <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
+                <input
+                  type="number"
+                  class={'has-leading-icon'}
+                  aria="left-location"
+                  id="left-location"
+                  onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                />
+              </div>
             </div>
           </div>
         )}
@@ -70,7 +82,7 @@ export class LsFieldPlacement {
           <div class={'field-set'}>
             {/* @Alex I couldn't get this to work?? Only Top and Left */}
 
-            {/* <div class={'ls-field-properties-section'}>
+            <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
                 <p class={'ls-field-properties-section-title'}>Alignment</p>
                 <p class={'ls-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
@@ -80,10 +92,10 @@ export class LsFieldPlacement {
                   <button onClick={() => this.alter({ left: 0 })}>
                     <ls-icon name="field-alignment-left"></ls-icon>
                   </button>
-                  <button onClick={() => this.alter({ left: this.dataItem[0].pageDimensions.width})}>
+                  <button disabled>
                     <ls-icon name="field-alignment-centre"></ls-icon>
                   </button>
-                  <button>
+                  <button disabled>
                     <ls-icon name="field-alignment-right"></ls-icon>
                   </button>
                 </div>
@@ -91,15 +103,15 @@ export class LsFieldPlacement {
                   <button onClick={() => this.alter({ top: 0 })}>
                     <ls-icon name="field-alignment-top"></ls-icon>
                   </button>
-                  <button>
+                  <button disabled>
                     <ls-icon name="field-alignment-middle"></ls-icon>
                   </button>
-                  <button>
+                  <button disabled>
                     <ls-icon name="field-alignment-bottom"></ls-icon>
                   </button>
                 </div>
               </div>
-            </div> */}
+            </div>
 
             <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
@@ -150,7 +162,7 @@ export class LsFieldPlacement {
 
             <div class={'ls-field-properties-section'}>
               <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Scale and Gap</p>
+                <p class={'ls-field-properties-section-title'}>Gap</p>
                 <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
               </div>
               <div class={'input-row'}>

@@ -53,12 +53,12 @@ export class LsFieldPropertiesMultiple {
         </div>
         <div class={'scrolling-container'}>
           {this.fieldSet === 'placement' ? (
-            <>
-              <ls-field-placement dataItem={this.dataItem} />
+            <div class={'field-set'}>
               <ls-field-alignment dataItem={this.dataItem} />
+              <ls-field-placement dataItem={this.dataItem} />
               <ls-field-distribute dataItem={this.dataItem} />
 
-            </>
+            </div>
           ) : this.fieldSet === 'dimensions' ? (
             <div class={'field-set'}>
               <ls-field-dimensions dataItem={this.dataItem} />
@@ -112,16 +112,7 @@ export class LsFieldPropertiesMultiple {
             </div>
           )}
         </div>
-        <div class={'button-footer'}>
-          <button class={'secondary'}>
-            <ls-icon name="field-duplicate" size="20" />
-            Duplicate
-          </button>
-          <button class={'destructive'}>
-            <ls-icon name="trash" size="20" />
-            Delete
-          </button>
-        </div>
+        <ls-field-footer />
         
 
         <slot></slot>

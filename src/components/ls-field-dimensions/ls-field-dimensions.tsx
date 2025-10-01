@@ -56,18 +56,37 @@ export class LsFieldDimensions {
       <Host>
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-field-properties-section'}>
-            <div>
-              Height: <input value={''} onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} width="30" />
+            <div class={'ls-field-properties-section-text'}>
+              <p class={'ls-field-properties-section-title'}>Height and Width</p>
+              <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
             </div>
-            <div>
-              Width: <input value={''} onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} width="30" />
+            <div class={'input-row'}>
+              <div class={'input-wrapper'}>
+                <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                <input
+                  class={'has-leading-icon'}
+                  aria="field-width"
+                  id="field-width"
+                  onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })}
+                />
+              </div>
+              <div class={'input-wrapper'}>
+                <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                <input
+                  class={'has-leading-icon'}
+                  aria="field-height"
+                  id="field-height"
+                  onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })}
+                />
+              </div>
             </div>
-            <div>
+
+            {/* <div>
               Top: <input value={''} onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} width="30" />
             </div>
             <div>
               Left: <input value={''} onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} width="30" />
-            </div>
+            </div> */}
           </div>
         )}
         {this.isSingle(this.dataItem) && (
