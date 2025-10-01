@@ -44,22 +44,30 @@ export function debounce(func, timeout = 300) {
 }
 
 // if a mutation has created a new id then update the dataitem with OLD id to the new one
-export function matchData(data: { result: any; obj: any }) {
+export function matchData(data: { result: any; obj: any; event: LSMutateEvent }) {
   const newObj = data.result;
   const prefix = atob(data.obj.id).substring(0, 3);
   // because mutations return the ID back with the mutation name we just assume its the first (and only) JSON prop
   const id = newObj[Object.keys(newObj)[0]];
 
-  if (prefix === 'ele') {
-    const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
+  if (data.event.action === 'create') {
+    if (prefix === 'ele') {
+      const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
 
-    fi.setAttribute('id', 'ls-field-' + id);
-    fi.dataItem = { ...data.obj, id };
-  } else if (prefix === 'rol') {
-    var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-    this._template.roles.push({ ...data.obj, id });
-    participantManager.template = this._template;
-    participantManager.roles = this._template.roles;    
+      fi.setAttribute('id', 'ls-field-' + id);
+      fi.dataItem = { ...data.obj, id };
+    } else if (prefix === 'rol') {
+      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+      // Note this respread ensures that re-renders are triggered
+      this._template = { ...this._template, roles: [...this._template.roles, { ...data.obj, id }] };
+      participantManager.template = this._template;
+    }
+  } else if (data.event.action === 'delete') {
+    if (prefix === 'rol') {
+      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+      this._template = { ...this._template, roles: this._template.roles.filter(r => r.id !== id) };
+      participantManager.template = this._template;
+    }
   }
 }
 

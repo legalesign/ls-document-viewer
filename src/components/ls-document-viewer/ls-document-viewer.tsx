@@ -211,9 +211,7 @@ export class LsDocumentViewer {
     console.log(event);
     if (this.token)
       event.detail.forEach(me =>
-        this.adapter.handleEvent(me, this.token).then(result => {
-          if (me.action === 'create') matchData.bind(this)(result);
-        }),
+        this.adapter.handleEvent(me, this.token).then(result =>  matchData.bind(this)(result))
       );
   }
 
@@ -503,7 +501,6 @@ export class LsDocumentViewer {
                       } else if (manager.detail === 'participant') {
                         var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
                         participantManager.template = this._template;
-                        participantManager.roles = this._template.roles;
                       }
                       this.manager = manager.detail;
                     }}

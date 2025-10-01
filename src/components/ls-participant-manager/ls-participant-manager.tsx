@@ -23,12 +23,6 @@ export class LsParticipantManager {
    */
   @Prop() template: LSApiTemplate;
 
-    /**
-   * The base roles information (as JSON).
-   * {LSApiTemplate}
-   */
-  @Prop() roles: LSApiRole[];
-
   @Event({
     bubbles: true,
     cancelable: true,
@@ -49,6 +43,7 @@ export class LsParticipantManager {
 
   deleteHandler(role: LSApiRole) {
     this.update.emit([{ action: 'delete', data: role }]);
+    this.mutate.emit([{ action: 'delete', data: role }]);
   }
 
   swapHandler(role1, role2) {
@@ -87,7 +82,7 @@ export class LsParticipantManager {
           <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
         </div>
         <div class="participant-list">
-          {this.template?.roles.map((r, index) => {
+          {this.template && this.template?.roles.map((r, index) => {
             return (
               <div
                 class="participant-card"

@@ -59,7 +59,7 @@ export class LsDocumentAdapter {
         break;
     }
     const result = await this.execute(accessToken, query);
-    return { result, obj };
+    return { result, obj, event };
   };
 
   /**

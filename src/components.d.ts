@@ -322,10 +322,6 @@ export namespace Components {
          */
         "editor": LsDocumentViewer;
         /**
-          * The base roles information (as JSON). {LSApiTemplate}
-         */
-        "roles": LSApiRole[];
-        /**
           * The base template information (as JSON). {LSApiTemplate}
          */
         "template": LSApiTemplate;
@@ -1232,10 +1228,6 @@ declare namespace LocalJSX {
         "editor"?: LsDocumentViewer;
         "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
-        /**
-          * The base roles information (as JSON). {LSApiTemplate}
-         */
-        "roles"?: LSApiRole[];
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
