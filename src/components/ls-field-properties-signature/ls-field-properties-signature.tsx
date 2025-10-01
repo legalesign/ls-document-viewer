@@ -1,7 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { validationTypes } from '../ls-document-viewer/editorUtils';
 
 @Component({
   tag: 'ls-field-properties-signature',

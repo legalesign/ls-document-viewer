@@ -50,13 +50,22 @@ graph TD;
   ls-field-properties-signature --> ls-toggle
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
+  ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
+  ls-field-properties-date --> ls-icon
+  ls-field-properties-date --> ls-toggle
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-autosign --> ls-field-dimensions
+  ls-field-properties-email --> ls-field-placement
   ls-field-properties-email --> ls-field-dimensions
+  ls-field-properties-email --> ls-icon
+  ls-field-properties-email --> ls-toggle
   ls-field-properties-image --> ls-field-dimensions
+  ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-dimensions
+  ls-field-properties-file --> ls-icon
+  ls-field-properties-file --> ls-toggle
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-dimensions
   ls-document-viewer --> ls-field-properties

@@ -26,6 +26,9 @@
  - [ls-field-distribute](../ls-field-distribute)
  - [ls-field-format](../ls-field-format)
  - [ls-field-placement](../ls-field-placement)
+ - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-properties-email](../ls-field-properties-email)
+ - [ls-field-properties-file](../ls-field-properties-file)
  - [ls-field-properties-signature](../ls-field-properties-signature)
  - [ls-formfield](../ls-formfield)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
@@ -48,6 +51,9 @@ graph TD;
   ls-field-distribute --> ls-icon
   ls-field-format --> ls-icon
   ls-field-placement --> ls-icon
+  ls-field-properties-date --> ls-icon
+  ls-field-properties-email --> ls-icon
+  ls-field-properties-file --> ls-icon
   ls-field-properties-signature --> ls-icon
   ls-formfield --> ls-icon
   ls-number-input --> ls-icon
