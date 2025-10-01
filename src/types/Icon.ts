@@ -3,6 +3,7 @@ import { icons } from '../components/ls-icon/icons';
 enum IconEnum {
   // Hero Icons
   MailIcon = 'mail',
+  AutoSign = 'auto-sign',
   BellIcon = 'bell',
   HomeIcon = 'home',
   BriefcaseIcon = 'briefcase',

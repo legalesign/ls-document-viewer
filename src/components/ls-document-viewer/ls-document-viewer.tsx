@@ -508,16 +508,30 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      <ls-toolbox-field
-                        elementType="signature"
-                        formElementType="signature"
-                        label="Signature"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={0}
-                        icon="signature"
-                        color={this.signerColor(this.signer)}
-                      />
+                      {this.signer > 0 ? (
+                        <ls-toolbox-field
+                          elementType="signature"
+                          formElementType="signature"
+                          label="Signature"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={0}
+                          icon="signature"
+                          color={this.signerColor(this.signer)}
+                        />
+                      ) : (
+                        <ls-toolbox-field
+                          elementType="auto sign"
+                          formElementType="auto sign"
+                          label="Auto Sign"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={3000}
+                          icon="auto-sign"
+                          color={this.signerColor(this.signer)}
+                        />
+                      )}
+
                       <ls-toolbox-field
                         elementType="initials"
                         formElementType="initials"
@@ -593,16 +607,6 @@ export class LsDocumentViewer {
                             defaultWidth={27}
                             validation={25}
                             icon="check"
-                            color={this.signerColor(this.signer)}
-                          />
-                          <ls-toolbox-field
-                            elementType="auto sign"
-                            formElementType="auto sign"
-                            label="Auto Sign"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={3000}
-                            icon="signature"
                             color={this.signerColor(this.signer)}
                           />
 

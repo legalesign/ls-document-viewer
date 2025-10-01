@@ -219,6 +219,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
+        /**
+          * @default 'content'
+         */
+        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesNumber {
         "dataItem": LSApiElement1;
@@ -239,6 +243,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
@@ -1114,6 +1122,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
+        /**
+          * @default 'content'
+         */
+        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
@@ -1134,6 +1146,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default 'content'
+         */
+        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldSize {
         "dataItem"?: LSApiElement1[];

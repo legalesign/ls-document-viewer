@@ -56,7 +56,7 @@ export class LsToolbar {
     this.mutate.emit(diffs);
     this.update.emit(diffs);
   }
-  
+
   render() {
     return (
       <Host>
@@ -69,9 +69,6 @@ export class LsToolbar {
               ))}
             </select> */}
             <ls-field-format dataItem={this?.dataItem} />
-            <ls-field-alignment dataItem={this.dataItem} />
-            <ls-field-distribute dataItem={this.dataItem} />
-            <ls-field-size dataItem={this.dataItem} />
           </div>
         ) : (
           <div class={'rowbox'}>
