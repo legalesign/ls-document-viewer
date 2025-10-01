@@ -1,5 +1,5 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
-import { LSApiElement, LSMutateEvent } from '../../components';
+import { Component, Host, Prop, h } from '@stencil/core';
+import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
