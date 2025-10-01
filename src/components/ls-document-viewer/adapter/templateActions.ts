@@ -1,6 +1,5 @@
- 
 // Add a role
-const updateTemplate = (template) => {  
+const updateTemplate = template => {
   return `
     mutation updateTemplate {
       updateTemplate(input: {
@@ -11,7 +10,7 @@ const updateTemplate = (template) => {
         fixSignatureScale: ${template.fixSignatureScale ? template.fixSignatureScale : false}
       })
     }
-  ` 
+  `;
 };
 
 const getTemplate = (id: string) => {
@@ -36,7 +35,12 @@ const getTemplate = (id: string) => {
             fixSignatureScale
             roles{
               id
+              name
+              roleType
               signerIndex
+              ordinal
+              signerParent
+              experience
             }
             elementConnection {
               templateElements {
@@ -84,6 +88,6 @@ const getTemplate = (id: string) => {
           }
         }
       `;
-}
+};
 
 export { updateTemplate, getTemplate };

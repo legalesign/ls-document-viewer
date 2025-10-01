@@ -180,15 +180,17 @@ graph TD;
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-general --> ls-icon
   ls-field-properties-general --> ls-toggle
-  ls-field-properties-multiple --> ls-field-placement
   ls-field-properties-multiple --> ls-field-alignment
+  ls-field-properties-multiple --> ls-field-placement
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-size
   ls-field-properties-multiple --> ls-icon
   ls-field-properties-multiple --> ls-toggle
+  ls-field-properties-multiple --> ls-field-footer
   ls-field-alignment --> ls-icon
   ls-field-distribute --> ls-icon
+  ls-field-size --> ls-icon
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
   ls-field-format --> ls-icon

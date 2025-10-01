@@ -36,6 +36,7 @@
  - [ls-field-properties-number](../ls-field-properties-number)
  - [ls-field-properties-signature](../ls-field-properties-signature)
  - [ls-field-properties-text](../ls-field-properties-text)
+ - [ls-field-size](../ls-field-size)
  - [ls-formfield](../ls-formfield)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
  - [ls-participant-manager](../ls-participant-manager)
@@ -67,6 +68,7 @@ graph TD;
   ls-field-properties-number --> ls-icon
   ls-field-properties-signature --> ls-icon
   ls-field-properties-text --> ls-icon
+  ls-field-size --> ls-icon
   ls-formfield --> ls-icon
   ls-number-input --> ls-icon
   ls-participant-manager --> ls-icon

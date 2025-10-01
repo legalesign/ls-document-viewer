@@ -24,6 +24,7 @@
 
 ### Used by
 
+ - [ls-field-properties-multiple](../ls-field-properties-multiple)
  - [ls-field-properties-signature](../ls-field-properties-signature)
 
 ### Depends on
@@ -34,6 +35,7 @@
 ```mermaid
 graph TD;
   ls-field-footer --> ls-icon
+  ls-field-properties-multiple --> ls-field-footer
   ls-field-properties-signature --> ls-field-footer
   style ls-field-footer fill:#f9f,stroke:#333,stroke-width:4px
 ```

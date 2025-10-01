@@ -322,6 +322,8 @@ export class LsDocumentViewer {
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
       roles: preparedRoles,
     };
+
+    console.log(this._template)
   }
 
   /**
