@@ -134,9 +134,10 @@ export class LsParticipantManager {
                     class="participant-text-type"
                     style={{
                       color: `var(--${this.participantColor(r?.signerIndex)}-80)`,
+                      textTransform: 'capitalize'
                     }}
                   >
-                    {r.signerIndex > 100 ? 'Witness' : 'Signer'}
+                    {r.roleType}
                   </p>
                 </div>
 
