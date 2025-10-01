@@ -57,7 +57,7 @@ export class LsParticipantManager {
           name: 'Signer ' + this.template.roles.length,
           roleType: 'SIGNER',
           signerIndex: this.template.roles.length,
-          ordinal: this.template.roles.length,
+          ordinal: this.template.roles.length - 1,
           signerParent: null,
           experience: '',
           templateId: this.template.id
