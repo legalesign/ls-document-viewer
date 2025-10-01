@@ -164,6 +164,12 @@ export namespace Components {
     interface LsFieldDistribute {
         "dataItem": LSApiElement1[];
     }
+    interface LsFieldFooter {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
+        "dataItem": LSApiElement1;
+    }
     interface LsFieldFormat {
         "dataItem": LSApiElement1[];
     }
@@ -222,6 +228,9 @@ export namespace Components {
         "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesSignature {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
         "dataItem": LSApiElement1;
         /**
           * @default 'content'
@@ -463,6 +472,10 @@ export interface LsFieldDistributeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldDistributeElement;
 }
+export interface LsFieldFooterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldFooterElement;
+}
 export interface LsFieldFormatCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldFormatElement;
@@ -470,10 +483,6 @@ export interface LsFieldFormatCustomEvent<T> extends CustomEvent<T> {
 export interface LsFieldPlacementCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldPlacementElement;
-}
-export interface LsFieldPropertiesSignatureCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLLsFieldPropertiesSignatureElement;
 }
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -607,6 +616,24 @@ declare global {
         prototype: HTMLLsFieldDistributeElement;
         new (): HTMLLsFieldDistributeElement;
     };
+    interface HTMLLsFieldFooterElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
+    interface HTMLLsFieldFooterElement extends Components.LsFieldFooter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldFooterElementEventMap>(type: K, listener: (this: HTMLLsFieldFooterElement, ev: LsFieldFooterCustomEvent<HTMLLsFieldFooterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldFooterElementEventMap>(type: K, listener: (this: HTMLLsFieldFooterElement, ev: LsFieldFooterCustomEvent<HTMLLsFieldFooterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldFooterElement: {
+        prototype: HTMLLsFieldFooterElement;
+        new (): HTMLLsFieldFooterElement;
+    };
     interface HTMLLsFieldFormatElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
@@ -697,19 +724,7 @@ declare global {
         prototype: HTMLLsFieldPropertiesNumberElement;
         new (): HTMLLsFieldPropertiesNumberElement;
     };
-    interface HTMLLsFieldPropertiesSignatureElementEventMap {
-        "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
-    }
     interface HTMLLsFieldPropertiesSignatureElement extends Components.LsFieldPropertiesSignature, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLLsFieldPropertiesSignatureElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesSignatureElement, ev: LsFieldPropertiesSignatureCustomEvent<HTMLLsFieldPropertiesSignatureElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLLsFieldPropertiesSignatureElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesSignatureElement, ev: LsFieldPropertiesSignatureCustomEvent<HTMLLsFieldPropertiesSignatureElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFieldPropertiesSignatureElement: {
         prototype: HTMLLsFieldPropertiesSignatureElement;
@@ -863,6 +878,7 @@ declare global {
         "ls-field-alignment": HTMLLsFieldAlignmentElement;
         "ls-field-dimensions": HTMLLsFieldDimensionsElement;
         "ls-field-distribute": HTMLLsFieldDistributeElement;
+        "ls-field-footer": HTMLLsFieldFooterElement;
         "ls-field-format": HTMLLsFieldFormatElement;
         "ls-field-placement": HTMLLsFieldPlacementElement;
         "ls-field-properties": HTMLLsFieldPropertiesElement;
@@ -1037,6 +1053,14 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
     }
+    interface LsFieldFooter {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
+        "dataItem"?: LSApiElement1;
+        "onMutate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
+    }
     interface LsFieldFormat {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldFormatCustomEvent<LSMutateEvent1[]>) => void;
@@ -1099,13 +1123,14 @@ declare namespace LocalJSX {
         "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesSignature {
+        /**
+          * The selected items information (as JSON). {LSApiElement[]}
+         */
         "dataItem"?: LSApiElement1;
         /**
           * @default 'content'
          */
         "fieldSet"?: 'content' | 'placement' | 'dimensions';
-        "onMutate"?: (event: LsFieldPropertiesSignatureCustomEvent<LSMutateEvent1[]>) => void;
-        "onUpdate"?: (event: LsFieldPropertiesSignatureCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
@@ -1339,6 +1364,7 @@ declare namespace LocalJSX {
         "ls-field-alignment": LsFieldAlignment;
         "ls-field-dimensions": LsFieldDimensions;
         "ls-field-distribute": LsFieldDistribute;
+        "ls-field-footer": LsFieldFooter;
         "ls-field-format": LsFieldFormat;
         "ls-field-placement": LsFieldPlacement;
         "ls-field-properties": LsFieldProperties;
@@ -1385,6 +1411,7 @@ declare module "@stencil/core" {
             "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
             "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;
             "ls-field-distribute": LocalJSX.LsFieldDistribute & JSXBase.HTMLAttributes<HTMLLsFieldDistributeElement>;
+            "ls-field-footer": LocalJSX.LsFieldFooter & JSXBase.HTMLAttributes<HTMLLsFieldFooterElement>;
             "ls-field-format": LocalJSX.LsFieldFormat & JSXBase.HTMLAttributes<HTMLLsFieldFormatElement>;
             "ls-field-placement": LocalJSX.LsFieldPlacement & JSXBase.HTMLAttributes<HTMLLsFieldPlacementElement>;
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;

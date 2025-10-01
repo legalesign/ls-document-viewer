@@ -154,18 +154,27 @@ graph TD;
   ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-toggle
   ls-field-properties-text --> ls-field-dimensions
+  ls-field-properties-number --> ls-field-placement
   ls-field-properties-number --> ls-field-dimensions
+  ls-field-properties-number --> ls-icon
+  ls-field-properties-number --> ls-toggle
   ls-field-properties-autosign --> ls-field-dimensions
   ls-field-properties-email --> ls-field-placement
   ls-field-properties-email --> ls-field-dimensions
   ls-field-properties-email --> ls-icon
   ls-field-properties-email --> ls-toggle
+  ls-field-properties-image --> ls-field-placement
   ls-field-properties-image --> ls-field-dimensions
+  ls-field-properties-image --> ls-icon
+  ls-field-properties-image --> ls-toggle
   ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-file --> ls-icon
   ls-field-properties-file --> ls-toggle
+  ls-field-properties-general --> ls-field-placement
   ls-field-properties-general --> ls-field-dimensions
+  ls-field-properties-general --> ls-icon
+  ls-field-properties-general --> ls-toggle
   ls-field-properties-multiple --> ls-field-dimensions
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-field-alignment

@@ -27,6 +27,9 @@
  - [ls-field-properties-date](../ls-field-properties-date)
  - [ls-field-properties-email](../ls-field-properties-email)
  - [ls-field-properties-file](../ls-field-properties-file)
+ - [ls-field-properties-general](../ls-field-properties-general)
+ - [ls-field-properties-image](../ls-field-properties-image)
+ - [ls-field-properties-number](../ls-field-properties-number)
  - [ls-field-properties-signature](../ls-field-properties-signature)
 
 ### Depends on
@@ -40,6 +43,9 @@ graph TD;
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-email --> ls-field-placement
   ls-field-properties-file --> ls-field-placement
+  ls-field-properties-general --> ls-field-placement
+  ls-field-properties-image --> ls-field-placement
+  ls-field-properties-number --> ls-field-placement
   ls-field-properties-signature --> ls-field-placement
   style ls-field-placement fill:#f9f,stroke:#333,stroke-width:4px
 ```

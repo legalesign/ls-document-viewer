@@ -134,15 +134,6 @@
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-footer {
-  display: flex;
-  padding-top: 1rem;
-  border-top: 1px solid var(--gray-20, #f0f1f2);
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: auto;
-}
 
 .scrolling-container {
   overflow-y: auto;
