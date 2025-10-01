@@ -475,6 +475,10 @@ export interface LsFieldPlacementCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldPlacementElement;
 }
+export interface LsFieldPropertiesSignatureCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldPropertiesSignatureElement;
+}
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
@@ -697,7 +701,19 @@ declare global {
         prototype: HTMLLsFieldPropertiesNumberElement;
         new (): HTMLLsFieldPropertiesNumberElement;
     };
+    interface HTMLLsFieldPropertiesSignatureElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsFieldPropertiesSignatureElement extends Components.LsFieldPropertiesSignature, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldPropertiesSignatureElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesSignatureElement, ev: LsFieldPropertiesSignatureCustomEvent<HTMLLsFieldPropertiesSignatureElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldPropertiesSignatureElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesSignatureElement, ev: LsFieldPropertiesSignatureCustomEvent<HTMLLsFieldPropertiesSignatureElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFieldPropertiesSignatureElement: {
         prototype: HTMLLsFieldPropertiesSignatureElement;
@@ -1092,6 +1108,8 @@ declare namespace LocalJSX {
           * @default 'content'
          */
         "fieldSet"?: 'content' | 'placement' | 'dimensions';
+        "onMutate"?: (event: LsFieldPropertiesSignatureCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldPropertiesSignatureCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
