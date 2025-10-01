@@ -18,6 +18,26 @@ export const icons = [
     </svg>`,
   },
   {
+    name: 'auto-sign',
+    svgSolid: html`No Solid`,
+    svgOutline: html`<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2.56982 14.9622C9.47363 2.35513 4.24988 1.06281 3.25357 3.48957C2.25725 5.91634 2.31282 18.1037 6.76179 17.5019C8.62002 17.2506 10.5361 13.9836 10.5361 11.7403C10.5361 9.1703 8.37459 9.25167 7.82834 10.7181C6.98876 12.9721 7.80105 17.6966 10.5361 17.5019C12.137 17.388 12.2369 15.7379 12.2369 15.7379C12.2369 15.7379 12.5741 17.4006 13.8501 17.5019C15.1261 17.6032 15.5111 16.2249 15.5111 16.2249C15.5111 16.2249 15.9152 17.7481 17.6133 17.5019"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M15.2217 5.6746L14.2694 2.5L13.317 5.6746L10.936 6.66667L13.317 7.65873L14.2694 10.8333L15.2217 7.65873L17.6027 6.66667L15.2217 5.6746Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg> `,
+  },
+  {
     name: 'bell',
     svgSolid: html`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 20" fill="none">
       <path
