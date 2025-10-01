@@ -14,6 +14,7 @@ import { getApiType, matchData } from './editorUtils';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
 import { getTemplate } from './adapter/templateActions';
+import { getGroupData } from './adapter/groupActions';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -81,6 +82,7 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate;
+  @State() _group: any;
   @State() selected: HTMLLsEditorFieldElement[];
 
   /**
@@ -461,11 +463,13 @@ export class LsDocumentViewer {
   }
 
   async load() {
+    // Get all template and group listing data.
     try {
       const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
-
       this.parseTemplate(JSON.stringify(result.template));
-      console.log(this._template, '_template');
+      const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
+      this._group = resultGroup.group;
+      console.log(this._group)
       this.initViewer();
     } catch (e) {
       console.error('Your access token is invalid.', e);

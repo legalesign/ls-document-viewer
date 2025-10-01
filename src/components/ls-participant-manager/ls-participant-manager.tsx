@@ -49,6 +49,7 @@ export class LsParticipantManager {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
   createHandler() {
+    const defaultExperience = this.editor._group.experienceConnection.experiences.find(x => x.defaultExperience === true)
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -59,7 +60,7 @@ export class LsParticipantManager {
           signerIndex: this.template.roles.length,
           ordinal: this.template.roles.length - 1,
           signerParent: null,
-          experience: '',
+          experience: defaultExperience.id,
           templateId: this.template.id
         },
       },

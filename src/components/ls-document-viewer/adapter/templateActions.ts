@@ -33,6 +33,7 @@ const getTemplate = (id: string) => {
             createdBy
             lastSent
             fixSignatureScale
+            groupId
             roles{
               id
               name
