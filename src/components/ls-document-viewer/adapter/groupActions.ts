@@ -1,6 +1,6 @@
 const getGroupData = (id: string) => {
   return `
-        query getGroupData {
+        query LDVgetGroupData {
         group(id: "${id}"){
           id          
           standardMessageConnection{

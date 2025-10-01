@@ -1,7 +1,7 @@
 // Add a role
 const updateTemplate = template => {
   return `
-    mutation updateTemplate {
+    mutation LDVupdateTemplate {
       updateTemplate(input: {
         templateId: "${template.id}", 
         title: "${template.title}",
@@ -15,7 +15,7 @@ const updateTemplate = template => {
 
 const getTemplate = (id: string) => {
   return `
-        query GetTemplate {
+        query LDVGetTemplate {
           template(id: "${id}") {
             id
             title
