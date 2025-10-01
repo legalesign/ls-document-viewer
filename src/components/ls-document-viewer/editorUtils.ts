@@ -43,17 +43,24 @@ export function debounce(func, timeout = 300) {
   };
 }
 
-
 // if a mutation has created a new id then update the dataitem with OLD id to the new one
-export function matchData(data: any) {
+export function matchData(data: { result: any; obj: any }) {
   const newObj = data.result;
-  const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
-
-  console.log(fi, data)
+  const prefix = atob(data.obj.id).substring(0, 3);
   // because mutations return the ID back with the mutation name we just assume its the first (and only) JSON prop
-  const id = newObj[Object.keys(newObj)[0]]
-  fi.setAttribute('id', 'ls-field-' + id);
-  fi.dataItem = {...data.obj, id};
+  const id = newObj[Object.keys(newObj)[0]];
+
+  if (prefix === 'ele') {
+    const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
+
+    fi.setAttribute('id', 'ls-field-' + id);
+    fi.dataItem = { ...data.obj, id };
+  } else if (prefix === 'rol') {
+    var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+    this._template.roles.push({ ...data.obj, id });
+    participantManager.template = this._template;
+    participantManager.roles = this._template.roles;    
+  }
 }
 
 // Utility function which extracts the type from any API id
@@ -163,7 +170,15 @@ export const validationTypes: any = [
   { id: 26, description: '✗/empty', formType: 'checkbox', defaultHeight: 16, defaultWidth: 16, typeDefault: false, inputType: 'text' },
   { id: 74, description: 'File: attach to confirmatory email to sender', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
   { id: 75, description: 'File: append to PDF, PDF files only', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
-  { id: 76, description: 'File: zip with PDF (for internal view, signed PDF for signer)', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
+  {
+    id: 76,
+    description: 'File: zip with PDF (for internal view, signed PDF for signer)',
+    formType: 'file',
+    defaultHeight: 16,
+    defaultWidth: 200,
+    typeDefault: false,
+    inputType: 'text',
+  },
   { id: 90, description: 'Drawn field.', formType: 'drawn field', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
   { id: 2000, description: 'Initials', formType: 'initials', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
   { id: 93, description: 'Regular Expression field', formType: 'regular expression', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
@@ -173,9 +188,9 @@ export const validationTypes: any = [
 
 // See validation table in database for latest values - these have to be hard coded for our HTML control - ASW
 export function getInputType(validation: number): ValidationType {
-  if (validation === null) return validationTypes[0]
-  
+  if (validation === null) return validationTypes[0];
+
   const inputType: ValidationType = validationTypes.find(v => v.id === validation);
 
-  return inputType === null ? validationTypes[0] : inputType
+  return inputType === null ? validationTypes[0] : inputType;
 }

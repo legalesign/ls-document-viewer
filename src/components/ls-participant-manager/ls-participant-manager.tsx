@@ -23,6 +23,12 @@ export class LsParticipantManager {
    */
   @Prop() template: LSApiTemplate;
 
+    /**
+   * The base roles information (as JSON).
+   * {LSApiTemplate}
+   */
+  @Prop() roles: LSApiRole[];
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -55,10 +61,10 @@ export class LsParticipantManager {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: 'Signer ' + this.template.roles.length,
+          name: 'Signer ' +(this.template.roles.length + 1),
           roleType: 'SIGNER',
-          signerIndex: this.template.roles.length,
-          ordinal: this.template.roles.length - 1,
+          signerIndex: this.template.roles.length + 1,
+          ordinal: this.template.roles.length,
           signerParent: null,
           experience: defaultExperience.id,
           templateId: this.template.id

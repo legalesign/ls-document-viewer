@@ -392,7 +392,6 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    console.log('sync');
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
@@ -469,7 +468,6 @@ export class LsDocumentViewer {
       this.parseTemplate(JSON.stringify(result.template));
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
       this._group = resultGroup.group;
-      console.log(this._group)
       this.initViewer();
     } catch (e) {
       console.error('Your access token is invalid.', e);
@@ -505,6 +503,7 @@ export class LsDocumentViewer {
                       } else if (manager.detail === 'participant') {
                         var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
                         participantManager.template = this._template;
+                        participantManager.roles = this._template.roles;
                       }
                       this.manager = manager.detail;
                     }}
