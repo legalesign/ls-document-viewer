@@ -11,10 +11,10 @@ import { validationTypes } from '../ls-document-viewer/editorUtils';
 export class LsFieldPropertiesFile {
   @Prop() dataItem: LSApiElement;
   @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'content';
-  
-    signerColor = (index: number) => {
-      return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
-    };
+
+  signerColor = (index: number) => {
+    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+  };
 
   render() {
     return (
@@ -112,6 +112,7 @@ export class LsFieldPropertiesFile {
             Delete
           </button>
         </div>
+        <slot></slot>
       </Host>
     );
   }
