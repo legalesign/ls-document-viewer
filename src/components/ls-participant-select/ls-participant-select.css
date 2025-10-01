@@ -73,7 +73,7 @@
 
 .dropdown-item.selected,
 .dropdown-item.selected:hover {
-  background: var(--primary-10, #f7f8fa);
+  background: var(--background-selected, #e0e2e5);
 }
 
 .dropdown-item:hover {
@@ -97,7 +97,7 @@
 }
 
 .dropdown-item.selected .check-icon {
-  color: var(--primary-50, #5185ff);
+  color: var(--check-icon-selected);
 }
 
 .role-name {
@@ -117,13 +117,12 @@
 }
 
 .dropdown-item.selected .role-name {
-  color: var(--blue-100, #0c1457);
+  color: var(--role-name-selected);
 }
 
 .dropdown-item.selected .role-type {
-  color: var(--blue-80, #2d4dcc);
+  color: var(--role-type-selected);
 }
-
 
 /* Global Styles */
 
@@ -402,4 +401,3 @@ button.tertiaryGrey:hover {
 .button-group > :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
-

@@ -72,10 +72,11 @@ export class LsParticipantSelect {
   }
 
   participantColor = (index: number) => {
-    return index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
   };
 
   render() {
+    console.log(this.selectedRole);
     return (
       <Host>
         {/* <select onChange={(input) => {
@@ -126,6 +127,10 @@ export class LsParticipantSelect {
             <div class="dropdown-list">
               <div
                 class={this.selectedRole?.signerIndex === 0 ? 'dropdown-item selected' : 'dropdown-item'}
+                style={{
+                  '--background-selected': `var(--${defaultRolePalette[0]}-10)`,
+                  '--check-icon-selected': `var(--${defaultRolePalette[0]}-50)`,
+                }}
                 onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender' })}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
                 onMouseLeave={e =>
@@ -142,8 +147,22 @@ export class LsParticipantSelect {
                   <ls-icon name="user" />
                 </div>
                 <div class={'role-text'}>
-                  <p class={'role-name'}>{'Sender'}</p>
-                  <p class={'role-type'}>You</p>
+                  <p
+                    class={'role-name'}
+                    style={{
+                      '--role-name-selected': `var(--${defaultRolePalette[0]}-100)`,
+                    }}
+                  >
+                    {'Sender'}
+                  </p>
+                  <p
+                    class={'role-type'}
+                    style={{
+                      '--role-type-selected': `var(--${defaultRolePalette[0]}-80)`,
+                    }}
+                  >
+                    You
+                  </p>
                 </div>
 
                 <ls-icon class={'check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle' : 'base-circle'} solid={this.selectedRole?.signerIndex === 0} />
@@ -151,6 +170,10 @@ export class LsParticipantSelect {
               {this.roles.map(r => (
                 <div
                   class={r.signerIndex === this.selectedRole?.signerIndex ? 'dropdown-item selected' : 'dropdown-item'}
+                  style={{
+                    '--background-selected': `var(--${this.participantColor(r?.signerIndex)}-10)`,
+                    '--check-icon-selected': `var(--${this.participantColor(r?.signerIndex)}-50)`,
+                  }}
                   onClick={() => this.selectRole(r)}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
                   onMouseLeave={e =>
@@ -169,8 +192,22 @@ export class LsParticipantSelect {
                     <ls-icon name={r.signerIndex > 100 ? 'eye' : 'signature'} />
                   </div>
                   <div class={'role-text'}>
-                    <p class={'role-name'}>{r.name || `Participant ${r.signerIndex}`}</p>
-                    <p class={'role-type'}>{r.signerIndex > 200 ? 'Approver' : r.signerIndex > 100 ? 'Witness' : 'Signer'}</p>
+                    <p
+                      class={'role-name'}
+                      style={{
+                        '--role-name-selected': `var(--${this.participantColor(r?.signerIndex)}-100)`,
+                      }}
+                    >
+                      {r.name || `Participant ${r.signerIndex}`}
+                    </p>
+                    <p
+                      class={'role-type'}
+                      style={{
+                        '--role-type-selected': `var(--${this.participantColor(r?.signerIndex)}-80)`,
+                      }}
+                    >
+                      {r.signerIndex > 200 ? 'Approver' : r.signerIndex > 100 ? 'Witness' : 'Signer'}
+                    </p>
                   </div>
                   <ls-icon
                     class={'check-icon'}
