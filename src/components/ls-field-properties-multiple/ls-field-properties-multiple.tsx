@@ -1,7 +1,7 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { defaultFieldIcons, getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
+import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 
 @Component({
   tag: 'ls-field-properties-multiple',

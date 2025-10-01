@@ -48,13 +48,18 @@ graph TD;
   ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-signature --> ls-icon
   ls-field-properties-signature --> ls-toggle
+  ls-field-properties-signature --> ls-field-footer
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
+  ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-toggle
+  ls-field-properties-text --> ls-field-placement
   ls-field-properties-text --> ls-field-dimensions
+  ls-field-properties-text --> ls-icon
+  ls-field-properties-text --> ls-toggle
   ls-field-properties-number --> ls-field-placement
   ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-number --> ls-icon
@@ -76,7 +81,15 @@ graph TD;
   ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-general --> ls-icon
   ls-field-properties-general --> ls-toggle
+  ls-field-properties-multiple --> ls-field-placement
+  ls-field-properties-multiple --> ls-field-alignment
+  ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-dimensions
+  ls-field-properties-multiple --> ls-field-size
+  ls-field-properties-multiple --> ls-icon
+  ls-field-properties-multiple --> ls-toggle
+  ls-field-alignment --> ls-icon
+  ls-field-distribute --> ls-icon
   ls-document-viewer --> ls-field-properties
   style ls-field-properties fill:#f9f,stroke:#333,stroke-width:4px
 ```

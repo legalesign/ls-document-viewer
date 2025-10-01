@@ -24,7 +24,7 @@
 
 ### Used by
 
- - [ls-toolbar](../ls-toolbar)
+ - [ls-field-properties-multiple](../ls-field-properties-multiple)
 
 ### Depends on
 
@@ -34,7 +34,7 @@
 ```mermaid
 graph TD;
   ls-field-alignment --> ls-icon
-  ls-toolbar --> ls-field-alignment
+  ls-field-properties-multiple --> ls-field-alignment
   style ls-field-alignment fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

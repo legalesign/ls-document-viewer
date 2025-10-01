@@ -131,7 +131,6 @@ export class LsEditorField {
   };
 
   render() {
-    console.log('Rendering ls-editor-field', this.dataItem);
     return (
       <Host style={{ border: `2px solid var(--${this.participantColor(this.dataItem?.signer)}-60)` }}>
         <div

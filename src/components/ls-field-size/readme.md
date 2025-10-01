@@ -24,12 +24,12 @@
 
 ### Used by
 
- - [ls-toolbar](../ls-toolbar)
+ - [ls-field-properties-multiple](../ls-field-properties-multiple)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-toolbar --> ls-field-size
+  ls-field-properties-multiple --> ls-field-size
   style ls-field-size fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
