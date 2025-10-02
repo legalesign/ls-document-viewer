@@ -21,12 +21,17 @@
 ### Depends on
 
 - [ls-field-dimensions](../ls-field-dimensions)
+- [ls-field-properties-advanced](../ls-field-properties-advanced)
+- [ls-field-footer](../ls-field-footer)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-properties-autosign --> ls-field-dimensions
+  ls-field-properties-autosign --> ls-field-properties-advanced
+  ls-field-properties-autosign --> ls-field-footer
   ls-field-dimensions --> ls-icon
+  ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-autosign
   style ls-field-properties-autosign fill:#f9f,stroke:#333,stroke-width:4px
 ```

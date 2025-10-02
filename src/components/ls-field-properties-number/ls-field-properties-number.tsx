@@ -36,6 +36,7 @@ export class LsFieldPropertiesNumber {
           ) : this.fieldSet === 'dimensions' ? (
             <div class={'field-set'}>
               <ls-field-dimensions dataItem={this.dataItem} />
+              <ls-field-properties-advanced dataItem={this.dataItem} />
             </div>
           ) : (
             <div class={'field-set'}>
@@ -102,16 +103,7 @@ export class LsFieldPropertiesNumber {
             </div>
           )}
         </div>
-        <div class={'button-footer'}>
-          <button class={'secondary'}>
-            <ls-icon name="field-duplicate" size="20" />
-            Duplicate
-          </button>
-          <button class={'destructive'}>
-            <ls-icon name="trash" size="20" />
-            Delete
-          </button>
-        </div>
+        <ls-field-footer dataItem={this.dataItem} />
         <slot></slot>
       </Host>
     );

@@ -23,18 +23,23 @@
 
 - [ls-field-placement](../ls-field-placement)
 - [ls-field-dimensions](../ls-field-dimensions)
+- [ls-field-properties-advanced](../ls-field-properties-advanced)
 - [ls-icon](../ls-icon)
 - [ls-toggle](../ls-toggle)
+- [ls-field-footer](../ls-field-footer)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
+  ls-field-properties-date --> ls-field-properties-advanced
   ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-toggle
+  ls-field-properties-date --> ls-field-footer
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
+  ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-date
   style ls-field-properties-date fill:#f9f,stroke:#333,stroke-width:4px
 ```

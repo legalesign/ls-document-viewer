@@ -15,6 +15,9 @@ export class LsFieldPropertiesAutosign {
          <div class={"ls-field-properties-section"}>Self Sign Field</div>
          <div>Label: <input value={this.dataItem?.label} width="30"/></div>
          <ls-field-dimensions dataItem={this.dataItem} />
+         <ls-field-properties-advanced dataItem={this.dataItem} />
+
+          <ls-field-footer dataItem={this.dataItem} />
          <slot></slot>
        </Host>
      );

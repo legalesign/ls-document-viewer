@@ -23,6 +23,7 @@
 
 - [ls-field-placement](../ls-field-placement)
 - [ls-field-dimensions](../ls-field-dimensions)
+- [ls-field-properties-advanced](../ls-field-properties-advanced)
 - [ls-icon](../ls-icon)
 - [ls-toggle](../ls-toggle)
 
@@ -31,6 +32,7 @@
 graph TD;
   ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-dimensions
+  ls-field-properties-file --> ls-field-properties-advanced
   ls-field-properties-file --> ls-icon
   ls-field-properties-file --> ls-toggle
   ls-field-placement --> ls-icon

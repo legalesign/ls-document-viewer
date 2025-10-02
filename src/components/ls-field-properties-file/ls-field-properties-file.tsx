@@ -36,6 +36,7 @@ export class LsFieldPropertiesFile {
           ) : this.fieldSet === 'dimensions' ? (
             <div class={'field-set'}>
               <ls-field-dimensions dataItem={this.dataItem} />
+              <ls-field-properties-advanced dataItem={this.dataItem} />
             </div>
           ) : (
             <div class={'field-set'}>

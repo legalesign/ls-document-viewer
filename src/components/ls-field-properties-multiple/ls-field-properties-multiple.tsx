@@ -10,7 +10,7 @@ import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 })
 export class LsFieldPropertiesMultiple {
   @Prop() dataItem: LSApiElement[];
-  @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'content';
+  @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'placement';
 
   signerColor = (index: number) => {
     return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];

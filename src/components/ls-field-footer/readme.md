@@ -24,7 +24,12 @@
 
 ### Used by
 
+ - [ls-field-properties-autosign](../ls-field-properties-autosign)
+ - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-properties-email](../ls-field-properties-email)
+ - [ls-field-properties-image](../ls-field-properties-image)
  - [ls-field-properties-multiple](../ls-field-properties-multiple)
+ - [ls-field-properties-number](../ls-field-properties-number)
  - [ls-field-properties-signature](../ls-field-properties-signature)
 
 ### Depends on
@@ -35,7 +40,12 @@
 ```mermaid
 graph TD;
   ls-field-footer --> ls-icon
+  ls-field-properties-autosign --> ls-field-footer
+  ls-field-properties-date --> ls-field-footer
+  ls-field-properties-email --> ls-field-footer
+  ls-field-properties-image --> ls-field-footer
   ls-field-properties-multiple --> ls-field-footer
+  ls-field-properties-number --> ls-field-footer
   ls-field-properties-signature --> ls-field-footer
   style ls-field-footer fill:#f9f,stroke:#333,stroke-width:4px
 ```

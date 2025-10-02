@@ -41,6 +41,7 @@ export class LsFieldPropertiesSignature {
           ) : this.fieldSet === 'dimensions' ? (
             <div class={'field-set'}>
               <ls-field-dimensions dataItem={this.dataItem} />
+              <ls-field-properties-advanced dataItem={this.dataItem} />
             </div>
           ) : (
             <div class={'field-set'}>
@@ -85,6 +86,7 @@ export class LsFieldPropertiesSignature {
                 </div>
                 <input value={this.dataItem?.label} width="30" placeholder="eg. Sign Here" />
               </div>
+
             </div>
           )}
         </div>

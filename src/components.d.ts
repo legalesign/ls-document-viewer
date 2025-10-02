@@ -179,6 +179,9 @@ export namespace Components {
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
     }
+    interface LsFieldPropertiesAdvanced {
+        "dataItem": LSApiElement;
+    }
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
     }
@@ -220,7 +223,7 @@ export namespace Components {
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
         /**
-          * @default 'content'
+          * @default 'placement'
          */
         "fieldSet": 'content' | 'placement' | 'dimensions';
     }
@@ -492,6 +495,10 @@ export interface LsFieldPlacementCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldPlacementElement;
 }
+export interface LsFieldPropertiesAdvancedCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldPropertiesAdvancedElement;
+}
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
@@ -683,6 +690,24 @@ declare global {
     var HTMLLsFieldPropertiesElement: {
         prototype: HTMLLsFieldPropertiesElement;
         new (): HTMLLsFieldPropertiesElement;
+    };
+    interface HTMLLsFieldPropertiesAdvancedElementEventMap {
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
+    }
+    interface HTMLLsFieldPropertiesAdvancedElement extends Components.LsFieldPropertiesAdvanced, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldPropertiesAdvancedElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesAdvancedElement, ev: LsFieldPropertiesAdvancedCustomEvent<HTMLLsFieldPropertiesAdvancedElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldPropertiesAdvancedElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesAdvancedElement, ev: LsFieldPropertiesAdvancedCustomEvent<HTMLLsFieldPropertiesAdvancedElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldPropertiesAdvancedElement: {
+        prototype: HTMLLsFieldPropertiesAdvancedElement;
+        new (): HTMLLsFieldPropertiesAdvancedElement;
     };
     interface HTMLLsFieldPropertiesAutosignElement extends Components.LsFieldPropertiesAutosign, HTMLStencilElement {
     }
@@ -890,6 +915,7 @@ declare global {
         "ls-field-format": HTMLLsFieldFormatElement;
         "ls-field-placement": HTMLLsFieldPlacementElement;
         "ls-field-properties": HTMLLsFieldPropertiesElement;
+        "ls-field-properties-advanced": HTMLLsFieldPropertiesAdvancedElement;
         "ls-field-properties-autosign": HTMLLsFieldPropertiesAutosignElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
         "ls-field-properties-email": HTMLLsFieldPropertiesEmailElement;
@@ -1082,6 +1108,11 @@ declare namespace LocalJSX {
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
     }
+    interface LsFieldPropertiesAdvanced {
+        "dataItem"?: LSApiElement;
+        "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
+    }
     interface LsFieldPropertiesAutosign {
         "dataItem"?: LSApiElement1;
     }
@@ -1123,7 +1154,7 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
         /**
-          * @default 'content'
+          * @default 'placement'
          */
         "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
@@ -1384,6 +1415,7 @@ declare namespace LocalJSX {
         "ls-field-format": LsFieldFormat;
         "ls-field-placement": LsFieldPlacement;
         "ls-field-properties": LsFieldProperties;
+        "ls-field-properties-advanced": LsFieldPropertiesAdvanced;
         "ls-field-properties-autosign": LsFieldPropertiesAutosign;
         "ls-field-properties-date": LsFieldPropertiesDate;
         "ls-field-properties-email": LsFieldPropertiesEmail;
@@ -1431,6 +1463,7 @@ declare module "@stencil/core" {
             "ls-field-format": LocalJSX.LsFieldFormat & JSXBase.HTMLAttributes<HTMLLsFieldFormatElement>;
             "ls-field-placement": LocalJSX.LsFieldPlacement & JSXBase.HTMLAttributes<HTMLLsFieldPlacementElement>;
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
+            "ls-field-properties-advanced": LocalJSX.LsFieldPropertiesAdvanced & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAdvancedElement>;
             "ls-field-properties-autosign": LocalJSX.LsFieldPropertiesAutosign & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAutosignElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
             "ls-field-properties-email": LocalJSX.LsFieldPropertiesEmail & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesEmailElement>;

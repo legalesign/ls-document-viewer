@@ -46,6 +46,7 @@ graph TD;
   ls-field-properties --> ls-field-properties-multiple
   ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-dimensions
+  ls-field-properties-signature --> ls-field-properties-advanced
   ls-field-properties-signature --> ls-icon
   ls-field-properties-signature --> ls-toggle
   ls-field-properties-signature --> ls-field-footer
@@ -54,31 +55,43 @@ graph TD;
   ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
+  ls-field-properties-date --> ls-field-properties-advanced
   ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-toggle
+  ls-field-properties-date --> ls-field-footer
   ls-field-properties-text --> ls-field-placement
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-text --> ls-icon
   ls-field-properties-text --> ls-toggle
   ls-field-properties-number --> ls-field-placement
   ls-field-properties-number --> ls-field-dimensions
+  ls-field-properties-number --> ls-field-properties-advanced
   ls-field-properties-number --> ls-icon
   ls-field-properties-number --> ls-toggle
+  ls-field-properties-number --> ls-field-footer
   ls-field-properties-autosign --> ls-field-dimensions
+  ls-field-properties-autosign --> ls-field-properties-advanced
+  ls-field-properties-autosign --> ls-field-footer
   ls-field-properties-email --> ls-field-placement
   ls-field-properties-email --> ls-field-dimensions
+  ls-field-properties-email --> ls-field-properties-advanced
   ls-field-properties-email --> ls-icon
   ls-field-properties-email --> ls-toggle
+  ls-field-properties-email --> ls-field-footer
   ls-field-properties-image --> ls-field-placement
   ls-field-properties-image --> ls-field-dimensions
+  ls-field-properties-image --> ls-field-properties-advanced
   ls-field-properties-image --> ls-icon
   ls-field-properties-image --> ls-toggle
+  ls-field-properties-image --> ls-field-footer
   ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-dimensions
+  ls-field-properties-file --> ls-field-properties-advanced
   ls-field-properties-file --> ls-icon
   ls-field-properties-file --> ls-toggle
   ls-field-properties-general --> ls-field-placement
   ls-field-properties-general --> ls-field-dimensions
+  ls-field-properties-general --> ls-field-properties-advanced
   ls-field-properties-general --> ls-icon
   ls-field-properties-general --> ls-toggle
   ls-field-properties-multiple --> ls-field-alignment
