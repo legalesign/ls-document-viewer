@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                       | Default     |
-| ---------- | ----------- | ----------- | ------------------------------------------ | ----------- |
-| `dataItem` | `data-item` |             | `LSApiElement[]`                           | `undefined` |
-| `fieldSet` | `field-set` |             | `"content" \| "dimensions" \| "placement"` | `'content'` |
+| Property   | Attribute   | Description | Type                                       | Default       |
+| ---------- | ----------- | ----------- | ------------------------------------------ | ------------- |
+| `dataItem` | `data-item` |             | `LSApiElement[]`                           | `undefined`   |
+| `fieldSet` | `field-set` |             | `"content" \| "dimensions" \| "placement"` | `'placement'` |
 
 
 ## Dependencies

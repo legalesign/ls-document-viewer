@@ -27,6 +27,7 @@
  - [ls-field-properties-autosign](../ls-field-properties-autosign)
  - [ls-field-properties-date](../ls-field-properties-date)
  - [ls-field-properties-email](../ls-field-properties-email)
+ - [ls-field-properties-general](../ls-field-properties-general)
  - [ls-field-properties-image](../ls-field-properties-image)
  - [ls-field-properties-multiple](../ls-field-properties-multiple)
  - [ls-field-properties-number](../ls-field-properties-number)
@@ -43,6 +44,7 @@ graph TD;
   ls-field-properties-autosign --> ls-field-footer
   ls-field-properties-date --> ls-field-footer
   ls-field-properties-email --> ls-field-footer
+  ls-field-properties-general --> ls-field-footer
   ls-field-properties-image --> ls-field-footer
   ls-field-properties-multiple --> ls-field-footer
   ls-field-properties-number --> ls-field-footer

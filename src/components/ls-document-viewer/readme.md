@@ -193,6 +193,7 @@ graph TD;
   ls-field-properties-general --> ls-field-properties-advanced
   ls-field-properties-general --> ls-icon
   ls-field-properties-general --> ls-toggle
+  ls-field-properties-general --> ls-field-footer
   ls-field-properties-multiple --> ls-field-alignment
   ls-field-properties-multiple --> ls-field-placement
   ls-field-properties-multiple --> ls-field-distribute

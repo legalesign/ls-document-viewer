@@ -26,6 +26,7 @@
 - [ls-field-properties-advanced](../ls-field-properties-advanced)
 - [ls-icon](../ls-icon)
 - [ls-toggle](../ls-toggle)
+- [ls-field-footer](../ls-field-footer)
 
 ### Graph
 ```mermaid
@@ -35,8 +36,10 @@ graph TD;
   ls-field-properties-general --> ls-field-properties-advanced
   ls-field-properties-general --> ls-icon
   ls-field-properties-general --> ls-toggle
+  ls-field-properties-general --> ls-field-footer
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
+  ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-general
   style ls-field-properties-general fill:#f9f,stroke:#333,stroke-width:4px
 ```
