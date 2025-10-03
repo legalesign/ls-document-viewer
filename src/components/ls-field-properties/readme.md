@@ -56,9 +56,12 @@ graph TD;
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-field-properties-advanced
-  ls-field-properties-date --> ls-icon
+  ls-field-properties-date --> ls-props-section
+  ls-field-properties-date --> ls-field-type-display
   ls-field-properties-date --> ls-toggle
+  ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-field-footer
+  ls-field-type-display --> ls-icon
   ls-field-properties-text --> ls-field-placement
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-text --> ls-icon

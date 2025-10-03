@@ -248,6 +248,13 @@ export namespace Components {
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
     }
+    interface LsFieldTypeDisplay {
+        "assignee": number;
+        /**
+          * @default 'signature'
+         */
+        "fieldType": string;
+    }
     interface LsFormfield {
         "aria"?: string;
         /**
@@ -330,6 +337,14 @@ export namespace Components {
           * @default []
          */
         "roles"?: LSApiRole[];
+    }
+    interface LsPropsSection {
+        /**
+          * @default false
+         */
+        "row"?: boolean;
+        "sectionDescription"?: string;
+        "sectionTitle": string;
     }
     interface LsRadioInput {
         /**
@@ -781,6 +796,12 @@ declare global {
         prototype: HTMLLsFieldSizeElement;
         new (): HTMLLsFieldSizeElement;
     };
+    interface HTMLLsFieldTypeDisplayElement extends Components.LsFieldTypeDisplay, HTMLStencilElement {
+    }
+    var HTMLLsFieldTypeDisplayElement: {
+        prototype: HTMLLsFieldTypeDisplayElement;
+        new (): HTMLLsFieldTypeDisplayElement;
+    };
     interface HTMLLsFormfieldElement extends Components.LsFormfield, HTMLStencilElement {
     }
     var HTMLLsFormfieldElement: {
@@ -835,6 +856,12 @@ declare global {
     var HTMLLsParticipantSelectElement: {
         prototype: HTMLLsParticipantSelectElement;
         new (): HTMLLsParticipantSelectElement;
+    };
+    interface HTMLLsPropsSectionElement extends Components.LsPropsSection, HTMLStencilElement {
+    }
+    var HTMLLsPropsSectionElement: {
+        prototype: HTMLLsPropsSectionElement;
+        new (): HTMLLsPropsSectionElement;
     };
     interface HTMLLsRadioInputElement extends Components.LsRadioInput, HTMLStencilElement {
     }
@@ -921,11 +948,13 @@ declare global {
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
+        "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
         "ls-formfield": HTMLLsFormfieldElement;
         "ls-icon": HTMLLsIconElement;
         "ls-number-input": HTMLLsNumberInputElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
+        "ls-props-section": HTMLLsPropsSectionElement;
         "ls-radio-input": HTMLLsRadioInputElement;
         "ls-select-input": HTMLLsSelectInputElement;
         "ls-statusbar": HTMLLsStatusbarElement;
@@ -1175,6 +1204,13 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
     }
+    interface LsFieldTypeDisplay {
+        "assignee"?: number;
+        /**
+          * @default 'signature'
+         */
+        "fieldType"?: string;
+    }
     interface LsFormfield {
         "aria"?: string;
         /**
@@ -1262,6 +1298,14 @@ declare namespace LocalJSX {
           * @default []
          */
         "roles"?: LSApiRole[];
+    }
+    interface LsPropsSection {
+        /**
+          * @default false
+         */
+        "row"?: boolean;
+        "sectionDescription"?: string;
+        "sectionTitle"?: string;
     }
     interface LsRadioInput {
         /**
@@ -1415,11 +1459,13 @@ declare namespace LocalJSX {
         "ls-field-properties-signature": LsFieldPropertiesSignature;
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
+        "ls-field-type-display": LsFieldTypeDisplay;
         "ls-formfield": LsFormfield;
         "ls-icon": LsIcon;
         "ls-number-input": LsNumberInput;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
+        "ls-props-section": LsPropsSection;
         "ls-radio-input": LsRadioInput;
         "ls-select-input": LsSelectInput;
         "ls-statusbar": LsStatusbar;
@@ -1463,11 +1509,13 @@ declare module "@stencil/core" {
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
+            "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
             "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
+            "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
             "ls-radio-input": LocalJSX.LsRadioInput & JSXBase.HTMLAttributes<HTMLLsRadioInputElement>;
             "ls-select-input": LocalJSX.LsSelectInput & JSXBase.HTMLAttributes<HTMLLsSelectInputElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;

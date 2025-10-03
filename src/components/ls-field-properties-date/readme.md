@@ -24,8 +24,10 @@
 - [ls-field-placement](../ls-field-placement)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-properties-advanced](../ls-field-properties-advanced)
-- [ls-icon](../ls-icon)
+- [ls-props-section](../ls-props-section)
+- [ls-field-type-display](../ls-field-type-display)
 - [ls-toggle](../ls-toggle)
+- [ls-icon](../ls-icon)
 - [ls-field-footer](../ls-field-footer)
 
 ### Graph
@@ -34,11 +36,14 @@ graph TD;
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-field-properties-advanced
-  ls-field-properties-date --> ls-icon
+  ls-field-properties-date --> ls-props-section
+  ls-field-properties-date --> ls-field-type-display
   ls-field-properties-date --> ls-toggle
+  ls-field-properties-date --> ls-icon
   ls-field-properties-date --> ls-field-footer
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
+  ls-field-type-display --> ls-icon
   ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-date
   style ls-field-properties-date fill:#f9f,stroke:#333,stroke-width:4px

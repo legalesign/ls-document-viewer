@@ -1,6 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
-import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
 
 @Component({
@@ -36,58 +35,21 @@ export class LsFieldPropertiesDate {
             </div>
           ) : (
             <div class={'field-set'}>
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Field Type</p>
-                  <p class={'ls-field-properties-section-description'}>The Field you currently have selected</p>
-                </div>
-                <div
-                  class={'ls-field-type-wrapper'}
-                  style={{
-                    border: `1px dashed ${defaultRolePalette[this.dataItem?.signer % 100].s30}`,
-                    background: defaultRolePalette[this.dataItem?.signer % 100].s10,
-                  }}
-                >
-                  <div class={'ls-field-type-inner'}>
-                    <div
-                      class={'ls-field-type-icon'}
-                      style={{
-                        border: `1px solid ${defaultRolePalette[this.dataItem?.signer % 100].s60}`,
-                        color: defaultRolePalette[this.dataItem?.signer % 100].s60,
-                        background: defaultRolePalette[this.dataItem?.signer % 100].s10,
-                      }}
-                    >
-                      <ls-icon name="calender" size="20" />
-                    </div>
-                    <p class={'ls-field-type-name'}>Date</p>
-                  </div>
-                </div>
-              </div>
-              <div class={'ls-field-properties-section row'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Required Field</p>
-                </div>
+              <ls-props-section sectionTitle="Field Type" sectionDescription="The Field you currently have selected">
+                <ls-field-type-display fieldType={this.dataItem?.elementType} assignee={this.dataItem?.signer} />
+              </ls-props-section>
+              <ls-props-section sectionTitle="Required Field" row={true}>
                 <ls-toggle />
-              </div>
-
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Field Label</p>
-                  <p class={'ls-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
-                </div>
-                <input value={this.dataItem?.label} width="30" placeholder="eg. Sign Here" />
-              </div>
-
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Content Format</p>
-                  <p class={'ls-field-properties-section-description'}>Select the specific format you want the Recipient to enter..</p>
-                </div>
+              </ls-props-section>
+              <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
+                <input value={this.dataItem?.label} placeholder="eg. Sign Here" />
+              </ls-props-section>
+              <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
                 <div class={'input-wrapper'}>
                   <ls-icon id="selectorIcon" name="selector"></ls-icon>
                   <select>
                     {validationTypes
-                      .filter(type => type.formType === 'date')
+                      .filter(type => type.formType === this.dataItem?.elementType)
                       .map(type => (
                         <option selected={this.dataItem?.validation === type.id} value={type.value}>
                           {type.description}
@@ -95,7 +57,7 @@ export class LsFieldPropertiesDate {
                       ))}
                   </select>
                 </div>
-              </div>
+              </ls-props-section>
             </div>
           )}
         </div>
