@@ -126,8 +126,8 @@ export class LsFieldPlacement {
                     class={'has-leading-icon'}
                     aria="top-location"
                     id="top-location"
-                    value={this.dataItem?.top}
-                    onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
+                    value={this.dataItem?.left}
+                    onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
                   />
                 </div>
                 <div class={'input-wrapper'}>
@@ -137,8 +137,8 @@ export class LsFieldPlacement {
                     class={'has-leading-icon'}
                     aria="left-location"
                     id="left-location"
-                    value={this.dataItem?.left}
-                    onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                    value={this.dataItem?.top}
+                    onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
                     width="30"
                   />
                 </div>
