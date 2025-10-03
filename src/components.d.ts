@@ -70,11 +70,6 @@ export namespace Components {
          */
         "readonly"?: boolean;
         /**
-          * Allows you to change the colours used for each role in the template. {SignerColor[]}
-          * @default defaultRolePalette
-         */
-        "roleColors"?: string[];
-        /**
           * Page and field resize on zoom change
          */
         "setZoom": (z: number) => Promise<void>;
@@ -137,7 +132,6 @@ export namespace Components {
     interface LsEditorField {
         "dataItem": LSApiElement1;
         "page": { height: number; width: number };
-        "palette": string[];
         "readonly": boolean;
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
@@ -990,11 +984,6 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
-          * Allows you to change the colours used for each role in the template. {SignerColor[]}
-          * @default defaultRolePalette
-         */
-        "roleColors"?: string[];
-        /**
           * Whether the page previewvertical ribbon will be shown {boolean}
           * @default false
          */
@@ -1053,7 +1042,6 @@ declare namespace LocalJSX {
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
         "page"?: { height: number; width: number };
-        "palette"?: string[];
         "readonly"?: boolean;
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';

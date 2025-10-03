@@ -13,7 +13,6 @@ export class LsEditorField {
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean;
   @Prop() readonly: boolean;
-  @Prop() palette: string[];
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number; width: number };
   @State() isEditing: boolean = false;
@@ -117,7 +116,7 @@ export class LsEditorField {
 
     // New dropped components automatically need selecting.
     if (this.selected) {
-      this.component.style.background = `var(--${this.participantColor(this.dataItem?.signer)}-20)`;
+      this.component.style.background = this.participantColor(this.dataItem?.signer).faded;
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
@@ -132,7 +131,7 @@ export class LsEditorField {
 
   render() {
     return (
-      <Host style={{ border: `2px solid var(--${this.participantColor(this.dataItem?.signer)}-60)` }}>
+      <Host style={{ border: `1px ${this.participantColor(this.dataItem?.signer).primary} solid` }}>
         <div
           class={{
             'ls-editor-field': true,
