@@ -5,7 +5,6 @@ import { PDFDocumentProxy, PDFPageProxy, PDFPageViewport, PDFRenderParams, PDFRe
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
-import { defaultRolePalette } from './defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
@@ -470,9 +469,6 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
-  signerColor = (index: number) => {
-    return defaultRolePalette[index % 100].s60 || defaultRolePalette[0].s60;
-  };
 
   render() {
     return (
@@ -514,7 +510,7 @@ export class LsDocumentViewer {
                           defaultWidth={120}
                           validation={0}
                           icon="signature"
-                          color={this.signerColor(this.signer)}
+                          signer={this.signer}
                         />
                       ) : (
                         <ls-toolbox-field
@@ -525,7 +521,7 @@ export class LsDocumentViewer {
                           defaultWidth={120}
                           validation={3000}
                           icon="auto-sign"
-                          color={this.signerColor(this.signer)}
+                          signer={this.signer}
                         />
                       )}
 
@@ -537,7 +533,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={2000}
                         icon="initials"
-                        color={this.signerColor(this.signer)}
+                        signer={this.signer}
                       />
                       <ls-toolbox-field
                         elementType="date"
@@ -547,7 +543,7 @@ export class LsDocumentViewer {
                         defaultWidth={80}
                         validation={2}
                         icon="calender"
-                        color={this.signerColor(this.signer)}
+                        signer={this.signer}
                       />
                       <ls-toolbox-field
                         elementType="signing date"
@@ -557,7 +553,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={30}
                         icon="auto-date"
-                        color={this.signerColor(this.signer)}
+                        signer={this.signer}
                       />
                       <ls-toolbox-field
                         elementType="email"
@@ -567,7 +563,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={1}
                         icon="at-symbol"
-                        color={this.signerColor(this.signer)}
+                        signer={this.signer}
                       />
                       <ls-toolbox-field
                         elementType="text"
@@ -577,7 +573,7 @@ export class LsDocumentViewer {
                         defaultWidth={100}
                         validation={0}
                         icon="text"
-                        color={this.signerColor(this.signer)}
+                        signer={this.signer}
                       />
                       <div class={'expand-fields-row'} onClick={() => (this.expandfields = !this.expandfields)}>
                         <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid />
@@ -593,7 +589,7 @@ export class LsDocumentViewer {
                             defaultWidth={80}
                             validation={50}
                             icon="hashtag"
-                            color={this.signerColor(this.signer)}
+                            signer={this.signer}
                           />
 
                           <ls-toolbox-field
@@ -604,7 +600,7 @@ export class LsDocumentViewer {
                             defaultWidth={27}
                             validation={25}
                             icon="check"
-                            color={this.signerColor(this.signer)}
+                            signer={this.signer}
                           />
 
                           <ls-toolbox-field
@@ -615,7 +611,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={93}
                             icon="code"
-                            color={this.signerColor(this.signer)}
+                            signer={this.signer}
                           />
                           <ls-toolbox-field
                             elementType="image"
@@ -625,7 +621,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={90}
                             icon="photograph"
-                            color={this.signerColor(this.signer)}
+                            signer={this.signer}
                           />
 
                           <ls-toolbox-field
@@ -636,7 +632,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={74}
                             icon="upload"
-                            color={this.signerColor(this.signer)}
+                            signer={this.signer}
                           />
                         </div>
                       )}

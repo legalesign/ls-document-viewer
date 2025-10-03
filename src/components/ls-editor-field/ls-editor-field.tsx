@@ -82,7 +82,7 @@ export class LsEditorField {
   @Watch('selected')
   watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
     if (_newValue) {
-      this.component.style.background = `var(--${this.participantColor(this.dataItem?.signer)}-20)`;
+      this.component.style.background = defaultRolePalette[this.dataItem?.signer % 100].s20;
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
@@ -116,7 +116,7 @@ export class LsEditorField {
 
     // New dropped components automatically need selecting.
     if (this.selected) {
-      this.component.style.background = this.participantColor(this.dataItem?.signer).s20;
+      this.component.style.background = defaultRolePalette[this.dataItem?.signer % 100].s20;
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
@@ -125,13 +125,9 @@ export class LsEditorField {
     }
   }
 
-  participantColor = (index: number) => {
-    return defaultRolePalette[index % 100] || defaultRolePalette[0];
-  };
-
   render() {
     return (
-      <Host style={{ border: `1px ${this.participantColor(this.dataItem?.signer).s60} solid` }}>
+      <Host style={{ border: `1px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
         <div
           class={{
             'ls-editor-field': true,

@@ -6,7 +6,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 @Component({
   tag: 'ls-participant-select',
   styleUrl: 'ls-participant-select.css',
-  shadow: true
+  shadow: true,
 })
 export class LsParticipantSelect {
   @Prop({
@@ -71,10 +71,6 @@ export class LsParticipantSelect {
     console.log('Selected role:', this.selectedRole);
   }
 
-  participantColor = (index: number) => {
-    return defaultRolePalette[index % 100] || defaultRolePalette[0];
-  };
-
   render() {
     console.log(this.selectedRole);
     return (
@@ -112,11 +108,22 @@ export class LsParticipantSelect {
             <div
               class={'selected-role-label'}
               style={{
-                background: this.participantColor(this.selectedRole?.signerIndex).s20,
-                color: this.participantColor(this.selectedRole?.signerIndex).s80,
+                background: defaultRolePalette[this.selectedRole?.signerIndex % 100].s20,
+                color: defaultRolePalette[this.selectedRole?.signerIndex % 100].s80,
               }}
             >
-              <ls-icon size="18" name={this.selectedRole?.roleType === 'SENDER' ? 'user' : this.selectedRole?.roleType === 'APPROVER' ? 'check-circle' : this.selectedRole?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
+              <ls-icon
+                size="18"
+                name={
+                  this.selectedRole?.roleType === 'SENDER'
+                    ? 'user'
+                    : this.selectedRole?.roleType === 'APPROVER'
+                    ? 'check-circle'
+                    : this.selectedRole?.roleType === 'WITNESS'
+                    ? 'eye'
+                    : 'signature'
+                }
+              />
               {this.selectedRole.name ||
                 (this.selectedRole.signerIndex > 100 ? `Participant ${this.selectedRole.signerIndex - 100} Witness` : `Participant ${this.selectedRole.signerIndex}`)}
             </div>
@@ -172,8 +179,8 @@ export class LsParticipantSelect {
                 <div
                   class={r.signerIndex === this.selectedRole?.signerIndex ? 'dropdown-item selected' : 'dropdown-item'}
                   style={{
-                    '--background-selected': this.participantColor(r?.signerIndex).s10,
-                    '--check-icon-selected': this.participantColor(r?.signerIndex).s50,
+                    '--background-selected': defaultRolePalette[r?.signerIndex % 100].s10,
+                    '--check-icon-selected': defaultRolePalette[r?.signerIndex % 100].s50,
                   }}
                   onClick={() => this.selectRole(r)}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
@@ -186,8 +193,8 @@ export class LsParticipantSelect {
                   <div
                     class={'role-icon'}
                     style={{
-                      background: r.signerIndex > 100 ? this.participantColor(r?.signerIndex).s20 : this.participantColor(r?.signerIndex).s50,
-                      color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
+                      background: r.signerIndex > 100 ? defaultRolePalette[r?.signerIndex % 100].s30 : defaultRolePalette[r?.signerIndex % 100].s40,
+                      color: defaultRolePalette[r?.signerIndex % 100].s90,
                     }}
                   >
                     <ls-icon name={r.roleType === 'WITNESS' ? 'eye' : r.roleType === 'APPROVER' ? 'check-circle' : 'signature'} />
@@ -196,15 +203,15 @@ export class LsParticipantSelect {
                     <p
                       class={'role-name'}
                       style={{
-                        '--role-name-selected': `var(--${this.participantColor(r?.signerIndex)}-100)`,
+                        '--role-name-selected': defaultRolePalette[r?.signerIndex % 100].s100,
                       }}
                     >
-                      {r.name || r.signerIndex > 100 ? `Participant ${r.signerIndex - 100} Witness` : `Participant ${r.signerIndex}`}
+                      {r.name || (r.signerIndex > 100 ? `Participant ${r.signerIndex - 100} Witness` : `Participant ${r.signerIndex}`)}
                     </p>
                     <p
                       class={'role-type'}
                       style={{
-                        '--role-type-selected': `var(--${this.participantColor(r?.signerIndex)}-80)`,
+                        '--role-type-selected': defaultRolePalette[r?.signerIndex % 100].s80,
                       }}
                     >
                       {r.roleType === 'WITNESS' ? 'Witness' : r.roleType === 'APPROVER' ? 'Approver' : 'Signer'}
