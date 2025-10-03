@@ -35,6 +35,11 @@ export class LsDocumentOptions {
             {/* <ls-formfield as="radio" value={'false'} /> */}
             <ls-toggle></ls-toggle>
           </div>
+           <div class={'template-detail-section'}>
+            <p class="template-detail-section-title">Lock</p>
+            {/* <ls-formfield as="radio" value={'false'} /> */}
+            <ls-toggle></ls-toggle>
+          </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>
             <ls-label text={this.template?.pageDimensionArray?.length} />
