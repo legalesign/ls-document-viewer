@@ -72,7 +72,7 @@ export class LsParticipantSelect {
   }
 
   participantColor = (index: number) => {
-    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+    return defaultRolePalette[index % 100] || defaultRolePalette[0];
   };
 
   render() {
@@ -112,8 +112,8 @@ export class LsParticipantSelect {
             <div
               class={'selected-role-label'}
               style={{
-                background: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-20)`,
-                color: `var(--${this.participantColor(this.selectedRole?.signerIndex)}-90)`,
+                background: this.participantColor(this.selectedRole?.signerIndex).s20,
+                color: this.participantColor(this.selectedRole?.signerIndex).s80,
               }}
             >
               <ls-icon size="18" name={this.selectedRole?.roleType === 'SENDER' ? 'user' : this.selectedRole?.roleType === 'APPROVER' ? 'check-circle' : this.selectedRole?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
@@ -129,8 +129,8 @@ export class LsParticipantSelect {
               <div
                 class={this.selectedRole?.signerIndex === 0 ? 'dropdown-item selected' : 'dropdown-item'}
                 style={{
-                  '--background-selected': `var(--${defaultRolePalette[0]}-10)`,
-                  '--check-icon-selected': `var(--${defaultRolePalette[0]}-50)`,
+                  '--background-selected': defaultRolePalette[0].s10,
+                  '--check-icon-selected': defaultRolePalette[0].s50,
                 }}
                 onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender', roleType: 'SENDER' })}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
@@ -141,8 +141,8 @@ export class LsParticipantSelect {
                 <div
                   class={'role-icon'}
                   style={{
-                    background: `var(--${defaultRolePalette[0]}-40)`,
-                    color: `var(--${defaultRolePalette[0]}-80)`,
+                    background: defaultRolePalette[0].s50,
+                    color: defaultRolePalette[0].s80,
                   }}
                 >
                   <ls-icon name="user" />
@@ -151,7 +151,7 @@ export class LsParticipantSelect {
                   <p
                     class={'role-name'}
                     style={{
-                      '--role-name-selected': `var(--${defaultRolePalette[0]}-100)`,
+                      '--role-name-selected': defaultRolePalette[0].s80,
                     }}
                   >
                     {'Sender'}
@@ -159,7 +159,7 @@ export class LsParticipantSelect {
                   <p
                     class={'role-type'}
                     style={{
-                      '--role-type-selected': `var(--${defaultRolePalette[0]}-80)`,
+                      '--role-type-selected': defaultRolePalette[0].s80,
                     }}
                   >
                     You
@@ -172,8 +172,8 @@ export class LsParticipantSelect {
                 <div
                   class={r.signerIndex === this.selectedRole?.signerIndex ? 'dropdown-item selected' : 'dropdown-item'}
                   style={{
-                    '--background-selected': `var(--${this.participantColor(r?.signerIndex)}-10)`,
-                    '--check-icon-selected': `var(--${this.participantColor(r?.signerIndex)}-50)`,
+                    '--background-selected': this.participantColor(r?.signerIndex).s10,
+                    '--check-icon-selected': this.participantColor(r?.signerIndex).s50,
                   }}
                   onClick={() => this.selectRole(r)}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
@@ -186,7 +186,7 @@ export class LsParticipantSelect {
                   <div
                     class={'role-icon'}
                     style={{
-                      background: r.signerIndex > 100 ? `var(--${this.participantColor(r?.signerIndex)}-30)` : `var(--${this.participantColor(r?.signerIndex)}-40)`,
+                      background: r.signerIndex > 100 ? this.participantColor(r?.signerIndex).s20 : this.participantColor(r?.signerIndex).s50,
                       color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
                     }}
                   >

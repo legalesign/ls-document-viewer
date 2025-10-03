@@ -116,7 +116,7 @@ export class LsEditorField {
 
     // New dropped components automatically need selecting.
     if (this.selected) {
-      this.component.style.background = this.participantColor(this.dataItem?.signer).faded;
+      this.component.style.background = this.participantColor(this.dataItem?.signer).s20;
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
@@ -131,7 +131,7 @@ export class LsEditorField {
 
   render() {
     return (
-      <Host style={{ border: `1px ${this.participantColor(this.dataItem?.signer).primary} solid` }}>
+      <Host style={{ border: `1px ${this.participantColor(this.dataItem?.signer).s60} solid` }}>
         <div
           class={{
             'ls-editor-field': true,

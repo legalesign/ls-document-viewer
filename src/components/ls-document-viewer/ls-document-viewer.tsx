@@ -471,7 +471,7 @@ export class LsDocumentViewer {
   }
 
   signerColor = (index: number) => {
-    return defaultRolePalette[index % 100].primary || defaultRolePalette[0].primary;
+    return defaultRolePalette[index % 100].s60 || defaultRolePalette[0].s60;
   };
 
   render() {
