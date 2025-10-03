@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
-import { LSApiElement, LSMutateEvent } from '../../components';
+import { LSApiElement } from '../../types/LSApiElement';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-field-placement',
@@ -31,6 +32,15 @@ export class LsFieldPlacement {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
 
+  getValue(key) {
+    if (this.isMultiple(this.dataItem)) {
+      return "";
+    } else if (this.isSingle(this.dataItem)) {
+      return this.dataItem[key]
+    }
+    return ''
+  }
+
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
@@ -51,6 +61,21 @@ export class LsFieldPlacement {
     }
   }
 
+  center() {
+    return this.dataItem[0].pageDimensions[this.dataItem[0].page].width / 2 - this.dataItem[0].width / 2;
+  }
+
+  right() {
+    return this.dataItem[0].pageDimensions[this.dataItem[0].page].width - this.dataItem[0].width;
+  }
+
+  middle() {
+    return this.dataItem[0].pageDimensions[this.dataItem[0].page].height / 2 - this.dataItem[0].height / 2;
+  }
+
+  bottom() {
+    return this.dataItem[0].pageDimensions[this.dataItem[0].page].height - this.dataItem[0].height;
+  }
   render() {
     return (
       <Host>
@@ -89,13 +114,13 @@ export class LsFieldPlacement {
               </div>
               <div class={'multi-button-group-row'}>
                 <div class={'button-group'}>
-                  <button onClick={() => this.alter({ left: 0 })}>
+                  <button onClick={() => { this.alter({ left: 0 }) }}>
                     <ls-icon name="field-alignment-left"></ls-icon>
                   </button>
-                  <button disabled>
+                  <button onClick={() => { this.alter({ left: this.center() }) }}>
                     <ls-icon name="field-alignment-centre"></ls-icon>
                   </button>
-                  <button disabled>
+                  <button onClick={() => { this.alter({ left: this.right() }) }}>
                     <ls-icon name="field-alignment-right"></ls-icon>
                   </button>
                 </div>
@@ -103,10 +128,10 @@ export class LsFieldPlacement {
                   <button onClick={() => this.alter({ top: 0 })}>
                     <ls-icon name="field-alignment-top"></ls-icon>
                   </button>
-                  <button disabled>
+                  <button onClick={() => { this.alter({ top: this.middle() }) }}>
                     <ls-icon name="field-alignment-middle"></ls-icon>
                   </button>
-                  <button disabled>
+                  <button onClick={() => { this.alter({ top: this.bottom() }) }}>
                     <ls-icon name="field-alignment-bottom"></ls-icon>
                   </button>
                 </div>

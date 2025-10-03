@@ -8,7 +8,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent'
   shadow: true,
 })
 export class LsFieldPropertiesAdvanced {
-  @Prop({ mutable: true }) dataItem: LSApiElement;
+  @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
 
   @Event({
     bubbles: true,
@@ -33,56 +33,73 @@ export class LsFieldPropertiesAdvanced {
   }
 
   alter(diff: object) {
-    const singleDiff = { action: 'update', data: { ...this.dataItem, ...diff } as LSApiElement } as LSMutateEvent;
-    this.dataItem = singleDiff.data as LSApiElement;
-    this.mutate.emit([singleDiff]);
-    this.update.emit([singleDiff]);
+    let diffs = []
+    if(this.isMultiple(this.dataItem)) {
+      this.dataItem = this.dataItem.map(di => { return { ...di, ...diff } as LSApiElement });
+
+      diffs = this.dataItem.map(di => { return { action: 'update', data: { ...di, ...diff } as LSApiElement } as LSMutateEvent });
+    } else if(this.isMultiple(this.dataItem)) {
+      this.dataItem = { ...this.dataItem, ...diff };  
+
+      diffs = [{ action: 'update', data: { ...this.dataItem, ...diff }}];
+    }
+    this.mutate.emit(diffs);
+    this.update.emit(diffs);
+  }
+  
+  getValue(key) {
+    if(this.isMultiple(this.dataItem)) {
+      return "";
+    } else if(this.isSingle(this.dataItem)) {
+      return this.dataItem[key]
+    }
+    return ''
   }
 
   render() {
     return (
       <Host>
-          <div class={'ls-field-properties-section'}>
-            <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Field Order</p>
-              <p class={'ls-field-properties-section-description'}>Determines what order fields will be filled in by the user</p>
+        <div class={'ls-field-properties-section'}>
+          <div class={'ls-field-properties-section-text'}>
+            <p class={'ls-field-properties-section-title'}>Field Order</p>
+            <p class={'ls-field-properties-section-description'}>Determines what order fields will be filled in by the user</p>
+          </div>
+          <div class={'input-row'}>
+            <div class={'input-wrapper'}>
+              <input value={this.getValue('fieldOrder')} width="30" placeholder="eg. Sign Here" onChange={e => this.alter({ fieldOrder: (e.target as HTMLInputElement).value })} />
             </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'}>
-                <input value={this.dataItem?.fieldOrder} width="30" placeholder="eg. Sign Here" onChange={e => this.alter({ fieldOrder: (e.target as HTMLInputElement).value })} />
-              </div>
+          </div>
+        </div>
+
+
+        <div class={'ls-field-properties-section'}>
+          <div class={'ls-field-properties-section-text'}>
+            <p class={'ls-field-properties-section-title'}>Ref Name</p>
+          </div>
+          <div class={'input-row'}>
+            <div class={'input-wrapper'}>
+              <input value={this.getValue('link')} width="30" placeholder="" onChange={e => this.alter({ link: (e.target as HTMLInputElement).value })} />
             </div>
           </div>
 
-
-          <div class={'ls-field-properties-section'}>
-            <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Ref Name</p>
-            </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'}>
-                <input value={this.dataItem?.link} width="30" placeholder="" onChange={e => this.alter({ link: (e.target as HTMLInputElement).value })} />
-              </div>
-            </div>
-
-            <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Link Field</p>
-            </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'}>
-                <input value={this.dataItem?.logicGroup} width="30" placeholder="" onChange={e => this.alter({ logicGroup: (e.target as HTMLInputElement).value })} />
-              </div>
-            </div>
-
-              <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Link Value</p>
-            </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'}>
-                <input value={this.dataItem?.logicAction} width="30" placeholder="" onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })} />
-              </div>
+          <div class={'ls-field-properties-section-text'}>
+            <p class={'ls-field-properties-section-title'}>Link Field</p>
+          </div>
+          <div class={'input-row'}>
+            <div class={'input-wrapper'}>
+              <input value={this.getValue('logicGroup')} width="30" placeholder="" onChange={e => this.alter({ logicGroup: (e.target as HTMLInputElement).value })} />
             </div>
           </div>
+
+          <div class={'ls-field-properties-section-text'}>
+            <p class={'ls-field-properties-section-title'}>Link Value</p>
+          </div>
+          <div class={'input-row'}>
+            <div class={'input-wrapper'}>
+              <input value={this.getValue('logicAction')} width="30" placeholder="" onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })} />
+            </div>
+          </div>
+        </div>
       </Host>
     );
   }

@@ -168,13 +168,13 @@ export namespace Components {
         "dataItem": LSApiElement1[];
     }
     interface LsFieldPlacement {
-        "dataItem": LSApiElement1 | LSApiElement1[];
+        "dataItem": LSApiElement | LSApiElement[];
     }
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
     }
     interface LsFieldPropertiesAdvanced {
-        "dataItem": LSApiElement;
+        "dataItem": LSApiElement | LSApiElement[];
     }
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
@@ -662,8 +662,8 @@ declare global {
         new (): HTMLLsFieldFormatElement;
     };
     interface HTMLLsFieldPlacementElementEventMap {
-        "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
     }
     interface HTMLLsFieldPlacementElement extends Components.LsFieldPlacement, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldPlacementElementEventMap>(type: K, listener: (this: HTMLLsFieldPlacementElement, ev: LsFieldPlacementCustomEvent<HTMLLsFieldPlacementElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1089,15 +1089,15 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: LsFieldFormatCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldPlacement {
-        "dataItem"?: LSApiElement1 | LSApiElement1[];
-        "onMutate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent1[]>) => void;
-        "onUpdate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent1[]>) => void;
+        "dataItem"?: LSApiElement | LSApiElement[];
+        "onMutate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent[]>) => void;
     }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
     }
     interface LsFieldPropertiesAdvanced {
-        "dataItem"?: LSApiElement;
+        "dataItem"?: LSApiElement | LSApiElement[];
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
     }
