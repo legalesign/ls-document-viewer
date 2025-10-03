@@ -63,7 +63,7 @@ export class LsFieldPlacement {
             <div class={'input-row'}>
               <div class={'input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
-                <input type="number" class={'has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })} />
+                <input type="number" class={'has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} />
               </div>
               <div class={'input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
@@ -72,7 +72,7 @@ export class LsFieldPlacement {
                   class={'has-leading-icon'}
                   aria="left-location"
                   id="left-location"
-                  onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                  onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
                 />
               </div>
             </div>
