@@ -12,10 +12,6 @@ export class LsFieldPropertiesDate {
   @Prop() dataItem: LSApiElement;
   @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'content';
 
-  signerColor = (index: number) => {
-    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
-  };
-
   render() {
     return (
       <Host>
@@ -48,17 +44,17 @@ export class LsFieldPropertiesDate {
                 <div
                   class={'ls-field-type-wrapper'}
                   style={{
-                    border: `1px dashed var(--${this.signerColor(this.dataItem?.signer)}-30)`,
-                    background: `var(--${this.signerColor(this.dataItem?.signer)}-10)`,
+                    border: `1px dashed ${defaultRolePalette[this.dataItem?.signer % 100].s30}`,
+                    background: defaultRolePalette[this.dataItem?.signer % 100].s10,
                   }}
                 >
                   <div class={'ls-field-type-inner'}>
                     <div
                       class={'ls-field-type-icon'}
                       style={{
-                        border: `1px solid var(--${this.signerColor(this.dataItem?.signer)}-60)`,
-                        color: `var(--${this.signerColor(this.dataItem?.signer)}-60)`,
-                        background: `var(--${this.signerColor(this.dataItem?.signer)}-10)`,
+                        border: `1px solid ${defaultRolePalette[this.dataItem?.signer % 100].s60}`,
+                        color: defaultRolePalette[this.dataItem?.signer % 100].s60,
+                        background: defaultRolePalette[this.dataItem?.signer % 100].s10,
                       }}
                     >
                       <ls-icon name="calender" size="20" />

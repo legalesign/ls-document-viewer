@@ -1,5 +1,6 @@
 import { Component, Host, Listen, Prop, h } from '@stencil/core';
 import { Icon } from '../../types/Icon';
+import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -36,7 +37,7 @@ export class LsToolboxField {
   /**
    * The signer color of the element
    */
-  @Prop() color: string = 'primary';
+  @Prop() signer: number = 0;
 
   @Listen('dragstart')
   handleDragStart(event) {
@@ -64,7 +65,7 @@ export class LsToolboxField {
   render() {
     return (
       <Host draggable="true">
-        <div class="toolbox-field-icon" style={{ '--signer-color-light': `var(--${this.color}-10)`, '--signer-color': `var(--${this.color}-60)` }}>
+        <div class="toolbox-field-icon" style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}>
           <ls-icon name={this.icon} size="20" />
         </div>
         <p class="toolbox-field-label">{this.label}</p>

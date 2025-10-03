@@ -426,11 +426,6 @@ export namespace Components {
     }
     interface LsToolboxField {
         /**
-          * The signer color of the element
-          * @default 'primary'
-         */
-        "color": string;
-        /**
           * The starting height of this control type in pixels.
          */
         "defaultHeight": number;
@@ -451,6 +446,11 @@ export namespace Components {
           * The text to display for this field type.
          */
         "label": string;
+        /**
+          * The signer color of the element
+          * @default 0
+         */
+        "signer": number;
         /**
           * @default 0
          */
@@ -1360,11 +1360,6 @@ declare namespace LocalJSX {
     }
     interface LsToolboxField {
         /**
-          * The signer color of the element
-          * @default 'primary'
-         */
-        "color"?: string;
-        /**
           * The starting height of this control type in pixels.
          */
         "defaultHeight"?: number;
@@ -1385,6 +1380,11 @@ declare namespace LocalJSX {
           * The text to display for this field type.
          */
         "label"?: string;
+        /**
+          * The signer color of the element
+          * @default 0
+         */
+        "signer"?: number;
         /**
           * @default 0
          */
