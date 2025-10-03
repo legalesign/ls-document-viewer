@@ -71,7 +71,7 @@ export class LsParticipantManager {
   }
 
   participantColor = (index: number) => {
-    return index > 200 ? 'gray' : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+    return defaultRolePalette[index % 100] || defaultRolePalette[0];
   };
 
   render() {
@@ -90,8 +90,8 @@ export class LsParticipantManager {
                   this.selectedHandler(r);
                 }}
                 style={{
-                  background: `var(--${this.participantColor(r?.signerIndex)}-10)`,
-                  border: '1px solid ' + `var(--${this.participantColor(r?.signerIndex)}-60)`,
+                  background: this.participantColor(r?.signerIndex).s10,
+                  border: `1px solid ${this.participantColor(r?.signerIndex).s60}`,
                   marginTop: r.signerIndex > 100 && '-0.813rem',
                 }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.innerButton')?.classList.remove('hidden')}
@@ -102,8 +102,8 @@ export class LsParticipantManager {
                   <div
                     class={'role-label'}
                     style={{
-                      background: `var(--${this.participantColor(r?.signerIndex)}-20)`,
-                      color: `var(--${this.participantColor(r?.signerIndex)}-90)`,
+                      background: this.participantColor(r?.signerIndex).s20,
+                      color:this.participantColor(r?.signerIndex).s90,
                     }}
                   >
                     <ls-icon name={r?.signerIndex > 100 ? 'eye' : 'signature'} />
@@ -128,7 +128,7 @@ export class LsParticipantManager {
                   <p
                     class="participant-text-description"
                     style={{
-                      color: `var(--${this.participantColor(r?.signerIndex)}-100)`,
+                      color: this.participantColor(r?.signerIndex).s100,
                     }}
                   >
                     {r.name || `${r.signerIndex > 100 ? 'Witness' : 'Signer'} ${index + 1}`}
@@ -136,7 +136,7 @@ export class LsParticipantManager {
                   <p
                     class="participant-text-type"
                     style={{
-                      color: `var(--${this.participantColor(r?.signerIndex)}-80)`,
+                      color: this.participantColor(r?.signerIndex).s80,
                       textTransform: 'capitalize'
                     }}
                   >
