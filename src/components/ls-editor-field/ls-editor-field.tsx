@@ -127,7 +127,7 @@ export class LsEditorField {
   }
 
   participantColor = (index: number) => {
-    return index > 200 ? defaultRolePalette[index - 200] : index > 100 ? defaultRolePalette[index - 100] : defaultRolePalette[index] || defaultRolePalette[0];
+    return defaultRolePalette[index % 100] || defaultRolePalette[0];
   };
 
   render() {
