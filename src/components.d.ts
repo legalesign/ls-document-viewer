@@ -8,14 +8,14 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
-import { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
 import { LSApiRole } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
-export { LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
 export { LSApiRole } from "./types/LSApiRole";
@@ -152,6 +152,13 @@ export namespace Components {
     interface LsFieldAlignment {
         "dataItem": LSApiElement1[];
     }
+    interface LsFieldContent {
+        "dataItem": LSApiElement1;
+        /**
+          * @default true
+         */
+        "showValidationTypes": boolean;
+    }
     interface LsFieldDimensions {
         "dataItem": LSApiElement1 | LSApiElement1[];
     }
@@ -179,12 +186,16 @@ export namespace Components {
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
     }
+    interface LsFieldPropertiesContainer {
+        "dataItem": LSApiElement1;
+        "selectedTab": string;
+        /**
+          * @default []
+         */
+        "tabs": string[];
+    }
     interface LsFieldPropertiesDate {
         "dataItem": LSApiElement1;
-        /**
-          * @default 'content'
-         */
-        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesEmail {
         "dataItem": LSApiElement1;
@@ -299,6 +310,11 @@ export namespace Components {
         "solid"?: boolean;
     }
     interface LsInputWrapper {
+        "leadingIcon": Icon1;
+        /**
+          * @default false
+         */
+        "select": boolean;
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -606,6 +622,12 @@ declare global {
         prototype: HTMLLsFieldAlignmentElement;
         new (): HTMLLsFieldAlignmentElement;
     };
+    interface HTMLLsFieldContentElement extends Components.LsFieldContent, HTMLStencilElement {
+    }
+    var HTMLLsFieldContentElement: {
+        prototype: HTMLLsFieldContentElement;
+        new (): HTMLLsFieldContentElement;
+    };
     interface HTMLLsFieldDimensionsElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
@@ -725,6 +747,12 @@ declare global {
     var HTMLLsFieldPropertiesAutosignElement: {
         prototype: HTMLLsFieldPropertiesAutosignElement;
         new (): HTMLLsFieldPropertiesAutosignElement;
+    };
+    interface HTMLLsFieldPropertiesContainerElement extends Components.LsFieldPropertiesContainer, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesContainerElement: {
+        prototype: HTMLLsFieldPropertiesContainerElement;
+        new (): HTMLLsFieldPropertiesContainerElement;
     };
     interface HTMLLsFieldPropertiesDateElement extends Components.LsFieldPropertiesDate, HTMLStencilElement {
     }
@@ -938,6 +966,7 @@ declare global {
         "ls-editor-table": HTMLLsEditorTableElement;
         "ls-feature-column": HTMLLsFeatureColumnElement;
         "ls-field-alignment": HTMLLsFieldAlignmentElement;
+        "ls-field-content": HTMLLsFieldContentElement;
         "ls-field-dimensions": HTMLLsFieldDimensionsElement;
         "ls-field-distribute": HTMLLsFieldDistributeElement;
         "ls-field-footer": HTMLLsFieldFooterElement;
@@ -946,6 +975,7 @@ declare global {
         "ls-field-properties": HTMLLsFieldPropertiesElement;
         "ls-field-properties-advanced": HTMLLsFieldPropertiesAdvancedElement;
         "ls-field-properties-autosign": HTMLLsFieldPropertiesAutosignElement;
+        "ls-field-properties-container": HTMLLsFieldPropertiesContainerElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
         "ls-field-properties-email": HTMLLsFieldPropertiesEmailElement;
         "ls-field-properties-file": HTMLLsFieldPropertiesFileElement;
@@ -1103,6 +1133,13 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
     }
+    interface LsFieldContent {
+        "dataItem"?: LSApiElement1;
+        /**
+          * @default true
+         */
+        "showValidationTypes"?: boolean;
+    }
     interface LsFieldDimensions {
         "dataItem"?: LSApiElement1 | LSApiElement1[];
         "onMutate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
@@ -1142,12 +1179,16 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesAutosign {
         "dataItem"?: LSApiElement1;
     }
+    interface LsFieldPropertiesContainer {
+        "dataItem"?: LSApiElement1;
+        "selectedTab"?: string;
+        /**
+          * @default []
+         */
+        "tabs"?: string[];
+    }
     interface LsFieldPropertiesDate {
         "dataItem"?: LSApiElement1;
-        /**
-          * @default 'content'
-         */
-        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesEmail {
         "dataItem"?: LSApiElement1;
@@ -1264,6 +1305,11 @@ declare namespace LocalJSX {
         "solid"?: boolean;
     }
     interface LsInputWrapper {
+        "leadingIcon"?: Icon1;
+        /**
+          * @default false
+         */
+        "select"?: boolean;
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -1452,6 +1498,7 @@ declare namespace LocalJSX {
         "ls-editor-table": LsEditorTable;
         "ls-feature-column": LsFeatureColumn;
         "ls-field-alignment": LsFieldAlignment;
+        "ls-field-content": LsFieldContent;
         "ls-field-dimensions": LsFieldDimensions;
         "ls-field-distribute": LsFieldDistribute;
         "ls-field-footer": LsFieldFooter;
@@ -1460,6 +1507,7 @@ declare namespace LocalJSX {
         "ls-field-properties": LsFieldProperties;
         "ls-field-properties-advanced": LsFieldPropertiesAdvanced;
         "ls-field-properties-autosign": LsFieldPropertiesAutosign;
+        "ls-field-properties-container": LsFieldPropertiesContainer;
         "ls-field-properties-date": LsFieldPropertiesDate;
         "ls-field-properties-email": LsFieldPropertiesEmail;
         "ls-field-properties-file": LsFieldPropertiesFile;
@@ -1503,6 +1551,7 @@ declare module "@stencil/core" {
             "ls-editor-table": LocalJSX.LsEditorTable & JSXBase.HTMLAttributes<HTMLLsEditorTableElement>;
             "ls-feature-column": LocalJSX.LsFeatureColumn & JSXBase.HTMLAttributes<HTMLLsFeatureColumnElement>;
             "ls-field-alignment": LocalJSX.LsFieldAlignment & JSXBase.HTMLAttributes<HTMLLsFieldAlignmentElement>;
+            "ls-field-content": LocalJSX.LsFieldContent & JSXBase.HTMLAttributes<HTMLLsFieldContentElement>;
             "ls-field-dimensions": LocalJSX.LsFieldDimensions & JSXBase.HTMLAttributes<HTMLLsFieldDimensionsElement>;
             "ls-field-distribute": LocalJSX.LsFieldDistribute & JSXBase.HTMLAttributes<HTMLLsFieldDistributeElement>;
             "ls-field-footer": LocalJSX.LsFieldFooter & JSXBase.HTMLAttributes<HTMLLsFieldFooterElement>;
@@ -1511,6 +1560,7 @@ declare module "@stencil/core" {
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
             "ls-field-properties-advanced": LocalJSX.LsFieldPropertiesAdvanced & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAdvancedElement>;
             "ls-field-properties-autosign": LocalJSX.LsFieldPropertiesAutosign & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAutosignElement>;
+            "ls-field-properties-container": LocalJSX.LsFieldPropertiesContainer & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesContainerElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
             "ls-field-properties-email": LocalJSX.LsFieldPropertiesEmail & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesEmailElement>;
             "ls-field-properties-file": LocalJSX.LsFieldPropertiesFile & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesFileElement>;

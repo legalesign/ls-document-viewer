@@ -10,7 +10,7 @@
 ### Used by
 
  - [ls-document-options](../ls-document-options)
- - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-content](../ls-field-content)
  - [ls-field-properties-email](../ls-field-properties-email)
  - [ls-field-properties-file](../ls-field-properties-file)
  - [ls-field-properties-general](../ls-field-properties-general)
@@ -24,7 +24,7 @@
 ```mermaid
 graph TD;
   ls-document-options --> ls-toggle
-  ls-field-properties-date --> ls-toggle
+  ls-field-content --> ls-toggle
   ls-field-properties-email --> ls-toggle
   ls-field-properties-file --> ls-toggle
   ls-field-properties-general --> ls-toggle

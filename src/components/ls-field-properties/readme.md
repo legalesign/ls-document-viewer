@@ -53,15 +53,18 @@ graph TD;
   ls-field-placement --> ls-icon
   ls-field-dimensions --> ls-icon
   ls-field-footer --> ls-icon
-  ls-field-properties-date --> ls-field-placement
+  ls-field-properties-date --> ls-field-properties-container
+  ls-field-properties-date --> ls-field-content
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-field-properties-advanced
-  ls-field-properties-date --> ls-props-section
-  ls-field-properties-date --> ls-field-type-display
-  ls-field-properties-date --> ls-toggle
-  ls-field-properties-date --> ls-icon
+  ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-footer
+  ls-field-content --> ls-props-section
+  ls-field-content --> ls-field-type-display
+  ls-field-content --> ls-toggle
+  ls-field-content --> ls-input-wrapper
   ls-field-type-display --> ls-icon
+  ls-input-wrapper --> ls-icon
   ls-field-properties-text --> ls-field-placement
   ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-text --> ls-icon

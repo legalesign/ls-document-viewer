@@ -17,7 +17,7 @@
 
 ### Used by
 
- - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-content](../ls-field-content)
 
 ### Depends on
 
@@ -27,7 +27,7 @@
 ```mermaid
 graph TD;
   ls-field-type-display --> ls-icon
-  ls-field-properties-date --> ls-field-type-display
+  ls-field-content --> ls-field-type-display
   style ls-field-type-display fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -1,3 +1,29 @@
-:host {
-  display: block;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+:host {
+  position: relative;
+}
+
+#selectorIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-80, #6c6e73);
+}
+
+#selectLeadingIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-80, #6c6e73);
+}
+
+

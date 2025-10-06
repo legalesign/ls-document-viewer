@@ -18,12 +18,12 @@
 
 ### Used by
 
- - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-content](../ls-field-content)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-properties-date --> ls-props-section
+  ls-field-content --> ls-props-section
   style ls-props-section fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
