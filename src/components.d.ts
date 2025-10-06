@@ -211,10 +211,6 @@ export namespace Components {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
-        /**
-          * @default 'placement'
-         */
-        "fieldSet": 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesNumber {
         "dataItem": LSApiElement1;
@@ -1173,10 +1169,6 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
-        /**
-          * @default 'placement'
-         */
-        "fieldSet"?: 'content' | 'placement' | 'dimensions';
     }
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
