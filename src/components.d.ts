@@ -298,6 +298,8 @@ export namespace Components {
          */
         "solid"?: boolean;
     }
+    interface LsInputWrapper {
+    }
     interface LsNumberInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -814,6 +816,12 @@ declare global {
         prototype: HTMLLsIconElement;
         new (): HTMLLsIconElement;
     };
+    interface HTMLLsInputWrapperElement extends Components.LsInputWrapper, HTMLStencilElement {
+    }
+    var HTMLLsInputWrapperElement: {
+        prototype: HTMLLsInputWrapperElement;
+        new (): HTMLLsInputWrapperElement;
+    };
     interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
     }
     var HTMLLsNumberInputElement: {
@@ -951,6 +959,7 @@ declare global {
         "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
         "ls-formfield": HTMLLsFormfieldElement;
         "ls-icon": HTMLLsIconElement;
+        "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-number-input": HTMLLsNumberInputElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
@@ -1254,6 +1263,8 @@ declare namespace LocalJSX {
          */
         "solid"?: boolean;
     }
+    interface LsInputWrapper {
+    }
     interface LsNumberInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -1462,6 +1473,7 @@ declare namespace LocalJSX {
         "ls-field-type-display": LsFieldTypeDisplay;
         "ls-formfield": LsFormfield;
         "ls-icon": LsIcon;
+        "ls-input-wrapper": LsInputWrapper;
         "ls-number-input": LsNumberInput;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
@@ -1512,6 +1524,7 @@ declare module "@stencil/core" {
             "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
             "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
+            "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
