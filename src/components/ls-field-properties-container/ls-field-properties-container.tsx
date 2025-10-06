@@ -20,13 +20,15 @@ export class LsFieldPropertiesContainer {
   render() {
     return (
       <Host>
-        <div class={'tabs-container'} style={{ gridTemplateColumns: `repeat(${this.tabs.length}, 1fr)` }}>
-          {this.tabs.map(tab => (
-            <button class={tab === this.selectedTab ? 'ls-tab active' : 'ls-tab'} onClick={() => (this.selectedTab = tab)}>
-              {tab}
-            </button>
-          ))}
-        </div>
+        {this.tabs.length > 1 && (
+          <div class={'tabs-container'} style={{ gridTemplateColumns: `repeat(${this.tabs.length}, 1fr)` }}>
+            {this.tabs.map(tab => (
+              <button class={tab === this.selectedTab ? 'ls-tab active' : 'ls-tab'} onClick={() => (this.selectedTab = tab)}>
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
         <div class={'scrolling-container'}>
           <slot name={this.selectedTab}></slot>
         </div>

@@ -18,7 +18,6 @@
   width: 100%;
 }
 
-
 /* Global Styles */
 
 p {
@@ -267,8 +266,6 @@ button.destructive:hover {
   border: 1px solid var(--red-70, #d92d20);
   background: var(--red-10, #fff1f0);
 }
-
-
 
 .button-group {
   display: flex;
