@@ -271,9 +271,17 @@ export class LsDocumentViewer {
   async setZoom(z: number) {
     this.zoom = z;
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+    const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
+    const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLDivElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
 
+    frame.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
+    frame.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
+    
+    wrapper.style.height = (this.pageDimensions[this.pageNum - 1].height * z + 200) + 'px';
+    wrapper.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
+    
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem));
 
@@ -668,7 +676,7 @@ export class LsDocumentViewer {
             )}
             <div id="ls-mid-area">
               <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
-              <div class={'document-frame-wrapper'}>
+              <div class={'document-frame-wrapper'} id='document-frame-wrapper'>
                 <div class={'spacer'}></div>
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
