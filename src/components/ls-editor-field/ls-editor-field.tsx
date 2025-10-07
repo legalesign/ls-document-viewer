@@ -86,7 +86,8 @@ export class LsEditorField {
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
-      this.component.style.background = 'transparent';
+      this.component.style.background = '#ffffff';
+      this.component.style.opacity = '0.7';
       this.component.style.boxShadow = 'none';
     }
   }
@@ -120,7 +121,8 @@ export class LsEditorField {
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
-      this.component.style.background = `transparent`;
+      this.component.style.background = '#ffffff';
+      this.component.style.opacity = '0.7';
       this.component.style.boxShadow = 'none';
     }
   }
