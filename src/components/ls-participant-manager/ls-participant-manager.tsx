@@ -3,7 +3,6 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-participant-manager',
@@ -50,22 +49,22 @@ export class LsParticipantManager {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
   createHandler() {
-    const defaultExperience = this.editor._group.experienceConnection.experiences.find(x => x.defaultExperience === true)
+    const defaultExperience = this.editor._group.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const data: LSMutateEvent[] = [
       {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: 'Signer ' +(this.template.roles.length + 1),
+          name: 'Signer ' + (this.template.roles.length + 1),
           roleType: 'SIGNER',
           signerIndex: this.template.roles.length + 1,
           ordinal: this.template.roles.length,
           signerParent: null,
           experience: defaultExperience.id,
-          templateId: this.template.id
+          templateId: this.template.id,
         },
       },
-    ]
+    ];
     this.update.emit(data);
     this.mutate.emit(data);
   }
@@ -78,95 +77,10 @@ export class LsParticipantManager {
           <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
         </div>
         <div class="participant-list">
-          {this.template && this.template?.roles.map((r, index) => {
-            return (
-              <div
-                class="participant-card"
-                onClick={() => {
-                  this.selectedHandler(r);
-                }}
-                style={{
-                  background: defaultRolePalette[r?.signerIndex % 100].s10,
-                  border: `1px solid ${defaultRolePalette[r?.signerIndex % 100].s60}`,
-                  marginTop: r.signerIndex > 100 && '-0.813rem',
-                }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.innerButton')?.classList.remove('hidden')}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.innerButton')?.classList.add('hidden')}
-              >
-                <div class={'participant-card-top-items'}>
-                  {' '}
-                  <div
-                    class={'role-label'}
-                    style={{
-                      background: defaultRolePalette[r?.signerIndex % 100].s20,
-                      color: defaultRolePalette[r?.signerIndex % 100].s90,
-                    }}
-                  >
-                    <ls-icon name={r?.signerIndex > 100 ? 'eye' : 'signature'} />
-                    {'Participant ' + (index + 1)}
-                  </div>
-                  <div
-                    class="innerButton hidden"
-                    onClick={() => {
-                      this.deleteHandler(r);
-                    }}
-                  >
-                    <ls-icon
-                      name="trash"
-                      size="18"
-                      style={{
-                        color: defaultRolePalette[r?.signerIndex % 100].s40,
-                      }}
-                    />
-                  </div>
-                </div>
-                <div class={'participant-card-text'}>
-                  <p
-                    class="participant-text-description"
-                    style={{
-                      color: defaultRolePalette[r?.signerIndex % 100].s100,
-                    }}
-                  >
-                    {r.name || `${r.signerIndex > 100 ? 'Witness' : 'Signer'} ${index + 1}`}
-                  </p>
-                  <p
-                    class="participant-text-type"
-                    style={{
-                      color: defaultRolePalette[r?.signerIndex % 100].s80,
-                      textTransform: 'capitalize'
-                    }}
-                  >
-                    {r.roleType}
-                  </p>
-                </div>
-
-                {/* {index !== 0 ? (
-                <button
-                  class="innerButton"
-                  onClick={() => {
-                    this.swapHandler(r, this.template.roles[index - 1]);
-                  }}
-                >
-                  <ls-icon name="arrow-up" size="18" />
-                </button>
-              ) : (
-                <></>
-              )}
-              {index < this.template.roles.length - 1 ? (
-                <button
-                  class="innerButton"
-                  onClick={() => {
-                    this.swapHandler(r, this.template.roles[index + 1]);
-                  }}
-                >
-                  <ls-icon name="arrow-down" size="18" />
-                </button>
-              ) : (
-                <></>
-              )} */}
-              </div>
-            );
-          })}
+          {this.template &&
+            this.template?.roles.map((r, index) => {
+              return <ls-participant-card signer={r} index={index} template={this.template} />;
+            })}
         </div>
         <div class={'add-participant-button'}>
           <button onClick={() => this.createHandler()}>

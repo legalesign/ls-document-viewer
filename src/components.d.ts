@@ -303,6 +303,15 @@ export namespace Components {
          */
         "value": number;
     }
+    interface LsParticipantCard {
+        /**
+          * @default false
+         */
+        "editable": boolean;
+        "index": number;
+        "signer": LSApiRole;
+        "template": LSApiTemplate;
+    }
     interface LsParticipantManager {
         /**
           * The base template information (as JSON). {LSDocumentViewer}
@@ -494,6 +503,10 @@ export interface LsFieldPropertiesAdvancedCustomEvent<T> extends CustomEvent<T> 
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
+}
+export interface LsParticipantCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsParticipantCardElement;
 }
 export interface LsParticipantManagerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -821,6 +834,24 @@ declare global {
         prototype: HTMLLsNumberInputElement;
         new (): HTMLLsNumberInputElement;
     };
+    interface HTMLLsParticipantCardElementEventMap {
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
+    }
+    interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsParticipantCardElement: {
+        prototype: HTMLLsParticipantCardElement;
+        new (): HTMLLsParticipantCardElement;
+    };
     interface HTMLLsParticipantManagerElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
@@ -956,6 +987,7 @@ declare global {
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-number-input": HTMLLsNumberInputElement;
+        "ls-participant-card": HTMLLsParticipantCardElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
         "ls-props-section": HTMLLsPropsSectionElement;
@@ -1263,6 +1295,17 @@ declare namespace LocalJSX {
          */
         "value"?: number;
     }
+    interface LsParticipantCard {
+        /**
+          * @default false
+         */
+        "editable"?: boolean;
+        "index"?: number;
+        "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
+        "signer"?: LSApiRole;
+        "template"?: LSApiTemplate;
+    }
     interface LsParticipantManager {
         /**
           * The base template information (as JSON). {LSDocumentViewer}
@@ -1453,6 +1496,7 @@ declare namespace LocalJSX {
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
         "ls-number-input": LsNumberInput;
+        "ls-participant-card": LsParticipantCard;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
         "ls-props-section": LsPropsSection;
@@ -1506,6 +1550,7 @@ declare module "@stencil/core" {
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
+            "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
             "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
