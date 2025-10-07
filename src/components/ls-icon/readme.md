@@ -27,14 +27,7 @@
  - [ls-field-footer](../ls-field-footer)
  - [ls-field-format](../ls-field-format)
  - [ls-field-placement](../ls-field-placement)
- - [ls-field-properties-email](../ls-field-properties-email)
- - [ls-field-properties-file](../ls-field-properties-file)
- - [ls-field-properties-general](../ls-field-properties-general)
- - [ls-field-properties-image](../ls-field-properties-image)
  - [ls-field-properties-multiple](../ls-field-properties-multiple)
- - [ls-field-properties-number](../ls-field-properties-number)
- - [ls-field-properties-signature](../ls-field-properties-signature)
- - [ls-field-properties-text](../ls-field-properties-text)
  - [ls-field-size](../ls-field-size)
  - [ls-field-type-display](../ls-field-type-display)
  - [ls-formfield](../ls-formfield)
@@ -60,14 +53,7 @@ graph TD;
   ls-field-footer --> ls-icon
   ls-field-format --> ls-icon
   ls-field-placement --> ls-icon
-  ls-field-properties-email --> ls-icon
-  ls-field-properties-file --> ls-icon
-  ls-field-properties-general --> ls-icon
-  ls-field-properties-image --> ls-icon
   ls-field-properties-multiple --> ls-icon
-  ls-field-properties-number --> ls-icon
-  ls-field-properties-signature --> ls-icon
-  ls-field-properties-text --> ls-icon
   ls-field-size --> ls-icon
   ls-field-type-display --> ls-icon
   ls-formfield --> ls-icon

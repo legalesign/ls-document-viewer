@@ -18,6 +18,13 @@
 ### Used by
 
  - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-properties-email](../ls-field-properties-email)
+ - [ls-field-properties-file](../ls-field-properties-file)
+ - [ls-field-properties-general](../ls-field-properties-general)
+ - [ls-field-properties-image](../ls-field-properties-image)
+ - [ls-field-properties-number](../ls-field-properties-number)
+ - [ls-field-properties-signature](../ls-field-properties-signature)
+ - [ls-field-properties-text](../ls-field-properties-text)
 
 ### Depends on
 
@@ -36,6 +43,13 @@ graph TD;
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-field-properties-date --> ls-field-content
+  ls-field-properties-email --> ls-field-content
+  ls-field-properties-file --> ls-field-content
+  ls-field-properties-general --> ls-field-content
+  ls-field-properties-image --> ls-field-content
+  ls-field-properties-number --> ls-field-content
+  ls-field-properties-signature --> ls-field-content
+  ls-field-properties-text --> ls-field-content
   style ls-field-content fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

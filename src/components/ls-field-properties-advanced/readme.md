@@ -32,6 +32,7 @@
  - [ls-field-properties-image](../ls-field-properties-image)
  - [ls-field-properties-number](../ls-field-properties-number)
  - [ls-field-properties-signature](../ls-field-properties-signature)
+ - [ls-field-properties-text](../ls-field-properties-text)
 
 ### Graph
 ```mermaid
@@ -44,6 +45,7 @@ graph TD;
   ls-field-properties-image --> ls-field-properties-advanced
   ls-field-properties-number --> ls-field-properties-advanced
   ls-field-properties-signature --> ls-field-properties-advanced
+  ls-field-properties-text --> ls-field-properties-advanced
   style ls-field-properties-advanced fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

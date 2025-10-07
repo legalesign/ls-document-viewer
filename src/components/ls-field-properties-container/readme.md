@@ -19,11 +19,27 @@
 ### Used by
 
  - [ls-field-properties-date](../ls-field-properties-date)
+ - [ls-field-properties-email](../ls-field-properties-email)
+ - [ls-field-properties-file](../ls-field-properties-file)
+ - [ls-field-properties-general](../ls-field-properties-general)
+ - [ls-field-properties-image](../ls-field-properties-image)
+ - [ls-field-properties-multiple](../ls-field-properties-multiple)
+ - [ls-field-properties-number](../ls-field-properties-number)
+ - [ls-field-properties-signature](../ls-field-properties-signature)
+ - [ls-field-properties-text](../ls-field-properties-text)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-properties-date --> ls-field-properties-container
+  ls-field-properties-email --> ls-field-properties-container
+  ls-field-properties-file --> ls-field-properties-container
+  ls-field-properties-general --> ls-field-properties-container
+  ls-field-properties-image --> ls-field-properties-container
+  ls-field-properties-multiple --> ls-field-properties-container
+  ls-field-properties-number --> ls-field-properties-container
+  ls-field-properties-signature --> ls-field-properties-container
+  ls-field-properties-text --> ls-field-properties-container
   style ls-field-properties-container fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
