@@ -143,6 +143,7 @@ h6 {
 #ls-mid-area {
   display: flex;
   flex-direction: column;
+  width: 100%;
   overflow: scroll;
 }
 

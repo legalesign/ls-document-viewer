@@ -127,7 +127,7 @@ export class LsEditorField {
 
   render() {
     return (
-      <Host style={{ border: `1px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
+      <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
         <div
           class={{
             'ls-editor-field': true,
