@@ -27,7 +27,6 @@
  - [ls-field-footer](../ls-field-footer)
  - [ls-field-format](../ls-field-format)
  - [ls-field-placement](../ls-field-placement)
- - [ls-field-properties-date](../ls-field-properties-date)
  - [ls-field-properties-email](../ls-field-properties-email)
  - [ls-field-properties-file](../ls-field-properties-file)
  - [ls-field-properties-general](../ls-field-properties-general)
@@ -37,7 +36,9 @@
  - [ls-field-properties-signature](../ls-field-properties-signature)
  - [ls-field-properties-text](../ls-field-properties-text)
  - [ls-field-size](../ls-field-size)
+ - [ls-field-type-display](../ls-field-type-display)
  - [ls-formfield](../ls-formfield)
+ - [ls-input-wrapper](../ls-input-wrapper)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
  - [ls-participant-manager](../ls-participant-manager)
  - [ls-participant-select](../ls-participant-select)
@@ -59,7 +60,6 @@ graph TD;
   ls-field-footer --> ls-icon
   ls-field-format --> ls-icon
   ls-field-placement --> ls-icon
-  ls-field-properties-date --> ls-icon
   ls-field-properties-email --> ls-icon
   ls-field-properties-file --> ls-icon
   ls-field-properties-general --> ls-icon
@@ -69,7 +69,9 @@ graph TD;
   ls-field-properties-signature --> ls-icon
   ls-field-properties-text --> ls-icon
   ls-field-size --> ls-icon
+  ls-field-type-display --> ls-icon
   ls-formfield --> ls-icon
+  ls-input-wrapper --> ls-icon
   ls-number-input --> ls-icon
   ls-participant-manager --> ls-icon
   ls-participant-select --> ls-icon

@@ -1,7 +1,5 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
-import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { validationTypes } from '../ls-document-viewer/editorUtils';
 
 @Component({
   tag: 'ls-field-properties-date',
@@ -10,97 +8,23 @@ import { validationTypes } from '../ls-document-viewer/editorUtils';
 })
 export class LsFieldPropertiesDate {
   @Prop() dataItem: LSApiElement;
-  @Prop() fieldSet: 'content' | 'placement' | 'dimensions' = 'content';
 
   render() {
     return (
       <Host>
-        <div class={'tabs-container'}>
-          <button class={this.fieldSet === 'content' ? 'ls-tab active' : 'ls-tab'} onClick={() => (this.fieldSet = 'content')}>
-            Content
-          </button>
-          <button class={this.fieldSet === 'placement' ? 'ls-tab active' : 'ls-tab'} onClick={() => (this.fieldSet = 'placement')}>
-            Placement
-          </button>
-          <button class={this.fieldSet === 'dimensions' ? 'ls-tab active' : 'ls-tab'} onClick={() => (this.fieldSet = 'dimensions')}>
-            Dimensions
-          </button>
-        </div>
-        <div class={'scrolling-container'}>
-          {this.fieldSet === 'placement' ? (
+        <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
+          <div class={'field-set'} slot="content">
+            <ls-field-content dataItem={this.dataItem} />
+          </div>
+          <div class={'field-set'} slot="dimensions">
+            <ls-field-dimensions dataItem={this.dataItem} />
+            <ls-field-properties-advanced dataItem={this.dataItem} />
+          </div>
+          <div class={'field-set'} slot="placement">
             <ls-field-placement dataItem={this.dataItem} />
-          ) : this.fieldSet === 'dimensions' ? (
-            <div class={'field-set'}>
-              <ls-field-dimensions dataItem={this.dataItem} />
-              <ls-field-properties-advanced dataItem={this.dataItem} />
-            </div>
-          ) : (
-            <div class={'field-set'}>
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Field Type</p>
-                  <p class={'ls-field-properties-section-description'}>The Field you currently have selected</p>
-                </div>
-                <div
-                  class={'ls-field-type-wrapper'}
-                  style={{
-                    border: `1px dashed ${defaultRolePalette[this.dataItem?.signer % 100].s30}`,
-                    background: defaultRolePalette[this.dataItem?.signer % 100].s10,
-                  }}
-                >
-                  <div class={'ls-field-type-inner'}>
-                    <div
-                      class={'ls-field-type-icon'}
-                      style={{
-                        border: `1px solid ${defaultRolePalette[this.dataItem?.signer % 100].s60}`,
-                        color: defaultRolePalette[this.dataItem?.signer % 100].s60,
-                        background: defaultRolePalette[this.dataItem?.signer % 100].s10,
-                      }}
-                    >
-                      <ls-icon name="calender" size="20" />
-                    </div>
-                    <p class={'ls-field-type-name'}>Date</p>
-                  </div>
-                </div>
-              </div>
-              <div class={'ls-field-properties-section row'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Required Field</p>
-                </div>
-                <ls-toggle />
-              </div>
-
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Field Label</p>
-                  <p class={'ls-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
-                </div>
-                <input value={this.dataItem?.label} width="30" placeholder="eg. Sign Here" />
-              </div>
-
-              <div class={'ls-field-properties-section'}>
-                <div class={'ls-field-properties-section-text'}>
-                  <p class={'ls-field-properties-section-title'}>Content Format</p>
-                  <p class={'ls-field-properties-section-description'}>Select the specific format you want the Recipient to enter..</p>
-                </div>
-                <div class={'input-wrapper'}>
-                  <ls-icon id="selectorIcon" name="selector"></ls-icon>
-                  <select>
-                    {validationTypes
-                      .filter(type => type.formType === 'date')
-                      .map(type => (
-                        <option selected={this.dataItem?.validation === type.id} value={type.value}>
-                          {type.description}
-                        </option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        </ls-field-properties-container>
         <ls-field-footer dataItem={this.dataItem} />
-        <slot></slot>
       </Host>
     );
   }

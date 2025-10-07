@@ -2,6 +2,7 @@ import { Icon } from "../../components";
 
 export const defaultFieldIcons: { [key: string]: Icon } = {
   'signature': 'signature',
+  'auto sign': 'auto-sign',
   'text': 'text',
   'signing date': 'auto-date',
   'date': 'calender',

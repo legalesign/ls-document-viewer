@@ -1,0 +1,35 @@
+:host {
+  position: relative;
+  border-radius: 0.875rem;
+  padding: 0.25rem;
+}
+
+* {
+  margin: 0;
+}
+
+.ls-field-type-inner {
+  border-radius: 0.625rem;
+  background: var(--white, #fff);
+  display: flex;
+  padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+  align-items: center;
+  gap: 0.875rem;
+  align-self: stretch;
+}
+
+.ls-field-type-icon {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ls-field-type-name {
+  color: var(--gray-100, #45484d);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem; /* 150% */
+}
