@@ -389,6 +389,7 @@ export class LsDocumentViewer {
     };
   }
 
+
   // internal forced change
   syncChange(update: LSMutateEvent) {
     if (getApiType(update.data) === 'element') {
@@ -423,7 +424,6 @@ export class LsDocumentViewer {
   }
 
   initViewer() {
-    console.log('Init Viewer  ');
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';

@@ -147,3 +147,25 @@ export const findDimensions = (
 };
 
 
+// from a field element get all dimension data including LEGACY dimensions
+export const recalculateCoordinates = (
+  d: LSApiElement
+): LSApiElement => {
+
+  // Returns X, Y coordinates
+  const ax = d.left / d.pageDimensions.width;
+  const ay = d.top / d.pageDimensions.height;
+  const bx = (d.left + d.width) / d.pageDimensions.width;
+  const by = (d.top + d.height) / d.pageDimensions.height;
+
+  // Return with calculated styles that try to place it as it would appear on legacy signing page
+  return {
+    ...d,
+    ax,
+    ay,
+    bx,
+    by,
+  };
+};
+
+

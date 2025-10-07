@@ -1,6 +1,16 @@
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { findDimensions, findIn } from './editorCalculator';
+import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
+
+let mousetimer = null;
+
+export function debounce(data, delay) {
+  if (mousetimer) clearTimeout(mousetimer);
+
+  mousetimer = setTimeout(() => {
+    this.mutate.emit([data])
+  }, delay);
+}
 
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
@@ -69,18 +79,27 @@ export function mouseMove(event) {
       case 'n':
         this.hitField.style.top = this.startMouse.top + movedY + 'px';
         this.hitField.style.height = this.startMouse.height - movedY + 'px';
+
+        this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, height: this.startMouse.height - movedY };
         break;
       case 's':
         this.hitField.style.height = this.startMouse.height + movedY + 'px';
+        this.hitField.dataItem = { ...this.hitField.dataItem, height: this.startMouse.height + movedY };
         break;
       case 'e':
         this.hitField.style.width = this.startMouse.width + movedX + 'px';
+        this.hitField.dataItem = { ...this.hitField.dataItem, width: this.startMouse.width + movedX };
+
         break;
       case 'w':
         this.hitField.style.left = this.startMouse.left + movedX + 'px';
         this.hitField.style.width = this.startMouse.width - movedX + 'px';
+
+        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX };
         break;
     }
+
+    debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
   } else if (this.selectionBox && event.buttons === 1) {
     // draw the multiple selection box
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -180,59 +199,58 @@ export function mouseClick(e) {
   }
 }
 
-
 export function mouseDrop(event) {
-      event.preventDefault();
-      try {
-        const data: IToolboxField = JSON.parse(event.dataTransfer.getData("application/json")) as any as IToolboxField;
-        // Unselect all current selected items
-        this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => f.selected = false)
-        var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-        // Make a new API compatible id for a template element (prefix 'ele')
-        const id = btoa('ele' + crypto.randomUUID())
-        const top = event.offsetY * this.zoom + frame.scrollTop;
-        const left = event.offsetX * this.zoom + frame.scrollLeft
-        // TODO: Put these defaults somewhere sensible
-        const newData: LSMutateEvent = {
-          action: 'create', data: {
-            id,
-            value: "",
-            formElementType: data.formElementType,
-            elementType: data.elementType,
-            validation: data.validation,
-            substantive: false,
-            top,
-            left,
-            hideBorder: false,
-            height: data.defaultHeight,
-            width: data.defaultWidth,
-            pageDimensions: this.pageDimensions[this.pageNum - 1],
-            fontName: "arial",
-            fontSize: 10,
-            align: 'left',
-            signer: this.signer,
-            page: this.pageNum,
-            mapTo: null,
-            label: '',
-            helpText: null,
-            logicGroup: null,
-            optional: false,
-            options: null,
-            logicAction: null,
-            labelExtra: null,
-            fieldOrder: null,
-            ax: left > 0 ? left / this.pageDimensions[this.pageNum - 1].width : 0,
-            ay: top > 0 ? top / this.pageDimensions[this.pageNum - 1].height : 0,
-            bx: (left + data.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
-            by: (top + data.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
-            templateId: this._template.id
-          } as LSApiElement
-        }
-        console.log(newData)
-        this.mutate.emit([newData])
-        this.update.emit([newData])
-
-      } catch (e) {
-        console.error(e)
-      }
-    }
+  event.preventDefault();
+  try {
+    const data: IToolboxField = JSON.parse(event.dataTransfer.getData('application/json')) as any as IToolboxField;
+    // Unselect all current selected items
+    this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
+    var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+    // Make a new API compatible id for a template element (prefix 'ele')
+    const id = btoa('ele' + crypto.randomUUID());
+    const top = event.offsetY * this.zoom + frame.scrollTop;
+    const left = event.offsetX * this.zoom + frame.scrollLeft;
+    // TODO: Put these defaults somewhere sensible
+    const newData: LSMutateEvent = {
+      action: 'create',
+      data: {
+        id,
+        value: '',
+        formElementType: data.formElementType,
+        elementType: data.elementType,
+        validation: data.validation,
+        substantive: false,
+        top,
+        left,
+        hideBorder: false,
+        height: data.defaultHeight,
+        width: data.defaultWidth,
+        pageDimensions: this.pageDimensions[this.pageNum - 1],
+        fontName: 'arial',
+        fontSize: 10,
+        align: 'left',
+        signer: this.signer,
+        page: this.pageNum,
+        mapTo: null,
+        label: '',
+        helpText: null,
+        logicGroup: null,
+        optional: false,
+        options: null,
+        logicAction: null,
+        labelExtra: null,
+        fieldOrder: null,
+        ax: left > 0 ? left / this.pageDimensions[this.pageNum - 1].width : 0,
+        ay: top > 0 ? top / this.pageDimensions[this.pageNum - 1].height : 0,
+        bx: (left + data.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
+        by: (top + data.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
+        templateId: this._template.id,
+      } as LSApiElement,
+    };
+    console.log(newData);
+    this.mutate.emit([newData]);
+    this.update.emit([newData]);
+  } catch (e) {
+    console.error(e);
+  }
+}

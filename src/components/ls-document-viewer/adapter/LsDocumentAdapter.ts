@@ -8,6 +8,7 @@ import { createRole, deleteRole, updateRole } from './roleActions';
 import { updateTemplate } from './templateActions';
 
 export class LsDocumentAdapter {
+
   handleEvent = async (event: LSMutateEvent, accessToken: string) => {
     axios.defaults.headers.common['Authorization'] = accessToken;
 

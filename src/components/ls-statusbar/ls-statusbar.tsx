@@ -28,7 +28,7 @@ export class LsStatusbar {
 
   handleZoomInput() {
     const zoomInput = this.component.shadowRoot.getElementById('zoomRange') as HTMLInputElement;
-    console.log(zoomInput.value);
+    
     debounce(this.setZoom(parseInt(zoomInput.value) / 100), 700);
   }
 
@@ -51,7 +51,6 @@ export class LsStatusbar {
   
 
   render() {
-    console.log('editor',this.editor);
     return (
       <Host>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>

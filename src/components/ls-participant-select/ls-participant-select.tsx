@@ -46,7 +46,6 @@ export class LsParticipantSelect {
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-    console.log(diff);
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       return { action: 'update', data: { ...c, ...diff } as LSApiElement };
@@ -67,12 +66,9 @@ export class LsParticipantSelect {
     this.selectedRole = role;
     this.isOpen = false;
     this.roleChange.emit(role.signerIndex);
-
-    console.log('Selected role:', this.selectedRole);
   }
 
   render() {
-    console.log(this.selectedRole);
     return (
       <Host>
         {/* <select onChange={(input) => {
