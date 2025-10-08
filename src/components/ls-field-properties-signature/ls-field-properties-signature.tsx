@@ -15,10 +15,10 @@ export class LsFieldPropertiesSignature {
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'field-set'} slot="content">
             <ls-field-content dataItem={this.dataItem} showValidationTypes={false} />
+            <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
           <div class={'field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} />
-            <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
           <div class={'field-set'} slot="placement">
             <ls-field-placement dataItem={this.dataItem} />
