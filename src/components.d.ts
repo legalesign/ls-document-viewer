@@ -182,6 +182,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem": LSApiElement | LSApiElement[];
+        /**
+          * @default false
+         */
+        "expanded": boolean;
     }
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
@@ -1170,6 +1174,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem"?: LSApiElement | LSApiElement[];
+        /**
+          * @default false
+         */
+        "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
     }
