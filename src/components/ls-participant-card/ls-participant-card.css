@@ -29,17 +29,27 @@
   display: none;
 }
 
+.form-button-set {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .role-label {
   display: flex;
-  padding: 0.125rem 0.375rem;
+  padding: 0.125rem 0.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 142.857% */
+}
+
+.role-label.fields {
+  border-radius: 1rem;
+  margin-top: 0.5rem;
 }
 
 .innerButton {
@@ -90,6 +100,10 @@
 }
 
 /* Global Styles */
+
+.full-width {
+  width: 100%;
+}
 
 p {
   color: var(--gray-80, #6c6e73);
@@ -331,6 +345,18 @@ button.tertiaryGrey {
 }
 
 button.tertiaryGrey:hover {
+  border: 1px solid var(--gray-50, #c8c9cc);
+  background: var(--gray-10, #f7f8fa);
+}
+
+button.secondary {
+  border: 1px solid var(--gray-50, #c8c9cc);
+  background: var(--white, #fff);
+  color: var(--gray-90, #5e6066);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+button.secondary:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
