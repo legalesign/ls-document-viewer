@@ -149,7 +149,7 @@ h6 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: scroll;
+  
 }
 
 .document-frame-wrapper {
@@ -160,6 +160,7 @@ h6 {
   align-items: center;
   overflow: visible;
   min-width: 100vw;
+  overflow: scroll;
   
 }
 
