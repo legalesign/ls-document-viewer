@@ -33,6 +33,7 @@
  - [ls-formfield](../ls-formfield)
  - [ls-input-wrapper](../ls-input-wrapper)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
+ - [ls-participant-card](../ls-participant-card)
  - [ls-participant-manager](../ls-participant-manager)
  - [ls-participant-select](../ls-participant-select)
  - [ls-radio-input](../ls-formfield/inputs/ls-radio-input)
@@ -59,6 +60,7 @@ graph TD;
   ls-formfield --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-number-input --> ls-icon
+  ls-participant-card --> ls-icon
   ls-participant-manager --> ls-icon
   ls-participant-select --> ls-icon
   ls-radio-input --> ls-icon

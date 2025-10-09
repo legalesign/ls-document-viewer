@@ -29,12 +29,17 @@
 
 ### Depends on
 
+- [ls-participant-card](../ls-participant-card)
 - [ls-icon](../ls-icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-icon
+  ls-participant-card --> ls-icon
+  ls-participant-card --> ls-input-wrapper
+  ls-input-wrapper --> ls-icon
   ls-document-viewer --> ls-participant-manager
   style ls-participant-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```

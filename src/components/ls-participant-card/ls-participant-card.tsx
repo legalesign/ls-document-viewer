@@ -40,6 +40,7 @@ export class LsParticipantCard {
 
   swapHandler(role1, role2) {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
+    this.mutate.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
 
   render() {

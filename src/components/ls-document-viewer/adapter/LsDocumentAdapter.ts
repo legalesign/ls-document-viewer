@@ -4,7 +4,7 @@ import { LSApiRole } from '../../../types/LSApiRole';
 import { LSApiElement } from '../../../types/LSApiElement';
 import { Parameters } from './parameters';
 import { createElement, deleteElement, updateElement } from './elementActions';
-import { createRole, deleteRole, updateRole } from './roleActions';
+import { createRole, deleteRole, swapRoles, updateRole } from './roleActions';
 import { updateTemplate } from './templateActions';
 
 export class LsDocumentAdapter {
@@ -47,7 +47,7 @@ export class LsDocumentAdapter {
             query = deleteRole(obj);
             break;
           case 'swap':
-            query = updateRole(obj);
+            query = swapRoles(obj, event.data2);
             break;
         }
         break;

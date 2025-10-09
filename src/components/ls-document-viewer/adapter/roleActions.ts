@@ -3,7 +3,7 @@
 const createRole = (role) => {
   const newParent = role?.signerParent ? `"${role.signerParent}"` : 'null';
   return `
-  mutation AddRole {
+  mutation LDVAddRole {
     createTemplateRole(input: {
       templateId: "${role.templateId}"       
         signerIndex: ${role.signerIndex}
@@ -19,7 +19,7 @@ const createRole = (role) => {
 // Remove a role
 const deleteRole = (role) => {
   return `
-    mutation removeRole {
+    mutation LDVremoveRole {
       deleteTemplateRole(input: {
         templateRoleId: "${role.id}"       
        })
@@ -30,7 +30,7 @@ const deleteRole = (role) => {
 const updateRole = (role) => {
   const newParent = role?.signerParent ? `"${role.signerParent}"` : 'null';
   return `
-    mutation updateRole {
+    mutation LDVupdateRole {
       updateTemplateRole(input: {
         templateRoleId: "${role.id}"       
         signerIndex: ${role.signerIndex}
@@ -47,7 +47,7 @@ const updateRole = (role) => {
 const swapRoles = (roleId1, roleId2) => {
 
   return `
-    mutation swapRole {
+    mutation LDVswapRole {
       swapRoles(input: {
         roleId1: "${roleId1}"       
         roleId2: "${roleId2}"

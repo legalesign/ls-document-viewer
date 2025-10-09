@@ -118,7 +118,11 @@ graph TD;
   ls-document-viewer --> ls-editor-field
   ls-feature-column --> ls-icon
   ls-toolbox-field --> ls-icon
+  ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-icon
+  ls-participant-card --> ls-icon
+  ls-participant-card --> ls-input-wrapper
+  ls-input-wrapper --> ls-icon
   ls-document-options --> ls-formfield
   ls-document-options --> ls-toggle
   ls-formfield --> ls-icon
@@ -153,7 +157,6 @@ graph TD;
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
   ls-field-type-display --> ls-icon
-  ls-input-wrapper --> ls-icon
   ls-field-dimensions --> ls-icon
   ls-field-placement --> ls-icon
   ls-field-footer --> ls-icon
