@@ -71,3 +71,10 @@ input {
   height: 100%;
   width: 100%;
 }
+
+.required-icon {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: var(--red-60);
+}

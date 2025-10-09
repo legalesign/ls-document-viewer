@@ -420,6 +420,8 @@ export namespace Components {
         "value"?: string;
     }
     interface LsToggle {
+        "checked": boolean;
+        "value": string;
     }
     interface LsToolbar {
         /**
@@ -1423,6 +1425,8 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface LsToggle {
+        "checked"?: boolean;
+        "value"?: string;
     }
     interface LsToolbar {
         /**
