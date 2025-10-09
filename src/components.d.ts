@@ -845,7 +845,7 @@ declare global {
         new (): HTMLLsFieldTypeDisplayElement;
     };
     interface HTMLLsFormfieldElementEventMap {
-        "onChange": Event;
+        "valueChange": string;
     }
     interface HTMLLsFormfieldElement extends Components.LsFormfield, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFormfieldElementEventMap>(type: K, listener: (this: HTMLLsFormfieldElement, ev: LsFormfieldCustomEvent<HTMLLsFormfieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -959,7 +959,7 @@ declare global {
         new (): HTMLLsStatusbarElement;
     };
     interface HTMLLsTextInputElementEventMap {
-        "onChange": Event;
+        "valueChange": string;
     }
     interface HTMLLsTextInputElement extends Components.LsTextInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsTextInputElementEventMap>(type: K, listener: (this: HTMLLsTextInputElement, ev: LsTextInputCustomEvent<HTMLLsTextInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1322,7 +1322,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "labelIcon"?: Icon;
         "name"?: string;
-        "onOnChange"?: (event: LsFormfieldCustomEvent<Event>) => void;
+        "onValueChange"?: (event: LsFormfieldCustomEvent<string>) => void;
         "placeholder"?: string;
         "required"?: boolean;
         "valid"?: boolean;
@@ -1463,7 +1463,7 @@ declare namespace LocalJSX {
         "fieldIcon"?: Icon;
         "inputRef"?: string;
         "name"?: string;
-        "onOnChange"?: (event: LsTextInputCustomEvent<Event>) => void;
+        "onValueChange"?: (event: LsTextInputCustomEvent<string>) => void;
         "placeholder"?: string;
         "required"?: boolean;
         /**

@@ -22,7 +22,7 @@ export class LsTextInput {
   @Prop() buttonClick?: any;
   @Prop() buttonIcon?: Icon;
   @Prop() fieldIcon?: Icon;
-  @StencilEvent() onChange: EventEmitter<Event>;
+  @StencilEvent() valueChange: EventEmitter<string>;
 
   @State() showPassword: boolean = false;
 
@@ -32,7 +32,7 @@ export class LsTextInput {
 
   changeHandler(event: Event) {
     console.log(event)
-    this.onChange.emit(event);
+    this.valueChange.emit((event.target as any).value as string);
   }
 
   render() {
@@ -91,7 +91,9 @@ export class LsTextInput {
             aria-label={aria}
             required={required}
             disabled={disabled}
-            onChange={this.changeHandler}
+            onChange={(e) => {
+              this.changeHandler(e)
+            }}
           ></input>
         ) : type === 'displayonly' ? (
           <input
@@ -104,6 +106,9 @@ export class LsTextInput {
             aria-label={aria}
             required={required}
             disabled
+            onChange={(e) => {
+              this.changeHandler(e)
+            }}
           />
         ) : (
           <input
@@ -116,7 +121,9 @@ export class LsTextInput {
             aria-label={aria}
             required={required}
             disabled={disabled}
-            onChange={this.changeHandler}
+            onChange={(e) => {
+              this.changeHandler(e)
+            }}
           ></input>
         )}
         <div class='right-items'>

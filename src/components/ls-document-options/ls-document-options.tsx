@@ -58,7 +58,7 @@ export class LsDocumentOptions {
         <div class={'template-details'}>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Name</p>
-            <ls-formfield as="text" value={this.template?.title} style={{ width: '100%' }}  />
+            <ls-formfield as="text" value={this.template?.title} style={{ width: '100%' }} onValueChange={(e) => { this.alter({ title: e.detail }) }} />
           </div>
           <div class={'template-detail-section'}>
             <p class="template-detail-section-title">Auto Archive</p>

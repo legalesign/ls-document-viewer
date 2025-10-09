@@ -36,9 +36,9 @@
 
 ## Events
 
-| Event      | Description | Type                 |
-| ---------- | ----------- | -------------------- |
-| `onChange` |             | `CustomEvent<Event>` |
+| Event         | Description | Type                  |
+| ------------- | ----------- | --------------------- |
+| `valueChange` |             | `CustomEvent<string>` |
 
 
 ## Dependencies

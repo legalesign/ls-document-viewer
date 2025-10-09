@@ -128,7 +128,6 @@ export class LsEditorField {
   }
 
   render() {
-    console.log('RENDER ls-editor-field', this.dataItem);
     return (
       <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
         <div

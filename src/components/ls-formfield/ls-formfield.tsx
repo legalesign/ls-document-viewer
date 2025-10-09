@@ -31,10 +31,10 @@ export class LsFormfield {
   @Prop() buttonIcon?: Icon;
   @Prop() labelIcon?: Icon;
   @Prop() fieldIcon?: Icon;
-  @StencilEvent() onChange: EventEmitter<Event>;
+  @StencilEvent() valueChange: EventEmitter<string>;
 
-  changeHandler(event: Event) {
-    this.onChange.emit(event);
+  changeHandler(value: string) {
+    this.valueChange.emit(value);
   }
 
   @State() _value: string;
@@ -111,7 +111,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onChange={this.changeHandler}
+            onValueChange={(e) => {this.changeHandler(e.detail)}}
           ></ls-text-input>
         ) : as === 'select' ? (
           <ls-select-input
@@ -125,7 +125,6 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onChange={this.changeHandler}
           >
             <slot></slot>
           </ls-select-input>
@@ -146,7 +145,6 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onChange={this.changeHandler}
           />
         ) : as === 'password' ? (
           <ls-text-input
@@ -164,7 +162,6 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onChange={this.changeHandler}
           />
         ) : as === 'displayonly' ? (
           <ls-text-input
@@ -199,7 +196,6 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onChange={this.changeHandler}
           />
         ) : (
           <p>placeholder</p>
