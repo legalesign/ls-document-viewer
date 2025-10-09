@@ -22,8 +22,8 @@
 
 - [ls-field-properties-container](../ls-field-properties-container)
 - [ls-field-content](../ls-field-content)
-- [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-properties-advanced](../ls-field-properties-advanced)
+- [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-placement](../ls-field-placement)
 - [ls-field-footer](../ls-field-footer)
 
@@ -32,8 +32,8 @@
 graph TD;
   ls-field-properties-email --> ls-field-properties-container
   ls-field-properties-email --> ls-field-content
-  ls-field-properties-email --> ls-field-dimensions
   ls-field-properties-email --> ls-field-properties-advanced
+  ls-field-properties-email --> ls-field-dimensions
   ls-field-properties-email --> ls-field-placement
   ls-field-properties-email --> ls-field-footer
   ls-field-content --> ls-props-section
@@ -42,6 +42,8 @@ graph TD;
   ls-field-content --> ls-input-wrapper
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
+  ls-field-properties-advanced --> ls-icon
+  ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
   ls-field-placement --> ls-icon
   ls-field-footer --> ls-icon

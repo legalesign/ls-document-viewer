@@ -19,11 +19,13 @@
 ### Used by
 
  - [ls-field-content](../ls-field-content)
+ - [ls-field-properties-advanced](../ls-field-properties-advanced)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-content --> ls-props-section
+  ls-field-properties-advanced --> ls-props-section
   style ls-props-section fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

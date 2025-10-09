@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Event as StencilEvent, EventEmitter  } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { State, Watch } from '@stencil/core/internal';
 
@@ -31,22 +31,23 @@ export class LsFormfield {
   @Prop() buttonIcon?: Icon;
   @Prop() labelIcon?: Icon;
   @Prop() fieldIcon?: Icon;
+  @StencilEvent() onChange: EventEmitter<Event>;
+
+  changeHandler(event: Event) {
+    this.onChange.emit(event);
+  }
 
   @State() _value: string;
 
   @Watch('value')
   valueWatcher(newValue: string) {
     this._value = newValue;
+    console.log(newValue)
   }
 
   componentWillLoad() {
     this.valueWatcher(this?.value?.toString());
   }
-
-  handleChange = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    this.value = target.value;
-  };
 
   render() {
     const {
@@ -110,7 +111,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
-            onInput={(event: InputEvent) => this.handleChange(event)}
+            onChange={this.changeHandler}
           ></ls-text-input>
         ) : as === 'select' ? (
           <ls-select-input
@@ -124,6 +125,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
+            onChange={this.changeHandler}
           >
             <slot></slot>
           </ls-select-input>
@@ -144,6 +146,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
+            onChange={this.changeHandler}
           />
         ) : as === 'password' ? (
           <ls-text-input
@@ -161,6 +164,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
+            onChange={this.changeHandler}
           />
         ) : as === 'displayonly' ? (
           <ls-text-input
@@ -195,6 +199,7 @@ export class LsFormfield {
             buttonIcon={buttonIcon}
             buttonClick={buttonClick}
             fieldIcon={fieldIcon}
+            onChange={this.changeHandler}
           />
         ) : (
           <p>placeholder</p>

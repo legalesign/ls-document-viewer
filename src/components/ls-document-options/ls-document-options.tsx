@@ -1,5 +1,6 @@
-import { Component, Host, h, Prop, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-document-options',
@@ -7,6 +8,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
   shadow: true,
 })
 export class LsDocumentOptions {
+  @Element() component: HTMLElement;
   /**
    * The base template information (as JSON).
    * {LSApiTemplate}
@@ -18,6 +20,34 @@ export class LsDocumentOptions {
     console.log(newSelected, 'document manager');
   }
 
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  mutate: EventEmitter<LSMutateEvent[]>;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  update: EventEmitter<LSMutateEvent[]>;
+
+  alter(template: object) {
+    console.log(template)
+    this.update.emit([{ action: 'update', data: { ...this.template, ...template } }]);
+    this.mutate.emit([{ action: 'update', data: { ...this.template, ...template } }]);
+  }
+
+  // pure html components do not allow methods to be set in attributes so set on load
+  // https://stackoverflow.com/questions/49387964/pass-functions-to-stencil-component
+  // componentDidLoad() {
+  //   var dropTarget = this.component.shadowRoot.getElementById('ls-form-field') as HTMLLsFormfieldElement;
+  //   dropTarget.onChange = (ev) => { console.log(ev); this.alter({ title: (ev.target as any)?.value }) };
+
+  //   this.on
+  // }
   render() {
     return (
       <Host>
@@ -28,17 +58,17 @@ export class LsDocumentOptions {
         <div class={'template-details'}>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Name</p>
-            <ls-formfield as="text" value={this.template?.title} style={{ width: '100%'}} />
+            <ls-formfield as="text" value={this.template?.title} style={{ width: '100%' }}  />
           </div>
           <div class={'template-detail-section'}>
             <p class="template-detail-section-title">Auto Archive</p>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle></ls-toggle>
+            <ls-toggle onValueChange={(e) => { this.alter({ autoArchive: e.detail }) }}></ls-toggle>
           </div>
-           <div class={'template-detail-section'}>
+          <div class={'template-detail-section'}>
             <p class="template-detail-section-title">Lock</p>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle></ls-toggle>
+            <ls-toggle onValueChange={(e) => { this.alter({ locked: e.detail }) }}></ls-toggle>
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>

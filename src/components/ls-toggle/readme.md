@@ -5,6 +5,21 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property  | Attribute | Description | Type      | Default     |
+| --------- | --------- | ----------- | --------- | ----------- |
+| `checked` | `checked` |             | `boolean` | `undefined` |
+| `value`   | `value`   |             | `string`  | `undefined` |
+
+
+## Events
+
+| Event      | Description | Type                 |
+| ---------- | ----------- | -------------------- |
+| `onChange` |             | `CustomEvent<Event>` |
+
+
 ## Dependencies
 
 ### Used by

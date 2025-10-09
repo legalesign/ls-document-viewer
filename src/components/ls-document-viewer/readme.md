@@ -148,8 +148,8 @@ graph TD;
   ls-field-properties --> ls-field-properties-multiple
   ls-field-properties-signature --> ls-field-properties-container
   ls-field-properties-signature --> ls-field-content
-  ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-signature --> ls-field-properties-advanced
+  ls-field-properties-signature --> ls-field-dimensions
   ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-footer
   ls-field-content --> ls-props-section
@@ -157,25 +157,27 @@ graph TD;
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
   ls-field-type-display --> ls-icon
+  ls-field-properties-advanced --> ls-icon
+  ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
   ls-field-placement --> ls-icon
   ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-properties-container
   ls-field-properties-date --> ls-field-content
-  ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-field-properties-advanced
+  ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-date --> ls-field-placement
   ls-field-properties-date --> ls-field-footer
   ls-field-properties-text --> ls-field-properties-container
   ls-field-properties-text --> ls-field-content
-  ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-text --> ls-field-properties-advanced
+  ls-field-properties-text --> ls-field-dimensions
   ls-field-properties-text --> ls-field-placement
   ls-field-properties-text --> ls-field-footer
   ls-field-properties-number --> ls-field-properties-container
   ls-field-properties-number --> ls-field-content
-  ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-number --> ls-field-properties-advanced
+  ls-field-properties-number --> ls-field-dimensions
   ls-field-properties-number --> ls-field-placement
   ls-field-properties-number --> ls-field-footer
   ls-field-properties-autosign --> ls-field-dimensions
@@ -183,26 +185,26 @@ graph TD;
   ls-field-properties-autosign --> ls-field-footer
   ls-field-properties-email --> ls-field-properties-container
   ls-field-properties-email --> ls-field-content
-  ls-field-properties-email --> ls-field-dimensions
   ls-field-properties-email --> ls-field-properties-advanced
+  ls-field-properties-email --> ls-field-dimensions
   ls-field-properties-email --> ls-field-placement
   ls-field-properties-email --> ls-field-footer
   ls-field-properties-image --> ls-field-properties-container
   ls-field-properties-image --> ls-field-content
-  ls-field-properties-image --> ls-field-dimensions
   ls-field-properties-image --> ls-field-properties-advanced
+  ls-field-properties-image --> ls-field-dimensions
   ls-field-properties-image --> ls-field-placement
   ls-field-properties-image --> ls-field-footer
   ls-field-properties-file --> ls-field-properties-container
   ls-field-properties-file --> ls-field-content
-  ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-file --> ls-field-properties-advanced
+  ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-footer
   ls-field-properties-general --> ls-field-properties-container
   ls-field-properties-general --> ls-field-content
-  ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-general --> ls-field-properties-advanced
+  ls-field-properties-general --> ls-field-dimensions
   ls-field-properties-general --> ls-field-placement
   ls-field-properties-general --> ls-field-footer
   ls-field-properties-multiple --> ls-field-properties-container
@@ -222,6 +224,7 @@ graph TD;
   ls-field-format --> ls-icon
   ls-participant-select --> ls-icon
   ls-statusbar --> ls-icon
+  ls-editor-field --> ls-icon
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -22,9 +22,14 @@
 
  - [ls-document-viewer](../ls-document-viewer)
 
+### Depends on
+
+- [ls-icon](../ls-icon)
+
 ### Graph
 ```mermaid
 graph TD;
+  ls-editor-field --> ls-icon
   ls-document-viewer --> ls-editor-field
   style ls-editor-field fill:#f9f,stroke:#333,stroke-width:4px
 ```

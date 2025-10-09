@@ -6,6 +6,7 @@ import { Parameters } from './parameters';
 import { createElement, deleteElement, updateElement } from './elementActions';
 import { createRole, deleteRole, swapRoles, updateRole } from './roleActions';
 import { updateTemplate } from './templateActions';
+import { LSApiTemplate } from '../../../components';
 
 export class LsDocumentAdapter {
 
@@ -13,7 +14,7 @@ export class LsDocumentAdapter {
     axios.defaults.headers.common['Authorization'] = accessToken;
 
     // Determine the object type being processed
-    const obj: LSApiElement | LSApiRole = event.data;
+    const obj: LSApiElement | LSApiRole | LSApiTemplate = event.data;
     if (!obj?.id) return 'invalid';
 
     const apiId = atob(obj.id);

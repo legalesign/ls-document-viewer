@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, h } from '@stencil/core';
+import { Component, Prop, h, Host, Event as StencilEvent, EventEmitter, State } from '@stencil/core';
 import { Icon } from '../../../../types/Icon';
 import clsx from 'clsx';
 
@@ -22,12 +22,18 @@ export class LsTextInput {
   @Prop() buttonClick?: any;
   @Prop() buttonIcon?: Icon;
   @Prop() fieldIcon?: Icon;
+  @StencilEvent() onChange: EventEmitter<Event>;
 
   @State() showPassword: boolean = false;
 
   handlePassword = () => {
     this.showPassword = !this.showPassword;
   };
+
+  changeHandler(event: Event) {
+    console.log(event)
+    this.onChange.emit(event);
+  }
 
   render() {
     const {
@@ -85,6 +91,7 @@ export class LsTextInput {
             aria-label={aria}
             required={required}
             disabled={disabled}
+            onChange={this.changeHandler}
           ></input>
         ) : type === 'displayonly' ? (
           <input
@@ -109,6 +116,7 @@ export class LsTextInput {
             aria-label={aria}
             required={required}
             disabled={disabled}
+            onChange={this.changeHandler}
           ></input>
         )}
         <div class='right-items'>

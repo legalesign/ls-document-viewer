@@ -6,15 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
-import { LSApiElement } from "./types/LSApiElement";
 import { LSMutateEvent } from "./types/LSMutateEvent";
+import { LSApiElement } from "./types/LSApiElement";
 import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
 import { LSApiRole } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
-export { LSApiElement } from "./types/LSApiElement";
 export { LSMutateEvent } from "./types/LSMutateEvent";
+export { LSApiElement } from "./types/LSApiElement";
 export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
@@ -421,7 +421,6 @@ export namespace Components {
     }
     interface LsToggle {
         "checked": boolean;
-        "onChange": (event: Event) => void;
         "value": string;
     }
     interface LsToolbar {
@@ -471,6 +470,10 @@ export namespace Components {
         "validation": number;
     }
 }
+export interface LsDocumentOptionsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsDocumentOptionsElement;
+}
 export interface LsDocumentViewerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsDocumentViewerElement;
@@ -511,6 +514,10 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
 }
+export interface LsFormfieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFormfieldElement;
+}
 export interface LsParticipantCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantCardElement;
@@ -523,12 +530,32 @@ export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantSelectElement;
 }
+export interface LsTextInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsTextInputElement;
+}
+export interface LsToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsToggleElement;
+}
 export interface LsToolbarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsToolbarElement;
 }
 declare global {
+    interface HTMLLsDocumentOptionsElementEventMap {
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
+    }
     interface HTMLLsDocumentOptionsElement extends Components.LsDocumentOptions, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsDocumentOptionsElementEventMap>(type: K, listener: (this: HTMLLsDocumentOptionsElement, ev: LsDocumentOptionsCustomEvent<HTMLLsDocumentOptionsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsDocumentOptionsElementEventMap>(type: K, listener: (this: HTMLLsDocumentOptionsElement, ev: LsDocumentOptionsCustomEvent<HTMLLsDocumentOptionsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsDocumentOptionsElement: {
         prototype: HTMLLsDocumentOptionsElement;
@@ -817,7 +844,18 @@ declare global {
         prototype: HTMLLsFieldTypeDisplayElement;
         new (): HTMLLsFieldTypeDisplayElement;
     };
+    interface HTMLLsFormfieldElementEventMap {
+        "onChange": Event;
+    }
     interface HTMLLsFormfieldElement extends Components.LsFormfield, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFormfieldElementEventMap>(type: K, listener: (this: HTMLLsFormfieldElement, ev: LsFormfieldCustomEvent<HTMLLsFormfieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFormfieldElementEventMap>(type: K, listener: (this: HTMLLsFormfieldElement, ev: LsFormfieldCustomEvent<HTMLLsFormfieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFormfieldElement: {
         prototype: HTMLLsFormfieldElement;
@@ -920,7 +958,18 @@ declare global {
         prototype: HTMLLsStatusbarElement;
         new (): HTMLLsStatusbarElement;
     };
+    interface HTMLLsTextInputElementEventMap {
+        "onChange": Event;
+    }
     interface HTMLLsTextInputElement extends Components.LsTextInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsTextInputElementEventMap>(type: K, listener: (this: HTMLLsTextInputElement, ev: LsTextInputCustomEvent<HTMLLsTextInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsTextInputElementEventMap>(type: K, listener: (this: HTMLLsTextInputElement, ev: LsTextInputCustomEvent<HTMLLsTextInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsTextInputElement: {
         prototype: HTMLLsTextInputElement;
@@ -932,7 +981,18 @@ declare global {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
     };
+    interface HTMLLsToggleElementEventMap {
+        "valueChange": boolean;
+    }
     interface HTMLLsToggleElement extends Components.LsToggle, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsToggleElementEventMap>(type: K, listener: (this: HTMLLsToggleElement, ev: LsToggleCustomEvent<HTMLLsToggleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsToggleElementEventMap>(type: K, listener: (this: HTMLLsToggleElement, ev: LsToggleCustomEvent<HTMLLsToggleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsToggleElement: {
         prototype: HTMLLsToggleElement;
@@ -1010,6 +1070,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface LsDocumentOptions {
+        "onMutate"?: (event: LsDocumentOptionsCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsDocumentOptionsCustomEvent<LSMutateEvent[]>) => void;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -1260,6 +1322,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "labelIcon"?: Icon;
         "name"?: string;
+        "onOnChange"?: (event: LsFormfieldCustomEvent<Event>) => void;
         "placeholder"?: string;
         "required"?: boolean;
         "valid"?: boolean;
@@ -1400,6 +1463,7 @@ declare namespace LocalJSX {
         "fieldIcon"?: Icon;
         "inputRef"?: string;
         "name"?: string;
+        "onOnChange"?: (event: LsTextInputCustomEvent<Event>) => void;
         "placeholder"?: string;
         "required"?: boolean;
         /**
@@ -1427,7 +1491,7 @@ declare namespace LocalJSX {
     }
     interface LsToggle {
         "checked"?: boolean;
-        "onChange"?: (event: Event) => void;
+        "onValueChange"?: (event: LsToggleCustomEvent<boolean>) => void;
         "value"?: string;
     }
     interface LsToolbar {
