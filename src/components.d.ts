@@ -421,6 +421,7 @@ export namespace Components {
     }
     interface LsToggle {
         "checked": boolean;
+        "onChange": (event: Event) => void;
         "value": string;
     }
     interface LsToolbar {
@@ -1426,6 +1427,7 @@ declare namespace LocalJSX {
     }
     interface LsToggle {
         "checked"?: boolean;
+        "onChange"?: (event: Event) => void;
         "value"?: string;
     }
     interface LsToolbar {
