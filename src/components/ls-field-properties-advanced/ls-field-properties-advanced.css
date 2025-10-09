@@ -1,4 +1,4 @@
-:host {
+:host, .field-set {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -9,6 +9,27 @@
 * {
   margin: 0;
   box-sizing: border-box;
+}
+
+.expand-fields-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  cursor: pointer;
+  color: var(--gray-80, #6c6e73);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.expand-fields-row p {
+  color: var(--gray-100, #45484d);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
 }
 
 .field-set {

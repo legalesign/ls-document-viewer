@@ -44,6 +44,8 @@ export class LsParticipantCard {
   }
 
   render() {
+    const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
+
     return (
       <Host>
         <div
@@ -71,60 +73,62 @@ export class LsParticipantCard {
                 <ls-icon name={this.signer?.signerIndex > 100 ? 'eye' : 'signature'} />
                 {'Participant ' + (this.signer?.signerIndex || '')}
               </div>
-              <div class={'button-set hidden'}>
-                {this.index > 0 && (
+              {!this.editable && (
+                <div class={'button-set hidden'}>
+                  {this.index > 0 && (
+                    <div
+                      class="innerButton"
+                      onClick={() => {
+                        this.swapHandler(this.signer, this.template.roles[this.index - 1]);
+                      }}
+                      style={{
+                        '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
+                        '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
+                      }}
+                    >
+                      <ls-icon name="arrow-up" size="18" />
+                    </div>
+                  )}
+                  {this.signer.signerIndex !== this.template.roles.length && (
+                    <div
+                      class="innerButton"
+                      onClick={() => {
+                        this.swapHandler(this.signer, this.template.roles[this.index + 1]);
+                      }}
+                      style={{
+                        '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
+                        '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
+                      }}
+                    >
+                      <ls-icon name="arrow-down" size="18" />
+                    </div>
+                  )}
                   <div
                     class="innerButton"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index - 1]);
+                      this.editable = true;
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
                   >
-                    <ls-icon name="arrow-up" size="18" />
+                    <ls-icon name="pencil-alt" size="18" />
                   </div>
-                )}
-                {this.signer.signerIndex !== this.template.roles.length && (
                   <div
                     class="innerButton"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index + 1]);
+                      this.deleteHandler(this.signer);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
                   >
-                    <ls-icon name="arrow-down" size="18" />
+                    <ls-icon name="trash" size="18" />
                   </div>
-                )}
-                <div
-                  class="innerButton"
-                  onClick={() => {
-                    this.editable = true;
-                  }}
-                  style={{
-                    '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
-                    '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
-                  }}
-                >
-                  <ls-icon name="pencil-alt" size="18" />
                 </div>
-                <div
-                  class="innerButton"
-                  onClick={() => {
-                    this.deleteHandler(this.signer);
-                  }}
-                  style={{
-                    '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
-                    '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
-                  }}
-                >
-                  <ls-icon name="trash" size="18" />
-                </div>
-              </div>
+              )}
             </div>
             {this.editable ? (
               <form
@@ -155,9 +159,14 @@ export class LsParticipantCard {
                   </select>
                 </ls-input-wrapper>
                 <input type="text" id="participant-description" name="participantDescription" placeholder="Description, eg. Tenant 1, Agent" defaultValue={this.signer.name} />
-                <button type="submit" class="submit-btn">
-                  Save
-                </button>
+                <div class={'form-button-set'}>
+                  <button type="cancel" class="secondary full-width">
+                    Cancel
+                  </button>
+                  <button type="submit" class="full-width">
+                    Save
+                  </button>
+                </div>
               </form>
             ) : (
               <div class={'participant-card-text'}>
@@ -178,6 +187,18 @@ export class LsParticipantCard {
                 >
                   {this.signer.roleType.toLowerCase()}
                 </p>
+                {this.signer?.roleType !== 'APPROVER' && (
+                  <div
+                    class={'role-label fields'}
+                    style={{
+                      background: participantFields.length === 0 ? defaultRolePalette[this.signer?.signerIndex % 100].s60 : defaultRolePalette[this.signer?.signerIndex % 100].s20,
+                      color: participantFields.length === 0 ? 'white' : defaultRolePalette[this.signer?.signerIndex % 100].s90,
+                    }}
+                  >
+                    {participantFields.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
+                    {participantFields.length === 0 ? 'Signature Required' : `${participantFields.length} ${participantFields.length === 1 ? 'Field' : 'Fields'}`}
+                  </div>
+                )}
               </div>
             )}
           </div>

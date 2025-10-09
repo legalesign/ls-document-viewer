@@ -128,6 +128,7 @@ export class LsEditorField {
   }
 
   render() {
+    console.log('RENDER ls-editor-field', this.dataItem);
     return (
       <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
         <div
@@ -136,6 +137,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
+          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" />}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}

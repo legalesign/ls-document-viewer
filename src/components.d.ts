@@ -182,6 +182,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem": LSApiElement | LSApiElement[];
+        /**
+          * @default false
+         */
+        "expanded": boolean;
     }
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
@@ -416,6 +420,9 @@ export namespace Components {
         "value"?: string;
     }
     interface LsToggle {
+        "checked": boolean;
+        "onChange": (event: Event) => void;
+        "value": string;
     }
     interface LsToolbar {
         /**
@@ -1170,6 +1177,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem"?: LSApiElement | LSApiElement[];
+        /**
+          * @default false
+         */
+        "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
     }
@@ -1415,6 +1426,9 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface LsToggle {
+        "checked"?: boolean;
+        "onChange"?: (event: Event) => void;
+        "value"?: string;
     }
     interface LsToolbar {
         /**

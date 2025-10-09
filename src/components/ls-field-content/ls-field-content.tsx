@@ -18,7 +18,7 @@ export class LsFieldContent {
           <ls-field-type-display fieldType={this.dataItem?.elementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
         <ls-props-section sectionTitle="Required Field" row={true}>
-          <ls-toggle />
+          <ls-toggle checked={!this.dataItem?.optional} value={this.dataItem?.optional?.toString()} onChange={() => console.log('required updated')} />
         </ls-props-section>
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
           <input value={this.dataItem?.label} placeholder="eg. Sign Here" />
