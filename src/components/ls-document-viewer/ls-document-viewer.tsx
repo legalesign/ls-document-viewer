@@ -202,10 +202,7 @@ export class LsDocumentViewer {
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     console.log(event);
-    if (this.token)
-      event.detail.forEach(me =>
-        this.adapter.handleEvent(me, this.token).then(result =>  matchData.bind(this)(result))
-      );
+    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -278,10 +275,10 @@ export class LsDocumentViewer {
 
     frame.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
     frame.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
-    
-    wrapper.style.height = (this.pageDimensions[this.pageNum - 1].height * z + 200) + 'px';
+
+    wrapper.style.height = this.pageDimensions[this.pageNum - 1].height * z + 200 + 'px';
     wrapper.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
-    
+
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem));
 
@@ -324,7 +321,7 @@ export class LsDocumentViewer {
       roles: preparedRoles,
     };
 
-    console.log(this._template)
+    console.log(this._template);
   }
 
   /**
@@ -388,7 +385,6 @@ export class LsDocumentViewer {
       templateId: this._template.id,
     };
   }
-
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
@@ -476,7 +472,6 @@ export class LsDocumentViewer {
   componentWillLoad() {
     if (this.token && !this._template) this.load();
   }
-
 
   render() {
     return (
@@ -675,10 +670,9 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
             <div id="ls-mid-area">
-              <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
-              <div class={'document-frame-wrapper'} id='document-frame-wrapper'>
-                <div class={'spacer'}></div>
+              <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />

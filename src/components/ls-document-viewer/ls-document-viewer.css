@@ -89,6 +89,7 @@ h6 {
 }
 
 .leftBox {
+  position: absolute;
   border-radius: 16px;
   border: 1px solid var(--gray-30, #edeff2);
   background: var(--white, #fff);
@@ -97,6 +98,9 @@ h6 {
   margin: 1rem;
   min-width: 21.25rem;
   max-height: 100%;
+  z-index: 1000;
+  left: 0;
+  top: 0;
 }
 
 .left-box-inner {
@@ -141,6 +145,7 @@ h6 {
 }
 
 #ls-mid-area {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -149,20 +154,15 @@ h6 {
 
 .document-frame-wrapper {
   position: relative;
-  padding: 0 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   overflow: visible;
+  min-width: 100vw;
+  
 }
 
-.spacer {
-  position: fixed;
-  min-height: 5.5rem;
-  width: 100%;
-  float: left;
-}
 
 #ls-document-frame {
   /* background-image: repeating-linear-gradient(rgba(175, 176, 178, 0.4) 0px, rgba(175, 176, 178, 0.4) 1px, transparent 1px, transparent 100%),
@@ -173,10 +173,8 @@ h6 {
   max-width: 100%;
   max-height: 100%;
   margin: 0px;
-  padding: 2px;
-  /* background-color: rgb(181, 181, 181); */
-  scrollbar-width: auto;
-  scrollbar-color: auto;
+  margin: 4rem 22rem;
+
 }
 .prevButton {
   position: relative;
@@ -202,7 +200,7 @@ h6 {
 #ls-editor-form {
   display: flex;
   width: 100vw;
-  max-height: calc(100vh - 2.25rem);
+  height: calc(100vh - 2.25rem);
   position: relative;
   background: var(--gray-10, #f7f8fa);
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.04) inset, 0 10px 15px 0 rgba(0, 0, 0, 0.04) inset;

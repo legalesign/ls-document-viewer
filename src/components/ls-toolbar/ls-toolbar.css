@@ -1,26 +1,21 @@
 :host {
-  position: relative;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-}
-
-.rowbox {
-  position: absolute;
-  top: 1rem;
-  display: flex;
   padding: 0.5rem;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
   width: fit-content;
   border-radius: 1rem;
   border: 1px solid var(--gray-20, #edeff2);
   background: var(--white, #fff);
-  margin-bottom: 1rem;
-  z-index: 200;
+  z-index: 1000;
 }
+
 
 /* Global Styles */
 
