@@ -40,14 +40,6 @@ export class LsDocumentOptions {
     this.mutate.emit([{ action: 'update', data: { ...this.template, ...template } }]);
   }
 
-  // pure html components do not allow methods to be set in attributes so set on load
-  // https://stackoverflow.com/questions/49387964/pass-functions-to-stencil-component
-  // componentDidLoad() {
-  //   var dropTarget = this.component.shadowRoot.getElementById('ls-form-field') as HTMLLsFormfieldElement;
-  //   dropTarget.onChange = (ev) => { console.log(ev); this.alter({ title: (ev.target as any)?.value }) };
-
-  //   this.on
-  // }
   render() {
     return (
       <Host>
