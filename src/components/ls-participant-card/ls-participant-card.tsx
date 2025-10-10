@@ -89,6 +89,7 @@ export class LsParticipantCard {
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.remove('hidden')}
           onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.add('hidden')}
+          onDblClick={e => this.editable = true}
         >
           <div class={'participant-card-inner'}>
             <div class={'participant-card-top-items'}>
