@@ -83,7 +83,7 @@ export class LsStatusbar {
         >
           <ls-icon name="chevron-left" />
         </button>
-        <p>1 / 2</p>
+        <p>{this.editor.pageNum} / {this.editor._template.pageCount}</p>
         <button
           onClick={() => {
             this.editor.pageNext();
