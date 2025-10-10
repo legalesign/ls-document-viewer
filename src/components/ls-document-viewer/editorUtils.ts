@@ -79,7 +79,6 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 export async function syncRoles() {
   var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
   const result = await this.adapter.execute(this.token, getTemplateRoles(this._template.id));
-  console.log(result);
   this._template = { ...this._template, roles: result.template.roles };
   participantManager.template = this._template;
 }
