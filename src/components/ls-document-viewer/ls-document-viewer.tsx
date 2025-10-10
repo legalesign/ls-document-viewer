@@ -269,15 +269,15 @@ export class LsDocumentViewer {
     this.zoom = z;
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
     const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
-    const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLDivElement;
+    // const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLDivElement;
     this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
     this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
 
     frame.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
     frame.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
 
-    wrapper.style.height = this.pageDimensions[this.pageNum - 1].height * z + 200 + 'px';
-    wrapper.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
+    // wrapper.style.height = this.pageDimensions[this.pageNum - 1].height * z + 200 + 'px';
+    // wrapper.style.width = this.pageDimensions[this.pageNum - 1].width * z + 600 + 'px';
 
     // place all fields at new zoom level
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(fx => moveField.bind(this)(fx, fx.dataItem));
@@ -472,6 +472,13 @@ export class LsDocumentViewer {
   componentWillLoad() {
     if (this.token && !this._template) this.load();
   }
+
+  componentDidLoad() {
+  const box = this.component.shadowRoot.querySelector('#document-frame-wrapper');
+  box.scrollTop = (box.scrollHeight - box.clientHeight) / 2;
+  box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+}
+
 
   render() {
     return (
