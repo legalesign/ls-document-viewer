@@ -57,4 +57,23 @@ const swapRoles = (roleId1, roleId2) => {
 };
 
 
-export { createRole, updateRole, deleteRole, swapRoles };
+const getTemplateRoles = (id: string) => {
+  return `
+        query LDVGetTemplate {
+          template(id: "${id}") {           
+            roles{
+              id
+              name
+              roleType
+              signerIndex
+              ordinal
+              signerParent
+              experience
+            }
+          }
+        }
+      `;
+};
+
+
+export { createRole, updateRole, deleteRole, swapRoles, getTemplateRoles };

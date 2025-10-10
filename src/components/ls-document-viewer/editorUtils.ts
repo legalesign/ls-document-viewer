@@ -9,6 +9,7 @@
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { ValidationType } from '../../types/ValidationType';
+import { getTemplateRoles } from './adapter/roleActions';
 
 /**
  * Determines if an element will be plotted out of bounds, i.e. off
@@ -68,22 +69,19 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
       this._template = { ...this._template, roles: this._template.roles.filter(r => r.id !== id) };
       participantManager.template = this._template;
     }
-   } else if (data.event.action === 'swap') {
+  } else if (data.event.action === 'swap') {
     if (prefix === 'rol') {
-      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-      const obj1 = data.event.data
-      const obj2 = data.event.data2
-      const objindex1 = this._template.roles.findIndex(r => r.id === obj1.id) 
-      const objindex2 = this._template.roles.findIndex(r => r.id === obj2.id) 
-      const reorderedRoles = this._template.roles;
-
-      reorderedRoles[objindex1] = obj2;
-      reorderedRoles[objindex2] = obj1;
-
-      this._template = { ...this._template, roles: reorderedRoles };
-      participantManager.template = this._template;
+      syncRoles.bind(this)();
     }
   }
+}
+
+export async function syncRoles() {
+  var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+  const result = await this.adapter.execute(this.token, getTemplateRoles(this._template.id));
+  console.log(result);
+  this._template = { ...this._template, roles: result.template.roles };
+  participantManager.template = this._template;
 }
 
 // Utility function which extracts the type from any API id
