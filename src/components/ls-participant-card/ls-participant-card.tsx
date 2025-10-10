@@ -16,7 +16,6 @@ export class LsParticipantCard {
   @Prop({ mutable: true }) editable: boolean = false;
   @Prop() template: LSApiTemplate;
 
-
   @Event({
     bubbles: true,
     cancelable: true,
@@ -58,7 +57,6 @@ export class LsParticipantCard {
     }, delay);
   }
 
-
   deleteHandler(role: LSApiRole) {
     this.update.emit([{ action: 'delete', data: role }]);
     this.mutate.emit([{ action: 'delete', data: role }]);
@@ -72,7 +70,9 @@ export class LsParticipantCard {
   @Watch('editable')
   modeHandler(_editable) {
     // When opened fire an event to let the parent handle closing other controls
-    if(_editable) { this.opened.emit(this.signer)}
+    if (_editable) {
+      this.opened.emit(this.signer);
+    }
   }
 
   render() {
@@ -89,7 +89,9 @@ export class LsParticipantCard {
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.remove('hidden')}
           onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.add('hidden')}
-          onDblClick={() => {this.editable = true}}
+          onDblClick={() => {
+            this.editable = true;
+          }}
         >
           <div class={'participant-card-inner'}>
             <div class={'participant-card-top-items'}>
@@ -100,72 +102,68 @@ export class LsParticipantCard {
                   color: defaultRolePalette[this.signer?.signerIndex % 100].s90,
                 }}
               >
-                <ls-icon name={this.signer?.signerIndex > 100 ? 'eye' : 'signature'} />
+                <ls-icon name={this.signer?.roleType === 'APPROVER' ? 'check-circle' : this.signer?.roleType === 'SIGNER' ? 'signature' : 'eye'} />
                 {'Participant ' + (this.signer?.signerIndex || '')}
               </div>
-              {!this.editable && (
-                <div class={'button-set hidden'}>
-                  {this.index > 0 && (
-                    <div
-                      class="innerButton"
-                      onClick={() => {
-                        this.swapHandler(this.signer, this.template.roles[this.index - 1]);
-                      }}
-                      style={{
-                        '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
-                        '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
-                      }}
-                    >
-                      <ls-icon name="arrow-up" size="18" />
-                    </div>
-                  )}
-                  {this.signer.signerIndex !== this.template.roles.length && (
-                    <div
-                      class="innerButton"
-                      onClick={() => {
-                        this.swapHandler(this.signer, this.template.roles[this.index + 1]);
-                      }}
-                      style={{
-                        '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
-                        '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
-                      }}
-                    >
-                      <ls-icon name="arrow-down" size="18" />
-                    </div>
-                  )}
+              <div class={'button-set hidden'}>
+                {this.index > 0 && (
                   <div
                     class="innerButton"
                     onClick={() => {
-                      this.editable = true;
+                      this.swapHandler(this.signer, this.template.roles[this.index - 1]);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
                   >
-                    <ls-icon name="pencil-alt" size="18" />
+                    <ls-icon name="arrow-up" size="18" />
                   </div>
+                )}
+                {this.signer.signerIndex !== this.template.roles.length && (
                   <div
                     class="innerButton"
                     onClick={() => {
-                      this.deleteHandler(this.signer);
+                      this.swapHandler(this.signer, this.template.roles[this.index + 1]);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
                   >
-                    <ls-icon name="trash" size="18" />
+                    <ls-icon name="arrow-down" size="18" />
                   </div>
+                )}
+                <div
+                  class="innerButton"
+                  onClick={() => {
+                    this.editable = !this.editable;
+                  }}
+                  style={{
+                    '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
+                    '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
+                  }}
+                >
+                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="18" />
                 </div>
-              )}
+                <div
+                  class="innerButton"
+                  onClick={() => {
+                    this.deleteHandler(this.signer);
+                  }}
+                  style={{
+                    '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
+                    '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
+                  }}
+                >
+                  <ls-icon name="trash" size="18" />
+                </div>
+              </div>
             </div>
             {this.editable ? (
-              <div
-                class={'participant-card-inner'}
-              >
-                <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'eye' : 'signature'}>
-                  <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={(e) => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
+              <div class={'participant-card-inner'}>
+                <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle' : 'signature'}>
+                  <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={e => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
                     <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
                       Approver
                     </option>
@@ -174,9 +172,17 @@ export class LsParticipantCard {
                     </option>
                   </select>
                 </ls-input-wrapper>
-                <input type="text" id="participant-description" name="participantDescription" placeholder="Description, eg. Tenant 1, Agent" defaultValue={this.signer.name}
-                  onInput={(e) => this.alter({ name: (e.target as HTMLInputElement).value })} 
-                  onKeyUp={(e) => {if(e.key === 'Enter' || e.keyCode === 13) this.editable = false}}/>
+                <input
+                  type="text"
+                  id="participant-description"
+                  name="participantDescription"
+                  placeholder="Description, eg. Tenant 1, Agent"
+                  defaultValue={this.signer.name}
+                  onInput={e => this.alter({ name: (e.target as HTMLInputElement).value })}
+                  onKeyUp={e => {
+                    if (e.key === 'Enter' || e.keyCode === 13) this.editable = false;
+                  }}
+                />
               </div>
             ) : (
               <div class={'participant-card-text'}>

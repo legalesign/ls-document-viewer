@@ -506,7 +506,7 @@ export class LsDocumentViewer {
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>
             <p>/</p>
-            <p class="header-text-2">Template Name</p>
+            <p class="header-text-2">{this._template?.title}</p>
           </div>
           <form id="ls-editor-form">
             {this.showtoolbox === true ? (
