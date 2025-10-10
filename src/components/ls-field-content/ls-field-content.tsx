@@ -28,13 +28,22 @@ export class LsFieldContent {
 
     // Send one or more mutations up the chain
     // The source of the chain fires the mutation
+    // NOTE this alter is debounced to account for typing
     alter(diff: object) {
       this.dataItem = { ...this.dataItem, ...diff };
-      const diffs: LSMutateEvent[] = [{ action: 'update', data: this.dataItem }];
-      
-  
-      this.mutate.emit(diffs);
-      this.update.emit(diffs);
+      this.debounce(this.dataItem, 500);
+    }
+
+    private labeltimer;
+    
+    debounce(data, delay) {
+      if (this.labeltimer) clearTimeout(this.labeltimer);
+    
+      this.labeltimer = setTimeout(() => {
+          const diffs: LSMutateEvent[] = [{ action: 'update', data }];
+          this.mutate.emit(diffs);
+          this.update.emit(diffs);
+      }, delay);
     }
     
   render() {
@@ -47,7 +56,7 @@ export class LsFieldContent {
           <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={(ev) => this.alter({ optional: !ev.detail})} />
         </ls-props-section>
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
-          <input value={this.dataItem?.label} placeholder="eg. Sign Here" />
+          <input value={this.dataItem?.label} placeholder="eg. Sign Here" onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value})} />
         </ls-props-section>
         {this.showValidationTypes && (
           <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
