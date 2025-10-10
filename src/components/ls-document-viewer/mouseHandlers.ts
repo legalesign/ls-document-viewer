@@ -99,7 +99,7 @@ export function mouseMove(event) {
         break;
     }
 
-    debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
+    debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem)}, 700);
   } else if (this.selectionBox && event.buttons === 1) {
     // draw the multiple selection box
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;

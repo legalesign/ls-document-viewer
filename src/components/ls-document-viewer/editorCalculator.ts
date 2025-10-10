@@ -158,6 +158,13 @@ export const recalculateCoordinates = (
   const bx = (d.left + d.width) / d.pageDimensions.width;
   const by = (d.top + d.height) / d.pageDimensions.height;
 
+   console.log( {
+    ax,
+    ay,
+    bx,
+    by,
+  }, 'recalc')
+
   // Return with calculated styles that try to place it as it would appear on legacy signing page
   return {
     ...d,
