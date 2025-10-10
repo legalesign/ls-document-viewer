@@ -63,16 +63,16 @@ export class LsDocumentOptions {
           <div class={'template-detail-section'}>
             <p class="template-detail-section-title">Auto Archive</p>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle checked={this.template.autoArchive} onValueChange={(e) => { this.alter({ autoArchive: e.detail }) }}></ls-toggle>
+            <ls-toggle checked={this.template?.autoArchive} onValueChange={(e) => { this.alter({ autoArchive: e.detail }) }}></ls-toggle>
           </div>
           <div class={'template-detail-section'}>
             <p class="template-detail-section-title">Lock</p>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle  checked={this.template.locked} onValueChange={(e) => { this.alter({ locked: e.detail }) }}></ls-toggle>
+            <ls-toggle  checked={this.template?.locked} onValueChange={(e) => { this.alter({ locked: e.detail }) }}></ls-toggle>
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>
-            <ls-label text={this.template?.pageDimensionArray?.length} />
+            <ls-label text={this.template?.pageDimensions?.length} />
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Date Created</p> {this.template?.created}
