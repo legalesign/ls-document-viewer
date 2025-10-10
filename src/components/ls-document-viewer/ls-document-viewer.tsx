@@ -491,16 +491,18 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
-  const box = this.component.shadowRoot.querySelector('#document-frame-wrapper');
-  box.scrollTop = (box.scrollHeight - box.clientHeight) / 2;
-  box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
-}
-
+    const box = this.component.shadowRoot.querySelector('#document-frame-wrapper');
+    box.scrollTop = (box.scrollHeight - box.clientHeight) / 2;
+    box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+  }
 
   render() {
     return (
       <Host>
         <>
+          <div class={'validation-tag-wrapper'}>
+            <ls-validation-tag />
+          </div>
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>
             <p>/</p>
@@ -572,7 +574,7 @@ export class LsDocumentViewer {
                         icon="calender"
                         signer={this.signer}
                       />
-                      
+
                       <ls-toolbox-field
                         elementType="signing date"
                         formElementType="signing date"

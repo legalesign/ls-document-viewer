@@ -481,6 +481,20 @@ export namespace Components {
          */
         "validation": number;
     }
+    interface LsValidationTag {
+        /**
+          * @default false
+         */
+        "isExpanded": boolean;
+        /**
+          * @default false
+         */
+        "isValid": boolean;
+        /**
+          * @default []
+         */
+        "requiredFields": any[];
+    }
 }
 export interface LsDocumentOptionsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1051,6 +1065,12 @@ declare global {
         prototype: HTMLLsToolboxFieldElement;
         new (): HTMLLsToolboxFieldElement;
     };
+    interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
+    }
+    var HTMLLsValidationTagElement: {
+        prototype: HTMLLsValidationTagElement;
+        new (): HTMLLsValidationTagElement;
+    };
     interface HTMLElementTagNameMap {
         "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
@@ -1095,6 +1115,7 @@ declare global {
         "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
+        "ls-validation-tag": HTMLLsValidationTagElement;
     }
 }
 declare namespace LocalJSX {
@@ -1586,6 +1607,20 @@ declare namespace LocalJSX {
          */
         "validation"?: number;
     }
+    interface LsValidationTag {
+        /**
+          * @default false
+         */
+        "isExpanded"?: boolean;
+        /**
+          * @default false
+         */
+        "isValid"?: boolean;
+        /**
+          * @default []
+         */
+        "requiredFields"?: any[];
+    }
     interface IntrinsicElements {
         "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
@@ -1630,6 +1665,7 @@ declare namespace LocalJSX {
         "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
+        "ls-validation-tag": LsValidationTag;
     }
 }
 export { LocalJSX as JSX };
@@ -1684,6 +1720,7 @@ declare module "@stencil/core" {
             "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
+            "ls-validation-tag": LocalJSX.LsValidationTag & JSXBase.HTMLAttributes<HTMLLsValidationTagElement>;
         }
     }
 }
