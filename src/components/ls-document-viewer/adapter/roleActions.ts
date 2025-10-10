@@ -49,8 +49,8 @@ const swapRoles = (roleId1, roleId2) => {
   return `
     mutation LDVswapRole {
       swapRoles(input: {
-        roleId1: "${roleId1}"       
-        roleId2: "${roleId2}"
+        roleId1: "${roleId1.id}"       
+        roleId2: "${roleId2.id}"
        })
     }`;
 

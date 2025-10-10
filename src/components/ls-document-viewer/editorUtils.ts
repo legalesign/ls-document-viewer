@@ -68,6 +68,21 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
       this._template = { ...this._template, roles: this._template.roles.filter(r => r.id !== id) };
       participantManager.template = this._template;
     }
+   } else if (data.event.action === 'swap') {
+    if (prefix === 'rol') {
+      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+      const obj1 = data.event.data
+      const obj2 = data.event.data2
+      const objindex1 = this._template.roles.findIndex(r => r.id === obj1.id) 
+      const objindex2 = this._template.roles.findIndex(r => r.id === obj2.id) 
+      const reorderedRoles = this._template.roles;
+
+      reorderedRoles[objindex1] = obj2;
+      reorderedRoles[objindex2] = obj1;
+
+      this._template = { ...this._template, roles: reorderedRoles };
+      participantManager.template = this._template;
+    }
   }
 }
 

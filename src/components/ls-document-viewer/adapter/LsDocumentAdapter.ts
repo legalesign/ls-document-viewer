@@ -48,6 +48,7 @@ export class LsDocumentAdapter {
             query = deleteRole(obj);
             break;
           case 'swap':
+            console.log(obj, event)
             query = swapRoles(obj, event.data2);
             break;
         }
