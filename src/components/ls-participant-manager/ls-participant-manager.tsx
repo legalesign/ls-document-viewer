@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole } from '../../types/LSApiRole';
@@ -10,6 +10,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
   shadow: true,
 })
 export class LsParticipantManager {
+  @Element() element: HTMLElement;
   /**
    * The base template information (as JSON).
    * {LSDocumentViewer}
@@ -69,6 +70,14 @@ export class LsParticipantManager {
     this.mutate.emit(data);
   }
 
+  handleOpened(event) {
+    const participants = this.element.shadowRoot.querySelectorAll('ls-participant-card');
+
+    participants.forEach(element => {
+        if(element.signer.id !== event.detail.id) element.editable = false;
+    });
+  }
+
   render() {
     return (
       <Host>
@@ -79,7 +88,9 @@ export class LsParticipantManager {
         <div class="participant-list">
           {this.template &&
             this.template?.roles.map((r, index) => {
-              return <ls-participant-card signer={r} index={index} template={this.template} />;
+              return <ls-participant-card signer={r} index={index} template={this.template} onOpened={(event)=> {
+                this.handleOpened.bind(this)(event)
+              }}/>;
             })}
         </div>
         <div class={'add-participant-button'}>

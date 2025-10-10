@@ -17,10 +17,11 @@
 
 ## Events
 
-| Event    | Description | Type                           |
-| -------- | ----------- | ------------------------------ |
-| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
-| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+| Event    | Description | Type                                                                                                                                                                                                |
+| -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mutate` |             | `CustomEvent<LSMutateEvent[]>`                                                                                                                                                                      |
+| `opened` |             | `CustomEvent<{ children?: LSApiRole[]; id: string; name: string; roleType: LSApiRoleType; signerIndex: number; ordinal: number; signerParent?: string; experience: string; templateId?: string; }>` |
+| `update` |             | `CustomEvent<LSMutateEvent[]>`                                                                                                                                                                      |
 
 
 ## Dependencies

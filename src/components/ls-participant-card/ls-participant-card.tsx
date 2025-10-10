@@ -1,5 +1,5 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
-import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
+import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { LSApiRole } from '../../types/LSApiRole';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
@@ -10,10 +10,12 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
   shadow: true,
 })
 export class LsParticipantCard {
+  @Element() component: HTMLElement;
   @Prop() signer: LSApiRole;
   @Prop() index: number;
-  @Prop() editable: boolean = false;
+  @Prop({ mutable: true }) editable: boolean = false;
   @Prop() template: LSApiTemplate;
+
 
   @Event({
     bubbles: true,
@@ -29,9 +31,33 @@ export class LsParticipantCard {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
-  selectedHandler(_role) {
-    //console.log(role, 'participant manager')
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  opened: EventEmitter<LSApiRole>;
+
+  // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  // NOTE this alter is debounced to account for typing
+  alter(diff: object) {
+    this.signer = { ...this.signer, ...diff };
+    this.debounce(this.signer, 500);
   }
+
+  private labeltimer;
+
+  debounce(data, delay) {
+    if (this.labeltimer) clearTimeout(this.labeltimer);
+
+    this.labeltimer = setTimeout(() => {
+      const diffs: LSMutateEvent[] = [{ action: 'update', data }];
+      this.mutate.emit(diffs);
+      this.update.emit(diffs);
+    }, delay);
+  }
+
 
   deleteHandler(role: LSApiRole) {
     this.update.emit([{ action: 'delete', data: role }]);
@@ -43,6 +69,12 @@ export class LsParticipantCard {
     this.mutate.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
 
+  @Watch('editable')
+  modeHandler(_editable) {
+    // When opened fire an event to let the parent handle closing other controls
+    if(_editable) { this.opened.emit(this.signer)}
+  }
+
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
 
@@ -50,9 +82,6 @@ export class LsParticipantCard {
       <Host>
         <div
           class="participant-card"
-          onClick={() => {
-            this.selectedHandler(this.signer);
-          }}
           style={{
             background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
@@ -131,25 +160,11 @@ export class LsParticipantCard {
               )}
             </div>
             {this.editable ? (
-              <form
+              <div
                 class={'participant-card-inner'}
-                onSubmit={e => {
-                  e.preventDefault();
-                  this.update.emit([
-                    {
-                      action: 'update',
-                      data: {
-                        ...this.signer,
-                        roleType: (e.currentTarget as HTMLFormElement).roleType.value as LSApiRoleType,
-                        name: (e.currentTarget as HTMLFormElement).participantDescription.value,
-                      },
-                    },
-                  ]);
-                  this.editable = false;
-                }}
               >
                 <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'eye' : 'signature'}>
-                  <select name="roleType" id="role-type" class={'has-leading-icon'}>
+                  <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={(e) => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
                     <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
                       Approver
                     </option>
@@ -158,16 +173,10 @@ export class LsParticipantCard {
                     </option>
                   </select>
                 </ls-input-wrapper>
-                <input type="text" id="participant-description" name="participantDescription" placeholder="Description, eg. Tenant 1, Agent" defaultValue={this.signer.name} />
-                <div class={'form-button-set'}>
-                  <button type="cancel" class="secondary full-width">
-                    Cancel
-                  </button>
-                  <button type="submit" class="full-width">
-                    Save
-                  </button>
-                </div>
-              </form>
+                <input type="text" id="participant-description" name="participantDescription" placeholder="Description, eg. Tenant 1, Agent" defaultValue={this.signer.name}
+                  onInput={(e) => this.alter({ name: (e.target as HTMLInputElement).value })} 
+                  onKeyUp={(e) => {if(e.key === 'Enter' || e.keyCode === 13) this.editable = false}}/>
+              </div>
             ) : (
               <div class={'participant-card-text'}>
                 <p

@@ -897,6 +897,7 @@ declare global {
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
+        "opened": LSApiRole;
     }
     interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1393,6 +1394,7 @@ declare namespace LocalJSX {
         "editable"?: boolean;
         "index"?: number;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
+        "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
         "onUpdate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "signer"?: LSApiRole;
         "template"?: LSApiTemplate;
