@@ -10,6 +10,12 @@ import { LSApiTemplate } from '../../../components';
 
 export class LsDocumentAdapter {
 
+  private endpoint: string | null;
+
+  constructor(endpoint?: string | null) {
+    this.endpoint = endpoint;
+  }
+
   handleEvent = async (event: LSMutateEvent, accessToken: string) => {
     axios.defaults.headers.common['Authorization'] = accessToken;
 
@@ -75,7 +81,7 @@ export class LsDocumentAdapter {
     if (accessToken) {
       //console.log(graphQLQuery);
       const res = await axios.post<AxiosResponse>(
-        Parameters.endpoints.graphQL,
+        this.endpoint || Parameters.endpoints.graphQL,
         {
           query: graphQLQuery,
           variables: _graphQLVariables ? _graphQLVariables : {},

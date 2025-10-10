@@ -38,10 +38,15 @@ export namespace Components {
          */
         "displayTable"?: boolean;
         /**
+          * This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}
+         */
+        "endpoint": string;
+        /**
           * Whether or not the fields list is expanded. {boolean}
           * @default false
          */
         "expandfields"?: boolean;
+        "groupInfo": any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -124,6 +129,10 @@ export namespace Components {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * This will override the default production user pool. Almost exclusively used for internal development. {string}
+         */
+        "userpool": string;
         /**
           * @default 1.0
          */
@@ -329,6 +338,10 @@ export namespace Components {
     interface LsParticipantSelect {
         "dataItem": LSApiElement1[];
         /**
+          * The parent editor control. {LsDocumentViewer}
+         */
+        "editor": LsDocumentViewer1;
+        /**
           * The current template roles. {LSApiRole}
           * @default []
          */
@@ -428,7 +441,7 @@ export namespace Components {
          */
         "dataItem": LSApiElement1[];
         /**
-          * The base template information (as JSON). {LSDocumentViewer}
+          * The main editor. {LSDocumentViewer}
          */
         "editor": LsDocumentViewer1;
         /**
@@ -1105,10 +1118,15 @@ declare namespace LocalJSX {
          */
         "displayTable"?: boolean;
         /**
+          * This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}
+         */
+        "endpoint"?: string;
+        /**
           * Whether or not the fields list is expanded. {boolean}
           * @default false
          */
         "expandfields"?: boolean;
+        "groupInfo"?: any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -1184,6 +1202,10 @@ declare namespace LocalJSX {
           * @default null
          */
         "toolboxFilter"?: string;
+        /**
+          * This will override the default production user pool. Almost exclusively used for internal development. {string}
+         */
+        "userpool"?: string;
         /**
           * @default 1.0
          */
@@ -1413,6 +1435,10 @@ declare namespace LocalJSX {
     }
     interface LsParticipantSelect {
         "dataItem"?: LSApiElement1[];
+        /**
+          * The parent editor control. {LsDocumentViewer}
+         */
+        "editor"?: LsDocumentViewer1;
         "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
         "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
@@ -1518,7 +1544,7 @@ declare namespace LocalJSX {
          */
         "dataItem"?: LSApiElement1[];
         /**
-          * The base template information (as JSON). {LSDocumentViewer}
+          * The main editor. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;

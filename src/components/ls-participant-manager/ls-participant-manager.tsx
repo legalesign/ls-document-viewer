@@ -50,7 +50,7 @@ export class LsParticipantManager {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
   createHandler() {
-    const defaultExperience = this.editor._group.experienceConnection.experiences.find(x => x.defaultExperience === true);
+    const defaultExperience = this.editor.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const data: LSMutateEvent[] = [
       {
         action: 'create',

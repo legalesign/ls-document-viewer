@@ -36,7 +36,6 @@ export class LsDocumentViewer {
   private pdfDocument: any;
   private pageNumPending: number = null;
   private canvas: HTMLCanvasElement;
-  private adapter: LsDocumentAdapter = new LsDocumentAdapter();
   private ctx: CanvasRenderingContext2D;
   public pageDimensions: { height: number; width: number }[]; // hardcoded to start at the page 1
   // @ts-ignore
@@ -70,6 +69,20 @@ export class LsDocumentViewer {
    */
   @Prop() token: string;
 
+    /**
+   * This will override the default production user pool.
+   * Almost exclusively used for internal development.
+   * {string}
+   */
+  @Prop() userpool: string;
+
+  /**
+   * This will override the default production graphql endpoint.
+   * Almost exclusively used for internal development.
+   * {string}
+   */
+  @Prop() endpoint: string;
+
   /**
    * The id of the template you want to load (if using the internal data adapter).
    * {string}
@@ -81,7 +94,7 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate;
-  @State() _group: any;
+  @Prop({ mutable: true }) groupInfo: any;
   @State() selected: HTMLLsEditorFieldElement[];
 
   /**
@@ -197,6 +210,9 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
   // Send an internal event to be processed
   @Event() update: EventEmitter<LSMutateEvent[]>;
+
+  private adapter: LsDocumentAdapter;
+
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('mutate')
@@ -459,10 +475,11 @@ export class LsDocumentViewer {
   async load() {
     // Get all template and group listing data.
     try {
+      this.adapter = new LsDocumentAdapter(this.endpoint)
       const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
       this.parseTemplate(JSON.stringify(result.template));
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
-      this._group = resultGroup.group;
+      this.groupInfo = resultGroup.group;
       this.initViewer();
     } catch (e) {
       console.error('Your access token is invalid.', e);
@@ -677,7 +694,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} />
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} />
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

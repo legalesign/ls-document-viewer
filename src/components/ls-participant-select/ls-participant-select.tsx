@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole } from '../../types/LSApiRole';
-import { LSApiElement, LSMutateEvent } from '../../components';
+import { LSApiElement, LsDocumentViewer, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
@@ -13,6 +13,13 @@ export class LsParticipantSelect {
     mutable: true,
   })
   dataItem: LSApiElement[];
+
+
+  /**
+   * The parent editor control.
+   * {LsDocumentViewer}
+   */
+  @Prop() editor: LsDocumentViewer;
 
   /**
    * The currently selected role.
@@ -68,6 +75,28 @@ export class LsParticipantSelect {
     this.roleChange.emit(role.signerIndex);
   }
 
+  createHandler() {
+    console.log(this.editor)
+    const defaultExperience = this.editor.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
+    const data: LSMutateEvent[] = [
+      {
+        action: 'create',
+        data: {
+          id: btoa('rol' + crypto.randomUUID()),
+          name: 'Signer ' + (this.editor._template.roles.length + 1),
+          roleType: 'SIGNER',
+          signerIndex: this.editor._template.roles.length + 1,
+          ordinal: this.editor._template.roles.length,
+          signerParent: null,
+          experience: defaultExperience.id,
+          templateId: this.editor._template.id,
+        },
+      },
+    ];
+    this.update.emit(data);
+    this.mutate.emit(data);
+  }
+
   render() {
     return (
       <Host>
@@ -114,10 +143,10 @@ export class LsParticipantSelect {
                   this.selectedRole?.roleType === 'SENDER'
                     ? 'user'
                     : this.selectedRole?.roleType === 'APPROVER'
-                    ? 'check-circle'
-                    : this.selectedRole?.roleType === 'WITNESS'
-                    ? 'eye'
-                    : 'signature'
+                      ? 'check-circle'
+                      : this.selectedRole?.roleType === 'WITNESS'
+                        ? 'eye'
+                        : 'signature'
                 }
               />
               {this.selectedRole.name ||
@@ -220,6 +249,7 @@ export class LsParticipantSelect {
                   />
                 </div>
               ))}
+              <button onClick={this.createHandler}>Add Participant</button>
             </div>
           )}
         </div>

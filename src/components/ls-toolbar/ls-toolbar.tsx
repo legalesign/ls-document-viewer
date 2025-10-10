@@ -23,10 +23,12 @@ export class LsToolbar {
   @Prop() template: LSApiTemplate;
 
   /**
-   * The base template information (as JSON).
+   * The main editor.
    * {LSDocumentViewer}
    */
-  @Prop() editor: LsDocumentViewer;
+  @Prop({
+    mutable: true,
+  }) editor: LsDocumentViewer;
 
   @Event({
     bubbles: true,
@@ -57,17 +59,15 @@ export class LsToolbar {
     this.update.emit(diffs);
   }
 
+  componentDidLoad() {
+    console.log(this.editor.groupInfo)
+  }
+
   render() {
     return (
       <Host>
         {this.dataItem && this.dataItem.length > 1 ? (
           <div class={'rowbox'}>
-            {/* <select class="ls-participant-select">
-              <option value="0">Sender</option>
-              {this.template.roles.map(r => (
-                <option value={r.id}>{r.name}</option>
-              ))}
-            </select> */}
             <ls-field-format dataItem={this?.dataItem} />
           </div>
         ) : (
@@ -75,7 +75,7 @@ export class LsToolbar {
             {this.dataItem && this.dataItem.length === 1 ? (
               <ls-field-format dataItem={this?.dataItem} />
             ) : (
-              <ls-participant-select roles={this.template?.roles} dataItem={this?.dataItem} />
+              <ls-participant-select roles={this.template?.roles} dataItem={this?.dataItem} editor={this.editor} />
             )}
           </div>
         )}
