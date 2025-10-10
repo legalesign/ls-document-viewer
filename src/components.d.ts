@@ -486,6 +486,10 @@ export interface LsFieldAlignmentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldAlignmentElement;
 }
+export interface LsFieldContentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldContentElement;
+}
 export interface LsFieldDimensionsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldDimensionsElement;
@@ -634,7 +638,19 @@ declare global {
         prototype: HTMLLsFieldAlignmentElement;
         new (): HTMLLsFieldAlignmentElement;
     };
+    interface HTMLLsFieldContentElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsFieldContentElement extends Components.LsFieldContent, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldContentElementEventMap>(type: K, listener: (this: HTMLLsFieldContentElement, ev: LsFieldContentCustomEvent<HTMLLsFieldContentElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldContentElementEventMap>(type: K, listener: (this: HTMLLsFieldContentElement, ev: LsFieldContentCustomEvent<HTMLLsFieldContentElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFieldContentElement: {
         prototype: HTMLLsFieldContentElement;
@@ -1201,6 +1217,8 @@ declare namespace LocalJSX {
     }
     interface LsFieldContent {
         "dataItem"?: LSApiElement1;
+        "onMutate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * @default true
          */
