@@ -7,7 +7,6 @@ import { Component, Host, Prop, h, Event as StencilEvent, EventEmitter  } from '
 })
 export class LsToggle {
   @Prop({ mutable: true }) checked: boolean;
-  @Prop({ mutable: true }) value: string;
   @StencilEvent() valueChange: EventEmitter<boolean>;
 
   changeHandler(value: boolean) {
@@ -18,7 +17,7 @@ export class LsToggle {
     return (
       <Host>
         <label class="switch">
-          <input type="checkbox" value={this.value} checked={this.checked}  onChange={(e) => {
+          <input type="checkbox" checked={this.checked}  onChange={(e) => {
             this.changeHandler((e.target as any).checked)
             }
             }/>

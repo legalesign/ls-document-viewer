@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element} from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
 
@@ -8,6 +8,7 @@ import { validationTypes } from '../ls-document-viewer/editorUtils';
   shadow: true,
 })
 export class LsFieldContent {
+  @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() showValidationTypes: boolean = true;
 
@@ -35,6 +36,13 @@ export class LsFieldContent {
       this.mutate.emit(diffs);
       this.update.emit(diffs);
     }
+
+      @Watch('dataItem')
+      dataItemHandler(_newData, _oldMode) {
+          var tog = this.component.shadowRoot.getElementById('toggle-required') as HTMLLsToggleElement;
+          tog.checked = !_newData.optional
+          console.log(_newData)
+      }
     
   render() {
     return (
@@ -43,7 +51,7 @@ export class LsFieldContent {
           <ls-field-type-display fieldType={this.dataItem?.elementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
         <ls-props-section sectionTitle="Required Field" row={true}>
-          <ls-toggle checked={!this.dataItem?.optional} value={this.dataItem?.optional?.toString()} onValueChange={(ev) => this.alter({ optional: ev.detail})} />
+          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={(ev) => this.alter({ optional: !ev.detail})} />
         </ls-props-section>
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
           <input value={this.dataItem?.label} placeholder="eg. Sign Here" />
