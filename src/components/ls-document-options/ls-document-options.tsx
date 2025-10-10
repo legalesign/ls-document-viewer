@@ -72,7 +72,7 @@ export class LsDocumentOptions {
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>
-            <ls-label text={this.template?.pageDimensions?.length} />
+            <ls-label text={this.template?.pageCount} />
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Date Created</p> {this.template?.created}
