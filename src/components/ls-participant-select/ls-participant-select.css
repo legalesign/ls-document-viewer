@@ -80,10 +80,38 @@
   background: var(--gray-10, #f7f8fa);
 }
 
+.add-participant-row {
+  all: unset;
+  display: flex;
+  padding: 0.5rem 0.875rem 0.5rem 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: stretch;
+  border-radius: 0.5rem;
+  border: 1px dashed var(--gray-30, #e0e2e5);
+  cursor: pointer;
+}
+
+.add-participant-row:hover {
+  background: var(--gray-10, #f7f8fa);
+}
+
+.plus-icon {
+  color: var(--gray-40, #d8d9dc);
+}
+
 .role-icon {
   display: flex;
   padding: 0.5rem;
   border-radius: 0.625rem;
+}
+
+.add-participant-icon {
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  color: white;
+  background: var(--primary-60, #4456f6);
 }
 
 .role-text {

@@ -16,9 +16,10 @@ Alex Weinle
 
 | Property          | Attribute         | Description                                                                                                                                                           | Type                                       | Default     |
 | ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
-| `_group`          | `_group`          |                                                                                                                                                                       | `any`                                      | `undefined` |
 | `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                                     | `boolean`                                  | `false`     |
+| `endpoint`        | `endpoint`        | This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}                                                | `string`                                   | `undefined` |
 | `expandfields`    | `expandfields`    | Whether or not the fields list is expanded. {boolean}                                                                                                                 | `boolean`                                  | `false`     |
+| `groupInfo`       | `group-info`      |                                                                                                                                                                       | `any`                                      | `undefined` |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                             | `"document" \| "participant" \| "toolbox"` | `'toolbox'` |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                          | `"custom" \| "editor" \| "preview"`        | `'custom'`  |
 | `pageNum`         | `page-num`        |                                                                                                                                                                       | `number`                                   | `1`         |
@@ -34,6 +35,7 @@ Alex Weinle
 | `templateid`      | `templateid`      | The id of the template you want to load (if using the internal data adapter). {string}                                                                                | `string`                                   | `undefined` |
 | `token`           | `token`           | The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                   | `undefined` |
 | `toolboxFilter`   | `toolbox-filter`  | If supplied ONLY items in this \| ("or") delimited list will be shown. i.e. "signature\|intials" {boolean}                                                            | `string`                                   | `null`      |
+| `userpool`        | `userpool`        | This will override the default production user pool. Almost exclusively used for internal development. {string}                                                       | `string`                                   | `undefined` |
 | `zoom`            | `zoom`            |                                                                                                                                                                       | `number`                                   | `1.0`       |
 
 
@@ -93,6 +95,7 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ls-validation-tag](../ls-validation-tag)
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
 - [ls-icon](../ls-icon)
@@ -107,6 +110,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
+  ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
   ls-document-viewer --> ls-icon
@@ -117,6 +121,7 @@ graph TD;
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
   ls-document-viewer --> ls-editor-field
+  ls-validation-tag --> ls-icon
   ls-feature-column --> ls-icon
   ls-toolbox-field --> ls-icon
   ls-participant-manager --> ls-participant-card

@@ -14,7 +14,6 @@ export class LsParticipantSelect {
   })
   dataItem: LSApiElement[];
 
-
   /**
    * The parent editor control.
    * {LsDocumentViewer}
@@ -53,7 +52,6 @@ export class LsParticipantSelect {
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       return { action: 'update', data: { ...c, ...diff } as LSApiElement };
     });
@@ -76,7 +74,7 @@ export class LsParticipantSelect {
   }
 
   createHandler() {
-    console.log(this.editor)
+    console.log(this.editor);
     const defaultExperience = this.editor.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const data: LSMutateEvent[] = [
       {
@@ -143,10 +141,10 @@ export class LsParticipantSelect {
                   this.selectedRole?.roleType === 'SENDER'
                     ? 'user'
                     : this.selectedRole?.roleType === 'APPROVER'
-                      ? 'check-circle'
-                      : this.selectedRole?.roleType === 'WITNESS'
-                        ? 'eye'
-                        : 'signature'
+                    ? 'check-circle'
+                    : this.selectedRole?.roleType === 'WITNESS'
+                    ? 'eye'
+                    : 'signature'
                 }
               />
               {this.selectedRole.name ||
@@ -249,7 +247,25 @@ export class LsParticipantSelect {
                   />
                 </div>
               ))}
-              <button onClick={this.createHandler}>Add Participant</button>
+              <button
+                onClick={this.createHandler}
+                class={'add-participant-row'}
+                style={{
+                  '--background-selected': defaultRolePalette[1].s10,
+                  '--check-icon-selected': defaultRolePalette[1].s50,
+                }}
+              >
+                <div
+                  class={'add-participant-icon'}
+                >
+                  <ls-icon name="user-add" />
+                </div>
+                <div class={'role-text'}>
+                  <p class={'role-name'}>Add Participant</p>
+                  <p class={'role-type'}>Add a new Signer</p>
+                </div>
+                <ls-icon class={'plus-icon'} name="plus" />
+              </button>
             </div>
           )}
         </div>
