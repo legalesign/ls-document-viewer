@@ -13,6 +13,14 @@
 | `showValidationTypes` | `show-validation-types` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | `true`      |
 
 
+## Events
+
+| Event    | Description | Type                           |
+| -------- | ----------- | ------------------------------ |
+| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
+| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+
+
 ## Dependencies
 
 ### Used by

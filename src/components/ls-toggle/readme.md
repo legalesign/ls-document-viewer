@@ -10,7 +10,6 @@
 | Property  | Attribute | Description | Type      | Default     |
 | --------- | --------- | ----------- | --------- | ----------- |
 | `checked` | `checked` |             | `boolean` | `undefined` |
-| `value`   | `value`   |             | `string`  | `undefined` |
 
 
 ## Events
