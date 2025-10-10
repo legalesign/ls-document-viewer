@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element} from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element} from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
 
@@ -36,13 +36,6 @@ export class LsFieldContent {
       this.mutate.emit(diffs);
       this.update.emit(diffs);
     }
-
-      @Watch('dataItem')
-      dataItemHandler(_newData, _oldMode) {
-          var tog = this.component.shadowRoot.getElementById('toggle-required') as HTMLLsToggleElement;
-          tog.checked = !_newData.optional
-          console.log(_newData)
-      }
     
   render() {
     return (
