@@ -61,11 +61,11 @@ export class LsFieldContent {
         {this.showValidationTypes && (
           <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
             <ls-input-wrapper select>
-              <select onChange={(ev) => this.alter({ validation: (ev.target as HTMLSelectElement).value})} >
+              <select onChange={(ev) => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value)})} >
                 {validationTypes
                   .filter(type => type.formType === this.dataItem?.elementType)
                   .map(type => (
-                    <option selected={this.dataItem?.validation === type.id} value={type.value}>
+                    <option selected={this.dataItem?.validation === type.id} value={type.id}>
                       {type.description}
                     </option>
                   ))}
