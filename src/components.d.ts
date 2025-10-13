@@ -11,14 +11,14 @@ import { LSApiElement } from "./types/LSApiElement";
 import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
-import { LSApiRole } from "./types/LSApiRole";
+import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
 export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
-export { LSApiRole } from "./types/LSApiRole";
+export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -327,7 +327,7 @@ export namespace Components {
     }
     interface LsParticipantManager {
         /**
-          * The base template information (as JSON). {LSDocumentViewer}
+          * The base editor. {LSDocumentViewer}
          */
         "editor": LsDocumentViewer;
         /**
@@ -338,14 +338,22 @@ export namespace Components {
     interface LsParticipantSelect {
         "dataItem": LSApiElement1[];
         /**
-          * The parent editor control. {LsDocumentViewer}
+          * The group and experience information. {LSDocumentViewer}
          */
         "editor": LsDocumentViewer1;
+        /**
+          * The group and experience information. {object}
+         */
+        "groupInfo": object;
         /**
           * The current template roles. {LSApiRole}
           * @default []
          */
         "roles"?: LSApiRole[];
+        /**
+          * The group and experience information. {LSApiTemplate}
+         */
+        "template": LSApiTemplate1;
     }
     interface LsPropsSection {
         /**
@@ -444,6 +452,10 @@ export namespace Components {
           * The main editor. {LSDocumentViewer}
          */
         "editor": LsDocumentViewer1;
+        /**
+          * The group and experience information. {object}
+         */
+        "groupInfo": object;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -959,9 +971,8 @@ declare global {
         new (): HTMLLsParticipantManagerElement;
     };
     interface HTMLLsParticipantSelectElementEventMap {
-        "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
         "roleChange": number;
+        "addParticipant": LSApiRoleType;
     }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1444,7 +1455,7 @@ declare namespace LocalJSX {
     }
     interface LsParticipantManager {
         /**
-          * The base template information (as JSON). {LSDocumentViewer}
+          * The base editor. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
         "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
@@ -1457,17 +1468,24 @@ declare namespace LocalJSX {
     interface LsParticipantSelect {
         "dataItem"?: LSApiElement1[];
         /**
-          * The parent editor control. {LsDocumentViewer}
+          * The group and experience information. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
-        "onMutate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * The group and experience information. {object}
+         */
+        "groupInfo"?: object;
+        "onAddParticipant"?: (event: LsParticipantSelectCustomEvent<LSApiRoleType>) => void;
         "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
-        "onUpdate"?: (event: LsParticipantSelectCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * The current template roles. {LSApiRole}
           * @default []
          */
         "roles"?: LSApiRole[];
+        /**
+          * The group and experience information. {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate1;
     }
     interface LsPropsSection {
         /**
@@ -1568,6 +1586,10 @@ declare namespace LocalJSX {
           * The main editor. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer1;
+        /**
+          * The group and experience information. {object}
+         */
+        "groupInfo"?: object;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         /**

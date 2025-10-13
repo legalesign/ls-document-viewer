@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                   | Type               | Default     |
-| ---------- | ----------- | --------------------------------------------- | ------------------ | ----------- |
-| `dataItem` | `data-item` |                                               | `LSApiElement[]`   | `undefined` |
-| `editor`   | `editor`    | The parent editor control. {LsDocumentViewer} | `LsDocumentViewer` | `undefined` |
-| `roles`    | `roles`     | The current template roles. {LSApiRole}       | `LSApiRole[]`      | `[]`        |
+| Property   | Attribute   | Description                                              | Type               | Default     |
+| ---------- | ----------- | -------------------------------------------------------- | ------------------ | ----------- |
+| `dataItem` | `data-item` |                                                          | `LSApiElement[]`   | `undefined` |
+| `editor`   | `editor`    | The group and experience information. {LSDocumentViewer} | `LsDocumentViewer` | `undefined` |
+| `roles`    | `roles`     | The current template roles. {LSApiRole}                  | `LSApiRole[]`      | `[]`        |
 
 
 ## Events

@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element, Watch } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
 
 @Component({
@@ -7,6 +7,8 @@ import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '..
   shadow: true,
 })
 export class LsToolbar {
+  @Element() component: HTMLElement;
+
   /**
    * The selected items information (as JSON).
    * {LSApiElement[]}
@@ -15,6 +17,13 @@ export class LsToolbar {
     mutable: true,
   })
   dataItem: LSApiElement[];
+
+
+  /**
+ * The group and experience information.
+ * {object}
+ */
+  @Prop() groupInfo: object;
 
   /**
    * The base template information (as JSON).
@@ -59,8 +68,12 @@ export class LsToolbar {
     this.update.emit(diffs);
   }
 
-  componentDidLoad() {
+  @Watch('editor')
+  editorhandler() {
     console.log(this.editor.groupInfo)
+    var sel = this.component.shadowRoot.getElementById('ls-participant-select') as HTMLLsParticipantSelectElement;
+    sel.editor = this.editor;
+    console.log(sel)
   }
 
   render() {
@@ -75,7 +88,7 @@ export class LsToolbar {
             {this.dataItem && this.dataItem.length === 1 ? (
               <ls-field-format dataItem={this?.dataItem} />
             ) : (
-              <ls-participant-select roles={this.template?.roles} dataItem={this?.dataItem} editor={this.editor} />
+              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} dataItem={this?.dataItem} editor={this.editor} template={this.template} groupInfo={this.groupInfo} />
             )}
           </div>
         )}

@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { LSApiRole } from '../../types/LSApiRole';
-import { LSApiElement, LsDocumentViewer, LSMutateEvent } from '../../components';
+import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
+import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
@@ -15,11 +15,22 @@ export class LsParticipantSelect {
   dataItem: LSApiElement[];
 
   /**
-   * The parent editor control.
-   * {LsDocumentViewer}
+   * The group and experience information.
+   * {LSApiTemplate}
    */
-  @Prop() editor: LsDocumentViewer;
+  @Prop() template: LSApiTemplate;
 
+  /**
+ * The group and experience information.
+ * {object}
+ */
+  @Prop() groupInfo: object;
+
+  /**
+ * The group and experience information.
+ * {LSDocumentViewer}
+ */
+  @Prop() editor: LsDocumentViewer;
   /**
    * The currently selected role.
    * {number}
@@ -34,38 +45,18 @@ export class LsParticipantSelect {
 
   @State() isOpen: boolean = false;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  mutate: EventEmitter<LSMutateEvent[]>;
-
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
-  // @Element() component: HTMLElement;
-
-  // Send one or more mutations up the chain
-  // The source of the chain fires the mutation
-  alter(diff: object) {
-    const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      return { action: 'update', data: { ...c, ...diff } as LSApiElement };
-    });
-
-    this.dataItem = diffs.map(d => d.data as LSApiElement);
-    this.mutate.emit(diffs);
-    this.update.emit(diffs);
-  }
 
   toggleDropdown = () => {
     this.isOpen = !this.isOpen;
   };
 
   @Event() roleChange: EventEmitter<number>;
+
+  @Event({
+    bubbles: true,
+    composed: true,
+  }) addParticipant: EventEmitter<LSApiRoleType>;
+
 
   selectRole(role: { signerIndex: number; name: string; roleType?: string }) {
     this.selectedRole = role;
@@ -74,37 +65,12 @@ export class LsParticipantSelect {
   }
 
   createHandler() {
-    console.log(this.editor);
-    const defaultExperience = this.editor.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
-    const data: LSMutateEvent[] = [
-      {
-        action: 'create',
-        data: {
-          id: btoa('rol' + crypto.randomUUID()),
-          name: 'Signer ' + (this.editor._template.roles.length + 1),
-          roleType: 'SIGNER',
-          signerIndex: this.editor._template.roles.length + 1,
-          ordinal: this.editor._template.roles.length,
-          signerParent: null,
-          experience: defaultExperience.id,
-          templateId: this.editor._template.id,
-        },
-      },
-    ];
-    this.update.emit(data);
-    this.mutate.emit(data);
+    this.addParticipant.emit('SIGNER');
   }
 
   render() {
     return (
       <Host>
-        {/* <select onChange={(input) => {
-          this.alter({ signer: parseInt((input.target as HTMLSelectElement).value) })
-        }}>
-          <option value="0">Sender</option>
-          {this.roles.map(r => <option value={r.signerIndex}>{r.name}</option>)}
-
-        </select> */}
         <div class="dropdown">
           <div class="dropdown-header" onClick={this.toggleDropdown}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,10 +107,10 @@ export class LsParticipantSelect {
                   this.selectedRole?.roleType === 'SENDER'
                     ? 'user'
                     : this.selectedRole?.roleType === 'APPROVER'
-                    ? 'check-circle'
-                    : this.selectedRole?.roleType === 'WITNESS'
-                    ? 'eye'
-                    : 'signature'
+                      ? 'check-circle'
+                      : this.selectedRole?.roleType === 'WITNESS'
+                        ? 'eye'
+                        : 'signature'
                 }
               />
               {this.selectedRole.name ||
@@ -248,7 +214,7 @@ export class LsParticipantSelect {
                 </div>
               ))}
               <button
-                onClick={this.createHandler}
+                onClick={() => this.createHandler()}
                 class={'add-participant-row'}
                 style={{
                   '--background-selected': defaultRolePalette[1].s10,

@@ -10,7 +10,7 @@ import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType, matchData } from './editorUtils';
 // import { RoleColor } from '../../types/RoleColor';
-import { LSApiRole } from '../../types/LSApiRole';
+import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
 import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
@@ -94,6 +94,7 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate;
+  @State() status: 'Valid' | 'Invalid' | 'Logged Out';
   @Prop({ mutable: true }) groupInfo: any;
   @State() selected: HTMLLsEditorFieldElement[];
 
@@ -225,6 +226,31 @@ export class LsDocumentViewer {
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx));
+  }
+
+    // Updates are internal event between LS controls not to be confused with mutate
+  @Listen('addParticipant')
+  addParticpantHandler(event: CustomEvent<LSApiRoleType>) {
+    console.log(event.detail)  
+    
+     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
+        const data: LSMutateEvent[] = [
+          {
+            action: 'create',
+            data: {
+              id: btoa('rol' + crypto.randomUUID()),
+              name: 'Signer ' + (this._template.roles.length + 1),
+              roleType: 'SIGNER',
+              signerIndex: this._template.roles.length + 1,
+              ordinal: this._template.roles.length,
+              signerParent: null,
+              experience: defaultExperience.id,
+              templateId: this._template.id,
+            },
+          },
+        ];
+        this.update.emit(data);
+        this.mutate.emit(data);
   }
 
   // Send selection changes to bars and panels if in use.
@@ -696,7 +722,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} />
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} groupInfo={this.groupInfo}/>
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

@@ -12,7 +12,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 export class LsParticipantManager {
   @Element() element: HTMLElement;
   /**
-   * The base template information (as JSON).
+   * The base editor.
    * {LSDocumentViewer}
    */
   @Prop() editor: LsDocumentViewer;
