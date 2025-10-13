@@ -15,22 +15,10 @@ export class LsParticipantSelect {
   dataItem: LSApiElement[];
 
   /**
-   * The group and experience information.
-   * {LSApiTemplate}
-   */
-  @Prop() template: LSApiTemplate;
-
-  /**
- * The group and experience information.
- * {object}
+ * The id of the currently selected role.
+ * {string}
  */
-  @Prop() groupInfo: object;
-
-  /**
- * The group and experience information.
- * {LSDocumentViewer}
- */
-  @Prop() editor: LsDocumentViewer;
+  @Prop({ mutable: true}) selected: string;
   /**
    * The currently selected role.
    * {number}

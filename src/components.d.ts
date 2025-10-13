@@ -338,22 +338,14 @@ export namespace Components {
     interface LsParticipantSelect {
         "dataItem": LSApiElement1[];
         /**
-          * The group and experience information. {LSDocumentViewer}
-         */
-        "editor": LsDocumentViewer1;
-        /**
-          * The group and experience information. {object}
-         */
-        "groupInfo": object;
-        /**
           * The current template roles. {LSApiRole}
           * @default []
          */
         "roles"?: LSApiRole[];
         /**
-          * The group and experience information. {LSApiTemplate}
+          * The id of the currently selected role. {string}
          */
-        "template": LSApiTemplate1;
+        "selected": string;
     }
     interface LsPropsSection {
         /**
@@ -1469,14 +1461,6 @@ declare namespace LocalJSX {
     }
     interface LsParticipantSelect {
         "dataItem"?: LSApiElement1[];
-        /**
-          * The group and experience information. {LSDocumentViewer}
-         */
-        "editor"?: LsDocumentViewer1;
-        /**
-          * The group and experience information. {object}
-         */
-        "groupInfo"?: object;
         "onAddParticipant"?: (event: LsParticipantSelectCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
         "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         /**
@@ -1485,9 +1469,9 @@ declare namespace LocalJSX {
          */
         "roles"?: LSApiRole[];
         /**
-          * The group and experience information. {LSApiTemplate}
+          * The id of the currently selected role. {string}
          */
-        "template"?: LSApiTemplate1;
+        "selected"?: string;
     }
     interface LsPropsSection {
         /**

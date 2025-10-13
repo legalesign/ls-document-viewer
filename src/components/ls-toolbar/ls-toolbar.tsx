@@ -68,14 +68,6 @@ export class LsToolbar {
     this.update.emit(diffs);
   }
 
-  @Watch('editor')
-  editorhandler() {
-    console.log(this.editor.groupInfo)
-    var sel = this.component.shadowRoot.getElementById('ls-participant-select') as HTMLLsParticipantSelectElement;
-    sel.editor = this.editor;
-    console.log(sel)
-  }
-
   render() {
     return (
       <Host>
@@ -85,11 +77,8 @@ export class LsToolbar {
           </div>
         ) : (
           <div class={'rowbox'}>
-            {this.dataItem && this.dataItem.length === 1 ? (
-              <ls-field-format dataItem={this?.dataItem} />
-            ) : (
-              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} dataItem={this?.dataItem} editor={this.editor} template={this.template} groupInfo={this.groupInfo} />
-            )}
+              <ls-field-format dataItem={this?.dataItem} style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'visible': 'hidden'}}/>
+              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} dataItem={this?.dataItem}  style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'hidden': 'visible'}}/>
           </div>
         )}
         <slot></slot>
