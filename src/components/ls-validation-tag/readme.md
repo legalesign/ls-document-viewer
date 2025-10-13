@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property         | Attribute         | Description | Type      | Default |
-| ---------------- | ----------------- | ----------- | --------- | ------- |
-| `isExpanded`     | `is-expanded`     |             | `boolean` | `false` |
-| `isValid`        | `is-valid`        |             | `boolean` | `false` |
-| `requiredFields` | `required-fields` |             | `any[]`   | `[]`    |
+| Property           | Attribute           | Description | Type                | Default     |
+| ------------------ | ------------------- | ----------- | ------------------- | ----------- |
+| `isExpanded`       | `is-expanded`       |             | `boolean`           | `false`     |
+| `status`           | `status`            |             | `string`            | `'Invalid'` |
+| `validationErrors` | `validation-errors` |             | `ValidationError[]` | `[]`        |
 
 
 ## Dependencies

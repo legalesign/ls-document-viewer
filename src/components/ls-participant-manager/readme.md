@@ -15,10 +15,11 @@
 
 ## Events
 
-| Event    | Description | Type                           |
-| -------- | ----------- | ------------------------------ |
-| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
-| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+| Event            | Description | Type                                                     |
+| ---------------- | ----------- | -------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>` |
+| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                           |
+| `update`         |             | `CustomEvent<LSMutateEvent[]>`                           |
 
 
 ## Dependencies

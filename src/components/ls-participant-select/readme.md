@@ -7,20 +7,19 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                              | Type               | Default     |
-| ---------- | ----------- | -------------------------------------------------------- | ------------------ | ----------- |
-| `dataItem` | `data-item` |                                                          | `LSApiElement[]`   | `undefined` |
-| `editor`   | `editor`    | The group and experience information. {LSDocumentViewer} | `LsDocumentViewer` | `undefined` |
-| `roles`    | `roles`     | The current template roles. {LSApiRole}                  | `LSApiRole[]`      | `[]`        |
+| Property   | Attribute   | Description                                     | Type             | Default     |
+| ---------- | ----------- | ----------------------------------------------- | ---------------- | ----------- |
+| `dataItem` | `data-item` |                                                 | `LSApiElement[]` | `undefined` |
+| `roles`    | `roles`     | The current template roles. {LSApiRole}         | `LSApiRole[]`    | `[]`        |
+| `selected` | `selected`  | The id of the currently selected role. {string} | `string`         | `undefined` |
 
 
 ## Events
 
-| Event        | Description | Type                           |
-| ------------ | ----------- | ------------------------------ |
-| `mutate`     |             | `CustomEvent<LSMutateEvent[]>` |
-| `roleChange` |             | `CustomEvent<number>`          |
-| `update`     |             | `CustomEvent<LSMutateEvent[]>` |
+| Event            | Description | Type                                                     |
+| ---------------- | ----------- | -------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>` |
+| `roleChange`     |             | `CustomEvent<number>`                                    |
 
 
 ## Dependencies
