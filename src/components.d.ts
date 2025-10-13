@@ -955,6 +955,7 @@ declare global {
     interface HTMLLsParticipantManagerElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
+        "addParticipant": LSApiRoleType;
     }
     interface HTMLLsParticipantManagerElement extends Components.LsParticipantManager, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantManagerElementEventMap>(type: K, listener: (this: HTMLLsParticipantManagerElement, ev: LsParticipantManagerCustomEvent<HTMLLsParticipantManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1458,6 +1459,7 @@ declare namespace LocalJSX {
           * The base editor. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
+        "onAddParticipant"?: (event: LsParticipantManagerCustomEvent<LSApiRoleType>) => void;
         "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         /**

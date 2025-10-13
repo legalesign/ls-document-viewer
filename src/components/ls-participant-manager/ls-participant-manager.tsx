@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
-import { LSApiRole } from '../../types/LSApiRole';
+import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
@@ -37,6 +37,12 @@ export class LsParticipantManager {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
+  @Event({
+    bubbles: true,
+    composed: true,
+  }) addParticipant: EventEmitter<LSApiRoleType>;
+
+
   selectedHandler(_role) {
     //console.log(role, 'participant manager')
   }
@@ -49,32 +55,12 @@ export class LsParticipantManager {
   swapHandler(role1, role2) {
     this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
-  createHandler() {
-    const defaultExperience = this.editor.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
-    const data: LSMutateEvent[] = [
-      {
-        action: 'create',
-        data: {
-          id: btoa('rol' + crypto.randomUUID()),
-          name: 'Signer ' + (this.template.roles.length + 1),
-          roleType: 'SIGNER',
-          signerIndex: this.template.roles.length + 1,
-          ordinal: this.template.roles.length,
-          signerParent: null,
-          experience: defaultExperience.id,
-          templateId: this.template.id,
-        },
-      },
-    ];
-    this.update.emit(data);
-    this.mutate.emit(data);
-  }
 
   handleOpened(event) {
     const participants = this.element.shadowRoot.querySelectorAll('ls-participant-card');
 
     participants.forEach(element => {
-        if(element.signer.id !== event.detail.id) element.editable = false;
+      if (element.signer.id !== event.detail.id) element.editable = false;
     });
   }
 
@@ -88,13 +74,13 @@ export class LsParticipantManager {
         <div class="participant-list">
           {this.template &&
             this.template?.roles.map((r, index) => {
-              return <ls-participant-card signer={r} index={index} template={this.template} onOpened={(event)=> {
+              return <ls-participant-card signer={r} index={index} template={this.template} onOpened={(event) => {
                 this.handleOpened.bind(this)(event)
-              }}/>;
+              }} />;
             })}
         </div>
         <div class={'add-participant-button'}>
-          <button onClick={() => this.createHandler()}>
+          <button onClick={() => this.addParticipant.emit('SIGNER')}>
             <ls-icon name="user-add" size="20" color="var(--gray-100, #45484D);" />
             <p>Add Participant</p>
           </button>
