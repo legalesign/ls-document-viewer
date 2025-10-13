@@ -12,6 +12,7 @@ import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTem
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
 import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
+import { ValidationError } from "./types/ValidationError";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
@@ -19,6 +20,7 @@ export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTem
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
 export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
+export { ValidationError } from "./types/ValidationError";
 export namespace Components {
     interface LsDocumentOptions {
         /**
@@ -491,13 +493,13 @@ export namespace Components {
          */
         "isExpanded": boolean;
         /**
-          * @default false
+          * @default 'Invalid'
          */
-        "isValid": boolean;
+        "status": string;
         /**
           * @default []
          */
-        "requiredFields": any[];
+        "validationErrors": ValidationError[];
     }
 }
 export interface LsDocumentOptionsCustomEvent<T> extends CustomEvent<T> {
@@ -1621,13 +1623,13 @@ declare namespace LocalJSX {
          */
         "isExpanded"?: boolean;
         /**
-          * @default false
+          * @default 'Invalid'
          */
-        "isValid"?: boolean;
+        "status"?: string;
         /**
           * @default []
          */
-        "requiredFields"?: any[];
+        "validationErrors"?: ValidationError[];
     }
     interface IntrinsicElements {
         "ls-document-options": LsDocumentOptions;

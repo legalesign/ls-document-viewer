@@ -14,6 +14,8 @@ import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
 import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
+import { ValidationError } from '../../types/ValidationError';
+import { validate } from './validator';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -94,6 +96,7 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
 
   @State() _template: LSApiTemplate;
+  @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
   @Prop({ mutable: true }) groupInfo: any;
   @State() selected: HTMLLsEditorFieldElement[];
@@ -260,6 +263,9 @@ export class LsDocumentViewer {
     if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
     if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
+
+    //Revalidate
+    this.validationErrors = validate.bind(this)()
   }
 
   // Send role selection changes to bars and panels
@@ -526,7 +532,7 @@ export class LsDocumentViewer {
       <Host>
         <>
           <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag />
+            <ls-validation-tag validationErrors={this.validationErrors}/>
           </div>
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>

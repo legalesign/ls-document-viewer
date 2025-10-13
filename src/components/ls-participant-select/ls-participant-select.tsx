@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
-import { LSApiElement, LSApiTemplate, LsDocumentViewer } from '../../components';
+import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({

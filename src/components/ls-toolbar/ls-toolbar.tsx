@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element, Watch } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
 
 @Component({
