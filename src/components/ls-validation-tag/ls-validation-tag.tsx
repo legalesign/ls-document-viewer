@@ -10,7 +10,7 @@ import { ValidationError } from '../../types/ValidationError';
 export class LsValidationTag {
   @Prop({ mutable: true }) status: string = 'Invalid';
   @Prop({ mutable: true }) validationErrors: ValidationError[] = [];
-  @Prop() isExpanded: boolean = false;
+  @Prop({ mutable: true }) isExpanded: boolean = false;
 
   render() {
     return (

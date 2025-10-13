@@ -265,7 +265,7 @@ export class LsDocumentViewer {
     if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
 
     //Revalidate
-    this.validationErrors = validate.bind(this)()
+    this.validationErrors = validate.bind(this)(this._template)
   }
 
   // Send role selection changes to bars and panels
