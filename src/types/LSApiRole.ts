@@ -7,7 +7,7 @@ export type LSApiRole = {
   roleType: LSApiRoleType;
   signerIndex: number;
   ordinal: number;
-  signerParent?: string;
+  signerParent?: string | null;
   experience: string;
   templateId?: string;
 };

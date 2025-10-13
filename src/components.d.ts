@@ -955,7 +955,7 @@ declare global {
     interface HTMLLsParticipantManagerElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
-        "addParticipant": LSApiRoleType;
+        "addParticipant": {type: LSApiRoleType, parent?: string | null};
     }
     interface HTMLLsParticipantManagerElement extends Components.LsParticipantManager, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantManagerElementEventMap>(type: K, listener: (this: HTMLLsParticipantManagerElement, ev: LsParticipantManagerCustomEvent<HTMLLsParticipantManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -973,7 +973,7 @@ declare global {
     };
     interface HTMLLsParticipantSelectElementEventMap {
         "roleChange": number;
-        "addParticipant": LSApiRoleType;
+        "addParticipant": {type: LSApiRoleType, parent?: string | null};
     }
     interface HTMLLsParticipantSelectElement extends Components.LsParticipantSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantSelectElementEventMap>(type: K, listener: (this: HTMLLsParticipantSelectElement, ev: LsParticipantSelectCustomEvent<HTMLLsParticipantSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1459,7 +1459,7 @@ declare namespace LocalJSX {
           * The base editor. {LSDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
-        "onAddParticipant"?: (event: LsParticipantManagerCustomEvent<LSApiRoleType>) => void;
+        "onAddParticipant"?: (event: LsParticipantManagerCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
         "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         /**
@@ -1477,7 +1477,7 @@ declare namespace LocalJSX {
           * The group and experience information. {object}
          */
         "groupInfo"?: object;
-        "onAddParticipant"?: (event: LsParticipantSelectCustomEvent<LSApiRoleType>) => void;
+        "onAddParticipant"?: (event: LsParticipantSelectCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
         "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         /**
           * The current template roles. {LSApiRole}

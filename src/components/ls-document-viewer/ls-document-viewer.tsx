@@ -230,7 +230,7 @@ export class LsDocumentViewer {
 
     // Updates are internal event between LS controls not to be confused with mutate
   @Listen('addParticipant')
-  addParticpantHandler(event: CustomEvent<LSApiRoleType>) {
+  addParticpantHandler(event: CustomEvent<{type: LSApiRoleType, parent?: string | null}>) {
    
      const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
         const data: LSMutateEvent[] = [
@@ -239,10 +239,10 @@ export class LsDocumentViewer {
             data: {
               id: btoa('rol' + crypto.randomUUID()),
               name: 'Signer ' + (this._template.roles.length + 1),
-              roleType: event.detail,
+              roleType: event.detail.type,
               signerIndex: this._template.roles.length + 1,
               ordinal: this._template.roles.length,
-              signerParent: null,
+              signerParent: event.detail.parent,
               experience: defaultExperience.id,
               templateId: this._template.id,
             },

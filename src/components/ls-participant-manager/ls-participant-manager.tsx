@@ -40,7 +40,7 @@ export class LsParticipantManager {
   @Event({
     bubbles: true,
     composed: true,
-  }) addParticipant: EventEmitter<LSApiRoleType>;
+  }) addParticipant: EventEmitter<{type: LSApiRoleType, parent?: string | null}>;
 
 
   selectedHandler(_role) {
@@ -80,7 +80,7 @@ export class LsParticipantManager {
             })}
         </div>
         <div class={'add-participant-button'}>
-          <button onClick={() => this.addParticipant.emit('SIGNER')}>
+          <button onClick={() => this.addParticipant.emit({type: 'SIGNER'})}>
             <ls-icon name="user-add" size="20" color="var(--gray-100, #45484D);" />
             <p>Add Participant</p>
           </button>

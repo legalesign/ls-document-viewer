@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
-import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
+import { LSApiElement, LSApiTemplate, LsDocumentViewer } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
@@ -55,7 +55,7 @@ export class LsParticipantSelect {
   @Event({
     bubbles: true,
     composed: true,
-  }) addParticipant: EventEmitter<LSApiRoleType>;
+  }) addParticipant: EventEmitter<{type: LSApiRoleType, parent?: string | null}>;
 
 
   selectRole(role: { signerIndex: number; name: string; roleType?: string }) {
@@ -65,7 +65,7 @@ export class LsParticipantSelect {
   }
 
   createHandler() {
-    this.addParticipant.emit('SIGNER');
+    this.addParticipant.emit({type: 'SIGNER'});
   }
 
   render() {
