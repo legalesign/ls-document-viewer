@@ -367,8 +367,6 @@ export class LsDocumentViewer {
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
       roles: preparedRoles,
     };
-
-    console.log(this._template);
   }
 
   /**
@@ -512,6 +510,9 @@ export class LsDocumentViewer {
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
       this.groupInfo = resultGroup.group;
       this.initViewer();
+
+      //Revalidate
+      this.validationErrors = validate.bind(this)(this._template)
     } catch (e) {
       console.error('Your access token is invalid.', e);
     }
