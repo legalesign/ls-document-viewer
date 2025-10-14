@@ -1,3 +1,4 @@
+import { LSApiElement } from "./LSApiElement";
 import { LSApiRole } from "./LSApiRole";
 
 export type ValidationError = {
@@ -5,4 +6,5 @@ export type ValidationError = {
   title: string;
   description: string;
   role?: LSApiRole;
+  element?: LSApiElement
 };

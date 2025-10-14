@@ -10,7 +10,6 @@ import { ValidationError } from "../../types/ValidationError";
 export function validate(t: LSApiTemplate): ValidationError[] {
   var errors = []
   
-  console.log(t)
   // Check for missing signatures
   t.roles.forEach(tr => {
     if(t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer===tr.signerIndex).length === 0) {
@@ -23,5 +22,16 @@ export function validate(t: LSApiTemplate): ValidationError[] {
     }
   })
 
+  // Check for missing multi-select options
+t.elementConnection.templateElements.forEach(element => {
+  if (element.validation === 20 && (!element.options || element.options.length === 0)) {
+    errors.push({
+      id: element.id,
+      title: 'Missing options',
+      description: `Drop down field "${element.label}" is missing options.`,
+      element: element
+    })
+  }
+})
   return errors;
 }

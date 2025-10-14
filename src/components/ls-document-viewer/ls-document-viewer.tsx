@@ -113,13 +113,11 @@ export class LsDocumentViewer {
       this.showtoolbar = false;
       this.showtoolbox = false;
       this.showstatusbar = false;
-      this.showrightpanel = false;
       this.readonly = true;
     } else if (_newMode === 'editor') {
       this.showtoolbar = true;
       this.showtoolbox = true;
       this.showstatusbar = true;
-      this.showrightpanel = true;
       this.readonly = false;
     }
   }
@@ -169,13 +167,6 @@ export class LsDocumentViewer {
    * {boolean}
    */
   @Prop() showpagepreview?: boolean = false;
-
-  /**
-   * Whether the right panel (which can be default field properties or custom panel) is
-   * displayed.
-   * {boolean}
-   */
-  @Prop() showrightpanel?: boolean = false;
 
   /**
    * Whether or not the fields list is expanded.
@@ -710,7 +701,7 @@ export class LsDocumentViewer {
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                 </div>
-                {this.showrightpanel && !this.displayTable && (
+                {!this.displayTable && (
                   <div class={this.selected && this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
                     <div class={'properties-header'}>
                       <div class={'properties-header-icon'}>
