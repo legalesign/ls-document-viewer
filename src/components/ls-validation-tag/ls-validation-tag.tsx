@@ -15,10 +15,15 @@ export class LsValidationTag {
   render() {
     return (
       <Host>
-        <div class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'}`} onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}>
+        <div
+          class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'}`}
+          onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
+        >
           {this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
           {this.validationErrors.length > 0 && <div class={'field-counter'}>{this.validationErrors.length}</div>}
-          {this.validationErrors.length > 0 && <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />}
+          {this.validationErrors.length > 0 && (
+            <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
+          )}
         </div>
         {this.isExpanded && (
           <div class={'field-dropdown'}>
@@ -29,44 +34,43 @@ export class LsValidationTag {
               </p>
             </div>
             {this.validationErrors.map((field, idx) => {
-              const pallette =defaultRolePalette[field?.role?.signerIndex || field?.element?.signer || 0];
-                          
-              return <div
-                key={idx}
-                class={'required-field'}
-                style={{
-                  '--field-background': pallette.s10,
-                  '--field-border-color': pallette.s10,
-                  '--field-background-hover': pallette.s20,
-                  '--field-text-color': pallette.s70,
-                  '--field-text-color-hover': pallette.s80,
-                  '--field-border-color-hover': pallette.s60,
-                }}
-              >
-                <div class={'required-field-items-left'}>
-                  <div class={'dot'} style={{ background: pallette.s60 }} />
-                  {field?.role && <>
-                    <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
-                    <div
-                      class={'role-label'}
-                      style={{ background: pallette.s30, color: pallette.s70 }}
-                    >
-                      {field.role?.roleType || `Signer ${field.role?.signerIndex + 1}`}
-                    </div>
-                  </>}
-                  {field?.element && <>
-                    <p style={{ color: pallette.s80 }}>{field.role?.name || `${field.element.formElementType} ${field?.element?.label + 1}`}</p>
-                    <div
-                      class={'role-label'}
-                      style={{ background: pallette.s30, color: pallette.s70 }}
-                    >
-                      {field.description}
-                    </div>
-                  </>}
+              const pallette = defaultRolePalette[field?.role?.signerIndex || field?.element?.signer || 0];
 
+              return (
+                <div
+                  key={idx}
+                  class={'required-field'}
+                  style={{
+                    '--field-background': pallette.s10,
+                    '--field-border-color': pallette.s10,
+                    '--field-background-hover': pallette.s20,
+                    '--field-text-color': pallette.s70,
+                    '--field-text-color-hover': pallette.s80,
+                    '--field-border-color-hover': pallette.s60,
+                  }}
+                >
+                  <div class={'required-field-items-left'}>
+                    <div class={'dot'} style={{ background: pallette.s60 }} />
+                    {field?.role && (
+                      <div class={'required-field-items-left'}>
+                        <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
+                        <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                          {field.role?.roleType.toLowerCase() || `Signer ${field.role?.signerIndex + 1}`}
+                        </div>
+                      </div>
+                    )}
+                    {field?.element && (
+                      <>
+                        <p style={{ color: pallette.s80 }}>{field.role?.name || `${field.element.formElementType} ${field?.element?.label + 1}`}</p>
+                        <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                          {field.description}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <ls-icon name="chevron-right" />
                 </div>
-                <ls-icon name="chevron-right" />
-              </div>
+              );
             })}
           </div>
         )}

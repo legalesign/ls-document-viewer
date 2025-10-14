@@ -19,6 +19,7 @@ export class LsParticipantSelect {
  * {string}
  */
   @Prop({ mutable: true}) selected: string;
+  
   /**
    * The currently selected role.
    * {number}
