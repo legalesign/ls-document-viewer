@@ -58,7 +58,7 @@ export class LsEditorField {
     this.innerValue = this.innerValue ? this.innerValue : this.dataItem?.value;
 
     const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
-    console.log(editbox);
+    console.log(this.dataItem);
 
     if (editbox) {
       editbox.className = 'ls-editor-field-editable';
@@ -94,6 +94,7 @@ export class LsEditorField {
 
   onInputChange(e) {
     // console.log("INPUT CHANGE", e);
+    console.log(this.dataItem);
     this.innerValue = e.target.value;
   }
 
@@ -137,6 +138,15 @@ export class LsEditorField {
           }}
         >
           {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" />}
+          { (this.dataItem.formElementType === 'checkbox') ? 
+            <input
+            id="editing-input"
+            class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
+            type='checkbox'
+            value={this.dataItem?.value || this.innerValue}
+            onChange={e => this.onInputChange(e)}
+          />
+          :
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -144,6 +154,8 @@ export class LsEditorField {
             value={this.dataItem?.value || this.innerValue}
             onChange={e => this.onInputChange(e)}
           />
+          }
+          
           <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
             {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
           </div>
