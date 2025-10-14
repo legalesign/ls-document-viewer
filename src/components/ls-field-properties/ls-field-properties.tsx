@@ -30,6 +30,8 @@ export class LsFieldProperties {
           return <ls-field-properties-image dataItem={this.dataItem[0]} />
         case 'file':
           return <ls-field-properties-file dataItem={this.dataItem[0]} />
+        case 'dropdown':
+          return <ls-field-properties-file dataItem={this.dataItem[0]} />
         default:
           return <ls-field-properties-general dataItem={this.dataItem[0]} />
 

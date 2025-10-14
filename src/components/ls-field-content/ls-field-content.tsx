@@ -58,6 +58,12 @@ export class LsFieldContent {
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
           <input value={this.dataItem?.label} placeholder="eg. Sign Here" onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value})} />
         </ls-props-section>
+        {this.dataItem.validation === 20 && (
+          <ls-props-section sectionTitle="Options" sectionDescription="Define the options available in the dropdown. One option per line.">
+            <textarea value={this.dataItem?.options} placeholder="Option 1&#10;Option 2&#10;Option 3" onInput={(e) => this.alter({ options: (e.target as HTMLTextAreaElement).value})} />
+          </ls-props-section>
+        )}
+         
         {this.showValidationTypes && (
           <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
             <ls-input-wrapper select>

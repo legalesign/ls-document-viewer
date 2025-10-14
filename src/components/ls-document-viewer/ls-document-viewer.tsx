@@ -653,6 +653,17 @@ export class LsDocumentViewer {
                           />
 
                           <ls-toolbox-field
+                            elementType="dropdown"
+                            formElementType="dropdown"
+                            label="Dropdown"
+                            defaultHeight={27}
+                            defaultWidth={80}
+                            validation={20}
+                            icon="hashtag"
+                            signer={this.signer}
+                          />
+
+                          <ls-toolbox-field
                             elementType="checkbox"
                             formElementType="checkbox"
                             label="Checkbox"

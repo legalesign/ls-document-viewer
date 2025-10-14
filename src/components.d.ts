@@ -86,11 +86,6 @@ export namespace Components {
          */
         "showpagepreview"?: boolean;
         /**
-          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
-          * @default false
-         */
-        "showrightpanel"?: boolean;
-        /**
           * Whether the bottom statusbar is displayed. {boolean}
           * @default false
          */
@@ -210,6 +205,9 @@ export namespace Components {
         "tabs": string[];
     }
     interface LsFieldPropertiesDate {
+        "dataItem": LSApiElement1;
+    }
+    interface LsFieldPropertiesDropdown {
         "dataItem": LSApiElement1;
     }
     interface LsFieldPropertiesEmail {
@@ -820,6 +818,12 @@ declare global {
         prototype: HTMLLsFieldPropertiesDateElement;
         new (): HTMLLsFieldPropertiesDateElement;
     };
+    interface HTMLLsFieldPropertiesDropdownElement extends Components.LsFieldPropertiesDropdown, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesDropdownElement: {
+        prototype: HTMLLsFieldPropertiesDropdownElement;
+        new (): HTMLLsFieldPropertiesDropdownElement;
+    };
     interface HTMLLsFieldPropertiesEmailElement extends Components.LsFieldPropertiesEmail, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesEmailElement: {
@@ -1095,6 +1099,7 @@ declare global {
         "ls-field-properties-autosign": HTMLLsFieldPropertiesAutosignElement;
         "ls-field-properties-container": HTMLLsFieldPropertiesContainerElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
+        "ls-field-properties-dropdown": HTMLLsFieldPropertiesDropdownElement;
         "ls-field-properties-email": HTMLLsFieldPropertiesEmailElement;
         "ls-field-properties-file": HTMLLsFieldPropertiesFileElement;
         "ls-field-properties-general": HTMLLsFieldPropertiesGeneralElement;
@@ -1183,11 +1188,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "showpagepreview"?: boolean;
-        /**
-          * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
-          * @default false
-         */
-        "showrightpanel"?: boolean;
         /**
           * Whether the bottom statusbar is displayed. {boolean}
           * @default false
@@ -1325,6 +1325,9 @@ declare namespace LocalJSX {
         "tabs"?: string[];
     }
     interface LsFieldPropertiesDate {
+        "dataItem"?: LSApiElement1;
+    }
+    interface LsFieldPropertiesDropdown {
         "dataItem"?: LSApiElement1;
     }
     interface LsFieldPropertiesEmail {
@@ -1649,6 +1652,7 @@ declare namespace LocalJSX {
         "ls-field-properties-autosign": LsFieldPropertiesAutosign;
         "ls-field-properties-container": LsFieldPropertiesContainer;
         "ls-field-properties-date": LsFieldPropertiesDate;
+        "ls-field-properties-dropdown": LsFieldPropertiesDropdown;
         "ls-field-properties-email": LsFieldPropertiesEmail;
         "ls-field-properties-file": LsFieldPropertiesFile;
         "ls-field-properties-general": LsFieldPropertiesGeneral;
@@ -1704,6 +1708,7 @@ declare module "@stencil/core" {
             "ls-field-properties-autosign": LocalJSX.LsFieldPropertiesAutosign & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAutosignElement>;
             "ls-field-properties-container": LocalJSX.LsFieldPropertiesContainer & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesContainerElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
+            "ls-field-properties-dropdown": LocalJSX.LsFieldPropertiesDropdown & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDropdownElement>;
             "ls-field-properties-email": LocalJSX.LsFieldPropertiesEmail & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesEmailElement>;
             "ls-field-properties-file": LocalJSX.LsFieldPropertiesFile & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesFileElement>;
             "ls-field-properties-general": LocalJSX.LsFieldPropertiesGeneral & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesGeneralElement>;
