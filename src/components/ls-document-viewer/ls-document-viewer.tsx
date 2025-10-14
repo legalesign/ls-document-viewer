@@ -229,6 +229,8 @@ export class LsDocumentViewer {
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx));
+
+    this.validationErrors = validate.bind(this)(this._template)
   }
 
     // Updates are internal event between LS controls not to be confused with mutate
@@ -257,14 +259,18 @@ export class LsDocumentViewer {
 
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
-  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
-    console.log(event.detail);
+  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {   
+    // update the template with all the latest values in the 
+    this._template = {
+      ...this._template,
+      elementConnection: { ...this._template.elementConnection, templateElements:  Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')).map(ef => ef.dataItem)}
+    };
+
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
     if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
     if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
 
-    //Revalidate
     this.validationErrors = validate.bind(this)(this._template)
   }
 
@@ -449,7 +455,8 @@ export class LsDocumentViewer {
 
           fu.dataItem = update.data as LSApiElement;
           // Refresh the selected array
-          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
+        this.selectFields.emit(this.selected.map(sf => sf.dataItem));
+        this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
@@ -457,7 +464,7 @@ export class LsDocumentViewer {
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
-        this.selected = [];
+        this.selectFields.emit([]);
       } else {
         console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.');
       }
