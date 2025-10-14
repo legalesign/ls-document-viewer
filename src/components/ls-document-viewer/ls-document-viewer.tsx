@@ -99,7 +99,7 @@ export class LsDocumentViewer {
   @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
   @Prop({ mutable: true }) groupInfo: any;
-  @State() selected: HTMLLsEditorFieldElement[];
+  @State() selected: HTMLLsEditorFieldElement[] = [];
 
   /**
    * An ease of use property that will arrange document-viewer appropraitely.
@@ -209,10 +209,9 @@ export class LsDocumentViewer {
   private adapter: LsDocumentAdapter;
 
 
-  // Updates are internal event between LS controls not to be confused with mutate
+  // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    console.log(event);
     if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
   }
 
@@ -260,7 +259,9 @@ export class LsDocumentViewer {
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
     if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
-    if (propPanel) propPanel.dataItem = event.detail as any as LSApiElement[];
+    if (propPanel) {
+      propPanel.dataItem = event.detail as any as LSApiElement[];
+    }
 
     this.validationErrors = validate.bind(this)(this._template)
   }
@@ -455,7 +456,7 @@ export class LsDocumentViewer {
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
-        this.selectFields.emit([]);
+        this.selected = [];
       } else {
         console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.');
       }
@@ -713,7 +714,7 @@ export class LsDocumentViewer {
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                 </div>
                 {!this.displayTable && (
-                  <div class={this.selected && this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
+                  <div class={this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
                     <div class={'properties-header'}>
                       <div class={'properties-header-icon'}>
                         <ls-icon name="pre-filled-content" />

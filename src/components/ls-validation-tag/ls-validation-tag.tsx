@@ -15,7 +15,7 @@ export class LsValidationTag {
   render() {
     return (
       <Host>
-        <div class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'}`} onClick={this.status !== 'Valid' && (() => (this.isExpanded = !this.isExpanded))}>
+        <div class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'}`} onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}>
           {this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
           {this.validationErrors.length > 0 && <div class={'field-counter'}>{this.validationErrors.length}</div>}
           {this.validationErrors.length > 0 && <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />}
