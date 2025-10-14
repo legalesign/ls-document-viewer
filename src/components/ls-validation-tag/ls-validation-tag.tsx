@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, State, h } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { ValidationError } from '../../types/ValidationError';
 
@@ -28,32 +28,46 @@ export class LsValidationTag {
                 {this.validationErrors.length} {this.validationErrors.length === 1 ? 'Recipient needs a Signature Field' : 'Recipients need Signature Fields'} placed for them
               </p>
             </div>
-            {this.validationErrors.map((field, idx) => (
-              <div
+            {this.validationErrors.map((field, idx) => {
+              const pallette =defaultRolePalette[field?.role?.signerIndex || field?.element?.signer || 0];
+                          
+              return <div
                 key={idx}
                 class={'required-field'}
                 style={{
-                  '--field-background': defaultRolePalette[field.role.signerIndex || 0].s10,
-                  '--field-border-color': defaultRolePalette[field.role.signerIndex || 0].s10,
-                  '--field-background-hover': defaultRolePalette[field.role.signerIndex || 0].s20,
-                  '--field-text-color': defaultRolePalette[field.role.signerIndex || 0].s70,
-                  '--field-text-color-hover': defaultRolePalette[field.role.signerIndex || 0].s80,
-                  '--field-border-color-hover': defaultRolePalette[field.role.signerIndex || 0].s60,
+                  '--field-background': pallette.s10,
+                  '--field-border-color': pallette.s10,
+                  '--field-background-hover': pallette.s20,
+                  '--field-text-color': pallette.s70,
+                  '--field-text-color-hover': pallette.s80,
+                  '--field-border-color-hover': pallette.s60,
                 }}
               >
                 <div class={'required-field-items-left'}>
-                  <div class={'dot'} style={{ background: defaultRolePalette[field.role.signerIndex || 0].s60 }} />
-                  <p style={{ color: defaultRolePalette[field.role.signerIndex || 0].s80 }}>{field.role?.name || `Signer ${field.role?.signerIndex + 1}`}</p>
-                  <div
-                    class={'role-label'}
-                    style={{ background: defaultRolePalette[field.role.signerIndex || 0].s30, color: defaultRolePalette[field.role.signerIndex || 0].s70 }}
-                  >
-                    {field.role?.roleType || `Signer ${field.role?.signerIndex + 1}`}
-                  </div>
+                  <div class={'dot'} style={{ background: pallette.s60 }} />
+                  {field?.role && <>
+                    <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
+                    <div
+                      class={'role-label'}
+                      style={{ background: pallette.s30, color: pallette.s70 }}
+                    >
+                      {field.role?.roleType || `Signer ${field.role?.signerIndex + 1}`}
+                    </div>
+                  </>}
+                  {field?.element && <>
+                    <p style={{ color: pallette.s80 }}>{field.role?.name || `${field.element.formElementType} ${field?.element?.label + 1}`}</p>
+                    <div
+                      class={'role-label'}
+                      style={{ background: pallette.s30, color: pallette.s70 }}
+                    >
+                      {field.description}
+                    </div>
+                  </>}
+
                 </div>
                 <ls-icon name="chevron-right" />
               </div>
-            ))}
+            })}
           </div>
         )}
       </Host>
