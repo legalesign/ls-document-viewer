@@ -1,4 +1,4 @@
-# ls-field-properties-date
+# ls-field-properties-dropdown
 
 
 
@@ -14,10 +14,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ls-field-properties](../ls-field-properties)
-
 ### Depends on
 
 - [ls-field-properties-container](../ls-field-properties-container)
@@ -30,12 +26,12 @@
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-properties-date --> ls-field-properties-container
-  ls-field-properties-date --> ls-field-content
-  ls-field-properties-date --> ls-field-properties-advanced
-  ls-field-properties-date --> ls-field-dimensions
-  ls-field-properties-date --> ls-field-placement
-  ls-field-properties-date --> ls-field-footer
+  ls-field-properties-dropdown --> ls-field-properties-container
+  ls-field-properties-dropdown --> ls-field-content
+  ls-field-properties-dropdown --> ls-field-properties-advanced
+  ls-field-properties-dropdown --> ls-field-dimensions
+  ls-field-properties-dropdown --> ls-field-placement
+  ls-field-properties-dropdown --> ls-field-footer
   ls-field-content --> ls-props-section
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
@@ -47,8 +43,7 @@ graph TD;
   ls-field-dimensions --> ls-icon
   ls-field-placement --> ls-icon
   ls-field-footer --> ls-icon
-  ls-field-properties --> ls-field-properties-date
-  style ls-field-properties-date fill:#f9f,stroke:#333,stroke-width:4px
+  style ls-field-properties-dropdown fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

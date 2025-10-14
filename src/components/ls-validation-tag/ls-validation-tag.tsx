@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { ValidationError } from '../../types/ValidationError';
 
