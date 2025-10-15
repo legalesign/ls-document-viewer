@@ -1,5 +1,6 @@
-import { Component, Host, h, Element, State, Prop, Watch, Listen } from '@stencil/core';
+import { Component, Host, h, Element, State, Prop, Watch, Listen, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
@@ -20,6 +21,21 @@ export class LsEditorField {
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
   private sizeObserver: ResizeObserver;
+
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  mutate: EventEmitter<LSMutateEvent[]>;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  update: EventEmitter<LSMutateEvent[]>;
 
   @Listen('keydown')
   handleInput(e: KeyboardEvent) {
@@ -68,7 +84,6 @@ export class LsEditorField {
 
   @Listen('dragstart', { capture: false, passive: false })
   handleDragStart(event) {
-    console.log('dragstart ls-editor-field', event, this.type);
     // Add the target element's id to the data transfer object
     event.dataTransfer.setData(
       'application/json',
@@ -93,8 +108,6 @@ export class LsEditorField {
   }
 
   onInputChange(e) {
-    // console.log("INPUT CHANGE", e);
-    console.log(this.dataItem);
     this.innerValue = e.target.value;
   }
 
@@ -128,6 +141,26 @@ export class LsEditorField {
     }
   }
 
+  // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  // NOTE this alter is debounced to account for typing
+  alter(diff: object) {
+    this.dataItem = { ...this.dataItem, ...diff };
+    this.debounce(this.dataItem, 500);
+  }
+
+  private labeltimer;
+
+  debounce(data, delay) {
+    if (this.labeltimer) clearTimeout(this.labeltimer);
+
+    this.labeltimer = setTimeout(() => {
+      const diffs: LSMutateEvent[] = [{ action: 'update', data }];
+      this.mutate.emit(diffs);
+      this.update.emit(diffs);
+    }, delay);
+  }
+
   render() {
     return (
       <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
@@ -138,24 +171,15 @@ export class LsEditorField {
           }}
         >
           {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" />}
-          { (this.dataItem.formElementType === 'checkbox') ? 
-            <input
-            id="editing-input"
-            class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
-            type='checkbox'
-            value={this.dataItem?.value || this.innerValue}
-            onChange={e => this.onInputChange(e)}
-          />
-          :
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
             type={getInputType(this.dataItem.validation).inputType}
             value={this.dataItem?.value || this.innerValue}
-            onChange={e => this.onInputChange(e)}
+            checked={this.dataItem?.value ? true : true}
+            onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
           />
-          }
-          
+
           <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
             {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
           </div>

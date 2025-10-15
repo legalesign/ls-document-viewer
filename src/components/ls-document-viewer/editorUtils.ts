@@ -185,11 +185,11 @@ export const validationTypes: any = [
   { id: 20, description: 'Dropdown List', formType: 'dropdown', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
   { id: 91, description: 'Countries', formType: 'dropdown', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
   { id: 92, description: 'Name prefix titles', formType: 'dropdown', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
-  { id: 24, description: '✔/✗', formType: 'checkbox', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
-  { id: 25, description: '✔/empty', formType: 'checkbox', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
-  { id: 26, description: '✗/empty', formType: 'checkbox', defaultHeight: 16, defaultWidth: 16, typeDefault: false, inputType: 'text' },
-  { id: 74, description: 'File: attach to confirmatory email to sender', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
-  { id: 75, description: 'File: append to PDF, PDF files only', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
+  { id: 24, description: '✔/✗', formType: 'checkbox', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'checkbox' },
+  { id: 25, description: '✔/empty', formType: 'checkbox', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'checkbox' },
+  { id: 26, description: '✗/empty', formType: 'checkbox', defaultHeight: 16, defaultWidth: 16, typeDefault: false, inputType: 'checkbox' },
+  { id: 74, description: 'File: attach to confirmatory email to sender', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'file' },
+  { id: 75, description: 'File: append to PDF, PDF files only', formType: 'file', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'file' },
   {
     id: 76,
     description: 'File: zip with PDF (for internal view, signed PDF for signer)',
@@ -197,13 +197,13 @@ export const validationTypes: any = [
     defaultHeight: 16,
     defaultWidth: 200,
     typeDefault: false,
-    inputType: 'text',
+    inputType: 'file',
   },
   { id: 90, description: 'Drawn field.', formType: 'drawn field', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
   { id: 2000, description: 'Initials', formType: 'initials', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
   { id: 93, description: 'Regular Expression field', formType: 'regular expression', defaultHeight: 16, defaultWidth: 200, typeDefault: false, inputType: 'text' },
   { id: 3000, description: 'Auto Sign', formType: 'auto sign', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'text' },
-  { id: 4000, description: 'Text Area', formType: 'textarea', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'readonly' },
+  { id: 4000, description: 'Text Area', formType: 'textarea', defaultHeight: 16, defaultWidth: 200, typeDefault: true, inputType: 'textarea' },
 ];
 
 // See validation table in database for latest values - these have to be hard coded for our HTML control - ASW

@@ -20,6 +20,9 @@
   min-width: 2em;
   height: 100%;
   width: 100%;
+  border: 4px solid rgb(29, 104, 195);
+  background-color: #f64a44;
+
 }
 
 .ls-editor-field {
@@ -27,6 +30,9 @@
 }
 
 .ls-editor-field-editable:focus {
+
+  border: 4px solid rgb(29, 104, 195);
+  background-color: #f64a44;
   outline: none;
 }
 
