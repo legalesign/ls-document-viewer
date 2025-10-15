@@ -8,7 +8,7 @@ export function debounce(data, delay) {
   if (mousetimer) clearTimeout(mousetimer);
 
   mousetimer = setTimeout(() => {
-    this.mutate.emit([data])
+    this.mutate.emit([data]);
   }, delay);
 }
 
@@ -21,7 +21,7 @@ export function mouseDown(e) {
   // - a hit on the background document SELECTMULTIPLE with a box
   this.hitField = null;
   const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-
+  
   fields.forEach(f => {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
     const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY };
@@ -60,9 +60,12 @@ export function mouseDown(e) {
     });
     this.selectionBox = null;
   } else {
+    console.log('start mouse down reset');
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
+    this.selectFields.emit([]);
+    this.selected = [];
     this.component.style.cursor = 'crosshair';
   }
 }
@@ -99,8 +102,9 @@ export function mouseMove(event) {
         break;
     }
 
-    debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem)}, 700);
+    debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
   } else if (this.selectionBox && event.buttons === 1) {
+    console.log('drawing box');
     // draw the multiple selection box
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
@@ -135,23 +139,18 @@ export function mouseUp(event) {
   this.startMouse = null;
   this.component.style.cursor = 'auto';
 
+  console.log('mouse up');
   // find what was inside the selection box emit the select event and change their style
   if (this.selectionBox) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     box.style.visibility = 'hidden';
-
-    findIn(fields, box, true, event.shiftKey);
-
-    var updatedFields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
-
-    this.selectFields.emit(
-      Array.from(updatedFields)
-        .filter(fx => fx.selected)
-        .map(fx => fx.dataItem),
-    );
     this.selectionBox = null;
-    this.selected = Array.from(updatedFields).filter(fx => fx.selected);
+    const found = findIn(fields, box, true, event.shiftKey);
+    this.selected = Array.from(found);
+
+    console.log(found, this.selectionBox);
+    this.selectFields.emit(found.map(fx => fx.dataItem));
   }
 }
 
@@ -182,6 +181,9 @@ export function mouseClick(e) {
     );
     this.selectFields.emit(selected.map(fx => fx.dataItem));
   } else {
+    // reset the selection box location
+    this.selectionBox = { x: e.clientX, y: e.clientY };
+
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     fields.forEach(f => {
       const { left, top, bottom, right } = f.getBoundingClientRect();
@@ -211,7 +213,6 @@ export function mouseDrop(event) {
     const top = event.offsetY / this.zoom + frame.scrollTop;
     const left = event.offsetX / this.zoom + frame.scrollLeft;
 
-    console.log(top, left, data)
     // TODO: Put these defaults somewhere sensible
     const newData: LSMutateEvent = {
       action: 'create',

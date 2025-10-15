@@ -139,6 +139,9 @@ export namespace Components {
         "dataItem": LSApiElement1;
         "page": { height: number; width: number };
         "readonly": boolean;
+        /**
+          * @default false
+         */
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }
@@ -1260,6 +1263,9 @@ declare namespace LocalJSX {
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
         "readonly"?: boolean;
+        /**
+          * @default false
+         */
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
     }

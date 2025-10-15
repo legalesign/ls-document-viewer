@@ -12,7 +12,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 export class LsEditorField {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement;
-  @Prop() selected: boolean;
+  @Prop() selected: boolean = false;
   @Prop() readonly: boolean;
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number; width: number };

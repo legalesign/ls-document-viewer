@@ -22,7 +22,6 @@ export class LsStatusbar {
   @Prop() editor: LsDocumentViewer;
 
   setZoom(value: number) {
-    console.log(value)
     this.editor.setZoom(value);
     this.zoom = value;
   }

@@ -71,11 +71,11 @@ export class LsDocumentViewer {
    */
   @Prop() token: string;
 
-    /**
-   * This will override the default production user pool.
-   * Almost exclusively used for internal development.
-   * {string}
-   */
+  /**
+ * This will override the default production user pool.
+ * Almost exclusively used for internal development.
+ * {string}
+ */
   @Prop() userpool: string;
 
   /**
@@ -223,37 +223,38 @@ export class LsDocumentViewer {
     this.validationErrors = validate.bind(this)(this._template)
   }
 
-    // Updates are internal event between LS controls not to be confused with mutate
+  // Updates are internal event between LS controls not to be confused with mutate
   @Listen('addParticipant')
-  addParticpantHandler(event: CustomEvent<{type: LSApiRoleType, parent?: string | null}>) {
-   
-     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
-        const data: LSMutateEvent[] = [
-          {
-            action: 'create',
-            data: {
-              id: btoa('rol' + crypto.randomUUID()),
-              name: 'Signer ' + (this._template.roles.length + 1),
-              roleType: event.detail.type,
-              signerIndex: this._template.roles.length + 1,
-              ordinal: this._template.roles.length,
-              signerParent: event.detail.parent,
-              experience: defaultExperience.id,
-              templateId: this._template.id,
-            },
-          },
-        ];
-        this.update.emit(data);
-        this.mutate.emit(data);
+  addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType, parent?: string | null }>) {
+
+    const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
+    const data: LSMutateEvent[] = [
+      {
+        action: 'create',
+        data: {
+          id: btoa('rol' + crypto.randomUUID()),
+          name: 'Signer ' + (this._template.roles.length + 1),
+          roleType: event.detail.type,
+          signerIndex: this._template.roles.length + 1,
+          ordinal: this._template.roles.length,
+          signerParent: event.detail.parent,
+          experience: defaultExperience.id,
+          templateId: this._template.id,
+        },
+      },
+    ];
+    this.update.emit(data);
+    this.mutate.emit(data);
   }
 
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
-  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {   
+  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
+    const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field'));
     // update the template with all the latest values in the 
     this._template = {
       ...this._template,
-      elementConnection: { ...this._template.elementConnection, templateElements:  Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')).map(ef => ef.dataItem)}
+      elementConnection: { ...this._template.elementConnection, templateElements: fields.map(ef => ef.dataItem) }
     };
 
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
@@ -262,6 +263,15 @@ export class LsDocumentViewer {
     if (propPanel) {
       propPanel.dataItem = event.detail as any as LSApiElement[];
     }
+
+    // change style of selected fields
+    event.detail.forEach(fc => {
+      const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
+      fu.selected = true;
+    });
+
+    this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
+    this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
 
     this.validationErrors = validate.bind(this)(this._template)
   }
@@ -447,8 +457,8 @@ export class LsDocumentViewer {
 
           fu.dataItem = update.data as LSApiElement;
           // Refresh the selected array
-        this.selectFields.emit(this.selected.map(sf => sf.dataItem));
-        this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
+          this.selectFields.emit(this.selected.map(sf => sf.dataItem));
+          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
@@ -512,6 +522,7 @@ export class LsDocumentViewer {
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template)
+      this.selected = [];
     } catch (e) {
       console.error('Your access token is invalid.', e);
     }
@@ -532,7 +543,7 @@ export class LsDocumentViewer {
       <Host>
         <>
           <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag validationErrors={this.validationErrors}/>
+            <ls-validation-tag validationErrors={this.validationErrors} />
           </div>
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>
@@ -738,7 +749,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} groupInfo={this.groupInfo}/>
+            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} groupInfo={this.groupInfo} />
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

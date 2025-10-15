@@ -20,7 +20,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);
-  node.setAttribute('selected', 'selected');
+  // node.setAttribute('selected', 'selected');
   node.style.zIndex = '100';
   node.style.position = 'absolute';
 
@@ -122,16 +122,6 @@ export const findDimensions = (
   const bx = (left + zwidth) / pageWidth;
   const by = (top + zheight) / pageHeight;
 
-  console.log({
-    top,
-    left,
-    zheight,
-    zwidth,
-    ax,
-    ay,
-    bx,
-    by,
-  })
 
   // Return with calculated styles that try to place it as it would appear on legacy signing page
   return {
