@@ -107,10 +107,6 @@ export class LsEditorField {
     }
   }
 
-  onInputChange(e) {
-    this.innerValue = e.target.value;
-  }
-
   componentDidLoad() {
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
@@ -145,8 +141,9 @@ export class LsEditorField {
   // The source of the chain fires the mutation
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
+    console.log('alter', diff);
     this.dataItem = { ...this.dataItem, ...diff };
-    this.debounce(this.dataItem, 500);
+    this.debounce(this.dataItem, 900);
   }
 
   private labeltimer;
@@ -175,13 +172,13 @@ export class LsEditorField {
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
             type={getInputType(this.dataItem.validation).inputType}
-            value={this.dataItem?.value || this.innerValue}
-            checked={this.dataItem?.value ? true : true}
+            value={this.dataItem?.value}
+            checked={this.dataItem?.value ? true : false}
             onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
           />
 
           <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
-            {this.innerValue || this.dataItem?.label || this.dataItem?.formElementType}
+            {this.dataItem.value.length && this.dataItem.value  || this.dataItem?.label || this.dataItem?.formElementType}
           </div>
         </div>
       </Host>

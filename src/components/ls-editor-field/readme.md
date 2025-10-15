@@ -16,6 +16,14 @@
 | `type`     | `type`      |             | `"autodate" \| "date" \| "file" \| "number" \| "regex" \| "signature" \| "text"`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | `undefined` |
 
 
+## Events
+
+| Event    | Description | Type                           |
+| -------- | ----------- | ------------------------------ |
+| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
+| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+
+
 ## Dependencies
 
 ### Used by
