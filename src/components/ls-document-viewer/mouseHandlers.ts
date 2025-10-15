@@ -208,8 +208,10 @@ export function mouseDrop(event) {
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
     // Make a new API compatible id for a template element (prefix 'ele')
     const id = btoa('ele' + crypto.randomUUID());
-    const top = event.offsetY * this.zoom + frame.scrollTop;
-    const left = event.offsetX * this.zoom + frame.scrollLeft;
+    const top = event.offsetY / this.zoom + frame.scrollTop;
+    const left = event.offsetX / this.zoom + frame.scrollLeft;
+
+    console.log(top, left, data)
     // TODO: Put these defaults somewhere sensible
     const newData: LSMutateEvent = {
       action: 'create',
