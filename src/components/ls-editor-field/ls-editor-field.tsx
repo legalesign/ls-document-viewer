@@ -141,7 +141,6 @@ export class LsEditorField {
   // The source of the chain fires the mutation
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
-    console.log('alter', diff);
     this.dataItem = { ...this.dataItem, ...diff };
     this.debounce(this.dataItem, 900);
   }
