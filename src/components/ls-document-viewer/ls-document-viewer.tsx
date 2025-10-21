@@ -228,6 +228,8 @@ export class LsDocumentViewer {
   addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType, parent?: string | null }>) {
 
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
+    const parent = this._template.roles.find(r => r.id === event.detail.parent);
+
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -235,8 +237,8 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: this._template.roles.length + 1,
-          ordinal: this._template.roles.length,
+          signerIndex: (event.detail.type==='WITNESS') ? 100 + parent.signerIndex : this._template.roles.length,
+          ordinal: (event.detail.type==='WITNESS') ? parent.ordinal + 1 : this._template.roles.length,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
           templateId: this._template.id,
@@ -377,6 +379,8 @@ export class LsDocumentViewer {
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },
       roles: preparedRoles,
     };
+
+    console.log(this._template)
   }
 
   /**
