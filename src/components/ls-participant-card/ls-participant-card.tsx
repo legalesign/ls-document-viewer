@@ -112,7 +112,7 @@ export class LsParticipantCard {
                 {'Participant ' + (this.signer?.signerIndex || '')}
               </div>
               <div class={'button-set hidden'}>
-                {this.index > 0 && (
+                {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="innerButton"
                     onClick={() => {
@@ -126,7 +126,7 @@ export class LsParticipantCard {
                     <ls-icon name="arrow-up" size="18" />
                   </div>
                 )}
-                {this.signer.signerIndex !== this.template.roles.length && (
+                {this.signer.signerIndex !== this.template.roles.length && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="innerButton"
                     onClick={() => {
@@ -168,16 +168,22 @@ export class LsParticipantCard {
             </div>
             {this.editable ? (
               <div class={'participant-card-inner'}>
-                <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle' : 'signature'}>
-                  <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={e => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
-                    <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
-                      Approver
-                    </option>
-                    <option value="SIGNER" selected={this.signer?.roleType === 'SIGNER'}>
-                      Signer
-                    </option>
-                  </select>
-                </ls-input-wrapper>
+                {this.signer?.roleType !== 'WITNESS' ? (
+                  <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle' : 'signature'}>
+                    <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={e => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
+                      <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
+                        Approver
+                      </option>
+                      <option value="SIGNER" selected={this.signer?.roleType === 'SIGNER'}>
+                        Signer
+                      </option>
+                    </select>
+                  </ls-input-wrapper>
+                ) : (
+                  <ls-input-wrapper leadingIcon="eye">
+                    <input name="roleType" id="role-type" class={'has-leading-icon'} disabled value="Witness" />
+                  </ls-input-wrapper>
+                )}
                 <input
                   type="text"
                   id="participant-description"
@@ -189,10 +195,22 @@ export class LsParticipantCard {
                     if (e.key === 'Enter' || e.keyCode === 13) this.editable = false;
                   }}
                 />
-                <button class={'tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
-                  <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
-                  Add Witness
-                </button>
+                {this.signer?.roleType === 'SIGNER' ? (
+                  <button class={'tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
+                    <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
+                    Add Witness
+                  </button>
+                ) : this.signer?.roleType === 'WITNESS' ? (
+                  <button
+                    class={'destructive'}
+                    onClick={() => {
+                      this.deleteHandler(this.signer);
+                    }}
+                  >
+                    <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
+                    Remove Witness
+                  </button>
+                ) : null}
               </div>
             ) : (
               <div class={'participant-card-text'}>
