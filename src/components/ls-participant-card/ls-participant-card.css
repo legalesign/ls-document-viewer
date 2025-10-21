@@ -349,6 +349,16 @@ button.tertiaryGrey:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
+button.tertiary {
+  border: 1px solid var(--primary-60, #4456f6);
+  background: transparent;
+  color: var(--primary-70, #2134dc);
+}
+
+button.tertiary:hover {
+  border: 1px solid var(--priomary-70, #2134dc);
+}
+
 button.secondary {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--white, #fff);

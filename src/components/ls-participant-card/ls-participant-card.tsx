@@ -1,5 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element } from '@stencil/core';
-import { LSApiRole } from '../../types/LSApiRole';
+import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
@@ -74,6 +74,12 @@ export class LsParticipantCard {
       this.opened.emit(this.signer);
     }
   }
+
+  @Event({
+    bubbles: true,
+    composed: true,
+  })
+  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
 
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
@@ -183,6 +189,10 @@ export class LsParticipantCard {
                     if (e.key === 'Enter' || e.keyCode === 13) this.editable = false;
                   }}
                 />
+                <button class={'tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
+                  <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
+                  Add Witness
+                </button>
               </div>
             ) : (
               <div class={'participant-card-text'}>
