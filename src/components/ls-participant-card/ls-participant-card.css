@@ -185,9 +185,9 @@ textarea::placeholder {
   color: var(--gray-60, #afb0b2);
 }
 
-input:hover,
-select:hover,
-textarea:hover {
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
   border-color: var(--gray-50, #c8c9cc);
   background-color: var(--white, #fff);
 }
@@ -356,7 +356,20 @@ button.tertiary {
 }
 
 button.tertiary:hover {
-  border: 1px solid var(--priomary-70, #2134dc);
+  border: 1px solid var(--primary-70, #2134dc);
+  border: 1px solid var(--primary-80, #0c34b8);
+}
+
+button.destructive {
+  border: 1px solid var(--red-60, #f04438);
+  background: transparent;
+  color: var(--red-60);
+}
+
+button.destructive:hover {
+  border: 1px solid var(--red-70, #d92d20);
+  background: var(--red-10, #fff1f0);
+  background-color: var(--red-10, #fff1f0);
 }
 
 button.secondary {
