@@ -89,7 +89,7 @@ export class LsParticipantCard {
     return (
       <Host>
         <div
-          class="participant-card"
+          class={'participant-card' + (child ? ' top-card' : this.signer?.signerParent ? ' bottom-card' : ' full-card')}
           style={{
             background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,

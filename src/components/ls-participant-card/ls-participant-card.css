@@ -14,7 +14,18 @@
   align-items: flex-start;
   gap: 0.5rem;
   align-self: stretch;
+}
+
+.top-card {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.full-card {
   border-radius: 1rem;
+}
+
+.bottom-card {
+  border-radius: 0 0 1rem 1rem;
 }
 
 .participant-card-inner {
