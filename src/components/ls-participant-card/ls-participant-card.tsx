@@ -84,6 +84,8 @@ export class LsParticipantCard {
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
 
+    const child = this.template.roles.find(r => r.signerParent === this.signer.id);
+
     return (
       <Host>
         <div
@@ -170,7 +172,13 @@ export class LsParticipantCard {
               <div class={'participant-card-inner'}>
                 {this.signer?.roleType !== 'WITNESS' ? (
                   <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle' : 'signature'}>
-                    <select name="roleType" id="role-type" class={'has-leading-icon'} onChange={e => this.alter({ roleType: (e.target as HTMLSelectElement).value })}>
+                    <select
+                      name="roleType"
+                      id="role-type"
+                      class={'has-leading-icon'}
+                      onChange={e => this.alter({ roleType: (e.target as HTMLSelectElement).value })}
+                      disabled={child ? true : false}
+                    >
                       <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
                         Approver
                       </option>
@@ -195,10 +203,20 @@ export class LsParticipantCard {
                     if (e.key === 'Enter' || e.keyCode === 13) this.editable = false;
                   }}
                 />
-                {this.signer?.roleType === 'SIGNER' ? (
+                {this.signer?.roleType === 'SIGNER' && !child ? (
                   <button class={'tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
                     <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
                     Add Witness
+                  </button>
+                ) : this.signer?.roleType === 'SIGNER' && child ? (
+                  <button
+                    class={'destructive'}
+                    onClick={() => {
+                      this.deleteHandler(child);
+                    }}
+                  >
+                    <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
+                    Remove Witness
                   </button>
                 ) : this.signer?.roleType === 'WITNESS' ? (
                   <button
