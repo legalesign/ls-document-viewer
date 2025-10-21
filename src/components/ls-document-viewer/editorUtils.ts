@@ -59,9 +59,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
       fi.dataItem = { ...data.obj, id };
     } else if (prefix === 'rol') {
       var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-      // Note this respread ensures that re-renders are triggered
-      this._template = { ...this._template, roles: [...this._template.roles, { ...data.obj, id }] };
-      participantManager.template = this._template;
+      syncRoles.bind(this)();
     }
   } else if (data.event.action === 'delete') {
     if (prefix === 'rol') {

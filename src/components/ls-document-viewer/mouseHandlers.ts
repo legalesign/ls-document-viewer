@@ -14,6 +14,7 @@ export function debounce(data, delay) {
 
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
+  // console.log('mousedown', e);
 
   // Find if this was
   // - a hit on a field edge RESIZE
@@ -60,10 +61,11 @@ export function mouseDown(e) {
     });
     this.selectionBox = null;
   } else {
-    console.log('start mouse down reset');
+    // console.log('start mouse down reset');
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
+    // console.log('empty space reset selected', this.selectionBox);
     this.selectFields.emit([]);
     this.selected = [];
     this.component.style.cursor = 'crosshair';
@@ -122,6 +124,9 @@ export function mouseMove(event) {
     box.style.height = Math.abs(movedY) + 'px';
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
     this.isMoving = true;
+    var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+    box.style.visibility = 'hidden';
+
     // Move one or more selected items
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
@@ -139,7 +144,7 @@ export function mouseUp(event) {
   this.startMouse = null;
   this.component.style.cursor = 'auto';
 
-  console.log('mouse up');
+  // console.log('mouse up');
   // find what was inside the selection box emit the select event and change their style
   if (this.selectionBox) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -148,8 +153,6 @@ export function mouseUp(event) {
     this.selectionBox = null;
     const found = findIn(fields, box, true, event.shiftKey);
     this.selected = Array.from(found);
-
-    console.log(found, this.selectionBox);
     this.selectFields.emit(found.map(fx => fx.dataItem));
   }
 }
@@ -250,7 +253,6 @@ export function mouseDrop(event) {
         templateId: this._template.id,
       } as LSApiElement,
     };
-    console.log(newData);
     this.mutate.emit([newData]);
     this.update.emit([newData]);
   } catch (e) {

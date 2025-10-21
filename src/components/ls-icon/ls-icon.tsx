@@ -53,9 +53,9 @@ export class LsIcon {
               }}
             >
               {this.solid ? (
-                <div innerHTML={icon.svgSolid} />
+                <div innerHTML={icon.svgSolid} style={{ top: '0px'}}/>
               ) : (
-                <div innerHTML={icon.svgOutline} />
+                <div innerHTML={icon.svgOutline} style={{ top: '0px'}} />
               )}
             </div>
           ))}

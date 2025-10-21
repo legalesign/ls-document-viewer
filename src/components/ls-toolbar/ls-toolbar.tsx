@@ -78,7 +78,7 @@ export class LsToolbar {
         ) : (
           <div class={'rowbox'}>
               <ls-field-format dataItem={this?.dataItem} style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'visible': 'hidden'}}/>
-              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} dataItem={this?.dataItem}  style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none': 'block'}}/>
+              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none': 'block'}}/>
           </div>
         )}
         <slot></slot>

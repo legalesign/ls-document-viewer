@@ -370,6 +370,8 @@ export class LsDocumentViewer {
       return { ...ro, templateId: newTemplate.id };
     });
 
+    this.signer = preparedRoles.length > 0 ? 1 : 0;
+
     this._template = {
       ...newTemplate,
       elementConnection: { ...newTemplate.elementConnection, templateElements: fields },

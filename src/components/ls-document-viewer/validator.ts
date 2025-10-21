@@ -12,7 +12,7 @@ export function validate(t: LSApiTemplate): ValidationError[] {
   
   // Check for missing signatures
   t.roles.forEach(tr => {
-    if(t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer===tr.signerIndex).length === 0) {
+    if(t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer===tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
       errors.push({ 
         id: tr.id, 
         title: 'Missing signature.', 

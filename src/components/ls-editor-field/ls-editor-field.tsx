@@ -166,7 +166,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" />}
+          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" customStyle={{ verticalAlign: 'top'}}/>}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}

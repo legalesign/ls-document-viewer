@@ -339,7 +339,6 @@ export namespace Components {
         "template": LSApiTemplate;
     }
     interface LsParticipantSelect {
-        "dataItem": LSApiElement1[];
         /**
           * The current template roles. {LSApiRole}
           * @default []
@@ -1491,7 +1490,6 @@ declare namespace LocalJSX {
         "template"?: LSApiTemplate;
     }
     interface LsParticipantSelect {
-        "dataItem"?: LSApiElement1[];
         "onAddParticipant"?: (event: LsParticipantSelectCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
         "onRoleChange"?: (event: LsParticipantSelectCustomEvent<number>) => void;
         /**

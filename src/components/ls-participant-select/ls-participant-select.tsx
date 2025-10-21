@@ -1,6 +1,5 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
-import { LSApiElement } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
@@ -9,11 +8,6 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
   shadow: true,
 })
 export class LsParticipantSelect {
-  @Prop({
-    mutable: true,
-  })
-  dataItem: LSApiElement[];
-
   /**
  * The id of the currently selected role.
  * {string}
@@ -55,6 +49,17 @@ export class LsParticipantSelect {
 
   createHandler() {
     this.addParticipant.emit({type: 'SIGNER'});
+  }
+
+  componentWillLoad() {
+    console.log(this.roles);
+    if(this.roles && this.roles.length > 0) {
+      const initialRole = this.roles.find(r => r.signerIndex === 1);
+      console.log(initialRole);
+      if(initialRole) {
+        this.selectedRole = { signerIndex: initialRole.signerIndex, name: initialRole.name, roleType: initialRole.roleType };
+      }
+    }
   }
 
   render() {
@@ -103,7 +108,7 @@ export class LsParticipantSelect {
                 }
               />
               {this.selectedRole.name ||
-                (this.selectedRole.signerIndex > 100 ? `Participant ${this.selectedRole.signerIndex - 100} Witness` : `Participant ${this.selectedRole.signerIndex}`)}
+                (this.selectedRole.roleType === 'WITNESS' ? `Witness` : `Participant ${this.selectedRole.signerIndex}`)}
             </div>
             <button class={'tertiaryGrey expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>

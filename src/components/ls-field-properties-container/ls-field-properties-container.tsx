@@ -9,7 +9,7 @@ import { LSApiElement } from '../../components';
 export class LsFieldPropertiesContainer {
   @Prop() dataItem: LSApiElement;
   @Prop() tabs: string[] = [];
-  @Prop() selectedTab: string;
+  @Prop({ mutable: true, reflect: true}) selectedTab: string;
 
   componentWillLoad() {
     if (!this.selectedTab) {

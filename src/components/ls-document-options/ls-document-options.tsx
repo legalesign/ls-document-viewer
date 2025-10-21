@@ -34,10 +34,9 @@ export class LsDocumentOptions {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
-  alter(template: object) {
-    console.log(template)
-    this.update.emit([{ action: 'update', data: { ...this.template, ...template } }]);
-    this.mutate.emit([{ action: 'update', data: { ...this.template, ...template } }]);
+  alter(changedDetails: object) {
+    this.update.emit([{ action: 'update', data: { ...this.template, ...changedDetails } }]);
+    this.mutate.emit([{ action: 'update', data: { ...this.template, ...changedDetails } }]);
   }
 
   render() {
