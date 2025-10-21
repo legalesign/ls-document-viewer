@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
@@ -18,8 +18,24 @@ export class LsParticipantSelect {
    * The currently selected role.
    * {number}
    */
-  @State() selectedRole: { signerIndex: number; name: string; roleType?: string } = { signerIndex: 0, name: 'Sender', roleType: 'SENDER' };
+  @State() selectedRole: { signerIndex: number; name: string; roleType?: string; default: boolean } = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: true };
 
+  @Watch('roles')
+  handleRoleLoad() {
+    if(this.selectedRole.default) {
+      if(this.roles.length > 0) {
+        const initialRole = this.roles.find(r => r.signerIndex === 1);
+        if(initialRole) {
+          this.selectedRole = { ...initialRole, default: false };
+        }
+      }
+    } else {
+      const updatedRole = this.roles.find(r => r.signerIndex === this.selectedRole.signerIndex);
+      if(updatedRole) {
+        this.selectedRole = { ...updatedRole, default: false };
+      }
+    }
+  }
   /**
    * The current template roles.
    * {LSApiRole}
@@ -42,24 +58,13 @@ export class LsParticipantSelect {
 
 
   selectRole(role: { signerIndex: number; name: string; roleType?: string }) {
-    this.selectedRole = role;
+    this.selectedRole = { ...role, default: false };
     this.isOpen = false;
     this.roleChange.emit(role.signerIndex);
   }
 
   createHandler() {
     this.addParticipant.emit({type: 'SIGNER'});
-  }
-
-  componentWillLoad() {
-    console.log(this.roles);
-    if(this.roles && this.roles.length > 0) {
-      const initialRole = this.roles.find(r => r.signerIndex === 1);
-      console.log(initialRole);
-      if(initialRole) {
-        this.selectedRole = { signerIndex: initialRole.signerIndex, name: initialRole.name, roleType: initialRole.roleType };
-      }
-    }
   }
 
   render() {

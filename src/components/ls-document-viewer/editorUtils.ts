@@ -57,21 +57,13 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 
       fi.setAttribute('id', 'ls-field-' + id);
       fi.dataItem = { ...data.obj, id };
-    } else if (prefix === 'rol') {
-      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-      syncRoles.bind(this)();
-    }
-  } else if (data.event.action === 'delete') {
-    if (prefix === 'rol') {
-      var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-      this._template = { ...this._template, roles: this._template.roles.filter(r => r.id !== id) };
-      participantManager.template = this._template;
-    }
-  } else if (data.event.action === 'swap') {
-    if (prefix === 'rol') {
-      syncRoles.bind(this)();
     }
   }
+
+  if (prefix === 'rol') {
+    syncRoles.bind(this)();
+  }
+
 }
 
 export async function syncRoles() {
