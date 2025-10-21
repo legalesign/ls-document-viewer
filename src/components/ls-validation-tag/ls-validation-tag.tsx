@@ -25,7 +25,7 @@ export class LsValidationTag {
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
         </div>
-        {this.isExpanded && (
+        {this.isExpanded && this.validationErrors.length !== 0 && (
           <div class={'field-dropdown'}>
             <div class={'dropdown-header'}>
               <h2>Signature Fields Required</h2>
