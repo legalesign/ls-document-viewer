@@ -83,7 +83,6 @@ export class LsParticipantCard {
 
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
-
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
     return (
@@ -93,7 +92,7 @@ export class LsParticipantCard {
           style={{
             background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
-            marginTop: this.signer.signerIndex > 100 && '-0.813rem',
+            marginTop: this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.remove('hidden')}
           onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.button-set')?.classList.add('hidden')}

@@ -40,8 +40,8 @@ export class LsParticipantManager {
   @Event({
     bubbles: true,
     composed: true,
-  }) addParticipant: EventEmitter<{type: LSApiRoleType, parent?: string | null}>;
-
+  })
+  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
 
   selectedHandler(_role) {
     //console.log(role, 'participant manager')
@@ -60,9 +60,34 @@ export class LsParticipantManager {
     const participants = this.element.shadowRoot.querySelectorAll('ls-participant-card');
 
     participants.forEach(element => {
-      if (element.signer.id !== event.detail.id) element.editable = false;
+      const isTarget = element.signer?.id === event.detail.id;
+      element.editable = isTarget;
+
+      if (isTarget) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
+
+  handleOpenNewWitness(event: CustomEvent<{ type: LSApiRoleType; parent?: string | null }>) {
+    const { parent } = event.detail;
+    const observer = new MutationObserver(() => {
+      const participants = this.element.shadowRoot.querySelectorAll('ls-participant-card');
+
+      participants.forEach(element => {
+        const isTarget = element.signer?.signerParent === parent;
+        element.editable = isTarget;
+
+        if (isTarget) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      observer.disconnect();
+    });
+    observer.observe(this.element.shadowRoot, { childList: true, subtree: true });
+  }
+
 
   render() {
     return (
@@ -74,13 +99,21 @@ export class LsParticipantManager {
         <div class="participant-list">
           {this.template &&
             this.template?.roles.map((r, index) => {
-              return <ls-participant-card signer={r} index={index} template={this.template} onOpened={(event) => {
-                this.handleOpened.bind(this)(event)
-              }} />;
+              return (
+                <ls-participant-card
+                  signer={r}
+                  index={index}
+                  template={this.template}
+                  onOpened={event => {
+                    this.handleOpened.bind(this)(event);
+                  }}
+                  onAddParticipant={event => this.handleOpenNewWitness(event)}
+                />
+              );
             })}
         </div>
         <div class={'add-participant-button'}>
-          <button onClick={() => this.addParticipant.emit({type: 'SIGNER'})}>
+          <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
             <ls-icon name="user-add" size="20" color="var(--gray-100, #45484D);" />
             <p>Add Participant</p>
           </button>
