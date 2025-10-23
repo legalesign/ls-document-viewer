@@ -72,10 +72,10 @@ export class LsDocumentViewer {
   @Prop() token: string;
 
   /**
- * This will override the default production user pool.
- * Almost exclusively used for internal development.
- * {string}
- */
+   * This will override the default production user pool.
+   * Almost exclusively used for internal development.
+   * {string}
+   */
   @Prop() userpool: string;
 
   /**
@@ -208,7 +208,6 @@ export class LsDocumentViewer {
 
   private adapter: LsDocumentAdapter;
 
-
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
@@ -220,13 +219,12 @@ export class LsDocumentViewer {
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx));
 
-    this.validationErrors = validate.bind(this)(this._template)
+    this.validationErrors = validate.bind(this)(this._template);
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('addParticipant')
-  addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType, parent?: string | null }>) {
-
+  addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType; parent?: string | null }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = this._template.roles.find(r => r.id === event.detail.parent);
 
@@ -237,8 +235,8 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: (event.detail.type==='WITNESS') ? 100 + parent.signerIndex : this._template.roles.length,
-          ordinal: (event.detail.type==='WITNESS') ? parent.ordinal + 1 : this._template.roles.length,
+          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length,
+          ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
           templateId: this._template.id,
@@ -253,10 +251,10 @@ export class LsDocumentViewer {
   @Listen('selectFields')
   selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
     const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field'));
-    // update the template with all the latest values in the 
+    // update the template with all the latest values in the
     this._template = {
       ...this._template,
-      elementConnection: { ...this._template.elementConnection, templateElements: fields.map(ef => ef.dataItem) }
+      elementConnection: { ...this._template.elementConnection, templateElements: fields.map(ef => ef.dataItem) },
     };
 
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
@@ -275,7 +273,7 @@ export class LsDocumentViewer {
     this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
     this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
 
-    this.validationErrors = validate.bind(this)(this._template)
+    this.validationErrors = validate.bind(this)(this._template);
   }
 
   // Send role selection changes to bars and panels
@@ -380,7 +378,7 @@ export class LsDocumentViewer {
       roles: preparedRoles,
     };
 
-    console.log(this._template)
+    console.log(this._template);
   }
 
   /**
@@ -519,7 +517,7 @@ export class LsDocumentViewer {
   async load() {
     // Get all template and group listing data.
     try {
-      this.adapter = new LsDocumentAdapter(this.endpoint)
+      this.adapter = new LsDocumentAdapter(this.endpoint);
       const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
       this.parseTemplate(JSON.stringify(result.template));
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
@@ -527,7 +525,7 @@ export class LsDocumentViewer {
       this.initViewer();
 
       //Revalidate
-      this.validationErrors = validate.bind(this)(this._template)
+      this.validationErrors = validate.bind(this)(this._template);
       this.selected = [];
     } catch (e) {
       console.error('Your access token is invalid.', e);
@@ -539,9 +537,8 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
-    const box = this.component.shadowRoot.querySelector('#document-frame-wrapper');
-    box.scrollTop = (box.scrollHeight - box.clientHeight) / 2;
-    box.scrollLeft = (box.scrollWidth - box.clientWidth) / 2;
+    const box = this.component.shadowRoot.querySelector('.document-frame-wrapper');
+    box.scrollLeft = -380;
   }
 
   render() {
