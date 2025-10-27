@@ -1,6 +1,6 @@
 {
   "name": "legalesign-document-viewer",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "Legalesign Document Editor/Viewer",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

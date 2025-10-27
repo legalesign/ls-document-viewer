@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                     | Type             | Default     |
-| ---------- | ----------- | ----------------------------------------------- | ---------------- | ----------- |
-| `dataItem` | `data-item` |                                                 | `LSApiElement[]` | `undefined` |
-| `roles`    | `roles`     | The current template roles. {LSApiRole}         | `LSApiRole[]`    | `[]`        |
-| `selected` | `selected`  | The id of the currently selected role. {string} | `string`         | `undefined` |
+| Property   | Attribute  | Description                                     | Type          | Default     |
+| ---------- | ---------- | ----------------------------------------------- | ------------- | ----------- |
+| `roles`    | `roles`    | The current template roles. {LSApiRole}         | `LSApiRole[]` | `[]`        |
+| `selected` | `selected` | The id of the currently selected role. {string} | `string`      | `undefined` |
 
 
 ## Events
