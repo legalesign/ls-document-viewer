@@ -34,7 +34,8 @@ export class LsValidationTag {
               </p>
             </div>
             {this.validationErrors.map((field, idx) => {
-              const pallette = defaultRolePalette[field?.role?.signerIndex || field?.element?.signer || 0];
+              const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
+              const pallette = defaultRolePalette[signerIndex || field?.element?.signer || 0];
 
               return (
                 <div

@@ -49,6 +49,8 @@ export function mouseDown(e) {
     }
   });
 
+  console.log('hit field', this.hitField, this.edgeSide);
+
   if (this.hitField) {
     const { height, width } = this.hitField.getBoundingClientRect();
     const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
