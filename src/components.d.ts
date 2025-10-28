@@ -56,9 +56,9 @@ export namespace Components {
         "manager": 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
-          * @default 'custom'
+          * @default 'editor'
          */
-        "mode": 'preview' | 'editor' | 'custom';
+        "mode": 'preview' | 'editor' | 'compose';
         /**
           * Page forward {MouseEvent} e
          */
@@ -1185,9 +1185,9 @@ declare namespace LocalJSX {
         "manager"?: 'document' | 'toolbox' | 'participant';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
-          * @default 'custom'
+          * @default 'editor'
          */
-        "mode"?: 'preview' | 'editor' | 'custom';
+        "mode"?: 'preview' | 'editor' | 'compose';
         "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;

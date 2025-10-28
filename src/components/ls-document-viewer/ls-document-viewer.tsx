@@ -105,7 +105,7 @@ export class LsDocumentViewer {
    * An ease of use property that will arrange document-viewer appropraitely.
    * {'preview' | 'editor' | 'custom'}
    */
-  @Prop() mode: 'preview' | 'editor' | 'custom' = 'custom';
+  @Prop() mode: 'preview' | 'editor' | 'compose' = 'editor';
 
   @Watch('mode')
   modeHandler(_newMode, _oldMode) {
@@ -115,6 +115,11 @@ export class LsDocumentViewer {
       this.showstatusbar = false;
       this.readonly = true;
     } else if (_newMode === 'editor') {
+      this.showtoolbar = true;
+      this.showtoolbox = true;
+      this.showstatusbar = true;
+      this.readonly = false;
+    } else if (_newMode === 'compose') {
       this.showtoolbar = true;
       this.showtoolbox = true;
       this.showstatusbar = true;
