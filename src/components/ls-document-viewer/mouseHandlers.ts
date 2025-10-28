@@ -49,7 +49,7 @@ export function mouseDown(e) {
     }
   });
 
-  console.log('hit field', this.hitField, this.edgeSide);
+  console.log('hit field', this.hitField);
 
   if (this.hitField) {
     const { height, width } = this.hitField.getBoundingClientRect();

@@ -216,7 +216,7 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+    if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -347,6 +347,14 @@ export class LsDocumentViewer {
   }
 
   /**
+   * Ensure broken or misplaced fields are put onto the page.
+   * {number} position
+   */
+  clip(legacyPosition: number, failback: number = 0.0): number {
+    return (legacyPosition > 1 ? failback : legacyPosition)
+  }
+
+  /**
    * Decorate the template data object with useful transformations.
    * {string} json of template
    */
@@ -363,10 +371,10 @@ export class LsDocumentViewer {
     const fields = newTemplate.elementConnection.templateElements.map(f => {
       return {
         ...f,
-        top: f.ay * pages[0].height,
-        left: f.ax * pages[0].width,
-        height: (f.by - f.ay) * pages[0].height,
-        width: (f.bx - f.ax) * pages[0].width,
+        top: this.clip(f.ay) * this.pageDimensions[0].height,
+        left: this.clip(f.ax) * this.pageDimensions[0].width,
+        height: (this.clip(f.by, 0.1) - this.clip(f.ay)) * this.pageDimensions[0].height,
+        width: (this.clip(f.bx, 0.2) - this.clip(f.ax)) * this.pageDimensions[0].width,
         templateId: newTemplate.id,
       };
     });
@@ -439,10 +447,10 @@ export class LsDocumentViewer {
   prepareElement(newElement: LSApiElement): LSApiElement {
     return {
       ...newElement,
-      top: Math.floor(newElement.ay * this.pageDimensions[newElement.page - 1].height),
-      left: Math.floor(newElement.ax * this.pageDimensions[newElement.page - 1].width),
-      height: Math.floor((newElement.by - newElement.ay) * this.pageDimensions[newElement.page - 1].height),
-      width: Math.floor((newElement.bx - newElement.ax) * this.pageDimensions[newElement.page - 1].width),
+      top: Math.floor(this.clip(newElement.ay) * this.pageDimensions[newElement.page - 1].height),
+      left: Math.floor(this.clip(newElement.ax) * this.pageDimensions[newElement.page - 1].width),
+      height: Math.floor((this.clip(newElement.by, 0.05) - this.clip(newElement.ay)) * this.pageDimensions[newElement.page - 1].height),
+      width: Math.floor((this.clip(newElement.bx, 0.2) - this.clip(newElement.ax)) * this.pageDimensions[newElement.page - 1].width),
       pageDimensions: this.pageDimensions[newElement.page - 1],
       templateId: this._template.id,
     };
@@ -532,6 +540,7 @@ export class LsDocumentViewer {
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
       this.selected = [];
+      this.setZoom(1.0);
     } catch (e) {
       console.error('Your access token is invalid.', e);
     }
