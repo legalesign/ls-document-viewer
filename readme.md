@@ -2,8 +2,19 @@
 This component allows you to edit, preview or customize a Legalesign template in order to
 send a document for signing. It is purely HTML and javascript and platform agnostic.
 
-### Useful attributes
-- Filter toolbox
+## Useful attributes
+
+#### token
+
+Most important of all is providing a security token so that the editor knows who you are
+and that you have access to the template.
+
+#### templateid
+
+This is the api ID of the template that you want to present to the user.
+
+
+#### Filter toolbox
 
 This allows you to choose which field types are available to your users.
 
