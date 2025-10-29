@@ -28,7 +28,7 @@ export class LsStatusbar {
 
   handleZoomInput() {
     const zoomInput = this.component.shadowRoot.getElementById('zoomRange') as HTMLInputElement;
-    
+
     debounce(this.setZoom(parseInt(zoomInput.value) / 100), 700);
   }
 
@@ -48,50 +48,51 @@ export class LsStatusbar {
     this.zoom = this.editor.zoom;
   }
 
-  
-
   render() {
     return (
       <Host>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
-        <div class={"status-bar-section"}>
-
-        <button onClick={() => this.setZoom(this.editor.zoom * 0.8)}>
-          <ls-icon name="zoom-out" />
-        </button>
-        <div>
-          <input type="range" min="1" max="300" value={this.zoom * 100} class="slider" id="zoomRange" onInput={() => this.handleZoomInput()} />
+        <div class={'status-bar-section'}>
+          <button onClick={() => this.setZoom(this.editor.zoom * 0.8)}>
+            <ls-icon name="zoom-out" />
+          </button>
+          <div>
+            <input type="range" min="1" max="300" value={this.zoom * 100} class="slider" id="zoomRange" onInput={() => this.handleZoomInput()} />
+          </div>
+          <button onClick={() => this.setZoom(this.editor.zoom / 0.8)}>
+            <ls-icon name="zoom-in" />
+          </button>
         </div>
-        <button onClick={() => this.setZoom(this.editor.zoom / 0.8)}>
-          <ls-icon name="zoom-in" />
-        </button>
+        <div class={'status-bar-section'}>
+          <button onClick={() => this.fitWidth()}>
+            <ls-icon name="fit-width" />
+          </button>
+          <button onClick={() => this.fitHeight()}>
+            <ls-icon name="fit-height" />
+          </button>
         </div>
-         <div class={"status-bar-section"}>
-        <button onClick={() => this.fitWidth()}>
-          <ls-icon name="fit-width" />
-        </button>
-        <button onClick={() => this.fitHeight()}>
-          <ls-icon name="fit-height" />
-        </button>
-        </div>
-         <div class={"status-bar-section"}>
-        <button
-          onClick={() => {
-            this.editor.pagePrev();
-          }}
-        >
-          <ls-icon name="chevron-left" />
-        </button>
-        <p>{this.editor?.pageNum} / {this.editor?._template?.pageCount}</p>
-        <button
-          onClick={() => {
-            this.editor.pageNext();
-          }}
-        >
-          <ls-icon name="chevron-right" />
-        </button>
-        </div>
+        {this.editor?._template?.pageCount > 1 && (
+          <div class={'status-bar-section'}>
+            <button
+              onClick={() => {
+                this.editor.pagePrev();
+              }}
+            >
+              <ls-icon name="chevron-left" />
+            </button>
+            <p>
+              {this.editor?.pageNum} / {this.editor?._template?.pageCount}
+            </p>
+            <button
+              onClick={() => {
+                this.editor.pageNext();
+              }}
+            >
+              <ls-icon name="chevron-right" />
+            </button>
+          </div>
+        )}
 
         <slot></slot>
       </Host>

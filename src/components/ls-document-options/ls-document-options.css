@@ -29,6 +29,7 @@
 }
 
 .template-detail-section {
+  position: relative;
   display: flex;
   padding: 0.75rem;
   align-items: center;
@@ -47,10 +48,37 @@
   width: 100%;
 }
 
+.template-detail-section-info {
+  color: var(--gray-70);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem; /* 142.857% */
+  width: 100%;
+}
+
 .column {
   display: flex;
   flex-direction: column;
   align-items: flex-start
+}
+
+.editButton {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  margin: 0px;
+  padding: 0px;
+  max-height: 1.25rem !important;
+  max-width: 1.25rem !important;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-70, #2134dc);
+}
+
+.editButton:hover {
+  color: var(--gray-80);
 }
 
 /* Global Styles */

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element, State } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 
@@ -14,6 +14,8 @@ export class LsDocumentOptions {
    * {LSApiTemplate}
    */
   @Prop() template: LSApiTemplate;
+
+  @State() editTitle: boolean = false;
 
   @Watch('template')
   selectedHandler(newSelected, _oldSelected) {
@@ -40,6 +42,18 @@ export class LsDocumentOptions {
   }
 
   render() {
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+      const year = date.getFullYear();
+
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+
+      return `${day}/${month}/${year} at ${hours}:${minutes}`;
+    }
     return (
       <Host>
         <div class="ls-editor-infobox">
@@ -49,27 +63,62 @@ export class LsDocumentOptions {
         <div class={'template-details'}>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Name</p>
-            <ls-formfield as="text" value={this.template?.title} style={{ width: '100%' }} onValueChange={(e) => { this.alter({ title: e.detail }) }} />
+            <div
+              class="editButton"
+              onClick={() => {
+                this.editTitle = !this.editTitle;
+              }}
+            >
+              <ls-icon name={this.editTitle ? 'check' : 'pencil-alt'} size="18" />
+            </div>
+            {this.editTitle ? (
+              <input
+                value={this.template?.title}
+                style={{ width: '100%' }}
+                onInput={e => this.alter({ title: e.detail})}
+                onKeyUp={e => {
+                  if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
+                }}
+              />
+            ) : (
+              <p>{this.template?.title}</p>
+            )}
           </div>
           <div class={'template-detail-section'}>
-            <p class="template-detail-section-title">Auto Archive</p>
+            <div>
+              <p class="template-detail-section-title">Auto Archive</p>
+              <p class={'template-detail-section-info'}>After Sending the Template will be automatically archived.</p>
+            </div>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle checked={this.template?.autoArchive} onValueChange={(e) => { this.alter({ autoArchive: e.detail }) }}></ls-toggle>
+            <ls-toggle
+              checked={this.template?.autoArchive}
+              onValueChange={e => {
+                this.alter({ autoArchive: e.detail });
+              }}
+            ></ls-toggle>
           </div>
           <div class={'template-detail-section'}>
-            <p class="template-detail-section-title">Lock</p>
+            <div>
+              <p class="template-detail-section-title">Lock Template</p>
+              <p class={'template-detail-section-info'}>Lock Template to avoid changes being made</p>
+            </div>
             {/* <ls-formfield as="radio" value={'false'} /> */}
-            <ls-toggle  checked={this.template?.locked} onValueChange={(e) => { this.alter({ locked: e.detail }) }}></ls-toggle>
+            <ls-toggle
+              checked={this.template?.locked}
+              onValueChange={e => {
+                this.alter({ locked: e.detail });
+              }}
+            ></ls-toggle>
           </div>
           <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>
-            <ls-label text={this.template?.pageCount} />
+            <p>{this.template?.pageCount}</p>
           </div>
           <div class={'template-detail-section column'}>
-            <p class="template-detail-section-title">Date Created</p> {this.template?.created}
+            <p class="template-detail-section-title">Date Created</p> <p>{formatDate(this.template?.created)}</p>
           </div>
           <div class={'template-detail-section column'}>
-            <p class="template-detail-section-title">Created By</p> {this.template?.createdBy}
+            <p class="template-detail-section-title">Created By</p> <p>{this.template?.createdBy}</p>
           </div>
         </div>
         <slot></slot>
