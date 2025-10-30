@@ -555,6 +555,7 @@ export class LsDocumentViewer {
 
   handleSelectedField(event) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+
     fields.forEach(element => {
       const isSelected = element.formElementType === event.detail;
       element.isSelected = isSelected;

@@ -13,6 +13,7 @@
 .ls-toolbox-field:hover {
   background: var(--gray-10, #f7f8fa);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray-30, #e0e2e5);
 }
 
 
