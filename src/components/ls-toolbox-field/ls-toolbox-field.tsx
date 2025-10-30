@@ -1,6 +1,7 @@
-import { Component, Host, Listen, Prop, h } from '@stencil/core';
+import { Component, Event, Host, Listen, Prop, State, Watch, h } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { EventEmitter } from 'stream';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -39,6 +40,23 @@ export class LsToolboxField {
    */
   @Prop() signer: number = 0;
 
+  @Prop({ mutable: true }) isSelected: boolean = false;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  selected: EventEmitter;
+
+  @Watch('isSelected')
+  modeHandler(_isSelected) {
+    // When opened fire an event to let the parent handle closing other controls
+    if (_isSelected) {
+      this.selected.emit(this.formElementType);
+    }
+  }
+
   @Listen('dragstart')
   handleDragStart(event) {
     // Add the target element's id to the data transfer object
@@ -65,11 +83,35 @@ export class LsToolboxField {
   render() {
     return (
       <Host draggable="true">
-        <div class="toolbox-field-icon" style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}>
-          <ls-icon name={this.icon} size="20" />
+        <div
+          class={'ls-toolbox-field'}
+          style={
+            this.isSelected && {
+              background: defaultRolePalette[this.signer % 100].s10,
+              border: `1px solid ${defaultRolePalette[this.signer % 100].s60}`,
+              color: defaultRolePalette[this.signer % 100].s80,
+            }
+          }
+          onClick={() => (this.isSelected = !this.isSelected)}
+        >
+          <div
+            class="toolbox-field-icon"
+            style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}
+          >
+            <ls-icon name={this.icon} size="20" />
+          </div>
+          <p
+            class="toolbox-field-label"
+            style={
+              this.isSelected && {
+                color: defaultRolePalette[this.signer % 100].s80,
+              }
+            }
+          >
+            {this.label}
+          </p>
+          <ls-icon name="drag-vertical" size="16" color="#787a80" />
         </div>
-        <p class="toolbox-field-label">{this.label}</p>
-        <ls-icon name="drag-vertical" size="16" color="#787a80" />
       </Host>
     );
   }

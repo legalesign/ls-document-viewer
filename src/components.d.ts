@@ -476,6 +476,10 @@ export namespace Components {
          */
         "icon": Icon;
         /**
+          * @default false
+         */
+        "isSelected": boolean;
+        /**
           * The text to display for this field type.
          */
         "label": string;
@@ -583,6 +587,10 @@ export interface LsToggleCustomEvent<T> extends CustomEvent<T> {
 export interface LsToolbarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsToolbarElement;
+}
+export interface LsToolboxFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsToolboxFieldElement;
 }
 declare global {
     interface HTMLLsDocumentOptionsElementEventMap {
@@ -1096,7 +1104,18 @@ declare global {
         prototype: HTMLLsToolbarElement;
         new (): HTMLLsToolbarElement;
     };
+    interface HTMLLsToolboxFieldElementEventMap {
+        "selected": any;
+    }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsToolboxFieldElement: {
         prototype: HTMLLsToolboxFieldElement;
@@ -1642,9 +1661,14 @@ declare namespace LocalJSX {
          */
         "icon"?: Icon;
         /**
+          * @default false
+         */
+        "isSelected"?: boolean;
+        /**
           * The text to display for this field type.
          */
         "label"?: string;
+        "onSelected"?: (event: LsToolboxFieldCustomEvent<any>) => void;
         /**
           * The signer color of the element
           * @default 0

@@ -352,7 +352,7 @@ export class LsDocumentViewer {
    * {number} position
    */
   clip(legacyPosition: number, failback: number = 0.0): number {
-    return (legacyPosition > 1 ? failback : legacyPosition)
+    return legacyPosition > 1 ? failback : legacyPosition;
   }
 
   /**
@@ -550,17 +550,22 @@ export class LsDocumentViewer {
   }
 
   componentWillLoad() {
-    if (this.token && !this._template) this.load(); 
+    if (this.token && !this._template) this.load();
   }
 
-
-
+  handleSelectedField(event) {
+    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+    fields.forEach(element => {
+      const isSelected = element.formElementType === event.detail;
+      element.isSelected = isSelected;
+    });
+  }
 
   render() {
     return (
       <Host>
         <>
-        { this.isLoading && <ls-page-loader /> }
+          {this.isLoading && <ls-page-loader />}
           <div class={'validation-tag-wrapper'}>
             <ls-validation-tag validationErrors={this.validationErrors} />
           </div>
@@ -601,6 +606,9 @@ export class LsDocumentViewer {
                           validation={0}
                           icon="signature"
                           signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
                         />
                       ) : (
                         <ls-toolbox-field
@@ -612,6 +620,9 @@ export class LsDocumentViewer {
                           validation={3000}
                           icon="auto-sign"
                           signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
                         />
                       )}
 
@@ -624,6 +635,9 @@ export class LsDocumentViewer {
                         validation={2000}
                         icon="initials"
                         signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
                       />
                       <ls-toolbox-field
                         elementType="date"
@@ -634,6 +648,9 @@ export class LsDocumentViewer {
                         validation={2}
                         icon="calender"
                         signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
                       />
 
                       <ls-toolbox-field
@@ -645,6 +662,9 @@ export class LsDocumentViewer {
                         validation={30}
                         icon="auto-date"
                         signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
                       />
                       <ls-toolbox-field
                         elementType="email"
@@ -655,6 +675,9 @@ export class LsDocumentViewer {
                         validation={1}
                         icon="at-symbol"
                         signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
                       />
                       <ls-toolbox-field
                         elementType="text"
@@ -665,6 +688,9 @@ export class LsDocumentViewer {
                         validation={0}
                         icon="text"
                         signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
                       />
                       <div class={'expand-fields-row'} onClick={() => (this.expandfields = !this.expandfields)}>
                         <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid />
@@ -681,6 +707,9 @@ export class LsDocumentViewer {
                             validation={50}
                             icon="hashtag"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
 
                           <ls-toolbox-field
@@ -692,6 +721,9 @@ export class LsDocumentViewer {
                             validation={20}
                             icon="hashtag"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
 
                           <ls-toolbox-field
@@ -703,6 +735,9 @@ export class LsDocumentViewer {
                             validation={25}
                             icon="check"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
 
                           <ls-toolbox-field
@@ -714,6 +749,9 @@ export class LsDocumentViewer {
                             validation={93}
                             icon="code"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
                           <ls-toolbox-field
                             elementType="image"
@@ -724,6 +762,9 @@ export class LsDocumentViewer {
                             validation={90}
                             icon="photograph"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
 
                           <ls-toolbox-field
@@ -735,6 +776,9 @@ export class LsDocumentViewer {
                             validation={74}
                             icon="upload"
                             signer={this.signer}
+                            onSelected={event => {
+                              this.handleSelectedField.bind(this)(event);
+                            }}
                           />
                         </div>
                       )}
