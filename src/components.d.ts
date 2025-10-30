@@ -319,6 +319,8 @@ export namespace Components {
          */
         "value": number;
     }
+    interface LsPageLoader {
+    }
     interface LsParticipantCard {
         /**
           * @default false
@@ -949,6 +951,12 @@ declare global {
         prototype: HTMLLsNumberInputElement;
         new (): HTMLLsNumberInputElement;
     };
+    interface HTMLLsPageLoaderElement extends Components.LsPageLoader, HTMLStencilElement {
+    }
+    var HTMLLsPageLoaderElement: {
+        prototype: HTMLLsPageLoaderElement;
+        new (): HTMLLsPageLoaderElement;
+    };
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
@@ -1133,6 +1141,7 @@ declare global {
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-number-input": HTMLLsNumberInputElement;
+        "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
@@ -1463,6 +1472,8 @@ declare namespace LocalJSX {
          */
         "value"?: number;
     }
+    interface LsPageLoader {
+    }
     interface LsParticipantCard {
         /**
           * @default false
@@ -1691,6 +1702,7 @@ declare namespace LocalJSX {
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
         "ls-number-input": LsNumberInput;
+        "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
@@ -1747,6 +1759,7 @@ declare module "@stencil/core" {
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
+            "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;

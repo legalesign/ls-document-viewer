@@ -100,6 +100,7 @@ export class LsDocumentViewer {
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
   @Prop({ mutable: true }) groupInfo: any;
   @State() selected: HTMLLsEditorFieldElement[] = [];
+  @State() isLoading: boolean = true;
 
   /**
    * An ease of use property that will arrange document-viewer appropraitely.
@@ -528,6 +529,7 @@ export class LsDocumentViewer {
   }
 
   async load() {
+    this.isLoading = true;
     // Get all template and group listing data.
     try {
       this.adapter = new LsDocumentAdapter(this.endpoint);
@@ -541,24 +543,24 @@ export class LsDocumentViewer {
       this.validationErrors = validate.bind(this)(this._template);
       this.selected = [];
       this.setZoom(1.0);
+      this.isLoading = false;
     } catch (e) {
       console.error('Your access token is invalid.', e);
     }
   }
 
   componentWillLoad() {
-    if (this.token && !this._template) this.load();
+    if (this.token && !this._template) this.load(); 
   }
 
-  componentDidLoad() {
-    const box = this.component.shadowRoot.querySelector('.document-frame-wrapper');
-    box.scrollLeft = -380;
-  }
+
+
 
   render() {
     return (
       <Host>
         <>
+        { this.isLoading && <ls-page-loader /> }
           <div class={'validation-tag-wrapper'}>
             <ls-validation-tag validationErrors={this.validationErrors} />
           </div>
@@ -770,7 +772,7 @@ export class LsDocumentViewer {
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
-                  <canvas id="pdf-canvas" class={this.displayTable ? 'hidden' : ''}></canvas>
+                  <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
                   <div id="ls-box-selector"></div>
                 </div>
