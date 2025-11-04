@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Host, Prop, h, Element, Event } from '@stencil/core';
+import { Component, EventEmitter, Host, Prop, h, Element, Event, Watch } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 
 @Component({
@@ -27,6 +27,16 @@ export class LsFieldFormat {
   update: EventEmitter<LSMutateEvent[]>;
   @Element() component: HTMLElement;
 
+  // Send selection changes to bars and panels if in use.
+  @Watch('dataItem')
+  selectFieldsHandler() {
+
+    var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
+    console.log(selFont, 'ls-field-format');
+    selFont.value = this.dataItem[0].fontName;
+
+  }
+
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
@@ -48,6 +58,7 @@ export class LsFieldFormat {
             <div class=" input-wrapper">
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
+                id='ls-toolbar-font-select'
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
@@ -96,6 +107,8 @@ export class LsFieldFormat {
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
+                id='ls-toolbar-font-select'
+
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}

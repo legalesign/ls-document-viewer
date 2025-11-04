@@ -255,7 +255,7 @@ export class LsDocumentViewer {
 
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
-  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
+  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {    
     const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field'));
     // update the template with all the latest values in the
     this._template = {
@@ -264,7 +264,9 @@ export class LsDocumentViewer {
     };
 
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
-    if (toolbar) toolbar.dataItem = event.detail as any as LSApiElement[];
+    if (toolbar) {
+      toolbar.dataItem = event.detail as any as LSApiElement[];
+    }
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
     if (propPanel) {
       propPanel.dataItem = event.detail as any as LSApiElement[];
@@ -814,7 +816,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            <ls-toolbar id="ls-toolbar" dataItem={this.selected ? this.selected.map(s => s.dataItem) : null} template={this._template} editor={this} groupInfo={this.groupInfo} />
+            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

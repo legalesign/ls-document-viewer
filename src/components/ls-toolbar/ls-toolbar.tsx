@@ -52,12 +52,12 @@ export class LsToolbar {
     composed: true,
   })
   update: EventEmitter<LSMutateEvent[]>;
+
   // @Element() component: HTMLElement;
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-    console.log(diff);
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       return { action: 'update', data: { ...c, ...diff } as LSApiElement };

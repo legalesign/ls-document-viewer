@@ -49,8 +49,6 @@ export function mouseDown(e) {
     }
   });
 
-  console.log('hit field', this.hitField);
-
   if (this.hitField) {
     const { height, width } = this.hitField.getBoundingClientRect();
     const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
@@ -62,6 +60,7 @@ export function mouseDown(e) {
       return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
     });
     this.selectionBox = null;
+    this.selectFields.emit([this.hitField.dataItem]);
   } else {
     // console.log('start mouse down reset');
     this.startLocations = null;
