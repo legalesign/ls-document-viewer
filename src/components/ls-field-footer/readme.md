@@ -14,10 +14,11 @@
 
 ## Events
 
-| Event    | Description | Type                           |
-| -------- | ----------- | ------------------------------ |
-| `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
-| `update` |             | `CustomEvent<LSMutateEvent[]>` |
+| Event          | Description | Type                           |
+| -------------- | ----------- | ------------------------------ |
+| `mutate`       |             | `CustomEvent<LSMutateEvent[]>` |
+| `selectFields` |             | `CustomEvent<LSApiElement[]>`  |
+| `update`       |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Dependencies

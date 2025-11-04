@@ -29,14 +29,27 @@ export class LsFieldFooter {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
+   @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  selectFields: EventEmitter<LSApiElement[]>;
+
   deleteField = () => {
     this.update.emit([{ action: 'delete', data: this.dataItem }]);
     this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
   }
 
   duplicateField = () => {
-    this.update.emit([{ action: 'create', data: { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) } }]);
-    this.mutate.emit([{ action: 'create', data: { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) } }]);
+    const newItem = { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) };
+    const newTop = this.dataItem.top + this.dataItem.height;
+    if(newTop + this.dataItem.height < this.dataItem.pageDimensions.height) {
+      newItem.top = newTop;
+    }
+    this.update.emit([{ action: 'create', data: newItem, select: 'clear' }]);
+    this.mutate.emit([{ action: 'create', data: newItem }]);
+    // this.selectFields.emit([newItem]);
   }
 
   render() {

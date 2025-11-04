@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type      | Default     |
-| --------- | --------- | ----------- | --------- | ----------- |
-| `checked` | `checked` |             | `boolean` | `undefined` |
+| Property        | Attribute       | Description | Type      | Default     |
+| --------------- | --------------- | ----------- | --------- | ----------- |
+| `checked`       | `checked`       |             | `boolean` | `undefined` |
+| `indeterminate` | `indeterminate` |             | `boolean` | `undefined` |
 
 
 ## Events

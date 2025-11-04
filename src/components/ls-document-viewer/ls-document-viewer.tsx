@@ -323,6 +323,17 @@ export class LsDocumentViewer {
     this.showPageFields(this.pageNum);
   }
 
+
+  /**
+   * Unselect all fields
+   */
+  @Method()
+  async unselect() {
+    const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+    fields.forEach(fu => {fu.selected = false;});
+    this.selected = [];
+  }
+
   /**
    * Page and field resize on zoom change
    *
@@ -462,6 +473,9 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
+    
+    if(update?.select === 'clear') {this.unselect();}
+
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };

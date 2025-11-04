@@ -89,6 +89,16 @@ Type: `Promise<void>`
 
 
 
+### `unselect() => Promise<void>`
+
+Unselect all fields
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ## Dependencies
 

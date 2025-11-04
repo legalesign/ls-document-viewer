@@ -127,6 +127,10 @@ export namespace Components {
          */
         "toolboxFilter"?: string;
         /**
+          * Unselect all fields
+         */
+        "unselect": () => Promise<void>;
+        /**
           * This will override the default production user pool. Almost exclusively used for internal development. {string}
          */
         "userpool": string;
@@ -758,6 +762,7 @@ declare global {
     interface HTMLLsFieldFooterElementEventMap {
         "mutate": LSMutateEvent1[];
         "update": LSMutateEvent1[];
+        "selectFields": LSApiElement1[];
     }
     interface HTMLLsFieldFooterElement extends Components.LsFieldFooter, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldFooterElementEventMap>(type: K, listener: (this: HTMLLsFieldFooterElement, ev: LsFieldFooterCustomEvent<HTMLLsFieldFooterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1358,6 +1363,7 @@ declare namespace LocalJSX {
          */
         "dataItem"?: LSApiElement1;
         "onMutate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
+        "onSelectFields"?: (event: LsFieldFooterCustomEvent<LSApiElement1[]>) => void;
         "onUpdate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldFormat {
