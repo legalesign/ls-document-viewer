@@ -1,5 +1,5 @@
-import { Component, Host, Prop, h } from '@stencil/core';
-import { LSApiElement } from '../../components';
+import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { LSApiElement, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 
@@ -9,8 +9,43 @@ import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
   shadow: true,
 })
 export class LsFieldPropertiesMultiple {
-  @Prop() dataItem: LSApiElement[];
+  @Prop({ mutable: true }) dataItem: LSApiElement[]; 
 
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  mutate: EventEmitter<LSMutateEvent[]>;
+
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  update: EventEmitter<LSMutateEvent[]>;
+
+  // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  // NOTE this alter is debounced to account for typing
+  alter(diff: object) {
+    console.log('alter multiple', diff);
+    this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
+    this.debounce(diff, 500);
+  }
+
+  private labeltimer;
+
+  debounce(diff, delay) {
+    if (this.labeltimer) clearTimeout(this.labeltimer);
+
+    this.labeltimer = setTimeout(() => {
+      const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: { ...item, ...diff } }));
+      this.mutate.emit(evs);
+      this.update.emit(evs);
+    }, delay);
+  }
+  
   allSignersSame = () => {
     if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, signer: undefined };
     const firstSigner = this.dataItem[0].signer;
@@ -78,7 +113,7 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-field-properties-section-title'}>Field Label</p>
                 <p class={'ls-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
               </div>
-              <input value={this.allLabelsSame().label} width="30" placeholder="eg. Sign Here" />
+              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder="eg. Sign Here" />
             </div>
           </div>
           <div class={'field-set'} slot="dimensions">

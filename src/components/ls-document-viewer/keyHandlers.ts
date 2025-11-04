@@ -49,7 +49,7 @@ export function keyDown(ev: KeyboardEvent) {
         };
         return oob(alterElement) ? original : alterElement;
       });
-    } else if (ev.key === 'Delete') {
+    } else if (ev.key === 'Delete' || ev.key === 'Backspace') {
       const arr = Array.from(this.selected) as LsEditorField[];
       this.mutate.emit(
         arr.map(s => {

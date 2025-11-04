@@ -556,6 +556,10 @@ export interface LsFieldPropertiesAdvancedCustomEvent<T> extends CustomEvent<T> 
     detail: T;
     target: HTMLLsFieldPropertiesAdvancedElement;
 }
+export interface LsFieldPropertiesMultipleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldPropertiesMultipleElement;
+}
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
@@ -876,7 +880,19 @@ declare global {
         prototype: HTMLLsFieldPropertiesImageElement;
         new (): HTMLLsFieldPropertiesImageElement;
     };
+    interface HTMLLsFieldPropertiesMultipleElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
     interface HTMLLsFieldPropertiesMultipleElement extends Components.LsFieldPropertiesMultiple, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldPropertiesMultipleElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesMultipleElement, ev: LsFieldPropertiesMultipleCustomEvent<HTMLLsFieldPropertiesMultipleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldPropertiesMultipleElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesMultipleElement, ev: LsFieldPropertiesMultipleCustomEvent<HTMLLsFieldPropertiesMultipleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsFieldPropertiesMultipleElement: {
         prototype: HTMLLsFieldPropertiesMultipleElement;
@@ -1396,6 +1412,8 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
+        "onMutate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
