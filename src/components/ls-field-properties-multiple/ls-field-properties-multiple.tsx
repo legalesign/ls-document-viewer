@@ -104,7 +104,7 @@ export class LsFieldPropertiesMultiple {
               <div class={'ls-field-properties-section-text'}>
                 <p class={'ls-field-properties-section-title'}>Required Field</p>
               </div>
-              <ls-toggle />
+              <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })}/>
             </div>
 
             <div class={'ls-field-properties-section'}>
