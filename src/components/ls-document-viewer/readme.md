@@ -94,6 +94,7 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ls-page-loader](../ls-page-loader)
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
@@ -109,6 +110,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
+  ls-document-viewer --> ls-page-loader
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
@@ -128,19 +130,8 @@ graph TD;
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
   ls-input-wrapper --> ls-icon
-  ls-document-options --> ls-formfield
+  ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
-  ls-formfield --> ls-icon
-  ls-formfield --> ls-text-input
-  ls-formfield --> ls-select-input
-  ls-formfield --> ls-radio-input
-  ls-formfield --> ls-textarea-input
-  ls-formfield --> ls-number-input
-  ls-text-input --> ls-icon
-  ls-select-input --> ls-icon
-  ls-radio-input --> ls-icon
-  ls-textarea-input --> ls-icon
-  ls-number-input --> ls-icon
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text

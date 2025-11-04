@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';

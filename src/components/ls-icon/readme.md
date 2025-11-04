@@ -19,6 +19,7 @@
 
 ### Used by
 
+ - [ls-document-options](../ls-document-options)
  - [ls-document-viewer](../ls-document-viewer)
  - [ls-editor-field](../ls-editor-field)
  - [ls-feature-column](../ls-feature-column)
@@ -49,6 +50,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ls-document-options --> ls-icon
   ls-document-viewer --> ls-icon
   ls-editor-field --> ls-icon
   ls-feature-column --> ls-icon

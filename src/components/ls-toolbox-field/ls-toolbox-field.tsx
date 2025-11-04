@@ -1,4 +1,4 @@
-import { Component, Event, Host, Listen, Prop, State, Watch, h } from '@stencil/core';
+import { Component, Event, Host, Listen, Prop, Watch, h } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { EventEmitter } from 'stream';

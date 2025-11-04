@@ -43,10 +43,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ls-document-options](../ls-document-options)
-
 ### Depends on
 
 - [ls-icon](../ls-icon)
@@ -70,7 +66,6 @@ graph TD;
   ls-radio-input --> ls-icon
   ls-textarea-input --> ls-icon
   ls-number-input --> ls-icon
-  ls-document-options --> ls-formfield
   style ls-formfield fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
