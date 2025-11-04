@@ -30,11 +30,10 @@ export class LsFieldFormat {
   // Send selection changes to bars and panels if in use.
   @Watch('dataItem')
   selectFieldsHandler() {
-
     var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
-    console.log(selFont, 'ls-field-format');
-    selFont.value = this.dataItem[0].fontName;
-
+    if (selFont) selFont.value = this.dataItem[0].fontName;
+    var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
+     if (selFontSize) selFontSize.value = this.dataItem[0].fontSize.toString();
   }
 
   // Send one or more mutations up the chain
@@ -74,7 +73,7 @@ export class LsFieldFormat {
             </div>
             <div class="input-wrapper">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
-              <input width="30" size={4} class={'has-leading-icon'} />
+              <input id='ls-toolbar-font-size' width="30" size={4} class={'has-leading-icon'} />
             </div>
             <div class={'button-group'}>
               <button
@@ -124,6 +123,7 @@ export class LsFieldFormat {
             <div class="input-wrapper">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
+                id='ls-toolbar-font-size'
                 width="30"
                 size={4}
                 value={this.dataItem[0].fontSize}
