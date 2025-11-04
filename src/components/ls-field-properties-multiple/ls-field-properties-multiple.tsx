@@ -66,6 +66,13 @@ export class LsFieldPropertiesMultiple {
     return { isSame: allSame, elementType: allSame ? firstElementType : 'mixed' };
   };
 
+  allFieldsOptional = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, optional: false };
+    const firstElementOptional = this.dataItem[0].optional;
+    const allSame = this.dataItem.every(item => item.optional === firstElementOptional);
+    return { isSame: allSame, optional: allSame ? firstElementOptional : false };
+  };
+
   render() {
     return (
       <Host>
@@ -104,7 +111,7 @@ export class LsFieldPropertiesMultiple {
               <div class={'ls-field-properties-section-text'}>
                 <p class={'ls-field-properties-section-title'}>Required Field</p>
               </div>
-              <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })}/>
+              <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
             <div class={'ls-field-properties-section'}>

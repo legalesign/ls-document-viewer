@@ -7,6 +7,7 @@ import { Component, Host, Prop, h, Event as StencilEvent, EventEmitter  } from '
 })
 export class LsToggle {
   @Prop({ mutable: true }) checked: boolean;
+  @Prop() indeterminate: boolean;
   @StencilEvent() valueChange: EventEmitter<boolean>;
 
   changeHandler(value: boolean) {
@@ -21,7 +22,7 @@ export class LsToggle {
             this.changeHandler((e.target as any).checked)
             }
             }/>
-          <span class="slider round"></span>
+          <span class={`${this.indeterminate ? 'indeterminate' : 'slider'} round`}></span>
         </label>
         <slot></slot>
       </Host>
