@@ -463,10 +463,11 @@ export class LsDocumentViewer {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
         addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
-        const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        
+        //const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
-        this.selected = [newField];
-        this.selectFields.emit([newData as LSApiElement]);
+        //this.selected = [newField];
+        //this.selectFields.emit([newData as LSApiElement]);
       } else if (update.action === 'update') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {

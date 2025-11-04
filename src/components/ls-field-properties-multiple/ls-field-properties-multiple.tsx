@@ -29,7 +29,6 @@ export class LsFieldPropertiesMultiple {
   // The source of the chain fires the mutation
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
-    console.log('alter multiple', diff);
     this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
     this.debounce(diff, 500);
   }
