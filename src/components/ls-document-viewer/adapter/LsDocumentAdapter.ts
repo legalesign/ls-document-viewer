@@ -7,6 +7,7 @@ import { createElement, deleteElement, updateElement } from './elementActions';
 import { createRole, deleteRole, swapRoles, updateRole } from './roleActions';
 import { updateTemplate } from './templateActions';
 import { LSApiTemplate } from '../../../components';
+import { recalculateCoordinates } from '../editorCalculator';
 
 export class LsDocumentAdapter {
 
@@ -35,7 +36,7 @@ export class LsDocumentAdapter {
             query = createElement(obj);
             break;
           case 'update':
-            query = updateElement(obj);
+            query = updateElement(recalculateCoordinates(obj as LSApiElement));
             break;
           case 'delete':
             query = deleteElement(obj);

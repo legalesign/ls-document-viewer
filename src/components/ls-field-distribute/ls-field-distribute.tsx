@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { oob } from '../ls-document-viewer/editorUtils';
 
 @Component({
   tag: 'ls-field-distribute',
@@ -68,10 +69,64 @@ export class LsFieldDistribute {
         action: 'update',
         data: {
           ...c,
-          left: newLeft,
-          ax: newLeft,
-          bx: newLeft + c.width,
+          left: newLeft
         } as LSApiElement,
+      };
+    });
+
+    this.dataItem = diffs.map(d => d.data as LSApiElement);
+    this.mutate.emit(diffs);
+    this.update.emit(diffs);
+  }
+
+  gapVertical(spacing: number) {
+    const sorted = this.dataItem.sort((a, b) => a.top - b.top);
+
+    var buffer = sorted[0].top;
+
+    const diffs: LSMutateEvent[] = sorted.map(c => {
+      const newTop = buffer;
+      buffer = buffer + c.height + spacing;
+      const target = {
+        ...c,
+        top: newTop
+      } as LSApiElement
+
+      return {
+        action: 'update',
+        data: oob(target) ? {
+          ...c,
+          left: c.pageDimensions.height - c.height - 1
+        } as LSApiElement : target
+      };
+    });
+
+    this.dataItem = diffs.map(d => d.data as LSApiElement);
+    this.mutate.emit(diffs);
+    this.update.emit(diffs);
+  }
+
+  gapHorizontal(spacing: number) {
+    const sorted = this.dataItem.sort((a, b) => a.top - b.top);
+
+    var buffer = sorted[0].left;
+
+    const diffs: LSMutateEvent[] = sorted.map(c => {
+      const newLeft = buffer;
+      buffer = buffer + c.width + spacing;
+      const target = {
+        ...c,
+        left: newLeft
+      } as LSApiElement
+
+      console.log(target, oob(target));
+
+      return {
+        action: 'update',
+        data: oob(target) ? {
+          ...c,
+          left: c.pageDimensions.width - c.width - 1
+        } as LSApiElement : target
       };
     });
 
@@ -101,15 +156,17 @@ export class LsFieldDistribute {
     const diffs: LSMutateEvent[] = sorted.map(c => {
       const newTop = buffer;
       buffer = buffer + c.height + avgspace;
+      const target = {
+        ...c,
+        top: newTop
+      } as LSApiElement
 
       return {
         action: 'update',
-        data: {
+        data: oob(target) ? {
           ...c,
-          top: newTop,
-          ay: newTop,
-          by: newTop + c.height,
-        } as LSApiElement,
+          top: c.pageDimensions.height - c.height
+        } as LSApiElement : target
       };
     });
 
@@ -159,11 +216,15 @@ export class LsFieldDistribute {
           <div class={'input-row'}>
             <div class={'input-wrapper'}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
-              <input type="number" class={'has-leading-icon'} id="ls-fix-vertical-space" value={''} size={4} min={0} max={9999} />
+              <input type="number" class={'has-leading-icon'} id="ls-fix-vertical-space" onChange={(e) => {
+                this.gapVertical(parseInt((e.target as HTMLInputElement).value));
+              }} value={''} size={4} min={0} max={9999} />
             </div>
             <div class={'input-wrapper'}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
-              <input type="number" class={'has-leading-icon'} id="ls-fix-horizontal-space" value={''} size={4} min={0} max={9999} />
+              <input type="number" class={'has-leading-icon'} id="ls-fix-horizontal-space" onChange={(e) => {
+                this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));
+              }} value={''} size={4} min={0} max={9999} />
             </div>
           </div>
         </div>

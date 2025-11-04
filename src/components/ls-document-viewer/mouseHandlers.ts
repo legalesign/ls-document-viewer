@@ -49,7 +49,7 @@ export function mouseDown(e) {
     }
   });
 
-  if (this.hitField) {
+  if (this.hitField && e.shiftKey === false) {
     // mouse down on a field, select it and note the start location
     if(this.hitField.selected === false) {
       // unselect all other fields
