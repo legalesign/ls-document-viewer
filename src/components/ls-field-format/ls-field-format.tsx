@@ -30,10 +30,12 @@ export class LsFieldFormat {
   // Send selection changes to bars and panels if in use.
   @Watch('dataItem')
   selectFieldsHandler() {
-    var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
-    if (selFont) selFont.value = this.dataItem[0].fontName;
-    var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
-     if (selFontSize) selFontSize.value = this.dataItem[0].fontSize.toString();
+    if (this.dataItem.length > 0) {
+      var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
+      if (selFont) selFont.value = this.dataItem[0].fontName;
+      var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
+      if (selFontSize) selFontSize.value = this.dataItem[0].fontSize.toString();
+    }
   }
 
   // Send one or more mutations up the chain

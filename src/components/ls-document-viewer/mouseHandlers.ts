@@ -50,19 +50,28 @@ export function mouseDown(e) {
   });
 
   if (this.hitField) {
+    // mouse down on a field, select it and note the start location
+    if(this.hitField.selected === false) {
+      // unselect all other fields
+      fields.forEach(fu => {
+        fu.selected = false;
+      });
+      this.selected = [this.hitField];
+      this.selectFields.emit([this.hitField.dataItem]);
+    }
+
     const { height, width } = this.hitField.getBoundingClientRect();
     const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
     this.startMouse = fdims;
-    const target = this.selected ? this.selected : [this.hitField];
-    this.startLocations = target.map(f => {
+    
+    this.startLocations = this.selected.map(f => {
       const { height, width } = f.getBoundingClientRect();
       const beHtml = f as HTMLElement;
       return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
     });
     this.selectionBox = null;
-    this.selectFields.emit([this.hitField.dataItem]);
   } else {
-    // console.log('start mouse down reset');
+    // move down on empty space, start a selection box
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
@@ -106,6 +115,8 @@ export function mouseMove(event) {
     }
 
     debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
+
+  
   } else if (this.selectionBox && event.buttons === 1) {
     console.log('drawing box');
     // draw the multiple selection box
@@ -123,6 +134,8 @@ export function mouseMove(event) {
     box.style.top = (this.selectionBox.y > event.clientY ? event.clientY : this.selectionBox.y) - topOffset + frame.scrollTop + 'px';
     box.style.width = Math.abs(movedX) + 'px';
     box.style.height = Math.abs(movedY) + 'px';
+
+    // Move one or more selected items
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
     this.isMoving = true;
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -132,7 +145,7 @@ export function mouseMove(event) {
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
     if (this.selected?.length) {
-      for (let i = 0; i < this.selected.length; i++) {
+      for (let i = 0; i < this.selected.length; i++) {        
         this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
         this.selected[i].style.top = this.startLocations[i].top + movedY + 'px';
       }

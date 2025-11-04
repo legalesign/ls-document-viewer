@@ -278,7 +278,7 @@ export class LsDocumentViewer {
       fu.selected = true;
     });
 
-    this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
+    // this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
     this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
 
     this.validationErrors = validate.bind(this)(this._template);
@@ -348,6 +348,7 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
   }
+  
 
   /**
    * Ensure broken or misplaced fields are put onto the page.
