@@ -50,6 +50,9 @@ export function mouseDown(e) {
   });
 
   if (this.hitField && e.shiftKey === false) {
+    var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+    box.style.visibility = 'hidden';
+
     // mouse down on a field, select it and note the start location
     if(this.hitField.selected === false) {
       // unselect all other fields
@@ -58,6 +61,30 @@ export function mouseDown(e) {
       });
       this.selected = [this.hitField];
       this.selectFields.emit([this.hitField.dataItem]);
+    }
+
+    const { height, width } = this.hitField.getBoundingClientRect();
+    const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
+    this.startMouse = fdims;
+    
+    this.startLocations = this.selected.map(f => {
+      const { height, width } = f.getBoundingClientRect();
+      const beHtml = f as HTMLElement;
+      return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
+    });
+    this.selectionBox = null;
+  } else if (this.hitField && e.shiftKey === true) {
+    var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+    box.style.visibility = 'hidden';
+
+    // mouse down on a field, select it and note the start location
+    if(this.hitField.selected === false) {
+      // unselect all other fields
+      fields.forEach(fu => {
+        fu.selected = false;
+      });
+      this.selected = [...this.selected, this.hitField];
+      this.selectFields.emit([...this.selected.map(si => si.dataItem), this.hitField.dataItem]);
     }
 
     const { height, width } = this.hitField.getBoundingClientRect();
