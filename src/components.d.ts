@@ -503,7 +503,7 @@ export namespace Components {
           * @default 'top'
          */
         "placement": 'top' | 'bottom' | 'left' | 'right';
-        "reference": HTMLElement;
+        "referenceElement": HTMLElement;
     }
     interface LsValidationTag {
         /**
@@ -1724,7 +1724,7 @@ declare namespace LocalJSX {
           * @default 'top'
          */
         "placement"?: 'top' | 'bottom' | 'left' | 'right';
-        "reference"?: HTMLElement;
+        "referenceElement"?: HTMLElement;
     }
     interface LsValidationTag {
         /**
