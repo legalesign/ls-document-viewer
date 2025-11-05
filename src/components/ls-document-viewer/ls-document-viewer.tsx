@@ -501,7 +501,7 @@ export class LsDocumentViewer {
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         const fields = this._template.elementConnection.templateElements;
-        this._template = {...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
+        this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
         this.selected = [];
       } else {
@@ -537,7 +537,17 @@ export class LsDocumentViewer {
     });
     dropTarget.addEventListener('drop', mouseDrop.bind(this));
 
-    // Generate all the field HTML elements that are required (for every page)
+    this.generateFields();
+  }
+
+  // Generate all the field HTML elements that are required (for every page)
+  generateFields(clearExisting: boolean = true) {
+
+    if (clearExisting) {
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+      fields.forEach(fi => this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi));
+    }
+
     this._template.elementConnection.templateElements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });

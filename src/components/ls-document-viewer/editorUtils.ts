@@ -9,7 +9,8 @@
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { ValidationType } from '../../types/ValidationType';
-import { getTemplateRoles } from './adapter/roleActions';
+import { getTemplate } from './adapter/templateActions';
+import { validate } from './validator';
 
 /**
  * Determines if an element will be plotted out of bounds, i.e. off
@@ -58,6 +59,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
       fi.setAttribute('id', 'ls-field-' + id);
       fi.dataItem = { ...data.obj, id };
     }
+    this.validationErrors = validate.bind(this)(this._template);
   }
 
   if (prefix === 'rol') {
@@ -66,14 +68,17 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 
   if (prefix === 'tpl') {
     this._template = { ...this._template, ...data.obj };
+    this.validationErrors = validate.bind(this)(this._template);
   }
 }
 
 export async function syncRoles() {
   var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-  const result = await this.adapter.execute(this.token, getTemplateRoles(this._template.id));
-  this._template = { ...this._template, roles: result.template.roles };
+  const tresult = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
+  this.parseTemplate(JSON.stringify(tresult.template));
   participantManager.template = this._template;
+  this.generateFields();
+  this.validationErrors = validate.bind(this)(this._template);
 }
 
 // Utility function which extracts the type from any API id
