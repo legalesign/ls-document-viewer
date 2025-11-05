@@ -141,6 +141,7 @@ graph TD;
   ls-participant-card --> ls-input-wrapper
   ls-input-wrapper --> ls-icon
   ls-document-options --> ls-icon
+  ls-document-options --> ls-tooltip
   ls-document-options --> ls-toggle
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
