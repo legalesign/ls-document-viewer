@@ -54,6 +54,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@floating-ui/dom": "^1.7.4",
     "@jest/transform": "^30.0.5",
     "axios": "^1.12.2",
     "clsx": "^2.1.1",

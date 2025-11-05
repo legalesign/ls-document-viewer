@@ -498,6 +498,13 @@ export namespace Components {
          */
         "validation": number;
     }
+    interface LsTooltip {
+        /**
+          * @default 'top'
+         */
+        "placement": 'top' | 'bottom' | 'left' | 'right';
+        "reference": HTMLElement;
+    }
     interface LsValidationTag {
         /**
           * @default false
@@ -1143,6 +1150,12 @@ declare global {
         prototype: HTMLLsToolboxFieldElement;
         new (): HTMLLsToolboxFieldElement;
     };
+    interface HTMLLsTooltipElement extends Components.LsTooltip, HTMLStencilElement {
+    }
+    var HTMLLsTooltipElement: {
+        prototype: HTMLLsTooltipElement;
+        new (): HTMLLsTooltipElement;
+    };
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
     }
     var HTMLLsValidationTagElement: {
@@ -1195,6 +1208,7 @@ declare global {
         "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
+        "ls-tooltip": HTMLLsTooltipElement;
         "ls-validation-tag": HTMLLsValidationTagElement;
     }
 }
@@ -1705,6 +1719,13 @@ declare namespace LocalJSX {
          */
         "validation"?: number;
     }
+    interface LsTooltip {
+        /**
+          * @default 'top'
+         */
+        "placement"?: 'top' | 'bottom' | 'left' | 'right';
+        "reference"?: HTMLElement;
+    }
     interface LsValidationTag {
         /**
           * @default false
@@ -1765,6 +1786,7 @@ declare namespace LocalJSX {
         "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
+        "ls-tooltip": LsTooltip;
         "ls-validation-tag": LsValidationTag;
     }
 }
@@ -1822,6 +1844,7 @@ declare module "@stencil/core" {
             "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
+            "ls-tooltip": LocalJSX.LsTooltip & JSXBase.HTMLAttributes<HTMLLsTooltipElement>;
             "ls-validation-tag": LocalJSX.LsValidationTag & JSXBase.HTMLAttributes<HTMLLsValidationTagElement>;
         }
     }
