@@ -57,6 +57,8 @@ export class LsDocumentOptions {
     }, delay);
   }
 
+  @State() editNameBtn: HTMLElement;
+
   render() {
     function formatDate(isoString) {
       const date = new Date(isoString);
@@ -85,7 +87,17 @@ export class LsDocumentOptions {
                 this.editTitle = !this.editTitle;
               }}
             >
-              <ls-icon name={this.editTitle ? 'check' : 'pencil-alt'} size="18" />
+              <ls-icon
+                name={this.editTitle ? 'check' : 'pencil-alt'}
+                size="18"
+                id="edit-name-btn"
+                ref={el => {
+                  if (el && el !== this.editNameBtn) {
+                    this.editNameBtn = el;
+                  }
+                }}
+              />
+              <ls-tooltip referenceElement={this.editNameBtn}>{this.editTitle ? 'Save' : 'Edit Name'}</ls-tooltip>
             </div>
             {this.editTitle ? (
               <input

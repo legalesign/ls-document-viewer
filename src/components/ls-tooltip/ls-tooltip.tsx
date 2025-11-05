@@ -1,54 +1,85 @@
-import { Component, Element, Prop, State, h } from '@stencil/core';
-import { computePosition, offset, flip, shift, autoUpdate } from '@floating-ui/dom';
+import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
+import { Component, Element, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-tooltip',
   styleUrl: 'ls-tooltip.css',
-  shadow: false,
+  shadow: true,
 })
 export class LsTooltip {
   @Element() el: HTMLElement;
-  @Prop() reference: HTMLElement; // Direct reference to the element
+  @Prop() referenceElement: HTMLElement;
   @Prop() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
-  @State() visible = false;
 
   private tooltipEl: HTMLElement;
-  private cleanup: () => void;
+  private tooltipLocked = false;
 
   componentDidLoad() {
-    const reference = this.reference;
     this.tooltipEl = this.el.shadowRoot.querySelector('.tooltip');
+    const arrowElement = this.el.shadowRoot.querySelector('#arrow'); // use shadowRoot for internal elements
 
-    if (reference && this.tooltipEl) {
-      this.cleanup = autoUpdate(reference, this.tooltipEl, () => {
-        computePosition(reference, this.tooltipEl, {
-          placement: this.placement,
-          middleware: [offset(8), flip(), shift()],
-        }).then(({ x, y }) => {
-          Object.assign(this.tooltipEl.style, {
-            left: `${x}px`,
-            top: `${y}px`,
-          });
+    if (!this.tooltipEl || !this.referenceElement) return;
+
+    const update = () => {
+      computePosition(this.referenceElement, this.tooltipEl, {
+        placement: this.placement,
+        middleware: [offset(6), flip(), shift({ padding: 5 }), arrow({ element: arrowElement })],
+      }).then(({ x, y, placement, middlewareData }) => {
+        Object.assign(this.tooltipEl.style, {
+          left: `${x}px`,
+          top: `${y}px`,
+        });
+
+        const { x: arrowX, y: arrowY } = middlewareData.arrow || {};
+        const staticSide = {
+          top: 'bottom',
+          right: 'left',
+          bottom: 'top',
+          left: 'right',
+        }[placement.split('-')[0]];
+
+        Object.assign((arrowElement as HTMLElement).style, {
+          left: arrowX != null ? `${arrowX}px` : '',
+          top: arrowY != null ? `${arrowY}px` : '',
+          right: '',
+          bottom: '',
+          [staticSide]: '-4px',
         });
       });
+    };
 
-      reference.addEventListener('mouseenter', () => {
-        this.visible = true;
-      });
-      reference.addEventListener('mouseleave', () => {
-        this.visible = false;
-      });
-    }
-  }
+    const showTooltip = () => {
+      if (this.tooltipLocked) return;
+      this.tooltipEl.style.display = 'block';
+      update();
+    };
 
-  disconnectedCallback() {
-    this.cleanup?.();
+    const hideTooltip = () => {
+      if (this.tooltipLocked) return;
+      this.tooltipEl.style.display = 'none';
+    };
+
+    [
+      ['mouseenter', showTooltip],
+      ['mouseleave', hideTooltip],
+      ['focus', showTooltip],
+      ['blur', hideTooltip],
+    ].forEach(([event, listener]) => {
+      this.referenceElement.addEventListener(event as string, listener as EventListener);
+    });
+    this.referenceElement.addEventListener('click', () => {
+      hideTooltip();
+      this.tooltipLocked = true;
+      setTimeout(() => {
+        this.tooltipLocked = false;
+      }, 500);
+    });
   }
 
   render() {
-    console.log('rendering tooltip', this.visible);
     return (
-      <div class="tooltip" style={{ display: this.visible ? 'block' : 'none' }}>
+      <div class="tooltip" role="tooltip">
+        <div id="arrow"></div>
         <slot />
       </div>
     );
