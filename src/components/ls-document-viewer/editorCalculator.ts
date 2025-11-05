@@ -17,6 +17,9 @@ export const findIn = (fields: NodeListOf<HTMLLsEditorFieldElement>, selector: H
 
 // Used to append new fields (dropped or loaded from template data)
 export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
+   const fields = this._template.elementConnection.templateElements;
+  this._template = {...this._template, elementConnection: { ...this._template.elementConnection, templateElements: [...fields, data]} };
+
   const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);

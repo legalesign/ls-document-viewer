@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, Watch, h } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { ValidationError } from '../../types/ValidationError';
 
@@ -11,6 +11,11 @@ export class LsValidationTag {
   @Prop({ mutable: true }) status: string = 'Invalid';
   @Prop({ mutable: true }) validationErrors: ValidationError[] = [];
   @Prop({ mutable: true }) isExpanded: boolean = false;
+
+    @Watch('validationErrors')
+  validateChange(newValue: ValidationError[]) {
+    console.log(newValue);  
+  }
 
   render() {
     return (
@@ -69,7 +74,6 @@ export class LsValidationTag {
                       </>
                     )}
                   </div>
-                  <ls-icon name="chevron-right" />
                 </div>
               );
             })}

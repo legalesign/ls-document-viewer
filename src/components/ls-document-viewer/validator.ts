@@ -9,7 +9,6 @@ import { ValidationError } from "../../types/ValidationError";
 
 export function validate(t: LSApiTemplate): ValidationError[] {
   var errors = []
-  
   // Check for missing signatures
   t.roles.forEach(tr => {
     if(t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer===tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
@@ -33,5 +32,8 @@ t.elementConnection.templateElements.forEach(element => {
     })
   }
 })
+
+  console.log('Validating...', errors);
+
   return errors;
 }
