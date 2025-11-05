@@ -33,7 +33,11 @@ export class LsFieldPropertiesAdvanced {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
 
-  alter(diff: object) {
+  // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  // NOTE this alter is debounced to account for typing
+  alter(diff: object, bounceDelay: number = 0) {
+    console.log('Altering advanced props:', diff);
     let diffs = [];
     if (this.isMultiple(this.dataItem)) {
       this.dataItem = this.dataItem.map(di => {
@@ -43,13 +47,30 @@ export class LsFieldPropertiesAdvanced {
       diffs = this.dataItem.map(di => {
         return { action: 'update', data: { ...di, ...diff } as LSApiElement } as LSMutateEvent;
       });
-    } else if (this.isMultiple(this.dataItem)) {
+    } else if (this.isSingle(this.dataItem)) {
       this.dataItem = { ...this.dataItem, ...diff };
 
       diffs = [{ action: 'update', data: { ...this.dataItem, ...diff } }];
     }
-    this.mutate.emit(diffs);
-    this.update.emit(diffs);
+
+    if (bounceDelay === 0) {
+      this.update.emit(diffs);
+      this.mutate.emit(diffs);
+    }
+    else {
+      this.debounce(diffs, bounceDelay);
+    }
+  }
+
+  private titletimer;
+
+  debounce(diffs, delay) {
+    if (this.titletimer) clearTimeout(this.titletimer);
+
+    this.titletimer = setTimeout(() => {
+      this.update.emit(diffs);
+      this.mutate.emit(diffs);
+    }, delay);
   }
 
   getValue(key) {
@@ -71,11 +92,16 @@ export class LsFieldPropertiesAdvanced {
         {this.expanded && (
           <div class={'field-set'}>
             <ls-props-section sectionTitle="Field Order" sectionDescription="Determines what order fields will be filled in by the user">
-              <input value={this.getValue('fieldOrder')} type="text" placeholder="eg. 1" onChange={e => this.alter({ fieldOrder: (e.target as HTMLInputElement).value })} />
+              <input value={this.getValue('fieldOrder')} type="number" placeholder="eg. 1" onInput={e => {
+                console.log(e);
+                this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
+              }} 
+              onChange={() => { console.log('onchange')}}
+              />
             </ls-props-section>
 
             <ls-props-section sectionTitle="Ref. Name">
-              <input value={this.getValue('link')} placeholder="eg. checkbox group" onChange={e => this.alter({ link: (e.target as HTMLInputElement).value })} />
+              <input value={this.getValue('link')} placeholder="eg. checkbox group" onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} />
             </ls-props-section>
 
             <ls-props-section sectionTitle="Link Type" sectionDescription="Determines  in what way this field is linked to other fields">

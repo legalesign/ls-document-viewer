@@ -220,6 +220,8 @@ export class LsDocumentViewer {
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+
+    this.validationErrors = validate.bind(this)(this._template);
   }
 
   // Updates are internal event between LS controls not to be confused with mutate

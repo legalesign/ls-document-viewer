@@ -41,9 +41,17 @@ export class LsFieldProperties {
 
   }
 
+  private handleKeyDown = (event: KeyboardEvent) => {
+    event.stopPropagation();
+  }
+
+  private handleKeyUp = (event: KeyboardEvent) => {
+    event.stopPropagation();
+  }
+
   render() {
     return (
-      <Host>
+      <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
         {this.dataItem && this.renderFields()}
         <slot></slot>
       </Host>
