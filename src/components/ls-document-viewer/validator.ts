@@ -4,36 +4,34 @@
  *
  */
 
-import { LSApiTemplate } from "../../types/LSApiTemplate";
-import { ValidationError } from "../../types/ValidationError";
+import { LSApiTemplate } from '../../types/LSApiTemplate';
+import { ValidationError } from '../../types/ValidationError';
 
 export function validate(t: LSApiTemplate): ValidationError[] {
-  var errors = []
+  var errors = [];
   // Check for missing signatures
   t.roles.forEach(tr => {
-    if(t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer===tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
-      errors.push({ 
-        id: tr.id, 
-        title: 'Missing signature.', 
+    if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
+      errors.push({
+        id: tr.id,
+        title: 'Missing signature.',
         description: `{tr.name} is missing a signature.`,
-        role: tr
-      })
+        role: tr,
+      });
     }
-  })
+  });
 
   // Check for missing multi-select options
-t.elementConnection.templateElements.forEach(element => {
-  if (element.validation === 20 && (!element.options || element.options.length === 0)) {
-    errors.push({
-      id: element.id,
-      title: 'Missing options',
-      description: `Drop down field "${element.label}" is missing options.`,
-      element: element
-    })
-  }
-})
-
-  console.log('Validating...', errors);
+  t.elementConnection.templateElements.forEach(element => {
+    if (element.validation === 20 && (!element.options || element.options.length === 0)) {
+      errors.push({
+        id: element.id,
+        title: 'Missing options',
+        description: `Drop down field "${element.label}" is missing options.`,
+        element: element,
+      });
+    }
+  });
 
   return errors;
 }

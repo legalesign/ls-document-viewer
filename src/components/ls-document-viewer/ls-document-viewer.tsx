@@ -499,7 +499,6 @@ export class LsDocumentViewer {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         this.selected = Array.from(fields).filter(fx => fx.selected);
       } else if (update.action === 'delete') {
-        console.log('Deleting field', update.data.id);
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         const fields = this._template.elementConnection.templateElements;
         this._template = {...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
