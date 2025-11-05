@@ -64,6 +64,10 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
     syncRoles.bind(this)();
   }
 
+  if (prefix === 'tpl') {
+    this._template = { ...this._template, ...data.obj };
+  }
+
 }
 
 export async function syncRoles() {

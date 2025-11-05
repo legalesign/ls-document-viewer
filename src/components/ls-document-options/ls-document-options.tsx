@@ -13,7 +13,7 @@ export class LsDocumentOptions {
    * The base template information (as JSON).
    * {LSApiTemplate}
    */
-  @Prop() template: LSApiTemplate;
+  @Prop({ mutable: true, reflect: true}) template: LSApiTemplate;
 
   @State() editTitle: boolean = false;
 
@@ -36,9 +36,25 @@ export class LsDocumentOptions {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
-  alter(changedDetails: object) {
-    this.update.emit([{ action: 'update', data: { ...this.template, ...changedDetails } }]);
-    this.mutate.emit([{ action: 'update', data: { ...this.template, ...changedDetails } }]);
+
+  // Send one or more mutations up the chain
+  // The source of the chain fires the mutation
+  // NOTE this alter is debounced to account for typing
+  alter(diff: object) {
+    this.debounce(diff, 500);
+  }
+
+  private titletimer;
+
+  debounce(diff, delay) {
+    if (this.titletimer) clearTimeout(this.titletimer);
+
+    this.titletimer = setTimeout(() => {
+      this.template = { ...this.template, ...diff }
+      const diffs: LSMutateEvent[] = [{ action: 'update', data: this.template }];
+      this.update.emit(diffs);
+      this.mutate.emit(diffs);      
+    }, delay);
   }
 
   render() {
@@ -75,7 +91,10 @@ export class LsDocumentOptions {
               <input
                 value={this.template?.title}
                 style={{ width: '100%' }}
-                onInput={e => this.alter({ title: e.detail})}
+                onInput={e => {
+                  e.preventDefault();
+                  this.alter({ title: (e.target as HTMLInputElement).value })
+                }}
                 onKeyUp={e => {
                   if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
                 }}
