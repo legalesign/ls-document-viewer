@@ -599,7 +599,7 @@ export class LsDocumentViewer {
           </div>
           <form id="ls-editor-form">
             {this.showtoolbox === true ? (
-              <div class="leftBox">
+              <div id="ls-left-box" class="leftBox">
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
                   <ls-feature-column
                     onManage={manager => {
