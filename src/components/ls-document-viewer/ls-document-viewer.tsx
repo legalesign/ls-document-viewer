@@ -43,6 +43,8 @@ export class LsDocumentViewer {
   // @ts-ignore
   private isMoving: boolean = false;
   // @ts-ignore
+  private isBoxing: boolean = false;
+  // @ts-ignore
   private selectionBox: { x: number; y: number } = null;
   // @ts-ignore
   private hitField: HTMLElement;

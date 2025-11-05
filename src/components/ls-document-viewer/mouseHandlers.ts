@@ -98,11 +98,13 @@ export function mouseDown(e) {
     });
     this.selectionBox = null;
   } else {
-    // move down on empty space, start a selection box
+      // move down on empty space, start a selection box
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
     // console.log('empty space reset selected', this.selectionBox);
+    this.unselect();
+
     this.selectFields.emit([]);
     this.selected = [];
     this.component.style.cursor = 'crosshair';
@@ -145,7 +147,7 @@ export function mouseMove(event) {
 
   
   } else if (this.selectionBox && event.buttons === 1) {
-    console.log('drawing box');
+    this.isBoxing = true;
     // draw the multiple selection box
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
@@ -187,7 +189,8 @@ export function mouseUp(event) {
 
   // console.log('mouse up');
   // find what was inside the selection box emit the select event and change their style
-  if (this.selectionBox) {
+  if (this.selectionBox && this.isBoxing) {
+    this.isBoxing = false;
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     box.style.visibility = 'hidden';
