@@ -93,6 +93,12 @@ export class LsDocumentViewer {
    */
   @Prop() templateid: string;
 
+    /**
+   * A JSON string containing the signer details. Only used in COMPOSE mode.
+   * {string}
+   */
+  @Prop() signers: string;
+
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
@@ -220,16 +226,12 @@ export class LsDocumentViewer {
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
-
-    this.validationErrors = validate.bind(this)(this._template);
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (event.detail) event.detail.forEach(fx => this.syncChange(fx));
-
-    this.validationErrors = validate.bind(this)(this._template);
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -333,9 +335,7 @@ export class LsDocumentViewer {
   @Method()
   async unselect() {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-    fields.forEach(fu => {
-      fu.selected = false;
-    });
+    fields.forEach(fu => { fu.selected = false; });
     this.selected = [];
   }
 
@@ -410,7 +410,6 @@ export class LsDocumentViewer {
       roles: preparedRoles,
     };
 
-    console.log(this._template);
   }
 
   /**
@@ -477,9 +476,8 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    if (update?.select === 'clear') {
-      this.unselect();
-    }
+
+    if (update?.select === 'clear') { this.unselect(); }
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
@@ -506,12 +504,17 @@ export class LsDocumentViewer {
         this.selected = Array.from(fields).filter(fx => fx.selected);
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        const fields = this._template.elementConnection.templateElements;
+        this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
         this.selected = [];
       } else {
         console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.');
       }
     }
+
+    this.validationErrors = validate.bind(this)(this._template);
+
   }
 
   initViewer() {
@@ -538,7 +541,17 @@ export class LsDocumentViewer {
     });
     dropTarget.addEventListener('drop', mouseDrop.bind(this));
 
-    // Generate all the field HTML elements that are required (for every page)
+    this.generateFields();
+  }
+
+  // Generate all the field HTML elements that are required (for every page)
+  generateFields(clearExisting: boolean = true) {
+
+    if (clearExisting) {
+      const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+      fields.forEach(fi => this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi));
+    }
+
     this._template.elementConnection.templateElements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });
@@ -651,16 +664,27 @@ export class LsDocumentViewer {
                           }}
                         />
                       )}
-
                       <ls-toolbox-field
-                        elementType="initials"
-                        formElementType="initials"
-                        label="Initials"
+                        elementType="text"
+                        formElementType="text"
+                        label="Text"
+                        defaultHeight={27}
+                        defaultWidth={100}
+                        validation={0}
+                        icon="text"
+                        signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
+                      />
+                      <ls-toolbox-field
+                        elementType="signing date"
+                        formElementType="signing date"
+                        label="Signing Date"
                         defaultHeight={27}
                         defaultWidth={120}
-                        validation={2000}
-                        icon="initials"
-                        tooltip="Use this field anywhere Participants are required to Initial your document"
+                        validation={30}
+                        icon="auto-date"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -682,20 +706,6 @@ export class LsDocumentViewer {
                       />
 
                       <ls-toolbox-field
-                        elementType="signing date"
-                        formElementType="signing date"
-                        label="Signing Date"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={30}
-                        icon="auto-date"
-                        tooltip="Automatically inserts the date upon completion by the assigned Participant"
-                        signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
-                      />
-                      <ls-toolbox-field
                         elementType="email"
                         formElementType="email"
                         label="Email"
@@ -710,115 +720,120 @@ export class LsDocumentViewer {
                         }}
                       />
                       <ls-toolbox-field
-                        elementType="text"
-                        formElementType="text"
-                        label="Text"
+                        elementType="initials"
+                        formElementType="initials"
+                        label="Initials"
                         defaultHeight={27}
-                        defaultWidth={100}
-                        validation={0}
-                        icon="text"
-                        tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
+                        defaultWidth={120}
+                        validation={2000}
+                        icon="initials"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
                         }}
                       />
-                      <div class={'expand-fields-row'} onClick={() => (this.expandfields = !this.expandfields)}>
-                        <ls-icon name={this.expandfields ? 'expand' : 'collapse'} size="20" solid />
-                        <p>More Field Types</p>
+
+
+                      <div class="fields-box">
+                        <ls-toolbox-field
+                          elementType="number"
+                          formElementType="number"
+                          label="Number"
+                          defaultHeight={27}
+                          defaultWidth={80}
+                          validation={50}
+                          icon="hashtag"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+
+                        <ls-toolbox-field
+                          elementType="dropdown"
+                          formElementType="dropdown"
+                          label="Dropdown"
+                          defaultHeight={27}
+                          defaultWidth={80}
+                          validation={20}
+                          icon="hashtag"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+
+                        <ls-toolbox-field
+                          elementType="checkbox"
+                          formElementType="checkbox"
+                          label="Checkbox"
+                          defaultHeight={27}
+                          defaultWidth={27}
+                          validation={25}
+                          icon="check"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+
+                        <ls-toolbox-field
+                          elementType="regex"
+                          formElementType="regex"
+                          label="Regex"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={93}
+                          icon="code"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+                        <ls-toolbox-field
+                          elementType="image"
+                          formElementType="image"
+                          label="Image"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={90}
+                          icon="photograph"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+
+                        <ls-toolbox-field
+                          elementType="file"
+                          formElementType="file"
+                          label="File"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={74}
+                          icon="upload"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />
+                        
+                        {this.signer > 0 ? (
+                          <ls-toolbox-field
+                          elementType="drawn"
+                          formElementType="drawn"
+                          label="Drawn"
+                          defaultHeight={120}
+                          defaultWidth={120}
+                          validation={90}
+                          icon="upload"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />)
+                        : (<></>)}
                       </div>
-                      {this.expandfields && (
-                        <div class="fields-box">
-                          <ls-toolbox-field
-                            elementType="number"
-                            formElementType="number"
-                            label="Number"
-                            defaultHeight={27}
-                            defaultWidth={80}
-                            validation={50}
-                            icon="hashtag"
-                            tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="dropdown"
-                            formElementType="dropdown"
-                            label="Dropdown"
-                            defaultHeight={27}
-                            defaultWidth={80}
-                            validation={20}
-                            icon="hashtag"
-                            tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="checkbox"
-                            formElementType="checkbox"
-                            label="Checkbox"
-                            defaultHeight={27}
-                            defaultWidth={27}
-                            validation={25}
-                            icon="check"
-                            tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="regex"
-                            formElementType="regex"
-                            label="Regex"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={93}
-                            icon="code"
-                            tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-                          <ls-toolbox-field
-                            elementType="image"
-                            formElementType="image"
-                            label="Image"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={90}
-                            icon="photograph"
-                            tooltip="Use when you need Participants to upload their own images during the signing process"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="file"
-                            formElementType="file"
-                            label="File"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={74}
-                            icon="upload"
-                            tooltip="Use when you need Participants to upload their own documents during the signing process"
-                            signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
-                          />
-                        </div>
-                      )}
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />

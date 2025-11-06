@@ -110,6 +110,10 @@ export namespace Components {
          */
         "signer": number;
         /**
+          * A JSON string containing the signer details. Only used in COMPOSE mode. {string}
+         */
+        "signers": string;
+        /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "template": string;
@@ -1299,6 +1303,10 @@ declare namespace LocalJSX {
           * @default 0
          */
         "signer"?: number;
+        /**
+          * A JSON string containing the signer details. Only used in COMPOSE mode. {string}
+         */
+        "signers"?: string;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */

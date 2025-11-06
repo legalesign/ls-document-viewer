@@ -108,9 +108,9 @@ Type: `Promise<void>`
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
-- [ls-icon](../ls-icon)
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
+- [ls-icon](../ls-icon)
 - [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
@@ -124,9 +124,9 @@ graph TD;
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
-  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
+  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
@@ -141,6 +141,7 @@ graph TD;
   ls-participant-card --> ls-input-wrapper
   ls-input-wrapper --> ls-icon
   ls-document-options --> ls-icon
+  ls-document-options --> ls-tooltip
   ls-document-options --> ls-toggle
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
