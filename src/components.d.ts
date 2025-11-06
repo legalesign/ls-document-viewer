@@ -494,6 +494,10 @@ export namespace Components {
          */
         "signer": number;
         /**
+          * The tooltip hint to describe to the field type
+         */
+        "tooltip": string;
+        /**
           * @default 0
          */
         "validation": number;
@@ -1714,6 +1718,10 @@ declare namespace LocalJSX {
           * @default 0
          */
         "signer"?: number;
+        /**
+          * The tooltip hint to describe to the field type
+         */
+        "tooltip"?: string;
         /**
           * @default 0
          */

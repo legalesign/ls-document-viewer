@@ -259,7 +259,7 @@ export class LsDocumentViewer {
 
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
-  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {    
+  selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
     const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field'));
     // update the template with all the latest values in the
     this._template = {
@@ -327,14 +327,15 @@ export class LsDocumentViewer {
     this.showPageFields(this.pageNum);
   }
 
-
   /**
    * Unselect all fields
    */
   @Method()
   async unselect() {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-    fields.forEach(fu => {fu.selected = false;});
+    fields.forEach(fu => {
+      fu.selected = false;
+    });
     this.selected = [];
   }
 
@@ -363,7 +364,6 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
   }
-  
 
   /**
    * Ensure broken or misplaced fields are put onto the page.
@@ -477,14 +477,15 @@ export class LsDocumentViewer {
 
   // internal forced change
   syncChange(update: LSMutateEvent) {
-    
-    if(update?.select === 'clear') {this.unselect();}
+    if (update?.select === 'clear') {
+      this.unselect();
+    }
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
         const newData = { ...update.data, page: this.pageNum };
         addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
-        
+
         //const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
         //this.selected = [newField];
@@ -628,6 +629,7 @@ export class LsDocumentViewer {
                           defaultWidth={120}
                           validation={0}
                           icon="signature"
+                          tooltip="Use this field to collect Signatures from Participants"
                           signer={this.signer}
                           onSelected={event => {
                             this.handleSelectedField.bind(this)(event);
@@ -642,6 +644,7 @@ export class LsDocumentViewer {
                           defaultWidth={120}
                           validation={3000}
                           icon="auto-sign"
+                          tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
                           signer={this.signer}
                           onSelected={event => {
                             this.handleSelectedField.bind(this)(event);
@@ -657,6 +660,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={2000}
                         icon="initials"
+                        tooltip="Use this field anywhere Participants are required to Initial your document"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -670,6 +674,7 @@ export class LsDocumentViewer {
                         defaultWidth={80}
                         validation={2}
                         icon="calender"
+                        tooltip="A field for collecting dates with built-in date formatting options"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -684,6 +689,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={30}
                         icon="auto-date"
+                        tooltip="Automatically inserts the date upon completion by the assigned Participant"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -697,6 +703,7 @@ export class LsDocumentViewer {
                         defaultWidth={120}
                         validation={1}
                         icon="at-symbol"
+                        tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -710,6 +717,7 @@ export class LsDocumentViewer {
                         defaultWidth={100}
                         validation={0}
                         icon="text"
+                        tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
                         signer={this.signer}
                         onSelected={event => {
                           this.handleSelectedField.bind(this)(event);
@@ -729,6 +737,7 @@ export class LsDocumentViewer {
                             defaultWidth={80}
                             validation={50}
                             icon="hashtag"
+                            tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);
@@ -743,6 +752,7 @@ export class LsDocumentViewer {
                             defaultWidth={80}
                             validation={20}
                             icon="hashtag"
+                            tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);
@@ -757,6 +767,7 @@ export class LsDocumentViewer {
                             defaultWidth={27}
                             validation={25}
                             icon="check"
+                            tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);
@@ -771,6 +782,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={93}
                             icon="code"
+                            tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);
@@ -784,6 +796,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={90}
                             icon="photograph"
+                            tooltip="Use when you need Participants to upload their own images during the signing process"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);
@@ -798,6 +811,7 @@ export class LsDocumentViewer {
                             defaultWidth={120}
                             validation={74}
                             icon="upload"
+                            tooltip="Use when you need Participants to upload their own documents during the signing process"
                             signer={this.signer}
                             onSelected={event => {
                               this.handleSelectedField.bind(this)(event);

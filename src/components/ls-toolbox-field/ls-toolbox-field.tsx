@@ -1,4 +1,4 @@
-import { Component, Event, Host, Listen, Prop, Watch, h } from '@stencil/core';
+import { Component, Event, Host, Listen, Prop, State, Watch, h } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { EventEmitter } from 'stream';
@@ -25,6 +25,10 @@ export class LsToolboxField {
    * The icon to display for this field type.
    */
   @Prop() icon: Icon;
+  /**
+   * The tooltip hint to describe to the field type
+   */
+  @Prop() tooltip: string;
 
   /**
    * The starting height of this control type in pixels.
@@ -80,6 +84,8 @@ export class LsToolboxField {
     }
   }
 
+  @State() fieldIcon: HTMLElement;
+
   render() {
     return (
       <Host draggable="true">
@@ -98,7 +104,17 @@ export class LsToolboxField {
           <div
             class="toolbox-field-icon"
             style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}
+            ref={el => {
+              if (el && el !== this.fieldIcon) {
+                this.fieldIcon = el;
+              }
+            }}
           >
+            {this.tooltip && (
+              <ls-tooltip referenceElement={this.fieldIcon} placement="left">
+                {this.tooltip}
+              </ls-tooltip>
+            )}
             <ls-icon name={this.icon} size="20" />
           </div>
           <p

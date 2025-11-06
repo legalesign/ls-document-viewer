@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Watch, Element, State } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
@@ -81,6 +81,11 @@ export class LsParticipantCard {
   })
   addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
 
+  @State() swapUpBtn: HTMLElement;
+  @State() swapDownBtn: HTMLElement;
+  @State() editBtn: HTMLElement;
+  @State() deleteParticipantBtn: HTMLElement;
+
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
@@ -123,7 +128,13 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
+                    ref={el => {
+                      if (el && el !== this.swapUpBtn) {
+                        this.swapUpBtn = el;
+                      }
+                    }}
                   >
+                    <ls-tooltip referenceElement={this.swapUpBtn}>Move Up</ls-tooltip>
                     <ls-icon name="arrow-up" size="18" />
                   </div>
                 )}
@@ -137,7 +148,13 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
+                    ref={el => {
+                      if (el && el !== this.swapDownBtn) {
+                        this.swapDownBtn = el;
+                      }
+                    }}
                   >
+                    <ls-tooltip referenceElement={this.swapDownBtn}>Move Down</ls-tooltip>
                     <ls-icon name="arrow-down" size="18" />
                   </div>
                 )}
@@ -150,7 +167,13 @@ export class LsParticipantCard {
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
+                  ref={el => {
+                    if (el && el !== this.editBtn) {
+                      this.editBtn = el;
+                    }
+                  }}
                 >
+                  <ls-tooltip referenceElement={this.editBtn}>Edit Participant</ls-tooltip>
                   <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="18" />
                 </div>
                 <div
@@ -162,7 +185,13 @@ export class LsParticipantCard {
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
+                  ref={el => {
+                    if (el && el !== this.deleteParticipantBtn) {
+                      this.deleteParticipantBtn = el;
+                    }
+                  }}
                 >
+                  <ls-tooltip referenceElement={this.deleteParticipantBtn}>Delete Participant</ls-tooltip>
                   <ls-icon name="trash" size="18" />
                 </div>
               </div>
