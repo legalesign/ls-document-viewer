@@ -93,6 +93,12 @@ export class LsDocumentViewer {
    */
   @Prop() templateid: string;
 
+    /**
+   * A JSON string containing the signer details. Only used in COMPOSE mode.
+   * {string}
+   */
+  @Prop() signers: string;
+
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1; // hardcoded to start at the page 1
   @Prop({ mutable: true }) signer: number = 0; // hardcoded to start at the page 1
@@ -810,6 +816,22 @@ export class LsDocumentViewer {
                             this.handleSelectedField.bind(this)(event);
                           }}
                         />
+                        
+                        {this.signer > 0 ? (
+                          <ls-toolbox-field
+                          elementType="drawn"
+                          formElementType="drawn"
+                          label="Drawn"
+                          defaultHeight={120}
+                          defaultWidth={120}
+                          validation={90}
+                          icon="upload"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />)
+                        : (<></>)}
                       </div>
 
                     </div>
