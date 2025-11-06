@@ -13,7 +13,7 @@ export class LsDocumentOptions {
    * The base template information (as JSON).
    * {LSApiTemplate}
    */
-  @Prop({ mutable: true, reflect: true}) template: LSApiTemplate;
+  @Prop({ mutable: true, reflect: true }) template: LSApiTemplate;
 
   @State() editTitle: boolean = false;
 
@@ -36,7 +36,6 @@ export class LsDocumentOptions {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
-
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   // NOTE this alter is debounced to account for typing
@@ -50,10 +49,10 @@ export class LsDocumentOptions {
     if (this.titletimer) clearTimeout(this.titletimer);
 
     this.titletimer = setTimeout(() => {
-      this.template = { ...this.template, ...diff }
+      this.template = { ...this.template, ...diff };
       const diffs: LSMutateEvent[] = [{ action: 'update', data: this.template }];
       this.update.emit(diffs);
-      this.mutate.emit(diffs);      
+      this.mutate.emit(diffs);
     }, delay);
   }
 
@@ -105,14 +104,21 @@ export class LsDocumentOptions {
                 style={{ width: '100%' }}
                 onInput={e => {
                   e.preventDefault();
-                  this.alter({ title: (e.target as HTMLInputElement).value })
+                  this.alter({ title: (e.target as HTMLInputElement).value });
                 }}
                 onKeyUp={e => {
                   if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
                 }}
               />
             ) : (
-              <p>{this.template?.title}</p>
+              <div
+                class="template-title"
+                onClick={() => {
+                  this.editTitle = !this.editTitle;
+                }}
+              >
+                <p>{this.template?.title}</p>
+              </div>
             )}
           </div>
           <div class={'template-detail-section'}>

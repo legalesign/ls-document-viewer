@@ -63,6 +63,24 @@
   width: 100%;
 }
 
+.template-title {
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  color: var(--gray-100, #45484d);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem; /* 150% */
+  cursor: pointer;
+  width: 100%;
+  margin-top: -0.125rem;
+
+}
+
+.template-title:hover {
+  background: var(--gray-10, #f7f8fa);
+}
+
 .column {
   display: flex;
   flex-direction: column;
