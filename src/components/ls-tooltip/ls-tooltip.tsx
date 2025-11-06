@@ -50,13 +50,15 @@ export class LsTooltip {
 
     const showTooltip = () => {
       if (this.tooltipLocked) return;
-      this.tooltipEl.style.display = 'block';
+      this.tooltipEl.classList.remove('hidden');
+      this.tooltipEl.classList.add('visible');
       update();
     };
 
     const hideTooltip = () => {
       if (this.tooltipLocked) return;
-      this.tooltipEl.style.display = 'none';
+      this.tooltipEl.classList.remove('visible');
+      this.tooltipEl.classList.add('hidden');
     };
 
     [
@@ -78,7 +80,7 @@ export class LsTooltip {
 
   render() {
     return (
-      <div class="tooltip" role="tooltip">
+      <div class="tooltip hidden" role="tooltip">
         <div id="arrow"></div>
         <slot />
       </div>
