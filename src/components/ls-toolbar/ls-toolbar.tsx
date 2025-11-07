@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-toolbar',
@@ -53,6 +54,10 @@ export class LsToolbar {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   // @Element() component: HTMLElement;
 
   // Send one or more mutations up the chain
@@ -77,10 +82,11 @@ export class LsToolbar {
           </div>
         ) : (
           <div class={'rowbox'}>
-              <ls-field-format dataItem={this?.dataItem} style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'visible': 'hidden'}}/>
-              <ls-participant-select id="ls-participant-select" roles={this.template?.roles} style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none': 'block'}}/>
+            <ls-field-format dataItem={this?.dataItem} style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'visible' : 'hidden' }} />
+            <ls-participant-select id="ls-participant-select" roles={this.template?.roles} style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }} />
           </div>
         )}
+        <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>
     );

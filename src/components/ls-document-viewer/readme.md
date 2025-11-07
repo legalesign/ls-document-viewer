@@ -22,6 +22,7 @@ Alex Weinle
 | `groupInfo`       | `group-info`      |                                                                                                                                                                       | `any`                                      | `undefined` |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                             | `"document" \| "participant" \| "toolbox"` | `'toolbox'` |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                          | `"compose" \| "editor" \| "preview"`       | `'editor'`  |
+| `pageCount`       | `page-count`      |                                                                                                                                                                       | `number`                                   | `1`         |
 | `pageNum`         | `page-num`        |                                                                                                                                                                       | `number`                                   | `1`         |
 | `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                               | `boolean`                                  | `false`     |
 | `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                                       | `boolean`                                  | `false`     |
@@ -30,6 +31,7 @@ Alex Weinle
 | `showtoolbar`     | `showtoolbar`     | Whether the top toolbar is displayed. {boolean}                                                                                                                       | `boolean`                                  | `false`     |
 | `showtoolbox`     | `showtoolbox`     | Whether the left hand toolbox is displayed. {boolean}                                                                                                                 | `boolean`                                  | `false`     |
 | `signer`          | `signer`          |                                                                                                                                                                       | `number`                                   | `0`         |
+| `signers`         | `signers`         | A JSON string containing the signer details. Only used in COMPOSE mode. {string}                                                                                      | `string`                                   | `undefined` |
 | `template`        | `template`        | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}                | `string`                                   | `undefined` |
 | `templateid`      | `templateid`      | The id of the template you want to load (if using the internal data adapter). {string}                                                                                | `string`                                   | `undefined` |
 | `token`           | `token`           | The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                   | `undefined` |
@@ -115,6 +117,7 @@ Type: `Promise<void>`
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
+- [ls-tooltip](../ls-tooltip)
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
@@ -131,6 +134,7 @@ graph TD;
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
+  ls-document-viewer --> ls-tooltip
   ls-document-viewer --> ls-editor-field
   ls-validation-tag --> ls-icon
   ls-feature-column --> ls-icon
@@ -141,7 +145,6 @@ graph TD;
   ls-participant-card --> ls-input-wrapper
   ls-input-wrapper --> ls-icon
   ls-document-options --> ls-icon
-  ls-document-options --> ls-tooltip
   ls-document-options --> ls-toggle
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
@@ -228,9 +231,12 @@ graph TD;
   ls-field-distribute --> ls-icon
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
+  ls-toolbar --> ls-tooltip
   ls-field-format --> ls-icon
+  ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
   ls-statusbar --> ls-icon
+  ls-statusbar --> ls-tooltip
   ls-editor-field --> ls-icon
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```

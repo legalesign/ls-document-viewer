@@ -11,18 +11,26 @@
 | ------------------ | ------------------- | ----------- | ---------------------------------------- | ----------- |
 | `placement`        | `placement`         |             | `"bottom" \| "left" \| "right" \| "top"` | `'top'`     |
 | `referenceElement` | `reference-element` |             | `HTMLElement`                            | `undefined` |
+| `tooltipLocked`    | `tooltip-locked`    |             | `boolean`                                | `false`     |
+| `tooltipText`      | `tooltip-text`      |             | `string`                                 | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [ls-document-options](../ls-document-options)
+ - [ls-document-viewer](../ls-document-viewer)
+ - [ls-field-format](../ls-field-format)
+ - [ls-statusbar](../ls-statusbar)
+ - [ls-toolbar](../ls-toolbar)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-options --> ls-tooltip
+  ls-document-viewer --> ls-tooltip
+  ls-field-format --> ls-tooltip
+  ls-statusbar --> ls-tooltip
+  ls-toolbar --> ls-tooltip
   style ls-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

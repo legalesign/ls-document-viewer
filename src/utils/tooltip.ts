@@ -1,16 +1,32 @@
-export function attachTooltip(referenceEl: HTMLElement, tooltipText: string, tooltipPlacement?: 'top' | 'bottom' | 'left' | 'right') {
-  const tooltip = document.createElement('ls-tooltip');
-  tooltip.textContent = tooltipText;
-  tooltip.referenceElement = referenceEl;
-  tooltip.placement = tooltipPlacement || 'top';
-  document.body.appendChild(tooltip);
+export function showTooltip(event) {
+  const rootNode = this.getRootNode();
+  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsTooltipElement;
+  tooltip.referenceElement = event.currentTarget as HTMLElement;
 }
 
-export function attachAllTooltips(root: ShadowRoot | HTMLElement) {
+export function hideTooltip(_event) {
+ const rootNode = this.getRootNode();
+  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsTooltipElement;
+  // if (this.tooltipLocked) return;
+  tooltip.classList.remove('visible');
+  tooltip.classList.add('hidden');
+}
+
+export function attachAllTooltips(root: ShadowRoot | Document) {
   const tooltipTargets = root.querySelectorAll('[data-tooltip]');
   tooltipTargets.forEach(tt => {
-    const text = tt.getAttribute('data-tooltip');
-    const placement = tt.getAttribute('data-tooltip-placement') as 'top' | 'bottom' | 'left' | 'right';
-    attachTooltip(tt as HTMLElement, text, placement);
+   
+      tt.addEventListener('mouseenter', showTooltip);
+      tt.addEventListener('mouseleave', hideTooltip);
+      tt.addEventListener('focus', showTooltip);
+      tt.addEventListener('blur', hideTooltip);
+    // tt.addEventListener('click', (e) => {
+    //   hideTooltip(e);
+    //   this.tooltipLocked = true;
+    //   setTimeout(() => {
+    //     this.tooltipLocked = false;
+    //   }, 500);
+    // });
   });
 }
+

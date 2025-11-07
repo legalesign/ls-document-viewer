@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Host, Prop, h, Element, Event, Watch } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-format',
@@ -51,6 +52,11 @@ export class LsFieldFormat {
     this.mutate.emit(diffs);
     this.update.emit(diffs);
   }
+
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   render() {
     return (
       <Host>
@@ -140,6 +146,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
+                tooltip-text="Align Left"
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -168,7 +175,10 @@ export class LsFieldFormat {
               <option value="center">Center</option>
               <option value="right">Right</option>
             </select> */}
+
+                    <ls-tooltip id="ls-tooltip-master" />
           </div>
+          
         )}
       </Host>
     );

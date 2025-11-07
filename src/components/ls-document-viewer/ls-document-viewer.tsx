@@ -891,6 +891,7 @@ export class LsDocumentViewer {
             </div>
           </form>
         </>
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

@@ -33,13 +33,16 @@
 
 - [ls-field-format](../ls-field-format)
 - [ls-participant-select](../ls-participant-select)
+- [ls-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
+  ls-toolbar --> ls-tooltip
   ls-field-format --> ls-icon
+  ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
   ls-document-viewer --> ls-toolbar
   style ls-toolbar fill:#f9f,stroke:#333,stroke-width:4px

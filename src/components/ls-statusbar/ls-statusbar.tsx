@@ -52,8 +52,8 @@ export class LsStatusbar {
   }
 
   componentDidLoad() {
-    this.zoom = this.editor.zoom;
     attachAllTooltips(this.component.shadowRoot);
+    this.zoom = this.editor.zoom;
   }
 
   render() {
@@ -80,7 +80,7 @@ export class LsStatusbar {
             <ls-icon name="fit-height" />
           </button>
         </div>
-        <div class={'status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
+        <div class={'status-bar-section'} style={this.pageCount === 1 && { visibility: 'hidden' }}>
           <button
             onClick={() => {
               this.editor.pagePrev();
@@ -105,7 +105,7 @@ export class LsStatusbar {
             <ls-icon name="chevron-right" />
           </button>
         </div>
-
+        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
         <slot></slot>
       </Host>
     );
