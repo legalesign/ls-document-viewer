@@ -163,8 +163,8 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name="check" size="18" style={{ display: this.editable ? 'block' : 'none' }} data-tooltip="Save Changes" />
-                  <ls-icon name="pencil-alt" size="18" style={{ display: this.editable ? 'none' : 'block' }} data-tooltip="Edit Participant" />
+                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="18" data-tooltip={this.editable ? "Save Changes" : "Edit Participant"} />
+            
                 </div>
                 <div
                   class="innerButton"
@@ -176,6 +176,7 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                   data-tooltip="Delete Participant"
+                  data-tooltip-placement="top-end"
                 >
                   <ls-icon name="trash" size="18" />
                 </div>
@@ -279,6 +280,7 @@ export class LsParticipantCard {
           </div>
         </div>
         <slot></slot>
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

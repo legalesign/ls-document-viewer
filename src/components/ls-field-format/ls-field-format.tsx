@@ -63,7 +63,7 @@ export class LsFieldFormat {
       <Host>
         {this.dataItem && this.dataItem.length > 1 && (
           <div class={'ls-field-format-bar'}>
-            <div class=" input-wrapper">
+            <div class="input-wrapper" data-tooltip="Font Family">
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
                 id='ls-toolbar-font-select'
@@ -80,7 +80,7 @@ export class LsFieldFormat {
               </select>
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
             </div>
-            <div class="input-wrapper">
+            <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input id='ls-toolbar-font-size' width="30" size={4} class={'has-leading-icon'} />
             </div>
@@ -89,6 +89,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
+                data-tooltip="Align Text Left"
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -96,6 +97,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
+                data-tooltip="Align Text Center"
               >
                 <ls-icon name="menu-alt-5"></ls-icon>
               </button>
@@ -103,6 +105,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
+                data-tooltip="Align Text Right"
               >
                 <ls-icon name="menu-alt-3"></ls-icon>
               </button>
@@ -111,7 +114,7 @@ export class LsFieldFormat {
         )}
         {this.dataItem && this.dataItem.length === 1 && (
           <div class={'ls-field-format-bar'}>
-            <div class="input-wrapper">
+            <div class="input-wrapper" data-tooltip="Font Family">
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
@@ -129,7 +132,7 @@ export class LsFieldFormat {
                 <option value="verdana">Verdana</option>
               </select>
             </div>
-            <div class="input-wrapper">
+            <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id='ls-toolbar-font-size'
@@ -147,7 +150,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                data-tooltip="Align Left"
+                data-tooltip="Align Text Left"
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -155,7 +158,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
-                data-tooltip="Align Center"
+                data-tooltip="Align Text Center"
               >
                 <ls-icon name="menu-alt-5"></ls-icon>
               </button>
@@ -163,7 +166,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
-                data-tooltip="Align Right"
+                data-tooltip="Align Text Right"
               >
                 <ls-icon name="menu-alt-3"></ls-icon>
               </button>

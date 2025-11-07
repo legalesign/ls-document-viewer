@@ -37,12 +37,11 @@
   opacity: 1;
   visibility: block;
   scale: 1;
-  transition: opacity 0.3s 0.5s ease-out, scale 0.1s 0.5s ease-out;
+  transition: opacity 0.3s 1s ease-out, scale 0.1s 0.5s ease-out;
 }
 
 .tooltip.hidden {
   opacity: 0;
-  visibility: hidden;
   scale: 0.85;
   transition: opacity 0.2s ease-in, scale 0.1s 0.5s ease-in;
 }
