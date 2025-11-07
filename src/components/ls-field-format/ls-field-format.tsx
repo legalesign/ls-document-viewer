@@ -37,6 +37,7 @@ export class LsFieldFormat {
       var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
       if (selFontSize) selFontSize.value = this.dataItem[0].fontSize.toString();
     }
+    attachAllTooltips(this.component.shadowRoot);
   }
 
   // Send one or more mutations up the chain

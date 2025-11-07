@@ -1,6 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-toolbar',
@@ -53,10 +52,6 @@ export class LsToolbar {
     composed: true,
   })
   update: EventEmitter<LSMutateEvent[]>;
-
-  componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
-  }
 
   // @Element() component: HTMLElement;
 
