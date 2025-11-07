@@ -14,6 +14,8 @@ export class LsStatusbar {
    * {number}
    */
   @Prop({ mutable: true }) zoom: number;
+  @Prop({ mutable: true }) page: number;
+  @Prop({ mutable: true }) pageCount: number;
 
   /**
    * The parent editor control.
@@ -76,7 +78,6 @@ export class LsStatusbar {
             <ls-icon name="fit-height" />
           </button>
         </div>
-        {this.editor?._template?.pageCount > 1 && (
           <div class={'status-bar-section'}>
             <button
               onClick={() => {
@@ -86,7 +87,7 @@ export class LsStatusbar {
               <ls-icon name="chevron-left" />
             </button>
             <p>
-              {this.editor?.pageNum} / {this.editor?._template?.pageCount}
+              {this.page} / {this.pageCount}
             </p>
             <button
               onClick={() => {
@@ -96,7 +97,6 @@ export class LsStatusbar {
               <ls-icon name="chevron-right" />
             </button>
           </div>
-        )}
 
         <slot></slot>
       </Host>

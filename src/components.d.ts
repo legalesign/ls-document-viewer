@@ -60,6 +60,10 @@ export namespace Components {
          */
         "mode": 'preview' | 'editor' | 'compose';
         /**
+          * @default 1
+         */
+        "pageCount": number;
+        /**
           * Page forward {MouseEvent} e
          */
         "pageNext": () => Promise<void>;
@@ -404,6 +408,8 @@ export namespace Components {
           * The parent editor control. {LsDocumentViewer}
          */
         "editor": LsDocumentViewer;
+        "page": number;
+        "pageCount": number;
         /**
           * The zoom or scale level 100 === 100%. {number}
          */
@@ -1264,6 +1270,10 @@ declare namespace LocalJSX {
         /**
           * @default 1
          */
+        "pageCount"?: number;
+        /**
+          * @default 1
+         */
         "pageNum"?: number;
         /**
           * Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}
@@ -1624,6 +1634,8 @@ declare namespace LocalJSX {
           * The parent editor control. {LsDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
+        "page"?: number;
+        "pageCount"?: number;
         /**
           * The zoom or scale level 100 === 100%. {number}
          */
