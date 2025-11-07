@@ -513,6 +513,7 @@ export namespace Components {
         "validation": number;
     }
     interface LsTooltip {
+        "hide": () => Promise<void>;
         /**
           * @default 'top'
          */

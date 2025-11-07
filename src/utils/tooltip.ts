@@ -8,8 +8,7 @@ export function hideTooltip(_event) {
  const rootNode = this.getRootNode();
   const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsTooltipElement;
   // if (this.tooltipLocked) return;
-  tooltip.classList.remove('visible');
-  tooltip.classList.add('hidden');
+  tooltip.hide();
 }
 
 export function attachAllTooltips(root: ShadowRoot | Document) {

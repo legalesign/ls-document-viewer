@@ -1,5 +1,5 @@
 import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
-import { Component, Element, Prop, Watch, h } from '@stencil/core';
+import { Component, Element, Method, Prop, Watch, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-tooltip',
@@ -15,14 +15,12 @@ export class LsTooltip {
 
   @Watch('referenceElement')
   updateReferenceHandler(newReference: HTMLElement) {
-      console.log('Show tooltip', newReference);
     this.tooltipText = newReference.getAttribute("data-tooltip");
     this.placement = newReference.getAttribute('data-tooltip-placement') as 'top' | 'bottom' | 'left' | 'right' || 'top'; 
 
     const arrowElement = this.el.shadowRoot.querySelector('#arrow'); // use shadowRoot for internal elements
     const innerTooltip = this.el.shadowRoot.getElementById('ls-tooltop-inner') as HTMLElement;
     
-    console.log ('Updating tooltip position for', innerTooltip, 'with reference', newReference, 'and placement', this.placement   );
     // if (!this.tooltipEl || !this.referenceElement) return;
 
     computePosition(this.referenceElement, innerTooltip, {
@@ -49,17 +47,22 @@ export class LsTooltip {
         bottom: '',
         [staticSide]: '-4px',
       });
-      console.log('Tooltip positioned at', x, y);
        innerTooltip.classList.remove('hidden');
       innerTooltip.classList.add('visible');
     }).then(() => {
-      console.log('Showing tooltip now');
       innerTooltip.classList.remove('hidden');
       innerTooltip.classList.add('visible');
     });
 
    
   };
+
+  @Method()
+  async hide() {
+    const innerTooltip = this.el.shadowRoot.getElementById('ls-tooltop-inner') as HTMLElement;
+    innerTooltip.classList.remove('visible');
+    innerTooltip.classList.add('hidden');
+  }
 
   render() {
     return (

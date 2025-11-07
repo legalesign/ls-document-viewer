@@ -15,6 +15,19 @@
 | `tooltipText`      | `tooltip-text`      |             | `string`                                 | `undefined` |
 
 
+## Methods
+
+### `hide() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by
