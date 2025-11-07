@@ -80,7 +80,7 @@ export class LsStatusbar {
             <ls-icon name="fit-height" />
           </button>
         </div>
-        <div class={'status-bar-section'} style={this.pageCount === 1 && { visibility: 'hidden' }}>
+        <div class={'status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
           <button
             onClick={() => {
               this.editor.pagePrev();

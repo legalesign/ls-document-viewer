@@ -179,11 +179,13 @@ export class LsFieldFormat {
               <option value="right">Right</option>
             </select> */}
 
-            <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
+            
           </div>
           
         )}
+        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
       </Host>
+      
     );
   }
 }
