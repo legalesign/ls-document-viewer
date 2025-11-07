@@ -25,8 +25,9 @@ export class LsTooltip {
 
     computePosition(this.referenceElement, innerTooltip, {
       placement: this.placement,
-      middleware: [offset(6), flip(), shift({ padding: 5 }), arrow({ element: arrowElement })],
+      middleware: [offset(0), flip(), shift({ padding: 0 }), arrow({ element: arrowElement })],
     }).then(({ x, y, placement, middlewareData }) => {
+
       Object.assign(innerTooltip.style, {
         left: `${x}px`,
         top: `${y}px`,
@@ -47,13 +48,10 @@ export class LsTooltip {
         bottom: '',
         [staticSide]: '-4px',
       });
-       innerTooltip.classList.remove('hidden');
-      innerTooltip.classList.add('visible');
     }).then(() => {
-      innerTooltip.classList.remove('hidden');
+            innerTooltip.classList.remove('hidden');
       innerTooltip.classList.add('visible');
     });
-
    
   };
 

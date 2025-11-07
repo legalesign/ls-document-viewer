@@ -1,3 +1,17 @@
+:host {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
 .tooltip {
   position: absolute;
   border-radius: 0.5rem;
@@ -9,13 +23,13 @@
   line-height: 1rem;
   padding: 0.5rem 0.75rem;
   max-width: 10rem;
-  width: max-content;
   white-space: wrap;
   z-index: 1000;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 -1px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
 }
 
 .tooltip.visible {
+  width: max-content;
   opacity: 1;
   visibility: visible;
   scale: 1;
