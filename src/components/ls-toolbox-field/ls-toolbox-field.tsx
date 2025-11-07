@@ -125,6 +125,7 @@ export class LsToolboxField {
           </p>
           <ls-icon name="drag-vertical" size="16" color="#787a80" />
         </div>
+        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
       </Host>
     );
   }

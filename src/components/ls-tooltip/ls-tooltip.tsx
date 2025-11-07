@@ -11,6 +11,7 @@ export class LsTooltip {
   @Prop({ mutable: true }) referenceElement: HTMLElement;
   @Prop({ mutable: true }) placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Prop({ mutable: true }) tooltipText: string;
+  @Prop({ mutable: true }) tooltipTitle: string;
   @Prop() tooltipLocked = false;
 
   @Watch('referenceElement')
@@ -18,6 +19,7 @@ export class LsTooltip {
     if (!newReference) return;
 
     this.tooltipText = newReference.getAttribute('data-tooltip');
+    this.tooltipTitle = newReference.getAttribute('data-tooltip-title');
     this.placement = (newReference.getAttribute('data-tooltip-placement') as 'top' | 'bottom' | 'left' | 'right') || 'top';
 
     const arrowElement = this.el.shadowRoot.querySelector('#arrow');
@@ -67,6 +69,7 @@ export class LsTooltip {
     return (
       <div id="ls-tooltip-inner" class="tooltip hidden" role="tooltip">
         <div id="arrow"></div>
+        {this.tooltipTitle && <p class="tooltip-title">{this.tooltipTitle}</p>}
         {this.tooltipText}
         <slot />
       </div>

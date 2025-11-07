@@ -524,6 +524,7 @@ export namespace Components {
          */
         "tooltipLocked": boolean;
         "tooltipText": string;
+        "tooltipTitle": string;
     }
     interface LsValidationTag {
         /**
@@ -1764,6 +1765,7 @@ declare namespace LocalJSX {
          */
         "tooltipLocked"?: boolean;
         "tooltipText"?: string;
+        "tooltipTitle"?: string;
     }
     interface LsValidationTag {
         /**
