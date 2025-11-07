@@ -680,20 +680,23 @@ export class LsDocumentViewer {
                           this.handleSelectedField.bind(this)(event);
                         }}
                       />
-                      <ls-toolbox-field
-                        elementType="signing date"
-                        formElementType="signing date"
-                        label="Signing Date"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={30}
-                        icon="auto-date"
-                        tooltip="Automatically inserts the date upon completion by the assigned Participant"
-                        signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
-                      />
+
+                      {this.signer > 0 && (
+                        <ls-toolbox-field
+                          elementType="signing date"
+                          formElementType="signing date"
+                          label="Signing Date"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={30}
+                          icon="auto-date"
+                          tooltip="Automatically inserts the date upon completion by the assigned Participant"
+                          signer={this.signer}
+                          onSelected={event => {
+                            this.handleSelectedField.bind(this)(event);
+                          }}
+                        />)}
+
                       <ls-toolbox-field
                         elementType="date"
                         formElementType="date"
