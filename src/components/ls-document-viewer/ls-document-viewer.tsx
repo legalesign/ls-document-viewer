@@ -94,9 +94,9 @@ export class LsDocumentViewer {
   @Prop() templateid: string;
 
   /**
- * A JSON string containing the signer details. Only used in COMPOSE mode.
- * {string}
- */
+   * A JSON string containing the signer details. Only used in COMPOSE mode.
+   * {string}
+   */
   @Prop() signers: string;
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
@@ -635,37 +635,36 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      {this.signer > 0 ? (
-                        <ls-toolbox-field
-                          elementType="signature"
-                          formElementType="signature"
-                          label="Signature"
-                          defaultHeight={27}
-                          defaultWidth={120}
-                          validation={0}
-                          icon="signature"
-                          tooltip="Use this field to collect Signatures from Participants"
-                          signer={this.signer}
-                          onSelected={event => {
-                            this.handleSelectedField.bind(this)(event);
-                          }}
-                        />
-                      ) : (
-                        <ls-toolbox-field
-                          elementType="auto sign"
-                          formElementType="auto sign"
-                          label="Auto Sign"
-                          defaultHeight={27}
-                          defaultWidth={120}
-                          validation={3000}
-                          icon="auto-sign"
-                          tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
-                          signer={this.signer}
-                          onSelected={event => {
-                            this.handleSelectedField.bind(this)(event);
-                          }}
-                        />
-                      )}
+                      <ls-toolbox-field
+                        elementType="signature"
+                        formElementType="signature"
+                        label="Signature"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={0}
+                        icon="signature"
+                        tooltip="Use this field to collect Signatures from Participants"
+                        signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
+                        style={this.signer > 0 ? { display: 'block' } : { display: 'none' }}
+                      />
+                      <ls-toolbox-field
+                        elementType="auto sign"
+                        formElementType="auto sign"
+                        label="Auto Sign"
+                        defaultHeight={27}
+                        defaultWidth={120}
+                        validation={3000}
+                        icon="auto-sign"
+                        tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
+                        signer={this.signer}
+                        onSelected={event => {
+                          this.handleSelectedField.bind(this)(event);
+                        }}
+                        style={this.signer === 0 ? { display: 'block' } : { display: 'none' }}
+                      />
                       <ls-toolbox-field
                         elementType="text"
                         formElementType="text"
@@ -695,7 +694,8 @@ export class LsDocumentViewer {
                           onSelected={event => {
                             this.handleSelectedField.bind(this)(event);
                           }}
-                        />)}
+                        />
+                      )}
 
                       <ls-toolbox-field
                         elementType="date"
@@ -846,8 +846,8 @@ export class LsDocumentViewer {
                               this.handleSelectedField.bind(this)(event);
                             }}
                           />
-                        </>)}
-
+                        </>
+                      )}
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />

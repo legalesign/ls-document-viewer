@@ -38,6 +38,11 @@ button:hover {
   border-radius: 0.5rem;
 }
 
+button:disabled {
+  color: var(--gray-40, #c1c4c8);
+  cursor: not-allowed;
+}
+
 input[type="range"] {
   -webkit-appearance: none; /* Remove default styling */
   width: 100%;

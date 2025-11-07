@@ -10,6 +10,7 @@ export class LsTooltip {
   @Element() el: HTMLElement;
   @Prop() referenceElement: HTMLElement;
   @Prop() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  @Prop() tooltipText: string;
 
   private tooltipEl: HTMLElement;
   private tooltipLocked = false;
@@ -82,6 +83,7 @@ export class LsTooltip {
     return (
       <div class="tooltip hidden" role="tooltip">
         <div id="arrow"></div>
+        {this.tooltipText}
         <slot />
       </div>
     );

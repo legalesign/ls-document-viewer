@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element, State } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-document-options',
@@ -56,7 +57,9 @@ export class LsDocumentOptions {
     }, delay);
   }
 
-  @State() editNameBtn: HTMLElement;
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
 
   render() {
     function formatDate(isoString) {
@@ -86,17 +89,8 @@ export class LsDocumentOptions {
                 this.editTitle = !this.editTitle;
               }}
             >
-              <ls-icon
-                name={this.editTitle ? 'check' : 'pencil-alt'}
-                size="18"
-                id="edit-name-btn"
-                ref={el => {
-                  if (el && el !== this.editNameBtn) {
-                    this.editNameBtn = el;
-                  }
-                }}
-              />
-              <ls-tooltip referenceElement={this.editNameBtn}>{this.editTitle ? 'Save' : 'Edit Name'}</ls-tooltip>
+              <ls-icon name="check" size="18" id="edit-name-btn" data-tooltip="Save" style={this.editTitle ? { display: 'block' } : { display: 'none' }} />
+              <ls-icon name="pencil-alt" size="18" id="edit-name-btn" data-tooltip="Edit Name" style={this.editTitle ? { display: 'none' } : { display: 'block' }} />
             </div>
             {this.editTitle ? (
               <input

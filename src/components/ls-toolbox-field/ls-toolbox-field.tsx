@@ -1,7 +1,8 @@
-import { Component, Event, Host, Listen, Prop, State, Watch, h } from '@stencil/core';
+import { Component, Event, Host, Listen, Prop, Element, Watch, h } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { EventEmitter } from 'stream';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -9,6 +10,7 @@ import { EventEmitter } from 'stream';
   shadow: true,
 })
 export class LsToolboxField {
+  @Element() component: HTMLElement;
   /**
    * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
    */
@@ -84,7 +86,9 @@ export class LsToolboxField {
     }
   }
 
-  @State() fieldIcon: HTMLElement;
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
 
   render() {
     return (
@@ -104,17 +108,9 @@ export class LsToolboxField {
           <div
             class="toolbox-field-icon"
             style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}
-            ref={el => {
-              if (el && el !== this.fieldIcon) {
-                this.fieldIcon = el;
-              }
-            }}
+            data-tooltip={this.tooltip}
+            data-tooltip-placement="right"
           >
-            {this.tooltip && (
-              <ls-tooltip referenceElement={this.fieldIcon} placement="left">
-                {this.tooltip}
-              </ls-tooltip>
-            )}
             <ls-icon name={this.icon} size="20" />
           </div>
           <p

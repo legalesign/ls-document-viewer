@@ -518,6 +518,7 @@ export namespace Components {
          */
         "placement": 'top' | 'bottom' | 'left' | 'right';
         "referenceElement": HTMLElement;
+        "tooltipText": string;
     }
     interface LsValidationTag {
         /**
@@ -1753,6 +1754,7 @@ declare namespace LocalJSX {
          */
         "placement"?: 'top' | 'bottom' | 'left' | 'right';
         "referenceElement"?: HTMLElement;
+        "tooltipText"?: string;
     }
     interface LsValidationTag {
         /**
