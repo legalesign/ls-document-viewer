@@ -146,7 +146,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                tooltip-text="Align Left"
+                data-tooltip="Align Left"
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -154,6 +154,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
+                data-tooltip="Align Center"
               >
                 <ls-icon name="menu-alt-5"></ls-icon>
               </button>
@@ -161,6 +162,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
+                data-tooltip="Align Right"
               >
                 <ls-icon name="menu-alt-3"></ls-icon>
               </button>
@@ -176,7 +178,7 @@ export class LsFieldFormat {
               <option value="right">Right</option>
             </select> */}
 
-                    <ls-tooltip id="ls-tooltip-master" />
+            <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
           </div>
           
         )}
