@@ -290,6 +290,12 @@ export namespace Components {
         "valid": boolean;
         "value"?: string | number;
     }
+    interface LsHelperBar {
+        /**
+          * @default false
+         */
+        "expanded": boolean;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
@@ -991,6 +997,12 @@ declare global {
         prototype: HTMLLsFormfieldElement;
         new (): HTMLLsFormfieldElement;
     };
+    interface HTMLLsHelperBarElement extends Components.LsHelperBar, HTMLStencilElement {
+    }
+    var HTMLLsHelperBarElement: {
+        prototype: HTMLLsHelperBarElement;
+        new (): HTMLLsHelperBarElement;
+    };
     interface HTMLLsIconElement extends Components.LsIcon, HTMLStencilElement {
     }
     var HTMLLsIconElement: {
@@ -1213,6 +1225,7 @@ declare global {
         "ls-field-size": HTMLLsFieldSizeElement;
         "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
         "ls-formfield": HTMLLsFormfieldElement;
+        "ls-helper-bar": HTMLLsHelperBarElement;
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-number-input": HTMLLsNumberInputElement;
@@ -1518,6 +1531,12 @@ declare namespace LocalJSX {
         "valid"?: boolean;
         "value"?: string | number;
     }
+    interface LsHelperBar {
+        /**
+          * @default false
+         */
+        "expanded"?: boolean;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
@@ -1811,6 +1830,7 @@ declare namespace LocalJSX {
         "ls-field-size": LsFieldSize;
         "ls-field-type-display": LsFieldTypeDisplay;
         "ls-formfield": LsFormfield;
+        "ls-helper-bar": LsHelperBar;
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
         "ls-number-input": LsNumberInput;
@@ -1869,6 +1889,7 @@ declare module "@stencil/core" {
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
             "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
+            "ls-helper-bar": LocalJSX.LsHelperBar & JSXBase.HTMLAttributes<HTMLLsHelperBarElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
