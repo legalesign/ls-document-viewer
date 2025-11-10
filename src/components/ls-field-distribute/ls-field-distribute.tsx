@@ -1,6 +1,7 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { oob } from '../ls-document-viewer/editorUtils';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-distribute',
@@ -69,7 +70,7 @@ export class LsFieldDistribute {
         action: 'update',
         data: {
           ...c,
-          left: newLeft
+          left: newLeft,
         } as LSApiElement,
       };
     });
@@ -89,15 +90,17 @@ export class LsFieldDistribute {
       buffer = buffer + c.height + spacing;
       const target = {
         ...c,
-        top: newTop
-      } as LSApiElement
+        top: newTop,
+      } as LSApiElement;
 
       return {
         action: 'update',
-        data: oob(target) ? {
-          ...c,
-          left: c.pageDimensions.height - c.height - 1
-        } as LSApiElement : target
+        data: oob(target)
+          ? ({
+              ...c,
+              left: c.pageDimensions.height - c.height - 1,
+            } as LSApiElement)
+          : target,
       };
     });
 
@@ -116,17 +119,19 @@ export class LsFieldDistribute {
       buffer = buffer + c.width + spacing;
       const target = {
         ...c,
-        left: newLeft
-      } as LSApiElement
+        left: newLeft,
+      } as LSApiElement;
 
       console.log(target, oob(target));
 
       return {
         action: 'update',
-        data: oob(target) ? {
-          ...c,
-          left: c.pageDimensions.width - c.width - 1
-        } as LSApiElement : target
+        data: oob(target)
+          ? ({
+              ...c,
+              left: c.pageDimensions.width - c.width - 1,
+            } as LSApiElement)
+          : target,
       };
     });
 
@@ -158,21 +163,27 @@ export class LsFieldDistribute {
       buffer = buffer + c.height + avgspace;
       const target = {
         ...c,
-        top: newTop
-      } as LSApiElement
+        top: newTop,
+      } as LSApiElement;
 
       return {
         action: 'update',
-        data: oob(target) ? {
-          ...c,
-          top: c.pageDimensions.height - c.height
-        } as LSApiElement : target
+        data: oob(target)
+          ? ({
+              ...c,
+              top: c.pageDimensions.height - c.height,
+            } as LSApiElement)
+          : target,
       };
     });
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
     this.update.emit(diffs);
+  }
+
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -189,9 +200,7 @@ export class LsFieldDistribute {
                 this.distributeVertical();
               }}
               aria-label="Distribute selected fields vertically."
-              data-tooltip-id="le-tooltip"
-              data-tooltip-content="Distribute selected fields vertically."
-              data-tooltip-place="top"
+              data-tooltip="Distribute selected fields vertically"
             >
               <ls-icon name="field-distribute-vertically"></ls-icon>
             </button>
@@ -200,9 +209,7 @@ export class LsFieldDistribute {
                 this.distributeHorizontal();
               }}
               aria-label="Distribute selected fields horizontally."
-              data-tooltip-id="le-tooltip"
-              data-tooltip-content="Distribute selected fields horizontally."
-              data-tooltip-place="top"
+              data-tooltip="Distribute selected fields horizontally"
             >
               <ls-icon name="field-distribute-horizontally"></ls-icon>
             </button>
@@ -214,20 +221,39 @@ export class LsFieldDistribute {
             <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
           </div>
           <div class={'input-row'}>
-            <div class={'input-wrapper'}>
+            <div class={'input-wrapper'} data-tooltip="Set vertical gap between selected fields">
               <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
-              <input type="number" class={'has-leading-icon'} id="ls-fix-vertical-space" onChange={(e) => {
-                this.gapVertical(parseInt((e.target as HTMLInputElement).value));
-              }} value={''} size={4} min={0} max={9999} />
+              <input
+                type="number"
+                class={'has-leading-icon'}
+                id="ls-fix-vertical-space"
+                onChange={e => {
+                  this.gapVertical(parseInt((e.target as HTMLInputElement).value));
+                }}
+                value={''}
+                size={4}
+                min={0}
+                max={9999}
+              />
             </div>
-            <div class={'input-wrapper'}>
+            <div class={'input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
               <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
-              <input type="number" class={'has-leading-icon'} id="ls-fix-horizontal-space" onChange={(e) => {
-                this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));
-              }} value={''} size={4} min={0} max={9999} />
+              <input
+                type="number"
+                class={'has-leading-icon'}
+                id="ls-fix-horizontal-space"
+                onChange={e => {
+                  this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));
+                }}
+                value={''}
+                size={4}
+                min={0}
+                max={9999}
+              />
             </div>
           </div>
         </div>
+        <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>
     );

@@ -89,8 +89,12 @@ export class LsDocumentOptions {
                 this.editTitle = !this.editTitle;
               }}
             >
-              <ls-icon name="check" size="18" id="edit-name-btn" data-tooltip="Save" style={this.editTitle ? { display: 'block' } : { display: 'none' }} />
-              <ls-icon name="pencil-alt" size="18" id="edit-name-btn" data-tooltip="Edit Name" style={this.editTitle ? { display: 'none' } : { display: 'block' }} />
+              <ls-icon
+                name={this.editTitle ? 'check' : 'pencil-alt'}
+                size="18"
+                id="edit-name-btn"
+                data-tooltip={this.editTitle ? 'Save' : 'Edit Name'}
+              />
             </div>
             {this.editTitle ? (
               <input
@@ -153,6 +157,7 @@ export class LsDocumentOptions {
           </div>
         </div>
         <slot></slot>
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

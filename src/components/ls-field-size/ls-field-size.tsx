@@ -1,5 +1,6 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-size',
@@ -7,6 +8,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
   shadow: true,
 })
 export class LsFieldSize {
+  @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement[];
 
   @Event({
@@ -35,6 +37,10 @@ export class LsFieldSize {
     this.update.emit(diffs);
   }
 
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   render() {
     return (
       <Host>
@@ -47,27 +53,21 @@ export class LsFieldSize {
             <button
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
               aria-label="Make selected fields the same height and width as the first selected field."
-              data-tooltip-id="le-tooltip"
-              data-tooltip-content="Make selected fields the same height and width as the first selected field."
-              data-tooltip-place="top"
+              data-tooltip="Make selected fields the same height and width as the first selected field"
             >
               <ls-icon name="field-scale"></ls-icon>
             </button>
             <button
-              aria-label="Make selected fields the same width as the first selected field."
+              aria-label="Make selected fields the same width as the first selected field"
               onClick={() => this.alter({ width: this.dataItem[0].width })}
-              data-tooltip-id="le-tooltip"
-              data-tooltip-content="Make selected fields the same width as the first selected field."
-              data-tooltip-place="top"
+              data-tooltip="Make selected fields the same width as the first selected field"
             >
               <ls-icon name="field-match-width"></ls-icon>
             </button>
             <button
               onClick={() => this.alter({ height: this.dataItem[0].height })}
               aria-label="Make selected fields the same height as the first selected field."
-              data-tooltip-id="le-tooltip"
-              data-tooltip-content="Make selected fields the same height as the first selected field."
-              data-tooltip-place="top"
+              data-tooltip="Make selected fields the same height as the first selected field"
             >
               <ls-icon name="field-match-height"></ls-icon>
             </button>
@@ -75,6 +75,7 @@ export class LsFieldSize {
         </div>
 
         <slot></slot>
+        <ls-tooltip id="ls-tooltip-master"></ls-tooltip>
       </Host>
     );
   }

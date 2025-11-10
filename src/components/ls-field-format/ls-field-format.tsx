@@ -186,7 +186,7 @@ export class LsFieldFormat {
           </div>
           
         )}
-        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
       
     );

@@ -1,6 +1,7 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-placement',
@@ -8,6 +9,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
   shadow: true,
 })
 export class LsFieldPlacement {
+  @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
 
   @Event({
@@ -75,6 +77,11 @@ export class LsFieldPlacement {
   bottom() {
     return this.dataItem[0].pageDimensions[this.dataItem[0].page].height - this.dataItem[0].height;
   }
+
+  componentDidLoad() {
+      attachAllTooltips(this.component.shadowRoot);
+  }
+
   render() {
     return (
       <Host>
@@ -113,24 +120,24 @@ export class LsFieldPlacement {
               </div>
               <div class={'multi-button-group-row'}>
                 <div class={'button-group'}>
-                  <button onClick={() => { this.alter({ left: 0 }) }}>
+                  <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip="Align Left">
                     <ls-icon name="field-alignment-left"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.center() }) }}>
+                  <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip="Align Center">
                     <ls-icon name="field-alignment-centre"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.right() }) }}>
+                  <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip="Align Right">
                     <ls-icon name="field-alignment-right"></ls-icon>
                   </button>
                 </div>
                 <div class={'button-group'}>
-                  <button onClick={() => this.alter({ top: 0 })}>
+                  <button onClick={() => this.alter({ top: 0 })} data-tooltip="Align Top">
                     <ls-icon name="field-alignment-top"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.middle() }) }}>
+                  <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip="Align Middle">
                     <ls-icon name="field-alignment-middle"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.bottom() }) }}>
+                  <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip="Align Bottom">
                     <ls-icon name="field-alignment-bottom"></ls-icon>
                   </button>
                 </div>
@@ -175,10 +182,10 @@ export class LsFieldPlacement {
                 <p class={'ls-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
               </div>
               <div class={'button-group'}>
-                <button disabled>
+                <button disabled data-tooltip="Select multiple Fields to to access distribution controls">
                   <ls-icon name="field-distribute-vertically"></ls-icon>
                 </button>
-                <button disabled>
+                <button disabled data-tooltip="Select multiple Fields to to access distribution controls">
                   <ls-icon name="field-distribute-horizontally"></ls-icon>
                 </button>
               </div>
@@ -190,11 +197,11 @@ export class LsFieldPlacement {
                 <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
               </div>
               <div class={'input-row'}>
-                <div class={'input-wrapper'}>
+                <div class={'input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
                   <input type="number" value="0" class={'has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
                 </div>
-                <div class={'input-wrapper'}>
+                <div class={'input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
                   <input type="number" value="0" class={'has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
                 </div>
@@ -202,6 +209,7 @@ export class LsFieldPlacement {
             </div>
           </div>
         )}
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

@@ -1,5 +1,7 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { Element } from '@stencil/core';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-dimensions',
@@ -7,6 +9,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
   shadow: true,
 })
 export class LsFieldDimensions {
+  @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
 
   @Event({
@@ -51,6 +54,10 @@ export class LsFieldDimensions {
     }
   }
 
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   render() {
     return (
       <Host>
@@ -61,11 +68,11 @@ export class LsFieldDimensions {
               <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
             </div>
             <div class={'input-row'}>
-              <div class={'input-wrapper'}>
+              <div class={'input-wrapper'} data-tooltip="Set field width in pixels">
                 <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
                 <input class={'has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
-              <div class={'input-wrapper'}>
+              <div class={'input-wrapper'} data-tooltip="Set field height in pixels">
                 <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
                 <input class={'has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
@@ -87,7 +94,7 @@ export class LsFieldDimensions {
                 <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
               </div>
               <div class={'input-row'}>
-                <div class={'input-wrapper'}>
+                <div class={'input-wrapper'} data-tooltip="Set field width in pixels">
                   <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
                   <input
                     type="number"
@@ -98,7 +105,7 @@ export class LsFieldDimensions {
                     onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })}
                   />
                 </div>
-                <div class={'input-wrapper'}>
+                <div class={'input-wrapper'} data-tooltip="Set field height in pixels">
                   <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
                   <input
                     type="number"
@@ -118,19 +125,20 @@ export class LsFieldDimensions {
                 <p class={'ls-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
               </div>
               <div class={'button-group'}>
-                <button disabled>
+                <button disabled data-tooltip="Select multiple Fields to to access scale controls">
                   <ls-icon name="field-scale"></ls-icon>
                 </button>
-                <button disabled>
+                <button disabled data-tooltip="Select multiple Fields to to access match width controls">
                   <ls-icon name="field-match-width"></ls-icon>
                 </button>
-                <button disabled>
+                <button disabled data-tooltip="Select multiple Fields to to access match height controls">
                   <ls-icon name="field-match-height"></ls-icon>
                 </button>
               </div>
             </div>
           </div>
         )}
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

@@ -16,6 +16,7 @@ import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
 import { ValidationError } from '../../types/ValidationError';
 import { validate } from './validator';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
 
@@ -591,6 +592,10 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   handleSelectedField(event) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
 
@@ -866,6 +871,7 @@ export class LsDocumentViewer {
                           this.selected = [];
                           e.preventDefault();
                         }}
+                        data-tooltip="Close Properties Panel"
                       >
                         <ls-icon name="x" size="20" />
                       </button>

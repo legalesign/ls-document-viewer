@@ -1,5 +1,6 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-alignment',
@@ -7,6 +8,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
   shadow: true,
 })
 export class LsFieldAlignment {
+  @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement[];
   @Event({
     bubbles: true,
@@ -153,6 +155,10 @@ export class LsFieldAlignment {
     this.update.emit(diffs);
   }
 
+  componentDidLoad() {
+    attachAllTooltips(this.component.shadowRoot);
+  }
+
   render() {
     return (
       <Host>
@@ -163,22 +169,10 @@ export class LsFieldAlignment {
           </div>
           <div class={'multi-button-group-row'}>
             <div class={'button-group'}>
-              <button
-                onClick={() => this.left()}
-                aria-label="Align selected fields vertically about their left edge."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
-              >
+              <button onClick={() => this.left()} aria-label="Align selected fields vertically about their left edge." data-tooltip="Align Left">
                 <ls-icon name="field-alignment-left"></ls-icon>
               </button>
-              <button
-                onClick={() => this.center()}
-                aria-label="Align selected fields vertically about their centre."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
-              >
+              <button onClick={() => this.center()} aria-label="Align selected fields vertically about their centre." data-tooltip="Align Center">
                 <ls-icon name="field-alignment-centre"></ls-icon>
               </button>
               <button
@@ -186,39 +180,19 @@ export class LsFieldAlignment {
                   this.right();
                 }}
                 aria-label="Align selected fields vertically about their right edge."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
+                data-tooltip="Align Right"
               >
                 <ls-icon name="field-alignment-right"></ls-icon>
               </button>
             </div>
             <div class={'button-group'}>
-              <button
-                onClick={() => this.top()}
-                aria-label="Align selected fields by their top."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
-              >
+              <button onClick={() => this.top()} aria-label="Align selected fields by their top." data-tooltip="Align Top">
                 <ls-icon name="field-alignment-top"></ls-icon>
               </button>
-              <button
-                onClick={() => this.middle()}
-                aria-label="Align selected fields by their middles."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
-              >
+              <button onClick={() => this.middle()} aria-label="Align selected fields by their middles." data-tooltip="Align Middle">
                 <ls-icon name="field-alignment-middle"></ls-icon>
               </button>
-              <button
-                onClick={() => this.bottom()}
-                aria-label="Align selected fields by their bottoms."
-                data-tooltip-id="le-tooltip"
-                data-tooltip-content="Shift + Select multiple fields to access this control"
-                data-tooltip-place="top"
-              >
+              <button onClick={() => this.bottom()} aria-label="Align selected fields by their bottoms." data-tooltip="Align Bottom">
                 <ls-icon name="field-alignment-bottom"></ls-icon>
               </button>
             </div>
@@ -226,6 +200,7 @@ export class LsFieldAlignment {
         </div>
 
         <slot></slot>
+        <ls-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }
