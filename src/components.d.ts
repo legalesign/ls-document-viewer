@@ -315,6 +315,9 @@ export namespace Components {
          */
         "select": boolean;
     }
+    interface LsKeyboardShortcuts {
+        "referenceElement": HTMLElement;
+    }
     interface LsNumberInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -1015,6 +1018,12 @@ declare global {
         prototype: HTMLLsInputWrapperElement;
         new (): HTMLLsInputWrapperElement;
     };
+    interface HTMLLsKeyboardShortcutsElement extends Components.LsKeyboardShortcuts, HTMLStencilElement {
+    }
+    var HTMLLsKeyboardShortcutsElement: {
+        prototype: HTMLLsKeyboardShortcutsElement;
+        new (): HTMLLsKeyboardShortcutsElement;
+    };
     interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
     }
     var HTMLLsNumberInputElement: {
@@ -1228,6 +1237,7 @@ declare global {
         "ls-helper-bar": HTMLLsHelperBarElement;
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
+        "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
         "ls-number-input": HTMLLsNumberInputElement;
         "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
@@ -1556,6 +1566,9 @@ declare namespace LocalJSX {
          */
         "select"?: boolean;
     }
+    interface LsKeyboardShortcuts {
+        "referenceElement"?: HTMLElement;
+    }
     interface LsNumberInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -1833,6 +1846,7 @@ declare namespace LocalJSX {
         "ls-helper-bar": LsHelperBar;
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
+        "ls-keyboard-shortcuts": LsKeyboardShortcuts;
         "ls-number-input": LsNumberInput;
         "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
@@ -1892,6 +1906,7 @@ declare module "@stencil/core" {
             "ls-helper-bar": LocalJSX.LsHelperBar & JSXBase.HTMLAttributes<HTMLLsHelperBarElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
+            "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
             "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
