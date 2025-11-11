@@ -62,6 +62,18 @@ export function keyDown(ev: KeyboardEvent) {
           return { action: 'delete', data: s.dataItem };
         }),
       );
+    } else if (ev.key === 'd' || ev.key === 'D' || ev.key === 'keyD') {
+      const arr = Array.from(this.selected) as LsEditorField[];
+      const createdItems = arr.map(s => {
+        const newItem = { ...s.dataItem, id: btoa('ele' + crypto.randomUUID()) };
+        const newTop = s.dataItem.top + s.dataItem.height;
+        if (newTop + s.dataItem.height < s.dataItem.pageDimensions.height) {
+          newItem.top = newTop;
+        }
+        return { action: 'create', data: newItem, select: 'clear' };
+      });
+      this.update.emit(createdItems);
+      this.mutate.emit(createdItems.map(item => ({ action: 'create', data: item.data })));
     }
   }
 }
