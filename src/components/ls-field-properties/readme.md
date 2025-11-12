@@ -54,12 +54,17 @@ graph TD;
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
+  ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
+  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
+  ls-field-dimensions --> ls-tooltip
   ls-field-placement --> ls-icon
+  ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-properties-container
   ls-field-properties-date --> ls-field-content
@@ -116,8 +121,12 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-field-size --> ls-icon
+  ls-field-size --> ls-tooltip
   ls-field-alignment --> ls-icon
+  ls-field-alignment --> ls-tooltip
   ls-field-distribute --> ls-icon
+  ls-field-distribute --> ls-tooltip
+  ls-field-distribute --> ls-editor-field
   ls-document-viewer --> ls-field-properties
   style ls-field-properties fill:#f9f,stroke:#333,stroke-width:4px
 ```

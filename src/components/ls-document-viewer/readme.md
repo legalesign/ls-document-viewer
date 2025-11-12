@@ -138,14 +138,18 @@ graph TD;
   ls-document-viewer --> ls-editor-field
   ls-validation-tag --> ls-icon
   ls-feature-column --> ls-icon
+  ls-feature-column --> ls-tooltip
   ls-toolbox-field --> ls-icon
+  ls-toolbox-field --> ls-tooltip
   ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-icon
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-tooltip
   ls-input-wrapper --> ls-icon
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
+  ls-document-options --> ls-tooltip
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text
@@ -166,11 +170,16 @@ graph TD;
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
+  ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
+  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
+  ls-field-dimensions --> ls-tooltip
   ls-field-placement --> ls-icon
+  ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-properties-container
   ls-field-properties-date --> ls-field-content
@@ -227,8 +236,12 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-field-size --> ls-icon
+  ls-field-size --> ls-tooltip
   ls-field-alignment --> ls-icon
+  ls-field-alignment --> ls-tooltip
   ls-field-distribute --> ls-icon
+  ls-field-distribute --> ls-tooltip
+  ls-field-distribute --> ls-editor-field
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
   ls-toolbar --> ls-tooltip
@@ -236,8 +249,12 @@ graph TD;
   ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
   ls-statusbar --> ls-icon
+  ls-statusbar --> ls-helper-bar
   ls-statusbar --> ls-tooltip
-  ls-editor-field --> ls-icon
+  ls-statusbar --> ls-editor-field
+  ls-helper-bar --> ls-keyboard-shortcuts
+  ls-helper-bar --> ls-icon
+  ls-helper-bar --> ls-tooltip
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

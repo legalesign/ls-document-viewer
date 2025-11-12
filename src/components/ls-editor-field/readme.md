@@ -29,16 +29,24 @@
 ### Used by
 
  - [ls-document-viewer](../ls-document-viewer)
+ - [ls-editor-field](.)
+ - [ls-field-content](../ls-field-content)
+ - [ls-field-distribute](../ls-field-distribute)
+ - [ls-statusbar](../ls-statusbar)
 
 ### Depends on
 
 - [ls-icon](../ls-icon)
+- [ls-editor-field](.)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-document-viewer --> ls-editor-field
+  ls-field-content --> ls-editor-field
+  ls-field-distribute --> ls-editor-field
+  ls-statusbar --> ls-editor-field
   style ls-editor-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

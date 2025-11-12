@@ -28,11 +28,13 @@
 ### Depends on
 
 - [ls-icon](../ls-icon)
+- [ls-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-feature-column --> ls-icon
+  ls-feature-column --> ls-tooltip
   ls-document-viewer --> ls-feature-column
   style ls-feature-column fill:#f9f,stroke:#333,stroke-width:4px
 ```

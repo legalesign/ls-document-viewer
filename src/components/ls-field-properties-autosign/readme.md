@@ -31,6 +31,7 @@ graph TD;
   ls-field-properties-autosign --> ls-field-properties-advanced
   ls-field-properties-autosign --> ls-field-footer
   ls-field-dimensions --> ls-icon
+  ls-field-dimensions --> ls-tooltip
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-footer --> ls-icon
