@@ -485,8 +485,8 @@ export class LsDocumentViewer {
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
-        const newData = { ...update.data, page: this.pageNum };
-        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
+  //      const newData = { ...update.data, page: this.pageNum };
+//        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
 
         //const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 

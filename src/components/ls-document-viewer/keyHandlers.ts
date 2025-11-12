@@ -67,7 +67,9 @@ export function keyDown(ev: KeyboardEvent) {
       const createdItems = arr.map(s => {
         const newItem = { ...s.dataItem, id: btoa('ele' + crypto.randomUUID()) };
         const newTop = s.dataItem.top + s.dataItem.height;
+        // check its in bounds
         if (newTop + s.dataItem.height < s.dataItem.pageDimensions.height) {
+          console.log('Setting new top for duplicated item', newTop);
           newItem.top = newTop;
         }
         return { action: 'create', data: newItem, select: 'clear' };

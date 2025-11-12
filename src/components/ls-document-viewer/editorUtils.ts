@@ -10,6 +10,7 @@ import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { ValidationType } from '../../types/ValidationType';
 import { getTemplate } from './adapter/templateActions';
+import { addField } from './editorCalculator';
 import { validate } from './validator';
 
 /**
@@ -54,10 +55,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 
   if (data.event.action === 'create') {
     if (prefix === 'ele') {
-      const fi = this.component.shadowRoot.getElementById('ls-field-' + data.obj.id) as HTMLLsEditorFieldElement;
-
-      fi.setAttribute('id', 'ls-field-' + id);
-      fi.dataItem = { ...data.obj, id };
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), { ...data.obj, id });      
     }
     this.validationErrors = validate.bind(this)(this._template);
   }

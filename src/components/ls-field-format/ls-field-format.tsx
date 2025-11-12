@@ -82,7 +82,12 @@ export class LsFieldFormat {
             </div>
             <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
-              <input id='ls-toolbar-font-size' width="30" size={4} class={'has-leading-icon'} />
+              <input id='ls-toolbar-font-size' width="30" size={4}
+                value={this.dataItem[0].fontSize}
+                onChange={input => {
+                  this.alter({ fontSize: (input.target as HTMLInputElement).value });
+                }}
+                class={'has-leading-icon'} />
             </div>
             <div class={'button-group'}>
               <button
@@ -182,13 +187,13 @@ export class LsFieldFormat {
               <option value="right">Right</option>
             </select> */}
 
-            
+
           </div>
-          
+
         )}
         <ls-tooltip id="ls-tooltip-master" />
       </Host>
-      
+
     );
   }
 }
