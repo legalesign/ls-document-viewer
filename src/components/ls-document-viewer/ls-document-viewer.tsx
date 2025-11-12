@@ -498,12 +498,12 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
-          const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+          // const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
-          fu.dataItem = update.data as LSApiElement;
+          // fu.dataItem = update.data as LSApiElement;
           // Refresh the selected array
           this.selectFields.emit(this.selected.map(sf => sf.dataItem));
-          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
+          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
