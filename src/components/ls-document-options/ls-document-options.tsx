@@ -146,6 +146,10 @@ export class LsDocumentOptions {
             ></ls-toggle>
           </div>
           <div class={'template-detail-section column'}>
+            <p class="template-detail-section-title">Retention Days</p>
+            <p>{this.template?.retention}</p>
+          </div>
+          <div class={'template-detail-section column'}>
             <p class="template-detail-section-title">Pages</p>
             <p>{this.template?.pageCount}</p>
           </div>
