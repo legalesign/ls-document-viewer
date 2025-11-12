@@ -83,6 +83,8 @@ export class LsFieldFormat {
             <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input id='ls-toolbar-font-size' width="30" size={4}
+                type="number"
+                min="4"
                 value={this.dataItem[0].fontSize}
                 onChange={input => {
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
