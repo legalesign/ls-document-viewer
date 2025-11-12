@@ -30,20 +30,20 @@ export class LsFieldFormat {
 
   private handleKeyDown = (event: KeyboardEvent) => {
     event.stopPropagation();
-  }
+  };
 
   private handleKeyUp = (event: KeyboardEvent) => {
     event.stopPropagation();
-  }
+  };
 
   // Send selection changes to bars and panels if in use.
   @Watch('dataItem')
   selectFieldsHandler() {
     if (this.dataItem.length > 0) {
       var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
-      if (selFont) selFont.value = this.dataItem[0].fontName;
+      if (selFont) selFont.value = this.allElementsSame()?.fontName;
       var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
-      if (selFontSize) selFontSize.value = this.dataItem[0].fontSize.toString();
+      if (selFontSize) selFontSize.value = this.allElementsSame()?.fontSize.toString();
     }
     attachAllTooltips(this.component.shadowRoot);
   }
@@ -66,6 +66,15 @@ export class LsFieldFormat {
     attachAllTooltips(this.component.shadowRoot);
   }
 
+  allElementsSame = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return;
+    const firstFontName = this.dataItem[0].fontName;
+    const allFontsSame = this.dataItem.every(item => item.fontName === firstFontName);
+    const firstFontSize = this.dataItem[0].fontSize;
+    const allFontSizesSame = this.dataItem.every(item => item.fontSize === firstFontSize);
+    return { isSame: allFontsSame && allFontSizesSame, fontName: allFontsSame ? firstFontName : 'mixed', fontSize: allFontSizesSame ? firstFontSize : 'mixed' };
+  };
+
   render() {
     return (
       <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
@@ -74,12 +83,15 @@ export class LsFieldFormat {
             <div class="input-wrapper" data-tooltip="Font Family">
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
-                id='ls-toolbar-font-select'
+                id="ls-toolbar-font-select"
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
                 class={'has-leading-icon'}
               >
+                <option disabled selected={this.allElementsSame()?.fontName === 'mixed'} value={'mixed'}>
+                  Mixed
+                </option>
                 <option value="arial">Arial</option>
                 <option value="liberation sans">Liberation Sans</option>
                 <option value="courier">Courier</option>
@@ -90,15 +102,17 @@ export class LsFieldFormat {
             </div>
             <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
-              <input id='ls-toolbar-font-size' width="30" size={4}
-                type="number"
+              <input
+                id="ls-toolbar-font-size"
+                type='number'
                 min="4"
-                value={this.dataItem[0].fontSize}
+                value={this.allElementsSame()?.fontSize}
                 onChange={input => {
-                  if ((input.target as HTMLInputElement).value === "") return;
+                  if ((input.target as HTMLInputElement).value === '') return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
-                class={'has-leading-icon'} />
+                class={'has-leading-icon'}
+              />
             </div>
             <div class={'button-group'}>
               <button
@@ -134,8 +148,7 @@ export class LsFieldFormat {
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
-                id='ls-toolbar-font-select'
-
+                id="ls-toolbar-font-select"
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
@@ -151,13 +164,13 @@ export class LsFieldFormat {
             <div class="input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
-                id='ls-toolbar-font-size'
+                id="ls-toolbar-font-size"
                 type="number"
                 min="4"
                 size={4}
                 value={this.dataItem[0].fontSize}
                 onChange={input => {
-                  if ((input.target as HTMLInputElement).value === "") return;
+                  if ((input.target as HTMLInputElement).value === '') return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
                 class={'has-leading-icon'}
@@ -199,14 +212,10 @@ export class LsFieldFormat {
               <option value="center">Center</option>
               <option value="right">Right</option>
             </select> */}
-
-
           </div>
-
         )}
         <ls-tooltip id="ls-tooltip-master" />
       </Host>
-
     );
   }
 }

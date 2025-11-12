@@ -119,6 +119,12 @@ textarea:disabled {
   background-color: var(--gray-10, #f7f8fa);
 }
 
+input[type='number'] {
+  width: max-content;
+  max-width: 3rem;
+
+}
+
 input[type='checkbox'] {
   appearance: none;
   position: relative;
