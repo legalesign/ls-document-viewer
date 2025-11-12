@@ -1176,7 +1176,14 @@ declare global {
         new (): HTMLLsToolbarElement;
     };
     interface HTMLLsToolboxFieldElementEventMap {
-        "selected": any;
+        "fieldTypeSelected": {
+    label: string
+    elementType: string
+    defaultHeight: number
+    defaultWidth: number
+    formElementType: string
+    validation: number
+  };
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1771,7 +1778,14 @@ declare namespace LocalJSX {
           * The text to display for this field type.
          */
         "label"?: string;
-        "onSelected"?: (event: LsToolboxFieldCustomEvent<any>) => void;
+        "onFieldTypeSelected"?: (event: LsToolboxFieldCustomEvent<{
+    label: string
+    elementType: string
+    defaultHeight: number
+    defaultWidth: number
+    formElementType: string
+    validation: number
+  }>) => void;
         /**
           * The signer color of the element
           * @default 0

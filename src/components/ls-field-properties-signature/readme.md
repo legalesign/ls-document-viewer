@@ -40,12 +40,17 @@ graph TD;
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
+  ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
+  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
+  ls-field-dimensions --> ls-tooltip
   ls-field-placement --> ls-icon
+  ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-signature
   style ls-field-properties-signature fill:#f9f,stroke:#333,stroke-width:4px

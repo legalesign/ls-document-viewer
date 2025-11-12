@@ -23,9 +23,9 @@
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `selected` |             | `CustomEvent<any>` |
+| Event               | Description | Type                                                                                                                                             |
+| ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fieldTypeSelected` |             | `CustomEvent<{ label: string; elementType: string; defaultHeight: number; defaultWidth: number; formElementType: string; validation: number; }>` |
 
 
 ## Dependencies
@@ -37,11 +37,13 @@
 ### Depends on
 
 - [ls-icon](../ls-icon)
+- [ls-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-toolbox-field --> ls-icon
+  ls-toolbox-field --> ls-tooltip
   ls-document-viewer --> ls-toolbox-field
   style ls-toolbox-field fill:#f9f,stroke:#333,stroke-width:4px
 ```

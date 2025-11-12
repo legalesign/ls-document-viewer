@@ -1,8 +1,8 @@
-import { Component, Event, Host, Listen, Prop, Element, Watch, h } from '@stencil/core';
+import { Component, Event, Host, Listen, Prop, Element, h, EventEmitter } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { EventEmitter } from 'stream';
 import { attachAllTooltips } from '../../utils/tooltip';
+
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -53,15 +53,14 @@ export class LsToolboxField {
     cancelable: true,
     composed: true,
   })
-  selected: EventEmitter;
-
-  @Watch('isSelected')
-  modeHandler(_isSelected) {
-    // When opened fire an event to let the parent handle closing other controls
-    if (_isSelected) {
-      this.selected.emit(this.formElementType);
-    }
-  }
+  fieldTypeSelected: EventEmitter<{
+    label: string
+    elementType: string
+    defaultHeight: number
+    defaultWidth: number
+    formElementType: string
+    validation: number
+  }>;
 
   @Listen('dragstart')
   handleDragStart(event) {
@@ -103,7 +102,16 @@ export class LsToolboxField {
               boxShadow: `0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);`,
             }
           }
-          onClick={() => (this.isSelected = !this.isSelected)}
+          onClick={() => {
+            this.fieldTypeSelected.emit({
+              label: this.label,
+              formElementType: this.formElementType,
+              elementType: this.elementType,
+              validation: this.validation,
+              defaultHeight: this.defaultHeight,
+              defaultWidth: this.defaultWidth,
+            });
+          }}
         >
           <div
             class="toolbox-field-icon"
@@ -125,7 +133,7 @@ export class LsToolboxField {
           </p>
           <ls-icon name="drag-vertical" size="16" color="#787a80" />
         </div>
-        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
+        <ls-tooltip id="ls-tooltip-master" tooltipText='Something' />
       </Host>
     );
   }

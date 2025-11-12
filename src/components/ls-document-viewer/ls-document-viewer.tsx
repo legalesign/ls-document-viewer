@@ -7,7 +7,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { mouseClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
+import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType, matchData } from './editorUtils';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
@@ -111,6 +111,14 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) groupInfo: any;
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
+  @State() fieldTypeSelected: IToolboxField = {
+        label: 'Signature',
+        formElementType: 'signature',
+        elementType: 'signature',
+        validation: 0,
+        defaultHeight: 27,
+        defaultWidth: 120,
+      };
 
   /**
    * An ease of use property that will arrange document-viewer appropraitely.
@@ -209,6 +217,8 @@ export class LsDocumentViewer {
    */
   @Prop() toolboxFilter?: string = null;
 
+
+
   //
   // --- Event Emitters --- //
   //
@@ -228,6 +238,18 @@ export class LsDocumentViewer {
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+  }
+
+  @Listen('fieldTypeSelected')
+  handleFieldTypeSelected(event) {
+    console.log(event);
+    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+
+    fields.forEach(element => {
+      element.isSelected = element.formElementType === event.detail.formElementType;
+    });
+
+    this.fieldTypeSelected = event.detail;
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -276,7 +298,9 @@ export class LsDocumentViewer {
       toolbar.dataItem = event.detail as any as LSApiElement[];
     }
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
-    if (propPanel) {
+    if (event.detail.length === 0) {
+      this.selected = [];
+    } else {
       propPanel.dataItem = event.detail as any as LSApiElement[];
     }
 
@@ -496,12 +520,12 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
-          const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+          // const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
-          fu.dataItem = update.data as LSApiElement;
+          // fu.dataItem = update.data as LSApiElement;
           // Refresh the selected array
           this.selectFields.emit(this.selected.map(sf => sf.dataItem));
-          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fu : s));
+          this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
@@ -511,7 +535,7 @@ export class LsDocumentViewer {
         const fields = this._template.elementConnection.templateElements;
         this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
-        this.selected = [];
+        this.selectFields.emit([]);
       } else {
         console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.');
       }
@@ -535,6 +559,7 @@ export class LsDocumentViewer {
     dropTarget.addEventListener('mousedown', mouseDown.bind(this));
     dropTarget.addEventListener('mousemove', mouseMove.bind(this));
     dropTarget.addEventListener('mouseup', mouseUp.bind(this));
+    dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
     document.addEventListener('keydown', keyDown.bind(this));
     dropTarget.addEventListener('dragenter', event => {
       event.preventDefault();
@@ -596,14 +621,7 @@ export class LsDocumentViewer {
     attachAllTooltips(this.component.shadowRoot);
   }
 
-  handleSelectedField(event) {
-    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
 
-    fields.forEach(element => {
-      const isSelected = element.formElementType === event.detail;
-      element.isSelected = isSelected;
-    });
-  }
 
   render() {
     return (
@@ -650,9 +668,6 @@ export class LsDocumentViewer {
                         icon="signature"
                         tooltip="Use this field to collect Signatures from Participants"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                         style={this.signer > 0 ? { display: 'block' } : { display: 'none' }}
                       />
                       <ls-toolbox-field
@@ -665,9 +680,6 @@ export class LsDocumentViewer {
                         icon="auto-sign"
                         tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                         style={this.signer === 0 ? { display: 'block' } : { display: 'none' }}
                       />
                       <ls-toolbox-field
@@ -680,9 +692,6 @@ export class LsDocumentViewer {
                         icon="text"
                         tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       {this.signer > 0 && (
@@ -696,9 +705,6 @@ export class LsDocumentViewer {
                           icon="auto-date"
                           tooltip="Automatically inserts the date upon completion by the assigned Participant"
                           signer={this.signer}
-                          onSelected={event => {
-                            this.handleSelectedField.bind(this)(event);
-                          }}
                         />
                       )}
 
@@ -712,9 +718,6 @@ export class LsDocumentViewer {
                         icon="calender"
                         tooltip="A field for collecting dates with built-in date formatting options"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       <ls-toolbox-field
@@ -727,9 +730,6 @@ export class LsDocumentViewer {
                         icon="at-symbol"
                         tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
                       <ls-toolbox-field
                         elementType="initials"
@@ -741,9 +741,6 @@ export class LsDocumentViewer {
                         icon="initials"
                         tooltip="Use this field anywhere Participants are required to Initial your document"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       <ls-toolbox-field
@@ -756,9 +753,6 @@ export class LsDocumentViewer {
                         icon="hashtag"
                         tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       <ls-toolbox-field
@@ -771,9 +765,6 @@ export class LsDocumentViewer {
                         icon="dropdown"
                         tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       <ls-toolbox-field
@@ -786,9 +777,6 @@ export class LsDocumentViewer {
                         icon="check"
                         tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
                         signer={this.signer}
-                        onSelected={event => {
-                          this.handleSelectedField.bind(this)(event);
-                        }}
                       />
 
                       {this.signer > 0 && (
@@ -803,9 +791,6 @@ export class LsDocumentViewer {
                             icon="code"
                             tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
                             signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
                           />
                           <ls-toolbox-field
                             elementType="image"
@@ -817,9 +802,6 @@ export class LsDocumentViewer {
                             icon="photograph"
                             tooltip="Use when you need Participants to upload their own images during the signing process"
                             signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
                           />
 
                           <ls-toolbox-field
@@ -832,9 +814,6 @@ export class LsDocumentViewer {
                             icon="upload"
                             tooltip="Use when you need Participants to upload their own documents during the signing process"
                             signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
                           />
 
                           <ls-toolbox-field
@@ -847,9 +826,6 @@ export class LsDocumentViewer {
                             icon="pencil"
                             tooltip="Allow users to draw on the document using their mouse or touchscreen"
                             signer={this.signer}
-                            onSelected={event => {
-                              this.handleSelectedField.bind(this)(event);
-                            }}
                           />
                         </>
                       )}

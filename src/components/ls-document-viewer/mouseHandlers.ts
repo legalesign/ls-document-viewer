@@ -22,7 +22,7 @@ export function mouseDown(e) {
   // - a hit on the background document SELECTMULTIPLE with a box
   this.hitField = null;
   const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-  
+
   fields.forEach(f => {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
     const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY };
@@ -54,7 +54,7 @@ export function mouseDown(e) {
     box.style.visibility = 'hidden';
 
     // mouse down on a field, select it and note the start location
-    if(this.hitField.selected === false) {
+    if (this.hitField.selected === false) {
       // unselect all other fields
       fields.forEach(fu => {
         fu.selected = false;
@@ -66,7 +66,7 @@ export function mouseDown(e) {
     const { height, width } = this.hitField.getBoundingClientRect();
     const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
     this.startMouse = fdims;
-    
+
     this.startLocations = this.selected.map(f => {
       const { height, width } = f.getBoundingClientRect();
       const beHtml = f as HTMLElement;
@@ -78,7 +78,7 @@ export function mouseDown(e) {
     box.style.visibility = 'hidden';
 
     // mouse down on a field, select it and note the start location
-    if(this.hitField.selected === false) {
+    if (this.hitField.selected === false) {
       // unselect all other fields
       fields.forEach(fu => {
         fu.selected = false;
@@ -90,7 +90,7 @@ export function mouseDown(e) {
     const { height, width } = this.hitField.getBoundingClientRect();
     const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
     this.startMouse = fdims;
-    
+
     this.startLocations = this.selected.map(f => {
       const { height, width } = f.getBoundingClientRect();
       const beHtml = f as HTMLElement;
@@ -98,7 +98,7 @@ export function mouseDown(e) {
     });
     this.selectionBox = null;
   } else {
-      // move down on empty space, start a selection box
+    // move down on empty space, start a selection box
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
@@ -144,8 +144,6 @@ export function mouseMove(event) {
     }
 
     debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
-
-  
   } else if (this.selectionBox && event.buttons === 1) {
     this.isBoxing = true;
     // draw the multiple selection box
@@ -174,7 +172,7 @@ export function mouseMove(event) {
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
     if (this.selected?.length) {
-      for (let i = 0; i < this.selected.length; i++) {        
+      for (let i = 0; i < this.selected.length; i++) {
         this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
         this.selected[i].style.top = this.startLocations[i].top + movedY + 'px';
       }
@@ -297,6 +295,64 @@ export function mouseDrop(event) {
         templateId: this._template.id,
       } as LSApiElement,
     };
+    this.mutate.emit([newData]);
+    this.update.emit([newData]);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export function mouseDoubleClick(event) {
+  console.log('double click');
+  try {
+    const data: IToolboxField = this.fieldTypeSelected as IToolboxField;
+
+    // Unselect all current selected items
+    this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
+    var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+    // Make a new API compatible id for a template element (prefix 'ele')
+    const id = btoa('ele' + crypto.randomUUID());
+    const top = event.offsetY / this.zoom + frame.scrollTop;
+    const left = event.offsetX / this.zoom + frame.scrollLeft;    
+
+    // TODO: Put these defaults somewhere sensible
+    const newData: LSMutateEvent = {
+      action: 'create',
+      data: {
+        id,
+        value: '',
+        formElementType: data.formElementType,
+        elementType: data.elementType,
+        validation: data.validation,
+        substantive: false,
+        top,
+        left,
+        hideBorder: false,
+        height: data.defaultHeight,
+        width: data.defaultWidth,
+        pageDimensions: this.pageDimensions[this.pageNum - 1],
+        fontName: 'arial',
+        fontSize: 10,
+        align: 'left',
+        signer: this.signer,
+        page: this.pageNum,
+        mapTo: null,
+        label: '',
+        helpText: null,
+        logicGroup: null,
+        optional: false,
+        options: null,
+        logicAction: null,
+        labelExtra: null,
+        fieldOrder: null,
+        ax: left > 0 ? left / this.pageDimensions[this.pageNum - 1].width : 0,
+        ay: top > 0 ? top / this.pageDimensions[this.pageNum - 1].height : 0,
+        bx: (left + data.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
+        by: (top + data.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
+        templateId: this._template.id,
+      } as LSApiElement,
+    };
+    console.log(newData);
     this.mutate.emit([newData]);
     this.update.emit([newData]);
   } catch (e) {

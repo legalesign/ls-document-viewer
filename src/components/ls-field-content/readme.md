@@ -41,6 +41,7 @@
 - [ls-field-type-display](../ls-field-type-display)
 - [ls-toggle](../ls-toggle)
 - [ls-input-wrapper](../ls-input-wrapper)
+- [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
@@ -49,8 +50,11 @@ graph TD;
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-input-wrapper
+  ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
+  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-field-properties-date --> ls-field-content
   ls-field-properties-dropdown --> ls-field-content
   ls-field-properties-email --> ls-field-content

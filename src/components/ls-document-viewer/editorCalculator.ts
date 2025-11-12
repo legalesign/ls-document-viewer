@@ -48,7 +48,7 @@ export function moveField(item: HTMLLsEditorFieldElement, data){
   item.style.fontSize = Math.floor(data.fontSize * this.zoom) + 'pt';
   item.style.fontFamily = data.fontName;
   item.style.textAlign = data.align;
-  item.dataItem = data;
+  item.dataItem = recalculateCoordinates(data);
 };
 
 // calculates html compatible coords at current zoom level

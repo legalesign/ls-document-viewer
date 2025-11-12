@@ -51,10 +51,18 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-field-dimensions --> ls-icon
+  ls-field-dimensions --> ls-tooltip
   ls-field-size --> ls-icon
+  ls-field-size --> ls-tooltip
   ls-field-alignment --> ls-icon
+  ls-field-alignment --> ls-tooltip
   ls-field-placement --> ls-icon
+  ls-field-placement --> ls-tooltip
   ls-field-distribute --> ls-icon
+  ls-field-distribute --> ls-tooltip
+  ls-field-distribute --> ls-editor-field
+  ls-editor-field --> ls-icon
+  ls-editor-field --> ls-editor-field
   ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-multiple
   style ls-field-properties-multiple fill:#f9f,stroke:#333,stroke-width:4px
