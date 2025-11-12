@@ -28,6 +28,14 @@ export class LsFieldFormat {
   update: EventEmitter<LSMutateEvent[]>;
   @Element() component: HTMLElement;
 
+  private handleKeyDown = (event: KeyboardEvent) => {
+    event.stopPropagation();
+  }
+
+  private handleKeyUp = (event: KeyboardEvent) => {
+    event.stopPropagation();
+  }
+
   // Send selection changes to bars and panels if in use.
   @Watch('dataItem')
   selectFieldsHandler() {
@@ -60,7 +68,7 @@ export class LsFieldFormat {
 
   render() {
     return (
-      <Host>
+      <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
         {this.dataItem && this.dataItem.length > 1 && (
           <div class={'ls-field-format-bar'}>
             <div class="input-wrapper" data-tooltip="Font Family">
@@ -87,6 +95,7 @@ export class LsFieldFormat {
                 min="4"
                 value={this.dataItem[0].fontSize}
                 onChange={input => {
+                  if ((input.target as HTMLInputElement).value === "") return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
                 class={'has-leading-icon'} />
@@ -143,10 +152,12 @@ export class LsFieldFormat {
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id='ls-toolbar-font-size'
-                width="30"
+                type="number"
+                min="4"
                 size={4}
                 value={this.dataItem[0].fontSize}
                 onChange={input => {
+                  if ((input.target as HTMLInputElement).value === "") return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
                 class={'has-leading-icon'}
