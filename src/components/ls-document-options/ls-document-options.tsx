@@ -146,7 +146,7 @@ export class LsDocumentOptions {
             ></ls-toggle>
           </div>
           <div class={'template-detail-section column'}>
-            <p class="template-detail-section-title">Document Retention</p>
+            <p class="template-detail-section-title">Document Retention (Days)</p>
             <p>
               <input
                 value={this.template?.retention}
