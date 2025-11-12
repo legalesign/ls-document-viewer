@@ -276,7 +276,9 @@ export class LsDocumentViewer {
       toolbar.dataItem = event.detail as any as LSApiElement[];
     }
     var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
-    if (propPanel) {
+    if (event.detail.length === 0) {
+      this.selected = [];
+    } else {
       propPanel.dataItem = event.detail as any as LSApiElement[];
     }
 
@@ -511,7 +513,7 @@ export class LsDocumentViewer {
         const fields = this._template.elementConnection.templateElements;
         this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
-        this.selected = [];
+        this.selectFields.emit([]);
       } else {
         console.warn('Unrecognised action, check Legalesign documentation. `create`, `update` and `delete` allowed.');
       }
