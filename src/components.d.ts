@@ -290,6 +290,12 @@ export namespace Components {
         "valid": boolean;
         "value"?: string | number;
     }
+    interface LsHelperBar {
+        /**
+          * @default false
+         */
+        "expanded": boolean;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
@@ -308,6 +314,9 @@ export namespace Components {
           * @default false
          */
         "select": boolean;
+    }
+    interface LsKeyboardShortcuts {
+        "referenceElement": HTMLElement;
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -991,6 +1000,12 @@ declare global {
         prototype: HTMLLsFormfieldElement;
         new (): HTMLLsFormfieldElement;
     };
+    interface HTMLLsHelperBarElement extends Components.LsHelperBar, HTMLStencilElement {
+    }
+    var HTMLLsHelperBarElement: {
+        prototype: HTMLLsHelperBarElement;
+        new (): HTMLLsHelperBarElement;
+    };
     interface HTMLLsIconElement extends Components.LsIcon, HTMLStencilElement {
     }
     var HTMLLsIconElement: {
@@ -1002,6 +1017,12 @@ declare global {
     var HTMLLsInputWrapperElement: {
         prototype: HTMLLsInputWrapperElement;
         new (): HTMLLsInputWrapperElement;
+    };
+    interface HTMLLsKeyboardShortcutsElement extends Components.LsKeyboardShortcuts, HTMLStencilElement {
+    }
+    var HTMLLsKeyboardShortcutsElement: {
+        prototype: HTMLLsKeyboardShortcutsElement;
+        new (): HTMLLsKeyboardShortcutsElement;
     };
     interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
     }
@@ -1213,8 +1234,10 @@ declare global {
         "ls-field-size": HTMLLsFieldSizeElement;
         "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
         "ls-formfield": HTMLLsFormfieldElement;
+        "ls-helper-bar": HTMLLsHelperBarElement;
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
+        "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
         "ls-number-input": HTMLLsNumberInputElement;
         "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
@@ -1518,6 +1541,12 @@ declare namespace LocalJSX {
         "valid"?: boolean;
         "value"?: string | number;
     }
+    interface LsHelperBar {
+        /**
+          * @default false
+         */
+        "expanded"?: boolean;
+    }
     interface LsIcon {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
@@ -1536,6 +1565,9 @@ declare namespace LocalJSX {
           * @default false
          */
         "select"?: boolean;
+    }
+    interface LsKeyboardShortcuts {
+        "referenceElement"?: HTMLElement;
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -1811,8 +1843,10 @@ declare namespace LocalJSX {
         "ls-field-size": LsFieldSize;
         "ls-field-type-display": LsFieldTypeDisplay;
         "ls-formfield": LsFormfield;
+        "ls-helper-bar": LsHelperBar;
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
+        "ls-keyboard-shortcuts": LsKeyboardShortcuts;
         "ls-number-input": LsNumberInput;
         "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
@@ -1869,8 +1903,10 @@ declare module "@stencil/core" {
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
             "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
+            "ls-helper-bar": LocalJSX.LsHelperBar & JSXBase.HTMLAttributes<HTMLLsHelperBarElement>;
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
+            "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
             "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;

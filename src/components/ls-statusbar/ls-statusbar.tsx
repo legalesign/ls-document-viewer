@@ -59,6 +59,7 @@ export class LsStatusbar {
   render() {
     return (
       <Host>
+        <div class={'controls-bar'}>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
         <div class={'status-bar-section'}>
@@ -105,7 +106,9 @@ export class LsStatusbar {
             <ls-icon name="chevron-right" />
           </button>
         </div>
-        <ls-tooltip id="ls-tooltip-master" tooltipText='Something'/>
+        </div>
+        <ls-helper-bar />
+        <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>
     );
