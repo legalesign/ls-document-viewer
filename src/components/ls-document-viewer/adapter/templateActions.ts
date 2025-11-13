@@ -6,7 +6,7 @@ const updateTemplate = template => {
         templateId: "${template.id}", 
         title: "${template.title}",
         locked: ${template.locked},
-        retention: ${template.retention},
+        documentRetentionDays: ${template.documentRetentionDays},
         autoArchive: ${template.autoArchive},
         fixSignatureScale: ${template.fixSignatureScale ? template.fixSignatureScale : false}
       })
