@@ -112,13 +112,13 @@ export class LsDocumentViewer {
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
   @State() fieldTypeSelected: IToolboxField = {
-        label: 'Signature',
-        formElementType: 'signature',
-        elementType: 'signature',
-        validation: 0,
-        defaultHeight: 27,
-        defaultWidth: 120,
-      };
+    label: 'Signature',
+    formElementType: 'signature',
+    elementType: 'signature',
+    validation: 0,
+    defaultHeight: 27,
+    defaultWidth: 120,
+  };
 
   /**
    * An ease of use property that will arrange document-viewer appropraitely.
@@ -264,7 +264,7 @@ export class LsDocumentViewer {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = this._template.roles.find(r => r.id === event.detail.parent);
     const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
-    
+
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -510,8 +510,8 @@ export class LsDocumentViewer {
 
     if (getApiType(update.data) === 'element') {
       if (update.action === 'create') {
-  //      const newData = { ...update.data, page: this.pageNum };
-//        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
+        //      const newData = { ...update.data, page: this.pageNum };
+        //        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
 
         //const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
 
@@ -782,54 +782,53 @@ export class LsDocumentViewer {
                       />
 
                       {this.signer > 0 && (
-                        <>
-                          <ls-toolbox-field
-                            elementType="regex"
-                            formElementType="regex"
-                            label="Regex"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={93}
-                            icon="code"
-                            tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
-                            signer={this.signer}
-                          />
-                          <ls-toolbox-field
-                            elementType="image"
-                            formElementType="image"
-                            label="Image"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={90}
-                            icon="photograph"
-                            tooltip="Use when you need Participants to upload their own images during the signing process"
-                            signer={this.signer}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="file"
-                            formElementType="file"
-                            label="File"
-                            defaultHeight={27}
-                            defaultWidth={120}
-                            validation={74}
-                            icon="upload"
-                            tooltip="Use when you need Participants to upload their own documents during the signing process"
-                            signer={this.signer}
-                          />
-
-                          <ls-toolbox-field
-                            elementType="drawn"
-                            formElementType="drawn"
-                            label="Drawn"
-                            defaultHeight={120}
-                            defaultWidth={120}
-                            validation={90}
-                            icon="pencil"
-                            tooltip="Allow users to draw on the document using their mouse or touchscreen"
-                            signer={this.signer}
-                          />
-                        </>
+                        <ls-toolbox-field
+                          elementType="regex"
+                          formElementType="regex"
+                          label="Regex"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={93}
+                          icon="code"
+                          tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
+                          signer={this.signer}
+                        />)}
+                      {this.signer > 0 && (
+                        <ls-toolbox-field
+                          elementType="image"
+                          formElementType="image"
+                          label="Image"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={90}
+                          icon="photograph"
+                          tooltip="Use when you need Participants to upload their own images during the signing process"
+                          signer={this.signer}
+                        />)}
+                      {this.signer > 0 && (
+                        <ls-toolbox-field
+                          elementType="file"
+                          formElementType="file"
+                          label="File"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={74}
+                          icon="upload"
+                          tooltip="Use when you need Participants to upload their own documents during the signing process"
+                          signer={this.signer}
+                        />)}
+                      {this.signer > 0 && (
+                        <ls-toolbox-field
+                          elementType="drawn"
+                          formElementType="drawn"
+                          label="Drawn"
+                          defaultHeight={120}
+                          defaultWidth={120}
+                          validation={90}
+                          icon="pencil"
+                          tooltip="Allow users to draw on the document using their mouse or touchscreen"
+                          signer={this.signer}
+                        />
                       )}
                     </div>
                   </div>
