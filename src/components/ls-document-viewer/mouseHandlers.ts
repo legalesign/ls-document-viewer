@@ -313,7 +313,7 @@ export function mouseDoubleClick(event) {
     // Make a new API compatible id for a template element (prefix 'ele')
     const id = btoa('ele' + crypto.randomUUID());
     const top = event.offsetY / this.zoom + frame.scrollTop;
-    const left = event.offsetX / this.zoom + frame.scrollLeft;    
+    const left = event.offsetX / this.zoom + frame.scrollLeft; 
 
     // TODO: Put these defaults somewhere sensible
     const newData: LSMutateEvent = {

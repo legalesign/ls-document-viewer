@@ -263,7 +263,8 @@ export class LsDocumentViewer {
   addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType; parent?: string | null }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = this._template.roles.find(r => r.id === event.detail.parent);
-
+    const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
+    
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -271,8 +272,8 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length === 0 ? 1 : this._template.roles.length,
-          ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length === 0 ? 1 : this._template.roles.length,
+          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : (this._template.roles.length === 0 ? 1 : newSignerIndex),
+          ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
           templateId: this._template.id,
@@ -601,6 +602,7 @@ export class LsDocumentViewer {
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
       this.groupInfo = resultGroup.group;
       this.initViewer();
+      console.log(this._template);
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);

@@ -120,7 +120,7 @@ export class LsParticipantCard {
                 }}
               >
                 <ls-icon name={this.signer?.roleType === 'APPROVER' ? 'check-circle' : this.signer?.roleType === 'SIGNER' ? 'signature' : 'eye'} />
-                {'Participant ' + (this.signer?.signerIndex || '')}
+                {(this.signer?.ordinal || '')}
               </div>
               <div class={'button-set hidden'}>
                 {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
