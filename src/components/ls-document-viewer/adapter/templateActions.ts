@@ -35,7 +35,7 @@ const getTemplate = (id: string) => {
             lastSent
             fixSignatureScale
             groupId
-            retention
+            documentRetentionDays
             roles{
               id
               name

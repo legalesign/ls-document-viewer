@@ -24,5 +24,5 @@ export type LSApiTemplate = {
   pageDimensionArray: [number, number][];
   pageDimensions: string;
   fixSignatureScale?: boolean;
-  retention: number;
+  documentRetentionDays: number;
 };

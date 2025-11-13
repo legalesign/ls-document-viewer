@@ -149,11 +149,11 @@ export class LsDocumentOptions {
             <p class="template-detail-section-title">Document Retention (Days)</p>
             <p>
               <input
-                value={this.template?.retention}
+                value={this.template?.documentRetentionDays}
                 style={{ width: '100%' }}
                 onInput={e => {
                   e.preventDefault();
-                  this.alter({ retention: (e.target as HTMLInputElement).value });
+                  this.alter({ documentRetentionDays: (e.target as HTMLInputElement).value });
                 }}
               />
               </p>
