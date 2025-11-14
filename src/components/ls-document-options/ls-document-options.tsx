@@ -151,6 +151,7 @@ export class LsDocumentOptions {
               <input
                 value={this.template?.documentRetentionDays}
                 style={{ width: '100%' }}
+                type='number'
                 onInput={e => {
                   e.preventDefault();
                   this.alter({ documentRetentionDays: (e.target as HTMLInputElement).value });
