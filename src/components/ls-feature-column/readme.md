@@ -10,6 +10,7 @@
 | Property  | Attribute | Description                                                                                               | Type                                       | Default     |
 | --------- | --------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
 | `manager` | `manager` | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' } | `"document" \| "participant" \| "toolbox"` | `'toolbox'` |
+| `mode`    | `mode`    | The mode that document viewer is being used in. {'preview' \| 'editor' \| 'custom'}                       | `"compose" \| "editor" \| "preview"`       | `'editor'`  |
 
 
 ## Events

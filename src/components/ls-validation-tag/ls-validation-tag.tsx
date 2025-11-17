@@ -11,6 +11,7 @@ export class LsValidationTag {
   @Prop({ mutable: true }) status: string = 'Invalid';
   @Prop({ mutable: true }) validationErrors: ValidationError[] = [];
   @Prop({ mutable: true }) isExpanded: boolean = false;
+  @Prop() showDropDown: boolean = true;
 
   render() {
     return (
@@ -21,14 +22,14 @@ export class LsValidationTag {
         >
           {this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
           {this.validationErrors.length > 0 && <div class={'field-counter'}>{this.validationErrors.length}</div>}
-          {this.validationErrors.length > 0 && (
+          {this.validationErrors.length > 0 && this.showDropDown && (
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
         </div>
-        {this.isExpanded && this.validationErrors.length !== 0 && (
+        {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && (
           <div class={'field-dropdown'}>
             <div class={'dropdown-header'}>
-              <h2>Signature Fields Required</h2>
+              <h2>Fields Required</h2>
               <p>
                 {this.validationErrors.length} {this.validationErrors.length === 1 ? 'Recipient needs a Signature Field' : 'Recipients need Signature Fields'} placed for them
               </p>

@@ -628,7 +628,7 @@ export class LsDocumentViewer {
         <>
           {this.isLoading && <ls-page-loader />}
           <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag validationErrors={this.validationErrors} />
+            <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"}/>
           </div>
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>
@@ -640,6 +640,7 @@ export class LsDocumentViewer {
               <div id="ls-left-box" class="leftBox">
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
                   <ls-feature-column
+                    mode={this.mode}
                     onManage={manager => {
                       if (manager.detail === 'document') {
                         var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;

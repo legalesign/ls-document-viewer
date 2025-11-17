@@ -21,3 +21,7 @@
   background-color: var(--primary-60, #4456F6);
   color: var(--white, #fff);
 }
+
+.hidden {
+  display: none;
+}

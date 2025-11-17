@@ -14,6 +14,13 @@ export class LsFeatureColoumn {
    */
   @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' = 'toolbox';
 
+
+  /**
+   * The mode that document viewer is being used in.
+   * {'preview' | 'editor' | 'custom'}
+   */
+  @Prop() mode: 'preview' | 'editor' | 'compose' = 'editor';
+
   // Send an manager change up the DOM
   @Event() manage: EventEmitter<'document' | 'toolbox' | 'participant'>;
 
@@ -25,9 +32,8 @@ export class LsFeatureColoumn {
     return (
       <Host>
         <div
-          class={this.manager === 'document' ? 'activeIcon' : 'defaultIcon'}
+          class={this.mode !== "editor" ? 'hidden' : this.manager === 'document' ? 'activeIcon' : 'defaultIcon'}
           onClick={() => {
-            console.log('document');
             this.manage.emit('document');
             this.manager = 'document';
           }}

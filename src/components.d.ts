@@ -175,6 +175,11 @@ export namespace Components {
           * @default 'toolbox'
          */
         "manager": 'document' | 'toolbox' | 'participant';
+        /**
+          * The mode that document viewer is being used in. {'preview' | 'editor' | 'custom'}
+          * @default 'editor'
+         */
+        "mode": 'preview' | 'editor' | 'compose';
     }
     interface LsFieldAlignment {
         "dataItem": LSApiElement1[];
@@ -546,6 +551,10 @@ export namespace Components {
           * @default false
          */
         "isExpanded": boolean;
+        /**
+          * @default true
+         */
+        "showDropDown": boolean;
         /**
           * @default 'Invalid'
          */
@@ -1423,6 +1432,11 @@ declare namespace LocalJSX {
           * @default 'toolbox'
          */
         "manager"?: 'document' | 'toolbox' | 'participant';
+        /**
+          * The mode that document viewer is being used in. {'preview' | 'editor' | 'custom'}
+          * @default 'editor'
+         */
+        "mode"?: 'preview' | 'editor' | 'compose';
         "onManage"?: (event: LsFeatureColumnCustomEvent<'document' | 'toolbox' | 'participant'>) => void;
     }
     interface LsFieldAlignment {
@@ -1837,6 +1851,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "isExpanded"?: boolean;
+        /**
+          * @default true
+         */
+        "showDropDown"?: boolean;
         /**
           * @default 'Invalid'
          */
