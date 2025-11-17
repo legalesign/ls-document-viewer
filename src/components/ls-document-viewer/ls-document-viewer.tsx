@@ -660,7 +660,7 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      {this.showTool('signature') && (
+                      {this.signer > 0 && this.showTool('signature') && (
                         <ls-toolbox-field
                           elementType="signature"
                           formElementType="signature"
@@ -671,11 +671,10 @@ export class LsDocumentViewer {
                           icon="signature"
                           tooltip="Use this field to collect Signatures from Participants"
                           signer={this.signer}
-                          style={this.signer > 0 ? { display: 'block' } : { display: 'none' }}
                         />
                       )}
 
-                      {this.showTool('auto sign') && (
+                      {this.signer === 0 && this.showTool('auto sign') && (
                         <ls-toolbox-field
                           elementType="auto sign"
                           formElementType="auto sign"
@@ -686,7 +685,6 @@ export class LsDocumentViewer {
                           icon="auto-sign"
                           tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
                           signer={this.signer}
-                          style={this.signer === 0 ? { display: 'block' } : { display: 'none' }}
                         />
                       )}
                       {this.showTool('text') && (

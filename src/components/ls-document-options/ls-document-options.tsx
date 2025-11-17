@@ -137,11 +137,23 @@ export class LsDocumentOptions {
               <p class="template-detail-section-title">Lock Template</p>
               <p class={'template-detail-section-info'}>Lock Template to avoid changes being made</p>
             </div>
-            {/* <ls-formfield as="radio" value={'false'} /> */}
             <ls-toggle
               checked={this.template?.locked}
               onValueChange={e => {
                 this.alter({ locked: e.detail });
+              }}
+            ></ls-toggle>
+          </div>
+          <div class={'template-detail-section'}>
+            <div>
+              <p class="template-detail-section-title" tooltip-data="Fixes the aspect ratio of all signatures on the document. This allows Participants to re-use the same signature throughout the signing process. If this setting is turned on after several signature fields have been placed, fields will automatically re-size to match the aspect ratio of the first signature on the Template.">Fixed Signature Aspect</p>
+              <p class={'template-detail-section-info'}>Fixes the aspect ratio of all signatures on the document</p>
+            </div>
+
+            <ls-toggle
+              checked={this.template?.fixSignatureScale}
+              onValueChange={e => {
+                this.alter({ fixSignatureScale: e.detail });
               }}
             ></ls-toggle>
           </div>
