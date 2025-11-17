@@ -620,7 +620,9 @@ export class LsDocumentViewer {
     attachAllTooltips(this.component.shadowRoot);
   }
 
-
+  showTool(fieldFormType: string): boolean {
+    return this.filterToolbox === null || this.filterToolbox.split('|').includes(fieldFormType);
+  }
 
   render() {
     return (
@@ -628,7 +630,7 @@ export class LsDocumentViewer {
         <>
           {this.isLoading && <ls-page-loader />}
           <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"}/>
+            <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"} />
           </div>
           <div class="page-header">
             <p class="header-text-1">Template Creation</p>
@@ -658,43 +660,50 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      <ls-toolbox-field
-                        elementType="signature"
-                        formElementType="signature"
-                        label="Signature"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={0}
-                        icon="signature"
-                        tooltip="Use this field to collect Signatures from Participants"
-                        signer={this.signer}
-                        style={this.signer > 0 ? { display: 'block' } : { display: 'none' }}
-                      />
-                      <ls-toolbox-field
-                        elementType="auto sign"
-                        formElementType="auto sign"
-                        label="Auto Sign"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={3000}
-                        icon="auto-sign"
-                        tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
-                        signer={this.signer}
-                        style={this.signer === 0 ? { display: 'block' } : { display: 'none' }}
-                      />
-                      <ls-toolbox-field
-                        elementType="text"
-                        formElementType="text"
-                        label="Text"
-                        defaultHeight={27}
-                        defaultWidth={100}
-                        validation={0}
-                        icon="text"
-                        tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
-                        signer={this.signer}
-                      />
+                      {this.showTool('signature') && (
+                        <ls-toolbox-field
+                          elementType="signature"
+                          formElementType="signature"
+                          label="Signature"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={0}
+                          icon="signature"
+                          tooltip="Use this field to collect Signatures from Participants"
+                          signer={this.signer}
+                          style={this.signer > 0 ? { display: 'block' } : { display: 'none' }}
+                        />
+                      )}
 
-                      {this.signer > 0 && (
+                      {this.showTool('auto sign') && (
+                        <ls-toolbox-field
+                          elementType="auto sign"
+                          formElementType="auto sign"
+                          label="Auto Sign"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={3000}
+                          icon="auto-sign"
+                          tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
+                          signer={this.signer}
+                          style={this.signer === 0 ? { display: 'block' } : { display: 'none' }}
+                        />
+                      )}
+                      {this.showTool('text') && (
+                        <ls-toolbox-field
+                          elementType="text"
+                          formElementType="text"
+                          label="Text"
+                          defaultHeight={27}
+                          defaultWidth={100}
+                          validation={0}
+                          icon="text"
+                          tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
+                          signer={this.signer}
+                        />
+                      )}
+
+                      {this.signer > 0 && this.showTool('signing date') && (
                         <ls-toolbox-field
                           elementType="signing date"
                           formElementType="signing date"
@@ -708,78 +717,89 @@ export class LsDocumentViewer {
                         />
                       )}
 
-                      <ls-toolbox-field
-                        elementType="date"
-                        formElementType="date"
-                        label="Date"
-                        defaultHeight={27}
-                        defaultWidth={80}
-                        validation={2}
-                        icon="calender"
-                        tooltip="A field for collecting dates with built-in date formatting options"
-                        signer={this.signer}
-                      />
+                      {this.showTool('date') && (
+                        <ls-toolbox-field
+                          elementType="date"
+                          formElementType="date"
+                          label="Date"
+                          defaultHeight={27}
+                          defaultWidth={80}
+                          validation={2}
+                          icon="calender"
+                          tooltip="A field for collecting dates with built-in date formatting options"
+                          signer={this.signer}
+                        />
+                      )}
+                      {this.showTool('email') && (
+                        <ls-toolbox-field
+                          elementType="email"
+                          formElementType="email"
+                          label="Email"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={1}
+                          icon="at-symbol"
+                          tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
+                          signer={this.signer}
+                        />
+                      )}
 
-                      <ls-toolbox-field
-                        elementType="email"
-                        formElementType="email"
-                        label="Email"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={1}
-                        icon="at-symbol"
-                        tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
-                        signer={this.signer}
-                      />
-                      <ls-toolbox-field
-                        elementType="initials"
-                        formElementType="initials"
-                        label="Initials"
-                        defaultHeight={27}
-                        defaultWidth={120}
-                        validation={2000}
-                        icon="initials"
-                        tooltip="Use this field anywhere Participants are required to Initial your document"
-                        signer={this.signer}
-                      />
+                      {this.showTool('initials') && (
+                        <ls-toolbox-field
+                          elementType="initials"
+                          formElementType="initials"
+                          label="Initials"
+                          defaultHeight={27}
+                          defaultWidth={120}
+                          validation={2000}
+                          icon="initials"
+                          tooltip="Use this field anywhere Participants are required to Initial your document"
+                          signer={this.signer}
+                        />
+                      )}
 
-                      <ls-toolbox-field
-                        elementType="number"
-                        formElementType="number"
-                        label="Number"
-                        defaultHeight={27}
-                        defaultWidth={80}
-                        validation={50}
-                        icon="hashtag"
-                        tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
-                        signer={this.signer}
-                      />
+                      {this.showTool('number') && (
+                        <ls-toolbox-field
+                          elementType="number"
+                          formElementType="number"
+                          label="Number"
+                          defaultHeight={27}
+                          defaultWidth={80}
+                          validation={50}
+                          icon="hashtag"
+                          tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
+                          signer={this.signer}
+                        />)}
 
-                      <ls-toolbox-field
-                        elementType="dropdown"
-                        formElementType="dropdown"
-                        label="Dropdown"
-                        defaultHeight={27}
-                        defaultWidth={80}
-                        validation={20}
-                        icon="dropdown"
-                        tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
-                        signer={this.signer}
-                      />
+                      {this.showTool('dropdown') && (
+                        <ls-toolbox-field
+                          elementType="dropdown"
+                          formElementType="dropdown"
+                          label="Dropdown"
+                          defaultHeight={27}
+                          defaultWidth={80}
+                          validation={20}
+                          icon="dropdown"
+                          tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
+                          signer={this.signer}
+                        />)}
 
-                      <ls-toolbox-field
-                        elementType="checkbox"
-                        formElementType="checkbox"
-                        label="Checkbox"
-                        defaultHeight={27}
-                        defaultWidth={27}
-                        validation={25}
-                        icon="check"
-                        tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
-                        signer={this.signer}
-                      />
+                      {this.showTool('checkbox') && (
+                        <ls-toolbox-field
+                          elementType="checkbox"
+                          formElementType="checkbox"
+                          label="Checkbox"
+                          defaultHeight={27}
+                          defaultWidth={27}
+                          validation={25}
+                          icon="check"
+                          tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
+                          signer={this.signer}
+                        />)}
 
-                      {this.signer > 0 && (
+
+
+                      {this.signer > 0 && this.showTool('regex') && (
                         <ls-toolbox-field
                           elementType="regex"
                           formElementType="regex"
@@ -791,7 +811,7 @@ export class LsDocumentViewer {
                           tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
                           signer={this.signer}
                         />)}
-                      {this.signer > 0 && (
+                      {this.signer > 0 && this.showTool('image') && (
                         <ls-toolbox-field
                           elementType="image"
                           formElementType="image"
@@ -803,7 +823,7 @@ export class LsDocumentViewer {
                           tooltip="Use when you need Participants to upload their own images during the signing process"
                           signer={this.signer}
                         />)}
-                      {this.signer > 0 && (
+                      {this.signer > 0 && this.showTool('file') && (
                         <ls-toolbox-field
                           elementType="file"
                           formElementType="file"
@@ -815,7 +835,7 @@ export class LsDocumentViewer {
                           tooltip="Use when you need Participants to upload their own documents during the signing process"
                           signer={this.signer}
                         />)}
-                      {this.signer > 0 && (
+                      {this.signer > 0 && this.showTool('drawn') && (
                         <ls-toolbox-field
                           elementType="drawn"
                           formElementType="drawn"
