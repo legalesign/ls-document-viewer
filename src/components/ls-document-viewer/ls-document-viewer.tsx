@@ -130,17 +130,14 @@ export class LsDocumentViewer {
   modeHandler(_newMode, _oldMode) {
     if (_newMode === 'preview') {
       this.showtoolbar = false;
-      this.showtoolbox = false;
       this.showstatusbar = false;
       this.readonly = true;
     } else if (_newMode === 'editor') {
       this.showtoolbar = true;
-      this.showtoolbox = true;
       this.showstatusbar = true;
       this.readonly = false;
     } else if (_newMode === 'compose') {
       this.showtoolbar = true;
-      this.showtoolbox = true;
       this.showstatusbar = true;
       this.readonly = false;
     }
@@ -169,10 +166,10 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) displayTable?: boolean = false;
 
   /**
-   * Whether the left hand toolbox is displayed.
-   * {boolean}
+   * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
+   * {string}
    */
-  @Prop() showtoolbox?: boolean = false;
+  @Prop() filterToolbox?: string = null;
 
   /**
    * Whether the top toolbar is displayed.
@@ -639,7 +636,7 @@ export class LsDocumentViewer {
             <p class="header-text-2">{this._template?.title}</p>
           </div>
           <form id="ls-editor-form">
-            {this.showtoolbox === true ? (
+            {this.mode !== "preview" ? (
               <div id="ls-left-box" class="leftBox">
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
                   <ls-feature-column

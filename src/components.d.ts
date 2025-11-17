@@ -22,6 +22,12 @@ export { Icon } from "./types/Icon";
 export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { ValidationError } from "./types/ValidationError";
 export namespace Components {
+    interface LsComposeManager {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template": LSApiTemplate;
+    }
     interface LsDocumentOptions {
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -48,6 +54,11 @@ export namespace Components {
           * @default false
          */
         "expandfields"?: boolean;
+        /**
+          * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
+          * @default null
+         */
+        "filterToolbox"?: string;
         "groupInfo": any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
@@ -104,11 +115,6 @@ export namespace Components {
           * @default false
          */
         "showtoolbar"?: boolean;
-        /**
-          * Whether the left hand toolbox is displayed. {boolean}
-          * @default false
-         */
-        "showtoolbox"?: boolean;
         /**
           * @default 0
          */
@@ -639,6 +645,12 @@ export interface LsToolboxFieldCustomEvent<T> extends CustomEvent<T> {
     target: HTMLLsToolboxFieldElement;
 }
 declare global {
+    interface HTMLLsComposeManagerElement extends Components.LsComposeManager, HTMLStencilElement {
+    }
+    var HTMLLsComposeManagerElement: {
+        prototype: HTMLLsComposeManagerElement;
+        new (): HTMLLsComposeManagerElement;
+    };
     interface HTMLLsDocumentOptionsElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
@@ -1212,6 +1224,7 @@ declare global {
         new (): HTMLLsValidationTagElement;
     };
     interface HTMLElementTagNameMap {
+        "ls-compose-manager": HTMLLsComposeManagerElement;
         "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
@@ -1264,6 +1277,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface LsComposeManager {
+        /**
+          * The base template information (as JSON). {LSApiTemplate}
+         */
+        "template"?: LSApiTemplate;
+    }
     interface LsDocumentOptions {
         "onMutate"?: (event: LsDocumentOptionsCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsDocumentOptionsCustomEvent<LSMutateEvent[]>) => void;
@@ -1292,6 +1311,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "expandfields"?: boolean;
+        /**
+          * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
+          * @default null
+         */
+        "filterToolbox"?: string;
         "groupInfo"?: any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
@@ -1341,11 +1365,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "showtoolbar"?: boolean;
-        /**
-          * Whether the left hand toolbox is displayed. {boolean}
-          * @default false
-         */
-        "showtoolbox"?: boolean;
         /**
           * @default 0
          */
@@ -1828,6 +1847,7 @@ declare namespace LocalJSX {
         "validationErrors"?: ValidationError[];
     }
     interface IntrinsicElements {
+        "ls-compose-manager": LsComposeManager;
         "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
         "ls-editor-field": LsEditorField;
@@ -1883,6 +1903,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ls-compose-manager": LocalJSX.LsComposeManager & JSXBase.HTMLAttributes<HTMLLsComposeManagerElement>;
             "ls-document-options": LocalJSX.LsDocumentOptions & JSXBase.HTMLAttributes<HTMLLsDocumentOptionsElement>;
             /**
              * The Legalesign page viewer converted to stencil. To use pass the standard
