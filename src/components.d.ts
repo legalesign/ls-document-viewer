@@ -155,6 +155,10 @@ export namespace Components {
     }
     interface LsEditorField {
         "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "fixedAspect": number | null;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -502,6 +506,10 @@ export namespace Components {
          */
         "defaultWidth": number;
         "elementType": string;
+        /**
+          * @default null
+         */
+        "fixedAspect": number | null;
         /**
           * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
          */
@@ -1204,6 +1212,7 @@ declare global {
     defaultWidth: number
     formElementType: string
     validation: number
+    fixedAspect: number | null
   };
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
@@ -1410,6 +1419,10 @@ declare namespace LocalJSX {
     }
     interface LsEditorField {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "fixedAspect"?: number | null;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
@@ -1796,6 +1809,10 @@ declare namespace LocalJSX {
         "defaultWidth"?: number;
         "elementType"?: string;
         /**
+          * @default null
+         */
+        "fixedAspect"?: number | null;
+        /**
           * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
          */
         "formElementType"?: string;
@@ -1818,6 +1835,7 @@ declare namespace LocalJSX {
     defaultWidth: number
     formElementType: string
     validation: number
+    fixedAspect: number | null
   }>) => void;
         /**
           * The signer color of the element

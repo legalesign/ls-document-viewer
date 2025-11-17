@@ -16,6 +16,7 @@ export class LsEditorField {
   @Prop() readonly: boolean;
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
   @Prop() page: { height: number; width: number };
+  @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;

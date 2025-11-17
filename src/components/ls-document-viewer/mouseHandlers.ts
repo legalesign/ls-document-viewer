@@ -118,28 +118,48 @@ export function mouseMove(event) {
   if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
+    var width = this.hitField.dataItem.width;
+    var height = this.hitField.dataItem.height;
+    var scale = this.hitField.dataItem.formElementType === 'signature' && this._template.fixSignatureScale;
 
     switch (this.edgeSide) {
       case 'n':
         this.hitField.style.top = this.startMouse.top + movedY + 'px';
         this.hitField.style.height = this.startMouse.height - movedY + 'px';
 
-        this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, height: this.startMouse.height - movedY };
+        if (scale) {
+          width = (this.startMouse.height - movedY) * 3.8;
+          this.hitField.style.width = width + 'px';
+        }
+        this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, height: this.startMouse.height - movedY, width };
         break;
       case 's':
         this.hitField.style.height = this.startMouse.height + movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, height: this.startMouse.height + movedY };
+        if (scale) {
+          width = (this.startMouse.height + movedY) * 3.8;
+          this.hitField.style.width = width + 'px';
+        }
+
+        this.hitField.dataItem = { ...this.hitField.dataItem, height: this.startMouse.height + movedY, width };
         break;
       case 'e':
         this.hitField.style.width = this.startMouse.width + movedX + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, width: this.startMouse.width + movedX };
+        if (scale) {
+          height = Math.round((this.startMouse.width + movedX) / 3.8);
+          this.hitField.style.height = height + 'px';
+        }
+        this.hitField.dataItem = { ...this.hitField.dataItem, width: this.startMouse.width + movedX, height };
 
         break;
       case 'w':
         this.hitField.style.left = this.startMouse.left + movedX + 'px';
         this.hitField.style.width = this.startMouse.width - movedX + 'px';
 
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX };
+        if (scale) {
+          height = Math.round((this.startMouse.width - movedX) / 3.8);
+          this.hitField.style.height = height + 'px';
+        }
+        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX, height };
         break;
     }
 
@@ -313,7 +333,7 @@ export function mouseDoubleClick(event) {
     // Make a new API compatible id for a template element (prefix 'ele')
     const id = btoa('ele' + crypto.randomUUID());
     const top = event.offsetY / this.zoom + frame.scrollTop;
-    const left = event.offsetX / this.zoom + frame.scrollLeft; 
+    const left = event.offsetX / this.zoom + frame.scrollLeft;
 
     // TODO: Put these defaults somewhere sensible
     const newData: LSMutateEvent = {

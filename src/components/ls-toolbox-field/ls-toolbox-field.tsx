@@ -17,6 +17,8 @@ export class LsToolboxField {
   @Prop() formElementType: string;
   @Prop() elementType: string;
   @Prop() validation: number = 0;
+  @Prop() fixedAspect: number | null = null;
+  
 
   /**
    * The text to display for this field type.
@@ -60,6 +62,7 @@ export class LsToolboxField {
     defaultWidth: number
     formElementType: string
     validation: number
+    fixedAspect: number | null
   }>;
 
   @Listen('dragstart')
@@ -73,6 +76,7 @@ export class LsToolboxField {
         validation: this.validation,
         defaultHeight: this.defaultHeight,
         defaultWidth: this.defaultWidth,
+        fixedAspect: this.fixedAspect,
       }),
     );
     event.dataTransfer.dropEffect = 'copy';
@@ -110,6 +114,7 @@ export class LsToolboxField {
               validation: this.validation,
               defaultHeight: this.defaultHeight,
               defaultWidth: this.defaultWidth,
+              fixedAspect: this.fixedAspect,
             });
           }}
         >
