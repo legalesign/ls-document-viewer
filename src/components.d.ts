@@ -50,11 +50,6 @@ export namespace Components {
          */
         "endpoint": string;
         /**
-          * Whether or not the fields list is expanded. {boolean}
-          * @default false
-         */
-        "expandfields"?: boolean;
-        /**
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
          */
@@ -110,11 +105,6 @@ export namespace Components {
           * @default false
          */
         "showtableview"?: boolean;
-        /**
-          * Whether the top toolbar is displayed. {boolean}
-          * @default false
-         */
-        "showtoolbar"?: boolean;
         /**
           * @default 0
          */
@@ -1325,11 +1315,6 @@ declare namespace LocalJSX {
          */
         "endpoint"?: string;
         /**
-          * Whether or not the fields list is expanded. {boolean}
-          * @default false
-         */
-        "expandfields"?: boolean;
-        /**
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
          */
@@ -1378,11 +1363,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "showtableview"?: boolean;
-        /**
-          * Whether the top toolbar is displayed. {boolean}
-          * @default false
-         */
-        "showtoolbar"?: boolean;
         /**
           * @default 0
          */

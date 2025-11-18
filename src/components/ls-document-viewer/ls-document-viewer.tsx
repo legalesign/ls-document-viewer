@@ -129,15 +129,12 @@ export class LsDocumentViewer {
   @Watch('mode')
   modeHandler(_newMode, _oldMode) {
     if (_newMode === 'preview') {
-      this.showtoolbar = false;
       this.showstatusbar = false;
       this.readonly = true;
     } else if (_newMode === 'editor') {
-      this.showtoolbar = true;
       this.showstatusbar = true;
       this.readonly = false;
     } else if (_newMode === 'compose') {
-      this.showtoolbar = true;
       this.showstatusbar = true;
       this.readonly = false;
     }
@@ -171,13 +168,7 @@ export class LsDocumentViewer {
    */
   @Prop() filtertoolbox?: string = null;
 
-  /**
-   * Whether the top toolbar is displayed.
-   * {boolean}
-   */
-  @Prop() showtoolbar?: boolean = false;
-
-  /**
+   /**
    * Whether the bottom statusbar is displayed.
    * {boolean}
    */
@@ -188,12 +179,6 @@ export class LsDocumentViewer {
    * {boolean}
    */
   @Prop() showpagepreview?: boolean = false;
-
-  /**
-   * Whether or not the fields list is expanded.
-   * {boolean}
-   */
-  @Prop() expandfields?: boolean = false;
 
   /**
    * Whether the right panel (which can be default field properties or custom panel) is
