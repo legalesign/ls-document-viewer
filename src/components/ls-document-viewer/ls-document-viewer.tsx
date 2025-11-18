@@ -168,10 +168,10 @@ export class LsDocumentViewer {
    */
   @Prop() filtertoolbox?: string = null;
 
-   /**
-   * Whether the bottom statusbar is displayed.
-   * {boolean}
-   */
+  /**
+  * Whether the bottom statusbar is displayed.
+  * {boolean}
+  */
   @Prop() showstatusbar?: boolean = false;
 
   /**
@@ -428,32 +428,35 @@ export class LsDocumentViewer {
    */
   renderPage(pageNumber: number): void {
     this.isPageRendering = true;
-    this.pdfDocument.getPage(pageNumber).then((page: PDFPageProxy) => {
-      const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
-      this.canvas.height = Math.floor(viewport.height);
-      this.canvas.width = Math.floor(viewport.width);
+    if (this.pdfDocument !== undefined && this.pdfDocument !== null) {
+      this.pdfDocument.getPage(pageNumber).then((page: PDFPageProxy) => {
+        const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
+        this.canvas.height = Math.floor(viewport.height);
+        this.canvas.width = Math.floor(viewport.width);
 
-      // Render PDF page into canvas context
-      const renderContext: PDFRenderParams = {
-        viewport,
-        canvasContext: this.ctx,
-      };
+        // Render PDF page into canvas context
+        const renderContext: PDFRenderParams = {
+          viewport,
+          canvasContext: this.ctx,
+        };
 
-      // Render page method
-      const renderTask: PDFRenderTask = page.render(renderContext);
+        // Render page method
+        const renderTask: PDFRenderTask = page.render(renderContext);
 
-      // Wait for rendering to finish
-      renderTask.promise.then(() => {
-        this.isPageRendering = false;
-        this.pageRendered.emit(this.pageNum);
+        // Wait for rendering to finish
+        renderTask.promise.then(() => {
+          this.isPageRendering = false;
+          this.pageRendered.emit(this.pageNum);
 
-        if (this.pageNumPending !== null) {
-          this.renderPage(this.pageNumPending); // New page rendering is pending
-          this.pageChange.emit(this.pageNumPending); // emit
-          this.pageNumPending = null;
-        }
+          if (this.pageNumPending !== null) {
+            this.renderPage(this.pageNumPending); // New page rendering is pending
+            this.pageChange.emit(this.pageNumPending); // emit
+            this.pageNumPending = null;
+          }
+        });
       });
-    });
+    }
+
   }
 
   private queueRenderPage(pageNumber: number): void {
@@ -584,7 +587,6 @@ export class LsDocumentViewer {
       const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
       this.groupInfo = resultGroup.group;
       this.initViewer();
-      console.log(this._template);
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
