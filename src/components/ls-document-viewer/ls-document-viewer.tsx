@@ -169,7 +169,7 @@ export class LsDocumentViewer {
    * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
    * {string}
    */
-  @Prop() filterToolbox?: string = null;
+  @Prop() filtertoolbox?: string = null;
 
   /**
    * Whether the top toolbar is displayed.
@@ -621,7 +621,7 @@ export class LsDocumentViewer {
   }
 
   showTool(fieldFormType: string): boolean {
-    return this.filterToolbox === null || this.filterToolbox.split('|').includes(fieldFormType);
+    return this.filtertoolbox === null || this.filtertoolbox.split('|').includes(fieldFormType);
   }
 
   render() {

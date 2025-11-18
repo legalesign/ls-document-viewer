@@ -58,7 +58,7 @@ export namespace Components {
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
          */
-        "filterToolbox"?: string;
+        "filtertoolbox"?: string;
         "groupInfo": any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
@@ -1333,7 +1333,7 @@ declare namespace LocalJSX {
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
          */
-        "filterToolbox"?: string;
+        "filtertoolbox"?: string;
         "groupInfo"?: any;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
