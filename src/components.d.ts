@@ -59,7 +59,7 @@ export namespace Components {
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
-        "manager": 'document' | 'toolbox' | 'participant';
+        "manager": 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
           * @default 'editor'
@@ -168,7 +168,7 @@ export namespace Components {
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
-        "manager": 'document' | 'toolbox' | 'participant';
+        "manager": 'document' | 'toolbox' | 'participant'| 'recipient' | 'validation';
         /**
           * The mode that document viewer is being used in. {'preview' | 'editor' | 'custom'}
           * @default 'editor'
@@ -403,6 +403,8 @@ export namespace Components {
         "name"?: string;
         "radioId": string;
     }
+    interface LsRecipientManager {
+    }
     interface LsSelectInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -543,6 +545,12 @@ export namespace Components {
         "tooltipLocked": boolean;
         "tooltipText": string;
         "tooltipTitle": string;
+    }
+    interface LsValidationManager {
+        /**
+          * The template information (as JSON). {LSApiTemplate}
+         */
+        "validationErrors": ValidationError[];
     }
     interface LsValidationTag {
         /**
@@ -727,7 +735,7 @@ declare global {
         new (): HTMLLsEditorTableElement;
     };
     interface HTMLLsFeatureColumnElementEventMap {
-        "manage": 'document' | 'toolbox' | 'participant';
+        "manage": 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
     }
     interface HTMLLsFeatureColumnElement extends Components.LsFeatureColumn, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFeatureColumnElementEventMap>(type: K, listener: (this: HTMLLsFeatureColumnElement, ev: LsFeatureColumnCustomEvent<HTMLLsFeatureColumnElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1124,6 +1132,12 @@ declare global {
         prototype: HTMLLsRadioInputElement;
         new (): HTMLLsRadioInputElement;
     };
+    interface HTMLLsRecipientManagerElement extends Components.LsRecipientManager, HTMLStencilElement {
+    }
+    var HTMLLsRecipientManagerElement: {
+        prototype: HTMLLsRecipientManagerElement;
+        new (): HTMLLsRecipientManagerElement;
+    };
     interface HTMLLsSelectInputElement extends Components.LsSelectInput, HTMLStencilElement {
     }
     var HTMLLsSelectInputElement: {
@@ -1225,6 +1239,12 @@ declare global {
         prototype: HTMLLsTooltipElement;
         new (): HTMLLsTooltipElement;
     };
+    interface HTMLLsValidationManagerElement extends Components.LsValidationManager, HTMLStencilElement {
+    }
+    var HTMLLsValidationManagerElement: {
+        prototype: HTMLLsValidationManagerElement;
+        new (): HTMLLsValidationManagerElement;
+    };
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
     }
     var HTMLLsValidationTagElement: {
@@ -1273,6 +1293,7 @@ declare global {
         "ls-participant-select": HTMLLsParticipantSelectElement;
         "ls-props-section": HTMLLsPropsSectionElement;
         "ls-radio-input": HTMLLsRadioInputElement;
+        "ls-recipient-manager": HTMLLsRecipientManagerElement;
         "ls-select-input": HTMLLsSelectInputElement;
         "ls-statusbar": HTMLLsStatusbarElement;
         "ls-text-input": HTMLLsTextInputElement;
@@ -1281,6 +1302,7 @@ declare global {
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
         "ls-tooltip": HTMLLsTooltipElement;
+        "ls-validation-manager": HTMLLsValidationManagerElement;
         "ls-validation-tag": HTMLLsValidationTagElement;
     }
 }
@@ -1324,7 +1346,7 @@ declare namespace LocalJSX {
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
-        "manager"?: 'document' | 'toolbox' | 'participant';
+        "manager"?: 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
         /**
           * An ease of use property that will arrange document-viewer appropraitely. {'preview' | 'editor' | 'custom'}
           * @default 'editor'
@@ -1424,13 +1446,13 @@ declare namespace LocalJSX {
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
-        "manager"?: 'document' | 'toolbox' | 'participant';
+        "manager"?: 'document' | 'toolbox' | 'participant'| 'recipient' | 'validation';
         /**
           * The mode that document viewer is being used in. {'preview' | 'editor' | 'custom'}
           * @default 'editor'
          */
         "mode"?: 'preview' | 'editor' | 'compose';
-        "onManage"?: (event: LsFeatureColumnCustomEvent<'document' | 'toolbox' | 'participant'>) => void;
+        "onManage"?: (event: LsFeatureColumnCustomEvent<'document' | 'toolbox' | 'participant' | 'recipient' | 'validation'>) => void;
     }
     interface LsFieldAlignment {
         "dataItem"?: LSApiElement1[];
@@ -1691,6 +1713,8 @@ declare namespace LocalJSX {
         "name"?: string;
         "radioId"?: string;
     }
+    interface LsRecipientManager {
+    }
     interface LsSelectInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -1844,6 +1868,12 @@ declare namespace LocalJSX {
         "tooltipText"?: string;
         "tooltipTitle"?: string;
     }
+    interface LsValidationManager {
+        /**
+          * The template information (as JSON). {LSApiTemplate}
+         */
+        "validationErrors"?: ValidationError[];
+    }
     interface LsValidationTag {
         /**
           * @default false
@@ -1904,6 +1934,7 @@ declare namespace LocalJSX {
         "ls-participant-select": LsParticipantSelect;
         "ls-props-section": LsPropsSection;
         "ls-radio-input": LsRadioInput;
+        "ls-recipient-manager": LsRecipientManager;
         "ls-select-input": LsSelectInput;
         "ls-statusbar": LsStatusbar;
         "ls-text-input": LsTextInput;
@@ -1912,6 +1943,7 @@ declare namespace LocalJSX {
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
         "ls-tooltip": LsTooltip;
+        "ls-validation-manager": LsValidationManager;
         "ls-validation-tag": LsValidationTag;
     }
 }
@@ -1965,6 +1997,7 @@ declare module "@stencil/core" {
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
             "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
             "ls-radio-input": LocalJSX.LsRadioInput & JSXBase.HTMLAttributes<HTMLLsRadioInputElement>;
+            "ls-recipient-manager": LocalJSX.LsRecipientManager & JSXBase.HTMLAttributes<HTMLLsRecipientManagerElement>;
             "ls-select-input": LocalJSX.LsSelectInput & JSXBase.HTMLAttributes<HTMLLsSelectInputElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
             "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
@@ -1973,6 +2006,7 @@ declare module "@stencil/core" {
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
             "ls-tooltip": LocalJSX.LsTooltip & JSXBase.HTMLAttributes<HTMLLsTooltipElement>;
+            "ls-validation-manager": LocalJSX.LsValidationManager & JSXBase.HTMLAttributes<HTMLLsValidationManagerElement>;
             "ls-validation-tag": LocalJSX.LsValidationTag & JSXBase.HTMLAttributes<HTMLLsValidationTagElement>;
         }
     }

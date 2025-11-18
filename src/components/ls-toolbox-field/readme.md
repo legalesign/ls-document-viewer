@@ -34,6 +34,7 @@
 ### Used by
 
  - [ls-document-viewer](../ls-document-viewer)
+ - [ls-validation-manager](../ls-validation-manager)
 
 ### Depends on
 
@@ -46,6 +47,7 @@ graph TD;
   ls-toolbox-field --> ls-icon
   ls-toolbox-field --> ls-tooltip
   ls-document-viewer --> ls-toolbox-field
+  ls-validation-manager --> ls-toolbox-field
   style ls-toolbox-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

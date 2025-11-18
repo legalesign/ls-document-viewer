@@ -12,7 +12,7 @@ export class LsFeatureColoumn {
    * Determines / sets which of the far left 'managers' is active.
    * {'document' | 'toolbox' | 'participant' }
    */
-  @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' = 'toolbox';
+  @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant'| 'recipient' | 'validation' = 'toolbox';
 
 
   /**
@@ -22,7 +22,7 @@ export class LsFeatureColoumn {
   @Prop() mode: 'preview' | 'editor' | 'compose' = 'editor';
 
   // Send an manager change up the DOM
-  @Event() manage: EventEmitter<'document' | 'toolbox' | 'participant'>;
+  @Event() manage: EventEmitter<'document' | 'toolbox' | 'participant' | 'recipient' | 'validation'>;
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
@@ -55,8 +55,9 @@ export class LsFeatureColoumn {
         >
           <ls-icon name="typing-input" size="24" />
         </div>
+        
         <div
-          class={this.manager === 'participant' ? 'activeIcon' : 'defaultIcon'}
+          class={this.mode !== "editor" ? 'hidden' : this.manager === 'participant' ? 'activeIcon' : 'defaultIcon'}
           onClick={() => {
             this.manage.emit('participant');
             this.manager = 'participant';
@@ -66,6 +67,32 @@ export class LsFeatureColoumn {
           data-tooltip-placement="right"
         >
           <ls-icon name="user-group" size="24" />
+        </div>
+
+        <div
+          class={this.mode !== "compose" ? 'hidden' : this.manager === 'recipient' ? 'activeIcon' : 'defaultIcon'}
+          onClick={() => {
+            this.manage.emit('recipient');
+            this.manager = 'recipient';
+          }}
+          data-tooltip-title="Recipients"
+          data-tooltip="View the list of Recipients for this document"
+          data-tooltip-placement="right"
+        >
+          <ls-icon name="user-group" size="24" />
+        </div>
+
+        <div
+          class={this.mode !== "compose" ? 'hidden' : this.manager === 'validation' ? 'activeIcon' : 'defaultIcon'}
+          onClick={() => {
+            this.manage.emit('validation');
+            this.manager = 'validation';
+          }}
+          data-tooltip-title="Validation"
+          data-tooltip="View the list of Recipients for this document"
+          data-tooltip-placement="right"
+        >
+          <ls-icon name="adjustments" size="24" />
         </div>
 
         <slot></slot>

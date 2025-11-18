@@ -14,30 +14,28 @@ Alex Weinle
 
 ## Properties
 
-| Property          | Attribute         | Description                                                                                                                                                           | Type                                       | Default     |
-| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
-| `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                                     | `boolean`                                  | `false`     |
-| `endpoint`        | `endpoint`        | This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}                                                | `string`                                   | `undefined` |
-| `expandfields`    | `expandfields`    | Whether or not the fields list is expanded. {boolean}                                                                                                                 | `boolean`                                  | `false`     |
-| `filterToolbox`   | `filter-toolbox`  | Allows the selection of fields in the toolbox to be limited to a \| (pipe) delimited list. {string}                                                                   | `string`                                   | `null`      |
-| `groupInfo`       | `group-info`      |                                                                                                                                                                       | `any`                                      | `undefined` |
-| `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                             | `"document" \| "participant" \| "toolbox"` | `'toolbox'` |
-| `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                          | `"compose" \| "editor" \| "preview"`       | `'editor'`  |
-| `pageCount`       | `page-count`      |                                                                                                                                                                       | `number`                                   | `1`         |
-| `pageNum`         | `page-num`        |                                                                                                                                                                       | `number`                                   | `1`         |
-| `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                               | `boolean`                                  | `false`     |
-| `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                                       | `boolean`                                  | `false`     |
-| `showstatusbar`   | `showstatusbar`   | Whether the bottom statusbar is displayed. {boolean}                                                                                                                  | `boolean`                                  | `false`     |
-| `showtableview`   | `showtableview`   | Whether the table view of the fields on this template is available to the user. {boolean}                                                                             | `boolean`                                  | `false`     |
-| `showtoolbar`     | `showtoolbar`     | Whether the top toolbar is displayed. {boolean}                                                                                                                       | `boolean`                                  | `false`     |
-| `signer`          | `signer`          |                                                                                                                                                                       | `number`                                   | `0`         |
-| `signers`         | `signers`         | A JSON string containing the signer details. Only used in COMPOSE mode. {string}                                                                                      | `string`                                   | `undefined` |
-| `template`        | `template`        | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}                | `string`                                   | `undefined` |
-| `templateid`      | `templateid`      | The id of the template you want to load (if using the internal data adapter). {string}                                                                                | `string`                                   | `undefined` |
-| `token`           | `token`           | The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                   | `undefined` |
-| `toolboxFilter`   | `toolbox-filter`  | If supplied ONLY items in this \| ("or") delimited list will be shown. i.e. "signature\|intials" {boolean}                                                            | `string`                                   | `null`      |
-| `userpool`        | `userpool`        | This will override the default production user pool. Almost exclusively used for internal development. {string}                                                       | `string`                                   | `undefined` |
-| `zoom`            | `zoom`            |                                                                                                                                                                       | `number`                                   | `1.0`       |
+| Property          | Attribute         | Description                                                                                                                                                           | Type                                                                      | Default     |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
+| `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                                     | `boolean`                                                                 | `false`     |
+| `endpoint`        | `endpoint`        | This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}                                                | `string`                                                                  | `undefined` |
+| `filtertoolbox`   | `filtertoolbox`   | Allows the selection of fields in the toolbox to be limited to a \| (pipe) delimited list. {string}                                                                   | `string`                                                                  | `null`      |
+| `groupInfo`       | `group-info`      |                                                                                                                                                                       | `any`                                                                     | `undefined` |
+| `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                             | `"document" \| "participant" \| "recipient" \| "toolbox" \| "validation"` | `'toolbox'` |
+| `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                          | `"compose" \| "editor" \| "preview"`                                      | `'editor'`  |
+| `pageCount`       | `page-count`      |                                                                                                                                                                       | `number`                                                                  | `1`         |
+| `pageNum`         | `page-num`        |                                                                                                                                                                       | `number`                                                                  | `1`         |
+| `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                               | `boolean`                                                                 | `false`     |
+| `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                                       | `boolean`                                                                 | `false`     |
+| `showstatusbar`   | `showstatusbar`   | Whether the bottom statusbar is displayed. {boolean}                                                                                                                  | `boolean`                                                                 | `false`     |
+| `showtableview`   | `showtableview`   | Whether the table view of the fields on this template is available to the user. {boolean}                                                                             | `boolean`                                                                 | `false`     |
+| `signer`          | `signer`          |                                                                                                                                                                       | `number`                                                                  | `0`         |
+| `signers`         | `signers`         | A JSON string containing the signer details. Only used in COMPOSE mode. {string}                                                                                      | `string`                                                                  | `undefined` |
+| `template`        | `template`        | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}                | `string`                                                                  | `undefined` |
+| `templateid`      | `templateid`      | The id of the template you want to load (if using the internal data adapter). {string}                                                                                | `string`                                                                  | `undefined` |
+| `token`           | `token`           | The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                                                  | `undefined` |
+| `toolboxFilter`   | `toolbox-filter`  | If supplied ONLY items in this \| ("or") delimited list will be shown. i.e. "signature\|intials" {boolean}                                                            | `string`                                                                  | `null`      |
+| `userpool`        | `userpool`        | This will override the default production user pool. Almost exclusively used for internal development. {string}                                                       | `string`                                                                  | `undefined` |
+| `zoom`            | `zoom`            |                                                                                                                                                                       | `number`                                                                  | `1.0`       |
 
 
 ## Events
@@ -112,6 +110,8 @@ Type: `Promise<void>`
 - [ls-toolbox-field](../ls-toolbox-field)
 - [ls-participant-manager](../ls-participant-manager)
 - [ls-document-options](../ls-document-options)
+- [ls-validation-manager](../ls-validation-manager)
+- [ls-recipient-manager](../ls-recipient-manager)
 - [ls-icon](../ls-icon)
 - [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
@@ -129,6 +129,8 @@ graph TD;
   ls-document-viewer --> ls-toolbox-field
   ls-document-viewer --> ls-participant-manager
   ls-document-viewer --> ls-document-options
+  ls-document-viewer --> ls-validation-manager
+  ls-document-viewer --> ls-recipient-manager
   ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
@@ -150,6 +152,7 @@ graph TD;
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip
+  ls-validation-manager --> ls-toolbox-field
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text

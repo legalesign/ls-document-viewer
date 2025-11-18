@@ -295,7 +295,7 @@ export function mouseDrop(event) {
         width: data.defaultWidth,
         pageDimensions: this.pageDimensions[this.pageNum - 1],
         fontName: 'arial',
-        fontSize: 10,
+        fontSize: 8,
         align: 'left',
         signer: this.signer,
         page: this.pageNum,

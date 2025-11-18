@@ -154,7 +154,7 @@ export class LsDocumentViewer {
    * Determines / sets which of the far left 'managers' is active.
    * {'document' | 'toolbox' | 'participant' }
    */
-  @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' = 'toolbox';
+  @Prop({ mutable: true }) manager: 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation' = 'toolbox';
 
   /**
    * Shows the table view of fields rather than the preview.
@@ -639,6 +639,10 @@ export class LsDocumentViewer {
                       } else if (manager.detail === 'participant') {
                         var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
                         participantManager.template = this._template;
+                      } else if (manager.detail === 'validation') {
+                        var validationManager = this.component.shadowRoot.getElementById('ls-validation-manager') as HTMLLsValidationManagerElement;
+                        console.log(validationManager);
+                        validationManager.validationErrors = this.validationErrors;
                       }
                       this.manager = manager.detail;
                     }}
@@ -839,6 +843,8 @@ export class LsDocumentViewer {
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
+                  <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
+                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'} />
                 </div>
                 {!this.displayTable && (
                   <div class={this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
