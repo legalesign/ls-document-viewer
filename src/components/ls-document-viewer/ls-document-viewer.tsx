@@ -541,20 +541,22 @@ export class LsDocumentViewer {
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
 
     // Used for single field selection
-    dropTarget.addEventListener('click', mouseClick.bind(this));
-    dropTarget.addEventListener('mousedown', mouseDown.bind(this));
-    dropTarget.addEventListener('mousemove', mouseMove.bind(this));
-    dropTarget.addEventListener('mouseup', mouseUp.bind(this));
-    dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-    document.addEventListener('keydown', keyDown.bind(this));
-    dropTarget.addEventListener('dragenter', event => {
-      event.preventDefault();
-    });
-    dropTarget.addEventListener('dragover', event => {
-      event.preventDefault();
-    });
-    dropTarget.addEventListener('drop', mouseDrop.bind(this));
+    if (this.mode !== 'preview' || this._template?.locked === true) {
 
+      dropTarget.addEventListener('click', mouseClick.bind(this));
+      dropTarget.addEventListener('mousedown', mouseDown.bind(this));
+      dropTarget.addEventListener('mousemove', mouseMove.bind(this));
+      dropTarget.addEventListener('mouseup', mouseUp.bind(this));
+      dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
+      document.addEventListener('keydown', keyDown.bind(this));
+      dropTarget.addEventListener('dragenter', event => {
+        event.preventDefault();
+      });
+      dropTarget.addEventListener('dragover', event => {
+        event.preventDefault();
+      });
+      dropTarget.addEventListener('drop', mouseDrop.bind(this));
+    }
     this.generateFields();
   }
 
