@@ -15,6 +15,7 @@ export class LsRecipientCard {
    * {LSApiTemplate}
    */
   @Prop() recipient: LSApiRecipient;
+  @Prop() activeRecipient: number;
 
   // Send an internal event to be processed
   @Event() changeSigner: EventEmitter<number>;
@@ -26,7 +27,7 @@ export class LsRecipientCard {
           class={'participant-card top-card full-card'}
           style={{
             background: defaultRolePalette[this.recipient?.signerIndex % 100].s10,
-            border: `1px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
+            border: `${this.recipient.signerIndex === this.activeRecipient ? 2 : 1}px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
             marginTop: this.recipient.roleType === 'WITNESS' ? '-0.813rem' : '0',
             cursor: 'pointer',
           }}

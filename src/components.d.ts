@@ -407,6 +407,7 @@ export namespace Components {
         "radioId": string;
     }
     interface LsRecipientCard {
+        "activeRecipient": number;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
@@ -1746,6 +1747,7 @@ declare namespace LocalJSX {
         "radioId"?: string;
     }
     interface LsRecipientCard {
+        "activeRecipient"?: number;
         "onChangeSigner"?: (event: LsRecipientCardCustomEvent<number>) => void;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}

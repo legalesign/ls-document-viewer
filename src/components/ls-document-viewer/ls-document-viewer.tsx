@@ -847,7 +847,7 @@ export class LsDocumentViewer {
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'}>
-                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} />)}
+                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer}/>)}
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
