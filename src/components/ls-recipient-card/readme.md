@@ -12,6 +12,13 @@
 | `recipient` | `recipient` | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate} | `{ name: string; email: string; firstname: string; lastname: string; signerIndex?: number; roleType?: "SIGNER" \| "APPROVER" \| "WITNESS" \| "FORM_FILLER"; }` | `undefined` |
 
 
+## Events
+
+| Event          | Description | Type                  |
+| -------------- | ----------- | --------------------- |
+| `changeSigner` |             | `CustomEvent<number>` |
+
+
 ## Dependencies
 
 ### Used by

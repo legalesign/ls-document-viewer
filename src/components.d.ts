@@ -652,6 +652,10 @@ export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsParticipantSelectElement;
 }
+export interface LsRecipientCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsRecipientCardElement;
+}
 export interface LsTextInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsTextInputElement;
@@ -1141,7 +1145,18 @@ declare global {
         prototype: HTMLLsRadioInputElement;
         new (): HTMLLsRadioInputElement;
     };
+    interface HTMLLsRecipientCardElementEventMap {
+        "changeSigner": number;
+    }
     interface HTMLLsRecipientCardElement extends Components.LsRecipientCard, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsRecipientCardElementEventMap>(type: K, listener: (this: HTMLLsRecipientCardElement, ev: LsRecipientCardCustomEvent<HTMLLsRecipientCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsRecipientCardElementEventMap>(type: K, listener: (this: HTMLLsRecipientCardElement, ev: LsRecipientCardCustomEvent<HTMLLsRecipientCardElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsRecipientCardElement: {
         prototype: HTMLLsRecipientCardElement;
@@ -1731,6 +1746,7 @@ declare namespace LocalJSX {
         "radioId"?: string;
     }
     interface LsRecipientCard {
+        "onChangeSigner"?: (event: LsRecipientCardCustomEvent<number>) => void;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */

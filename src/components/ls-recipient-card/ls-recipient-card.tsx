@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSApiRecipient } from '../../types/LSApiRecipient';
 
@@ -16,6 +16,9 @@ export class LsRecipientCard {
    */
   @Prop() recipient: LSApiRecipient;
 
+  // Send an internal event to be processed
+  @Event() changeSigner: EventEmitter<number>;
+
   render() {
     return (
       <Host>
@@ -25,7 +28,9 @@ export class LsRecipientCard {
             background: defaultRolePalette[this.recipient?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
             marginTop: this.recipient.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            cursor: 'pointer',
           }}
+          onClick={() => { this.changeSigner.emit(this.recipient.signerIndex); }}
         >
           <div class={'participant-card-inner'}>
             <div class={'participant-card-top-items'}>

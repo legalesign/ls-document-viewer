@@ -257,6 +257,12 @@ export class LsDocumentViewer {
     this.mutate.emit(data);
   }
 
+    // Updates are internal event between LS controls not to be confused with mutate
+  @Listen('changeSigner')
+  updateSigner(event: CustomEvent<number>) {
+    if (event.detail) this.signer = event.detail;
+  }
+
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
   selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {
