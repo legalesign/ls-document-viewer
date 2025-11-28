@@ -622,9 +622,6 @@ export class LsDocumentViewer {
           <div class={'validation-tag-wrapper'}>
             <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"} />
           </div>
-          <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"} />
-          </div>
           <form id="ls-editor-form">
             {this.mode !== "preview" ? (
               <div id="ls-left-box" class="leftBox">

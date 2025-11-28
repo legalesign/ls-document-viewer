@@ -19,10 +19,9 @@
       recipients='[{"email": "euan.rob@smashcorp.com", "firstname": "Euan", "lastname": "Rob", "signerIndex": 1}, {"email": "jodie@smashcorp.com", "firstname": "Jodie", "lastname": "MacGregor", "signerIndex": 2}]'
       filtertoolbox="signature|initials|date"
     >
-    <span slot="left-button">Exit</span>
-    <span slot="right-button">Send</span>
+    <span slot="left-button"><button>Exit</button></span>
+    <span slot="right-button"><button>Send</button></span>
   </ls-document-viewer>
-    <!-- <ls-document-viewer id="my-editor" showrightpanel showtoolbox></ls-document-viewer> -->
     <script>
       const componentInstance = document.currentScript.previousElementSibling;
       const editor = document.querySelector('ls-document-viewer');
