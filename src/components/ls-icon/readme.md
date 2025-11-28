@@ -41,6 +41,7 @@
  - [ls-participant-manager](../ls-participant-manager)
  - [ls-participant-select](../ls-participant-select)
  - [ls-radio-input](../ls-formfield/inputs/ls-radio-input)
+ - [ls-recipient-card](../ls-recipient-card)
  - [ls-select-input](../ls-formfield/inputs/ls-select-input)
  - [ls-statusbar](../ls-statusbar)
  - [ls-text-input](../ls-formfield/inputs/ls-text-input)
@@ -73,6 +74,7 @@ graph TD;
   ls-participant-manager --> ls-icon
   ls-participant-select --> ls-icon
   ls-radio-input --> ls-icon
+  ls-recipient-card --> ls-icon
   ls-select-input --> ls-icon
   ls-statusbar --> ls-icon
   ls-text-input --> ls-icon

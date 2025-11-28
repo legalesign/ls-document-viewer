@@ -16,6 +16,7 @@ Alex Weinle
 
 | Property          | Attribute         | Description                                                                                                                                                           | Type                                                                      | Default     |
 | ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------- |
+| `_recipients`     | `_recipients`     |                                                                                                                                                                       | `any[]`                                                                   | `undefined` |
 | `displayTable`    | `display-table`   | Shows the table view of fields rather than the preview. {boolean}                                                                                                     | `boolean`                                                                 | `false`     |
 | `endpoint`        | `endpoint`        | This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}                                                | `string`                                                                  | `undefined` |
 | `filtertoolbox`   | `filtertoolbox`   | Allows the selection of fields in the toolbox to be limited to a \| (pipe) delimited list. {string}                                                                   | `string`                                                                  | `null`      |
@@ -25,11 +26,11 @@ Alex Weinle
 | `pageCount`       | `page-count`      |                                                                                                                                                                       | `number`                                                                  | `1`         |
 | `pageNum`         | `page-num`        |                                                                                                                                                                       | `number`                                                                  | `1`         |
 | `readonly`        | `readonly`        | Whether the right panel (which can be default field properties or custom panel) is displayed. {boolean}                                                               | `boolean`                                                                 | `false`     |
+| `recipients`      | `recipients`      | A JSON string containing the recipient details. Only used in COMPOSE mode. {string}                                                                                   | `string`                                                                  | `undefined` |
 | `showpagepreview` | `showpagepreview` | Whether the page previewvertical ribbon will be shown {boolean}                                                                                                       | `boolean`                                                                 | `false`     |
 | `showstatusbar`   | `showstatusbar`   | Whether the bottom statusbar is displayed. {boolean}                                                                                                                  | `boolean`                                                                 | `false`     |
 | `showtableview`   | `showtableview`   | Whether the table view of the fields on this template is available to the user. {boolean}                                                                             | `boolean`                                                                 | `false`     |
 | `signer`          | `signer`          |                                                                                                                                                                       | `number`                                                                  | `0`         |
-| `signers`         | `signers`         | A JSON string containing the signer details. Only used in COMPOSE mode. {string}                                                                                      | `string`                                                                  | `undefined` |
 | `template`        | `template`        | The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}                | `string`                                                                  | `undefined` |
 | `templateid`      | `templateid`      | The id of the template you want to load (if using the internal data adapter). {string}                                                                                | `string`                                                                  | `undefined` |
 | `token`           | `token`           | The access token of the account your want the widget to use, you should normally acquire this with a server side call using that accounts login credentials. {string} | `string`                                                                  | `undefined` |
@@ -112,6 +113,7 @@ Type: `Promise<void>`
 - [ls-document-options](../ls-document-options)
 - [ls-validation-manager](../ls-validation-manager)
 - [ls-recipient-manager](../ls-recipient-manager)
+- [ls-recipient-card](../ls-recipient-card)
 - [ls-icon](../ls-icon)
 - [ls-field-properties](../ls-field-properties)
 - [ls-toolbar](../ls-toolbar)
@@ -131,6 +133,7 @@ graph TD;
   ls-document-viewer --> ls-document-options
   ls-document-viewer --> ls-validation-manager
   ls-document-viewer --> ls-recipient-manager
+  ls-document-viewer --> ls-recipient-card
   ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-field-properties
   ls-document-viewer --> ls-toolbar
@@ -153,6 +156,8 @@ graph TD;
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip
   ls-validation-manager --> ls-toolbox-field
+  ls-recipient-card --> ls-icon
+  ls-recipient-card --> ls-tooltip
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text

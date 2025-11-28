@@ -1,3 +1,11 @@
 :host {
   display: block;
 }
+
+.recipient-section-title {
+  color: var(--gray-100, #45484d);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.75rem; /* 155.556% */
+}

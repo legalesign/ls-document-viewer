@@ -21,12 +21,12 @@ export class LsValidationManager {
       <Host>
         <div>
           <div>
-            <h2>Fields Required</h2>
-            <p>
-              Document needs fields added or corrected before it can be sent
+            <div class={'validation-section-title'}>Action Required</div>
+            <p class="toolbox-section-description">
+              This document needs fields added or corrected before it can be sent.
             </p>
           </div>
-          {this.validationErrors.map((field, idx) => {
+          {this.validationErrors && this.validationErrors.map((field, idx) => {
             const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
             const pallette = defaultRolePalette[signerIndex || field?.element?.signer || 0];
 

@@ -44,6 +44,7 @@ Type: `Promise<void>`
  - [ls-field-size](../ls-field-size)
  - [ls-helper-bar](../ls-helper-bar)
  - [ls-participant-card](../ls-participant-card)
+ - [ls-recipient-card](../ls-recipient-card)
  - [ls-statusbar](../ls-statusbar)
  - [ls-toolbar](../ls-toolbar)
  - [ls-toolbox-field](../ls-toolbox-field)
@@ -62,6 +63,7 @@ graph TD;
   ls-field-size --> ls-tooltip
   ls-helper-bar --> ls-tooltip
   ls-participant-card --> ls-tooltip
+  ls-recipient-card --> ls-tooltip
   ls-statusbar --> ls-tooltip
   ls-toolbar --> ls-tooltip
   ls-toolbox-field --> ls-tooltip

@@ -12,6 +12,7 @@ import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTem
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
 import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
+import { LSApiRecipient } from "./types/LSApiRecipient";
 import { ValidationError } from "./types/ValidationError";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
@@ -20,6 +21,7 @@ export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTem
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
 export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
+export { LSApiRecipient } from "./types/LSApiRecipient";
 export { ValidationError } from "./types/ValidationError";
 export namespace Components {
     interface LsComposeManager {
@@ -40,6 +42,7 @@ export namespace Components {
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        "_recipients": any[];
         /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
@@ -87,6 +90,10 @@ export namespace Components {
          */
         "readonly"?: boolean;
         /**
+          * A JSON string containing the recipient details. Only used in COMPOSE mode. {string}
+         */
+        "recipients": string;
+        /**
           * Page and field resize on zoom change
          */
         "setZoom": (z: number) => Promise<void>;
@@ -109,10 +116,6 @@ export namespace Components {
           * @default 0
          */
         "signer": number;
-        /**
-          * A JSON string containing the signer details. Only used in COMPOSE mode. {string}
-         */
-        "signers": string;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
@@ -402,6 +405,12 @@ export namespace Components {
          */
         "name"?: string;
         "radioId": string;
+    }
+    interface LsRecipientCard {
+        /**
+          * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
+         */
+        "recipient": LSApiRecipient;
     }
     interface LsRecipientManager {
     }
@@ -1132,6 +1141,12 @@ declare global {
         prototype: HTMLLsRadioInputElement;
         new (): HTMLLsRadioInputElement;
     };
+    interface HTMLLsRecipientCardElement extends Components.LsRecipientCard, HTMLStencilElement {
+    }
+    var HTMLLsRecipientCardElement: {
+        prototype: HTMLLsRecipientCardElement;
+        new (): HTMLLsRecipientCardElement;
+    };
     interface HTMLLsRecipientManagerElement extends Components.LsRecipientManager, HTMLStencilElement {
     }
     var HTMLLsRecipientManagerElement: {
@@ -1293,6 +1308,7 @@ declare global {
         "ls-participant-select": HTMLLsParticipantSelectElement;
         "ls-props-section": HTMLLsPropsSectionElement;
         "ls-radio-input": HTMLLsRadioInputElement;
+        "ls-recipient-card": HTMLLsRecipientCardElement;
         "ls-recipient-manager": HTMLLsRecipientManagerElement;
         "ls-select-input": HTMLLsSelectInputElement;
         "ls-statusbar": HTMLLsStatusbarElement;
@@ -1327,6 +1343,7 @@ declare namespace LocalJSX {
      * Alex Weinle
      */
     interface LsDocumentViewer {
+        "_recipients"?: any[];
         /**
           * Shows the table view of fields rather than the preview. {boolean}
           * @default false
@@ -1371,6 +1388,10 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
+          * A JSON string containing the recipient details. Only used in COMPOSE mode. {string}
+         */
+        "recipients"?: string;
+        /**
           * Whether the page previewvertical ribbon will be shown {boolean}
           * @default false
          */
@@ -1389,10 +1410,6 @@ declare namespace LocalJSX {
           * @default 0
          */
         "signer"?: number;
-        /**
-          * A JSON string containing the signer details. Only used in COMPOSE mode. {string}
-         */
-        "signers"?: string;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
@@ -1713,6 +1730,12 @@ declare namespace LocalJSX {
         "name"?: string;
         "radioId"?: string;
     }
+    interface LsRecipientCard {
+        /**
+          * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
+         */
+        "recipient"?: LSApiRecipient;
+    }
     interface LsRecipientManager {
     }
     interface LsSelectInput {
@@ -1934,6 +1957,7 @@ declare namespace LocalJSX {
         "ls-participant-select": LsParticipantSelect;
         "ls-props-section": LsPropsSection;
         "ls-radio-input": LsRadioInput;
+        "ls-recipient-card": LsRecipientCard;
         "ls-recipient-manager": LsRecipientManager;
         "ls-select-input": LsSelectInput;
         "ls-statusbar": LsStatusbar;
@@ -1997,6 +2021,7 @@ declare module "@stencil/core" {
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
             "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
             "ls-radio-input": LocalJSX.LsRadioInput & JSXBase.HTMLAttributes<HTMLLsRadioInputElement>;
+            "ls-recipient-card": LocalJSX.LsRecipientCard & JSXBase.HTMLAttributes<HTMLLsRecipientCardElement>;
             "ls-recipient-manager": LocalJSX.LsRecipientManager & JSXBase.HTMLAttributes<HTMLLsRecipientManagerElement>;
             "ls-select-input": LocalJSX.LsSelectInput & JSXBase.HTMLAttributes<HTMLLsSelectInputElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;

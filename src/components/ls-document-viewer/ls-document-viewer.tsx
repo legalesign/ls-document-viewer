@@ -95,10 +95,11 @@ export class LsDocumentViewer {
   @Prop() templateid: string;
 
   /**
-   * A JSON string containing the signer details. Only used in COMPOSE mode.
+   * A JSON string containing the recipient details. Only used in COMPOSE mode.
    * {string}
    */
-  @Prop() signers: string;
+  @Prop() recipients: string;
+  @Prop() _recipients: any[];
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1;
@@ -138,16 +139,6 @@ export class LsDocumentViewer {
       this.showstatusbar = true;
       this.readonly = false;
     }
-  }
-
-  @Watch('displayTable')
-  tableViewHandler(_newMode, _oldMode) {
-    if (_newMode === true) {
-      this.showPageFields(-1);
-    } else if (_newMode === 'editor') {
-      this.showPageFields(this.pageNum);
-    }
-    this.queueRenderPage(this.pageNum);
   }
 
   /**
@@ -590,6 +581,10 @@ export class LsDocumentViewer {
       this.groupInfo = resultGroup.group;
       this.initViewer();
 
+      console.log(this.recipients);
+      this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
+      console.log(this._recipients);
+
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
       this.pageCount = this._template.pageCount;
@@ -649,8 +644,8 @@ export class LsDocumentViewer {
                   />
                   <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
                     <div class="ls-editor-infobox">
-                      <h2 class="toolbox-section-title">Participant Fields</h2>
-                      <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
+                      <h2 class="toolbox-section-title">Fields</h2>
+                      <p class="toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
                     </div>
                     <div class="fields-box">
                       {this.signer > 0 && this.showTool('signature') && (
@@ -844,7 +839,9 @@ export class LsDocumentViewer {
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
-                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'} />
+                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'}>
+                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} />)}
+                  </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
                   <div class={this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>

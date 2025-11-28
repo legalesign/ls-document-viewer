@@ -7,6 +7,22 @@
   margin: 0;
 }
 
+.toolbox-section-description {
+  color: var(--gray-80, #5e6066);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.validation-section-title {
+  color: var(--gray-100, #45484d);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.75rem; /* 155.556% */
+}
+
 .valid-label {
   display: flex;
   padding: 2px 0.5rem;

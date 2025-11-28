@@ -9,7 +9,7 @@ export class LsRecipientManager {
   render() {
     return (
       <Host>
-        Recipients
+        <div class='recipient-section-title'>Recipients</div>
         <slot></slot>
       </Host>
     );
