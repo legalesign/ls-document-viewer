@@ -613,13 +613,17 @@ export class LsDocumentViewer {
       <Host>
         <>
           {this.isLoading && <ls-page-loader />}
+          <div class={'left-slot-wrapper'}>
+            <slot name="left-button" />
+          </div>
+          <div class={'right-slot-wrapper'}>
+            <slot name="right-button" />
+          </div>
           <div class={'validation-tag-wrapper'}>
             <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"} />
           </div>
-          <div class="page-header">
-            <p class="header-text-1">Template Creation</p>
-            <p>/</p>
-            <p class="header-text-2">{this._template?.title}</p>
+          <div class={'validation-tag-wrapper'}>
+            <ls-validation-tag validationErrors={this.validationErrors} showDropDown={this.mode === "editor"} />
           </div>
           <form id="ls-editor-form">
             {this.mode !== "preview" ? (
