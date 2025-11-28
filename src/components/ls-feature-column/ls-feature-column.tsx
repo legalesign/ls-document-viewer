@@ -83,7 +83,7 @@ export class LsFeatureColoumn {
         </div>
 
         <div
-          class={this.mode !== "compose" ? 'hidden' : this.manager === 'validation' ? 'activeIcon' : 'defaultIcon'}
+          class={this.mode !== "preview" ? 'hidden' : this.manager === 'validation' ? 'activeIcon' : 'defaultIcon'}
           onClick={() => {
             this.manage.emit('validation');
             this.manager = 'validation';

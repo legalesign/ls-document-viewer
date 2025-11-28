@@ -121,6 +121,7 @@ export class LsParticipantSelect {
           </div>
           {this.isOpen && (
             <div class="dropdown-list">
+              
               <div
                 class={this.selectedRole?.signerIndex === 0 ? 'dropdown-item selected' : 'dropdown-item'}
                 style={{
