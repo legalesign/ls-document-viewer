@@ -160,9 +160,9 @@ export class LsDocumentViewer {
   @Prop() filtertoolbox?: string = null;
 
   /**
-  * Whether the bottom statusbar is displayed.
-  * {boolean}
-  */
+   * Whether the bottom statusbar is displayed.
+   * {boolean}
+   */
   @Prop() showstatusbar?: boolean = false;
 
   /**
@@ -189,8 +189,6 @@ export class LsDocumentViewer {
    * {boolean}
    */
   @Prop() toolboxFilter?: string = null;
-
-
 
   //
   // --- Event Emitters --- //
@@ -245,7 +243,7 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : (this._template.roles.length === 0 ? 1 : newSignerIndex),
+          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
@@ -453,7 +451,6 @@ export class LsDocumentViewer {
         });
       });
     }
-
   }
 
   private queueRenderPage(pageNumber: number): void {
@@ -494,9 +491,7 @@ export class LsDocumentViewer {
       if (update.action === 'create') {
         //      const newData = { ...update.data, page: this.pageNum };
         //        addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), newData);
-
         //const newField = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-
         //this.selected = [newField];
         //this.selectFields.emit([newData as LSApiElement]);
       } else if (update.action === 'update') {
@@ -539,7 +534,6 @@ export class LsDocumentViewer {
 
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
-
       dropTarget.addEventListener('click', mouseClick.bind(this));
       dropTarget.addEventListener('mousedown', mouseDown.bind(this));
       dropTarget.addEventListener('mousemove', mouseMove.bind(this));
@@ -628,36 +622,48 @@ export class LsDocumentViewer {
             <div class={'right-slot-wrapper'}>
               <slot name="right-button" />
             </div>
-            {this.mode === 'editor' && <div>
-              <span class="header-text-1">Template Creation</span>
-              <span>/</span>
-              <span class="header-text-2">{this._template?.title}</span></div>}
-            {this.mode === 'compose' && <div>
-              <span class="header-text-1">Compose</span> <span>/</span> <span class="header-text-2">{this._template?.title}</span></div>}
+            {this.mode === 'editor' && (
+              <div>
+                <span class="header-text-1">Template Creation</span>
+                <span>/</span>
+                <span class="header-text-2">{this._template?.title}</span>
+              </div>
+            )}
+            {this.mode === 'compose' && (
+              <div>
+                <span class="header-text-1">Compose</span> <span>/</span> <span class="header-text-2">{this._template?.title}</span>
+              </div>
+            )}
           </div>
-          {this.mode === 'editor' && <div class={'validation-tag-wrapper'}><ls-validation-tag validationErrors={this.validationErrors} /></div>}
+          {this.mode === 'editor' && (
+            <div class={'validation-tag-wrapper'}>
+              <ls-validation-tag validationErrors={this.validationErrors} />
+            </div>
+          )}
 
           <form id="ls-editor-form">
-            {this.mode !== "preview" ? (
+            {this.mode !== 'preview' ? (
               <div id="ls-left-box" class="leftBox">
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
-                  {this.mode === 'editor' && <ls-feature-column
-                    mode={this.mode}
-                    onManage={manager => {
-                      if (manager.detail === 'document') {
-                        var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
-                        documentManager.template = this._template;
-                      } else if (manager.detail === 'participant') {
-                        var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-                        participantManager.template = this._template;
-                      } else if (manager.detail === 'validation') {
-                        var validationManager = this.component.shadowRoot.getElementById('ls-validation-manager') as HTMLLsValidationManagerElement;
-                        console.log(validationManager);
-                        validationManager.validationErrors = this.validationErrors;
-                      }
-                      this.manager = manager.detail;
-                    }}
-                  />}
+                  {this.mode === 'editor' && (
+                    <ls-feature-column
+                      mode={this.mode}
+                      onManage={manager => {
+                        if (manager.detail === 'document') {
+                          var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
+                          documentManager.template = this._template;
+                        } else if (manager.detail === 'participant') {
+                          var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+                          participantManager.template = this._template;
+                        } else if (manager.detail === 'validation') {
+                          var validationManager = this.component.shadowRoot.getElementById('ls-validation-manager') as HTMLLsValidationManagerElement;
+                          console.log(validationManager);
+                          validationManager.validationErrors = this.validationErrors;
+                        }
+                        this.manager = manager.detail;
+                      }}
+                    />
+                  )}
                   <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
                     <div class="ls-editor-infobox">
                       <h2 class="toolbox-section-title">Fields</h2>
@@ -771,7 +777,8 @@ export class LsDocumentViewer {
                           icon="hashtag"
                           tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
                           signer={this.signer}
-                        />)}
+                        />
+                      )}
 
                       {this.showTool('dropdown') && (
                         <ls-toolbox-field
@@ -784,7 +791,8 @@ export class LsDocumentViewer {
                           icon="dropdown"
                           tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
                           signer={this.signer}
-                        />)}
+                        />
+                      )}
 
                       {this.showTool('checkbox') && (
                         <ls-toolbox-field
@@ -797,9 +805,8 @@ export class LsDocumentViewer {
                           icon="check"
                           tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
                           signer={this.signer}
-                        />)}
-
-
+                        />
+                      )}
 
                       {this.signer > 0 && this.showTool('regex') && (
                         <ls-toolbox-field
@@ -812,7 +819,8 @@ export class LsDocumentViewer {
                           icon="code"
                           tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
                           signer={this.signer}
-                        />)}
+                        />
+                      )}
                       {this.signer > 0 && this.showTool('image') && (
                         <ls-toolbox-field
                           elementType="image"
@@ -824,7 +832,8 @@ export class LsDocumentViewer {
                           icon="photograph"
                           tooltip="Use when you need Participants to upload their own images during the signing process"
                           signer={this.signer}
-                        />)}
+                        />
+                      )}
                       {this.signer > 0 && this.showTool('file') && (
                         <ls-toolbox-field
                           elementType="file"
@@ -836,7 +845,8 @@ export class LsDocumentViewer {
                           icon="upload"
                           tooltip="Use when you need Participants to upload their own documents during the signing process"
                           signer={this.signer}
-                        />)}
+                        />
+                      )}
                       {this.signer > 0 && this.showTool('drawn') && (
                         <ls-toolbox-field
                           elementType="drawn"
@@ -849,15 +859,16 @@ export class LsDocumentViewer {
                           tooltip="Allow users to draw on the document using their mouse or touchscreen"
                           signer={this.signer}
                         />
-                      )}
+                      )}   
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
-                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'}>
+                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox compose-toolbox' : 'hidden'}>
                     <ls-validation-tag validationErrors={this.validationErrors} showDropDown={false} />
-                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} />)}
+                    {this._recipients &&
+                      this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} />)}
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
@@ -886,7 +897,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            { this.selected.length > 0 && <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />}
+            {this.selected.length > 0 && <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />}
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

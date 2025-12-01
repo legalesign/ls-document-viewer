@@ -1,6 +1,7 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSApiRecipient } from '../../types/LSApiRecipient';
+import { LSApiTemplate } from '../../components';
 
 @Component({
   tag: 'ls-recipient-card',
@@ -8,7 +9,6 @@ import { LSApiRecipient } from '../../types/LSApiRecipient';
   shadow: true,
 })
 export class LsRecipientCard {
-
   /**
    * The initial template data, including the link for background PDF. See README and
    * example for correct GraphQL query and data structure.
@@ -16,6 +16,12 @@ export class LsRecipientCard {
    */
   @Prop() recipient: LSApiRecipient;
   @Prop() activeRecipient: number;
+  @Prop() template: LSApiTemplate;
+  @State() isHovered: boolean = false;
+
+  private setIsHovered(value: boolean) {
+    this.isHovered = value;
+  }
   /**
    * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
    * {string}
@@ -30,17 +36,28 @@ export class LsRecipientCard {
   }
 
   render() {
+    const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
+    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
     return (
       <Host>
         <div
           class={'participant-card top-card full-card'}
           style={{
             background: defaultRolePalette[this.recipient?.signerIndex % 100].s10,
-            border: `${this.recipient.signerIndex === this.activeRecipient ? 2 : 1}px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
+            border: `1px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
+            outline: `${this.recipient.signerIndex === this.activeRecipient ? '4px solid ' + defaultRolePalette[this.recipient?.signerIndex % 100].s40 : 'none'}`,
             marginTop: this.recipient.roleType === 'WITNESS' ? '-0.813rem' : '0',
             cursor: 'pointer',
           }}
-          onClick={() => { this.changeSigner.emit(this.recipient.signerIndex); }}
+          onClick={() => {
+            this.changeSigner.emit(this.recipient.signerIndex);
+          }}
+          onMouseEnter={() => {
+            this.setIsHovered(true);
+          }}
+          onMouseLeave={() => {
+            this.setIsHovered(false);
+          }}
         >
           <div class={'participant-card-inner'}>
             <div class={'participant-card-top-items'}>
@@ -52,8 +69,16 @@ export class LsRecipientCard {
                 }}
               >
                 <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
-                {(this.recipient?.firstname + ' ' + this.recipient?.lastname)}
+                {String(this.recipient?.signerIndex).padStart(2, '0')}
               </div>
+              <ls-icon
+                name="cursor-click"
+                size="16"
+                customStyle={{ color: defaultRolePalette[this.recipient?.signerIndex % 100].s70 }}
+                solid
+                style={{ display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? 'block' : 'none' }}
+              />
+              <div class="dot" style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && recipientSignatures.length === 0 ? 'block' : 'none' }} />
             </div>
 
             <div class={'participant-card-text'}>
@@ -63,8 +88,30 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
               >
+                {this.recipient?.firstname + ' ' + this.recipient?.lastname}
+              </p>
+              <p
+                class="participant-text-type"
+                style={{
+                  color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
+                }}
+              >
                 {this.recipient.email}
               </p>
+              {this.recipient?.roleType !== 'APPROVER' && (
+                <div
+                  class={'role-label fields'}
+                  style={{
+                    background:
+                      recipientFields.length === 0 ? defaultRolePalette[this.recipient?.signerIndex % 100].s60 : defaultRolePalette[this.recipient?.signerIndex % 100].s20,
+                    color: recipientFields.length === 0 ? 'white' : defaultRolePalette[this.recipient?.signerIndex % 100].s90,
+                    // display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? '' : 'none',
+                  }}
+                >
+                  {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
+                  {recipientSignatures.length === 0 ? 'Signature Required' : `${recipientFields.length} ${recipientFields.length === 1 ? 'Field' : 'Fields'}`}
+                </div>
+              )}
             </div>
             {this.recipient.signerIndex === this.activeRecipient && (
               <div class="fields-box">
@@ -79,7 +126,7 @@ export class LsRecipientCard {
                     icon="signature"
                     tooltip="Use this field to collect Signatures from Participants"
                     signer={this.recipient.signerIndex}
-                    redDot={true}
+                    redDot={recipientSignatures.length === 0}
                   />
                 )}
 
@@ -176,7 +223,8 @@ export class LsRecipientCard {
                     icon="hashtag"
                     tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
                     signer={this.recipient.signerIndex}
-                  />)}
+                  />
+                )}
 
                 {this.showTool('dropdown') && (
                   <ls-toolbox-field
@@ -189,7 +237,8 @@ export class LsRecipientCard {
                     icon="dropdown"
                     tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
                     signer={this.recipient.signerIndex}
-                  />)}
+                  />
+                )}
 
                 {this.showTool('checkbox') && (
                   <ls-toolbox-field
@@ -202,9 +251,8 @@ export class LsRecipientCard {
                     icon="check"
                     tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
                     signer={this.recipient.signerIndex}
-                  />)}
-
-
+                  />
+                )}
 
                 {this.recipient.signerIndex > 0 && this.showTool('regex') && (
                   <ls-toolbox-field
@@ -217,7 +265,8 @@ export class LsRecipientCard {
                     icon="code"
                     tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
                     signer={this.recipient.signerIndex}
-                  />)}
+                  />
+                )}
                 {this.recipient.signerIndex > 0 && this.showTool('image') && (
                   <ls-toolbox-field
                     elementType="image"
@@ -229,7 +278,8 @@ export class LsRecipientCard {
                     icon="photograph"
                     tooltip="Use when you need Participants to upload their own images during the signing process"
                     signer={this.recipient.signerIndex}
-                  />)}
+                  />
+                )}
                 {this.recipient.signerIndex > 0 && this.showTool('file') && (
                   <ls-toolbox-field
                     elementType="file"
@@ -241,7 +291,8 @@ export class LsRecipientCard {
                     icon="upload"
                     tooltip="Use when you need Participants to upload their own documents during the signing process"
                     signer={this.recipient.signerIndex}
-                  />)}
+                  />
+                )}
                 {this.recipient.signerIndex > 0 && this.showTool('drawn') && (
                   <ls-toolbox-field
                     elementType="drawn"
@@ -256,7 +307,6 @@ export class LsRecipientCard {
                   />
                 )}
               </div>
-
             )}
           </div>
         </div>
