@@ -257,7 +257,7 @@ export class LsDocumentViewer {
     this.mutate.emit(data);
   }
 
-    // Updates are internal event between LS controls not to be confused with mutate
+  // Updates are internal event between LS controls not to be confused with mutate
   @Listen('changeSigner')
   updateSigner(event: CustomEvent<number>) {
     if (event.detail) this.signer = event.detail;
@@ -619,15 +619,20 @@ export class LsDocumentViewer {
       <Host>
         <>
           {this.isLoading && <ls-page-loader />}
-          <div class={'left-slot-wrapper'}>
-            <slot name="left-button" />
+          <div class="page-header">
+            <div class={'left-slot-wrapper'}>
+              <slot name="left-button" />
+            </div>
+            <div class={'right-slot-wrapper'}>
+              <slot name="right-button" />
+            </div>
+
+            <p class="header-text-1">Template Creation</p>
+            <p>/</p>
+            <p class="header-text-2">{this._template?.title}</p>
           </div>
-          <div class={'right-slot-wrapper'}>
-            <slot name="right-button" />
-          </div>
-          <div class={'validation-tag-wrapper'}>
-            <ls-validation-tag validationErrors={this.validationErrors} />
-          </div>
+          {this.mode === 'editor' && <div class={'validation-tag-wrapper'}><ls-validation-tag validationErrors={this.validationErrors} /></div>}
+
           <form id="ls-editor-form">
             {this.mode !== "preview" ? (
               <div id="ls-left-box" class="leftBox">
@@ -847,7 +852,7 @@ export class LsDocumentViewer {
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'}>
-                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer}/>)}
+                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} />)}
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
