@@ -626,10 +626,12 @@ export class LsDocumentViewer {
             <div class={'right-slot-wrapper'}>
               <slot name="right-button" />
             </div>
-
-            <p class="header-text-1">Template Creation</p>
-            <p>/</p>
-            <p class="header-text-2">{this._template?.title}</p>
+            {this.mode === 'editor' && <div>
+              <span class="header-text-1">Template Creation</span>
+              <span>/</span>
+              <span class="header-text-2">{this._template?.title}</span></div>}
+            {this.mode === 'compose' && <div>
+              <span class="header-text-1">Compose</span><span>/</span><span class="header-text-2">{this._template?.title}</span></div>}
           </div>
           {this.mode === 'editor' && <div class={'validation-tag-wrapper'}><ls-validation-tag validationErrors={this.validationErrors} /></div>}
 
