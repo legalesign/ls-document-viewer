@@ -3,7 +3,6 @@ import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { attachAllTooltips } from '../../utils/tooltip';
 
-
 @Component({
   tag: 'ls-toolbox-field',
   styleUrl: 'ls-toolbox-field.css',
@@ -19,7 +18,6 @@ export class LsToolboxField {
   @Prop() validation: number = 0;
   @Prop() fixedAspect: number | null = null;
   @Prop() redDot: boolean = false;
-  
 
   /**
    * The text to display for this field type.
@@ -57,13 +55,13 @@ export class LsToolboxField {
     composed: true,
   })
   fieldTypeSelected: EventEmitter<{
-    label: string
-    elementType: string
-    defaultHeight: number
-    defaultWidth: number
-    formElementType: string
-    validation: number
-    fixedAspect: number | null
+    label: string;
+    elementType: string;
+    defaultHeight: number;
+    defaultWidth: number;
+    formElementType: string;
+    validation: number;
+    fixedAspect: number | null;
   }>;
 
   @Listen('dragstart')
@@ -136,12 +134,15 @@ export class LsToolboxField {
             }
           >
             {this.label}
-           
           </p>
-           { this.redDot && <ls-icon name="ticket" size="16" color="#ff0000" /> }
+          {this.redDot && (
+            <div class={'warning-box'}>
+              <ls-icon name="exclamation-circle" size="18" solid />
+            </div>
+          )}
           <ls-icon name="drag-vertical" size="16" color="#787a80" />
         </div>
-        <ls-tooltip id="ls-tooltip-master" tooltipText='Something' />
+        <ls-tooltip id="ls-tooltip-master" tooltipText="Something" />
       </Host>
     );
   }

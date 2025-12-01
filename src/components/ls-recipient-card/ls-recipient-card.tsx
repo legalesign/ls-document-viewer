@@ -98,7 +98,7 @@ export class LsRecipientCard {
               >
                 {this.recipient.email}
               </p>
-              {this.recipient?.roleType !== 'APPROVER' && (
+              {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div
                   class={'role-label fields'}
                   style={{
@@ -111,7 +111,7 @@ export class LsRecipientCard {
                   {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
                   {recipientSignatures.length === 0 ? 'Signature Required' : `${recipientFields.length} ${recipientFields.length === 1 ? 'Field' : 'Fields'}`}
                 </div>
-              )}
+              )} */}
             </div>
             {this.recipient.signerIndex === this.activeRecipient && (
               <div class="fields-box">

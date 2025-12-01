@@ -131,6 +131,10 @@
   width: 100%;
 }
 
+.participant-card-text {
+  padding: 0 0.125rem 0.125rem 0.125rem;
+}
+
 p {
   color: var(--gray-80, #6c6e73);
   font-family: var(--font-family);

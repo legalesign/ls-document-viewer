@@ -26,9 +26,15 @@
   color: var(--green-100, #125241);
 }
 
-.invalid {
+.invalid.default {
   background: var(--yellow-20, #fff3c2);
   color: var(--yellow-90, #8a3f0e);
+}
+
+.invalid.compose {
+  border: 1px solid var(--red-40, #ffa19e);
+  background: var(--red-10, #fff0f0);
+  color: var(--red-80, #c1140e);
 }
 
 .field-counter {
@@ -44,6 +50,13 @@
   color: var(--yellow-20, #fff3c2);
   background: #e17100;
   min-width: 1rem;
+}
+
+.field-counter.compose {
+
+  color: var(--red-10, #fff0f0);
+  background: var(--red-60, #F64A44);
+
 }
 
 .field-dropdown {

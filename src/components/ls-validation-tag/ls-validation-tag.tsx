@@ -11,20 +11,22 @@ export class LsValidationTag {
   @Prop({ mutable: true }) status: string = 'Invalid';
   @Prop({ mutable: true }) validationErrors: ValidationError[] = [];
   @Prop({ mutable: true }) isExpanded: boolean = false;
+  @Prop() type: 'compose' | 'default' = 'default';
   @Prop() showDropDown: boolean = true;
 
   render() {
     return (
       <Host>
         <div
-          class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'}`}
+          class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'} ${this.type === 'compose' ? 'compose' : 'default'}`}
           onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
         >
-          {this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
-          {this.validationErrors.length > 0 && <div class={'field-counter'}>{this.validationErrors.length}</div>}
+          {this.validationErrors.length > 0 && <div class={`field-counter ${this.type === 'compose' ? 'compose' : 'default'}`}>{this.validationErrors.length}</div>}
+          {this.type === 'compose' ? (this.validationErrors.length === 0 ? 'Ready' : `Required`) : this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
           {this.validationErrors.length > 0 && this.showDropDown && (
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
+          {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click" solid size="16" customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
         </div>
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && (
           <div class={'field-dropdown'}>

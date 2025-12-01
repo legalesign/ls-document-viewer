@@ -590,6 +590,10 @@ export namespace Components {
          */
         "status": string;
         /**
+          * @default 'default'
+         */
+        "type": 'compose' | 'default';
+        /**
           * @default []
          */
         "validationErrors": ValidationError[];
@@ -1255,13 +1259,13 @@ declare global {
     };
     interface HTMLLsToolboxFieldElementEventMap {
         "fieldTypeSelected": {
-    label: string
-    elementType: string
-    defaultHeight: number
-    defaultWidth: number
-    formElementType: string
-    validation: number
-    fixedAspect: number | null
+    label: string;
+    elementType: string;
+    defaultHeight: number;
+    defaultWidth: number;
+    formElementType: string;
+    validation: number;
+    fixedAspect: number | null;
   };
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
@@ -1898,13 +1902,13 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         "onFieldTypeSelected"?: (event: LsToolboxFieldCustomEvent<{
-    label: string
-    elementType: string
-    defaultHeight: number
-    defaultWidth: number
-    formElementType: string
-    validation: number
-    fixedAspect: number | null
+    label: string;
+    elementType: string;
+    defaultHeight: number;
+    defaultWidth: number;
+    formElementType: string;
+    validation: number;
+    fixedAspect: number | null;
   }>) => void;
         /**
           * @default false
@@ -1956,6 +1960,10 @@ declare namespace LocalJSX {
           * @default 'Invalid'
          */
         "status"?: string;
+        /**
+          * @default 'default'
+         */
+        "type"?: 'compose' | 'default';
         /**
           * @default []
          */

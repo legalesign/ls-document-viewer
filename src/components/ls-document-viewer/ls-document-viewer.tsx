@@ -643,7 +643,7 @@ export class LsDocumentViewer {
 
           <form id="ls-editor-form">
             {this.mode !== 'preview' ? (
-              <div id="ls-left-box" class="leftBox">
+              <div id="ls-left-box" class="leftBox" style={this.mode === 'compose' ? { borderRadius: '1.75rem' } : {}}>
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
                   {this.mode === 'editor' && (
                     <ls-feature-column
@@ -859,16 +859,18 @@ export class LsDocumentViewer {
                           tooltip="Allow users to draw on the document using their mouse or touchscreen"
                           signer={this.signer}
                         />
-                      )}   
+                      )}
                     </div>
                   </div>
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox compose-toolbox' : 'hidden'}>
-                    <ls-validation-tag validationErrors={this.validationErrors} showDropDown={false} />
+                    <ls-validation-tag validationErrors={this.validationErrors} showDropDown={false} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
                     {this._recipients &&
-                      this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} />)}
+                      this._recipients.map(recipient => (
+                        <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} />
+                      ))}
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
