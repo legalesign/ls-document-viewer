@@ -587,7 +587,8 @@ export class LsDocumentViewer {
       this.groupInfo = resultGroup.group;
       this.initViewer();
 
-      console.log(this.recipients);
+      if(this.mode === 'compose') this.manager === 'recipient';
+
       this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
       console.log(this._recipients);
 
@@ -631,7 +632,7 @@ export class LsDocumentViewer {
               <span>/</span>
               <span class="header-text-2">{this._template?.title}</span></div>}
             {this.mode === 'compose' && <div>
-              <span class="header-text-1">Compose</span><span>/</span><span class="header-text-2">{this._template?.title}</span></div>}
+              <span class="header-text-1">Compose</span> <span>/</span> <span class="header-text-2">{this._template?.title}</span></div>}
           </div>
           {this.mode === 'editor' && <div class={'validation-tag-wrapper'}><ls-validation-tag validationErrors={this.validationErrors} /></div>}
 
@@ -639,7 +640,7 @@ export class LsDocumentViewer {
             {this.mode !== "preview" ? (
               <div id="ls-left-box" class="leftBox">
                 <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
-                  <ls-feature-column
+                  {this.mode === 'editor' && <ls-feature-column
                     mode={this.mode}
                     onManage={manager => {
                       if (manager.detail === 'document') {
@@ -655,7 +656,7 @@ export class LsDocumentViewer {
                       }
                       this.manager = manager.detail;
                     }}
-                  />
+                  />}
                   <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
                     <div class="ls-editor-infobox">
                       <h2 class="toolbox-section-title">Fields</h2>
