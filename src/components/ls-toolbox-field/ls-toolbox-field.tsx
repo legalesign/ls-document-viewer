@@ -18,6 +18,7 @@ export class LsToolboxField {
   @Prop() elementType: string;
   @Prop() validation: number = 0;
   @Prop() fixedAspect: number | null = null;
+  @Prop() redDot: boolean = false;
   
 
   /**
@@ -135,7 +136,9 @@ export class LsToolboxField {
             }
           >
             {this.label}
+           
           </p>
+           { this.redDot && <ls-icon name="ticket" size="16" color="#ff0000" /> }
           <ls-icon name="drag-vertical" size="16" color="#787a80" />
         </div>
         <ls-tooltip id="ls-tooltip-master" tooltipText='Something' />

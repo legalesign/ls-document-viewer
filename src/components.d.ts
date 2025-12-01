@@ -305,6 +305,10 @@ export namespace Components {
         "expanded": boolean;
     }
     interface LsIcon {
+        /**
+          * @default "#000000"
+         */
+        "color"?: string;
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         /**
@@ -408,6 +412,11 @@ export namespace Components {
     }
     interface LsRecipientCard {
         "activeRecipient": number;
+        /**
+          * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
+          * @default null
+         */
+        "filtertoolbox"?: string;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
@@ -528,6 +537,10 @@ export namespace Components {
           * The text to display for this field type.
          */
         "label": string;
+        /**
+          * @default false
+         */
+        "redDot": boolean;
         /**
           * The signer color of the element
           * @default 0
@@ -1636,6 +1649,10 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
     }
     interface LsIcon {
+        /**
+          * @default "#000000"
+         */
+        "color"?: string;
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         /**
@@ -1748,6 +1765,11 @@ declare namespace LocalJSX {
     }
     interface LsRecipientCard {
         "activeRecipient"?: number;
+        /**
+          * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
+          * @default null
+         */
+        "filtertoolbox"?: string;
         "onChangeSigner"?: (event: LsRecipientCardCustomEvent<number>) => void;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
@@ -1882,6 +1904,10 @@ declare namespace LocalJSX {
     validation: number
     fixedAspect: number | null
   }>) => void;
+        /**
+          * @default false
+         */
+        "redDot"?: boolean;
         /**
           * The signer color of the element
           * @default 0

@@ -16,9 +16,18 @@ export class LsRecipientCard {
    */
   @Prop() recipient: LSApiRecipient;
   @Prop() activeRecipient: number;
+  /**
+   * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
+   * {string}
+   */
+  @Prop() filtertoolbox?: string = null;
 
   // Send an internal event to be processed
   @Event() changeSigner: EventEmitter<number>;
+
+  showTool(fieldFormType: string): boolean {
+    return this.filtertoolbox === null || this.filtertoolbox.split('|').includes(fieldFormType);
+  }
 
   render() {
     return (
@@ -57,6 +66,198 @@ export class LsRecipientCard {
                 {this.recipient.email}
               </p>
             </div>
+            {this.recipient.signerIndex === this.activeRecipient && (
+              <div class="fields-box">
+                {this.recipient.signerIndex > 0 && this.showTool('signature') && (
+                  <ls-toolbox-field
+                    elementType="signature"
+                    formElementType="signature"
+                    label="Signature"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={0}
+                    icon="signature"
+                    tooltip="Use this field to collect Signatures from Participants"
+                    signer={this.recipient.signerIndex}
+                    redDot={true}
+                  />
+                )}
+
+                {this.recipient.signerIndex === 0 && this.showTool('auto sign') && (
+                  <ls-toolbox-field
+                    elementType="auto sign"
+                    formElementType="auto sign"
+                    label="Auto Sign"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={3000}
+                    icon="auto-sign"
+                    tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+                {this.showTool('text') && (
+                  <ls-toolbox-field
+                    elementType="text"
+                    formElementType="text"
+                    label="Text"
+                    defaultHeight={27}
+                    defaultWidth={100}
+                    validation={0}
+                    icon="text"
+                    tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+
+                {this.recipient.signerIndex > 0 && this.showTool('signing date') && (
+                  <ls-toolbox-field
+                    elementType="signing date"
+                    formElementType="signing date"
+                    label="Signing Date"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={30}
+                    icon="auto-date"
+                    tooltip="Automatically inserts the date upon completion by the assigned Participant"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+
+                {this.showTool('date') && (
+                  <ls-toolbox-field
+                    elementType="date"
+                    formElementType="date"
+                    label="Date"
+                    defaultHeight={27}
+                    defaultWidth={80}
+                    validation={2}
+                    icon="calender"
+                    tooltip="A field for collecting dates with built-in date formatting options"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+                {this.showTool('email') && (
+                  <ls-toolbox-field
+                    elementType="email"
+                    formElementType="email"
+                    label="Email"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={1}
+                    icon="at-symbol"
+                    tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+
+                {this.showTool('initials') && (
+                  <ls-toolbox-field
+                    elementType="initials"
+                    formElementType="initials"
+                    label="Initials"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={2000}
+                    icon="initials"
+                    tooltip="Use this field anywhere Participants are required to Initial your document"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+
+                {this.showTool('number') && (
+                  <ls-toolbox-field
+                    elementType="number"
+                    formElementType="number"
+                    label="Number"
+                    defaultHeight={27}
+                    defaultWidth={80}
+                    validation={50}
+                    icon="hashtag"
+                    tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
+                    signer={this.recipient.signerIndex}
+                  />)}
+
+                {this.showTool('dropdown') && (
+                  <ls-toolbox-field
+                    elementType="dropdown"
+                    formElementType="dropdown"
+                    label="Dropdown"
+                    defaultHeight={27}
+                    defaultWidth={80}
+                    validation={20}
+                    icon="dropdown"
+                    tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
+                    signer={this.recipient.signerIndex}
+                  />)}
+
+                {this.showTool('checkbox') && (
+                  <ls-toolbox-field
+                    elementType="checkbox"
+                    formElementType="checkbox"
+                    label="Checkbox"
+                    defaultHeight={27}
+                    defaultWidth={27}
+                    validation={25}
+                    icon="check"
+                    tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
+                    signer={this.recipient.signerIndex}
+                  />)}
+
+
+
+                {this.recipient.signerIndex > 0 && this.showTool('regex') && (
+                  <ls-toolbox-field
+                    elementType="regex"
+                    formElementType="regex"
+                    label="Regex"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={93}
+                    icon="code"
+                    tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
+                    signer={this.recipient.signerIndex}
+                  />)}
+                {this.recipient.signerIndex > 0 && this.showTool('image') && (
+                  <ls-toolbox-field
+                    elementType="image"
+                    formElementType="image"
+                    label="Image"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={90}
+                    icon="photograph"
+                    tooltip="Use when you need Participants to upload their own images during the signing process"
+                    signer={this.recipient.signerIndex}
+                  />)}
+                {this.recipient.signerIndex > 0 && this.showTool('file') && (
+                  <ls-toolbox-field
+                    elementType="file"
+                    formElementType="file"
+                    label="File"
+                    defaultHeight={27}
+                    defaultWidth={120}
+                    validation={74}
+                    icon="upload"
+                    tooltip="Use when you need Participants to upload their own documents during the signing process"
+                    signer={this.recipient.signerIndex}
+                  />)}
+                {this.recipient.signerIndex > 0 && this.showTool('drawn') && (
+                  <ls-toolbox-field
+                    elementType="drawn"
+                    formElementType="drawn"
+                    label="Drawn"
+                    defaultHeight={120}
+                    defaultWidth={120}
+                    validation={90}
+                    icon="pencil"
+                    tooltip="Allow users to draw on the document using their mouse or touchscreen"
+                    signer={this.recipient.signerIndex}
+                  />
+                )}
+              </div>
+
+            )}
           </div>
         </div>
         <slot></slot>

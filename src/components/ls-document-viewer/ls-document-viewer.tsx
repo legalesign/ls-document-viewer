@@ -587,10 +587,11 @@ export class LsDocumentViewer {
       this.groupInfo = resultGroup.group;
       this.initViewer();
 
-      if(this.mode === 'compose') this.manager === 'recipient';
+      if (this.mode === 'compose') {
+        this.manager = 'recipient';
+      }
 
       this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
-      console.log(this._recipients);
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
@@ -855,7 +856,8 @@ export class LsDocumentViewer {
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox' : 'hidden'}>
-                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} />)}
+                    <ls-validation-tag validationErrors={this.validationErrors} showDropDown={false} />
+                    {this._recipients && this._recipients.map(recipient => <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} />)}
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
@@ -884,7 +886,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />
+            { this.selected.length > 0 && <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />}
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

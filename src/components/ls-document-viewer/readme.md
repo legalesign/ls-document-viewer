@@ -157,6 +157,7 @@ graph TD;
   ls-document-options --> ls-tooltip
   ls-validation-manager --> ls-toolbox-field
   ls-recipient-card --> ls-icon
+  ls-recipient-card --> ls-toolbox-field
   ls-recipient-card --> ls-tooltip
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date

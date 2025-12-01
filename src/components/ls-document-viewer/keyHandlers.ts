@@ -76,6 +76,10 @@ export function keyDown(ev: KeyboardEvent) {
       });
       this.update.emit(createdItems);
       this.mutate.emit(createdItems.map(item => ({ action: 'create', data: item.data })));
+    } else if (ev.key === 'Escape') {
+      console.log('Clearing selection');
+      this.selected = [];
+      this.selectFields.emit([]);
     }
   }
 }

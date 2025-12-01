@@ -71,7 +71,7 @@ export class LsToolbar {
   render() {
     return (
       <Host>
-        {this.dataItem && this.dataItem.length > 1 ? (
+        { (this.dataItem && this.dataItem.length > 1) ? (
           <div class={'rowbox'}>
             <ls-field-format dataItem={this?.dataItem} />
           </div>

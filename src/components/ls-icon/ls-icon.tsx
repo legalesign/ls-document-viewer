@@ -9,6 +9,7 @@ import { Icon, IconEnum, iconNames } from '../../types/Icon';
 export class LsIcon {
   @Prop() name?: Icon;
   @Prop() solid?: boolean = false;
+  @Prop() color?: string = "#000000";
   @Prop() size?: string = "20";
   @Prop() customStyle?: { [key: string]: string };
 
@@ -50,6 +51,7 @@ export class LsIcon {
                 height: `${this.size}px`,
                 width: `${this.size}px`,
                 ...this.customStyle,
+                color: this.color
               }}
             >
               {this.solid ? (
