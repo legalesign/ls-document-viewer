@@ -23,12 +23,12 @@ export class LsValidationTag {
         >
           {this.validationErrors.length > 0 && <div class={`field-counter ${this.type === 'compose' ? 'compose' : 'default'}`}>{this.validationErrors.length}</div>}
           {this.type === 'compose' ? (this.validationErrors.length === 0 ? 'Ready' : `Required`) : this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
-          {this.validationErrors.length > 0 && this.showDropDown && (
+          {this.validationErrors.length > 0 && this.showDropDown && this.type !== 'compose' && (
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
           {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click" solid size="16" customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
         </div>
-        {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && (
+        {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
           <div class={'field-dropdown'}>
             <div class={'dropdown-header'}>
               <h2>Fields Required</h2>
@@ -71,6 +71,26 @@ export class LsValidationTag {
                         </div>
                       </>
                     )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+        {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type === 'compose' && (
+          <div class={'field-dropdown compose'}>
+            <div class="validation-tag-header">
+              <p class="validation-tag-title">Recipients Missing Signature</p>
+            </div>
+            {this.validationErrors.map((field, idx) => {
+              const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
+              const pallette = defaultRolePalette[signerIndex || field?.element?.signer || 0];
+              return (
+                <div class="validation-tag-row" key={idx}>
+                  <div class="validation-tag-bar" style={{ background: pallette.s60 }}></div>
+                  <div class="validation-tag-details">
+                    <p class="validation-tag-name">{field?.role?.name}</p>
+                    <p class="validation-tag-email">{field?.role?.name}</p>
                   </div>
                 </div>
               );

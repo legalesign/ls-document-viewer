@@ -866,7 +866,7 @@ export class LsDocumentViewer {
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox compose-toolbox' : 'hidden'}>
-                    <ls-validation-tag validationErrors={this.validationErrors} showDropDown={false} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
+                    <ls-validation-tag validationErrors={this.validationErrors}  style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
                     {this._recipients &&
                       this._recipients.map(recipient => (
                         <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} />
