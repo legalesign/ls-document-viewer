@@ -421,6 +421,10 @@ export namespace Components {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "recipient": LSApiRecipient;
+        /**
+          * @default []
+         */
+        "validationErrors": ValidationError[];
     }
     interface LsRecipientManager {
     }
@@ -1775,6 +1779,10 @@ declare namespace LocalJSX {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "recipient"?: LSApiRecipient;
+        /**
+          * @default []
+         */
+        "validationErrors"?: ValidationError[];
     }
     interface LsRecipientManager {
     }

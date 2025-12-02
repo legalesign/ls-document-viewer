@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSApiRecipient } from '../../types/LSApiRecipient';
+import { ValidationError } from '../../types/ValidationError';
 
 @Component({
   tag: 'ls-recipient-card',
@@ -16,6 +17,8 @@ export class LsRecipientCard {
    */
   @Prop() recipient: LSApiRecipient;
   @Prop() activeRecipient: number;
+  @Prop() validationErrors: ValidationError[] = [];
+  
   /**
    * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
    * {string}
