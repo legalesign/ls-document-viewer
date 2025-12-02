@@ -2,6 +2,7 @@ import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/c
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSApiRecipient } from '../../types/LSApiRecipient';
 import { LSApiTemplate } from '../../components';
+import { ValidationError } from '../../types/ValidationError';
 
 @Component({
   tag: 'ls-recipient-card',
@@ -22,6 +23,8 @@ export class LsRecipientCard {
   private setIsHovered(value: boolean) {
     this.isHovered = value;
   }
+  @Prop() validationErrors: ValidationError[] = [];
+  
   /**
    * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list.
    * {string}

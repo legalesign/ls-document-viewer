@@ -422,6 +422,10 @@ export namespace Components {
          */
         "recipient": LSApiRecipient;
         "template": LSApiTemplate1;
+        /**
+          * @default []
+         */
+        "validationErrors": ValidationError[];
     }
     interface LsRecipientManager {
     }
@@ -1781,6 +1785,10 @@ declare namespace LocalJSX {
          */
         "recipient"?: LSApiRecipient;
         "template"?: LSApiTemplate1;
+        /**
+          * @default []
+         */
+        "validationErrors"?: ValidationError[];
     }
     interface LsRecipientManager {
     }

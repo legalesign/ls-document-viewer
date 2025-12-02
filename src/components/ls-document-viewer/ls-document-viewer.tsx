@@ -869,7 +869,7 @@ export class LsDocumentViewer {
                     <ls-validation-tag validationErrors={this.validationErrors}  style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
                     {this._recipients &&
                       this._recipients.map(recipient => (
-                        <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} />
+                        <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox} template={this._template} validationErrors={this.validationErrors} />
                       ))}
                   </ls-recipient-manager>
                 </div>
