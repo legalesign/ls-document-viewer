@@ -16,6 +16,17 @@
   border: 1px solid var(--gray-30, #e0e2e5);
 }
 
+.warning-box {
+  display: flex;
+  padding: 0.38rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  border: 1px solid var(--red-40, #fca39a);
+  background: var(--red-10, #fff1f0);
+  color: var(--red-60, #f04438);
+}
+
 
 
 .toolbox-field-icon {

@@ -421,6 +421,7 @@ export namespace Components {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "recipient": LSApiRecipient;
+        "template": LSApiTemplate1;
         /**
           * @default []
          */
@@ -592,6 +593,10 @@ export namespace Components {
           * @default 'Invalid'
          */
         "status": string;
+        /**
+          * @default 'default'
+         */
+        "type": 'compose' | 'default';
         /**
           * @default []
          */
@@ -1258,13 +1263,13 @@ declare global {
     };
     interface HTMLLsToolboxFieldElementEventMap {
         "fieldTypeSelected": {
-    label: string
-    elementType: string
-    defaultHeight: number
-    defaultWidth: number
-    formElementType: string
-    validation: number
-    fixedAspect: number | null
+    label: string;
+    elementType: string;
+    defaultHeight: number;
+    defaultWidth: number;
+    formElementType: string;
+    validation: number;
+    fixedAspect: number | null;
   };
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
@@ -1779,6 +1784,7 @@ declare namespace LocalJSX {
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
         "recipient"?: LSApiRecipient;
+        "template"?: LSApiTemplate1;
         /**
           * @default []
          */
@@ -1904,13 +1910,13 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         "onFieldTypeSelected"?: (event: LsToolboxFieldCustomEvent<{
-    label: string
-    elementType: string
-    defaultHeight: number
-    defaultWidth: number
-    formElementType: string
-    validation: number
-    fixedAspect: number | null
+    label: string;
+    elementType: string;
+    defaultHeight: number;
+    defaultWidth: number;
+    formElementType: string;
+    validation: number;
+    fixedAspect: number | null;
   }>) => void;
         /**
           * @default false
@@ -1962,6 +1968,10 @@ declare namespace LocalJSX {
           * @default 'Invalid'
          */
         "status"?: string;
+        /**
+          * @default 'default'
+         */
+        "type"?: 'compose' | 'default';
         /**
           * @default []
          */

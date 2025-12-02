@@ -51,7 +51,7 @@ export class LsIcon {
                 height: `${this.size}px`,
                 width: `${this.size}px`,
                 ...this.customStyle,
-                color: this.color
+                
               }}
             >
               {this.solid ? (
