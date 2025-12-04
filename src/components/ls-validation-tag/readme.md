@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type                | Default     |
-| ------------------ | ------------------- | ----------- | ------------------- | ----------- |
-| `isExpanded`       | `is-expanded`       |             | `boolean`           | `false`     |
-| `showDropDown`     | `show-drop-down`    |             | `boolean`           | `true`      |
-| `status`           | `status`            |             | `string`            | `'Invalid'` |
-| `validationErrors` | `validation-errors` |             | `ValidationError[]` | `[]`        |
+| Property           | Attribute           | Description | Type                     | Default     |
+| ------------------ | ------------------- | ----------- | ------------------------ | ----------- |
+| `isExpanded`       | `is-expanded`       |             | `boolean`                | `false`     |
+| `showDropDown`     | `show-drop-down`    |             | `boolean`                | `true`      |
+| `status`           | `status`            |             | `string`                 | `'Invalid'` |
+| `type`             | `type`              |             | `"compose" \| "default"` | `'default'` |
+| `validationErrors` | `validation-errors` |             | `ValidationError[]`      | `[]`        |
 
 
 ## Dependencies
