@@ -142,6 +142,12 @@ export class LsDocumentViewer {
     }
   }
 
+  @Watch('zoom')
+  zoomChanged(newZoom: number) {
+    const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+    fields.forEach(f => f.setAttribute('zoom', String(newZoom)));
+  }
+
   /**
    * Determines / sets which of the far left 'managers' is active.
    * {'document' | 'toolbox' | 'participant' }
@@ -587,7 +593,6 @@ export class LsDocumentViewer {
         this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
       }
 
-
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
       this.pageCount = this._template.pageCount;
@@ -870,7 +875,10 @@ export class LsDocumentViewer {
                     <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
                     {this._recipients &&
                       this._recipients.map(recipient => (
-                        <ls-recipient-card recipient={recipient} activeRecipient={this.signer} filtertoolbox={this.filtertoolbox}
+                        <ls-recipient-card
+                          recipient={recipient}
+                          activeRecipient={this.signer}
+                          filtertoolbox={this.filtertoolbox}
                           template={this._template}
                           validationErrors={this.validationErrors}
                           fieldTypeSelected={this.fieldTypeSelected}

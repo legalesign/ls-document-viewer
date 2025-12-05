@@ -113,11 +113,10 @@ export class LsEditorField {
   @Watch('selected')
   watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
     if (_newValue) {
-      this.component.style.background = defaultRolePalette[this.dataItem?.signer % 100].s20;
-      this.component.style.opacity = '0.7';
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
-      this.component.style.background = 'rgba(255,255,255,0.7)';
+      this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
     }
   }
@@ -142,12 +141,10 @@ export class LsEditorField {
 
     // New dropped components automatically need selecting.
     if (this.selected) {
-      this.component.style.background = defaultRolePalette[this.dataItem?.signer % 100].s20;
-      this.component.style.opacity = '0.7';
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
-      this.component.style.background = '#ffffff';
-      this.component.style.opacity = '0.7';
+      this.component.style.background = this.hexToRgba('ffffff', 0.7);
       this.component.style.boxShadow = 'none';
     }
   }
@@ -172,11 +169,22 @@ export class LsEditorField {
     }, delay);
   }
 
+  hexToRgba(hex: string, alpha: number): string {
+    hex = hex.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
   render() {
     const hostStyle = this.floatingActive
-      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s70} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
+      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
       : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` };
-    console.log('zoom', this.zoom);
+
+    const zoomValue = parseFloat(this.zoom) || 1;
+    console.log('Zoom value in field:', zoomValue);
+
     return (
       <Host style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div
@@ -185,7 +193,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" customStyle={{ verticalAlign: 'top' }} />}
+          {!this.dataItem?.optional && <ls-icon name="required" size={`${12 * zoomValue}`} class="required-icon" customStyle={{ verticalAlign: 'top' }} />}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -195,26 +203,43 @@ export class LsEditorField {
             onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
           />
 
-          <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
+          <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'} style={{color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`}}>
             {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.formElementType}
           </div>
+          {(this.floatingActive || this.selected) && this.dataItem?.label && (
+            <div
+              style={{
+                position: 'absolute',
+                background: `${defaultRolePalette[this.dataItem?.signer % 100].s20}`,
+                color: `${defaultRolePalette[this.dataItem?.signer % 100].s80}`,
+                borderRadius: `${0.25 * zoomValue}rem`,
+                padding: `${0.125 * zoomValue}rem ${0.25 * zoomValue}rem`,
+                top: `-${1.375 * zoomValue}rem`,
+                fontWeight: '500',
+                left: `-${2 * zoomValue}px`,
+                whiteSpace: 'nowrap',
+                width: 'fit-content',
+              }}
+            >
+              {this.dataItem?.label}
+            </div>
+          )}
+          {(this.floatingActive || this.selected) && (
+            <p
+              style={{
+                position: 'absolute',
+                color: 'var(--gray-80, #3a3a3a)',
+                bottom: `-${1.75 * zoomValue}rem`,
+                fontSize: `${0.625 * zoomValue}rem`,
+                left: '0',
+                whiteSpace: 'nowrap',
+                width: 'fit-content',
+              }}
+            >
+              Assigned to: {this.assignee}
+            </p>
+          )}
         </div>
-        {this.floatingActive && this.dataItem?.label && (
-          <div
-            style={{
-              position: 'absolute',
-              background: `${defaultRolePalette[this.dataItem?.signer % 100].s20}`,
-              color: `${defaultRolePalette[this.dataItem?.signer % 100].s80}`,
-              borderRadius: '8px',
-              padding: '2px 6px',
-              top: '-24px',
-              left: '0',
-            }}
-          >
-            {this.dataItem?.label}
-          </div>
-        )}
-        {this.floatingActive && <p>Assigned to: {this.assignee}</p>}
       </Host>
     );
   }
