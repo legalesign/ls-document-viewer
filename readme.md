@@ -92,7 +92,7 @@ document generation system has already filled in all the client information) the
 ```
 
 ### Compose Mode
-Streamlined mode for quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
+Streamlined mode to quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
 
 For more information on recipients see [Recipients](#recipients).
 
@@ -111,8 +111,8 @@ Compose mode automatically:
 - Hides the sender from dropdown
 - Hides document options
 - Shows required fields by default
-- Makes participants read-only
-
+- Removes sender and sender fields from the editor
+- Promotes quick selection of the required fields for each recipient
 
 ### Preview Mode
 A helpful document preview that shows the document with all the current fields and lets the user browse though pages.
@@ -126,8 +126,6 @@ Compose mode automatically:
 - Hides document options
 - Hides toolbox
 - Makes participants and fields read-only
-- Removes sender and sender fields from the editor
-- Promotes quick selection of the required fields for each recipient
 
 ## Advanced Configuration
 
