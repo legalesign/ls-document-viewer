@@ -2,6 +2,9 @@
 
 The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
 
+This plug and play component is designed so that you can integrate key parts of document creation into you internal systems, such as a CRM or line of business application. As long as your system can
+support an HTML component, you can use the Document Viewer.
+
 ## Installation
 
 ### NPM Installation
@@ -87,7 +90,10 @@ endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
 ## Widget Modes
 
 ### Editor Mode
-Full-featured template creation and editing with all available tools.
+Full-featured template creation and editing with all available tools. This is intended for work flows where a
+highly reusable template with roles is helpful. If your intention is to only use your document once (perhaps your
+document generation system has already filled in all the client information) then you may want to consider
+*compose* mode instead.
 
 ```html
 <ls-document-viewer mode="editor" ...></ls-document-viewer>
@@ -124,7 +130,8 @@ Compose mode automatically:
 ## Advanced Configuration
 
 ### Filter Toolbox
-Restrict available field types using pipe-delimited values:
+Restrict available field types using pipe-delimited values. If no value is provided then
+it is assumed the toolbox will be unfiltered and all options are available.
 
 ```html
 <ls-document-viewer
