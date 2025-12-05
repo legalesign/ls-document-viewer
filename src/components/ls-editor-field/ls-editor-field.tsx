@@ -1,5 +1,4 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen, Event, EventEmitter } from '@stencil/core';
-
 import { LSApiElement } from '../../components';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { getInputType } from '../ls-document-viewer/editorUtils';
@@ -12,6 +11,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
+  @Prop() assignee: string;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
   @Prop() readonly: boolean;
@@ -22,6 +22,7 @@ export class LsEditorField {
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
+  @Prop() zoom: string;
   private sizeObserver: ResizeObserver;
 
   @Event({
@@ -116,8 +117,7 @@ export class LsEditorField {
       this.component.style.opacity = '0.7';
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
     } else {
-      this.component.style.background = '#ffffff';
-      this.component.style.opacity = '0.7';
+      this.component.style.background = 'rgba(255,255,255,0.7)';
       this.component.style.boxShadow = 'none';
     }
   }
@@ -173,8 +173,12 @@ export class LsEditorField {
   }
 
   render() {
+    const hostStyle = this.floatingActive
+      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s70} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
+      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` };
+    console.log('zoom', this.zoom);
     return (
-      <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <Host style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div
           class={{
             'ls-editor-field': true,
@@ -192,11 +196,25 @@ export class LsEditorField {
           />
 
           <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
-            {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.label || this.dataItem?.formElementType}
+            {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.formElementType}
           </div>
-          {/* Example usage: floating toolbar, only visible when floatingActive is true */}
-          {/* {this.floatingActive && <div class="floating-toolbar">Toolbar content</div>} */}
         </div>
+        {this.floatingActive && this.dataItem?.label && (
+          <div
+            style={{
+              position: 'absolute',
+              background: `${defaultRolePalette[this.dataItem?.signer % 100].s20}`,
+              color: `${defaultRolePalette[this.dataItem?.signer % 100].s80}`,
+              borderRadius: '8px',
+              padding: '2px 6px',
+              top: '-24px',
+              left: '0',
+            }}
+          >
+            {this.dataItem?.label}
+          </div>
+        )}
+        {this.floatingActive && <p>Assigned to: {this.assignee}</p>}
       </Host>
     );
   }

@@ -147,6 +147,7 @@ export namespace Components {
         "zoom": number;
     }
     interface LsEditorField {
+        "assignee": string;
         "dataItem": LSApiElement1;
         /**
           * @default null
@@ -164,6 +165,7 @@ export namespace Components {
          */
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "zoom": string;
     }
     interface LsEditorTable {
         /**
@@ -1480,6 +1482,7 @@ declare namespace LocalJSX {
         "zoom"?: number;
     }
     interface LsEditorField {
+        "assignee"?: string;
         "dataItem"?: LSApiElement1;
         /**
           * @default null
@@ -1499,6 +1502,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "zoom"?: string;
     }
     interface LsEditorTable {
         /**
