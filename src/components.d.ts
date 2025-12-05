@@ -13,6 +13,7 @@ import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-vi
 import { Icon } from "./types/Icon";
 import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { LSApiRecipient } from "./types/LSApiRecipient";
+import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { ValidationError } from "./types/ValidationError";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
@@ -22,6 +23,7 @@ export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-vi
 export { Icon } from "./types/Icon";
 export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { LSApiRecipient } from "./types/LSApiRecipient";
+export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { ValidationError } from "./types/ValidationError";
 export namespace Components {
     interface LsComposeManager {
@@ -412,6 +414,10 @@ export namespace Components {
     }
     interface LsRecipientCard {
         "activeRecipient": number;
+        /**
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: 27,     defaultWidth: 120,   }
+         */
+        "fieldTypeSelected": IToolboxField;
         /**
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
@@ -1170,6 +1176,7 @@ declare global {
     };
     interface HTMLLsRecipientCardElementEventMap {
         "changeSigner": number;
+        "fieldSelected": IToolboxField;
     }
     interface HTMLLsRecipientCardElement extends Components.LsRecipientCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsRecipientCardElementEventMap>(type: K, listener: (this: HTMLLsRecipientCardElement, ev: LsRecipientCardCustomEvent<HTMLLsRecipientCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1775,11 +1782,16 @@ declare namespace LocalJSX {
     interface LsRecipientCard {
         "activeRecipient"?: number;
         /**
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: 27,     defaultWidth: 120,   }
+         */
+        "fieldTypeSelected"?: IToolboxField;
+        /**
           * Allows the selection of fields in the toolbox to be limited to a | (pipe) delimited list. {string}
           * @default null
          */
         "filtertoolbox"?: string;
         "onChangeSigner"?: (event: LsRecipientCardCustomEvent<number>) => void;
+        "onFieldSelected"?: (event: LsRecipientCardCustomEvent<IToolboxField>) => void;
         /**
           * The initial template data, including the link for background PDF. See README and example for correct GraphQL query and data structure. {LSApiTemplate}
          */
