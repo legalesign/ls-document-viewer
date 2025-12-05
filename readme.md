@@ -94,6 +94,8 @@ document generation system has already filled in all the client information) the
 ### Compose Mode
 Streamlined mode for quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
 
+For more information on recipients see [Recipients](#recipients).
+
 ```html
 <ls-document-viewer 
     mode="compose" 
