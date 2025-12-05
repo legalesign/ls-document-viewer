@@ -61,14 +61,17 @@ function App() {
 ## Required Attributes
 
 ### token
-Your security token for authentication. This verifies your identity and access to the template.
+Your security token for authentication. This verifies your identity and access to the template. See more
+documentation about how to securely get a token without exposing your credentials, see the examples
+here [https://apidocs.legalesign.com/docs/graphql/oauth2/setup/]
 
 ```html
 token="eyJraWQiOiJBTkJIeT..."
 ```
 
 ### templateid
-The API ID of the template you want to present to users.
+The API ID of the template you want to present to users. You can easy find this by looking in the url
+when you are editing the template in the Console application.
 
 ```html
 templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
