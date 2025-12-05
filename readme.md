@@ -2,7 +2,7 @@
 
 The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
 
-This plug and play component is designed so that you can integrate key parts of document creation into your internal systems, such as a CRM or line of business application. As long as your system can render and support HTML components, you can use the Document Viewer. If you need additional help integrating the Document Viewer into your technical stack please get in touch with our support desk.
+This plug and play component is designed so that you can integrate key parts of document creation into your internal systems, such as a CRM or line of business application. As long as your system can render and support HTML components, you can use the Document Viewer. If you need additional help integrating the Document Viewer into your technical stack please get in touch with our support desk. You can use these larger widgets with REST/GraphQL API integrations to provide seamless document signing processes for your staff and customers.
 
 ## Installation
 
