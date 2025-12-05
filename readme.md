@@ -1,6 +1,8 @@
-# Integrating Legalesign Document Viewer into Your Website
+# Integrate Legalesign Document Viewer into Your Website
 
 The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
+
+This plug and play component is designed so that you can integrate key parts of document creation into your internal systems, such as a CRM or line of business application. As long as your system can render and support HTML components, you can use the Document Viewer. If you need additional help integrating the Document Viewer into your technical stack please get in touch with our support desk. You can use these larger widgets with REST/GraphQL API integrations to provide seamless document signing processes for your staff and customers.
 
 ## Installation
 
@@ -61,40 +63,47 @@ function App() {
 ## Required Attributes
 
 ### token
-Your security token for authentication. This verifies your identity and access to the template.
+Your security token for authentication. This verifies your identity and access to the template. See more
+documentation about how to securely get a token without exposing your credentials, see the examples
+here [https://apidocs.legalesign.com/docs/graphql/oauth2/setup/]
 
 ```html
 token="eyJraWQiOiJBTkJIeT..."
 ```
 
 ### templateid
-The API ID of the template you want to present to users.
+The API ID of the template you want to present to users. You can easy find this by looking in the url
+when you are editing the template in the Console application.
 
 ```html
 templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
 ```
 
-### endpoint
-Your GraphQL API endpoint.
-
-```html
-endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
-```
-
 ## Widget Modes
 
 ### Editor Mode
-Full-featured template creation and editing with all available tools.
+Full-featured template creation and editing with all available tools. This is intended for work flows where a
+highly reusable template with roles is helpful. If your intention is to only use your document once (perhaps your
+document generation system has already filled in all the client information) then you may want to consider
+*compose* mode instead.
 
 ```html
 <ls-document-viewer mode="editor" ...></ls-document-viewer>
 ```
 
 ### Compose Mode
-Streamlined mode for quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
+Streamlined mode to quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
+
+For more information on recipients see [Recipients](#recipients).
 
 ```html
-<ls-document-viewer mode="compose" ...></ls-document-viewer>
+<ls-document-viewer 
+    mode="compose" 
+    recipients='[
+        {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
+        {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
+    ]'
+    ...></ls-document-viewer>
 ```
 
 Compose mode automatically:
@@ -102,12 +111,27 @@ Compose mode automatically:
 - Hides the sender from dropdown
 - Hides document options
 - Shows required fields by default
-- Makes participants read-only
+- Removes sender and sender fields from the editor
+- Promotes quick selection of the required fields for each recipient
+
+### Preview Mode
+A helpful document preview that shows the document with all the current fields and lets the user browse though pages.
+
+```html
+<ls-document-viewer mode="preview" ...></ls-document-viewer>
+```
+
+Compose mode automatically:
+- Hides the toolbar
+- Hides document options
+- Hides toolbox
+- Makes participants and fields read-only
 
 ## Advanced Configuration
 
 ### Filter Toolbox
-Restrict available field types using pipe-delimited values:
+Restrict available field types using pipe-delimited values. If no value is provided then
+it is assumed the toolbox will be unfiltered and all options are available.
 
 ```html
 <ls-document-viewer
@@ -116,14 +140,28 @@ Restrict available field types using pipe-delimited values:
 ></ls-document-viewer>
 ```
 
+### endpoint
+Your GraphQL API endpoint, if you've been given a client specific endpoint.
+
+```html
+endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
+```
+
 ### Recipients
-Define document recipients in JSON format:
+Define document recipients in JSON format. Note that the required elements for
+a recipient are firstname, lastname, email and signerIndex; optionally you can
+also pass the role and phonenumber for each recipient. Omitting a role means
+that the recipient will be treated as a distinct signer, to change this you can pass
+role: "WITNESS" and include a special signer index to show which is their parent, so 
+for instance if you wanted to include a witness for signer 2, that witness would have 
+a signerIndex of 102.
 
 ```html
 <ls-document-viewer
   recipients='[
     {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
     {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
+    {"email": "user3@example.com", "firstname": "Joan", "lastname": "Mitchell", "signerIndex": 102, roleType: "WITNESS"}
   ]'
   ...
 ></ls-document-viewer>
