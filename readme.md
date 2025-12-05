@@ -161,7 +161,7 @@ a signerIndex of 102.
   recipients='[
     {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
     {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
-    {"email": "user3@example.com", "firstname": "Joan", "lastname": "Mitchell", "signerIndex": 102}
+    {"email": "user3@example.com", "firstname": "Joan", "lastname": "Mitchell", "signerIndex": 102, roleType: "WITNESS"}
   ]'
   ...
 ></ls-document-viewer>
