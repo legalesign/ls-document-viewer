@@ -78,8 +78,6 @@ export class LsToolboxField {
     canvas.innerHTML = this.formElementType;
     document.body.appendChild(canvas); 
 
-
-    console.log(canvas);
     event.dataTransfer.setDragImage(canvas, -50, -20);
 
     // Add the target element's id to the data transfer object
