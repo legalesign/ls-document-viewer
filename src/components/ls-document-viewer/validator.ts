@@ -9,17 +9,31 @@ import { ValidationError } from '../../types/ValidationError';
 
 export function validate(t: LSApiTemplate): ValidationError[] {
   var errors = [];
-  // Check for missing signatures
-  t.roles.forEach(tr => {
-    if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
-      errors.push({
-        id: tr.id,
-        title: 'Missing signature.',
-        description: `{tr.name} is missing a signature.`,
-        role: tr,
-      });
-    }
-  });
+
+  if (this._recipients) {
+    this._recipients.forEach(tr => {
+      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr?.roleType !== 'APPROVER').length === 0) {
+        errors.push({
+          id: tr.id,
+          title: 'Missing signature.',
+          description: `{tr.name} is missing a signature.`,
+          role: tr,
+        });
+      }
+    });
+  } else {
+    // Check for missing signatures
+    t.roles.forEach(tr => {
+      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
+        errors.push({
+          id: tr.id,
+          title: 'Missing signature.',
+          description: `{tr.name} is missing a signature.`,
+          role: tr,
+        });
+      }
+    });
+  }
 
   // Check for missing multi-select options
   t.elementConnection.templateElements.forEach(element => {
