@@ -152,6 +152,11 @@ export namespace Components {
           * @default null
          */
         "fixedAspect": number | null;
+        /**
+          * Controls whether floating elements are visible. Set by mouse enter/leave events.
+          * @default false
+         */
+        "floatingActive": boolean;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -1480,6 +1485,11 @@ declare namespace LocalJSX {
           * @default null
          */
         "fixedAspect"?: number | null;
+        /**
+          * Controls whether floating elements are visible. Set by mouse enter/leave events.
+          * @default false
+         */
+        "floatingActive"?: boolean;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };

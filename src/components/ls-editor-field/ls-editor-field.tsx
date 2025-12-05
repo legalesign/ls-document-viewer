@@ -1,4 +1,5 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen, Event, EventEmitter } from '@stencil/core';
+
 import { LSApiElement } from '../../components';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { getInputType } from '../ls-document-viewer/editorUtils';
@@ -23,7 +24,6 @@ export class LsEditorField {
   @State() innerValue: string;
   private sizeObserver: ResizeObserver;
 
-
   @Event({
     bubbles: true,
     cancelable: true,
@@ -37,6 +37,20 @@ export class LsEditorField {
     composed: true,
   })
   update: EventEmitter<LSMutateEvent[]>;
+
+  /**
+   * Controls whether floating elements are visible. Set by mouse enter/leave events.
+   */
+  @Prop({ mutable: true, reflect: true }) floatingActive: boolean = false;
+
+  // Set floatingActive true on mouse enter, false on mouse leave
+  private handleMouseEnter = () => {
+    this.floatingActive = true;
+  };
+
+  private handleMouseLeave = () => {
+    this.floatingActive = false;
+  };
 
   @Listen('keydown')
   handleInput(e: KeyboardEvent) {
@@ -160,14 +174,14 @@ export class LsEditorField {
 
   render() {
     return (
-      <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }}>
+      <Host style={{ border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div
           class={{
             'ls-editor-field': true,
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" customStyle={{ verticalAlign: 'top'}}/>}
+          {!this.dataItem?.optional && <ls-icon name="required" size="12" class="required-icon" customStyle={{ verticalAlign: 'top' }} />}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -178,8 +192,10 @@ export class LsEditorField {
           />
 
           <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'}>
-            {this.dataItem.value.length && this.dataItem.value  || this.dataItem?.label || this.dataItem?.formElementType}
+            {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.label || this.dataItem?.formElementType}
           </div>
+          {/* Example usage: floating toolbar, only visible when floatingActive is true */}
+          {/* {this.floatingActive && <div class="floating-toolbar">Toolbar content</div>} */}
         </div>
       </Host>
     );
