@@ -1,6 +1,7 @@
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
+import { IToolboxField } from '../interfaces/IToolboxField';
 
 let mousetimer = null;
 

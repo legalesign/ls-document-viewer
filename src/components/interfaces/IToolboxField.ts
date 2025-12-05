@@ -1,4 +1,4 @@
-interface IToolboxField {
+export interface IToolboxField {
     label: string
     elementType: string
     defaultHeight: number

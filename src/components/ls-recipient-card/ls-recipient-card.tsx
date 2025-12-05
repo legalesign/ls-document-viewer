@@ -1,8 +1,9 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State, Listen, Element } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSApiRecipient } from '../../types/LSApiRecipient';
 import { LSApiTemplate } from '../../components';
 import { ValidationError } from '../../types/ValidationError';
+import { IToolboxField } from '../interfaces/IToolboxField';
 
 @Component({
   tag: 'ls-recipient-card',
@@ -10,6 +11,7 @@ import { ValidationError } from '../../types/ValidationError';
   shadow: true,
 })
 export class LsRecipientCard {
+  @Element() component: HTMLElement;
   /**
    * The initial template data, including the link for background PDF. See README and
    * example for correct GraphQL query and data structure.
@@ -17,6 +19,14 @@ export class LsRecipientCard {
    */
   @Prop() recipient: LSApiRecipient;
   @Prop() activeRecipient: number;
+  @Prop() fieldTypeSelected: IToolboxField = {
+    label: 'Signature',
+    formElementType: 'signature',
+    elementType: 'signature',
+    validation: 0,
+    defaultHeight: 27,
+    defaultWidth: 120,
+  };
   @Prop() template: LSApiTemplate;
   @State() isHovered: boolean = false;
 
@@ -34,6 +44,24 @@ export class LsRecipientCard {
   // Send an internal event to be processed
   @Event() changeSigner: EventEmitter<number>;
 
+  // Send an internal event to be processed
+  @Event() fieldSelected: EventEmitter<IToolboxField>;
+
+    @Listen('fieldTypeSelected')
+    handleFieldTypeSelected(event) {
+      console.log(event);
+      const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+  
+      console.log(fields);
+  
+      fields.forEach(element => {
+        element.isSelected = element.formElementType === event.detail.formElementType;
+      });
+  
+      this.fieldTypeSelected = event.detail;
+    }
+
+  
   showTool(fieldFormType: string): boolean {
     return this.filtertoolbox === null || this.filtertoolbox.split('|').includes(fieldFormType);
   }
