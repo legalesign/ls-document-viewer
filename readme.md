@@ -1,44 +1,247 @@
-# ls-document-viewer
-This component allows you to edit, preview or customize a Legalesign template in order to
-send a document for signing. It is purely HTML and javascript and platform agnostic.
+# Integrating Legalesign Document Viewer into Your Website
 
-## Useful attributes
+The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
 
-#### token
+## Installation
 
-Most important of all is providing a security token so that the editor knows who you are
-and that you have access to the template.
+### NPM Installation
 
-#### templateid
+```bash
+npm install legalesign-document-viewer
+```
 
-This is the api ID of the template that you want to present to the user.
+### For React Projects
 
+```bash
+npm install legalesign-document-viewer-react
+```
 
-#### Filter toolbox
+## Basic Integration
 
-This allows you to choose which field types are available to your users.
+### Vanilla HTML/JavaScript
 
+Add the component scripts to your HTML:
 
-## Editor Widget Modes
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="node_modules/legalesign-document-viewer/dist/ls-document-viewer/ls-document-viewer.css" />
+    <script type="module" src="node_modules/legalesign-document-viewer/dist/ls-document-viewer/ls-document-viewer.esm.js"></script>
+    <script nomodule src="node_modules/legalesign-document-viewer/dist/ls-document-viewer/ls-document-viewer.js"></script>
+  </head>
+  <body>
+    <ls-document-viewer
+      id="my-editor"
+      templateid="YOUR_TEMPLATE_ID"
+      token="YOUR_AUTH_TOKEN"
+      endpoint="YOUR_GRAPHQL_ENDPOINT"
+    ></ls-document-viewer>
+  </body>
+</html>
+```
 
-The most important setting is the mode in which you want to use the widget.
+### React Integration
+
+```jsx
+import { LsDocumentViewer } from 'legalesign-document-viewer-react';
+
+function App() {
+  return (
+    <LsDocumentViewer
+      templateid="YOUR_TEMPLATE_ID"
+      token="YOUR_AUTH_TOKEN"
+      endpoint="YOUR_GRAPHQL_ENDPOINT"
+      mode="compose"
+    />
+  );
+}
+```
+
+## Required Attributes
+
+### token
+Your security token for authentication. This verifies your identity and access to the template.
+
+```html
+token="eyJraWQiOiJBTkJIeT..."
+```
+
+### templateid
+The API ID of the template you want to present to users.
+
+```html
+templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
+```
+
+### endpoint
+Your GraphQL API endpoint.
+
+```html
+endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
+```
+
+## Widget Modes
 
 ### Editor Mode
-This setting provdes all the features that a user might need when creating and editing
-a template in Console. You can allow them to use all the features and restrict some
-features from being shown.
+Full-featured template creation and editing with all available tools.
+
+```html
+<ls-document-viewer mode="editor" ...></ls-document-viewer>
+```
 
 ### Compose Mode
+Streamlined mode for quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
 
-Commonly with integrated Legalesign clients, the template and signers have already been generated
-by the client system. Usually this means that all recipient fields have been blended into the 
-document, however what is required is the signature box for each party. Compose mode lets your
-users quickly complete this task.
+```html
+<ls-document-viewer mode="compose" ...></ls-document-viewer>
+```
 
-Compose automatically alters the normal editor in the following ways:
+Compose mode automatically:
+- Detects pre-generated recipients
+- Hides the sender from dropdown
+- Hides document options
+- Shows required fields by default
+- Makes participants read-only
 
-- Detect recipients pre-generated.
-- Hide the Sender from the dropdown
-- Hide document options
-- Move required fields to left box and show by default
-- Make participants read only
+## Advanced Configuration
+
+### Filter Toolbox
+Restrict available field types using pipe-delimited values:
+
+```html
+<ls-document-viewer
+  filtertoolbox="signature|initials|date|text"
+  ...
+></ls-document-viewer>
+```
+
+### Recipients
+Define document recipients in JSON format:
+
+```html
+<ls-document-viewer
+  recipients='[
+    {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
+    {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
+  ]'
+  ...
+></ls-document-viewer>
+```
+
+### Custom Buttons with Slots
+Add custom buttons to the toolbar using slots:
+
+```html
+<ls-document-viewer ...>
+  <style>
+    .custom-button {
+      padding: 2px 12px;
+      border-radius: 1rem;
+      background-color: #9df5d4;
+      color: #125241;
+      font-weight: 500;
+    }
+  </style>
+  <span slot="left-button">
+    <button class="custom-button">Cancel</button>
+  </span>
+  <span slot="right-button">
+    <button class="custom-button">Send Document</button>
+  </span>
+</ls-document-viewer>
+```
+
+## Event Handling
+
+Listen to component events to track changes:
+
+```javascript
+const editor = document.querySelector('ls-document-viewer');
+
+editor.addEventListener('mutate', (event) => {
+  console.log('Template changed:', event.detail);
+});
+```
+
+### React Event Handling
+
+```jsx
+<LsDocumentViewer
+  onMutate={(event) => {
+    console.log('Template changed:', event.detail);
+  }}
+  ...
+/>
+```
+
+## Complete Example
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Editor</title>
+    <link rel="stylesheet" href="/build/ls-document-viewer.css" />
+    <script type="module" src="/build/ls-document-viewer.esm.js"></script>
+  </head>
+  <body style="padding: 0; margin: 0">
+    <ls-document-viewer
+      id="my-editor"
+      templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
+      token="YOUR_TOKEN_HERE"
+      endpoint="https://your-endpoint.amazonaws.com/graphql"
+      mode="compose"
+      recipients='[
+        {"email": "signer@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1}
+      ]'
+      filtertoolbox="signature|initials|date"
+    >
+      <span slot="left-button">
+        <button onclick="handleCancel()">Cancel</button>
+      </span>
+      <span slot="right-button">
+        <button onclick="handleSend()">Send</button>
+      </span>
+    </ls-document-viewer>
+
+    <script>
+      const editor = document.querySelector('ls-document-viewer');
+      
+      editor.addEventListener('mutate', (event) => {
+        console.log('Document updated:', event.detail);
+      });
+
+      function handleCancel() {
+        window.location.href = '/dashboard';
+      }
+
+      function handleSend() {
+        // Implement send logic
+        console.log('Sending document...');
+      }
+    </script>
+  </body>
+</html>
+```
+
+## Browser Support
+
+The component uses modern web standards and supports:
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Resources
+
+- [API Documentation](https://apidocs.legalesign.com)
+- [NPM Package](https://www.npmjs.com/package/legalesign-document-viewer)
+- [React Package](https://www.npmjs.com/package/legalesign-document-viewer-react)
+- [Support](https://www.legalesign.com/support)
+
+## Getting Help
+
+For technical support or questions about integration, contact the Legalesign support team or visit the API documentation at [https://apidocs.legalesign.com](https://apidocs.legalesign.com).
