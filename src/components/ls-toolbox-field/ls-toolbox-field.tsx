@@ -66,6 +66,20 @@ export class LsToolboxField {
 
   @Listen('dragstart')
   handleDragStart(event) {
+
+    var canvas = document.createElement('div');
+    canvas.style.position = 'absolute';
+    canvas.style.left = '-100%';
+    canvas.style.zIndex = '-100';
+    canvas.style.height = this.defaultHeight +'px';
+    canvas.style.width = this.defaultWidth +'px';
+    canvas.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+    canvas.style.border = `1px dashed ${defaultRolePalette[this.signer % 100].s60}`;
+    canvas.innerHTML = this.formElementType;
+    document.body.appendChild(canvas); 
+
+    event.dataTransfer.setDragImage(canvas, -50, -20);
+
     // Add the target element's id to the data transfer object
     event.dataTransfer.setData(
       'application/json',

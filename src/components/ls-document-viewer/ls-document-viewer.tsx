@@ -583,9 +583,9 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
+        this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
       }
 
-      this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
