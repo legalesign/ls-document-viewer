@@ -1,4 +1,4 @@
-# Integrating Legalesign Document Viewer into Your Website
+# Integrate Legalesign Document Viewer into Your Website
 
 The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
 
@@ -95,7 +95,13 @@ document generation system has already filled in all the client information) the
 Streamlined mode for quickly adding signature boxes to pre-generated templates. Ideal for integrated clients where recipients are already defined.
 
 ```html
-<ls-document-viewer mode="compose" ...></ls-document-viewer>
+<ls-document-viewer 
+    mode="compose" 
+    recipients='[
+        {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
+        {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
+    ]'
+    ...></ls-document-viewer>
 ```
 
 Compose mode automatically:
@@ -142,13 +148,20 @@ endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
 ```
 
 ### Recipients
-Define document recipients in JSON format:
+Define document recipients in JSON format. Note that the required elements for
+a recipient are firstname, lastname, email and signerIndex; optionally you can
+also pass the role and phonenumber for each recipient. Omitting a role means
+that the recipient will be treated as a distinct signer, to change this you can pass
+role: "WITNESS" and include a special signer index to show which is their parent, so 
+for instance if you wanted to include a witness for signer 2, that witness would have 
+a signerIndex of 102.
 
 ```html
 <ls-document-viewer
   recipients='[
     {"email": "user@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1},
     {"email": "user2@example.com", "firstname": "Jane", "lastname": "Smith", "signerIndex": 2}
+    {"email": "user3@example.com", "firstname": "Joan", "lastname": "Mitchell", "signerIndex": 102}
   ]'
   ...
 ></ls-document-viewer>
