@@ -107,6 +107,20 @@ Compose mode automatically:
 - Shows required fields by default
 - Makes participants read-only
 
+
+### Preview Mode
+A helpful document preview that shows the document with all the current fields and lets the user browse though pages.
+
+```html
+<ls-document-viewer mode="preview" ...></ls-document-viewer>
+```
+
+Compose mode automatically:
+- Hides the toolbar
+- Hides document options
+- Hides toolbox
+- Makes participants and fields read-only
+
 ## Advanced Configuration
 
 ### Filter Toolbox
