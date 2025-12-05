@@ -2,8 +2,7 @@
 
 The Legalesign Document Viewer is a platform-agnostic web component that allows you to edit, preview, and customize templates for document signing. Built with StencilJS, it works seamlessly with vanilla JavaScript, React, Vue, Angular, or any web framework.
 
-This plug and play component is designed so that you can integrate key parts of document creation into you internal systems, such as a CRM or line of business application. As long as your system can
-support an HTML component, you can use the Document Viewer.
+This plug and play component is designed so that you can integrate key parts of document creation into your internal systems, such as a CRM or line of business application. As long as your system can render and support HTML components, you can use the Document Viewer. If you need additional help integrating the Document Viewer into your technical stack please get in touch with our support desk.
 
 ## Installation
 
@@ -80,13 +79,6 @@ when you are editing the template in the Console application.
 templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
 ```
 
-### endpoint
-Your GraphQL API endpoint.
-
-```html
-endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
-```
-
 ## Widget Modes
 
 ### Editor Mode
@@ -126,6 +118,8 @@ Compose mode automatically:
 - Hides document options
 - Hides toolbox
 - Makes participants and fields read-only
+- Removes sender and sender fields from the editor
+- Promotes quick selection of the required fields for each recipient
 
 ## Advanced Configuration
 
@@ -138,6 +132,13 @@ it is assumed the toolbox will be unfiltered and all options are available.
   filtertoolbox="signature|initials|date|text"
   ...
 ></ls-document-viewer>
+```
+
+### endpoint
+Your GraphQL API endpoint, if you've been given a client specific endpoint.
+
+```html
+endpoint="https://your-api.appsync-api.region.amazonaws.com/graphql"
 ```
 
 ### Recipients
