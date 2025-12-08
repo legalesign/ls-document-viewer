@@ -53,24 +53,32 @@ export class LsTitleInput {
     }, delay);
   }
 
-  componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
-  }
+
   render() {
     return (
       <Host>
         {this.editTitle ? (
-          <input
-            value={this.template?.title}
-            style={{ width: '100%' }}
-            onInput={e => {
-              e.preventDefault();
-              this.alter({ title: (e.target as HTMLInputElement).value });
-            }}
-            onKeyUp={e => {
-              if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
-            }}
-          />
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <input
+              value={this.template?.title}
+              style={{ height: '1.25rem', padding: '0 0.25rem', width: 'fit-content' }}
+              onInput={e => {
+                e.preventDefault();
+                this.alter({ title: (e.target as HTMLInputElement).value });
+              }}
+              onKeyUp={e => {
+                if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
+              }}
+            />
+            <ls-icon
+              name="check"
+              size="16"
+              class='editButton'
+              onClick={() => {
+                this.editTitle = false;
+              }}
+            />
+          </div>
         ) : (
           <div
             class="template-title"
