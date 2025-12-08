@@ -276,7 +276,7 @@ export class LsDocumentViewer {
 
           if (card && recipientsBox) {
             recipientsBox.scrollTo({
-              top: (card as HTMLElement).offsetTop - recipientsBox.clientHeight / 2,
+              top: 0,
               behavior: 'smooth',
             });
           }
