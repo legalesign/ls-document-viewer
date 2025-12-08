@@ -213,6 +213,15 @@ editor.addEventListener('mutate', (event) => {
 />
 ```
 
+#### `mutate` event
+Fired when the document template is changed, such as adding or removing fields.
+
+#### `selectFields` event
+Fired when a field is selected in the editor.
+
+#### `addParticipant` event
+Fired when a participant role is added to the template.
+
 ## Complete Example
 
 ```html
