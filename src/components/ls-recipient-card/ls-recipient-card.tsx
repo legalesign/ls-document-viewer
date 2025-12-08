@@ -122,7 +122,7 @@ export class LsRecipientCard {
                 }}
               >
                 <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
-                {String(this.recipient?.signerIndex).padStart(2, '0')}
+                {this.recipient?.roleType || 'Signer'}
               </div>
               <ls-icon
                 name="cursor-click"
