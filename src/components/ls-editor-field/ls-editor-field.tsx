@@ -203,7 +203,7 @@ export class LsEditorField {
             onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
           />
 
-          <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'} style={{color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`}}>
+          <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
             {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.formElementType}
           </div>
           {(this.floatingActive || this.selected) && this.dataItem?.label && (

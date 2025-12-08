@@ -14,6 +14,21 @@
   align-items: flex-start;
   gap: 0.5rem;
   align-self: stretch;
+  max-height: 100px;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  transform-origin: top;
+}
+
+.participant-card.expand-up {
+  transform-origin: bottom;
+}
+.participant-card.expand-down {
+  transform-origin: top;
+}
+
+.participant-card.expanded {
+  max-height: 2000px; /* large enough for any content */
 }
 
 .dot {
