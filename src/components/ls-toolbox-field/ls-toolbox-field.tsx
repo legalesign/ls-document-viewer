@@ -150,7 +150,7 @@ export class LsToolboxField {
             {this.label}
           </p>
           {this.redDot && (
-            <div class={'warning-box'}>
+            <div class={'warning-box'} data-tooltip={`${this.label} Field Required`} data-tooltip-placement="left">
               <ls-icon name="exclamation-circle" size="18" solid />
             </div>
           )}

@@ -149,11 +149,17 @@ export namespace Components {
         "zoom": number;
     }
     interface LsEditorField {
+        "assignee": string;
         "dataItem": LSApiElement1;
         /**
           * @default null
          */
         "fixedAspect": number | null;
+        /**
+          * Controls whether floating elements are visible. Set by mouse enter/leave events.
+          * @default false
+         */
+        "floatingActive": boolean;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -161,6 +167,7 @@ export namespace Components {
          */
         "selected": boolean;
         "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "zoom": string;
     }
     interface LsEditorTable {
         /**
@@ -700,6 +707,10 @@ export interface LsToolbarCustomEvent<T> extends CustomEvent<T> {
 export interface LsToolboxFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsToolboxFieldElement;
+}
+export interface LsValidationTagCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsValidationTagElement;
 }
 declare global {
     interface HTMLLsComposeManagerElement extends Components.LsComposeManager, HTMLStencilElement {
@@ -1305,7 +1316,18 @@ declare global {
         prototype: HTMLLsValidationManagerElement;
         new (): HTMLLsValidationManagerElement;
     };
+    interface HTMLLsValidationTagElementEventMap {
+        "changeSigner": number;
+    }
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsValidationTagElement: {
         prototype: HTMLLsValidationTagElement;
@@ -1482,11 +1504,17 @@ declare namespace LocalJSX {
         "zoom"?: number;
     }
     interface LsEditorField {
+        "assignee"?: string;
         "dataItem"?: LSApiElement1;
         /**
           * @default null
          */
         "fixedAspect"?: number | null;
+        /**
+          * Controls whether floating elements are visible. Set by mouse enter/leave events.
+          * @default false
+         */
+        "floatingActive"?: boolean;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
@@ -1496,6 +1524,7 @@ declare namespace LocalJSX {
          */
         "selected"?: boolean;
         "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+        "zoom"?: string;
     }
     interface LsEditorTable {
         /**
@@ -1972,6 +2001,7 @@ declare namespace LocalJSX {
           * @default false
          */
         "isExpanded"?: boolean;
+        "onChangeSigner"?: (event: LsValidationTagCustomEvent<number>) => void;
         /**
           * @default true
          */
