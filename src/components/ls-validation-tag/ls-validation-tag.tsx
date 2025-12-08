@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { ValidationError } from '../../types/ValidationError';
 
@@ -13,6 +13,8 @@ export class LsValidationTag {
   @Prop({ mutable: true }) isExpanded: boolean = false;
   @Prop() type: 'compose' | 'default' = 'default';
   @Prop() showDropDown: boolean = true;
+
+  @Event() changeSigner: EventEmitter<number>;
 
   render() {
     return (
@@ -86,11 +88,18 @@ export class LsValidationTag {
               const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
               const pallette = defaultRolePalette[signerIndex || field?.element?.signer || 0];
               return (
-                <div class="validation-tag-row" key={idx}>
+                <div
+                  class="validation-tag-row"
+                  key={idx}
+                  onClick={() => {
+                    this.changeSigner.emit(field?.role?.signerIndex);
+                    this.isExpanded = false;
+                  }}
+                >
                   <div class="validation-tag-bar" style={{ background: pallette.s60 }}></div>
                   <div class="validation-tag-details">
-                    <p class="validation-tag-name">{field?.role?.name}</p>
-                    <p class="validation-tag-email">{field?.role?.name}</p>
+                    <p class="validation-tag-name">{`${field?.role?.firstname} ${field?.role?.lastname}`}</p>
+                    <p class="validation-tag-email">{field?.role?.email}</p>
                   </div>
                 </div>
               );

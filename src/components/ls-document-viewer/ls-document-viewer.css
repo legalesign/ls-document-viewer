@@ -169,14 +169,50 @@ slot {
   gap: 1rem;
   overflow-y: auto;
 }
-.compose-toolbox {
 
+.compose-toolbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: none;
   border-radius: 0;
   border: none;
   background: white;
   padding: 0.25rem;
-  gap: 0.75rem;
 
+}
+
+.recipients-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  width: calc(100% + 4px);
+  padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+}
+
+.scroll-gradient-top {
+  position: absolute;
+  top: 95px;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 100;
+}
+
+.scroll-gradient-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 0.75rem;
+  width: calc(100% - 1.5rem);
+  height: 1rem;
+  background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 100;
 }
 
 .ls-editor-infobox {

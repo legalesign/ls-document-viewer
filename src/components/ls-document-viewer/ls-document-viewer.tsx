@@ -265,7 +265,26 @@ export class LsDocumentViewer {
   // Updates are internal event between LS controls not to be confused with mutate
   @Listen('changeSigner')
   updateSigner(event: CustomEvent<number>) {
-    if (event.detail) this.signer = event.detail;
+    if (event.detail) {
+      this.signer = event.detail;
+
+      try {
+        const leftBox = this.component.shadowRoot?.getElementById('ls-recipient-manager');
+        if (leftBox) {
+          const recipientsBox = leftBox.querySelector('.recipients-box');
+          const card = recipientsBox?.querySelector(`ls-recipient-card[data-signer-index="${event.detail}"]`);
+
+          if (card && recipientsBox) {
+            recipientsBox.scrollTo({
+              top: (card as HTMLElement).offsetTop - recipientsBox.clientHeight / 2,
+              behavior: 'smooth',
+            });
+          }
+        }
+      } catch (e) {
+        // fail silently
+      }
+    }
   }
 
   // Send selection changes to bars and panels if in use.
@@ -871,19 +890,25 @@ export class LsDocumentViewer {
                   <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
                   <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
                   <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
-                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'toolbox compose-toolbox' : 'hidden'}>
+                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'compose-toolbox' : 'hidden'}>
+                    <div class={'scroll-gradient-top'} />
+                    <div class={'scroll-gradient-bottom'} />
                     <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
-                    {this._recipients &&
-                      this._recipients.map(recipient => (
-                        <ls-recipient-card
-                          recipient={recipient}
-                          activeRecipient={this.signer}
-                          filtertoolbox={this.filtertoolbox}
-                          template={this._template}
-                          validationErrors={this.validationErrors}
-                          fieldTypeSelected={this.fieldTypeSelected}
-                        />
-                      ))}
+                    <div class={'recipients-box'}>
+                      
+                      {this._recipients &&
+                        this._recipients.map(recipient => (
+                          <ls-recipient-card
+                            recipient={recipient}
+                            activeRecipient={this.signer}
+                            filtertoolbox={this.filtertoolbox}
+                            template={this._template}
+                            validationErrors={this.validationErrors}
+                            fieldTypeSelected={this.fieldTypeSelected}
+                            data-signer-index={recipient.signerIndex}
+                          />
+                        ))}
+                    </div>
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
