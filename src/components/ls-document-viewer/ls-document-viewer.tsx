@@ -655,8 +655,8 @@ export class LsDocumentViewer {
               </div>
             )}
             {this.mode === 'compose' && (
-              <div>
-                <span class="header-text-1">Compose</span> <span>/</span> <span class="header-text-2">{this._template?.title}</span>
+              <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
+                <span class="header-text-1">Compose</span> <span>/</span> <ls-title-input template={this._template} />
               </div>
             )}
           </div>
@@ -895,7 +895,6 @@ export class LsDocumentViewer {
                     <div class={'scroll-gradient-bottom'} />
                     <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
                     <div class={'recipients-box'}>
-                      
                       {this._recipients &&
                         this._recipients.map(recipient => (
                           <ls-recipient-card

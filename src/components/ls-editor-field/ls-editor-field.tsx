@@ -121,6 +121,11 @@ export class LsEditorField {
     }
   }
 
+  deleteField = () => {
+    this.update.emit([{ action: 'delete', data: this.dataItem }]);
+    this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
+  };
+
   componentDidLoad() {
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
@@ -177,6 +182,8 @@ export class LsEditorField {
     return `rgba(${r},${g},${b},${alpha})`;
   }
 
+  
+
   render() {
     const hostStyle = this.floatingActive
       ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
@@ -186,7 +193,7 @@ export class LsEditorField {
     console.log('Zoom value in field:', zoomValue);
 
     return (
-      <Host style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <Host id={this.dataItem ? 'ls-field-' + this.dataItem.id : undefined} style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div
           class={{
             'ls-editor-field': true,
@@ -238,6 +245,17 @@ export class LsEditorField {
             >
               Assigned to: {this.assignee}
             </p>
+          )}
+          {this.floatingActive && (
+            <button
+              class={'x-button'}
+              style={{
+                padding: `${0.125 * zoomValue}rem`,
+              }}
+              onClick={() => this.deleteField()}
+            >
+              <ls-icon name="x" size={`${10 * zoomValue}`} />
+            </button>
           )}
         </div>
       </Host>

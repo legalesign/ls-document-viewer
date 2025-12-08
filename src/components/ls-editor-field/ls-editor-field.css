@@ -22,8 +22,6 @@
   width: 100%;
 }
 
-
-
 .ls-editor-field-editable:focus {
   outline: none;
 }
@@ -75,4 +73,20 @@ input {
   top: 2px;
   right: 2px;
   color: var(--red-60, #f64a44);
+}
+
+.x-button {
+  all: unset;
+  cursor: pointer;
+  transform: translate(55%, -55%);
+  position: absolute;
+  color: white;
+  background: var(--gray-80, #3a3a3a);
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+.x-button:hover {
+  background: var(--gray-90, #1c1c1c);
 }
