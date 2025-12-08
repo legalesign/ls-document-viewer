@@ -503,6 +503,9 @@ export namespace Components {
         "valid": boolean;
         "value"?: string;
     }
+    interface LsTitleInput {
+        "template": LSApiTemplate;
+    }
     interface LsToggle {
         "checked": boolean;
         "indeterminate": boolean;
@@ -695,6 +698,10 @@ export interface LsRecipientCardCustomEvent<T> extends CustomEvent<T> {
 export interface LsTextInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsTextInputElement;
+}
+export interface LsTitleInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsTitleInputElement;
 }
 export interface LsToggleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1244,6 +1251,24 @@ declare global {
         prototype: HTMLLsTextareaInputElement;
         new (): HTMLLsTextareaInputElement;
     };
+    interface HTMLLsTitleInputElementEventMap {
+        "mutate": LSMutateEvent[];
+        "update": LSMutateEvent[];
+    }
+    interface HTMLLsTitleInputElement extends Components.LsTitleInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsTitleInputElementEventMap>(type: K, listener: (this: HTMLLsTitleInputElement, ev: LsTitleInputCustomEvent<HTMLLsTitleInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsTitleInputElementEventMap>(type: K, listener: (this: HTMLLsTitleInputElement, ev: LsTitleInputCustomEvent<HTMLLsTitleInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsTitleInputElement: {
+        prototype: HTMLLsTitleInputElement;
+        new (): HTMLLsTitleInputElement;
+    };
     interface HTMLLsToggleElementEventMap {
         "valueChange": boolean;
     }
@@ -1381,6 +1406,7 @@ declare global {
         "ls-statusbar": HTMLLsStatusbarElement;
         "ls-text-input": HTMLLsTextInputElement;
         "ls-textarea-input": HTMLLsTextareaInputElement;
+        "ls-title-input": HTMLLsTitleInputElement;
         "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
@@ -1895,6 +1921,11 @@ declare namespace LocalJSX {
         "valid"?: boolean;
         "value"?: string;
     }
+    interface LsTitleInput {
+        "onMutate"?: (event: LsTitleInputCustomEvent<LSMutateEvent[]>) => void;
+        "onUpdate"?: (event: LsTitleInputCustomEvent<LSMutateEvent[]>) => void;
+        "template"?: LSApiTemplate;
+    }
     interface LsToggle {
         "checked"?: boolean;
         "indeterminate"?: boolean;
@@ -2067,6 +2098,7 @@ declare namespace LocalJSX {
         "ls-statusbar": LsStatusbar;
         "ls-text-input": LsTextInput;
         "ls-textarea-input": LsTextareaInput;
+        "ls-title-input": LsTitleInput;
         "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
@@ -2131,6 +2163,7 @@ declare module "@stencil/core" {
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
             "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
             "ls-textarea-input": LocalJSX.LsTextareaInput & JSXBase.HTMLAttributes<HTMLLsTextareaInputElement>;
+            "ls-title-input": LocalJSX.LsTitleInput & JSXBase.HTMLAttributes<HTMLLsTitleInputElement>;
             "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
