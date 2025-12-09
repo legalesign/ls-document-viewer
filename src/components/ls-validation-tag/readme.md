@@ -16,6 +16,13 @@
 | `validationErrors` | `validation-errors` |             | `ValidationError[]`      | `[]`        |
 
 
+## Events
+
+| Event          | Description | Type                  |
+| -------------- | ----------- | --------------------- |
+| `changeSigner` |             | `CustomEvent<number>` |
+
+
 ## Dependencies
 
 ### Used by

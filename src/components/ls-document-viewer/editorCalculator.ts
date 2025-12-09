@@ -38,6 +38,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   node.style.alignContent = data.align;
   node.style.fontFamily = data.fontName;
   node.dataItem = data;
+  
   frame.appendChild(node);
 
   return node as any as HTMLLsEditorFieldElement;

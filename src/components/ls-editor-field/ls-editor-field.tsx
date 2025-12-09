@@ -23,18 +23,19 @@ export class LsEditorField {
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
   @Prop() zoom: string;
+  
   private sizeObserver: ResizeObserver;
 
   @Event({
     bubbles: true,
-    cancelable: true,
+    cancelable: false,
     composed: true,
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
   @Event({
     bubbles: true,
-    cancelable: true,
+    cancelable: false,
     composed: true,
   })
   update: EventEmitter<LSMutateEvent[]>;
@@ -122,19 +123,15 @@ export class LsEditorField {
   }
 
   deleteField = () => {
-    this.update.emit([{ action: 'delete', data: this.dataItem }]);
     this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
+    this.update.emit([{ action: 'delete', data: this.dataItem }]);
   };
 
   componentDidLoad() {
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect) {
-          //          const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLElement;
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
-          // console.log(editbox)
-          // editbox.style.height = entry.contentRect.height + "px"
-          // editbox.style.width = entry.contentRect.width + "px"
 
           movebox.style.height = entry.contentRect.height + 'px';
           movebox.style.width = entry.contentRect.width + 'px';
