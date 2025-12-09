@@ -14,7 +14,7 @@
   align-items: flex-start;
   gap: 0.5rem;
   align-self: stretch;
-  max-height: 100px;
+  max-height: 6.25rem;
   transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   transform-origin: top;
@@ -28,7 +28,7 @@
 }
 
 .participant-card.expanded {
-  max-height: 2000px; /* large enough for any content */
+  max-height: 125rem; /* large enough for any content */
 }
 
 .dot {
@@ -180,7 +180,7 @@ a:hover {
 
 select {
   appearance: none;
-  height: 36px;
+  height: 2.25rem;
   width: 100%;
 }
 

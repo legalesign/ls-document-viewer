@@ -31,7 +31,7 @@ export class LsFieldTypeDisplay {
               background: color.s10,
             }}
           >
-            <ls-icon name={getFieldIcon(this.fieldType)} size="20" />
+            <ls-icon name={getFieldIcon(this.fieldType)} size="1.25rem" />
           </div>
           <p class={'ls-field-type-name'}>{getFieldLabel(this.fieldType)}</p>
         </div>

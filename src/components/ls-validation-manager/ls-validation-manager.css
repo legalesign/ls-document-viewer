@@ -25,7 +25,7 @@
 
 .valid-label {
   display: flex;
-  padding: 2px 0.5rem;
+  padding: 0.125rem 0.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
@@ -130,7 +130,7 @@
 
 .role-label {
   display: flex;
-  padding: 2px 3px;
+  padding: 0.125rem 0.1875rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.25rem;

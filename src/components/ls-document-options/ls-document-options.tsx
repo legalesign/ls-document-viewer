@@ -91,7 +91,7 @@ export class LsDocumentOptions {
             >
               <ls-icon
                 name={this.editTitle ? 'check' : 'pencil-alt'}
-                size="18"
+                size="1.25rem"
                 id="edit-name-btn"
                 data-tooltip={this.editTitle ? 'Save' : 'Edit Name'}
               />

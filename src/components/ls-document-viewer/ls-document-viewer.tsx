@@ -656,7 +656,7 @@ export class LsDocumentViewer {
               </div>
             )}
             {this.mode === 'compose' && (
-              <div style={{display: 'flex', alignItems: 'center', gap: '4px'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '0.25rem'}}>
                 <span class="header-text-1">Compose</span> <span>/</span> <ls-title-input template={this._template} />
               </div>
             )}
@@ -894,7 +894,7 @@ export class LsDocumentViewer {
                   <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'compose-toolbox' : 'hidden'}>
                     <div class={'scroll-gradient-top'} />
                     <div class={'scroll-gradient-bottom'} />
-                    <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '18px', right: '16px' }} type="compose" />
+                    <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '1.125rem', right: '1rem' }} type="compose" />
                     <div class={'recipients-box'}>
                       {this._recipients &&
                         this._recipients.map(recipient => (
@@ -926,7 +926,7 @@ export class LsDocumentViewer {
                         }}
                         data-tooltip="Close Properties Panel"
                       >
-                        <ls-icon name="x" size="20" />
+                        <ls-icon name="x" size="1.25rem" />
                       </button>
                     </div>
                     <ls-field-properties id="my-field-panel"></ls-field-properties>

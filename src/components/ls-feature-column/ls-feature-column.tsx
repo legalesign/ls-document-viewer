@@ -41,7 +41,7 @@ export class LsFeatureColoumn {
           data-tooltip="View and edit Template properties"
           data-tooltip-placement="right"
         >
-          <ls-icon name="document" size="24" />
+          <ls-icon name="document" size="1.5rem" />
         </div>
         <div
           class={this.manager === 'toolbox' ? 'activeIcon' : 'defaultIcon'}
@@ -53,7 +53,7 @@ export class LsFeatureColoumn {
           data-tooltip="Select and place Form Field Elements"
           data-tooltip-placement="right"
         >
-          <ls-icon name="typing-input" size="24" />
+          <ls-icon name="typing-input" size="1.5rem" />
         </div>
         
         <div
@@ -66,7 +66,7 @@ export class LsFeatureColoumn {
           data-tooltip="Manage Signers, Witnesses and Approvers"
           data-tooltip-placement="right"
         >
-          <ls-icon name="user-group" size="24" />
+          <ls-icon name="user-group" size="1.5rem" />
         </div>
 
         <div
@@ -79,7 +79,7 @@ export class LsFeatureColoumn {
           data-tooltip="View the list of Recipients for this document"
           data-tooltip-placement="right"
         >
-          <ls-icon name="user-group" size="24" />
+          <ls-icon name="user-group" size="1.5rem" />
         </div>
 
         <div
@@ -92,7 +92,7 @@ export class LsFeatureColoumn {
           data-tooltip="View the list of Recipients for this document"
           data-tooltip-placement="right"
         >
-          <ls-icon name="adjustments" size="24" />
+          <ls-icon name="adjustments" size="1.5rem" />
         </div>
 
         <slot></slot>

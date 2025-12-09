@@ -101,7 +101,7 @@ export class LsParticipantSelect {
               }}
             >
               <ls-icon
-                size="18"
+                size="1.125rem"
                 name={
                   this.selectedRole?.roleType === 'SENDER'
                     ? 'user'

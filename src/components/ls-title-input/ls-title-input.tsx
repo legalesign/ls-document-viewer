@@ -66,7 +66,7 @@ export class LsTitleInput {
             />
             <ls-icon
               name="check"
-              size="16"
+              size="1rem"
               class='editButton'
               onClick={() => {
                 this.editTitle = false;

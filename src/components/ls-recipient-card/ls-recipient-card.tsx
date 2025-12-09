@@ -78,13 +78,13 @@ export class LsRecipientCard {
       this.cardRef.style.maxHeight = this.cardRef.scrollHeight + 'px';
     } else {
       // Collapse
-      this.cardRef.style.maxHeight = '96px';
+      this.cardRef.style.maxHeight = '6rem';
     }
   }
 
   componentDidLoad() {
     const isActive = this.activeRecipient === this.recipient.signerIndex;
-    this.cardRef.style.maxHeight = isActive ? this.cardRef.scrollHeight + 'px' : '96px';
+    this.cardRef.style.maxHeight = isActive ? this.cardRef.scrollHeight + 'px' : '6rem';
   }
 
   render() {
@@ -121,12 +121,12 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s90,
                 }}
               >
-                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} />
+                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} size='1rem' />
                 {this.recipient?.roleType || 'Signer'}
               </div>
               <ls-icon
                 name="cursor-click"
-                size="16"
+                size="1rem"
                 customStyle={{ color: defaultRolePalette[this.recipient?.signerIndex % 100].s70 }}
                 solid
                 style={{ display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? 'block' : 'none' }}

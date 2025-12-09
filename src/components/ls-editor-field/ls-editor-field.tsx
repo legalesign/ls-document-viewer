@@ -179,8 +179,6 @@ export class LsEditorField {
     return `rgba(${r},${g},${b},${alpha})`;
   }
 
-  
-
   render() {
     const hostStyle = this.floatingActive
       ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
@@ -197,7 +195,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size={`${12 * zoomValue}`} class="required-icon" customStyle={{ verticalAlign: 'top' }} />}
+          {!this.dataItem?.optional && <ls-icon name="required" size={`${0.75 * zoomValue}rem`} class="required-icon" customStyle={{ position: 'absolute', verticalAlign: 'top', top: `${0.125 * zoomValue}rem`, right: `${0.125 * zoomValue}rem` }} />}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -251,7 +249,7 @@ export class LsEditorField {
               }}
               onClick={() => this.deleteField()}
             >
-              <ls-icon name="x" size={`${10 * zoomValue}`} />
+              <ls-icon name="x" size={`${0.625 * zoomValue}rem`} />
             </button>
           )}
         </div>

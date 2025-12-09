@@ -69,9 +69,6 @@ input {
 }
 
 .required-icon {
-  position: absolute;
-  top: 2px;
-  right: 2px;
   color: var(--red-60, #f64a44);
 }
 
