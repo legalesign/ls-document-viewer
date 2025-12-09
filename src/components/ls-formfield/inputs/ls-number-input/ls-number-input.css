@@ -178,7 +178,7 @@ input:focus:not(:disabled) {
 .right-items {
   position: absolute;
   padding: 0.25rem;
-  height: 36px;
+  height: 2.25rem;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -198,8 +198,8 @@ input:focus:not(:disabled) {
 
 .button {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
@@ -215,8 +215,8 @@ input:focus:not(:disabled) {
 
 .button-disabled {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
@@ -255,8 +255,8 @@ input:focus:not(:disabled) {
 
 .button:focus {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;

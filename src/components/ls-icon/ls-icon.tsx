@@ -10,7 +10,7 @@ export class LsIcon {
   @Prop() name?: Icon;
   @Prop() solid?: boolean = false;
   @Prop() color?: string = "#000000";
-  @Prop() size?: string = "20";
+  @Prop() size?: string = "1.25rem";
   @Prop() customStyle?: { [key: string]: string };
 
   // Added function to check that the Icon enum type has all the icons from the icons.ts file
@@ -48,8 +48,8 @@ export class LsIcon {
               key={icon?.name}
               class='iconContainer'
               style={{
-                height: `${this.size}px`,
-                width: `${this.size}px`,
+                height: `${this.size}`,
+                width: `${this.size}`,
                 ...this.customStyle,
                 
               }}

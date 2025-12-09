@@ -71,7 +71,7 @@ input:checked + .slider {
 
 input:focus + .slider {
   box-shadow: 0 0 1px var(--primary-60, #4456f6);
-  outline: 4px solid var(--primary-20, #e3e6ff);
+  outline: 0.25rem solid var(--primary-20, #e3e6ff);
 }
 
 input:checked + .slider:before {
@@ -82,7 +82,7 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round, .indeterminate.round {
-  border-radius: 34px;
+  border-radius: 2.125rem;
 }
 
 .slider.round:before {

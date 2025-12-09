@@ -114,7 +114,7 @@ export class LsParticipantManager {
         </div>
         <div class={'add-participant-button'}>
           <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
-            <ls-icon name="user-add" size="20" color="var(--gray-100, #45484D);" />
+            <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
             <p>Add Participant</p>
           </button>
         </div>

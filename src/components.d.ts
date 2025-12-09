@@ -321,7 +321,7 @@ export namespace Components {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         /**
-          * @default "20"
+          * @default "1.25rem"
          */
         "size"?: string;
         /**
@@ -1727,7 +1727,7 @@ declare namespace LocalJSX {
         "customStyle"?: { [key: string]: string };
         "name"?: Icon;
         /**
-          * @default "20"
+          * @default "1.25rem"
          */
         "size"?: string;
         /**

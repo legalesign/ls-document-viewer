@@ -135,7 +135,7 @@ export class LsParticipantCard {
                     }}
                     data-tooltip="Move Up"
                   >
-                    <ls-icon name="arrow-up" size="18" />
+                    <ls-icon name="arrow-up" size="1.125rem" />
                   </div>
                 )}
                 {this.signer.signerIndex !== this.template.roles.length && this.signer.roleType !== 'WITNESS' && (
@@ -150,7 +150,7 @@ export class LsParticipantCard {
                     }}
                     data-tooltip="Move Down"
                   >
-                    <ls-icon name="arrow-down" size="18" />
+                    <ls-icon name="arrow-down" size="1.125rem" />
                   </div>
                 )}
                 <div
@@ -163,7 +163,7 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="18" data-tooltip={this.editable ? "Save Changes" : "Edit Participant"} />
+                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? "Save Changes" : "Edit Participant"} />
             
                 </div>
                 <div
@@ -178,7 +178,7 @@ export class LsParticipantCard {
                   data-tooltip="Delete Participant"
                   data-tooltip-placement="top-end"
                 >
-                  <ls-icon name="trash" size="18" />
+                  <ls-icon name="trash" size="1.125rem" />
                 </div>
               </div>
             </div>
@@ -271,7 +271,7 @@ export class LsParticipantCard {
                       color: participantFields.length === 0 ? 'white' : defaultRolePalette[this.signer?.signerIndex % 100].s90,
                     }}
                   >
-                    {participantFields.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
+                    {participantFields.length === 0 && <ls-icon name="exclamation-circle" size="1rem" style={{ marginRight: '0.125rem' }} />}
                     {participantFields.length === 0 ? 'Signature Required' : `${participantFields.length} ${participantFields.length === 1 ? 'Field' : 'Fields'}`}
                   </div>
                 )}

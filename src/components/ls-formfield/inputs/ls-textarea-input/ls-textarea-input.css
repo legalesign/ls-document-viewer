@@ -118,7 +118,7 @@
 .right-items {
   position: absolute;
   padding: 0.25rem;
-  height: 36px;
+  height: 2.25rem;
   right: 0;
   top: 0;
   display: flex;
@@ -137,8 +137,8 @@
 
 .button {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
@@ -154,8 +154,8 @@
 
 .button:hover {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
@@ -171,8 +171,8 @@
 
 .button:active {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
@@ -190,8 +190,8 @@
 
 .button:focus {
   display: flex;
-  height: 28px;
-  width: 28px;
+  height: 1.75rem;
+  width: 1.75rem;
   padding: 0.25rem;
   justify-content: center;
   align-items: center;
