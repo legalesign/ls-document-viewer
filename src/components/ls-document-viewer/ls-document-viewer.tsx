@@ -215,13 +215,11 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    console.log('Mutate event received in document viewer', event);
     if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
   }
 
   @Listen('fieldTypeSelected')
   handleFieldTypeSelected(event) {
-    console.log(event);
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
 
     fields.forEach(element => {

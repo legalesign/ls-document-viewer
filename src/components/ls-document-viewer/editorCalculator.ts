@@ -38,15 +38,6 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   node.style.alignContent = data.align;
   node.style.fontFamily = data.fontName;
   node.dataItem = data;
-
-  //   // Add event listeners for the emitted events
-  // node.addEventListener('mutate', (event: CustomEvent) => {
-  //   this.mutate.emit(event.detail);
-  // });
-  
-  // node.addEventListener('update', (event: CustomEvent) => {
-  //   this.update.emit(event.detail);
-  // });
   
   frame.appendChild(node);
 

@@ -123,7 +123,6 @@ export class LsEditorField {
   }
 
   deleteField = () => {
-        console.log('Deleting field', this.dataItem);
     this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
     this.update.emit([{ action: 'delete', data: this.dataItem }]);
   };
@@ -132,11 +131,7 @@ export class LsEditorField {
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect) {
-          //          const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLElement;
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
-          // console.log(editbox)
-          // editbox.style.height = entry.contentRect.height + "px"
-          // editbox.style.width = entry.contentRect.width + "px"
 
           movebox.style.height = entry.contentRect.height + 'px';
           movebox.style.width = entry.contentRect.width + 'px';
