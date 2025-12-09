@@ -23,18 +23,19 @@ export class LsEditorField {
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
   @Prop() zoom: string;
+  
   private sizeObserver: ResizeObserver;
 
   @Event({
     bubbles: true,
-    cancelable: true,
+    cancelable: false,
     composed: true,
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
   @Event({
     bubbles: true,
-    cancelable: true,
+    cancelable: false,
     composed: true,
   })
   update: EventEmitter<LSMutateEvent[]>;
@@ -122,8 +123,9 @@ export class LsEditorField {
   }
 
   deleteField = () => {
-    this.update.emit([{ action: 'delete', data: this.dataItem }]);
+        console.log('Deleting field', this.dataItem);
     this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
+    this.update.emit([{ action: 'delete', data: this.dataItem }]);
   };
 
   componentDidLoad() {

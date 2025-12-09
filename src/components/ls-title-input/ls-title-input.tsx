@@ -1,7 +1,6 @@
-import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Element, State } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-title-input',
@@ -13,11 +12,6 @@ export class LsTitleInput {
   @Prop({ mutable: true, reflect: true }) template: LSApiTemplate;
 
   @State() editTitle: boolean = false;
-
-  @Watch('template')
-  selectedHandler(newSelected, _oldSelected) {
-    console.log(newSelected, 'document manager');
-  }
 
   @Event({
     bubbles: true,

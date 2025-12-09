@@ -47,6 +47,7 @@
  - [ls-statusbar](../ls-statusbar)
  - [ls-text-input](../ls-formfield/inputs/ls-text-input)
  - [ls-textarea-input](../ls-formfield/inputs/ls-textarea-input)
+ - [ls-title-input](../ls-title-input)
  - [ls-toolbox-field](../ls-toolbox-field)
  - [ls-validation-tag](../ls-validation-tag)
 
@@ -80,6 +81,7 @@ graph TD;
   ls-statusbar --> ls-icon
   ls-text-input --> ls-icon
   ls-textarea-input --> ls-icon
+  ls-title-input --> ls-icon
   ls-toolbox-field --> ls-icon
   ls-validation-tag --> ls-icon
   style ls-icon fill:#f9f,stroke:#333,stroke-width:4px

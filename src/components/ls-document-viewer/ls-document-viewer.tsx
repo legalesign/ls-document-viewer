@@ -215,6 +215,7 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    console.log('Mutate event received in document viewer', event);
     if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
   }
 
@@ -535,7 +536,9 @@ export class LsDocumentViewer {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         this.selected = Array.from(fields).filter(fx => fx.selected);
       } else if (update.action === 'delete') {
+        console.log('Deleting field via syncChange', update.data);
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        if (!fi) return;
         const fields = this._template.elementConnection.templateElements;
         this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
         this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi);
@@ -585,7 +588,7 @@ export class LsDocumentViewer {
     }
 
     this._template.elementConnection.templateElements.forEach(te => {
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));      
     });
   }
 
