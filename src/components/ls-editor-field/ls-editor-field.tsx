@@ -195,7 +195,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size={`${0.75 * zoomValue}rem`} class="required-icon" customStyle={{ verticalAlign: 'top', top: `${0.125 * zoomValue}rem`, right: `${0.125 * zoomValue}rem` }} />}
+          {!this.dataItem?.optional && <ls-icon name="required" size={`${0.75 * zoomValue}rem`} class="required-icon" customStyle={{ position: 'absolute', verticalAlign: 'top', top: `${0.125 * zoomValue}rem`, right: `${0.125 * zoomValue}rem` }} />}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -249,7 +249,7 @@ export class LsEditorField {
               }}
               onClick={() => this.deleteField()}
             >
-              <ls-icon name="x" size={`${10 * zoomValue}`} />
+              <ls-icon name="x" size={`${0.625 * zoomValue}rem`} />
             </button>
           )}
         </div>
