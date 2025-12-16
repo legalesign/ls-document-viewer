@@ -9,7 +9,7 @@
 
 | Property    | Attribute    | Description                                    | Type               | Default     |
 | ----------- | ------------ | ---------------------------------------------- | ------------------ | ----------- |
-| `editor`    | `editor`     | The parent editor control. {LsDocumentViewer}  | `LsDocumentViewer` | `undefined` |
+| `editor`    | --           | The parent editor control. {LsDocumentViewer}  | `LsDocumentViewer` | `undefined` |
 | `page`      | `page`       |                                                | `number`           | `undefined` |
 | `pageCount` | `page-count` |                                                | `number`           | `undefined` |
 | `zoom`      | `zoom`       | The zoom or scale level 100 === 100%. {number} | `number`           | `undefined` |

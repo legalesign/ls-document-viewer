@@ -1,7 +1,7 @@
 import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
-import { PDFDocumentProxy, PDFPageProxy, PDFPageViewport, PDFRenderParams, PDFRenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
+import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
@@ -19,7 +19,7 @@ import { validate } from './validator';
 import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
 
-GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
+GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
 
 /**
  * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -450,18 +450,18 @@ export class LsDocumentViewer {
     this.isPageRendering = true;
     if (this.pdfDocument !== undefined && this.pdfDocument !== null) {
       this.pdfDocument.getPage(pageNumber).then((page: PDFPageProxy) => {
-        const viewport: PDFPageViewport = page.getViewport({ scale: this.zoom });
+        const viewport: PageViewport = page.getViewport({ scale: this.zoom });
         this.canvas.height = Math.floor(viewport.height);
         this.canvas.width = Math.floor(viewport.width);
 
         // Render PDF page into canvas context
-        const renderContext: PDFRenderParams = {
+        const renderContext = {
           viewport,
           canvasContext: this.ctx,
         };
 
         // Render page method
-        const renderTask: PDFRenderTask = page.render(renderContext);
+        const renderTask: RenderTask = page.render(renderContext);
 
         // Wait for rendering to finish
         renderTask.promise.then(() => {
