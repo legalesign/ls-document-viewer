@@ -19,7 +19,7 @@ import { validate } from './validator';
 import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
 
-GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
+GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.worker.min.mjs`;
 
 /**
  * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -456,12 +456,12 @@ export class LsDocumentViewer {
 
         // Render PDF page into canvas context
         const renderContext = {
-          viewport,
           canvasContext: this.ctx,
+          viewport,
         };
 
         // Render page method
-        const renderTask: RenderTask = page.render(renderContext);
+        const renderTask: RenderTask = page.render(renderContext as any);
 
         // Wait for rendering to finish
         renderTask.promise.then(() => {
