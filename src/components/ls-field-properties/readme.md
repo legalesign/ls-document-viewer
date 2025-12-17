@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type             | Default     |
-| ---------- | --------- | ----------- | ---------------- | ----------- |
-| `dataItem` | --        |             | `LSApiElement[]` | `undefined` |
+| Property   | Attribute   | Description | Type             | Default     |
+| ---------- | ----------- | ----------- | ---------------- | ----------- |
+| `dataItem` | `data-item` |             | `LSApiElement[]` | `undefined` |
 
 
 ## Dependencies

@@ -9,7 +9,7 @@
 
 | Property | Attribute | Description                                   | Type               | Default     |
 | -------- | --------- | --------------------------------------------- | ------------------ | ----------- |
-| `editor` | --        | The parent editor control. {LsDocumentViewer} | `LsDocumentViewer` | `undefined` |
+| `editor` | `editor`  | The parent editor control. {LsDocumentViewer} | `LsDocumentViewer` | `undefined` |
 
 
 ## Dependencies

@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property           | Attribute        | Description | Type                                     | Default     |
-| ------------------ | ---------------- | ----------- | ---------------------------------------- | ----------- |
-| `placement`        | `placement`      |             | `"bottom" \| "left" \| "right" \| "top"` | `'top'`     |
-| `referenceElement` | --               |             | `HTMLElement`                            | `undefined` |
-| `tooltipLocked`    | `tooltip-locked` |             | `boolean`                                | `false`     |
-| `tooltipText`      | `tooltip-text`   |             | `string`                                 | `undefined` |
-| `tooltipTitle`     | `tooltip-title`  |             | `string`                                 | `undefined` |
+| Property           | Attribute           | Description | Type                                     | Default     |
+| ------------------ | ------------------- | ----------- | ---------------------------------------- | ----------- |
+| `placement`        | `placement`         |             | `"bottom" \| "left" \| "right" \| "top"` | `'top'`     |
+| `referenceElement` | `reference-element` |             | `HTMLElement`                            | `undefined` |
+| `tooltipLocked`    | `tooltip-locked`    |             | `boolean`                                | `false`     |
+| `tooltipText`      | `tooltip-text`      |             | `string`                                 | `undefined` |
+| `tooltipTitle`     | `tooltip-title`     |             | `string`                                 | `undefined` |
 
 
 ## Methods
