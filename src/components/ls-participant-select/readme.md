@@ -9,7 +9,7 @@
 
 | Property   | Attribute  | Description                                     | Type          | Default     |
 | ---------- | ---------- | ----------------------------------------------- | ------------- | ----------- |
-| `roles`    | `roles`    | The current template roles. {LSApiRole}         | `LSApiRole[]` | `[]`        |
+| `roles`    | --         | The current template roles. {LSApiRole}         | `LSApiRole[]` | `[]`        |
 | `selected` | `selected` | The id of the currently selected role. {string} | `string`      | `undefined` |
 
 
