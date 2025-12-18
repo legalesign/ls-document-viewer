@@ -2,6 +2,7 @@ import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { oob } from '../ls-document-viewer/editorUtils';
 import { attachAllTooltips } from '../../utils/tooltip';
+import { outOfBounds } from '../ls-document-viewer/mouseHandlers';
 
 @Component({
   tag: 'ls-field-distribute',
@@ -45,32 +46,37 @@ export class LsFieldDistribute {
 
   distributeHorizontal() {
     var spacing = this.component.shadowRoot.getElementById('ls-fix-horizontal-space') as HTMLInputElement;
-    var avgspace = 0;
     const sorted = this.dataItem.sort((a, b) => a.left - b.left);
+    if (sorted.length < 3) return;
+
+
+    var avgspace = 0;
+    const leftmost = sorted[0].left + sorted[0].width / 2;
+    const rightmost = sorted.reduce((acc, cur) => {
+      return cur.left + (cur.width / 2) > acc ? cur.left + (cur.width / 2) : acc;
+    }, leftmost);
+    // find total width between centre first and centre last
+    const totalWidth: number = rightmost - leftmost;
 
     if (spacing.value !== '') {
       avgspace = parseInt(spacing.value);
     } else {
-      var space = 0;
-      for (var i = 1; i < sorted.length; i++) {
-        const c1 = sorted[i - 1];
-        const c2 = sorted[i];
-        space = space + (c2.left - c1.left - c1.width <= 0 ? 0 : c2.left - c1.left - c1.width);
-      }
-      avgspace = Math.floor(space / sorted.length);
+      avgspace = Math.floor(totalWidth / (sorted.length - 1));
     }
 
-    var nextleft = sorted[0].left;
+    const filtered = sorted.filter((c, index) => {
+      return outOfBounds({ ...c, left: Math.floor(leftmost - (c.width / 2) + avgspace * index) }) === false
+        && index !== 0
+        && index !== sorted.length - 1
+    });
 
-    const diffs: LSMutateEvent[] = sorted.map(c => {
-      const newLeft = nextleft;
-      nextleft = nextleft + c.width + avgspace;
+    const diffs: LSMutateEvent[] = filtered.map((c, index) => {
 
       return {
         action: 'update',
         data: {
           ...c,
-          left: newLeft,
+          left: Math.floor(leftmost - (c.width / 2) + (avgspace * (index + 1))),
         } as LSApiElement,
       };
     });
@@ -97,9 +103,9 @@ export class LsFieldDistribute {
         action: 'update',
         data: oob(target)
           ? ({
-              ...c,
-              left: c.pageDimensions.height - c.height - 1,
-            } as LSApiElement)
+            ...c,
+            left: c.pageDimensions.height - c.height - 1,
+          } as LSApiElement)
           : target,
       };
     });
@@ -128,9 +134,9 @@ export class LsFieldDistribute {
         action: 'update',
         data: oob(target)
           ? ({
-              ...c,
-              left: c.pageDimensions.width - c.width - 1,
-            } as LSApiElement)
+            ...c,
+            left: c.pageDimensions.width - c.width - 1,
+          } as LSApiElement)
           : target,
       };
     });
@@ -145,35 +151,33 @@ export class LsFieldDistribute {
     var avgspace = 0;
     const sorted = this.dataItem.sort((a, b) => a.top - b.top);
 
-    if (spacing.value !== '') avgspace = parseInt(spacing.value);
-    else {
-      var space = 0;
-      for (var i = 1; i < sorted.length; i++) {
-        const c1 = sorted[i - 1];
-        const c2 = sorted[i];
-        space = space + (c2.top - c1.top - c1.height <= 0 ? 0 : c2.top - c1.top - c1.height);
-      }
-      avgspace = Math.floor(space / sorted.length);
+    const topmost = sorted[0].top + sorted[0].height / 2;
+    const bottommost = sorted.reduce((acc, cur) => {
+      return cur.top + (cur.height / 2) > acc ? cur.top + (cur.height / 2) : acc;
+    }, topmost);
+    // find total width between centre first and centre last
+    const totalHeight: number = bottommost - topmost;
+
+    if (spacing.value !== '') {
+      avgspace = parseInt(spacing.value);
+    } else {
+      avgspace = Math.floor(totalHeight / (sorted.length - 1));
     }
 
-    var buffer = sorted[0].top;
+    const filtered = sorted.filter((c, index) => {
+      return outOfBounds({ ...c, left: Math.floor(topmost - (c.height / 2) + avgspace * index) }) === false
+        && index !== 0
+        && index !== sorted.length - 1
+    });
 
-    const diffs: LSMutateEvent[] = sorted.map(c => {
-      const newTop = buffer;
-      buffer = buffer + c.height + avgspace;
-      const target = {
-        ...c,
-        top: newTop,
-      } as LSApiElement;
+    const diffs: LSMutateEvent[] = filtered.map((c, index) => {
 
       return {
         action: 'update',
-        data: oob(target)
-          ? ({
-              ...c,
-              top: c.pageDimensions.height - c.height,
-            } as LSApiElement)
-          : target,
+        data: {
+          ...c,
+          top: Math.floor(topmost - (c.height / 2) + (avgspace * (index + 1))),
+        } as LSApiElement,
       };
     });
 
