@@ -85,7 +85,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly) return;
+    if (this.readonly  || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials') return;
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;
