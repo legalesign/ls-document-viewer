@@ -37,11 +37,12 @@ export class LsStatusbar {
 
   fitWidth() {
     const leftBox = this.editor.component.shadowRoot.getElementById('ls-left-box');
-    const space = window.screen.width - leftBox.clientWidth - 60; // 40 for padding/margin
+    const midBox = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
+    const space = midBox.clientWidth - leftBox.clientWidth - 60; // 60 for padding/margin
 
+    
     console.log('Space width:', space, 'Page width:', this.editor.pageDimensions[0].width);
     const scale: number = space / this.editor.pageDimensions[0].width;
-    console.log(Math.round(scale * 1e2) / 1e2);
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
