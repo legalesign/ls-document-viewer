@@ -429,10 +429,10 @@ export class LsDocumentViewer {
     const fields = newTemplate.elementConnection.templateElements.map(f => {
       return {
         ...f,
-        top: this.clip(f.ay) * this.pageDimensions[0].height,
-        left: this.clip(f.ax) * this.pageDimensions[0].width,
-        height: (this.clip(f.by, 0.1) - this.clip(f.ay)) * this.pageDimensions[0].height,
-        width: (this.clip(f.bx, 0.2) - this.clip(f.ax)) * this.pageDimensions[0].width,
+        top: Math.floor(this.clip(f.ay) * this.pageDimensions[0].height),
+        left: Math.floor(this.clip(f.ax) * this.pageDimensions[0].width),
+        height: Math.floor((this.clip(f.by, 0.1) - this.clip(f.ay)) * this.pageDimensions[0].height),
+        width: Math.floor((this.clip(f.bx, 0.2) - this.clip(f.ax)) * this.pageDimensions[0].width),
         templateId: newTemplate.id,
       };
     });

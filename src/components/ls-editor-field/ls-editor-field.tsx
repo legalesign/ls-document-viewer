@@ -189,7 +189,6 @@ export class LsEditorField {
       : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` };
 
     const zoomValue = parseFloat(this.zoom) || 1;
-    console.log('Zoom value in field:', zoomValue);
 
     return (
       <Host id={this.dataItem ? 'ls-field-' + this.dataItem.id : undefined} style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>

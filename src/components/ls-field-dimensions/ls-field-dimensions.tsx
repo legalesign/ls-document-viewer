@@ -34,6 +34,13 @@ export class LsFieldDimensions {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
 
+  getDataItem(): LSApiElement {
+    if (this.isSingle(this.dataItem)) {
+      return this.dataItem;
+    }
+    return this.dataItem[0];
+  }
+
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
@@ -101,8 +108,16 @@ export class LsFieldDimensions {
                     class={'has-leading-icon'}
                     aria="field-width"
                     id="field-width"
+                    min={5}
+                    max={this.dataItem.pageDimensions.width - this.dataItem.width}
                     value={this.dataItem?.width}
-                    onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })}
+                    onChange={e => {
+                      const di = this.getDataItem();
+                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.width - di.left) {
+                        return;
+                      }
+                      this.alter({ width: (e.target as HTMLInputElement).value })
+                    }}
                   />
                 </div>
                 <div class={'input-wrapper'} data-tooltip="Set field height in pixels">
@@ -113,7 +128,14 @@ export class LsFieldDimensions {
                     aria="field-height"
                     id="field-height"
                     value={this.dataItem?.height}
-                    onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })}
+                    onChange={e => {
+                      const di = this.getDataItem();
+                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.height - di.top) {
+                        return;
+                      }
+
+                      this.alter({ height: (e.target as HTMLInputElement).value })
+                    }}
                   />
                 </div>
               </div>
