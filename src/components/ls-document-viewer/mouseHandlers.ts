@@ -295,8 +295,8 @@ export function mouseDrop(event) {
         height: data.defaultHeight,
         width: data.defaultWidth,
         pageDimensions: this.pageDimensions[this.pageNum - 1],
-        fontName: 'arial',
-        fontSize: 8,
+        fontName: this.fontFamily,
+        fontSize: this.fontSize,
         align: 'left',
         signer: this.signer,
         page: this.pageNum,
@@ -316,6 +316,8 @@ export function mouseDrop(event) {
         templateId: this._template.id,
       } as LSApiElement,
     };
+
+    console.log(newData);
     this.mutate.emit([newData]);
     this.update.emit([newData]);
   } catch (e) {

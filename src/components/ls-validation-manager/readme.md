@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property           | Attribute           | Description                                         | Type                | Default     |
-| ------------------ | ------------------- | --------------------------------------------------- | ------------------- | ----------- |
-| `validationErrors` | `validation-errors` | The template information (as JSON). {LSApiTemplate} | `ValidationError[]` | `undefined` |
+| Property           | Attribute | Description                                         | Type                | Default     |
+| ------------------ | --------- | --------------------------------------------------- | ------------------- | ----------- |
+| `validationErrors` | --        | The template information (as JSON). {LSApiTemplate} | `ValidationError[]` | `undefined` |
 
 
 ## Dependencies

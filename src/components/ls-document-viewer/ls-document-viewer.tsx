@@ -106,11 +106,19 @@ export class LsDocumentViewer {
   @Prop({ mutable: true }) pageNum: number = 1;
   @Prop({ mutable: true }) pageCount: number = 1;
   @Prop({ mutable: true }) signer: number = 0;
+  @Prop({ mutable: true }) groupInfo: any;
 
   @State() _template: LSApiTemplate;
   @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
-  @Prop({ mutable: true }) groupInfo: any;
+
+  /**
+ * The following state properties define the defaults for field
+ * creation. They should be overridden by the users most used
+ * values from localStorage or profile settings.
+ */
+  @State() fontSize: number = 10;
+  @State() fontFamily: string = 'arial';
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
   @State() fieldTypeSelected: IToolboxField = {
@@ -586,7 +594,7 @@ export class LsDocumentViewer {
     }
 
     this._template.elementConnection.templateElements.forEach(te => {
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));      
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });
   }
 
@@ -656,7 +664,7 @@ export class LsDocumentViewer {
               </div>
             )}
             {this.mode === 'compose' && (
-              <div style={{display: 'flex', alignItems: 'center', gap: '0.25rem'}}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                 <span class="header-text-1">Compose</span> <span>/</span> <ls-title-input template={this._template} />
               </div>
             )}
@@ -701,8 +709,8 @@ export class LsDocumentViewer {
                           elementType="signature"
                           formElementType="signature"
                           label="Signature"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={25}
+                          defaultWidth={97}
                           validation={0}
                           icon="signature"
                           tooltip="Use this field to collect Signatures from Participants"
@@ -715,8 +723,8 @@ export class LsDocumentViewer {
                           elementType="auto sign"
                           formElementType="auto sign"
                           label="Auto Sign"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={25}
+                          defaultWidth={97}
                           validation={3000}
                           icon="auto-sign"
                           tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
@@ -728,8 +736,8 @@ export class LsDocumentViewer {
                           elementType="text"
                           formElementType="text"
                           label="Text"
-                          defaultHeight={27}
-                          defaultWidth={100}
+                          defaultHeight={16}
+                          defaultWidth={150}
                           validation={0}
                           icon="text"
                           tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
@@ -742,8 +750,8 @@ export class LsDocumentViewer {
                           elementType="signing date"
                           formElementType="signing date"
                           label="Signing Date"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={16}
+                          defaultWidth={100}
                           validation={30}
                           icon="auto-date"
                           tooltip="Automatically inserts the date upon completion by the assigned Participant"
@@ -756,8 +764,8 @@ export class LsDocumentViewer {
                           elementType="date"
                           formElementType="date"
                           label="Date"
-                          defaultHeight={27}
-                          defaultWidth={80}
+                          defaultHeight={16}
+                          defaultWidth={100}
                           validation={2}
                           icon="calender"
                           tooltip="A field for collecting dates with built-in date formatting options"
@@ -769,8 +777,8 @@ export class LsDocumentViewer {
                           elementType="email"
                           formElementType="email"
                           label="Email"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={16}
+                          defaultWidth={150}
                           validation={1}
                           icon="at-symbol"
                           tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
@@ -783,8 +791,8 @@ export class LsDocumentViewer {
                           elementType="initials"
                           formElementType="initials"
                           label="Initials"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={25}
+                          defaultWidth={70}
                           validation={2000}
                           icon="initials"
                           tooltip="Use this field anywhere Participants are required to Initial your document"
@@ -797,8 +805,8 @@ export class LsDocumentViewer {
                           elementType="number"
                           formElementType="number"
                           label="Number"
-                          defaultHeight={27}
-                          defaultWidth={80}
+                          defaultHeight={16}
+                          defaultWidth={150}
                           validation={50}
                           icon="hashtag"
                           tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
@@ -811,8 +819,8 @@ export class LsDocumentViewer {
                           elementType="dropdown"
                           formElementType="dropdown"
                           label="Dropdown"
-                          defaultHeight={27}
-                          defaultWidth={80}
+                          defaultHeight={16}
+                          defaultWidth={100}
                           validation={20}
                           icon="dropdown"
                           tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
@@ -825,8 +833,8 @@ export class LsDocumentViewer {
                           elementType="checkbox"
                           formElementType="checkbox"
                           label="Checkbox"
-                          defaultHeight={27}
-                          defaultWidth={27}
+                          defaultHeight={16}
+                          defaultWidth={16}
                           validation={25}
                           icon="check"
                           tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
@@ -839,8 +847,8 @@ export class LsDocumentViewer {
                           elementType="regex"
                           formElementType="regex"
                           label="Regex"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={16}
+                          defaultWidth={150}
                           validation={93}
                           icon="code"
                           tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
@@ -852,8 +860,8 @@ export class LsDocumentViewer {
                           elementType="image"
                           formElementType="image"
                           label="Image"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={16}
+                          defaultWidth={100}
                           validation={90}
                           icon="photograph"
                           tooltip="Use when you need Participants to upload their own images during the signing process"
@@ -865,8 +873,8 @@ export class LsDocumentViewer {
                           elementType="file"
                           formElementType="file"
                           label="File"
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={16}
+                          defaultWidth={100}
                           validation={74}
                           icon="upload"
                           tooltip="Use when you need Participants to upload their own documents during the signing process"

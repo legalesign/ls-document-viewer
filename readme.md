@@ -231,15 +231,14 @@ Fired when a participant role is added to the template.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document Editor</title>
-    <link rel="stylesheet" href="/build/ls-document-viewer.css" />
-    <script type="module" src="/build/ls-document-viewer.esm.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/legalesign-document-viewer/ls-document-viewer.css" />
+    <script type="module" src="https://unpkg.com/legalesign-document-viewer"></script>
   </head>
   <body style="padding: 0; margin: 0">
     <ls-document-viewer
       id="my-editor"
       templateid="dHBsYjQ5YTg5NWQtYWRhMy0xMWYwLWIxZGMtMDY5NzZlZmU0MzIx"
       token="YOUR_TOKEN_HERE"
-      endpoint="https://your-endpoint.amazonaws.com/graphql"
       mode="compose"
       recipients='[
         {"email": "signer@example.com", "firstname": "John", "lastname": "Doe", "signerIndex": 1}
@@ -262,11 +261,12 @@ Fired when a participant role is added to the template.
       });
 
       function handleCancel() {
-        window.location.href = '/dashboard';
+        // Implement the cancel logic, e.g. go to a home page
+        window.location.href = '/cancelpage';
       }
 
       function handleSend() {
-        // Implement send logic
+        // Implement send logic if required.
         console.log('Sending document...');
       }
     </script>
@@ -284,10 +284,10 @@ The component uses modern web standards and supports:
 
 ## Resources
 
-- [API Documentation](https://apidocs.legalesign.com)
-- [NPM Package](https://www.npmjs.com/package/legalesign-document-viewer)
-- [React Package](https://www.npmjs.com/package/legalesign-document-viewer-react)
-- [Support](https://www.legalesign.com/support)
+- [API Documentation](https://apidocs.legalesign.com){:target="_blank"}
+- [NPM Package](https://www.npmjs.com/package/legalesign-document-viewer){:target="_blank"}
+- [React Package](https://www.npmjs.com/package/legalesign-document-viewer-react){:target="_blank"}
+- [Support](https://support.legalesign.com/){:target="_blank"}
 
 ## Getting Help
 

@@ -60,6 +60,8 @@ export class LsEditorField {
       this.isEditing = false;
       this.sizeObserver.observe(this.component.shadowRoot.getElementById('field-info'));
     }
+
+    e.stopPropagation();
   }
 
   @Listen('mousemove', { capture: true })
@@ -82,7 +84,7 @@ export class LsEditorField {
   }
 
   @Listen('dblclick', { capture: true })
-  handleDoubleClick() {
+  handleDoubleClick(e: MouseEvent) {
     if (this.readonly) return;
     this.isEditing = true;
     this.heldEdge = null;
@@ -97,6 +99,8 @@ export class LsEditorField {
       editbox.className = 'ls-editor-field-editable';
       editbox.focus();
     }
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   @Listen('dragstart', { capture: false, passive: false })
