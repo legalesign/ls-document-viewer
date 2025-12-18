@@ -194,8 +194,15 @@ export function mouseMove(event) {
     const movedY = event.screenY - this.startMouse.y;
     if (this.selected?.length) {
       for (let i = 0; i < this.selected.length; i++) {
-        this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
+        if(this.startLocations[i].left + movedX >= 0 
+          && this.startLocations[i].top + movedY >= 0
+          && this.startLocations[i].left + movedX <= this.pageDimensions[this.pageNum -1].width - this.selected[i].dataItem.width
+          && this.startLocations[i].top + movedY <= this.pageDimensions[this.pageNum -1].height - this.selected[i].dataItem.height
+        ) {
+                  this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
         this.selected[i].style.top = this.startLocations[i].top + movedY + 'px';
+
+        }
       }
     }
   }
