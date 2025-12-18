@@ -570,9 +570,9 @@ export class LsDocumentViewer {
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
       dropTarget.addEventListener('click', mouseClick.bind(this));
-      dropTarget.addEventListener('mousedown', mouseDown.bind(this));
-      dropTarget.addEventListener('mousemove', mouseMove.bind(this));
-      dropTarget.addEventListener('mouseup', mouseUp.bind(this));
+      document.addEventListener('mousedown', mouseDown.bind(this));
+      document.addEventListener('mousemove', mouseMove.bind(this));
+      document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
       dropTarget.addEventListener('dragenter', event => {
@@ -638,6 +638,19 @@ export class LsDocumentViewer {
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
+    
+    const leftBox = this.component.shadowRoot.getElementById('ls-left-box');
+    if (leftBox) {
+      leftBox.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+      });
+      leftBox.addEventListener('mouseup', (e) => {
+        e.stopPropagation();
+      });
+      leftBox.addEventListener('mousemove', (e) => {
+        e.stopPropagation();
+      });
+    }
   }
 
   showTool(fieldFormType: string): boolean {
