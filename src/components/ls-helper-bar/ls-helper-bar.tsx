@@ -34,6 +34,9 @@ export class LsHelperBar {
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://legalesign.com/articles/', '_blank')}>
             <ls-icon name="book-open" data-tooltip="View Documentation ↗" data-tooltip-placement="left" />
           </button>
+          <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')}>
+            <ls-icon name="support" data-tooltip="Contact Support" data-tooltip-placement="left" />
+          </button>
           <div class="divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />
           <button>
             <ls-icon name="question-mark-circle" />
