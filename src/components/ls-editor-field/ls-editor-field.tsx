@@ -247,11 +247,15 @@ export class LsEditorField {
             <button
               class={'x-button'}
               style={{
-                padding: `${0.125 * zoomValue}rem`,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: `${0.875 * zoomValue}rem`,
+                height: `${0.875 * zoomValue}rem`,
               }}
               onClick={() => this.deleteField()}
             >
-              <ls-icon name="x" size={`${0.625 * zoomValue}rem`} />
+              <ls-icon name="x" size={`${0.75 * zoomValue}rem`} />
             </button>
           )}
         </div>
