@@ -69,6 +69,12 @@ export class LsToolbar {
     this.mutate.emit(diffs);
   }
 
+  componentDidLoad() {
+    this.component.addEventListener('mouseclick', (e) => {
+      e.stopPropagation();
+    });
+  }
+
   render() {
     return (
       <div class={this.mode === 'compose' && this.dataItem.length === 0 ? 'invisible' : 'ls-toolbar'}>

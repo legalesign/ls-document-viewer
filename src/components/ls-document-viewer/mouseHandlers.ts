@@ -215,8 +215,8 @@ export function mouseMove(event) {
           this.startLocations[i].left + movedX <= (this.pageDimensions[this.pageNum - 1].width - this.selected[i].dataItem.width) * this.zoom &&
           this.startLocations[i].top + movedY <= (this.pageDimensions[this.pageNum - 1].height - this.selected[i].dataItem.height) * this.zoom
         ) {
-          this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
-          this.selected[i].style.top = this.startLocations[i].top + movedY + 'px';
+          this.selected[i].style.left = Math.round(this.startLocations[i].left + movedX) + 'px';
+          this.selected[i].style.top = Math.round(this.startLocations[i].top + movedY) + 'px';
         }
       }
     }
@@ -339,9 +339,7 @@ export function mouseDrop(event) {
       } as LSApiElement,
     };
 
-    console.log(newData);
     this.mutate.emit([newData]);
-    this.update.emit([newData]);
   } catch (e) {
     console.error(e);
   }
@@ -397,9 +395,8 @@ export function mouseDoubleClick(event) {
         templateId: this._template.id,
       } as LSApiElement,
     };
-    console.log(newData);
     this.mutate.emit([newData]);
-    this.update.emit([newData]);
+
   } catch (e) {
     console.error(e);
   }
