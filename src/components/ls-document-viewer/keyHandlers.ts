@@ -69,13 +69,12 @@ export function keyDown(ev: KeyboardEvent) {
         const newTop = s.dataItem.top + s.dataItem.height;
         // check its in bounds
         if (newTop + s.dataItem.height < s.dataItem.pageDimensions.height) {
-          console.log('Setting new top for duplicated item', newTop);
           newItem.top = newTop;
         }
         return { action: 'create', data: newItem, select: 'clear' };
       });
-      this.update.emit(createdItems);
       this.mutate.emit(createdItems.map(item => ({ action: 'create', data: item.data })));
+      this.update.emit(createdItems);
     } else if (ev.key === 'Escape') {
       console.log('Clearing selection');
       this.selected = [];
