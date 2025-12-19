@@ -526,6 +526,7 @@ export namespace Components {
           * The group and experience information. {object}
          */
         "groupInfo": object;
+        "mode": string;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -1934,6 +1935,7 @@ declare namespace LocalJSX {
           * The group and experience information. {object}
          */
         "groupInfo"?: object;
+        "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         /**
