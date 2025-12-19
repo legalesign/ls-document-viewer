@@ -950,7 +950,7 @@ export class LsDocumentViewer {
             ) : (
               <></>
             )}
-            {this.selected.length > 0 && <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} />}
+            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} />
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
