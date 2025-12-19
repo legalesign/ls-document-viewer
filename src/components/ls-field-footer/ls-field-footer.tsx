@@ -14,7 +14,7 @@ export class LsFieldFooter {
   @Prop({
     mutable: true,
   })
-  dataItem: LSApiElement;
+  dataItem: LSApiElement | LSApiElement[];
   @Event({
     bubbles: true,
     cancelable: true,
@@ -29,27 +29,41 @@ export class LsFieldFooter {
   })
   update: EventEmitter<LSMutateEvent[]>;
 
-   @Event({
+  @Event({
     bubbles: true,
     cancelable: true,
     composed: true,
   })
   selectFields: EventEmitter<LSApiElement[]>;
 
+  isSingle(dt: LSApiElement | LSApiElement[]): dt is LSApiElement {
+    return (dt as LSApiElement[]).length === undefined;
+  }
+
+  isMultiple(dt: LSApiElement | LSApiElement[]): dt is LSApiElement[] {
+    return typeof (dt as LSApiElement[]).length === 'number';
+  }
+
+  getItems(): LSApiElement[] {
+    if (this.isSingle(this.dataItem)) {
+      return [this.dataItem];
+    }
+    return this.dataItem;
+  }
+
   deleteField = () => {
-    this.update.emit([{ action: 'delete', data: this.dataItem }]);
-    this.mutate.emit([{ action: 'delete', data: this.dataItem }]);
+    this.mutate.emit(this.getItems().map(di => { return { action: 'delete', data: di } }));
   }
 
   duplicateField = () => {
-    const newItem = { ...this.dataItem, id: btoa('ele' + crypto.randomUUID()) };
-    const newTop = this.dataItem.top + this.dataItem.height;
-    if(newTop + this.dataItem.height < this.dataItem.pageDimensions.height) {
-      newItem.top = newTop;
-    }
-    this.update.emit([{ action: 'create', data: newItem, select: 'clear' }]);
-    this.mutate.emit([{ action: 'create', data: newItem }]);
-    // this.selectFields.emit([newItem]);
+    this.getItems().forEach(current => {
+      const newItem = { ...current, id: btoa('ele' + crypto.randomUUID()) };
+      const newTop = current.top + current.height;
+      if (newTop + current.height < current.pageDimensions.height) {
+        newItem.top = newTop;
+      }
+      this.mutate.emit([{ action: 'create', data: newItem, select: 'clear' }]);
+    });
   }
 
   render() {

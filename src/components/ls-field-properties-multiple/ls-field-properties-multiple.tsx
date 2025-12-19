@@ -132,7 +132,7 @@ export class LsFieldPropertiesMultiple {
             <ls-field-distribute dataItem={this.dataItem} />
           </div>
         </ls-field-properties-container>
-        <ls-field-footer />
+        <ls-field-footer dataItem={this.dataItem}/>
         <slot></slot>
       </Host>
     );

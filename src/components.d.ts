@@ -207,7 +207,7 @@ export namespace Components {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
          */
-        "dataItem": LSApiElement1;
+        "dataItem": LSApiElement1 | LSApiElement1[];
     }
     interface LsFieldFormat {
         "dataItem": LSApiElement1[];
@@ -1589,7 +1589,7 @@ declare namespace LocalJSX {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
          */
-        "dataItem"?: LSApiElement1;
+        "dataItem"?: LSApiElement1 | LSApiElement1[];
         "onMutate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
         "onSelectFields"?: (event: LsFieldFooterCustomEvent<LSApiElement1[]>) => void;
         "onUpdate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
