@@ -1,6 +1,7 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
+import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 
 @Component({
   tag: 'ls-field-content',
@@ -46,8 +47,8 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ["signature", "intials", "image", "file", "signing", "date", "autosign", "regex"];
-    
+    const typesWithValue = ['signature', 'initials', 'image', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox'];
+
     return !typesWithValue.includes(this.dataItem?.elementType);
   }
 
@@ -58,26 +59,38 @@ export class LsFieldContent {
           <ls-field-type-display fieldType={this.dataItem?.elementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
         <ls-props-section sectionTitle="Required Field" row={true}>
-          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={(ev) => this.alter({ optional: !ev.detail })} />
+          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => this.alter({ optional: !ev.detail })} />
         </ls-props-section>
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
-          <input value={this.dataItem?.label} placeholder="eg. Sign Here" onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} />
+          <input
+            value={this.dataItem?.label}
+            placeholder={getFieldTitleSuggestion(this.dataItem?.elementType)}
+            onInput={e => this.alter({ label: (e.target as HTMLInputElement).value })}
+          />
         </ls-props-section>
         {this.supportsValue() && (
-        <ls-props-section sectionTitle="Value" sectionDescription="A prefilled value that can be altered by the signer.">
-          <input value={this.dataItem?.value} placeholder="e.g. Gordon Smith" onInput={(e) => this.alter({ value: (e.target as HTMLInputElement).value })} />
-        </ls-props-section>
+          <ls-props-section sectionTitle="Value" sectionDescription="A prefilled value that can be altered by the signer.">
+            <input
+              value={this.dataItem?.value}
+              placeholder={getFieldPlaceholder(this.dataItem?.elementType)}
+              onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+            />
+          </ls-props-section>
         )}
         {this.dataItem.validation === 20 && (
           <ls-props-section sectionTitle="Options" sectionDescription="Define the options available in the dropdown. One option per line.">
-            <textarea value={this.dataItem?.options} placeholder="Option 1&#10;Option 2&#10;Option 3" onInput={(e) => this.alter({ options: (e.target as HTMLTextAreaElement).value })} />
+            <textarea
+              value={this.dataItem?.options}
+              placeholder="Option 1&#10;Option 2&#10;Option 3"
+              onInput={e => this.alter({ options: (e.target as HTMLTextAreaElement).value })}
+            />
           </ls-props-section>
         )}
 
         {this.showValidationTypes && (
           <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
             <ls-input-wrapper select>
-              <select onChange={(ev) => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value) })} >
+              <select onChange={ev => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value) })}>
                 {validationTypes
                   .filter(type => type.formType === this.dataItem?.elementType)
                   .map(type => (
