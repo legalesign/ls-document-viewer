@@ -118,24 +118,22 @@ export const findDimensions = (
   const frmDims = frameContainer.getBoundingClientRect();
   // dimensions relative to viewport
   const { height, width } = sourceField.getBoundingClientRect();
-  const zwidth = width / zoom;
-  const zheight = height / zoom;
   const top = Math.floor((sourceField.getBoundingClientRect().top - frmDims.top) / zoom);
   const left = Math.floor((sourceField.getBoundingClientRect().left - frmDims.left) / zoom);
-  
+ 
   // Returns X, Y coordinates
   const ax = left > 0 ? left / pageWidth : 0;
   const ay = top > 0 ? top / pageHeight : 0;
-  const bx = (left + zwidth) / pageWidth;
-  const by = (top + zheight) / pageHeight;
+  const bx = (left + (width / zoom)) / pageWidth;
+  const by = (top + (height / zoom)) / pageHeight;
 
 
   // Return with calculated styles that try to place it as it would appear on legacy signing page
   return {
     top,
     left,
-    height,
-    width,
+    height: Math.round(height / zoom),
+    width: Math.round(width / zoom),
     ax,
     ay,
     bx,

@@ -27,7 +27,6 @@ export function alter(diffFn) {
     return { action: 'update', data: diffFn(c.dataItem) as LSApiElement };
   });
   this.mutate.emit(diffs);
-  this.update.emit(diffs);
 }
 
 export function resetDataItems() {
@@ -46,7 +45,7 @@ export function debounce(func, timeout = 300) {
   };
 }
 
-// if a mutation has created a new id then update the dataitem with OLD id to the new one
+// After a mutation ensure that the new data is stored in fields and template
 export function matchData(data: { result: any; obj: any; event: LSMutateEvent }) {
   const newObj = data.result;
   const prefix = atob(data.obj.id).substring(0, 3);

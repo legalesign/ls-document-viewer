@@ -47,7 +47,6 @@ Alex Weinle
 | `pageChange`   |             | `CustomEvent<number>`          |
 | `pageRendered` |             | `CustomEvent<number>`          |
 | `selectFields` |             | `CustomEvent<LSApiElement[]>`  |
-| `update`       |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Methods

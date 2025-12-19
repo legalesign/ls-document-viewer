@@ -20,13 +20,6 @@ export class LsTitleInput {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
-
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   // NOTE this alter is debounced to account for typing
@@ -42,7 +35,6 @@ export class LsTitleInput {
     this.titletimer = setTimeout(() => {
       this.template = { ...this.template, ...diff };
       const diffs: LSMutateEvent[] = [{ action: 'update', data: this.template }];
-      this.update.emit(diffs);
       this.mutate.emit(diffs);
     }, delay);
   }

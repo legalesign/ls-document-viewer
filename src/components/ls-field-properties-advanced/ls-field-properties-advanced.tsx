@@ -18,13 +18,6 @@ export class LsFieldPropertiesAdvanced {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
-
   isSingle(dt: LSApiElement | LSApiElement[]): dt is LSApiElement {
     return (dt as LSApiElement[]).length === undefined;
   }
@@ -54,7 +47,6 @@ export class LsFieldPropertiesAdvanced {
     }
 
     if (bounceDelay === 0) {
-      this.update.emit(diffs);
       this.mutate.emit(diffs);
     }
     else {
@@ -68,7 +60,6 @@ export class LsFieldPropertiesAdvanced {
     if (this.titletimer) clearTimeout(this.titletimer);
 
     this.titletimer = setTimeout(() => {
-      this.update.emit(diffs);
       this.mutate.emit(diffs);
     }, delay);
   }

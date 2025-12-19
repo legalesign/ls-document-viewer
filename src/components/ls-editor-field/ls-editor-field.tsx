@@ -171,7 +171,6 @@ export class LsEditorField {
     this.labeltimer = setTimeout(() => {
       const diffs: LSMutateEvent[] = [{ action: 'update', data }];
       this.mutate.emit(diffs);
-      this.update.emit(diffs);
     }, delay);
   }
 

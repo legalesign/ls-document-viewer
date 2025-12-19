@@ -56,12 +56,6 @@ export function keyDown(ev: KeyboardEvent) {
           return { action: 'delete', data: s.dataItem };
         }),
       );
-
-      this.update.emit(
-        arr.map(s => {
-          return { action: 'delete', data: s.dataItem };
-        }),
-      );
     } else if (ev.key === 'd' || ev.key === 'D' || ev.key === 'keyD') {
       const arr = Array.from(this.selected) as LsEditorField[];
       const createdItems = arr.map(s => {
@@ -74,7 +68,6 @@ export function keyDown(ev: KeyboardEvent) {
         return { action: 'create', data: newItem, select: 'clear' };
       });
       this.mutate.emit(createdItems.map(item => ({ action: 'create', data: item.data })));
-      this.update.emit(createdItems);
     } else if (ev.key === 'Escape') {
       console.log('Clearing selection');
       this.selected = [];

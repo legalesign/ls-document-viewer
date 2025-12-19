@@ -134,7 +134,7 @@ export function mouseMove(event) {
 
     switch (this.edgeSide) {
       case 'n':
-        if (outOfBounds({ ...this.hitField.dataItem, top:this.startMouse.top + movedY, height: this.startMouse.height - movedY })) break;
+        if (outOfBounds({ ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom })) break;
         this.hitField.style.top = this.startMouse.top + movedY + 'px';
         this.hitField.style.height = this.startMouse.height - movedY + 'px';
 
@@ -145,7 +145,7 @@ export function mouseMove(event) {
         this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, height: this.startMouse.height - movedY, width };
         break;
       case 's':
-        if (outOfBounds({ ...this.hitField.dataItem, height: this.startMouse.height + movedY })) break;
+        if (outOfBounds({ ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom })) break;
 
         this.hitField.style.height = this.startMouse.height + movedY + 'px';
         if (scale) {
@@ -156,19 +156,18 @@ export function mouseMove(event) {
         this.hitField.dataItem = { ...this.hitField.dataItem, height: this.startMouse.height + movedY, width };
         break;
       case 'e':
-        if (outOfBounds({ ...this.hitField.dataItem, width: this.startMouse.width + movedX })) break;
+        if (outOfBounds({ ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom })) break;
 
         this.hitField.style.width = this.startMouse.width + movedX + 'px';
         if (scale) {
           height = Math.round((this.startMouse.width + movedX) / 3.8);
           this.hitField.style.height = height + 'px';
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, width: this.startMouse.width + movedX, height };
+        this.hitField.dataItem = { ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom, height };
 
         break;
       case 'w':
-        if (outOfBounds({ ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX })) break;
-
+        if (outOfBounds({ ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom })) break;
         this.hitField.style.left = this.startMouse.left + movedX + 'px';
         this.hitField.style.width = this.startMouse.width - movedX + 'px';
 
@@ -213,8 +212,8 @@ export function mouseMove(event) {
         if (
           this.startLocations[i].left + movedX >= 0 &&
           this.startLocations[i].top + movedY >= 0 &&
-          this.startLocations[i].left + movedX <= this.pageDimensions[this.pageNum - 1].width - this.selected[i].dataItem.width &&
-          this.startLocations[i].top + movedY <= this.pageDimensions[this.pageNum - 1].height - this.selected[i].dataItem.height
+          this.startLocations[i].left + movedX <= (this.pageDimensions[this.pageNum - 1].width - this.selected[i].dataItem.width) * this.zoom &&
+          this.startLocations[i].top + movedY <= (this.pageDimensions[this.pageNum - 1].height - this.selected[i].dataItem.height) * this.zoom
         ) {
           this.selected[i].style.left = this.startLocations[i].left + movedX + 'px';
           this.selected[i].style.top = this.startLocations[i].top + movedY + 'px';
@@ -251,7 +250,7 @@ export function mouseClick(e) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     const divFrame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
     const selected = Array.from(fields).filter(fx => fx.selected);
-
+    
     this.mutate.emit(
       Array.from(fields)
         .filter(fx => fx.selected)
@@ -259,7 +258,7 @@ export function mouseClick(e) {
           // Calculate new positions and update the dataItem on the control
           const delta = {
             ...fx.dataItem,
-            ...findDimensions(divFrame, fx, this.pageDimensions[this.pageNum - 1].height, this.pageDimensions[this.pageNum - 1].width, this.zoom),
+            ...findDimensions(divFrame, fx, fx.dataItem.pageDimensions.height, fx.dataItem.pageDimensions.width, this.zoom),
           };
           // TODO:: out of bounds handler (UNDO)
           // update the data in the html element

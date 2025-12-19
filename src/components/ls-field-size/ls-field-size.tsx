@@ -18,13 +18,6 @@ export class LsFieldSize {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
-
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
@@ -34,7 +27,6 @@ export class LsFieldSize {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   componentDidLoad() {

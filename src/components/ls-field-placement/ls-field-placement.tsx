@@ -19,13 +19,6 @@ export class LsFieldPlacement {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
-
   isSingle(dt: LSApiElement | LSApiElement[]): dt is LSApiElement {
     return (dt as LSApiElement[]).length === undefined;
   }
@@ -53,12 +46,10 @@ export class LsFieldPlacement {
 
       this.dataItem = diffs.map(d => d.data as LSApiElement);
       this.mutate.emit(diffs);
-      this.update.emit(diffs);
     } else {
       const singleDiff = { action: 'update', data: { ...this.dataItem, ...diff } as LSApiElement } as LSMutateEvent;
       this.dataItem = singleDiff.data as LSApiElement;
       this.mutate.emit([singleDiff]);
-      this.update.emit([singleDiff]);
     }
   }
 

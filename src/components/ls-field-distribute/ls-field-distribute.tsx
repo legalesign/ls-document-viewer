@@ -22,12 +22,6 @@ export class LsFieldDistribute {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
   @Element() component: HTMLElement;
 
   // Send one or more mutations up the chain
@@ -41,7 +35,6 @@ export class LsFieldDistribute {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   distributeHorizontal() {
@@ -65,7 +58,7 @@ export class LsFieldDistribute {
     }
 
     const filtered = sorted.filter((c, index) => {
-      return outOfBounds({ ...c, left: Math.floor(leftmost - (c.width / 2) + avgspace * index) }) === false
+      return outOfBounds({ ...c, left: (Math.floor(leftmost - (c.width / 2) + avgspace * index)) }) === false
         && index !== 0
         && index !== sorted.length - 1
     });
@@ -83,7 +76,6 @@ export class LsFieldDistribute {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   gapVertical(spacing: number) {
@@ -112,7 +104,6 @@ export class LsFieldDistribute {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   gapHorizontal(spacing: number) {
@@ -143,7 +134,6 @@ export class LsFieldDistribute {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   distributeVertical() {
@@ -183,7 +173,6 @@ export class LsFieldDistribute {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   componentDidLoad() {

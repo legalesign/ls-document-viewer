@@ -20,12 +20,6 @@ export class LsFieldFormat {
   })
   mutate: EventEmitter<LSMutateEvent[]>;
 
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
-  update: EventEmitter<LSMutateEvent[]>;
   @Element() component: HTMLElement;
 
   private handleKeyDown = (event: KeyboardEvent) => {
@@ -59,7 +53,6 @@ export class LsFieldFormat {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   componentDidLoad() {

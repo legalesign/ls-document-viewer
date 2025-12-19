@@ -749,7 +749,6 @@ declare global {
         "pageChange": number;
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent[];
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -867,7 +866,6 @@ declare global {
     };
     interface HTMLLsFieldDistributeElementEventMap {
         "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
     }
     interface HTMLLsFieldDistributeElement extends Components.LsFieldDistribute, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldDistributeElementEventMap>(type: K, listener: (this: HTMLLsFieldDistributeElement, ev: LsFieldDistributeCustomEvent<HTMLLsFieldDistributeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -904,7 +902,6 @@ declare global {
     };
     interface HTMLLsFieldFormatElementEventMap {
         "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
     }
     interface HTMLLsFieldFormatElement extends Components.LsFieldFormat, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldFormatElementEventMap>(type: K, listener: (this: HTMLLsFieldFormatElement, ev: LsFieldFormatCustomEvent<HTMLLsFieldFormatElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -922,7 +919,6 @@ declare global {
     };
     interface HTMLLsFieldPlacementElementEventMap {
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent[];
     }
     interface HTMLLsFieldPlacementElement extends Components.LsFieldPlacement, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldPlacementElementEventMap>(type: K, listener: (this: HTMLLsFieldPlacementElement, ev: LsFieldPlacementCustomEvent<HTMLLsFieldPlacementElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -946,7 +942,6 @@ declare global {
     };
     interface HTMLLsFieldPropertiesAdvancedElementEventMap {
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent[];
     }
     interface HTMLLsFieldPropertiesAdvancedElement extends Components.LsFieldPropertiesAdvanced, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldPropertiesAdvancedElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesAdvancedElement, ev: LsFieldPropertiesAdvancedCustomEvent<HTMLLsFieldPropertiesAdvancedElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1048,7 +1043,6 @@ declare global {
     };
     interface HTMLLsFieldSizeElementEventMap {
         "mutate": LSMutateEvent1[];
-        "update": LSMutateEvent1[];
     }
     interface HTMLLsFieldSizeElement extends Components.LsFieldSize, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsFieldSizeElementEventMap>(type: K, listener: (this: HTMLLsFieldSizeElement, ev: LsFieldSizeCustomEvent<HTMLLsFieldSizeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1125,7 +1119,6 @@ declare global {
     };
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent[];
         "opened": LSApiRole;
         "addParticipant": { type: LSApiRoleType; parent?: string | null };
     }
@@ -1253,7 +1246,6 @@ declare global {
     };
     interface HTMLLsTitleInputElementEventMap {
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent[];
     }
     interface HTMLLsTitleInputElement extends Components.LsTitleInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsTitleInputElementEventMap>(type: K, listener: (this: HTMLLsTitleInputElement, ev: LsTitleInputCustomEvent<HTMLLsTitleInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1466,7 +1458,6 @@ declare namespace LocalJSX {
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
-        "onUpdate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         /**
           * @default 1
          */
@@ -1593,7 +1584,6 @@ declare namespace LocalJSX {
     interface LsFieldDistribute {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
-        "onUpdate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldFooter {
         /**
@@ -1607,12 +1597,10 @@ declare namespace LocalJSX {
     interface LsFieldFormat {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldFormatCustomEvent<LSMutateEvent1[]>) => void;
-        "onUpdate"?: (event: LsFieldFormatCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldPlacement {
         "dataItem"?: LSApiElement | LSApiElement[];
         "onMutate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent[]>) => void;
-        "onUpdate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent[]>) => void;
     }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
@@ -1624,7 +1612,6 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
-        "onUpdate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
     }
     interface LsFieldPropertiesAutosign {
         "dataItem"?: LSApiElement1;
@@ -1672,7 +1659,6 @@ declare namespace LocalJSX {
     interface LsFieldSize {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
-        "onUpdate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
     }
     interface LsFieldTypeDisplay {
         "assignee"?: number;
@@ -1778,7 +1764,6 @@ declare namespace LocalJSX {
         "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
-        "onUpdate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "signer"?: LSApiRole;
         "template"?: LSApiTemplate;
     }
@@ -1923,7 +1908,6 @@ declare namespace LocalJSX {
     }
     interface LsTitleInput {
         "onMutate"?: (event: LsTitleInputCustomEvent<LSMutateEvent[]>) => void;
-        "onUpdate"?: (event: LsTitleInputCustomEvent<LSMutateEvent[]>) => void;
         "template"?: LSApiTemplate;
     }
     interface LsToggle {

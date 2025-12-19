@@ -29,13 +29,6 @@ export class LsParticipantCard {
     cancelable: true,
     composed: true,
   })
-  update: EventEmitter<LSMutateEvent[]>;
-
-  @Event({
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-  })
   opened: EventEmitter<LSApiRole>;
 
   // Send one or more mutations up the chain
@@ -54,17 +47,14 @@ export class LsParticipantCard {
     this.labeltimer = setTimeout(() => {
       const diffs: LSMutateEvent[] = [{ action: 'update', data }];
       this.mutate.emit(diffs);
-      this.update.emit(diffs);
     }, delay);
   }
 
   deleteHandler(role: LSApiRole) {
-    this.update.emit([{ action: 'delete', data: role }]);
     this.mutate.emit([{ action: 'delete', data: role }]);
   }
 
   swapHandler(role1, role2) {
-    this.update.emit([{ action: 'swap', data: role1, data2: role2 }]);
     this.mutate.emit([{ action: 'swap', data: role1, data2: role2 }]);
   }
 

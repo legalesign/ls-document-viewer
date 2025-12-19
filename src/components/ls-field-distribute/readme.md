@@ -17,7 +17,6 @@
 | Event    | Description | Type                           |
 | -------- | ----------- | ------------------------------ |
 | `mutate` |             | `CustomEvent<LSMutateEvent[]>` |
-| `update` |             | `CustomEvent<LSMutateEvent[]>` |
 
 
 ## Dependencies

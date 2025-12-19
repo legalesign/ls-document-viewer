@@ -65,7 +65,6 @@ export class LsToolbar {
 
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
-    this.update.emit(diffs);
   }
 
   render() {

@@ -215,15 +215,16 @@ export class LsDocumentViewer {
   @Event() selectFields: EventEmitter<LSApiElement[]>;
   // Send an external event to be processed
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
-  // Send an internal event to be processed
-  @Event() update: EventEmitter<LSMutateEvent[]>;
 
   private adapter: LsDocumentAdapter;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token).then(result => matchData.bind(this)(result)));
+    if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token)
+      .then(result => matchData.bind(this)(result))
+      .then(() => this.syncChange(me)));
+
   }
 
   @Listen('fieldTypeSelected')
@@ -235,12 +236,6 @@ export class LsDocumentViewer {
     });
 
     this.fieldTypeSelected = event.detail;
-  }
-
-  // Updates are internal event between LS controls not to be confused with mutate
-  @Listen('update')
-  updateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (event.detail) event.detail.forEach(fx => this.syncChange(fx));
   }
 
   // Updates are internal event between LS controls not to be confused with mutate
@@ -265,7 +260,6 @@ export class LsDocumentViewer {
         },
       },
     ];
-    this.update.emit(data);
     this.mutate.emit(data);
   }
 
@@ -542,7 +536,6 @@ export class LsDocumentViewer {
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         this.selected = Array.from(fields).filter(fx => fx.selected);
       } else if (update.action === 'delete') {
-        console.log('Deleting field via syncChange', update.data);
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (!fi) return;
         const fields = this._template.elementConnection.templateElements;
@@ -704,7 +697,6 @@ export class LsDocumentViewer {
                           participantManager.template = this._template;
                         } else if (manager.detail === 'validation') {
                           var validationManager = this.component.shadowRoot.getElementById('ls-validation-manager') as HTMLLsValidationManagerElement;
-                          console.log(validationManager);
                           validationManager.validationErrors = this.validationErrors;
                         }
                         this.manager = manager.detail;

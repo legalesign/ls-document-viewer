@@ -52,7 +52,6 @@ export class LsDocumentOptions {
     this.titletimer = setTimeout(() => {
       this.template = { ...this.template, ...diff };
       const diffs: LSMutateEvent[] = [{ action: 'update', data: this.template }];
-      this.update.emit(diffs);
       this.mutate.emit(diffs);
     }, delay);
   }
