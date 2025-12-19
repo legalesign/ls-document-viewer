@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
 
 @Component({
@@ -39,6 +39,8 @@ export class LsToolbar {
     mutable: true,
   }) editor: LsDocumentViewer;
 
+  @Prop() mode: string;
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -69,20 +71,20 @@ export class LsToolbar {
 
   render() {
     return (
-      <Host>
-        { (this.dataItem && this.dataItem.length > 1) ? (
+      <div class={this.mode === 'compose' && this.dataItem.length === 0 ? 'invisible' : 'ls-toolbar'}>
+        {(this.dataItem && this.dataItem.length > 1) ? (
           <div class={'rowbox'}>
             <ls-field-format dataItem={this?.dataItem} />
           </div>
         ) : (
           <div class={'rowbox'}>
-            <ls-field-format dataItem={this?.dataItem} style={{ visibility: this.dataItem && this.dataItem.length === 1 ? 'visible' : 'hidden' }} />
+            <ls-field-format dataItem={this?.dataItem} />
             <ls-participant-select id="ls-participant-select" roles={this.template?.roles} style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }} />
           </div>
         )}
         <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
-      </Host>
+      </div>
     );
   }
 }
