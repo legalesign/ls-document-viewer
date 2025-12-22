@@ -68,6 +68,11 @@ export class LsToolbar {
     this.mutate.emit(diffs);
   }
 
+  componentDidLoad() {
+    this.component.addEventListener('mouseclick', (e) => {
+      e.stopPropagation();
+    });
+  }
 
   render() {
     return (
