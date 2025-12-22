@@ -18,11 +18,10 @@ export class LsToolbar {
   })
   dataItem: LSApiElement[];
 
-
   /**
- * The group and experience information.
- * {object}
- */
+   * The group and experience information.
+   * {object}
+   */
   @Prop() groupInfo: object;
 
   /**
@@ -37,7 +36,8 @@ export class LsToolbar {
    */
   @Prop({
     mutable: true,
-  }) editor: LsDocumentViewer;
+  })
+  editor: LsDocumentViewer;
 
   @Prop() mode: string;
 
@@ -60,7 +60,6 @@ export class LsToolbar {
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
-
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       return { action: 'update', data: { ...c, ...diff } as LSApiElement };
     });
@@ -70,22 +69,28 @@ export class LsToolbar {
   }
 
   componentDidLoad() {
-    this.component.addEventListener('mouseclick', (e) => {
-      e.stopPropagation();
+    ['mousedown', 'mouseup', 'mousemove', 'mouseenter', 'mouseleave', 'mouseover', 'mouseout', 'click', 'dblclick', 'contextmenu'].forEach(eventType => {
+      this.component.addEventListener(eventType, e => {
+        e.stopPropagation();
+      });
     });
   }
 
   render() {
     return (
-      <div class={this.mode === 'compose' && this.dataItem.length === 0 ? 'invisible' : 'ls-toolbar'}>
-        {(this.dataItem && this.dataItem.length > 1) ? (
+      <div class={this.mode !== 'compose' || (this.mode === 'compose' && this.dataItem && this.dataItem.length > 0) ? 'ls-toolbar' : ''}>
+        {this.dataItem && this.dataItem.length > 1 ? (
           <div class={'rowbox'}>
             <ls-field-format dataItem={this?.dataItem} />
           </div>
         ) : (
           <div class={'rowbox'}>
             <ls-field-format dataItem={this?.dataItem} />
-            <ls-participant-select id="ls-participant-select" roles={this.template?.roles} style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }} />
+            <ls-participant-select
+              id="ls-participant-select"
+              roles={this.template?.roles}
+              style={{ display: (this.dataItem && this.dataItem.length === 1) || this.mode === 'compose' ? 'none' : 'block' }}
+            />
           </div>
         )}
         <ls-tooltip id="ls-tooltip-master" />
