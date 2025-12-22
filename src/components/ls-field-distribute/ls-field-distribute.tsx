@@ -223,10 +223,10 @@ export class LsFieldDistribute {
                 onChange={e => {
                   this.gapVertical(parseInt((e.target as HTMLInputElement).value));
                 }}
-                value={''}
-                size={4}
                 min={0}
                 max={9999}
+                value={''}
+                size={4}
               />
             </div>
             <div class={'input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
@@ -238,10 +238,10 @@ export class LsFieldDistribute {
                 onChange={e => {
                   this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));
                 }}
-                value={''}
-                size={4}
                 min={0}
                 max={9999}
+                value={''}
+                size={4}
               />
             </div>
           </div>
