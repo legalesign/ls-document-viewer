@@ -312,6 +312,10 @@ export namespace Components {
           * @default false
          */
         "expanded": boolean;
+        /**
+          * @default false
+         */
+        "showShortcuts": boolean;
     }
     interface LsIcon {
         /**
@@ -337,7 +341,6 @@ export namespace Components {
         "select": boolean;
     }
     interface LsKeyboardShortcuts {
-        "referenceElement": HTMLElement;
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -1705,6 +1708,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "expanded"?: boolean;
+        /**
+          * @default false
+         */
+        "showShortcuts"?: boolean;
     }
     interface LsIcon {
         /**
@@ -1730,7 +1737,6 @@ declare namespace LocalJSX {
         "select"?: boolean;
     }
     interface LsKeyboardShortcuts {
-        "referenceElement"?: HTMLElement;
     }
     interface LsNumberInput {
         "aria"?: string;

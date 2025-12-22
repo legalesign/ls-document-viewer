@@ -23,7 +23,7 @@ export class LsEditorField {
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
   @Prop() zoom: string;
-  
+
   private sizeObserver: ResizeObserver;
 
   @Event({
@@ -85,7 +85,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly  || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials') return;
+    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials') return;
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;
@@ -197,7 +197,21 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && <ls-icon name="required" size={`${0.75 * zoomValue}rem`} class="required-icon" customStyle={{ position: 'absolute', verticalAlign: 'top', top: `${0.125 * zoomValue}rem`, right: `${0.125 * zoomValue}rem` }} />}
+          {!this.dataItem?.optional && (
+            <ls-icon
+              name="required"
+              size={`${0.75 * zoomValue}rem`}
+              class="required-icon"
+              customStyle={{
+                position: 'absolute',
+                verticalAlign: 'top',
+                top: `${0.125 * zoomValue}rem`,
+                right: `${0.125 * zoomValue}rem`,
+                lineHeight: `${0.75 * zoomValue}rem`,
+                fontSize: `${0.75 * zoomValue}rem`,
+              }}
+            />
+          )}
           <input
             id="editing-input"
             class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
@@ -238,6 +252,7 @@ export class LsEditorField {
                 left: '0',
                 whiteSpace: 'nowrap',
                 width: 'fit-content',
+                fontFamily: 'sans-serif',
               }}
             >
               Assigned to: {this.assignee}
@@ -247,11 +262,17 @@ export class LsEditorField {
             <button
               class={'x-button'}
               style={{
-                padding: `${0.125 * zoomValue}rem`,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: `${0.875 * zoomValue}rem`,
+                height: `${0.875 * zoomValue}rem`,
+                lineHeight: `${0.75 * zoomValue}rem`,
+                fontSize: `${0.75 * zoomValue}rem`,
               }}
               onClick={() => this.deleteField()}
             >
-              <ls-icon name="x" size={`${0.625 * zoomValue}rem`} />
+              <ls-icon name="x" size={`${0.75 * zoomValue}rem`} />
             </button>
           )}
         </div>
