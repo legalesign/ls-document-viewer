@@ -69,8 +69,10 @@ export class LsToolbar {
   }
 
   componentDidLoad() {
-    this.component.addEventListener('mouseclick', (e) => {
-      e.stopPropagation();
+    ['mousedown', 'mouseup', 'mousemove', 'mouseenter', 'mouseleave', 'mouseover', 'mouseout', 'click', 'dblclick', 'contextmenu'].forEach(eventType => {
+      this.component.addEventListener(eventType, e => {
+        e.stopPropagation();
+      });
     });
   }
 
