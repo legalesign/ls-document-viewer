@@ -5,13 +5,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property           | Attribute | Description | Type          | Default     |
-| ------------------ | --------- | ----------- | ------------- | ----------- |
-| `referenceElement` | --        |             | `HTMLElement` | `undefined` |
-
-
 ## Dependencies
 
 ### Used by

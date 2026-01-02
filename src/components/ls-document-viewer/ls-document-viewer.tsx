@@ -156,6 +156,11 @@ export class LsDocumentViewer {
     fields.forEach(f => f.setAttribute('zoom', String(newZoom)));
   }
 
+    @Watch('validationErrors')
+  validationErrorsChanged(newValidationErrors: ValidationError[]) {
+    console.log('Validation Errors Changed:', newValidationErrors);
+  }
+
   /**
    * Determines / sets which of the far left 'managers' is active.
    * {'document' | 'toolbox' | 'participant' }

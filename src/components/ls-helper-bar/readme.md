@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `expanded` | `expanded` |             | `boolean` | `false` |
+| Property        | Attribute        | Description | Type      | Default |
+| --------------- | ---------------- | ----------- | --------- | ------- |
+| `expanded`      | `expanded`       |             | `boolean` | `false` |
+| `showShortcuts` | `show-shortcuts` |             | `boolean` | `false` |
 
 
 ## Dependencies
