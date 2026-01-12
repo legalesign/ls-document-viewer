@@ -8,20 +8,20 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement } from "./types/LSApiElement";
+import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
-import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { LSApiRecipient } from "./types/LSApiRecipient";
 import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { ValidationError } from "./types/ValidationError";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
+export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
-export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { LSApiRecipient } from "./types/LSApiRecipient";
 export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { ValidationError } from "./types/ValidationError";
@@ -753,6 +753,7 @@ declare global {
         "pageChange": number;
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
+        "addParticipant": {type: LSApiRoleType, parent?: string | null};
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -1458,6 +1459,7 @@ declare namespace LocalJSX {
           * @default 'editor'
          */
         "mode"?: 'preview' | 'editor' | 'compose';
+        "onAddParticipant"?: (event: LsDocumentViewerCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
         "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;

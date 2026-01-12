@@ -41,12 +41,13 @@ Alex Weinle
 
 ## Events
 
-| Event          | Description | Type                           |
-| -------------- | ----------- | ------------------------------ |
-| `mutate`       |             | `CustomEvent<LSMutateEvent[]>` |
-| `pageChange`   |             | `CustomEvent<number>`          |
-| `pageRendered` |             | `CustomEvent<number>`          |
-| `selectFields` |             | `CustomEvent<LSApiElement[]>`  |
+| Event            | Description | Type                                                     |
+| ---------------- | ----------- | -------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>` |
+| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                           |
+| `pageChange`     |             | `CustomEvent<number>`                                    |
+| `pageRendered`   |             | `CustomEvent<number>`                                    |
+| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                            |
 
 
 ## Methods

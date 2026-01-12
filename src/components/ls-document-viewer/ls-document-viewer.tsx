@@ -221,6 +221,12 @@ export class LsDocumentViewer {
   // Send an external event to be processed
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
 
+  @Event({
+      bubbles: true,
+      composed: true,
+    }) addParticipant: EventEmitter<{type: LSApiRoleType, parent?: string | null}>;
+  
+
   private adapter: LsDocumentAdapter;
 
   // Action an external data action and use the result (if required)
@@ -243,21 +249,21 @@ export class LsDocumentViewer {
     this.fieldTypeSelected = event.detail;
   }
 
-  // Updates are internal event between LS controls not to be confused with mutate
+  // generate a new role on the template
   @Listen('addParticipant')
-  addParticpantHandler(event: CustomEvent<{ type: LSApiRoleType; parent?: string | null }>) {
+  addParticpantHandler(event: CustomEvent<{ name: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = this._template.roles.find(r => r.id === event.detail.parent);
     const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
-
+    console.log(event);
     const data: LSMutateEvent[] = [
       {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: 'Signer ' + (this._template.roles.length + 1),
+          name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex,
+          signerIndex: event.detail.signerIndex ? event.detail.signerIndex :        (event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex),
           ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
@@ -268,7 +274,7 @@ export class LsDocumentViewer {
     this.mutate.emit(data);
   }
 
-  // Updates are internal event between LS controls not to be confused with mutate
+  // change the signer selected
   @Listen('changeSigner')
   updateSigner(event: CustomEvent<number>) {
     if (event.detail) {
