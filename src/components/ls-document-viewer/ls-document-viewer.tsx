@@ -217,7 +217,7 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
 
   // Send an external event to be mmonitored by an external developer
-  @Event() update: EventEmitter<LSMutateEvent>;
+  @Event() update: EventEmitter<{event:LSMutateEvent, template: LSApiTemplate}>;
 
   @Event({
       bubbles: true,
