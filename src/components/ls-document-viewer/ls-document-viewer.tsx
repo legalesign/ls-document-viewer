@@ -156,11 +156,6 @@ export class LsDocumentViewer {
     fields.forEach(f => f.setAttribute('zoom', String(newZoom)));
   }
 
-    @Watch('validationErrors')
-  validationErrorsChanged(newValidationErrors: ValidationError[]) {
-    console.log('Validation Errors Changed:', newValidationErrors);
-  }
-
   /**
    * Determines / sets which of the far left 'managers' is active.
    * {'document' | 'toolbox' | 'participant' }
@@ -258,7 +253,7 @@ export class LsDocumentViewer {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = this._template.roles.find(r => r.id === event.detail.parent);
     const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
-    console.log(event);
+
     const data: LSMutateEvent[] = [
       {
         action: 'create',

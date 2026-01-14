@@ -60,12 +60,10 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
     
     // Check for compose mode to generate roles for fields added.
     if(this.mode === 'compose') {
-      console.log('Compose mode - syncing roles after create', data.obj);
-      console.log('Template:', this._template);
-      // Find data.obj.signer = roles.role.signerIndex
+      
+      // Compose mode - syncing roles after create
       if(!this._template.roles.find(r => r.signerIndex === data.obj.signer)) {
         const recipient = this._recipients.find(r => r.signerIndex === data.obj.signer);
-        console.log('looking for recipient', recipient);
         // Role required - generate one
         this.addParticipant.emit({ signerIndex: data.obj.signer, name: recipient.name, type: recipient.role ? recipient.role : 'SIGNER' } );
       }
