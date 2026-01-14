@@ -10,7 +10,7 @@ const createRole = (role) => {
         signerParent: ${newParent}
         name: ${JSON.stringify(role.name)}
         ordinal: ${role.ordinal}
-        roleType: ${role.roleType}
+        roleType: ${role.roleType.toUpperCase()}
         experience: "${role.experience}"
      })
   }`  
@@ -37,7 +37,7 @@ const updateRole = (role) => {
         ordinal: ${role.ordinal}
         signerParent: ${newParent}
         name: ${JSON.stringify(role.name)}
-        roleType: ${role.roleType}
+        roleType: ${role.roleType.toUpperCase()}
         experience: "${role.experience}"
        })
     }`
