@@ -21,10 +21,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ls-document-viewer](../ls-document-viewer)
-
 ### Depends on
 
 - [ls-icon](../ls-icon)
@@ -33,7 +29,6 @@
 ```mermaid
 graph TD;
   ls-title-input --> ls-icon
-  ls-document-viewer --> ls-title-input
   style ls-title-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

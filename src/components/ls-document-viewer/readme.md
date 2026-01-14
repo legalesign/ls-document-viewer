@@ -41,14 +41,14 @@ Alex Weinle
 
 ## Events
 
-| Event            | Description | Type                                                                                                                                                                                                                                   |
-| ---------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>`                                                                                                                                                                               |
-| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                                                                                                                                                                                         |
-| `pageChange`     |             | `CustomEvent<number>`                                                                                                                                                                                                                  |
-| `pageRendered`   |             | `CustomEvent<number>`                                                                                                                                                                                                                  |
-| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                                                                                                                                                                                          |
-| `update`         |             | `CustomEvent<{ action: "update" \| "create" \| "delete" \| "swap"; data: LSApiRole \| LSApiElement \| LSApiTemplate; data2?: LSApiRole \| LSApiElement \| LSApiTemplate; select?: "select" \| "deselect" \| "clear"; result?: any; }>` |
+| Event            | Description | Type                                                              |
+| ---------------- | ----------- | ----------------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>`          |
+| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                    |
+| `pageChange`     |             | `CustomEvent<number>`                                             |
+| `pageRendered`   |             | `CustomEvent<number>`                                             |
+| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                     |
+| `update`         |             | `CustomEvent<{ event: LSMutateEvent; template: LSApiTemplate; }>` |
 
 
 ## Methods
@@ -107,7 +107,6 @@ Type: `Promise<void>`
 ### Depends on
 
 - [ls-page-loader](../ls-page-loader)
-- [ls-title-input](../ls-title-input)
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
@@ -128,7 +127,6 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ls-document-viewer --> ls-page-loader
-  ls-document-viewer --> ls-title-input
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
@@ -144,7 +142,6 @@ graph TD;
   ls-document-viewer --> ls-statusbar
   ls-document-viewer --> ls-tooltip
   ls-document-viewer --> ls-editor-field
-  ls-title-input --> ls-icon
   ls-validation-tag --> ls-icon
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip

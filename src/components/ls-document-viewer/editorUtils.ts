@@ -54,34 +54,32 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 
   if (data.event.action === 'create') {
     if (prefix === 'ele') {
-      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), { ...data.obj, id });      
+      addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), { ...data.obj, id });
     }
-    
+
     // Check for compose mode to generate roles for fields added.
-    if(this.mode === 'compose') {
-      
+    if (this.mode === 'compose') {
       // Compose mode - syncing roles after create
-      if(!this._template.roles.find(r => r.signerIndex === data.obj.signer)) {
+      if (!this._template.roles.find(r => r.signerIndex === data.obj.signer)) {
         const recipient = this._recipients.find(r => r.signerIndex === data.obj.signer);
-        const roleDescription = recipient.role ? recipient.role : 'SIGNER'
+        const roleDescription = recipient.role ? recipient.role : 'SIGNER';
         // Role required - generate one
-        this.addParticipant.emit({ signerIndex: data.obj.signer, name: roleDescription + recipient.signerIndex, type: roleDescription } );
+        this.addParticipant.emit({ signerIndex: data.obj.signer, name: roleDescription + recipient.signerIndex, type: roleDescription });
       }
     }
-    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
+    this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
     this.validationErrors = validate.bind(this)(this._template);
   }
 
   if (prefix === 'rol') {
-    
     syncRoles.bind(this)();
-    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
+    this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
   }
 
   if (prefix === 'tpl') {
     this._template = { ...this._template, ...data.obj };
     this.validationErrors = validate.bind(this)(this._template);
-    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
+    this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
   }
 }
 

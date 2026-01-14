@@ -753,7 +753,7 @@ declare global {
         "pageChange": number;
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
-        "update": LSMutateEvent;
+        "update": {event:LSMutateEvent, template: LSApiTemplate};
         "addParticipant": {type: LSApiRoleType, parent?: string | null};
     }
     /**
@@ -1465,7 +1465,7 @@ declare namespace LocalJSX {
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
-        "onUpdate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent>) => void;
+        "onUpdate"?: (event: LsDocumentViewerCustomEvent<{event:LSMutateEvent, template: LSApiTemplate}>) => void;
         /**
           * @default 1
          */

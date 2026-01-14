@@ -680,7 +680,7 @@ export class LsDocumentViewer {
             )}
             {this.mode === 'compose' && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                <span class="header-text-1">Compose</span> <span>/</span> <ls-title-input template={this._template} />
+                <span class="header-text-1">Compose</span>
               </div>
             )}
           </div>
