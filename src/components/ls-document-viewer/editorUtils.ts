@@ -47,7 +47,6 @@ export function debounce(func, timeout = 300) {
 
 // After a mutation ensure that the new data is stored in fields and template
 export function matchData(data: { result: any; obj: any; event: LSMutateEvent }) {
-  this.update.emit({event:{...data.event, result: data.result}, template: this._template});
   const newObj = data.result;
   const prefix = atob(data.obj.id).substring(0, 3);
   // because mutations return the ID back with the mutation name we just assume its the first (and only) JSON prop
@@ -69,18 +68,20 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
         this.addParticipant.emit({ signerIndex: data.obj.signer, name: roleDescription + recipient.signerIndex, type: roleDescription } );
       }
     }
-
+    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
     this.validationErrors = validate.bind(this)(this._template);
   }
 
   if (prefix === 'rol') {
     
     syncRoles.bind(this)();
+    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
   }
 
   if (prefix === 'tpl') {
     this._template = { ...this._template, ...data.obj };
     this.validationErrors = validate.bind(this)(this._template);
+    this.update.emit({event:{...data.event, result: data.result}, template: this._template});
   }
 }
 
