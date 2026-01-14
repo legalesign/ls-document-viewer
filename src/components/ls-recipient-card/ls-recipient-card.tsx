@@ -144,7 +144,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
               >
-                {this.recipient?.firstname + ' ' + this.recipient?.lastname}
+                {this.recipient?.firstName + ' ' + this.recipient?.lastName}
               </p>
               <p
                 class="participant-text-type"
