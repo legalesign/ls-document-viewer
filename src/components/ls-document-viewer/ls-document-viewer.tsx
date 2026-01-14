@@ -218,8 +218,11 @@ export class LsDocumentViewer {
   @Event() pageChange: EventEmitter<number>;
   // Multiple or single select
   @Event() selectFields: EventEmitter<LSApiElement[]>;
-  // Send an external event to be processed
+  // Send an internal event to be processed
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
+
+  // Send an external event to be mmonitored by an external developer
+  @Event() update: EventEmitter<LSMutateEvent>;
 
   @Event({
       bubbles: true,

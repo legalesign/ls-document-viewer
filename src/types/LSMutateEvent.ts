@@ -7,4 +7,5 @@ export type LSMutateEvent = {
   data: (LSApiElement | LSApiRole | LSApiTemplate);
   data2?: (LSApiElement | LSApiRole | LSApiTemplate);
   select?: 'select' | 'deselect' | 'clear';
+  result?: any;
 };

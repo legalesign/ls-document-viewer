@@ -41,13 +41,14 @@ Alex Weinle
 
 ## Events
 
-| Event            | Description | Type                                                     |
-| ---------------- | ----------- | -------------------------------------------------------- |
-| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>` |
-| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                           |
-| `pageChange`     |             | `CustomEvent<number>`                                    |
-| `pageRendered`   |             | `CustomEvent<number>`                                    |
-| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                            |
+| Event            | Description | Type                                                                                                                                                                                                                                   |
+| ---------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>`                                                                                                                                                                               |
+| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                                                                                                                                                                                         |
+| `pageChange`     |             | `CustomEvent<number>`                                                                                                                                                                                                                  |
+| `pageRendered`   |             | `CustomEvent<number>`                                                                                                                                                                                                                  |
+| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                                                                                                                                                                                          |
+| `update`         |             | `CustomEvent<{ action: "update" \| "create" \| "delete" \| "swap"; data: LSApiRole \| LSApiElement \| LSApiTemplate; data2?: LSApiRole \| LSApiElement \| LSApiTemplate; select?: "select" \| "deselect" \| "clear"; result?: any; }>` |
 
 
 ## Methods

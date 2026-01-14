@@ -47,6 +47,7 @@ export function debounce(func, timeout = 300) {
 
 // After a mutation ensure that the new data is stored in fields and template
 export function matchData(data: { result: any; obj: any; event: LSMutateEvent }) {
+  this.update.emit({...data.event, result: data.result});
   const newObj = data.result;
   const prefix = atob(data.obj.id).substring(0, 3);
   // because mutations return the ID back with the mutation name we just assume its the first (and only) JSON prop
