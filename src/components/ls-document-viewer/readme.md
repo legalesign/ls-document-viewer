@@ -49,6 +49,7 @@ Alex Weinle
 | `pageRendered`   |             | `CustomEvent<number>`                                             |
 | `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                     |
 | `update`         |             | `CustomEvent<{ event: LSMutateEvent; template: LSApiTemplate; }>` |
+| `validate`       |             | `CustomEvent<{ event: boolean; }>`                                |
 
 
 ## Methods
