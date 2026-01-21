@@ -197,8 +197,19 @@ Listen to component events to track changes:
 ```javascript
 const editor = document.querySelector('ls-document-viewer');
 
-editor.addEventListener('mutate', (event) => {
+editor.addEventListener('update', (event) => {
   console.log('Template changed:', event.detail);
+});
+```
+
+You can track whether a template have become valid or invalid using
+the validate event.
+
+```javascript
+const editor = document.querySelector('ls-document-viewer');
+
+editor.addEventListener('validate', (event) => {
+  console.log('Template validation changed:', event.detail.valid);
 });
 ```
 
