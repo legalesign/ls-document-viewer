@@ -217,15 +217,20 @@ editor.addEventListener('validate', (event) => {
 
 ```jsx
 <LsDocumentViewer
-  onMutate={(event) => {
+  onUpdate={(event) => {
     console.log('Template changed:', event.detail);
   }}
   ...
 />
 ```
 
-#### `mutate` event
-Fired when the document template is changed, such as adding or removing fields.
+#### `update` event
+Fired when the document template is changed, such as adding or removing fields. Provides not only
+the event that caused it but also the updated state of the template object as JSON.
+
+#### `validate` event
+Fired when the document template is changed, the `valid` property in detail shows if the
+template has become valid or invalid.
 
 #### `selectFields` event
 Fired when a field is selected in the editor.
