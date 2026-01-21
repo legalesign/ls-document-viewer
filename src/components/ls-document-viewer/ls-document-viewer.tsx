@@ -220,7 +220,7 @@ export class LsDocumentViewer {
   @Event() update: EventEmitter<{event:LSMutateEvent, template: LSApiTemplate}>;
 
     // Send an external validation event to be monitored by an external developer
-  @Event() validate: EventEmitter<{event:boolean}>;
+  @Event() validate: EventEmitter<{valid: boolean}>;
 
   @Event({
       bubbles: true,
@@ -560,7 +560,7 @@ export class LsDocumentViewer {
     }
 
     this.validationErrors = validate.bind(this)(this._template);
-    this.validate.emit({event: this.validationErrors.length === 0});
+    this.validate.emit({ valid: this.validationErrors.length === 0});
   }
 
   initViewer() {
