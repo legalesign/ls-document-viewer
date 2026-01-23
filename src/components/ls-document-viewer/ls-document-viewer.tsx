@@ -254,7 +254,7 @@ export class LsDocumentViewer {
   @Listen('addParticipant')
   addParticpantHandler(event: CustomEvent<{ name: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
-    const parent = this._template.roles.find(r => r.id === event.detail.parent);
+    const parent = event.detail.signerIndex > 99 ? this._template.roles.find(r => r.signerIndex === event.detail.signerIndex % 100) : null;
     const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
 
     const data: LSMutateEvent[] = [

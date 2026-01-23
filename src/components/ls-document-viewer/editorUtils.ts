@@ -61,10 +61,11 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
     if (this.mode === 'compose') {
       // Compose mode - syncing roles after create
       if (!this._template.roles.find(r => r.signerIndex === data.obj.signer)) {
-        const recipient = this._recipients.find(r => r.signerIndex === data.obj.signer);
+        const recipient = this._recipients.find(r => r?.signerIndex === data.obj.signer);
         const roleDescription = recipient?.roleType ? recipient?.roleType.toUpperCase() : 'SIGNER';
+        const signerIndex = data.obj.signer;
         // Role required - generate one
-        this.addParticipant.emit({ signerIndex: data.obj.signer, name: roleDescription + recipient.signerIndex, type: roleDescription });
+        this.addParticipant.emit({ signerIndex, name: roleDescription + signerIndex, type: roleDescription });
       }
     }
     this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });

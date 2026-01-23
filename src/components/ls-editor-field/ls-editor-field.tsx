@@ -184,8 +184,8 @@ export class LsEditorField {
 
   render() {
     const hostStyle = this.floatingActive
-      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
-      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} solid` };
+      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
+      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}` };
 
     const zoomValue = parseFloat(this.zoom) || 1;
 
