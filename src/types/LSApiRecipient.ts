@@ -5,5 +5,6 @@ export type LSApiRecipient = {
   lastName: string;
   signerIndex?: number;
   phone?: string;
+  previousRecipientDecides?: boolean;
   roleType?: 'SIGNER' | 'WITNESS' | 'APPROVER' | 'FORM_FILLER';
 };

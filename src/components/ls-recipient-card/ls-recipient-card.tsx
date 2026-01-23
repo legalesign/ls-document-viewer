@@ -144,7 +144,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
               >
-                {this.recipient?.firstName + ' ' + this.recipient?.lastName}
+                {this.recipient.previousRecipientDecides ? 'To Be Decided' : this.recipient?.firstName + ' ' + this.recipient?.lastName}
               </p>
               <p
                 class="participant-text-type"
@@ -152,7 +152,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
                 }}
               >
-                {this.recipient.email}
+                {this.recipient.previousRecipientDecides ? 'Details will be decided by previous recipient' : this.recipient.email}
               </p>
               {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div
