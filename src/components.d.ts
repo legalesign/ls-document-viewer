@@ -753,9 +753,9 @@ declare global {
         "pageChange": number;
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
-        "update": {event:LSMutateEvent, template: LSApiTemplate};
-        "validate": {valid: boolean};
-        "addParticipant": {type: LSApiRoleType, parent?: string | null};
+        "update": { event: LSMutateEvent, template: LSApiTemplate };
+        "validate": { valid: boolean };
+        "addParticipant": { type: LSApiRoleType, parent?: string | null };
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -1461,13 +1461,13 @@ declare namespace LocalJSX {
           * @default 'editor'
          */
         "mode"?: 'preview' | 'editor' | 'compose';
-        "onAddParticipant"?: (event: LsDocumentViewerCustomEvent<{type: LSApiRoleType, parent?: string | null}>) => void;
+        "onAddParticipant"?: (event: LsDocumentViewerCustomEvent<{ type: LSApiRoleType, parent?: string | null }>) => void;
         "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
-        "onUpdate"?: (event: LsDocumentViewerCustomEvent<{event:LSMutateEvent, template: LSApiTemplate}>) => void;
-        "onValidate"?: (event: LsDocumentViewerCustomEvent<{valid: boolean}>) => void;
+        "onUpdate"?: (event: LsDocumentViewerCustomEvent<{ event: LSMutateEvent, template: LSApiTemplate }>) => void;
+        "onValidate"?: (event: LsDocumentViewerCustomEvent<{ valid: boolean }>) => void;
         /**
           * @default 1
          */

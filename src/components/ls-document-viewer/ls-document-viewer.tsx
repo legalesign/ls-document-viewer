@@ -217,16 +217,16 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
 
   // Send an external event to be mmonitored by an external developer
-  @Event() update: EventEmitter<{event:LSMutateEvent, template: LSApiTemplate}>;
+  @Event() update: EventEmitter<{ event: LSMutateEvent, template: LSApiTemplate }>;
 
-    // Send an external validation event to be monitored by an external developer
-  @Event() validate: EventEmitter<{valid: boolean}>;
+  // Send an external validation event to be monitored by an external developer
+  @Event() validate: EventEmitter<{ valid: boolean }>;
 
   @Event({
-      bubbles: true,
-      composed: true,
-    }) addParticipant: EventEmitter<{type: LSApiRoleType, parent?: string | null}>;
-  
+    bubbles: true,
+    composed: true,
+  }) addParticipant: EventEmitter<{ type: LSApiRoleType, parent?: string | null }>;
+
 
   private adapter: LsDocumentAdapter;
 
@@ -255,7 +255,9 @@ export class LsDocumentViewer {
   addParticpantHandler(event: CustomEvent<{ name: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = event.detail.signerIndex > 99 ? this._template.roles.find(r => r.signerIndex === event.detail.signerIndex % 100) : null;
-    const newSignerIndex = Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
+    const newSignerIndex = event.detail.type === 'WITNESS'?
+      parent.signerIndex + 100 :
+      Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
 
     const data: LSMutateEvent[] = [
       {
@@ -264,8 +266,8 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.signerIndex ? event.detail.signerIndex :        (event.detail.type === 'WITNESS' ? 100 + parent.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex),
-          ordinal: event.detail.type === 'WITNESS' ? parent.ordinal + 1 : this._template.roles.length + 1,
+          signerIndex: event.detail.signerIndex ? event.detail.signerIndex : (event.detail.type === 'WITNESS' ? 100 + parent?.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex),
+          ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
           templateId: this._template.id,
@@ -560,7 +562,7 @@ export class LsDocumentViewer {
     }
 
     this.validationErrors = validate.bind(this)(this._template);
-    this.validate.emit({ valid: this.validationErrors.length === 0});
+    this.validate.emit({ valid: this.validationErrors.length === 0 });
   }
 
   initViewer() {
@@ -644,7 +646,7 @@ export class LsDocumentViewer {
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
-    
+
     const leftBox = this.component.shadowRoot.getElementById('ls-left-box');
     if (leftBox) {
       leftBox.addEventListener('mousedown', (e) => {
@@ -934,7 +936,7 @@ export class LsDocumentViewer {
                             data-signer-index={recipient.signerIndex}
                           />
                         ))}
-                        <slot name='recipient-panel'></slot>
+                      <slot name='recipient-panel'></slot>
                     </div>
                   </ls-recipient-manager>
                 </div>
