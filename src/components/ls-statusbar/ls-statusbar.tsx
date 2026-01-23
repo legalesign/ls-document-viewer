@@ -1,6 +1,5 @@
 import { Component, Host, Prop, h, Element } from '@stencil/core';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
-import { debounce } from '../ls-document-viewer/editorUtils';
 import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
@@ -27,12 +26,6 @@ export class LsStatusbar {
   setZoom(value: number) {
     this.editor.setZoom(value);
     this.zoom = value;
-  }
-
-  handleZoomInput() {
-    const zoomInput = this.component.shadowRoot.getElementById('zoomRange') as HTMLInputElement;
-
-    debounce(this.setZoom(parseInt(zoomInput.value) / 100), 700);
   }
 
   fitWidth() {
@@ -67,9 +60,6 @@ export class LsStatusbar {
           <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
             <ls-icon name="zoom-out" />
           </button>
-          <div>
-            <input type="range" min="1" max="300" value={this.zoom * 100} class="slider" id="zoomRange" onInput={() => this.handleZoomInput()} />
-          </div>
           <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip="Zoom In">
             <ls-icon name="zoom-in" />
           </button>

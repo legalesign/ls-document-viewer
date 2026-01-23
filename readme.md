@@ -213,7 +213,9 @@ editor.addEventListener('validate', (event) => {
 });
 ```
 
-### React Event Handling
+### React Event Handling Example
+
+Using an event in react prefixes it with the familiar `on<EventName>`.
 
 ```jsx
 <LsDocumentViewer
@@ -223,6 +225,8 @@ editor.addEventListener('validate', (event) => {
   ...
 />
 ```
+
+### Event Types
 
 #### `update` event
 Fired when the document template is changed, such as adding or removing fields. Provides not only

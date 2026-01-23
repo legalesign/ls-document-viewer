@@ -934,6 +934,7 @@ export class LsDocumentViewer {
                             data-signer-index={recipient.signerIndex}
                           />
                         ))}
+                        <slot name='recipient-panel'></slot>
                     </div>
                   </ls-recipient-manager>
                 </div>
