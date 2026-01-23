@@ -62,7 +62,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
       // Compose mode - syncing roles after create
       if (!this._template.roles.find(r => r.signerIndex === data.obj.signer)) {
         const recipient = this._recipients.find(r => r.signerIndex === data.obj.signer);
-        const roleDescription = recipient.role ? recipient.role : 'SIGNER';
+        const roleDescription = recipient?.role ? recipient?.role : 'SIGNER';
         // Role required - generate one
         this.addParticipant.emit({ signerIndex: data.obj.signer, name: roleDescription + recipient.signerIndex, type: roleDescription });
       }
