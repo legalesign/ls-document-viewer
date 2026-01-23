@@ -5,5 +5,6 @@ export type ValidationError = {
   title: string;
   description: string;
   role?: any;
+  signerIndex?: number;
   element?: LSApiElement
 };

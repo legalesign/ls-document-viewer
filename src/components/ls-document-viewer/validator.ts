@@ -16,6 +16,7 @@ export function validate(t: LSApiTemplate): ValidationError[] {
         if (tr?.roleType !== 'APPROVER') {
           errors.push({
             id: tr.id,
+            signerIndex: tr.signerIndex,
             title: 'Missing signature.',
             description: `${tr.name} is missing a signature.`,
             role: tr,
@@ -29,6 +30,7 @@ export function validate(t: LSApiTemplate): ValidationError[] {
       if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
         errors.push({
           id: tr.id,
+          signerIndex: tr.signerIndex,
           title: 'Missing signature.',
           description: `${tr.name} is missing a signature.`,
           role: tr,

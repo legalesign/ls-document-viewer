@@ -97,9 +97,9 @@ export class LsRecipientCard {
           class={`participant-card top-card full-card ${this.activeRecipient === this.recipient.signerIndex ? 'expanded' : ''}`}
           style={{
             background: defaultRolePalette[this.recipient?.signerIndex % 100].s10,
-            border: `1px solid ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
+            border: `1px ${this.recipient.roleType === 'WITNESS' ? 'dashed' : 'solid'} ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
             outline: `${this.recipient.signerIndex === this.activeRecipient ? '4px solid ' + defaultRolePalette[this.recipient?.signerIndex % 100].s40 : 'none'}`,
-            marginTop: this.recipient.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            marginTop: '0',
             cursor: 'pointer',
           }}
           onClick={() => {
@@ -133,7 +133,7 @@ export class LsRecipientCard {
               />
               <div
                 class="dot"
-                style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && recipientSignatures.length === 0 ? 'block' : 'none' }}
+                style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && this.validationErrors.filter(v => v?.signerIndex === this.recipient.signerIndex).length > 0 ? 'block' : 'none' }}
               />
             </div>
 
@@ -144,7 +144,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
               >
-                {this.recipient.previousRecipientDecides ? 'To Be Decided' : this.recipient?.firstName + ' ' + this.recipient?.lastName}
+                {this.recipient?.previousRecipientDecides ? 'To Be Decided' : this.recipient?.firstName + ' ' + this.recipient?.lastName}
               </p>
               <p
                 class="participant-text-type"
@@ -152,7 +152,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
                 }}
               >
-                {this.recipient.previousRecipientDecides ? 'Details will be decided by previous recipient' : this.recipient.email}
+                {this.recipient?.previousRecipientDecides ? 'Details will be decided by previous recipient' : this.recipient.email}
               </p>
               {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div
@@ -182,7 +182,7 @@ export class LsRecipientCard {
                   icon="signature"
                   tooltip="Use this field to collect Signatures from Participants"
                   signer={this.recipient.signerIndex}
-                  redDot={recipientSignatures.length === 0}
+                  redDot={recipientSignatures.length === 0 && this.recipient.roleType !== 'APPROVER'}
                 />
               )}
 
