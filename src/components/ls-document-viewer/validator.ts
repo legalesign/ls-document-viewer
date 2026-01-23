@@ -12,13 +12,15 @@ export function validate(t: LSApiTemplate): ValidationError[] {
 
   if (this._recipients) {
     this._recipients.forEach(tr => {
-      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr?.roleType !== 'APPROVER').length === 0) {
-        errors.push({
-          id: tr.id,
-          title: 'Missing signature.',
-          description: `{tr.name} is missing a signature.`,
-          role: tr,
-        });
+      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex).length === 0) {
+        if (tr?.roleType !== 'APPROVER') {
+          errors.push({
+            id: tr.id,
+            title: 'Missing signature.',
+            description: `${tr.name} is missing a signature.`,
+            role: tr,
+          });
+        }
       }
     });
   } else {
@@ -28,7 +30,7 @@ export function validate(t: LSApiTemplate): ValidationError[] {
         errors.push({
           id: tr.id,
           title: 'Missing signature.',
-          description: `{tr.name} is missing a signature.`,
+          description: `${tr.name} is missing a signature.`,
           role: tr,
         });
       }
@@ -46,6 +48,6 @@ export function validate(t: LSApiTemplate): ValidationError[] {
       });
     }
   });
-
+  console.log('validation errors', errors);
   return errors;
 }
