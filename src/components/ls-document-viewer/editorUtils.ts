@@ -73,9 +73,8 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
     }
   }
 
-  if (prefix === 'rol') {
-    syncRoles.bind(this)();
-    this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
+  if (prefix === 'rol') {    
+    syncRoles.bind(this)(data);    
   }
 
   if (prefix === 'tpl') {
@@ -85,13 +84,15 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
   }
 }
 
-export async function syncRoles() {
+export async function syncRoles(data) {
   var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
   const tresult = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
   this.parseTemplate(JSON.stringify(tresult.template));
   participantManager.template = this._template;
   this.generateFields();
   this.validationErrors = validate.bind(this)(this._template);
+
+  this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
 }
 
 // Utility function which extracts the type from any API id
