@@ -26,7 +26,6 @@
 - [ls-icon](../ls-icon)
 - [ls-helper-bar](../ls-helper-bar)
 - [ls-tooltip](../ls-tooltip)
-- [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
@@ -34,12 +33,9 @@ graph TD;
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
   ls-statusbar --> ls-tooltip
-  ls-statusbar --> ls-editor-field
   ls-helper-bar --> ls-keyboard-shortcuts
   ls-helper-bar --> ls-icon
   ls-helper-bar --> ls-tooltip
-  ls-editor-field --> ls-icon
-  ls-editor-field --> ls-editor-field
   ls-document-viewer --> ls-statusbar
   style ls-statusbar fill:#f9f,stroke:#333,stroke-width:4px
 ```

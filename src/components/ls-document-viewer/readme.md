@@ -262,7 +262,6 @@ graph TD;
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
   ls-statusbar --> ls-tooltip
-  ls-statusbar --> ls-editor-field
   ls-helper-bar --> ls-keyboard-shortcuts
   ls-helper-bar --> ls-icon
   ls-helper-bar --> ls-tooltip
