@@ -626,7 +626,7 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
-        this._recipients = JSON.parse(this.recipients.replace('\u0022', '"'));
+        this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort( (a, b)=> (a.signerIndex % 100 ) - (b.signerIndex% 100 + 1/ a.signerIndex ) );
       }
 
       //Revalidate
@@ -927,8 +927,7 @@ export class LsDocumentViewer {
                     <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '1.125rem', right: '1rem' }} type="compose" />
                     <div class={'recipients-box'}>
                       {this._recipients &&
-                        this._recipients.sort( (a, b)=> (a.signerIndex % 100 ) - (b.signerIndex% 100 + 1/ a.signerIndex ) )
-                        .map(recipient => (
+                        this._recipients.map(recipient => (
                           <ls-recipient-card
                             recipient={recipient}
                             activeRecipient={this.signer}
