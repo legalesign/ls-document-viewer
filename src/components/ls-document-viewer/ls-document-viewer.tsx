@@ -626,7 +626,17 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
-        this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort( (a, b)=> (a.signerIndex % 100 ) - (b.signerIndex% 100 + 1/ a.signerIndex ) );
+        this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort((a, b) => {
+              // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
+              const aBase = a.signerIndex % 100 || 100;
+              const bBase = b.signerIndex % 100 || 100;
+              if (aBase !== bBase) return aBase - bBase;
+              // If base is the same, signer comes before witness
+              if (a.signerIndex < 100 && b.signerIndex >= 100) return -1;
+              if (a.signerIndex >= 100 && b.signerIndex < 100) return 1;
+              // Otherwise, keep original order
+              return a.signerIndex - b.signerIndex;
+            })
       }
 
       //Revalidate
