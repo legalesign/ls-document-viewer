@@ -631,6 +631,7 @@ export class LsDocumentViewer {
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
+      this.validate.emit({ valid: this.validationErrors.length === 0 });
       this.pageCount = this._template.pageCount;
       this.selected = [];
       this.setZoom(1.0);
@@ -925,7 +926,8 @@ export class LsDocumentViewer {
                     <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '1.125rem', right: '1rem' }} type="compose" />
                     <div class={'recipients-box'}>
                       {this._recipients &&
-                        this._recipients.map(recipient => (
+                        this._recipients.sort( (a, b)=> (a.signerIndex % 100 ) - (b.signerIndex% 100 + 1/ a.signerIndex ) )
+                        .map(recipient => (
                           <ls-recipient-card
                             recipient={recipient}
                             activeRecipient={this.signer}
