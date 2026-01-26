@@ -60,6 +60,7 @@ export class LsStatusbar {
           <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
             <ls-icon name="zoom-out" />
           </button>
+          <span>{this.zoom * 100}%</span>
           <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip="Zoom In">
             <ls-icon name="zoom-in" />
           </button>

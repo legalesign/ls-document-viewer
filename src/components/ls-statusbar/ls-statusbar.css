@@ -109,6 +109,15 @@ p {
   line-height: var(--text-sm-line-height);
 }
 
+span {
+  color: var(--gray-80, #6c6e73);
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--text-sm-line-height);
+}
+
 a {
   color: var(--primary-60, #4456f6);
   font-size: var(--text-sm);
