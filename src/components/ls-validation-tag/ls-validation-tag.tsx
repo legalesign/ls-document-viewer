@@ -16,9 +16,33 @@ export class LsValidationTag {
 
   @Event() changeSigner: EventEmitter<number>;
 
+  private handleClickOutside = (event: MouseEvent) => {
+    const dropdowns = this.el.shadowRoot.querySelectorAll('.field-dropdown');
+    let clickedInside = false;
+    dropdowns.forEach(dropdown => {
+      if (dropdown.contains(event.target as Node)) {
+        clickedInside = true;
+      }
+    });
+    if (!clickedInside && this.isExpanded) {
+      this.isExpanded = false;
+    }
+  };
+
+  private el: HTMLElement;
+
+  componentDidLoad() {
+    this.el = (this as any).host || (this as any).el || (this as any).component;
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   render() {
     return (
-      <Host>
+      <Host ref={el => (this.el = el as HTMLElement)}>
         <div
           class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'} ${this.type === 'compose' ? 'compose' : 'default'}`}
           onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
