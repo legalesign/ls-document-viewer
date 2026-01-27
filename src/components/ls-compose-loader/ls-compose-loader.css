@@ -5,7 +5,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 3999;
+  z-index: 3000;
 }
 
 :host > * {

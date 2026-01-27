@@ -691,6 +691,7 @@ export class LsDocumentViewer {
           {this.isLoading && (
             <>
               <ls-page-loader />
+              <div class={'custom-loader-slot'}><slot name='custom-loader'></slot></div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
           )}
