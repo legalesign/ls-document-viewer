@@ -16,9 +16,33 @@ export class LsValidationTag {
 
   @Event() changeSigner: EventEmitter<number>;
 
+  private handleClickOutside = (event: MouseEvent) => {
+    const dropdowns = this.el.shadowRoot.querySelectorAll('.field-dropdown');
+    let clickedInside = false;
+    dropdowns.forEach(dropdown => {
+      if (dropdown.contains(event.target as Node)) {
+        clickedInside = true;
+      }
+    });
+    if (!clickedInside && this.isExpanded) {
+      this.isExpanded = false;
+    }
+  };
+
+  private el: HTMLElement;
+
+  componentDidLoad() {
+    this.el = (this as any).host || (this as any).el || (this as any).component;
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   render() {
     return (
-      <Host>
+      <Host ref={el => (this.el = el as HTMLElement)}>
         <div
           class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'} ${this.type === 'compose' ? 'compose' : 'default'}`}
           onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
@@ -29,6 +53,7 @@ export class LsValidationTag {
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
           {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click" solid size="1rem" customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
+          {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check" solid size="1rem" customStyle={{ marginRight: '-0.125rem' }} />}
         </div>
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
           <div class={'field-dropdown'}>

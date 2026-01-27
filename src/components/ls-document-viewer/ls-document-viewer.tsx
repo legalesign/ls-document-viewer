@@ -113,10 +113,10 @@ export class LsDocumentViewer {
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
 
   /**
- * The following state properties define the defaults for field
- * creation. They should be overridden by the users most used
- * values from localStorage or profile settings.
- */
+   * The following state properties define the defaults for field
+   * creation. They should be overridden by the users most used
+   * values from localStorage or profile settings.
+   */
   @State() fontSize: number = 10;
   @State() fontFamily: string = 'arial';
   @State() selected: HTMLLsEditorFieldElement[] = [];
@@ -217,7 +217,7 @@ export class LsDocumentViewer {
   @Event() mutate: EventEmitter<LSMutateEvent[]>;
 
   // Send an external event to be mmonitored by an external developer
-  @Event() update: EventEmitter<{ event: LSMutateEvent, template: LSApiTemplate }>;
+  @Event() update: EventEmitter<{ event: LSMutateEvent; template: LSApiTemplate }>;
 
   // Send an external validation event to be monitored by an external developer
   @Event() validate: EventEmitter<{ valid: boolean }>;
@@ -225,18 +225,21 @@ export class LsDocumentViewer {
   @Event({
     bubbles: true,
     composed: true,
-  }) addParticipant: EventEmitter<{ type: LSApiRoleType, parent?: string | null }>;
-
+  })
+  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
 
   private adapter: LsDocumentAdapter;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token && this.adapter) event.detail.forEach(me => this.adapter.handleEvent(me, this.token)
-      .then(result => matchData.bind(this)(result))
-      .then(() => this.syncChange(me)));
-
+    if (this.token && this.adapter)
+      event.detail.forEach(me =>
+        this.adapter
+          .handleEvent(me, this.token)
+          .then(result => matchData.bind(this)(result))
+          .then(() => this.syncChange(me)),
+      );
   }
 
   @Listen('fieldTypeSelected')
@@ -255,9 +258,8 @@ export class LsDocumentViewer {
   addParticpantHandler(event: CustomEvent<{ name: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) {
     const defaultExperience = this.groupInfo.experienceConnection.experiences.find(x => x.defaultExperience === true);
     const parent = event.detail.signerIndex > 99 ? this._template.roles.find(r => r.signerIndex === event.detail.signerIndex % 100) : null;
-    const newSignerIndex = event.detail.type === 'WITNESS'?
-      parent.signerIndex + 100 :
-      Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
+    const newSignerIndex =
+      event.detail.type === 'WITNESS' ? parent.signerIndex + 100 : Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
 
     const data: LSMutateEvent[] = [
       {
@@ -266,7 +268,13 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.signerIndex ? event.detail.signerIndex : (event.detail.type === 'WITNESS' ? 100 + parent?.signerIndex : this._template.roles.length === 0 ? 1 : newSignerIndex),
+          signerIndex: event.detail.signerIndex
+            ? event.detail.signerIndex
+            : event.detail.type === 'WITNESS'
+              ? 100 + parent?.signerIndex
+              : this._template.roles.length === 0
+                ? 1
+                : newSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
@@ -627,16 +635,16 @@ export class LsDocumentViewer {
       if (this.mode === 'compose') {
         this.manager = 'recipient';
         this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort((a, b) => {
-              // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
-              const aBase = a.signerIndex % 100 || 100;
-              const bBase = b.signerIndex % 100 || 100;
-              if (aBase !== bBase) return aBase - bBase;
-              // If base is the same, signer comes before witness
-              if (a.signerIndex < 100 && b.signerIndex >= 100) return -1;
-              if (a.signerIndex >= 100 && b.signerIndex < 100) return 1;
-              // Otherwise, keep original order
-              return a.signerIndex - b.signerIndex;
-            })
+          // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
+          const aBase = a.signerIndex % 100 || 100;
+          const bBase = b.signerIndex % 100 || 100;
+          if (aBase !== bBase) return aBase - bBase;
+          // If base is the same, signer comes before witness
+          if (a.signerIndex < 100 && b.signerIndex >= 100) return -1;
+          if (a.signerIndex >= 100 && b.signerIndex < 100) return 1;
+          // Otherwise, keep original order
+          return a.signerIndex - b.signerIndex;
+        });
       }
 
       //Revalidate
@@ -660,13 +668,13 @@ export class LsDocumentViewer {
 
     const leftBox = this.component.shadowRoot.getElementById('ls-left-box');
     if (leftBox) {
-      leftBox.addEventListener('mousedown', (e) => {
+      leftBox.addEventListener('mousedown', e => {
         e.stopPropagation();
       });
-      leftBox.addEventListener('mouseup', (e) => {
+      leftBox.addEventListener('mouseup', e => {
         e.stopPropagation();
       });
-      leftBox.addEventListener('mousemove', (e) => {
+      leftBox.addEventListener('mousemove', e => {
         e.stopPropagation();
       });
     }
@@ -680,7 +688,12 @@ export class LsDocumentViewer {
     return (
       <Host>
         <>
-          {this.isLoading && <ls-page-loader />}
+          {this.isLoading && (
+            <>
+              <ls-page-loader />
+              {this.mode === 'compose' && <ls-compose-loader />}
+            </>
+          )}
           <div class="page-header">
             <div class={'left-slot-wrapper'}>
               <slot name="left-button" />
@@ -697,8 +710,7 @@ export class LsDocumentViewer {
             )}
             {this.mode === 'compose' && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                <slot name="top-bar">               
-                </slot>
+                <slot name="top-bar"></slot>
               </div>
             )}
           </div>
@@ -948,8 +960,9 @@ export class LsDocumentViewer {
                             data-signer-index={recipient.signerIndex}
                           />
                         ))}
-                      <slot name='recipient-panel'></slot>
+                      
                     </div>
+                    <slot name="recipient-panel"></slot>
                   </ls-recipient-manager>
                 </div>
                 {!this.displayTable && (
@@ -970,7 +983,7 @@ export class LsDocumentViewer {
                         <ls-icon name="x" size="1.25rem" />
                       </button>
                     </div>
-                    <ls-field-properties id="my-field-panel"></ls-field-properties>                    
+                    <ls-field-properties id="my-field-panel"></ls-field-properties>
                   </div>
                 )}
               </div>
