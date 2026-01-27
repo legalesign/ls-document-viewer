@@ -24,7 +24,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);
-  node.setAttribute('assignee', assignee?.name || `Participant ${data.signer}`);
+  node.setAttribute('assignee', `${assignee?.firstName} ${assignee?.lastName}` || assignee?.name || `Participant ${data.signer}`);
   node.setAttribute('zoom', String(this.zoom));
   // node.setAttribute('selected', 'selected');
   node.style.zIndex = '100';

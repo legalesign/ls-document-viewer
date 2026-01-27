@@ -30,6 +30,14 @@
   color: var(--green-100, #125241);
 }
 
+.valid.compose {
+  border: 1px solid var(--green-50, #ffa19e);
+}
+
+.valid.compose:hover {
+  box-shadow: none;
+}
+
 .invalid.default {
   background: var(--yellow-20, #fff3c2);
   color: var(--yellow-90, #8a3f0e);

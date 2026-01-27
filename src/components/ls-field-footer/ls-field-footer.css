@@ -53,3 +53,7 @@ button {
   min-height: 2.25rem;
   min-width: 2.25rem;
 }
+
+.full-rounded {
+  border-radius: calc(infinity * 1px);
+}

@@ -70,11 +70,11 @@ export class LsFieldFooter {
     return (
       <Host>
         <div class={'button-footer'}>
-          <button class={'secondary'} onClick={() => this.duplicateField()}>
+          <button class={'secondary full-rounded'} onClick={() => this.duplicateField()}>
             <ls-icon name="field-duplicate" size="1.25rem" />
             Duplicate
           </button>
-          <button class={'destructive'} onClick={() => this.deleteField()}>
+          <button class={'destructive full-rounded'} onClick={() => this.deleteField()}>
             <ls-icon name="trash" size="1.25rem" color='var(--red-60)' />
             Delete
           </button>
