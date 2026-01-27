@@ -26,6 +26,8 @@ export { LSApiRecipient } from "./types/LSApiRecipient";
 export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { ValidationError } from "./types/ValidationError";
 export namespace Components {
+    interface LsComposeLoader {
+    }
     interface LsComposeManager {
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -724,6 +726,12 @@ export interface LsValidationTagCustomEvent<T> extends CustomEvent<T> {
     target: HTMLLsValidationTagElement;
 }
 declare global {
+    interface HTMLLsComposeLoaderElement extends Components.LsComposeLoader, HTMLStencilElement {
+    }
+    var HTMLLsComposeLoaderElement: {
+        prototype: HTMLLsComposeLoaderElement;
+        new (): HTMLLsComposeLoaderElement;
+    };
     interface HTMLLsComposeManagerElement extends Components.LsComposeManager, HTMLStencilElement {
     }
     var HTMLLsComposeManagerElement: {
@@ -753,9 +761,9 @@ declare global {
         "pageChange": number;
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
-        "update": { event: LSMutateEvent, template: LSApiTemplate };
+        "update": { event: LSMutateEvent; template: LSApiTemplate };
         "validate": { valid: boolean };
-        "addParticipant": { type: LSApiRoleType, parent?: string | null };
+        "addParticipant": { type: LSApiRoleType; parent?: string | null };
     }
     /**
      * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -1358,6 +1366,7 @@ declare global {
         new (): HTMLLsValidationTagElement;
     };
     interface HTMLElementTagNameMap {
+        "ls-compose-loader": HTMLLsComposeLoaderElement;
         "ls-compose-manager": HTMLLsComposeManagerElement;
         "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
@@ -1415,6 +1424,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface LsComposeLoader {
+    }
     interface LsComposeManager {
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -1461,12 +1472,12 @@ declare namespace LocalJSX {
           * @default 'editor'
          */
         "mode"?: 'preview' | 'editor' | 'compose';
-        "onAddParticipant"?: (event: LsDocumentViewerCustomEvent<{ type: LSApiRoleType, parent?: string | null }>) => void;
+        "onAddParticipant"?: (event: LsDocumentViewerCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
         "onMutate"?: (event: LsDocumentViewerCustomEvent<LSMutateEvent[]>) => void;
         "onPageChange"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
-        "onUpdate"?: (event: LsDocumentViewerCustomEvent<{ event: LSMutateEvent, template: LSApiTemplate }>) => void;
+        "onUpdate"?: (event: LsDocumentViewerCustomEvent<{ event: LSMutateEvent; template: LSApiTemplate }>) => void;
         "onValidate"?: (event: LsDocumentViewerCustomEvent<{ valid: boolean }>) => void;
         /**
           * @default 1
@@ -2049,6 +2060,7 @@ declare namespace LocalJSX {
         "validationErrors"?: ValidationError[];
     }
     interface IntrinsicElements {
+        "ls-compose-loader": LsComposeLoader;
         "ls-compose-manager": LsComposeManager;
         "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
@@ -2109,6 +2121,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ls-compose-loader": LocalJSX.LsComposeLoader & JSXBase.HTMLAttributes<HTMLLsComposeLoaderElement>;
             "ls-compose-manager": LocalJSX.LsComposeManager & JSXBase.HTMLAttributes<HTMLLsComposeManagerElement>;
             "ls-document-options": LocalJSX.LsDocumentOptions & JSXBase.HTMLAttributes<HTMLLsDocumentOptionsElement>;
             /**
