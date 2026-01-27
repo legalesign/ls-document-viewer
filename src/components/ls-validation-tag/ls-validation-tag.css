@@ -31,7 +31,7 @@
 }
 
 .valid.compose {
-  border: 1px solid var(--green-50, #ffa19e);
+  border: 1px solid var(--green-50, #57e5b1);
 }
 
 .valid.compose:hover {
