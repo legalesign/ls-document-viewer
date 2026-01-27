@@ -688,7 +688,7 @@ export class LsDocumentViewer {
     return (
       <Host>
         <>
-          {!this.isLoading && (
+          {this.isLoading && (
             <>
               <ls-page-loader />
               {this.mode === 'compose' && <ls-compose-loader />}
