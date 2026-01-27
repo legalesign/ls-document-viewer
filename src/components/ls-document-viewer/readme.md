@@ -108,6 +108,7 @@ Type: `Promise<void>`
 ### Depends on
 
 - [ls-page-loader](../ls-page-loader)
+- [ls-compose-loader](../ls-compose-loader)
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-feature-column](../ls-feature-column)
 - [ls-toolbox-field](../ls-toolbox-field)
@@ -128,6 +129,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ls-document-viewer --> ls-page-loader
+  ls-document-viewer --> ls-compose-loader
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-feature-column
   ls-document-viewer --> ls-toolbox-field
