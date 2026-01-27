@@ -123,8 +123,8 @@ export class LsValidationTag {
                 >
                   <div class="validation-tag-bar" style={{ background: pallette.s60 }}></div>
                   <div class="validation-tag-details">
-                    <p class="validation-tag-name">{`${field?.role?.firstName} ${field?.role?.lastName}`}</p>
-                    <p class="validation-tag-email">{field?.role?.email}</p>
+                    <p class="validation-tag-name">{field?.role?.previousRecipientDecides ? `Recipient ${field?.role?.signerIndex + 1}` : `${field?.role?.firstName} ${field?.role?.lastName}`}</p>
+                    <p class="validation-tag-email">{field?.role?.previousRecipientDecides ? `Details to be Decided` : field?.role?.email}</p>
                   </div>
                 </div>
               );
