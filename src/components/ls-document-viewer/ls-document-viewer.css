@@ -190,6 +190,7 @@ slot {
   overflow-y: auto;
   width: calc(100% + 0.25rem);
   padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+  height: 100%;
 }
 
 .scroll-gradient-top {

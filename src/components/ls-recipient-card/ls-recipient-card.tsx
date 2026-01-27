@@ -75,7 +75,7 @@ export class LsRecipientCard {
 
     if (isActive) {
       // Expand
-      this.cardRef.style.maxHeight = this.cardRef.scrollHeight + 'px';
+      this.cardRef.style.maxHeight = this.cardRef.scrollHeight + 2 + 'px';
     } else {
       // Collapse
       this.cardRef.style.maxHeight = '6rem';
@@ -84,7 +84,7 @@ export class LsRecipientCard {
 
   componentDidLoad() {
     const isActive = this.activeRecipient === this.recipient.signerIndex;
-    this.cardRef.style.maxHeight = isActive ? this.cardRef.scrollHeight + 'px' : '6rem';
+    this.cardRef.style.maxHeight = isActive ? this.cardRef.scrollHeight + 2 + 'px' : '6rem';
   }
 
   render() {
@@ -122,7 +122,7 @@ export class LsRecipientCard {
                 }}
               >
                 <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} size='1rem' />
-                {this.recipient?.roleType || 'SIGNER'}
+                {(this.recipient?.roleType || 'SIGNER').toLowerCase()}
               </div>
               <ls-icon
                 name="cursor-click"
@@ -152,7 +152,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
                 }}
               >
-                {this.recipient?.previousRecipientDecides ? 'Details will be decided by previous recipient' : this.recipient.email}
+                {this.recipient?.previousRecipientDecides ? 'Previous Recipient Decides Details' : this.recipient.email}
               </p>
               {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div

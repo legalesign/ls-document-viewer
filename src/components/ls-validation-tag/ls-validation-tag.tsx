@@ -29,6 +29,7 @@ export class LsValidationTag {
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
           {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click" solid size="1rem" customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
+          {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check" solid size="1rem" customStyle={{ marginRight: '-0.125rem' }} />}
         </div>
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
           <div class={'field-dropdown'}>
