@@ -28,7 +28,7 @@ button.secondary:hover {
 button.destructive {
   border: 1px solid var(--red-60, #f04438);
   background-color: white;
-  color: var(--red-60);
+  color: var(--red-60, #f04438);
 }
 
 button.destructive:hover {
