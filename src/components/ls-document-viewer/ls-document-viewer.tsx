@@ -226,7 +226,7 @@ export class LsDocumentViewer {
     bubbles: true,
     composed: true,
   })
-  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
+  addParticipant: EventEmitter<{ name?: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
   private adapter: LsDocumentAdapter;
 
@@ -645,7 +645,19 @@ export class LsDocumentViewer {
           // Otherwise, keep original order
           return a.signerIndex - b.signerIndex;
         });
+
+         //Generate roles for approvers not already present
+        this._recipients.filter(r => r.roleType === "APPROVER").forEach(rec => {
+        const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
+        if(!role){           
+          this.addParticipant.emit({ signerIndex: rec?.signerIndex, 
+            name: 'APPROVER' + rec?.signerIndex, 
+            type: 'APPROVER'});
+        }
+      });
       }
+
+
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
