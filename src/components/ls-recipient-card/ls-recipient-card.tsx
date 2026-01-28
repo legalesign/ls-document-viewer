@@ -171,7 +171,7 @@ export class LsRecipientCard {
             </div>
 
             <div class="fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
-              {this.recipient.signerIndex > 0 && this.showTool('signature') && (
+              {this.recipient.signerIndex > 0 && this.showTool('signature') && this.recipient?.roleType !== 'APPROVER' && (
                 <ls-toolbox-field
                   elementType="signature"
                   formElementType="signature"
@@ -182,7 +182,7 @@ export class LsRecipientCard {
                   icon="signature"
                   tooltip="Use this field to collect Signatures from Participants"
                   signer={this.recipient.signerIndex}
-                  redDot={recipientSignatures.length === 0 && this.recipient.roleType !== 'APPROVER'}
+                  redDot={recipientSignatures.length === 0}
                 />
               )}
 

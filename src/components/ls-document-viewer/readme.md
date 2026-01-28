@@ -41,15 +41,15 @@ Alex Weinle
 
 ## Events
 
-| Event            | Description | Type                                                              |
-| ---------------- | ----------- | ----------------------------------------------------------------- |
-| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>`          |
-| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                    |
-| `pageChange`     |             | `CustomEvent<number>`                                             |
-| `pageRendered`   |             | `CustomEvent<number>`                                             |
-| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                     |
-| `update`         |             | `CustomEvent<{ event: LSMutateEvent; template: LSApiTemplate; }>` |
-| `validate`       |             | `CustomEvent<{ valid: boolean; }>`                                |
+| Event            | Description | Type                                                                                          |
+| ---------------- | ----------- | --------------------------------------------------------------------------------------------- |
+| `addParticipant` |             | `CustomEvent<{ name?: string; type: LSApiRoleType; parent?: string; signerIndex?: number; }>` |
+| `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                                                |
+| `pageChange`     |             | `CustomEvent<number>`                                                                         |
+| `pageRendered`   |             | `CustomEvent<number>`                                                                         |
+| `selectFields`   |             | `CustomEvent<LSApiElement[]>`                                                                 |
+| `update`         |             | `CustomEvent<{ event: LSMutateEvent; template: LSApiTemplate; }>`                             |
+| `validate`       |             | `CustomEvent<{ valid: boolean; }>`                                                            |
 
 
 ## Methods

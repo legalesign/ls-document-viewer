@@ -696,6 +696,18 @@ export class LsDocumentViewer {
     return this.filtertoolbox === null || this.filtertoolbox.split('|').includes(fieldFormType);
   }
 
+  /// Check if the current signer has a role of the specified type
+  checkType(type: LSApiRoleType): boolean {
+    
+    if(this.mode==="compose" && this._recipients) {
+      return this._recipients.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
+    } else if (this._template) {
+      return this._template.roles.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
+    }
+    else 
+      return false;
+  }
+
   render() {
     return (
       <Host>
@@ -761,7 +773,7 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      {this.signer > 0 && this.showTool('signature') && (
+                      {(this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER')) && (
                         <ls-toolbox-field
                           elementType="signature"
                           formElementType="signature"
