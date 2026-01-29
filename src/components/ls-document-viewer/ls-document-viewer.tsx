@@ -618,6 +618,17 @@ export class LsDocumentViewer {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
       fx.className = fx.dataItem.page === page ? '' : 'hidden';
+      // Find assignee for this field
+      const data = fx.dataItem;
+      const assignee = this.mode === 'compose' ? this._recipients?.find(r => r.signerIndex === data.signer) : this._template.roles.find(r => r.signerIndex === data.signer);
+      fx.setAttribute(
+        'assignee',
+        this.mode === 'compose' && assignee?.previousRecipientDecides === true
+          ? 'To Be Decided'
+          : this.mode === 'compose'
+            ? `${assignee?.firstName} ${assignee?.lastName}`
+            : assignee?.name || `Participant ${data.signer}`,
+      );
     });
   }
 
@@ -646,23 +657,23 @@ export class LsDocumentViewer {
           return a.signerIndex - b.signerIndex;
         });
 
-         //Generate roles for approvers not already present
-        this._recipients.filter(r => r.roleType === "APPROVER").forEach(rec => {
-        const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
-        if(!role){           
-          this.addParticipant.emit({ signerIndex: rec?.signerIndex, 
-            name: 'APPROVER' + rec?.signerIndex, 
-            type: 'APPROVER'});
-        } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
-          this.mutate.emit([{
-            action: 'update',
-            data: {...role, roleType: rec.roleType} as LSApiRole
-          }]);
-        }
-      });
+        //Generate roles for approvers not already present
+        this._recipients
+          .filter(r => r.roleType === 'APPROVER')
+          .forEach(rec => {
+            const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
+            if (!role) {
+              this.addParticipant.emit({ signerIndex: rec?.signerIndex, name: 'APPROVER' + rec?.signerIndex, type: 'APPROVER' });
+            } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
+              this.mutate.emit([
+                {
+                  action: 'update',
+                  data: { ...role, roleType: rec.roleType } as LSApiRole,
+                },
+              ]);
+            }
+          });
       }
-
-
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
@@ -703,14 +714,11 @@ export class LsDocumentViewer {
 
   /// Check if the current signer has a role of the specified type
   checkType(type: LSApiRoleType): boolean {
-    
-    if(this.mode==="compose" && this._recipients) {
+    if (this.mode === 'compose' && this._recipients) {
       return this._recipients.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
     } else if (this._template) {
       return this._template.roles.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
-    }
-    else 
-      return false;
+    } else return false;
   }
 
   render() {
@@ -720,7 +728,9 @@ export class LsDocumentViewer {
           {this.isLoading && (
             <>
               <ls-page-loader />
-              <div class={'custom-loader-slot'}><slot name='custom-loader'></slot></div>
+              <div class={'custom-loader-slot'}>
+                <slot name="custom-loader"></slot>
+              </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
           )}
@@ -778,7 +788,7 @@ export class LsDocumentViewer {
                       <p class="toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
                     </div>
                     <div class="fields-box">
-                      {(this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER')) && (
+                      {this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER') && (
                         <ls-toolbox-field
                           elementType="signature"
                           formElementType="signature"
@@ -990,7 +1000,6 @@ export class LsDocumentViewer {
                             data-signer-index={recipient.signerIndex}
                           />
                         ))}
-                      
                     </div>
                     <slot name="recipient-panel"></slot>
                   </ls-recipient-manager>
