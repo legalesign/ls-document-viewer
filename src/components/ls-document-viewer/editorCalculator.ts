@@ -20,11 +20,19 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   const fields = this._template.elementConnection.templateElements;
   this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: [...fields, data] } };
   const assignee = this.mode === 'compose' ? this._recipients?.find(r => r.signerIndex === data.signer) : this._template.roles.find(r => r.signerIndex === data.signer);
+  console.log(assignee?.previousRecipientDecides);
 
   const node = document.createElement('ls-editor-field');
   node.setAttribute('type', data.formElementType);
   node.setAttribute('id', 'ls-field-' + data.id);
-  node.setAttribute('assignee', this.mode === 'compose' ? `${assignee?.firstName} ${assignee?.lastName}` : assignee?.name || `Participant ${data.signer}`);
+  node.setAttribute(
+    'assignee',
+    this.mode === 'compose' && assignee?.previousRecipientDecides
+      ? 'To Be Decided'
+      : this.mode === 'compose'
+        ? `${assignee?.firstName} ${assignee?.lastName}`
+        : assignee?.name || `Participant ${data.signer}`,
+  );
   node.setAttribute('zoom', String(this.zoom));
   // node.setAttribute('selected', 'selected');
   node.style.zIndex = '100';
