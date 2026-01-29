@@ -646,20 +646,22 @@ export class LsDocumentViewer {
           return a.signerIndex - b.signerIndex;
         });
 
-         //Generate roles for approvers not already present
+        //Generate roles for approvers not already present
         this._recipients.filter(r => r.roleType === "APPROVER").forEach(rec => {
-        const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
-        if(!role){           
-          this.addParticipant.emit({ signerIndex: rec?.signerIndex, 
-            name: 'APPROVER' + rec?.signerIndex, 
-            type: 'APPROVER'});
-        } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
-          this.mutate.emit([{
-            action: 'update',
-            data: {...role, roleType: rec.roleType} as LSApiRole
-          }]);
-        }
-      });
+          const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
+          if (!role) {
+            this.addParticipant.emit({
+              signerIndex: rec?.signerIndex,
+              name: 'APPROVER' + rec?.signerIndex,
+              type: 'APPROVER'
+            });
+          } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
+            this.mutate.emit([{
+              action: 'update',
+              data: { ...role, roleType: rec.roleType } as LSApiRole
+            }]);
+          }
+        });
       }
 
 
@@ -703,13 +705,13 @@ export class LsDocumentViewer {
 
   /// Check if the current signer has a role of the specified type
   checkType(type: LSApiRoleType): boolean {
-    
-    if(this.mode==="compose" && this._recipients) {
+
+    if (this.mode === "compose" && this._recipients) {
       return this._recipients.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
     } else if (this._template) {
       return this._template.roles.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
     }
-    else 
+    else
       return false;
   }
 
@@ -990,7 +992,7 @@ export class LsDocumentViewer {
                             data-signer-index={recipient.signerIndex}
                           />
                         ))}
-                      
+
                     </div>
                     <slot name="recipient-panel"></slot>
                   </ls-recipient-manager>
