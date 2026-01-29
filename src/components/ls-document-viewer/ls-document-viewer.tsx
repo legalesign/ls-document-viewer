@@ -618,17 +618,7 @@ export class LsDocumentViewer {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
       fx.className = fx.dataItem.page === page ? '' : 'hidden';
-      // Find assignee for this field
-      const data = fx.dataItem;
-      const assignee = this.mode === 'compose' ? this._recipients?.find(r => r.signerIndex === data.signer) : this._template.roles.find(r => r.signerIndex === data.signer);
-      fx.setAttribute(
-        'assignee',
-        this.mode === 'compose' && assignee?.previousRecipientDecides === true
-          ? 'To Be Decided'
-          : this.mode === 'compose'
-            ? `${assignee?.firstName} ${assignee?.lastName}`
-            : assignee?.name || `Participant ${data.signer}`,
-      );
+      
     });
   }
 
