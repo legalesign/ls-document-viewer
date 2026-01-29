@@ -653,6 +653,11 @@ export class LsDocumentViewer {
           this.addParticipant.emit({ signerIndex: rec?.signerIndex, 
             name: 'APPROVER' + rec?.signerIndex, 
             type: 'APPROVER'});
+        } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
+          this.mutate.emit([{
+            action: 'update',
+            data: {...role, roleType: rec.roleType} as LSApiRole
+          }]);
         }
       });
       }
