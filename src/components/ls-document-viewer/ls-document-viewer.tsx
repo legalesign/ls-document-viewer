@@ -807,7 +807,7 @@ export class LsDocumentViewer {
 
                       {this.signer === 0 && this.showTool('auto sign') && (
                         <ls-toolbox-field
-                          elementType="auto sign"
+                          elementType="admin"
                           formElementType="auto sign"
                           label="Auto Sign"
                           defaultHeight={25}
@@ -834,8 +834,8 @@ export class LsDocumentViewer {
 
                       {this.signer > 0 && this.showTool('signing date') && (
                         <ls-toolbox-field
-                          elementType="signing date"
-                          formElementType="signing date"
+                          elementType="text"
+                          formElementType="text"
                           label="Signing Date"
                           defaultHeight={16}
                           defaultWidth={100}
@@ -848,7 +848,7 @@ export class LsDocumentViewer {
 
                       {this.showTool('date') && (
                         <ls-toolbox-field
-                          elementType="date"
+                          elementType="text"
                           formElementType="date"
                           label="Date"
                           defaultHeight={16}
@@ -861,7 +861,7 @@ export class LsDocumentViewer {
                       )}
                       {this.showTool('email') && (
                         <ls-toolbox-field
-                          elementType="email"
+                          elementType="text"
                           formElementType="email"
                           label="Email"
                           defaultHeight={16}
@@ -889,7 +889,7 @@ export class LsDocumentViewer {
 
                       {this.showTool('number') && (
                         <ls-toolbox-field
-                          elementType="number"
+                          elementType="text"
                           formElementType="number"
                           label="Number"
                           defaultHeight={16}
@@ -903,7 +903,7 @@ export class LsDocumentViewer {
 
                       {this.showTool('dropdown') && (
                         <ls-toolbox-field
-                          elementType="dropdown"
+                          elementType="text"
                           formElementType="dropdown"
                           label="Dropdown"
                           defaultHeight={16}
@@ -917,7 +917,7 @@ export class LsDocumentViewer {
 
                       {this.showTool('checkbox') && (
                         <ls-toolbox-field
-                          elementType="checkbox"
+                          elementType="text"
                           formElementType="checkbox"
                           label="Checkbox"
                           defaultHeight={16}
@@ -931,7 +931,7 @@ export class LsDocumentViewer {
 
                       {this.signer > 0 && this.showTool('regex') && (
                         <ls-toolbox-field
-                          elementType="regex"
+                          elementType="text"
                           formElementType="regex"
                           label="Regex"
                           defaultHeight={16}
@@ -944,7 +944,7 @@ export class LsDocumentViewer {
                       )}
                       {this.signer > 0 && this.showTool('image') && (
                         <ls-toolbox-field
-                          elementType="image"
+                          elementType="text"
                           formElementType="image"
                           label="Image"
                           defaultHeight={16}
@@ -957,7 +957,7 @@ export class LsDocumentViewer {
                       )}
                       {this.signer > 0 && this.showTool('file') && (
                         <ls-toolbox-field
-                          elementType="file"
+                          elementType="text"
                           formElementType="file"
                           label="File"
                           defaultHeight={16}
@@ -970,7 +970,7 @@ export class LsDocumentViewer {
                       )}
                       {this.signer > 0 && this.showTool('drawn') && (
                         <ls-toolbox-field
-                          elementType="drawn"
+                          elementType="text"
                           formElementType="drawn"
                           label="Drawn"
                           defaultHeight={120}
