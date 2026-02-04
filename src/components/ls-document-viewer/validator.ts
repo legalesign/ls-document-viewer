@@ -50,6 +50,5 @@ export function validate(t: LSApiTemplate): ValidationError[] {
       });
     }
   });
-  console.log('validation errors', errors);
   return errors;
 }

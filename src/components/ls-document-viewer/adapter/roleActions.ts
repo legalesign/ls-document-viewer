@@ -10,7 +10,7 @@ const createRole = (role) => {
         signerParent: ${newParent}
         name: ${JSON.stringify(role.name)}
         ordinal: ${role.ordinal}
-        roleType: ${role.roleType.toUpperCase()}
+        roleType: ${role.roleType}
         experience: "${role.experience}"
      })
   }`  

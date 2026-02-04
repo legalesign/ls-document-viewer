@@ -18,6 +18,7 @@ import { ValidationError } from '../../types/ValidationError';
 import { validate } from './validator';
 import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
+import { generateRoles } from './generateRoles';
 
 GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.worker.min.mjs`;
 
@@ -657,22 +658,8 @@ export class LsDocumentViewer {
           return a.signerIndex - b.signerIndex;
         });
 
-        //Generate roles for approvers not already present
-        this._recipients.filter(r => r.roleType === "APPROVER").forEach(rec => {
-          const role = this._template.roles.find(ro => ro.signerIndex === rec.signerIndex);
-          if (!role) {
-            this.addParticipant.emit({
-              signerIndex: rec?.signerIndex,
-              name: 'APPROVER' + rec?.signerIndex,
-              type: 'APPROVER'
-            });
-          } else if (rec.signerIndex === 1 && rec.roleType !== role.roleType) {
-            this.mutate.emit([{
-              action: 'update',
-              data: { ...role, roleType: rec.roleType } as LSApiRole
-            }]);
-          }
-        });
+        //Generate roles for any not already present
+        generateRoles.bind(this)();
       }
 
 
