@@ -14,7 +14,7 @@ export class LsToolboxField {
    * The field type of this toolbox item, e.g. 'signature'. Note these should always be lowercase.
    */
   @Prop() formElementType: string;
-  @Prop() elementType: string;
+  @Prop() elementType: 'text' | 'signature' | 'initials' | 'admin';
   @Prop() validation: number = 0;
   @Prop() fixedAspect: number | null = null;
   @Prop() redDot: boolean = false;
@@ -79,6 +79,14 @@ export class LsToolboxField {
     document.body.appendChild(canvas); 
 
     event.dataTransfer.setDragImage(canvas, -50, -20);
+    console.log('drag start', {
+        formElementType: this.formElementType,
+        elementType: this.elementType,
+        validation: this.validation,
+        defaultHeight: this.defaultHeight,
+        defaultWidth: this.defaultWidth,
+        fixedAspect: this.fixedAspect,
+      });
 
     // Add the target element's id to the data transfer object
     event.dataTransfer.setData(

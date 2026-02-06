@@ -188,7 +188,7 @@ export class LsRecipientCard {
 
               {this.recipient.signerIndex === 0 && this.showTool('auto sign') && (
                 <ls-toolbox-field
-                  elementType="auto sign"
+                  elementType="admin"
                   formElementType="auto sign"
                   label="Auto Sign"
                   defaultHeight={27}
@@ -215,7 +215,7 @@ export class LsRecipientCard {
 
               {this.recipient.signerIndex > 0 && this.showTool('signing date') && (
                 <ls-toolbox-field
-                  elementType="signing date"
+                  elementType="admin"
                   formElementType="signing date"
                   label="Signing Date"
                   defaultHeight={27}
@@ -229,7 +229,7 @@ export class LsRecipientCard {
 
               {this.showTool('date') && (
                 <ls-toolbox-field
-                  elementType="date"
+                  elementType="text"
                   formElementType="date"
                   label="Date"
                   defaultHeight={27}
@@ -242,7 +242,7 @@ export class LsRecipientCard {
               )}
               {this.showTool('email') && (
                 <ls-toolbox-field
-                  elementType="email"
+                  elementType="text"
                   formElementType="email"
                   label="Email"
                   defaultHeight={27}
@@ -270,7 +270,7 @@ export class LsRecipientCard {
 
               {this.showTool('number') && (
                 <ls-toolbox-field
-                  elementType="number"
+                  elementType="text"
                   formElementType="number"
                   label="Number"
                   defaultHeight={27}
@@ -284,7 +284,7 @@ export class LsRecipientCard {
 
               {this.showTool('dropdown') && (
                 <ls-toolbox-field
-                  elementType="dropdown"
+                  elementType="text"
                   formElementType="dropdown"
                   label="Dropdown"
                   defaultHeight={27}
@@ -298,7 +298,7 @@ export class LsRecipientCard {
 
               {this.showTool('checkbox') && (
                 <ls-toolbox-field
-                  elementType="checkbox"
+                  elementType="text"
                   formElementType="checkbox"
                   label="Checkbox"
                   defaultHeight={27}
@@ -312,7 +312,7 @@ export class LsRecipientCard {
 
               {this.recipient.signerIndex > 0 && this.showTool('regex') && (
                 <ls-toolbox-field
-                  elementType="regex"
+                  elementType="text"
                   formElementType="regex"
                   label="Regex"
                   defaultHeight={27}
@@ -325,7 +325,7 @@ export class LsRecipientCard {
               )}
               {this.recipient.signerIndex > 0 && this.showTool('image') && (
                 <ls-toolbox-field
-                  elementType="image"
+                  elementType="text"
                   formElementType="image"
                   label="Image"
                   defaultHeight={27}
@@ -338,7 +338,7 @@ export class LsRecipientCard {
               )}
               {this.recipient.signerIndex > 0 && this.showTool('file') && (
                 <ls-toolbox-field
-                  elementType="file"
+                  elementType="text"
                   formElementType="file"
                   label="File"
                   defaultHeight={27}
@@ -351,7 +351,7 @@ export class LsRecipientCard {
               )}
               {this.recipient.signerIndex > 0 && this.showTool('drawn') && (
                 <ls-toolbox-field
-                  elementType="drawn"
+                  elementType="text"
                   formElementType="drawn"
                   label="Drawn"
                   defaultHeight={120}

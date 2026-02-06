@@ -33,6 +33,7 @@ export class LsDocumentAdapter {
       case 'ele':
         switch (event.action) {
           case 'create':
+            console.log(obj, event)
             query = createElement(recalculateCoordinates(obj as LSApiElement));
             break;
           case 'update':

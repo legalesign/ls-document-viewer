@@ -543,7 +543,7 @@ export namespace Components {
           * The starting width of this control type in pixels.
          */
         "defaultWidth": number;
-        "elementType": string;
+        "elementType": 'text' | 'signature' | 'initials' | 'admin';
         /**
           * @default null
          */
@@ -1969,7 +1969,7 @@ declare namespace LocalJSX {
           * The starting width of this control type in pixels.
          */
         "defaultWidth"?: number;
-        "elementType"?: string;
+        "elementType"?: 'text' | 'signature' | 'initials' | 'admin';
         /**
           * @default null
          */
