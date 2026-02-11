@@ -49,14 +49,14 @@ export class LsFieldContent {
   supportsValue() {
     const typesWithValue = ['signature', 'initials', 'image', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox'];
 
-    return !typesWithValue.includes(this.dataItem?.elementType);
+    return !typesWithValue.includes(this.dataItem?.formElementType);
   }
 
   render() {
     return (
       <Host>
         <ls-props-section sectionTitle="Field Type" sectionDescription="The Field you currently have selected">
-          <ls-field-type-display fieldType={this.dataItem?.elementType} assignee={this.dataItem?.signer} />
+          <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
         <ls-props-section sectionTitle="Required Field" row={true}>
           <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => this.alter({ optional: !ev.detail })} />
@@ -64,7 +64,7 @@ export class LsFieldContent {
         <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
           <input
             value={this.dataItem?.label}
-            placeholder={getFieldTitleSuggestion(this.dataItem?.elementType)}
+            placeholder={getFieldTitleSuggestion(this.dataItem?.formElementType)}
             onInput={e => this.alter({ label: (e.target as HTMLInputElement).value })}
           />
         </ls-props-section>
@@ -72,7 +72,7 @@ export class LsFieldContent {
           <ls-props-section sectionTitle="Value" sectionDescription="A prefilled value that can be altered by the signer.">
             <input
               value={this.dataItem?.value}
-              placeholder={getFieldPlaceholder(this.dataItem?.elementType)}
+              placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
               onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
             />
           </ls-props-section>
@@ -92,7 +92,7 @@ export class LsFieldContent {
             <ls-input-wrapper select>
               <select onChange={ev => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value) })}>
                 {validationTypes
-                  .filter(type => type.formType === this.dataItem?.elementType)
+                  .filter(type => type.formType === this.dataItem?.formElementType)
                   .map(type => (
                     <option selected={this.dataItem?.validation === type.id} value={type.id}>
                       {type.description}

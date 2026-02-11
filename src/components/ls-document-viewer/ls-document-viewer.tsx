@@ -329,6 +329,7 @@ export class LsDocumentViewer {
     if (event.detail.length === 0) {
       this.selected = [];
     } else {
+      console.log(event.detail, 'selected')
       propPanel.dataItem = event.detail as any as LSApiElement[];
     }
 
@@ -840,7 +841,7 @@ export class LsDocumentViewer {
                           label="Date"
                           defaultHeight={16}
                           defaultWidth={100}
-                          validation={2}
+                          validation={4}
                           icon="calender"
                           tooltip="A field for collecting dates with built-in date formatting options"
                           signer={this.signer}

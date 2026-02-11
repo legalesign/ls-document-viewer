@@ -49,7 +49,6 @@ export class LsRecipientCard {
 
   @Listen('fieldTypeSelected')
   handleFieldTypeSelected(event) {
-    console.log(event);
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
 
     console.log(fields);
@@ -234,7 +233,7 @@ export class LsRecipientCard {
                   label="Date"
                   defaultHeight={27}
                   defaultWidth={80}
-                  validation={2}
+                  validation={4}
                   icon="calender"
                   tooltip="A field for collecting dates with built-in date formatting options"
                   signer={this.recipient.signerIndex}
