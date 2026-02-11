@@ -214,12 +214,12 @@ export class LsRecipientCard {
 
               {this.recipient.signerIndex > 0 && this.showTool('signing date') && (
                 <ls-toolbox-field
-                  elementType="admin"
+                  elementType="text"
                   formElementType="signing date"
                   label="Signing Date"
                   defaultHeight={27}
                   defaultWidth={120}
-                  validation={30}
+                  validation={32}
                   icon="auto-date"
                   tooltip="Automatically inserts the date upon completion by the assigned Participant"
                   signer={this.recipient.signerIndex}

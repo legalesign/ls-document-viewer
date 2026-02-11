@@ -823,11 +823,11 @@ export class LsDocumentViewer {
                       {this.signer > 0 && this.showTool('signing date') && (
                         <ls-toolbox-field
                           elementType="text"
-                          formElementType="text"
+                          formElementType="signing date"
                           label="Signing Date"
                           defaultHeight={16}
                           defaultWidth={100}
-                          validation={30}
+                          validation={32}
                           icon="auto-date"
                           tooltip="Automatically inserts the date upon completion by the assigned Participant"
                           signer={this.signer}
