@@ -15,7 +15,7 @@ export class LsEditorField {
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
   @Prop() readonly: boolean;
-  @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'autodate';
+  @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
   @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
@@ -85,7 +85,11 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials') return;
+    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date') {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;

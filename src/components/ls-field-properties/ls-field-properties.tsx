@@ -16,7 +16,7 @@ export class LsFieldProperties {
           return <ls-field-properties-signature dataItem={this.dataItem[0]} />
         case 'date':
           return <ls-field-properties-date dataItem={this.dataItem[0]} />
-        case 'autodate':
+        case 'signing date':
           return <ls-field-properties-date dataItem={this.dataItem[0]} />
         case 'text':
           return <ls-field-properties-text dataItem={this.dataItem[0]} />
