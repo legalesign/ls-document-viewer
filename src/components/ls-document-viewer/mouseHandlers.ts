@@ -250,7 +250,7 @@ export function mouseClick(e) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     const divFrame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
     const selected = Array.from(fields).filter(fx => fx.selected);
-    
+
     this.mutate.emit(
       Array.from(fields)
         .filter(fx => fx.selected)
@@ -346,10 +346,20 @@ export function mouseDrop(event) {
 }
 
 export function mouseDoubleClick(event) {
-  console.log('double click');
+  console.log('double click', this.fieldTypeSelected, this.signer);
   try {
-    const data: IToolboxField = this.fieldTypeSelected as IToolboxField;
+    let data: IToolboxField = this.fieldTypeSelected as IToolboxField;
 
+    if (this.checkType('APPROVER') && data.elementType === 'signature') {
+      data = {
+        label: 'Text',
+        formElementType: 'text',
+        elementType: 'text',
+        validation: 0,
+        defaultHeight: 16,
+        defaultWidth: 150,
+      };
+    }
     // Unselect all current selected items
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
@@ -396,7 +406,6 @@ export function mouseDoubleClick(event) {
       } as LSApiElement,
     };
     this.mutate.emit([newData]);
-
   } catch (e) {
     console.error(e);
   }
