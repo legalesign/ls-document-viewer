@@ -367,6 +367,8 @@ export class LsDocumentViewer {
     this.pageNum += 1;
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+    this.pageResize();
+    
   }
 
   /**
@@ -382,6 +384,8 @@ export class LsDocumentViewer {
     this.pageNum -= 1;
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+    this.pageResize();
+    
   }
 
   /**
@@ -396,6 +400,17 @@ export class LsDocumentViewer {
     this.selected = [];
   }
 
+  pageResize() {
+    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
+    const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
+    // const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLDivElement;
+    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';
+    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + 'px';
+
+    frame.style.height = this.pageDimensions[this.pageNum - 1].height * this.zoom + 'px';
+    frame.style.width = this.pageDimensions[this.pageNum - 1].width * this.zoom + 'px';
+  }
+
   /**
    * Page and field resize on zoom change
    *
@@ -403,14 +418,7 @@ export class LsDocumentViewer {
   @Method()
   async setZoom(z: number) {
     this.zoom = z;
-    this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
-    const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLDivElement;
-    // const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLDivElement;
-    this.canvas.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
-    this.canvas.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
-
-    frame.style.height = this.pageDimensions[this.pageNum - 1].height * z + 'px';
-    frame.style.width = this.pageDimensions[this.pageNum - 1].width * z + 'px';
+    this.pageResize();
 
     // wrapper.style.height = this.pageDimensions[this.pageNum - 1].height * z + 200 + 'px';
     // wrapper.style.width = this.pageDimensions[this.pageNum - 1].width * z + 600 + 'px';
