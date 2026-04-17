@@ -50,7 +50,8 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.2",
     "puppeteer": "^24.33.0",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "typescript": "~5.8.3"
   },
   "license": "MIT",
   "dependencies": {

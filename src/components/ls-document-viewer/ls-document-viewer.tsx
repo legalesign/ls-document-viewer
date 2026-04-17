@@ -2,7 +2,7 @@ import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from 
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
-import 'pdfjs-dist/web/pdf_viewer';
+import 'pdfjs-dist/web/pdf_viewer.mjs';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
