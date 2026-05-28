@@ -219,3 +219,80 @@ button.ls-dv-tertiary-grey:hover {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
 
+
+.ls-dv-thumbnail-popover {
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  background: white;
+  border: 1px solid var(--gray-30, #e0e2e5);
+  border-radius: 1.75rem;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem;
+  z-index: 1001;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ls-dv-thumbnail-grid {
+  background: var(--gray-10, #f7f8fa);
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid var(--gray-30, #e0e2e5);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.ls-dv-thumbnail-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.ls-dv-thumbnail-wrapper > span:last-child {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--gray-80, #6c6e73);
+  font-weight: 500;
+}
+
+.ls-dv-thumbnail {
+  border: 1px solid var(--gray-30, #e0e2e5);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.ls-dv-thumbnail:hover {
+  border-color: var(--primary-40, #a3b4f9);
+  box-shadow: 0 0 0 2px rgba(163, 180, 249, 0.3);
+}
+
+.ls-dv-thumbnail.active {
+  border-color: var(--primary-60, #4456f6);
+  outline: 0.25rem solid var(--primary-30, #cce0ff);
+  box-shadow: var(--shadow-md);
+}
+
+.ls-dv-thumbnail-dots {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.ls-dv-thumbnail-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid var(--dot-color-60);
+  background-color: var(--dot-color-40);
+}
