@@ -9,7 +9,7 @@
 }
 
 .template-title {
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   padding: 0 0.25rem;
   color: var(--gray-100, #45484d);
   font-size: 1rem;
@@ -109,7 +109,7 @@ textarea {
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   color: var(--gray-100, #45484d);
   font-weight: 400;
 }
@@ -286,7 +286,7 @@ button.tertiaryGrey:hover {
 
 .button-group {
   display: flex;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
   background: var(--white, #ffffff);
   overflow: clip;
@@ -307,7 +307,7 @@ button.tertiaryGrey:hover {
 }
 
 .button-group > :first-child {
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.625rem 0 0 0.625rem;
 }
 
 .button-group > :last-child {

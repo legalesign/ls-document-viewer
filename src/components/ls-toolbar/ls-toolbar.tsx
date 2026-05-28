@@ -76,20 +76,20 @@ export class LsToolbar {
     });
   }
 
-  render() {
+  private renderEditor() {
     return (
-      <div class={this.mode !== 'compose' || (this.mode === 'compose' && this.dataItem && this.dataItem.length > 0) ? 'ls-toolbar' : ''}>
+      <div class="ls-toolbar">
         {this.dataItem && this.dataItem.length > 1 ? (
-          <div class={'rowbox'}>
-            <ls-field-format dataItem={this?.dataItem} />
+          <div class="rowbox">
+            <ls-field-format dataItem={this.dataItem} />
           </div>
         ) : (
-          <div class={'rowbox'}>
-            <ls-field-format dataItem={this?.dataItem} />
+          <div class="rowbox">
+            <ls-field-format dataItem={this.dataItem} />
             <ls-participant-select
               id="ls-participant-select"
               roles={this.template?.roles}
-              style={{ display: (this.dataItem && this.dataItem.length === 1) || this.mode === 'compose' ? 'none' : 'block' }}
+              style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }}
             />
           </div>
         )}
@@ -97,5 +97,23 @@ export class LsToolbar {
         <slot></slot>
       </div>
     );
+  }
+
+  private renderCompose() {
+    return (
+      <div class={this.dataItem && this.dataItem.length > 0 ? 'ls-toolbar' : ''}>
+        <div class="rowbox">
+          <ls-field-format dataItem={this.dataItem} />
+        </div>
+        <ls-tooltip id="ls-tooltip-master" />
+        <slot></slot>
+      </div>
+    );
+  }
+
+  render() {
+    return this.mode === 'editor' ? this.renderEditor()
+      : this.mode === 'compose' ? this.renderCompose()
+      : null;
   }
 }

@@ -9,12 +9,12 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-viewer --> ls-recipient-manager
+  ls-left-bar --> ls-recipient-manager
   style ls-recipient-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -28,6 +28,7 @@
 ### Used by
 
  - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -38,6 +39,7 @@
 graph TD;
   ls-validation-tag --> ls-icon
   ls-document-viewer --> ls-validation-tag
+  ls-left-bar --> ls-validation-tag
   style ls-validation-tag fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

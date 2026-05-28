@@ -82,7 +82,7 @@
   display: flex;
   padding: 0.5rem;
   align-items: center;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -221,7 +221,7 @@ textarea {
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   color: var(--gray-100, #45484d);
   font-weight: 400;
 }
@@ -426,7 +426,7 @@ button.destructive:hover {
 
 .button-group {
   display: flex;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
   background: var(--white, #ffffff);
   overflow: clip;
@@ -447,7 +447,7 @@ button.destructive:hover {
 }
 
 .button-group > :first-child {
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.625rem 0 0 0.625rem;
 }
 
 .button-group > :last-child {

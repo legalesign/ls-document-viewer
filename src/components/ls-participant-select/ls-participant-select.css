@@ -54,7 +54,7 @@
   padding: 0.25rem;
   flex-direction: column;
   gap: 0.25rem;
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
   background: white;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -68,7 +68,7 @@
   align-items: center;
   gap: 0.75rem;
   align-self: stretch;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 .dropdown-item.selected,
@@ -87,7 +87,7 @@
   align-items: center;
   gap: 0.75rem;
   align-self: stretch;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   border: 1px dashed var(--gray-30, #e0e2e5);
   cursor: pointer;
 }
@@ -222,7 +222,7 @@ textarea {
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   color: var(--gray-100, #45484d);
   font-weight: 400;
 }
@@ -376,7 +376,7 @@ input[type='checkbox']:disabled:checked {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   justify-content: center;
   text-transform: capitalize;
   min-height: 2rem;
@@ -398,7 +398,7 @@ button.tertiaryGrey:hover {
 
 .button-group {
   display: flex;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
   background: var(--white, #ffffff);
   overflow: clip;
@@ -419,7 +419,7 @@ button.tertiaryGrey:hover {
 }
 
 .button-group > :first-child {
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.625rem 0 0 0.625rem;
 }
 
 .button-group > :last-child {

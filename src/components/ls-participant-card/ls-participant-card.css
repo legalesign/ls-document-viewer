@@ -51,7 +51,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
@@ -185,7 +185,7 @@ textarea {
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   color: var(--gray-100, #45484d);
   font-weight: 400;
 }
@@ -397,7 +397,7 @@ button.secondary:hover {
 
 .button-group {
   display: flex;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
   background: var(--white, #ffffff);
   overflow: clip;
@@ -418,7 +418,7 @@ button.secondary:hover {
 }
 
 .button-group > :first-child {
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.625rem 0 0 0.625rem;
 }
 
 .button-group > :last-child {

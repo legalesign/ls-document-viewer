@@ -24,7 +24,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -36,7 +36,7 @@
 graph TD;
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
-  ls-document-viewer --> ls-feature-column
+  ls-left-bar --> ls-feature-column
   style ls-feature-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

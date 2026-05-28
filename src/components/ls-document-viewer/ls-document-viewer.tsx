@@ -122,6 +122,7 @@ export class LsDocumentViewer {
   @State() fontFamily: string = 'arial';
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
+  @State() selectedDataItems: LSApiElement[] = [];
   @State() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
     formElementType: 'signature',
@@ -291,23 +292,6 @@ export class LsDocumentViewer {
   updateSigner(event: CustomEvent<number>) {
     if (event.detail) {
       this.signer = event.detail;
-
-      try {
-        const leftBox = this.component.shadowRoot?.getElementById('ls-recipient-manager');
-        if (leftBox) {
-          const recipientsBox = leftBox.querySelector('.recipients-box');
-          const card = recipientsBox?.querySelector(`ls-recipient-card[data-signer-index="${event.detail}"]`);
-
-          if (card && recipientsBox) {
-            recipientsBox.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            });
-          }
-        }
-      } catch (e) {
-        // fail silently
-      }
     }
   }
 
@@ -325,12 +309,11 @@ export class LsDocumentViewer {
     if (toolbar) {
       toolbar.dataItem = event.detail as any as LSApiElement[];
     }
-    var propPanel = this.component.shadowRoot.getElementById('my-field-panel') as HTMLLsFieldPropertiesElement;
     if (event.detail.length === 0) {
       this.selected = [];
     } else {
-      console.log(event.detail, 'selected')
-      propPanel.dataItem = event.detail as any as LSApiElement[];
+      console.log(event.detail, 'selected');
+      this.selectedDataItems = event.detail as any as LSApiElement[];
     }
 
     // change style of selected fields
@@ -368,7 +351,6 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
-    
   }
 
   /**
@@ -385,7 +367,6 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
-    
   }
 
   /**
@@ -671,8 +652,6 @@ export class LsDocumentViewer {
         generateRoles.bind(this)();
       }
 
-
-
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
       this.validate.emit({ valid: this.validationErrors.length === 0 });
@@ -691,19 +670,10 @@ export class LsDocumentViewer {
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
+  }
 
-    const leftBox = this.component.shadowRoot.getElementById('ls-left-box');
-    if (leftBox) {
-      leftBox.addEventListener('mousedown', e => {
-        e.stopPropagation();
-      });
-      leftBox.addEventListener('mouseup', e => {
-        e.stopPropagation();
-      });
-      leftBox.addEventListener('mousemove', e => {
-        e.stopPropagation();
-      });
-    }
+  handleManagerChange(manager: string) {
+    this.manager = manager as any;
   }
 
   showTool(fieldFormType: string): boolean {
@@ -712,14 +682,11 @@ export class LsDocumentViewer {
 
   /// Check if the current signer has a role of the specified type
   checkType(type: LSApiRoleType): boolean {
-
-    if (this.mode === "compose" && this._recipients) {
+    if (this.mode === 'compose' && this._recipients) {
       return this._recipients.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
     } else if (this._template) {
       return this._template.roles.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
-    }
-    else
-      return false;
+    } else return false;
   }
 
   render() {
@@ -729,7 +696,9 @@ export class LsDocumentViewer {
           {this.isLoading && (
             <>
               <ls-page-loader />
-              <div class={'custom-loader-slot'}><slot name='custom-loader'></slot></div>
+              <div class={'custom-loader-slot'}>
+                <slot name="custom-loader"></slot>
+              </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
           )}
@@ -760,275 +729,25 @@ export class LsDocumentViewer {
           )}
 
           <form id="ls-editor-form">
-            {this.mode !== 'preview' ? (
-              <div id="ls-left-box" class="leftBox" style={this.mode === 'compose' ? { borderRadius: '1.75rem' } : {}}>
-                <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
-                  {this.mode === 'editor' && (
-                    <ls-feature-column
-                      mode={this.mode}
-                      onManage={manager => {
-                        if (manager.detail === 'document') {
-                          var documentManager = this.component.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
-                          documentManager.template = this._template;
-                        } else if (manager.detail === 'participant') {
-                          var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
-                          participantManager.template = this._template;
-                        } else if (manager.detail === 'validation') {
-                          var validationManager = this.component.shadowRoot.getElementById('ls-validation-manager') as HTMLLsValidationManagerElement;
-                          validationManager.validationErrors = this.validationErrors;
-                        }
-                        this.manager = manager.detail;
-                      }}
-                    />
-                  )}
-                  <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
-                    <div class="ls-editor-infobox">
-                      <h2 class="toolbox-section-title">Fields</h2>
-                      <p class="toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
-                    </div>
-                    <div class="fields-box">
-                      {(this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER')) && (
-                        <ls-toolbox-field
-                          elementType="signature"
-                          formElementType="signature"
-                          label="Signature"
-                          defaultHeight={25}
-                          defaultWidth={97}
-                          validation={0}
-                          icon="signature"
-                          tooltip="Use this field to collect Signatures from Participants"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.signer === 0 && this.showTool('auto sign') && (
-                        <ls-toolbox-field
-                          elementType="admin"
-                          formElementType="auto sign"
-                          label="Auto Sign"
-                          defaultHeight={25}
-                          defaultWidth={97}
-                          validation={3000}
-                          icon="auto-sign"
-                          tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
-                          signer={this.signer}
-                        />
-                      )}
-                      {this.showTool('text') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="text"
-                          label="Text"
-                          defaultHeight={16}
-                          defaultWidth={150}
-                          validation={0}
-                          icon="text"
-                          tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.signer > 0 && this.showTool('signing date') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="signing date"
-                          label="Signing Date"
-                          defaultHeight={16}
-                          defaultWidth={100}
-                          validation={32}
-                          icon="auto-date"
-                          tooltip="Automatically inserts the date upon completion by the assigned Participant"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.showTool('date') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="date"
-                          label="Date"
-                          defaultHeight={16}
-                          defaultWidth={100}
-                          validation={4}
-                          icon="calender"
-                          tooltip="A field for collecting dates with built-in date formatting options"
-                          signer={this.signer}
-                        />
-                      )}
-                      {this.showTool('email') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="email"
-                          label="Email"
-                          defaultHeight={16}
-                          defaultWidth={150}
-                          validation={1}
-                          icon="at-symbol"
-                          tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.showTool('initials') && (
-                        <ls-toolbox-field
-                          elementType="initials"
-                          formElementType="initials"
-                          label="Initials"
-                          defaultHeight={25}
-                          defaultWidth={70}
-                          validation={2000}
-                          icon="initials"
-                          tooltip="Use this field anywhere Participants are required to Initial your document"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.showTool('number') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="number"
-                          label="Number"
-                          defaultHeight={16}
-                          defaultWidth={150}
-                          validation={50}
-                          icon="hashtag"
-                          tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.showTool('dropdown') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="dropdown"
-                          label="Dropdown"
-                          defaultHeight={16}
-                          defaultWidth={100}
-                          validation={20}
-                          icon="dropdown"
-                          tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.showTool('checkbox') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="checkbox"
-                          label="Checkbox"
-                          defaultHeight={16}
-                          defaultWidth={16}
-                          validation={25}
-                          icon="check"
-                          tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
-                          signer={this.signer}
-                        />
-                      )}
-
-                      {this.signer > 0 && this.showTool('regex') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="regex"
-                          label="Regex"
-                          defaultHeight={16}
-                          defaultWidth={150}
-                          validation={93}
-                          icon="code"
-                          tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
-                          signer={this.signer}
-                        />
-                      )}
-                      {this.signer > 0 && this.showTool('image') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="image"
-                          label="Image"
-                          defaultHeight={16}
-                          defaultWidth={100}
-                          validation={90}
-                          icon="photograph"
-                          tooltip="Use when you need Participants to upload their own images during the signing process"
-                          signer={this.signer}
-                        />
-                      )}
-                      {this.signer > 0 && this.showTool('file') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="file"
-                          label="File"
-                          defaultHeight={16}
-                          defaultWidth={100}
-                          validation={74}
-                          icon="upload"
-                          tooltip="Use when you need Participants to upload their own documents during the signing process"
-                          signer={this.signer}
-                        />
-                      )}
-                      {this.signer > 0 && this.showTool('drawn') && (
-                        <ls-toolbox-field
-                          elementType="text"
-                          formElementType="drawn"
-                          label="Drawn"
-                          defaultHeight={120}
-                          defaultWidth={120}
-                          validation={90}
-                          icon="pencil"
-                          tooltip="Allow users to draw on the document using their mouse or touchscreen"
-                          signer={this.signer}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} editor={this} />
-                  <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
-                  <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
-                  <ls-recipient-manager id="ls-recipient-manager" class={this.manager === 'recipient' ? 'compose-toolbox' : 'hidden'}>
-                    <div class={'scroll-gradient-top'} />
-                    <div class={'scroll-gradient-bottom'} />
-                    <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '1.125rem', right: '1rem' }} type="compose" />
-                    <div class={'recipients-box'}>
-                      {this._recipients &&
-                        this._recipients.map(recipient => (
-                          <ls-recipient-card
-                            recipient={recipient}
-                            activeRecipient={this.signer}
-                            filtertoolbox={this.filtertoolbox}
-                            template={this._template}
-                            validationErrors={this.validationErrors}
-                            fieldTypeSelected={this.fieldTypeSelected}
-                            data-signer-index={recipient.signerIndex}
-                          />
-                        ))}
-
-                    </div>
-                    <slot name="recipient-panel"></slot>
-                  </ls-recipient-manager>
-                </div>
-                {!this.displayTable && (
-                  <div class={this.selected.length > 0 ? 'field-properties-outer' : 'hidden'}>
-                    <div class={'properties-header'}>
-                      <div class={'properties-header-icon'}>
-                        <ls-icon name="pre-filled-content" />
-                      </div>
-                      <h1 class={'properties-header-title'}>Field Properties</h1>
-                      <button
-                        class={'tertiaryGrey'}
-                        onClick={e => {
-                          this.selected = [];
-                          e.preventDefault();
-                        }}
-                        data-tooltip="Close Properties Panel"
-                      >
-                        <ls-icon name="x" size="1.25rem" />
-                      </button>
-                    </div>
-                    <ls-field-properties id="my-field-panel"></ls-field-properties>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <></>
-            )}
+            <ls-left-bar
+              mode={this.mode}
+              selected={this.selected}
+              manager={this.manager}
+              signer={this.signer}
+              filtertoolbox={this.filtertoolbox}
+              template={this._template}
+              recipients={this._recipients}
+              validationErrors={this.validationErrors}
+              fieldTypeSelected={this.fieldTypeSelected}
+              displayTable={this.displayTable}
+              selectedDataItems={this.selectedDataItems}
+              onManagerChange={e => this.handleManagerChange(e.detail)}
+              onClearSelected={() => {
+                this.selected = [];
+              }}
+            >
+              <slot name="recipient-panel" slot="recipient-panel" />
+            </ls-left-bar>
             <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} />
             <div id="ls-mid-area">
               <div class={'document-frame-wrapper'} id="document-frame-wrapper">

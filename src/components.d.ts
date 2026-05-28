@@ -12,9 +12,9 @@ import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { Icon } from "./types/Icon";
-import { LSApiRecipient } from "./types/LSApiRecipient";
-import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { ValidationError } from "./types/ValidationError";
+import { IToolboxField } from "./components/interfaces/IToolboxField";
+import { LSApiRecipient } from "./types/LSApiRecipient";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
@@ -22,9 +22,9 @@ export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { Icon } from "./types/Icon";
-export { LSApiRecipient } from "./types/LSApiRecipient";
-export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { ValidationError } from "./types/ValidationError";
+export { IToolboxField } from "./components/interfaces/IToolboxField";
+export { LSApiRecipient } from "./types/LSApiRecipient";
 export namespace Components {
     interface LsComposeLoader {
     }
@@ -343,6 +343,37 @@ export namespace Components {
         "select": boolean;
     }
     interface LsKeyboardShortcuts {
+    }
+    interface LsLeftBar {
+        /**
+          * @default false
+         */
+        "displayTable": boolean;
+        "fieldTypeSelected": IToolboxField;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        "manager": string;
+        /**
+          * @default 'editor'
+         */
+        "mode": 'editor' | 'compose' | 'preview';
+        "recipients": any[];
+        /**
+          * @default []
+         */
+        "selected": HTMLLsEditorFieldElement[];
+        /**
+          * @default []
+         */
+        "selectedDataItems": any[];
+        "signer": number;
+        "template": LSApiTemplate;
+        /**
+          * @default []
+         */
+        "validationErrors": ValidationError[];
     }
     interface LsNumberInput {
         "aria"?: string;
@@ -684,6 +715,10 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
 export interface LsFormfieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFormfieldElement;
+}
+export interface LsLeftBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsLeftBarElement;
 }
 export interface LsParticipantCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1120,6 +1155,24 @@ declare global {
         prototype: HTMLLsKeyboardShortcutsElement;
         new (): HTMLLsKeyboardShortcutsElement;
     };
+    interface HTMLLsLeftBarElementEventMap {
+        "managerChange": string;
+        "clearSelected": void;
+    }
+    interface HTMLLsLeftBarElement extends Components.LsLeftBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsLeftBarElementEventMap>(type: K, listener: (this: HTMLLsLeftBarElement, ev: LsLeftBarCustomEvent<HTMLLsLeftBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsLeftBarElementEventMap>(type: K, listener: (this: HTMLLsLeftBarElement, ev: LsLeftBarCustomEvent<HTMLLsLeftBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsLeftBarElement: {
+        prototype: HTMLLsLeftBarElement;
+        new (): HTMLLsLeftBarElement;
+    };
     interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
     }
     var HTMLLsNumberInputElement: {
@@ -1401,6 +1454,7 @@ declare global {
         "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
+        "ls-left-bar": HTMLLsLeftBarElement;
         "ls-number-input": HTMLLsNumberInputElement;
         "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
@@ -1755,6 +1809,39 @@ declare namespace LocalJSX {
     }
     interface LsKeyboardShortcuts {
     }
+    interface LsLeftBar {
+        /**
+          * @default false
+         */
+        "displayTable"?: boolean;
+        "fieldTypeSelected"?: IToolboxField;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        "manager"?: string;
+        /**
+          * @default 'editor'
+         */
+        "mode"?: 'editor' | 'compose' | 'preview';
+        "onClearSelected"?: (event: LsLeftBarCustomEvent<void>) => void;
+        "onManagerChange"?: (event: LsLeftBarCustomEvent<string>) => void;
+        "recipients"?: any[];
+        /**
+          * @default []
+         */
+        "selected"?: HTMLLsEditorFieldElement[];
+        /**
+          * @default []
+         */
+        "selectedDataItems"?: any[];
+        "signer"?: number;
+        "template"?: LSApiTemplate;
+        /**
+          * @default []
+         */
+        "validationErrors"?: ValidationError[];
+    }
     interface LsNumberInput {
         "aria"?: string;
         "buttonClick"?: any;
@@ -2095,6 +2182,7 @@ declare namespace LocalJSX {
         "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
         "ls-keyboard-shortcuts": LsKeyboardShortcuts;
+        "ls-left-bar": LsLeftBar;
         "ls-number-input": LsNumberInput;
         "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
@@ -2161,6 +2249,7 @@ declare module "@stencil/core" {
             "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;
+            "ls-left-bar": LocalJSX.LsLeftBar & JSXBase.HTMLAttributes<HTMLLsLeftBarElement>;
             "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
             "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
