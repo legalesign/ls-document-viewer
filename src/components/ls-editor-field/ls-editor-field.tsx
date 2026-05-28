@@ -100,7 +100,7 @@ export class LsEditorField {
     console.log(this.dataItem);
 
     if (editbox) {
-      editbox.className = 'ls-editor-field-editable';
+      editbox.className = 'ls-dv-editor-field-editable';
       editbox.focus();
     }
     e.preventDefault();
@@ -205,7 +205,7 @@ export class LsEditorField {
             <ls-icon
               name="required"
               size={`${0.75 * zoomValue}rem`}
-              class="required-icon"
+              class="ls-dv-required-icon"
               customStyle={{
                 position: 'absolute',
                 verticalAlign: 'top',
@@ -218,14 +218,14 @@ export class LsEditorField {
           )}
           <input
             id="editing-input"
-            class={this.isEditing ? 'ls-editor-field-editable' : 'hidden-field'}
+            class={this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field'}
             type={getInputType(this.dataItem.validation).inputType}
             value={this.dataItem?.value}
             checked={this.dataItem?.value ? true : false}
             onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
           />
 
-          <div id="field-info" class={this.isEditing ? 'hidden-field' : 'ls-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
+          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
             {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.formElementType}
           </div>
           {(this.floatingActive || this.selected) && this.dataItem?.label && (
@@ -264,7 +264,7 @@ export class LsEditorField {
           )}
           {this.floatingActive && (
             <button
-              class={'x-button'}
+              class={'ls-dv-x-button'}
               style={{
                 display: 'flex',
                 justifyContent: 'center',

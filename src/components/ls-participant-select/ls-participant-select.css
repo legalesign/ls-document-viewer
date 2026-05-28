@@ -6,13 +6,13 @@
   margin: 0;
 }
 
-.dropdown {
+.ls-dv-dropdown {
   display: flex;
   align-items: center;
   position: relative;
 }
 
-.dropdown-header {
+.ls-dv-dropdown-header {
   border-radius: 0.625rem;
   border: 1px solid var(--gray-20, #edeff2);
   background: var(--gray-10, #f7f8fa);
@@ -22,7 +22,7 @@
   gap: 0.5rem;
 }
 
-.placing-fields-text {
+.ls-dv-placing-fields-text {
   color: var(--gray-90, #5e6066);
   text-align: center;
   font-size: 0.875rem;
@@ -31,7 +31,7 @@
   margin: 0;
 }
 
-.selected-role-label {
+.ls-dv-selected-role-label {
   display: flex;
   padding: 0.125rem 0.375rem;
   justify-content: center;
@@ -44,7 +44,7 @@
   line-height: 1.25rem; /* 142.857% */
 }
 
-.dropdown-list {
+.ls-dv-dropdown-list {
   position: absolute;
   top: 3rem;
   left: 50%;
@@ -62,7 +62,7 @@
   overflow-y: auto;
 }
 
-.dropdown-item {
+.ls-dv-dropdown-item {
   display: flex;
   padding: 0.5rem 0.875rem 0.5rem 0.5rem;
   align-items: center;
@@ -71,16 +71,16 @@
   border-radius: 0.625rem;
 }
 
-.dropdown-item.selected,
-.dropdown-item.selected:hover {
+.ls-dv-dropdown-item.ls-dv-selected,
+.ls-dv-dropdown-item.ls-dv-selected:hover {
   background: var(--background-selected, #e0e2e5);
 }
 
-.dropdown-item:hover {
+.ls-dv-dropdown-item:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.add-participant-row {
+.ls-dv-add-participant-row {
   all: unset;
   display: flex;
   padding: 0.5rem 0.875rem 0.5rem 0.5rem;
@@ -92,21 +92,21 @@
   cursor: pointer;
 }
 
-.add-participant-row:hover {
+.ls-dv-add-participant-row:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.plus-icon {
+.ls-dv-plus-icon {
   color: var(--gray-40, #d8d9dc);
 }
 
-.role-icon {
+.ls-dv-role-icon {
   display: flex;
   padding: 0.5rem;
   border-radius: 0.625rem;
 }
 
-.add-participant-icon {
+.ls-dv-add-participant-icon {
   display: flex;
   padding: 0.5rem;
   border-radius: 0.625rem;
@@ -114,21 +114,21 @@
   background: var(--primary-60, #4456f6);
 }
 
-.role-text {
+.ls-dv-role-text {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.dropdown-item .check-icon {
+.ls-dv-dropdown-item .ls-dv-check-icon {
   color: var(--gray-40, #d8d9dc);
 }
 
-.dropdown-item.selected .check-icon {
+.ls-dv-dropdown-item.ls-dv-selected .ls-dv-check-icon {
   color: var(--check-icon-selected);
 }
 
-.role-name {
+.ls-dv-role-name {
   color: var(--gray-100, #45484d);
   font-size: 0.75rem;
   font-style: normal;
@@ -136,7 +136,7 @@
   line-height: 1rem; /* 133.333% */
 }
 
-.role-type {
+.ls-dv-role-type {
   color: var(--gray-80, #787a80);
   font-size: 0.75rem;
   font-style: normal;
@@ -144,11 +144,11 @@
   line-height: 1rem; /* 133.333% */
 }
 
-.dropdown-item.selected .role-name {
+.ls-dv-dropdown-item.ls-dv-selected .ls-dv-role-name {
   color: var(--role-name-selected);
 }
 
-.dropdown-item.selected .role-type {
+.ls-dv-dropdown-item.ls-dv-selected .ls-dv-role-type {
   color: var(--role-type-selected);
 }
 
@@ -177,8 +177,8 @@ a:hover {
   color: var(--primary-70, #2134dc);
 }
 
-.button-link,
-.button-link:hover {
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
   all: unset;
 }
 
@@ -187,7 +187,7 @@ select {
   height: 2.25rem;
 }
 
-.input-wrapper {
+.ls-dv-input-wrapper {
   position: relative;
   width: fit-content;
 }
@@ -210,7 +210,7 @@ select {
   color: var(--gray-80, #6c6e73);
 }
 
-.has-leading-icon {
+.ls-dv-has-leading-icon {
   padding-left: 2.5rem;
 }
 
@@ -275,7 +275,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked,
-input[type='checkbox'].indeterminate {
+input[type='checkbox'].ls-dv-indeterminate {
   background-color: var(--primary-60, #4456f6);
   border: none;
 }
@@ -292,7 +292,7 @@ input[type='checkbox']:checked::after {
   border-right: 0.125rem solid white;
 }
 
-input[type='checkbox'].indeterminate::after {
+input[type='checkbox'].ls-dv-indeterminate::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -304,7 +304,7 @@ input[type='checkbox'].indeterminate::after {
 }
 
 input[type='checkbox']:checked:hover,
-input[type='checkbox'].indeterminate:hover {
+input[type='checkbox'].ls-dv-indeterminate:hover {
   background-color: var(--primary-70, #2134dc);
   border: none;
 }
@@ -333,13 +333,13 @@ input[type='checkbox']:disabled:checked {
   cursor: not-allowed;
 }
 
-.checkbox-container {
+.ls-dv-checkbox-container {
   display: flex;
   gap: 0.5rem;
   width: 100%;
 }
 
-.checkbox-label {
+.ls-dv-checkbox-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -347,7 +347,7 @@ input[type='checkbox']:disabled:checked {
   line-height: 1rem;
 }
 
-.form-label {
+.ls-dv-form-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -355,14 +355,14 @@ input[type='checkbox']:disabled:checked {
   line-height: 1.5rem;
 }
 
-.form-field {
+.ls-dv-form-field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
 }
 
-.loading-box {
+.ls-dv-loading-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -371,7 +371,7 @@ input[type='checkbox']:disabled:checked {
   color: var(--primary-60, #0c7cba);
 }
 
-.expand-button {
+.ls-dv-expand-button {
   border: 0;
   cursor: pointer;
   display: inline-flex;
@@ -385,18 +385,18 @@ input[type='checkbox']:disabled:checked {
   max-width: 2rem;
 }
 
-button.tertiaryGrey {
+button.ls-dv-tertiary-grey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);
 }
 
-button.tertiaryGrey:hover {
+button.ls-dv-tertiary-grey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group {
+.ls-dv-button-group {
   display: flex;
   border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
@@ -404,7 +404,7 @@ button.tertiaryGrey:hover {
   overflow: clip;
 }
 
-.button-group button {
+.ls-dv-button-group button {
   display: flex;
   background: transparent;
   border-radius: unset;
@@ -414,18 +414,18 @@ button.tertiaryGrey:hover {
   color: var(--gray-80, #6c6e73);
 }
 
-.button-group button:hover {
+.ls-dv-button-group button:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group > :first-child {
+.ls-dv-button-group > :first-child {
   border-radius: 0.625rem 0 0 0.625rem;
 }
 
-.button-group > :last-child {
+.ls-dv-button-group > :last-child {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.button-group > :not(:first-child) {
+.ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }

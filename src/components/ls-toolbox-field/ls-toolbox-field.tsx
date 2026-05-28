@@ -118,7 +118,7 @@ export class LsToolboxField {
     return (
       <Host draggable="true">
         <div
-          class={'ls-toolbox-field'}
+          class={'ls-dv-toolbox-field'}
           style={
             this.isSelected && {
               background: defaultRolePalette[this.signer % 100].s10,
@@ -140,7 +140,7 @@ export class LsToolboxField {
           }}
         >
           <div
-            class="toolbox-field-icon"
+            class="ls-dv-toolbox-field-icon"
             style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}
             data-tooltip={this.tooltip}
             data-tooltip-placement="right"
@@ -148,7 +148,7 @@ export class LsToolboxField {
             <ls-icon name={this.icon} size="1.25rem" />
           </div>
           <p
-            class="toolbox-field-label"
+            class="ls-dv-toolbox-field-label"
             style={
               this.isSelected && {
                 color: defaultRolePalette[this.signer % 100].s80,
@@ -158,7 +158,7 @@ export class LsToolboxField {
             {this.label}
           </p>
           {this.redDot && (
-            <div class={'warning-box'} data-tooltip={`${this.label} Field Required`} data-tooltip-placement="left">
+            <div class={'ls-dv-warning-box'} data-tooltip={`${this.label} Field Required`} data-tooltip-placement="left">
               <ls-icon name="exclamation-circle" size="1.125rem" solid />
             </div>
           )}

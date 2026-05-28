@@ -7,7 +7,7 @@
   margin: 0;
 }
 
-.participant-card {
+.ls-dv-participant-card {
   display: flex;
   padding: 0.625rem;
   flex-direction: column;
@@ -16,36 +16,36 @@
   align-self: stretch;
 }
 
-.top-card {
+.ls-dv-top-card {
   border-radius: 1rem 1rem 0 0;
 }
 
-.full-card {
+.ls-dv-full-card {
   border-radius: 1rem;
 }
 
-.bottom-card {
+.ls-dv-bottom-card {
   border-radius: 0 0 1rem 1rem;
 }
 
-.participant-card-inner {
+.ls-dv-participant-card-inner {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.hidden {
+.ls-dv-hidden {
   visibility: hidden;
   display: none;
 }
 
-.form-button-set {
+.ls-dv-form-button-set {
   display: flex;
   gap: 0.5rem;
 }
 
-.role-label {
+.ls-dv-role-label {
   display: flex;
   padding: 0.125rem 0.5rem;
   justify-content: center;
@@ -58,12 +58,12 @@
   line-height: 1.25rem; /* 142.857% */
 }
 
-.role-label.fields {
+.ls-dv-role-label.ls-dv-fields {
   border-radius: 1rem;
   margin-top: 0.5rem;
 }
 
-.innerButton {
+.ls-dv-inner-button {
   margin: 0px;
   padding: 0px;
   max-height: 1.25rem !important;
@@ -74,36 +74,36 @@
   color: var(--default-button-colour);
 }
 
-.innerButton:hover {
+.ls-dv-inner-button:hover {
   color: var(--hover-button-colour);
 }
 
-.participant-card-top-items {
+.ls-dv-participant-card-top-items {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
-.button-set {
+.ls-dv-button-set {
   display: flex;
   gap: 0.125rem;
 }
 
-.participant-text-description {
+.ls-dv-participant-text-description {
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 142.857% */
 }
 
-.participant-text-type {
+.ls-dv-participant-text-type {
   font-style: normal;
   font-weight: 400;
   line-height: 1.25rem; /* 142.857% */
 }
 
-.titleButton {
+.ls-dv-title-button {
   width: 100%;
   text-align: left;
   background-color: transparent;
@@ -112,7 +112,7 @@
 
 /* Global Styles */
 
-.full-width {
+.ls-dv-full-width {
   width: 100%;
 }
 
@@ -139,8 +139,8 @@ a:hover {
   color: var(--primary-70, #2134dc);
 }
 
-.button-link,
-.button-link:hover {
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
   all: unset;
 }
 
@@ -150,7 +150,7 @@ select {
   width: 100%;
 }
 
-.input-wrapper {
+.ls-dv-input-wrapper {
   position: relative;
   width: fit-content;
 }
@@ -173,7 +173,7 @@ select {
   color: var(--gray-80, #6c6e73);
 }
 
-.has-leading-icon {
+.ls-dv-has-leading-icon {
   padding-left: 2.5rem;
 }
 
@@ -238,7 +238,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked,
-input[type='checkbox'].indeterminate {
+input[type='checkbox'].ls-dv-indeterminate {
   background-color: var(--primary-60, #4456f6);
   border: none;
 }
@@ -255,7 +255,7 @@ input[type='checkbox']:checked::after {
   border-right: 0.125rem solid white;
 }
 
-input[type='checkbox'].indeterminate::after {
+input[type='checkbox'].ls-dv-indeterminate::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -267,7 +267,7 @@ input[type='checkbox'].indeterminate::after {
 }
 
 input[type='checkbox']:checked:hover,
-input[type='checkbox'].indeterminate:hover {
+input[type='checkbox'].ls-dv-indeterminate:hover {
   background-color: var(--primary-70, #2134dc);
   border: none;
 }
@@ -296,13 +296,13 @@ input[type='checkbox']:disabled:checked {
   cursor: not-allowed;
 }
 
-.checkbox-container {
+.ls-dv-checkbox-container {
   display: flex;
   gap: 0.5rem;
   width: 100%;
 }
 
-.checkbox-label {
+.ls-dv-checkbox-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -310,7 +310,7 @@ input[type='checkbox']:disabled:checked {
   line-height: 1rem;
 }
 
-.form-label {
+.ls-dv-form-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -318,14 +318,14 @@ input[type='checkbox']:disabled:checked {
   line-height: 1.5rem;
 }
 
-.form-field {
+.ls-dv-form-field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
 }
 
-.loading-box {
+.ls-dv-loading-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -349,53 +349,53 @@ button {
   min-width: 2.25rem;
 }
 
-button.tertiaryGrey {
+button.ls-dv-tertiary-grey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);
 }
 
-button.tertiaryGrey:hover {
+button.ls-dv-tertiary-grey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-button.tertiary {
+button.ls-dv-tertiary {
   border: 1px solid var(--primary-60, #4456f6);
   background: transparent;
   color: var(--primary-70, #2134dc);
 }
 
-button.tertiary:hover {
+button.ls-dv-tertiary:hover {
   border: 1px solid var(--primary-70, #2134dc);
   border: 1px solid var(--primary-80, #0c34b8);
 }
 
-button.destructive {
+button.ls-dv-destructive {
   border: 1px solid var(--red-60, #f04438);
   background: transparent;
   color: var(--red-60);
 }
 
-button.destructive:hover {
+button.ls-dv-destructive:hover {
   border: 1px solid var(--red-70, #d92d20);
   background: var(--red-10, #fff1f0);
   background-color: var(--red-10, #fff1f0);
 }
 
-button.secondary {
+button.ls-dv-secondary {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--white, #fff);
   color: var(--gray-90, #5e6066);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-button.secondary:hover {
+button.ls-dv-secondary:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group {
+.ls-dv-button-group {
   display: flex;
   border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
@@ -403,7 +403,7 @@ button.secondary:hover {
   overflow: clip;
 }
 
-.button-group button {
+.ls-dv-button-group button {
   display: flex;
   background: transparent;
   border-radius: unset;
@@ -413,18 +413,18 @@ button.secondary:hover {
   color: var(--gray-80, #6c6e73);
 }
 
-.button-group button:hover {
+.ls-dv-button-group button:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group > :first-child {
+.ls-dv-button-group > :first-child {
   border-radius: 0.625rem 0 0 0.625rem;
 }
 
-.button-group > :last-child {
+.ls-dv-button-group > :last-child {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.button-group > :not(:first-child) {
+.ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }

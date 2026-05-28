@@ -6,7 +6,7 @@
   margin: 0;
 }
 
-.host {
+.ls-dv-host {
   display: flex;
   width: 100%;
   padding: 0.25rem;
@@ -17,7 +17,7 @@
   background: var(--Grey-10, #f7f8fa);
 }
 
-.input-container {
+.ls-dv-input-container {
   position: relative;
   display: flex;
   width: 100%;
@@ -43,19 +43,19 @@
   padding-right: 0.25rem;
 }
 
-.icon-input {
+.ls-dv-icon-input {
   padding-left: 2.5rem !important;
 }
 
-.button-input {
+.ls-dv-button-input {
   padding-right: 2.5rem !important;
 }
 
-.right-items-input {
+.ls-dv-right-items-input {
   padding-right: 4rem !important;
 }
 
-.input-basic {
+.ls-dv-input-basic {
   display: flex;
   width: 100%;
   height: 2.25rem;
@@ -76,7 +76,7 @@
   font-weight: 400;
 }
 
-.input-ls {
+.ls-dv-input-ls {
   display: flex;
   width: 100%;
   height: 1.75rem;
@@ -99,13 +99,13 @@
 
 }
 
-.input-ls::-webkit-outer-spin-button,
-.input-ls::-webkit-inner-spin-button {
+.ls-dv-input-ls::-webkit-outer-spin-button,
+.ls-dv-input-ls::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.input-ls {
+.ls-dv-input-ls {
   -moz-appearance: textfield;
 }
 
@@ -125,57 +125,57 @@ input:focus:not(:disabled) {
     0px 0px 0px 4px #9dc3fc;
 }
 
-.default {
+.ls-dv-default {
   border: 1px solid var(--gray-40, #d8d9dc);
   background: var(--White, #fff);
   color: var(--gray-100);
 }
 
-.default:hover {
+.ls-dv-default:hover {
   border: 1px solid var(--gray-50, #d8d9dc);
   background: var(--White, #fff);
   color: var(--gray-110);
 }
 
-.disabled {
+.ls-dv-disabled {
   border: 1px solid var(--gray-40, #d8d9dc);
   background: var(--gray-10, #f7f8fa);
   color: var(--gray-60);
   cursor: not-allowed;
 }
 
-.display-only {
+.ls-dv-display-only {
   border: 1px solid var(--gray-40, #d8d9dc);
   background: var(--gray-10, #f7f8fa);
   color: var(--gray-100);
   cursor: not-allowed;
 }
 
-.invalid {
+.ls-dv-invalid {
   border: 1px solid var(--red-40, #ffa19e);
   background: var(--White, #fff);
   color: var(--Red-100, #7a1714);
 }
 
-.invalid:hover {
+.ls-dv-invalid:hover {
   border: 1px solid var(--red-50, #ffa19e);
   background: var(--White, #fff);
   color: var(--Red-100, #7a1714);
 }
 
-.valid {
+.ls-dv-valid {
   border: 1px solid var(--green-40, #72f0c2);
   background: var(--White, #fff);
   color: var(--Green-100, #125241);
 }
 
-.valid:hover {
+.ls-dv-valid:hover {
   border: 1px solid var(--green-50, #72f0c2);
   background: var(--White, #fff);
   color: var(--Green-100, #125241);
 }
 
-.right-items {
+.ls-dv-right-items {
   position: absolute;
   padding: 0.25rem;
   height: 2.25rem;
@@ -196,7 +196,7 @@ input:focus:not(:disabled) {
   color: var(--green-60);
 }
 
-.button {
+.ls-dv-button {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;
@@ -213,7 +213,7 @@ input:focus:not(:disabled) {
   }
 }
 
-.button-disabled {
+.ls-dv-button-disabled {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;
@@ -231,7 +231,7 @@ input:focus:not(:disabled) {
   }
 }
 
-.button:hover {
+.ls-dv-button:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-20, #edeff2);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
@@ -241,7 +241,7 @@ input:focus:not(:disabled) {
   }
 }
 
-.button:active {
+.ls-dv-button:active {
   border: 1px solid var(--Primary-Blue-Light, #4456f6);
   background: var(--White, #fff);
   box-shadow:
@@ -253,7 +253,7 @@ input:focus:not(:disabled) {
   }
 }
 
-.button:focus {
+.ls-dv-button:focus {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;

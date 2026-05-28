@@ -4,7 +4,7 @@
   margin: 0;
 }
 
-.host {
+.ls-dv-host {
   position: relative;
   display: flex;
   width: 100%;
@@ -24,19 +24,19 @@
   color: var(--gray-60);
 }
 
-.icon-input {
+.ls-dv-icon-input {
   padding-left: 2.5rem !important;
 }
 
-.button-input {
+.ls-dv-button-input {
   padding-right: 2.5rem !important;
 }
 
-.right-items-input {
+.ls-dv-right-items-input {
   padding-right: 4rem !important;
 }
 
-.input-base {
+.ls-dv-input-base {
   display: flex;
   resize: vertical;
   width: 100%;
@@ -56,7 +56,7 @@
   font-weight: 400;
 }
 
-.input-base:active:not(:disabled) {
+.ls-dv-input-base:active:not(:disabled) {
   outline: 1px solid var(--Legalesign-Blue-60, #4456f6);
   box-shadow:
     0px 0px 3px 0px rgba(0, 15, 153, 0.25),
@@ -64,7 +64,7 @@
     0px 0px 0px 4px #9dc3fc;
 }
 
-.input-base:focus:not(:disabled) {
+.ls-dv-input-base:focus:not(:disabled) {
   outline: 1px solid var(--Legalesign-Blue-60, #4456f6);
   box-shadow:
     0px 0px 3px 0px rgba(0, 15, 153, 0.25),
@@ -72,50 +72,50 @@
     0px 0px 0px 4px #9dc3fc;
 }
 
-.default {
+.ls-dv-default {
   border: 1px solid var(--gray-40, #d8d9dc);
   background: var(--White, #fff);
   color: var(--gray-100);
 }
 
-.default:hover {
+.ls-dv-default:hover {
   border: 1px solid var(--gray-50, #d8d9dc);
   background: var(--White, #fff);
   color: var(--gray-110);
 }
 
-.disabled {
+.ls-dv-disabled {
   border: 1px solid var(--gray-40, #d8d9dc);
   background: var(--gray-10, #f7f8fa);
   color: var(--gray-60);
   cursor: not-allowed;
 }
 
-.invalid {
+.ls-dv-invalid {
   border: 1px solid var(--red-40, #ffa19e);
   background: var(--White, #fff);
   color: var(--Red-100, #7a1714);
 }
 
-.invalid:hover {
+.ls-dv-invalid:hover {
   border: 1px solid var(--red-50, #ffa19e);
   background: var(--White, #fff);
   color: var(--Red-100, #7a1714);
 }
 
-.valid {
+.ls-dv-valid {
   border: 1px solid var(--green-40, #72f0c2);
   background: var(--White, #fff);
   color: var(--Green-100, #125241);
 }
 
-.valid:hover {
+.ls-dv-valid:hover {
   border: 1px solid var(--green-50, #72f0c2);
   background: var(--White, #fff);
   color: var(--Green-100, #125241);
 }
 
-.right-items {
+.ls-dv-right-items {
   position: absolute;
   padding: 0.25rem;
   height: 2.25rem;
@@ -135,7 +135,7 @@
   color: var(--green-60);
 }
 
-.button {
+.ls-dv-button {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;
@@ -152,7 +152,7 @@
   }
 }
 
-.button:hover {
+.ls-dv-button:hover {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;
@@ -169,7 +169,7 @@
   }
 }
 
-.button:active {
+.ls-dv-button:active {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;
@@ -188,7 +188,7 @@
   }
 }
 
-.button:focus {
+.ls-dv-button:focus {
   display: flex;
   height: 1.75rem;
   width: 1.75rem;

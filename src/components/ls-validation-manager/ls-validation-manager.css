@@ -7,7 +7,7 @@
   margin: 0;
 }
 
-.toolbox-section-description {
+.ls-dv-toolbox-section-description {
   color: var(--gray-80, #5e6066);
   font-size: 0.75rem;
   font-style: normal;
@@ -15,7 +15,7 @@
   line-height: 1rem;
 }
 
-.validation-section-title {
+.ls-dv-validation-section-title {
   color: var(--gray-100, #45484d);
   font-size: 1.125rem;
   font-style: normal;
@@ -23,7 +23,7 @@
   line-height: 1.75rem; /* 155.556% */
 }
 
-.valid-label {
+.ls-dv-valid-label {
   display: flex;
   padding: 0.125rem 0.5rem;
   justify-content: center;
@@ -37,17 +37,17 @@
   width: fit-content;
 }
 
-.valid {
+.ls-dv-valid {
   background-color: var(--green-30, #9df5d4);
   color: var(--green-100, #125241);
 }
 
-.invalid {
+.ls-dv-invalid {
   background: var(--yellow-20, #fff3c2);
   color: var(--yellow-90, #8a3f0e);
 }
 
-.field-counter {
+.ls-dv-field-counter {
   display: flex;
   padding: 0.125rem;
   justify-content: center;
@@ -62,7 +62,7 @@
   min-width: 1rem;
 }
 
-.field-dropdown {
+.ls-dv-field-dropdown {
   position: absolute;
   top: 2rem;
   right: 0;
@@ -83,7 +83,7 @@
   z-index: 1000;
 }
 
-.required-field {
+.ls-dv-required-field {
   position: relative;
   display: flex;
   width: 100%;
@@ -98,21 +98,21 @@
   transition: all 0.1s ease-in-out;
 }
 
-.required-field:hover {
+.ls-dv-required-field:hover {
   background: var(--field-background-hover);
   color: var(--field-text-color-hover);
   border: 1px solid var(--field-border-color-hover);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.required-field-items-left {
+.ls-dv-required-field-items-left {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   width: 100%;
 }
 
-.required-field-items-left p {
+.ls-dv-required-field-items-left p {
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
@@ -122,13 +122,13 @@
   white-space: nowrap;
 }
 
-.dot {
+.ls-dv-dot {
   height: 0.5rem;
   width: 0.5rem;
   border-radius: 50%;
 }
 
-.role-label {
+.ls-dv-role-label {
   display: flex;
   padding: 0.125rem 0.1875rem;
   justify-content: center;
@@ -141,7 +141,7 @@
   text-transform: capitalize;
 }
 
-.dropdown-header h2 {
+.ls-dv-dropdown-header h2 {
   color: var(--gray-100, #45484d);
   font-size: 0.875rem;
   font-style: normal;
@@ -150,7 +150,7 @@
   margin-bottom: 0.125rem;
 }
 
-.dropdown-header p {
+.ls-dv-dropdown-header p {
   color: var(--gray-80, #6c6e73);
   font-size: 0.75rem;
   font-style: normal;

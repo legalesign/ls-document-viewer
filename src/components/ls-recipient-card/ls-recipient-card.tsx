@@ -93,7 +93,7 @@ export class LsRecipientCard {
       <Host>
         <div
           ref={el => (this.cardRef = el)}
-          class={`participant-card top-card full-card ${this.activeRecipient === this.recipient.signerIndex ? 'expanded' : ''}`}
+          class={`ls-dv-participant-card ls-dv-top-card ls-dv-full-card ${this.activeRecipient === this.recipient.signerIndex ? 'ls-dv-expanded' : ''}`}
           style={{
             background: defaultRolePalette[this.recipient?.signerIndex % 100].s10,
             border: `1px ${this.recipient.roleType === 'WITNESS' ? 'dashed' : 'solid'} ${defaultRolePalette[this.recipient?.signerIndex % 100].s60}`,
@@ -111,10 +111,10 @@ export class LsRecipientCard {
             this.setIsHovered(false);
           }}
         >
-          <div class={'participant-card-inner'}>
-            <div class={'participant-card-top-items'}>
+          <div class={'ls-dv-participant-card-inner'}>
+            <div class={'ls-dv-participant-card-top-items'}>
               <div
-                class={'role-label'}
+                class={'ls-dv-role-label'}
                 style={{
                   background: defaultRolePalette[this.recipient?.signerIndex % 100].s20,
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s90,
@@ -131,14 +131,14 @@ export class LsRecipientCard {
                 style={{ display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? 'block' : 'none' }}
               />
               <div
-                class="dot"
+                class="ls-dv-dot"
                 style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && this.validationErrors.filter(v => v?.signerIndex === this.recipient.signerIndex).length > 0 ? 'block' : 'none' }}
               />
             </div>
 
-            <div class={'participant-card-text'}>
+            <div class={'ls-dv-participant-card-text'}>
               <p
-                class="participant-text-description"
+                class="ls-dv-participant-text-description"
                 style={{
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
@@ -146,7 +146,7 @@ export class LsRecipientCard {
                 {this.recipient?.previousRecipientDecides ? 'To Be Decided' : this.recipient?.firstName + ' ' + this.recipient?.lastName}
               </p>
               <p
-                class="participant-text-type"
+                class="ls-dv-participant-text-type"
                 style={{
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
                 }}
@@ -155,7 +155,7 @@ export class LsRecipientCard {
               </p>
               {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div
-                  class={'role-label fields'}
+                  class={'ls-dv-role-label ls-dv-fields'}
                   style={{
                     background:
                       recipientFields.length === 0 ? defaultRolePalette[this.recipient?.signerIndex % 100].s60 : defaultRolePalette[this.recipient?.signerIndex % 100].s20,
@@ -169,7 +169,7 @@ export class LsRecipientCard {
               )} */}
             </div>
 
-            <div class="fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
+            <div class="ls-dv-fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
               {this.recipient.signerIndex > 0 && this.showTool('signature') && this.recipient?.roleType !== 'APPROVER' && (
                 <ls-toolbox-field
                   elementType="signature"

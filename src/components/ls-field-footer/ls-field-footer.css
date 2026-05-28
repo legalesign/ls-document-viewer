@@ -2,7 +2,7 @@
   display: block;
 }
 
-.button-footer {
+.ls-dv-button-footer {
   display: flex;
   padding-top: 1rem;
   border-top: 1px solid var(--gray-20, #f0f1f2);
@@ -13,25 +13,25 @@
 }
 
 
-button.secondary {
+button.ls-dv-secondary {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--white, #fff);
   color: var(--gray-90, #5e6066);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
-button.secondary:hover {
+button.ls-dv-secondary:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-button.destructive {
+button.ls-dv-destructive {
   border: 1px solid var(--red-60, #f04438);
   background-color: white;
   color: var(--red-60, #f04438);
 }
 
-button.destructive:hover {
+button.ls-dv-destructive:hover {
   border: 1px solid var(--red-70, #d92d20);
   background: var(--red-10, #fff1f0);
 }
@@ -54,6 +54,6 @@ button {
   min-width: 2.25rem;
 }
 
-.full-rounded {
+.ls-dv-full-rounded {
   border-radius: calc(infinity * 1px);
 }

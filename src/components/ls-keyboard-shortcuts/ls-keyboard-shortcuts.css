@@ -9,7 +9,7 @@
   padding: 0;
 }
 
-.keyboard-shortcuts-tooltip {
+.ls-dv-keyboard-shortcuts-tooltip {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -27,7 +27,7 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 -1px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
 }
 
-.tooltip-title {
+.ls-dv-tooltip-title {
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1rem;

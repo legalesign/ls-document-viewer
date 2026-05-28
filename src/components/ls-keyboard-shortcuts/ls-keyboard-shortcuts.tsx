@@ -9,7 +9,7 @@ export class LsKeyboardShortcuts {
 
   render() {
     return (
-      <div class={'keyboard-shortcuts-tooltip'}>
+      <div class={'ls-dv-keyboard-shortcuts-tooltip'}>
         <div id="arrow"></div>
         <svg width="187" height="243" viewBox="0 0 187 243" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path

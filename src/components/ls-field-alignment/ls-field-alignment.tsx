@@ -157,13 +157,13 @@ export class LsFieldAlignment {
   render() {
     return (
       <Host>
-        <div class={'ls-field-properties-section'}>
-          <div class={'ls-field-properties-section-text'}>
-            <p class={'ls-field-properties-section-title'}>Alignment</p>
-            <p class={'ls-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+        <div class={'ls-dv-field-properties-section'}>
+          <div class={'ls-dv-field-properties-section-text'}>
+            <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
+            <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
           </div>
-          <div class={'multi-button-group-row'}>
-            <div class={'button-group'}>
+          <div class={'ls-dv-multi-button-group-row'}>
+            <div class={'ls-dv-button-group'}>
               <button onClick={() => this.left()} aria-label="Align selected fields vertically about their left edge." data-tooltip="Align Left">
                 <ls-icon name="field-alignment-left"></ls-icon>
               </button>
@@ -180,7 +180,7 @@ export class LsFieldAlignment {
                 <ls-icon name="field-alignment-right"></ls-icon>
               </button>
             </div>
-            <div class={'button-group'}>
+            <div class={'ls-dv-button-group'}>
               <button onClick={() => this.top()} aria-label="Align selected fields by their top." data-tooltip="Align Top">
                 <ls-icon name="field-alignment-top"></ls-icon>
               </button>

@@ -55,32 +55,32 @@ export class LsNumberInput {
     } = this;
 
     const inputClass = clsx(
-      type === 'ls' ? 'input-ls' : 'input-basic',
+      type === 'ls' ? 'ls-dv-input-ls' : 'ls-dv-input-basic',
       disabled
-        ? 'disabled'
+        ? 'ls-dv-disabled'
         : dirty && valid
-          ? 'valid'
+          ? 'ls-dv-valid'
           : dirty && !valid
-            ? 'invalid'
-            : 'default',
-      fieldIcon && 'icon-input',
-      dirty && 'button-input',
-      buttonIcon && 'button-input',
-      buttonIcon && dirty && 'right-items-input',
+            ? 'ls-dv-invalid'
+            : 'ls-dv-default',
+      fieldIcon && 'ls-dv-icon-input',
+      dirty && 'ls-dv-button-input',
+      buttonIcon && 'ls-dv-button-input',
+      buttonIcon && dirty && 'ls-dv-right-items-input',
     );
 
     const plusMinusClass = clsx(
-      disabled ? 'button-disabled' : 'button'
+      disabled ? 'ls-dv-button-disabled' : 'ls-dv-button'
     )
 
     return (
-      <host class={type === 'ls' && 'host'}>
+      <host class={type === 'ls' && 'ls-dv-host'}>
         {type === 'ls' && (
           <button class={plusMinusClass} onClick={() => handleMinus()} disabled={disabled}>
             <ls-icon id='buttonIcon' name='minus-sm'></ls-icon>
           </button>
         )}
-        <div class='input-container'>
+        <div class='ls-dv-input-container'>
           {fieldIcon && (
             <ls-icon
               id={disabled ? 'fieldIconDisabled' : 'fieldIcon'}
@@ -99,7 +99,7 @@ export class LsNumberInput {
             disabled={disabled}
             onInput={(event) => handleChange(event)}
           />
-          <div class='right-items'>
+          <div class='ls-dv-right-items'>
             {dirty && !disabled && (
               <ls-icon
                 id={valid ? 'validIcon' : 'invalidIcon'}
@@ -107,7 +107,7 @@ export class LsNumberInput {
               ></ls-icon>
             )}
             {buttonIcon && type !== 'ls' && (
-              <button class='button' onClick={buttonClick}>
+              <button class='ls-dv-button' onClick={buttonClick}>
                 <ls-icon id='buttonIcon' name={buttonIcon}></ls-icon>
               </button>
             )}

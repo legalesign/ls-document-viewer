@@ -6,11 +6,11 @@
   margin: 0;
 }
 
-.ls-editor-infobox {
+.ls-dv-editor-infobox {
   padding: 0.25rem;
 }
 
-.toolbox-section-title {
+.ls-dv-toolbox-section-title {
   color: var(--gray-100, #45484d);
   font-size: 1.125rem;
   font-style: normal;
@@ -19,7 +19,7 @@
   margin-bottom: 0.375rem;
 }
 
-.toolbox-section-description {
+.ls-dv-toolbox-section-description {
   color: var(--gray-80, #5e6066);
   font-size: 0.75rem;
   font-style: normal;

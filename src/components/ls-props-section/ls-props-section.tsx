@@ -13,10 +13,10 @@ export class LsPropsSection {
   render() {
     return (
       <Host>
-        <div class={this.row ? 'ls-field-properties-section row' : 'ls-field-properties-section'}>
-          <div class={'ls-field-properties-section-text'}>
-            <p class={'ls-field-properties-section-title'}>{this.sectionTitle}</p>
-            {this.sectionDescription && <p class={'ls-field-properties-section-description'}>{this.sectionDescription}</p>}
+        <div class={this.row ? 'ls-dv-field-properties-section ls-dv-row' : 'ls-dv-field-properties-section'}>
+          <div class={'ls-dv-field-properties-section-text'}>
+            <p class={'ls-dv-field-properties-section-title'}>{this.sectionTitle}</p>
+            {this.sectionDescription && <p class={'ls-dv-field-properties-section-description'}>{this.sectionDescription}</p>}
           </div>
           <slot></slot>
         </div>

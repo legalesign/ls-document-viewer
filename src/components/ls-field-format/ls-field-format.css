@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-.ls-field-format-bar {
+.ls-dv-field-format-bar {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -34,8 +34,8 @@ a:hover {
   color: var(--primary-70, #2134dc);
 }
 
-.button-link,
-.button-link:hover {
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
   all: unset;
 }
 
@@ -44,7 +44,7 @@ select {
   height: 2.25rem;
 }
 
-.input-wrapper {
+.ls-dv-input-wrapper {
   position: relative;
   width: fit-content;
 }
@@ -67,7 +67,7 @@ select {
   color: var(--gray-80, #6c6e73);
 }
 
-.has-leading-icon {
+.ls-dv-has-leading-icon {
   padding-left: 2.5rem;
 }
 
@@ -138,7 +138,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked,
-input[type='checkbox'].indeterminate {
+input[type='checkbox'].ls-dv-indeterminate {
   background-color: var(--primary-60, #4456f6);
   border: none;
 }
@@ -155,7 +155,7 @@ input[type='checkbox']:checked::after {
   border-right: 0.125rem solid white;
 }
 
-input[type='checkbox'].indeterminate::after {
+input[type='checkbox'].ls-dv-indeterminate::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -167,7 +167,7 @@ input[type='checkbox'].indeterminate::after {
 }
 
 input[type='checkbox']:checked:hover,
-input[type='checkbox'].indeterminate:hover {
+input[type='checkbox'].ls-dv-indeterminate:hover {
   background-color: var(--primary-70, #2134dc);
   border: none;
 }
@@ -196,13 +196,13 @@ input[type='checkbox']:disabled:checked {
   cursor: not-allowed;
 }
 
-.checkbox-container {
+.ls-dv-checkbox-container {
   display: flex;
   gap: 0.5rem;
   width: 100%;
 }
 
-.checkbox-label {
+.ls-dv-checkbox-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -210,7 +210,7 @@ input[type='checkbox']:disabled:checked {
   line-height: 1rem;
 }
 
-.form-label {
+.ls-dv-form-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -218,14 +218,14 @@ input[type='checkbox']:disabled:checked {
   line-height: 1.5rem;
 }
 
-.form-field {
+.ls-dv-form-field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
 }
 
-.loading-box {
+.ls-dv-loading-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -249,18 +249,18 @@ button {
   min-width: 2.25rem;
 }
 
-button.tertiaryGrey {
+button.ls-dv-tertiary-grey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);
 }
 
-button.tertiaryGrey:hover {
+button.ls-dv-tertiary-grey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group {
+.ls-dv-button-group {
   display: flex;
   border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
@@ -268,7 +268,7 @@ button.tertiaryGrey:hover {
   overflow: clip;
 }
 
-.button-group button {
+.ls-dv-button-group button {
   display: flex;
   background: transparent;
   border-radius: unset;
@@ -278,19 +278,19 @@ button.tertiaryGrey:hover {
   color: var(--gray-80, #6c6e73);
 }
 
-.button-group button:hover {
+.ls-dv-button-group button:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group > :first-child {
+.ls-dv-button-group > :first-child {
   border-radius: 0.625rem 0 0 0.625rem;
 }
 
-.button-group > :last-child {
+.ls-dv-button-group > :last-child {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.button-group > :not(:first-child) {
+.ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
 

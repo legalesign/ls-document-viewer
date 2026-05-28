@@ -1,4 +1,4 @@
-.radioLabel{
+.ls-dv-radio-label{
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -6,63 +6,63 @@
   padding: 0.5rem 0.75rem;
 }
 
-.radioLabel.checked {
+.ls-dv-radio-label.ls-dv-checked {
   background-color: var(--primary-10);
   border-color: var(--primary-20);
   color: var(--primary-90)
 }
 
-.radioLabel:not(checked) {
+.ls-dv-radio-label:not(checked) {
   color: var(--gray-90);
   background-color: var(--gray-10);
   border: 1px solid var(--gray-20);
 }
 
-.radioLabel.checked:hover {
+.ls-dv-radio-label.ls-dv-checked:hover {
   border-color: var(--primary-30);
   color: var(--primary-100);
   
 }
 
-.radioLabel:not(.checked):not(.disabled):hover {
+.ls-dv-radio-label:not(.ls-dv-checked):not(.ls-dv-disabled):hover {
   border-color: var(--gray-50);
   color: var(--gray-100);
 }
 
-.radioLabel:focus:not(.disabled) {
+.ls-dv-radio-label:focus:not(.ls-dv-disabled) {
   box-shadow: var(--focus-box-shadow);
   outline-offset: var(--focus-outline-offset);
   outline: none;
 }
 
-.radioLabel.disabled {
+.ls-dv-radio-label.ls-dv-disabled {
   cursor: not-allowed;
 }
 
-.radioLabel.disabled.checked {
+.ls-dv-radio-label.ls-dv-disabled.ls-dv-checked {
   background-color: var(--primary-10);
   color: var(--primary-40);
   border-color: var(--primary-40);
 }
 
-.radioLabel.disabled:not(.checked) {
+.ls-dv-radio-label.ls-dv-disabled:not(.ls-dv-checked) {
   background-color: var(--gray-10);
   color: var(--gray-60);
 }
 
-.inputClass {
+.ls-dv-input-class {
   margin-top: 0px;
 }
 
-.inputClass:focus {
+.ls-dv-input-class:focus {
   outline: none;
 }
 
-.inputClass:disabled {
+.ls-dv-input-class:disabled {
   cursor: not-allowed;
 }
 
-.spanContainer {
+.ls-dv-span-container {
   display: flex;
   gap: 0.25rem;
   align-items: center;

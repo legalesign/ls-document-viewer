@@ -1,4 +1,4 @@
-.controls-bar {
+.ls-dv-controls-bar {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -25,7 +25,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.divider {
+.ls-dv-divider {
   height: 1px;
   background-color: var(--gray-30, #e0e2e5);
   width: 100%;

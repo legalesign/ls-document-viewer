@@ -78,7 +78,7 @@ export class LsToolbar {
 
   private renderEditor() {
     return (
-      <div class="ls-toolbar">
+      <div class="ls-dv-toolbar">
         {this.dataItem && this.dataItem.length > 1 ? (
           <div class="rowbox">
             <ls-field-format dataItem={this.dataItem} />
@@ -101,7 +101,7 @@ export class LsToolbar {
 
   private renderCompose() {
     return (
-      <div class={this.dataItem && this.dataItem.length > 0 ? 'ls-toolbar' : ''}>
+      <div class={this.dataItem && this.dataItem.length > 0 ? 'ls-dv-toolbar' : ''}>
         <div class="rowbox">
           <ls-field-format dataItem={this.dataItem} />
         </div>

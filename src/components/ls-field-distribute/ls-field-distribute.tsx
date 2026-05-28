@@ -182,12 +182,12 @@ export class LsFieldDistribute {
   render() {
     return (
       <Host>
-        <div class={'ls-field-properties-section'}>
-          <div class={'ls-field-properties-section-text'}>
-            <p class={'ls-field-properties-section-title'}>Distribution</p>
-            <p class={'ls-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+        <div class={'ls-dv-field-properties-section'}>
+          <div class={'ls-dv-field-properties-section-text'}>
+            <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
+            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
           </div>
-          <div class={'button-group'}>
+          <div class={'ls-dv-button-group'}>
             <button
               onClick={() => {
                 this.distributeVertical();
@@ -208,17 +208,17 @@ export class LsFieldDistribute {
             </button>
           </div>
         </div>
-        <div class={'ls-field-properties-section'}>
-          <div class={'ls-field-properties-section-text'}>
-            <p class={'ls-field-properties-section-title'}>Gap</p>
-            <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+        <div class={'ls-dv-field-properties-section'}>
+          <div class={'ls-dv-field-properties-section-text'}>
+            <p class={'ls-dv-field-properties-section-title'}>Gap</p>
+            <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
           </div>
-          <div class={'input-row'}>
-            <div class={'input-wrapper'} data-tooltip="Set vertical gap between selected fields">
+          <div class={'ls-dv-input-row'}>
+            <div class={'ls-dv-input-wrapper'} data-tooltip="Set vertical gap between selected fields">
               <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
               <input
                 type="number"
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
                 id="ls-fix-vertical-space"
                 onChange={e => {
                   this.gapVertical(parseInt((e.target as HTMLInputElement).value));
@@ -229,11 +229,11 @@ export class LsFieldDistribute {
                 size={4}
               />
             </div>
-            <div class={'input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
+            <div class={'ls-dv-input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
               <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
               <input
                 type="number"
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
                 id="ls-fix-horizontal-space"
                 onChange={e => {
                   this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));

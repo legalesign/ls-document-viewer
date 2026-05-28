@@ -46,7 +46,7 @@ export class LsIcon {
           ?.map((icon) => (
             <div
               key={icon?.name}
-              class='iconContainer'
+              class='ls-dv-icon-container'
               style={{
                 height: `${this.size}`,
                 width: `${this.size}`,

@@ -18,7 +18,7 @@ export class LsHelperBar {
   render() {
     return (
       <Host>
-        <div class={'controls-bar'} onMouseEnter={() => (this.expanded = true)} onMouseLeave={() => (this.expanded = false)}>
+        <div class={'ls-dv-controls-bar'} onMouseEnter={() => (this.expanded = true)} onMouseLeave={() => (this.expanded = false)}>
           <button
             style={!this.expanded ? { display: 'none' } : { display: 'block', position: 'relative' }}
             id="keyboard-btn"
@@ -37,7 +37,7 @@ export class LsHelperBar {
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')}>
             <ls-icon name="support" data-tooltip="Contact Support" data-tooltip-placement="left" />
           </button>
-          <div class="divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />
+          <div class="ls-dv-divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />
           <button>
             <ls-icon name="question-mark-circle" />
           </button>

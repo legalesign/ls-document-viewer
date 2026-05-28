@@ -53,10 +53,10 @@ export class LsStatusbar {
   render() {
     return (
       <Host>
-        <div class={'controls-bar'}>
+        <div class={'ls-dv-controls-bar'}>
         {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
-        <div class={'status-bar-section'}>
+        <div class={'ls-dv-status-bar-section'}>
           <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
             <ls-icon name="zoom-out" />
           </button>
@@ -65,7 +65,7 @@ export class LsStatusbar {
             <ls-icon name="zoom-in" />
           </button>
         </div>
-        <div class={'status-bar-section'}>
+        <div class={'ls-dv-status-bar-section'}>
           <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip="Fit Width">
             <ls-icon name="fit-width" />
           </button>
@@ -73,7 +73,7 @@ export class LsStatusbar {
             <ls-icon name="fit-height" />
           </button>
         </div>
-        <div class={'status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
+        <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
           <button
             onClick={() => {
               this.editor.pagePrev();

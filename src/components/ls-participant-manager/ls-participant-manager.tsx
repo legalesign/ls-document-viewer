@@ -92,11 +92,11 @@ export class LsParticipantManager {
   render() {
     return (
       <Host>
-        <div class="ls-editor-infobox">
-          <h2 class="toolbox-section-title">Participants</h2>
-          <p class="toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
+        <div class="ls-dv-editor-infobox">
+          <h2 class="ls-dv-toolbox-section-title">Participants</h2>
+          <p class="ls-dv-toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
         </div>
-        <div class="participant-list">
+        <div class="ls-dv-participant-list">
           {this.template &&
             this.template?.roles.map((r, index) => {
               return (
@@ -112,7 +112,7 @@ export class LsParticipantManager {
               );
             })}
         </div>
-        <div class={'add-participant-button'}>
+        <div class={'ls-dv-add-participant-button'}>
           <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
             <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
             <p>Add Participant</p>
