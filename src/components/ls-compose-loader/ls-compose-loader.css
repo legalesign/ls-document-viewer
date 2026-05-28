@@ -36,7 +36,7 @@
   width: 10rem;
   height: 0.75rem;
   background: linear-gradient(90deg, var(--gray-30) 25%, transparent 100%);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   animation: pulse 1.5s infinite;
 }
 
@@ -87,7 +87,7 @@
 .compose-loader__skeleton,
 .compose-loader__icon-skeleton {
   background: linear-gradient(90deg, var(--gray-30) 25%, transparent 100%);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   animation: pulse 1.5s infinite;
 }
 
@@ -197,7 +197,7 @@
   background: var(--white, #fff);
   border: 1px solid var(--gray-20);
   padding: 0.5rem 1rem 0.5rem 0.5rem;
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   align-items: center;
 }
 
@@ -209,14 +209,14 @@
   min-height: 2.375rem;
   background: var(--blue-10);
   border: 1px solid var(--blue-30);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 .compose-loader__icon--blue {
   width: 1.25rem;
   height: 1.25rem;
   background: linear-gradient(90deg, var(--blue-30) 25%, transparent 100%);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 .compose-loader__icon-skeleton--green {
@@ -227,14 +227,14 @@
   min-height: 2.375rem;
   background: var(--green-10);
   border: 1px solid var(--green-30);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 .compose-loader__icon--green {
   width: 1.25rem;
   height: 1.25rem;
   background: linear-gradient(90deg, var(--green-30) 25%, transparent 100%);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 .compose-loader__row-content {

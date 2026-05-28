@@ -17,7 +17,7 @@ button {
 
 button:hover {
   color: var(--gray-100, #45484d);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
 }
 
 button:disabled {

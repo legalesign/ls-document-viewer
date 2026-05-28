@@ -93,6 +93,7 @@ export class LsLeftBar {
               this.clearSelected.emit();
               e.preventDefault();
             }}
+            style={{ borderRadius: '0.75rem' }}
             data-tooltip="Close Properties Panel"
           >
             <ls-icon name="x" size="1.25rem" />
