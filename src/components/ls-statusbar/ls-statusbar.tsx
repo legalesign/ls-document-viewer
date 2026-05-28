@@ -172,7 +172,7 @@ export class LsStatusbar {
               <ls-icon name="chevron-right" />
             </button>
           </div>
-          <div class={'ls-dv-status-bar-section'}>
+          <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 ? { display: 'none' } : {}}>
             <button
               onClick={() => {
                 this.showThumbnails = !this.showThumbnails;
@@ -186,7 +186,7 @@ export class LsStatusbar {
               id="page-thumbnails-btn"
               data-tooltip="Page Thumbnails"
             >
-              <ls-icon name={!this.showThumbnails ? "side-panel-open-right" : "side-panel-close-right"} />
+              <ls-icon name={!this.showThumbnails ? 'side-panel-open-right' : 'side-panel-close-right'} />
             </button>
           </div>
           {this.showThumbnails && (
