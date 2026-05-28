@@ -54,19 +54,23 @@ export class LsFieldPlacement {
   }
 
   center() {
-    return this.dataItem[0].pageDimensions[this.dataItem[0].page].width / 2 - this.dataItem[0].width / 2;
+    const item = this.dataItem as LSApiElement;
+    return item.pageDimensions.width / 2 - item.width / 2;
   }
 
   right() {
-    return this.dataItem[0].pageDimensions[this.dataItem[0].page].width - this.dataItem[0].width;
+    const item = this.dataItem as LSApiElement;
+    return item.pageDimensions.width - item.width;
   }
 
   middle() {
-    return this.dataItem[0].pageDimensions[this.dataItem[0].page].height / 2 - this.dataItem[0].height / 2;
+    const item = this.dataItem as LSApiElement;
+    return item.pageDimensions.height / 2 - item.height / 2;
   }
 
   bottom() {
-    return this.dataItem[0].pageDimensions[this.dataItem[0].page].height - this.dataItem[0].height;
+    const item = this.dataItem as LSApiElement;
+    return item.pageDimensions.height - item.height;
   }
 
   componentDidLoad() {
