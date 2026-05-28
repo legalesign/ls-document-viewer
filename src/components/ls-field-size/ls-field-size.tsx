@@ -36,12 +36,12 @@ export class LsFieldSize {
   render() {
     return (
       <Host>
-        <div class={'ls-field-properties-section'}>
-          <div class={'ls-field-properties-section-text'}>
-            <p class={'ls-field-properties-section-title'}>Scale and Resize</p>
-            <p class={'ls-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+        <div class={'ls-dv-field-properties-section'}>
+          <div class={'ls-dv-field-properties-section-text'}>
+            <p class={'ls-dv-field-properties-section-title'}>Scale and Resize</p>
+            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
           </div>
-          <div class={'button-group'}>
+          <div class={'ls-dv-button-group'}>
             <button
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
               aria-label="Make selected fields the same height and width as the first selected field."

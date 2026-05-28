@@ -9,9 +9,9 @@ export class LsRecipientManager {
   render() {
     return (
       <Host>
-        <div class={'ls-editor-infobox'}>
-          <h2 class="toolbox-section-title">Recipients & Fields</h2>
-          <p class="toolbox-section-description">Select Recipient to Expand and Drag to place Signature fields where you’d like them to Sign.</p>
+        <div class={'ls-dv-editor-infobox'}>
+          <h2 class="ls-dv-toolbox-section-title">Recipients & Fields</h2>
+          <p class="ls-dv-toolbox-section-description">Select Recipient to Expand and Drag to place Signature fields where you’d like them to Sign.</p>
         </div>
         <slot></slot>
       </Host>

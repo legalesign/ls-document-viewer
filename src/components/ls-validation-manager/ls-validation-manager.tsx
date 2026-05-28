@@ -21,8 +21,8 @@ export class LsValidationManager {
       <Host>
         <div>
           <div>
-            <div class={'validation-section-title'}>Action Required</div>
-            <p class="toolbox-section-description">
+            <div class={'ls-dv-validation-section-title'}>Action Required</div>
+            <p class="ls-dv-toolbox-section-description">
               This document needs fields added or corrected before it can be sent.
             </p>
           </div>
@@ -33,7 +33,7 @@ export class LsValidationManager {
             return (
               <div
                 key={idx}
-                class={'required-field'}
+                class={'ls-dv-required-field'}
                 style={{
                   '--field-background': pallette.s10,
                   '--field-border-color': pallette.s10,
@@ -43,12 +43,12 @@ export class LsValidationManager {
                   '--field-border-color-hover': pallette.s60,
                 }}
               >
-                <div class={'required-field-items-left'}>
-                  <div class={'dot'} style={{ background: pallette.s60 }} />
+                <div class={'ls-dv-required-field-items-left'}>
+                  <div class={'ls-dv-dot'} style={{ background: pallette.s60 }} />
                   {field?.role && (
-                    <div class={'required-field-items-left'}>
+                    <div class={'ls-dv-required-field-items-left'}>
                       <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
-                      <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                      <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
                         {field.role?.roleType.toLowerCase() || `Signer ${field.role?.signerIndex + 1}`}
                       </div>
                     </div>
@@ -68,7 +68,7 @@ export class LsValidationManager {
                         />
 
                       <p style={{ color: pallette.s80 }}>{field.role?.name || `${field.element.formElementType} ${field?.element?.label + 1}`}</p>
-                      <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                      <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
                         {field.description}
                       </div>
                     </>

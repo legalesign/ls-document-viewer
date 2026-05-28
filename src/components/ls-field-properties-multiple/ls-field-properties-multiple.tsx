@@ -77,22 +77,22 @@ export class LsFieldPropertiesMultiple {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
-          <div class={'field-set'} slot="content">
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Field Type</p>
-                <p class={'ls-field-properties-section-description'}>The Fields you currently have selected</p>
+          <div class={'ls-dv-field-set'} slot="content">
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Field Type</p>
+                <p class={'ls-dv-field-properties-section-description'}>The Fields you currently have selected</p>
               </div>
               <div
-                class={'ls-field-type-wrapper'}
+                class={'ls-dv-field-type-wrapper'}
                 style={{
                   border: `1px dashed ${defaultRolePalette[this.allSignersSame().signer % 100].s30}`,
                   background: defaultRolePalette[this.allSignersSame().signer % 100].s10,
                 }}
               >
-                <div class={'ls-field-type-inner'}>
+                <div class={'ls-dv-field-type-inner'}>
                   <div
-                    class={'ls-field-type-icon'}
+                    class={'ls-dv-field-type-icon'}
                     style={{
                       border: `1px solid ${defaultRolePalette[this.allSignersSame().signer % 100].s60}`,
                       color: defaultRolePalette[this.allSignersSame().signer % 100].s60,
@@ -101,32 +101,32 @@ export class LsFieldPropertiesMultiple {
                   >
                     <ls-icon name={getFieldIcon(this.allElementsSame().elementType)} size="1.25rem" />
                   </div>
-                  <p class={'ls-field-type-name'}>
+                  <p class={'ls-dv-field-type-name'}>
                     {this.dataItem.length} {this.allElementsSame().elementType} {'Fields'}
                   </p>
                 </div>
               </div>
             </div>
-            <div class={'ls-field-properties-section row'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Required Field</p>
+            <div class={'ls-dv-field-properties-section ls-dv-row'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Required Field</p>
               </div>
               <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Field Label</p>
-                <p class={'ls-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Field Label</p>
+                <p class={'ls-dv-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
               </div>
               <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder="eg. Sign Here" />
             </div>
           </div>
-          <div class={'field-set'} slot="dimensions">
+          <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} />
             <ls-field-size dataItem={this.dataItem} />
           </div>
-          <div class={'field-set'} slot="placement">
+          <div class={'ls-dv-field-set'} slot="placement">
             <ls-field-alignment dataItem={this.dataItem} />
             <ls-field-placement dataItem={this.dataItem} />
             <ls-field-distribute dataItem={this.dataItem} />

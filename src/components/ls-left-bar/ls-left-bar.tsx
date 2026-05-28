@@ -55,7 +55,7 @@ export class LsLeftBar {
     try {
       const recipientManager = this.el.shadowRoot.getElementById('ls-recipient-manager');
       if (recipientManager) {
-        const recipientsBox = recipientManager.querySelector('.recipients-box');
+        const recipientsBox = recipientManager.querySelector('.ls-dv-recipients-box');
         if (recipientsBox) {
           recipientsBox.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -81,14 +81,14 @@ export class LsLeftBar {
   private renderFieldProperties() {
     if (this.displayTable || this.selected.length === 0) return null;
     return (
-      <div class="field-properties-outer">
-        <div class="properties-header">
-          <div class="properties-header-icon">
+      <div class="ls-dv-field-properties-outer">
+        <div class="ls-dv-properties-header">
+          <div class="ls-dv-properties-header-icon">
             <ls-icon name="pre-filled-content" />
           </div>
-          <h1 class="properties-header-title">Field Properties</h1>
+          <h1 class="ls-dv-properties-header-title">Field Properties</h1>
           <button
-            class="tertiaryGrey"
+            class="ls-dv-tertiaryGrey"
             onClick={e => {
               this.clearSelected.emit();
               e.preventDefault();
@@ -106,12 +106,12 @@ export class LsLeftBar {
 
   private renderToolbox() {
     return (
-      <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'toolbox' : 'hidden'}>
-        <div class="ls-editor-infobox">
-          <h2 class="toolbox-section-title">Fields</h2>
-          <p class="toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
+      <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'ls-dv-toolbox' : 'ls-dv-hidden'}>
+        <div class="ls-dv-editor-infobox">
+          <h2 class="ls-dv-toolbox-section-title">Fields</h2>
+          <p class="ls-dv-toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
         </div>
-        <div class="fields-box">
+        <div class="ls-dv-fields-box">
           {this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER') && (
             <ls-toolbox-field
               elementType="signature"
@@ -301,13 +301,13 @@ export class LsLeftBar {
 
   private renderEditor() {
     return (
-      <div id="ls-left-box" class="leftBox">
-        <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
+      <div id="ls-left-box" class="ls-dv-leftBox">
+        <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-feature-column mode={this.mode} onManage={manager => this.managerChange.emit(manager.detail)} />
           {this.renderToolbox()}
-          <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'toolbox' : 'hidden'} />
-          <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'toolbox' : 'hidden'} />
-          <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'toolbox' : 'hidden'} />
+          <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
+          <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
+          <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
         </div>
         {this.renderFieldProperties()}
       </div>
@@ -316,13 +316,13 @@ export class LsLeftBar {
 
   private renderCompose() {
     return (
-      <div id="ls-left-box" class="leftBox">
-        <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
-          <ls-recipient-manager id="ls-recipient-manager" class="compose-toolbox">
-            <div class="scroll-gradient-top" />
-            <div class="scroll-gradient-bottom" />
+      <div id="ls-left-box" class="ls-dv-leftBox">
+        <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
+          <ls-recipient-manager id="ls-recipient-manager" class="ls-dv-compose-toolbox">
+            <div class="ls-dv-scroll-gradient-top" />
+            <div class="ls-dv-scroll-gradient-bottom" />
             <ls-validation-tag validationErrors={this.validationErrors} style={{ position: 'absolute', top: '1.125rem', right: '1rem' }} type="compose" />
-            <div class="recipients-box">
+            <div class="ls-dv-recipients-box">
               {this.recipients &&
                 this.recipients.map(recipient => (
                   <ls-recipient-card

@@ -18,11 +18,11 @@ export class LsComposeManager {
   render() {
     return (
       <Host>
-          <div class="ls-editor-infobox">
-          <h2 class="toolbox-section-title">Recipient Fields</h2>
-          <p class="toolbox-section-description">Select and Click to place Signature fields where on the Document.</p>
+          <div class="ls-dv-editor-infobox">
+          <h2 class="ls-dv-toolbox-section-title">Recipient Fields</h2>
+          <p class="ls-dv-toolbox-section-description">Select and Click to place Signature fields where on the Document.</p>
         </div>
-        <div class="participant-list">
+        <div class="ls-dv-participant-list">
           {this.template &&
             this.template?.roles.map(() => {
               return (

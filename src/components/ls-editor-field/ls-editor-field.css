@@ -6,7 +6,7 @@
   isolation: isolate;
 }
 
-.ls-editor-field-editable {
+.ls-dv-editor-field-editable {
   display: block;
   font-family: inherit;
   font-size: inherit;
@@ -22,11 +22,11 @@
   width: 100%;
 }
 
-.ls-editor-field-editable:focus {
+.ls-dv-editor-field-editable:focus {
   outline: none;
 }
 
-.ls-editor-field-draggable {
+.ls-dv-editor-field-draggable {
   display: block;
   font-family: inherit;
   font-size: inherit;
@@ -41,11 +41,11 @@
   width: 98%;
 }
 
-/* .is-selected {
+/* .ls-dv-is-selected {
     border: 1px dotted rgb(193, 26, 26);
 } */
 
-.hidden-field {
+.ls-dv-hidden-field {
   display: none;
 }
 
@@ -53,7 +53,7 @@ input {
   all: unset;
 }
 
-.draggable-input {
+.ls-dv-draggable-input {
   font-family: inherit;
   font-size: inherit;
   position: relative;
@@ -61,18 +61,18 @@ input {
   width: 95%;
 }
 
-.editing-input {
+.ls-dv-editing-input {
   caret-color: rgb(15 23 42);
   caret-shape: auto;
   height: 100%;
   width: 100%;
 }
 
-.required-icon {
+.ls-dv-required-icon {
   color: var(--red-60, #f64a44);
 }
 
-.x-button {
+.ls-dv-x-button {
   all: unset;
   cursor: pointer;
   transform: translate(55%, -55%);
@@ -84,6 +84,6 @@ input {
   right: 0;
 }
 
-.x-button:hover {
+.ls-dv-x-button:hover {
   background: var(--gray-90, #1c1c1c);
 }

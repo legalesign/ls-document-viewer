@@ -67,19 +67,19 @@ export class LsFieldDimensions {
     return (
       <Host>
         {this.isMultiple(this.dataItem) && (
-          <div class={'ls-field-properties-section'}>
-            <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Height and Width</p>
-              <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
+          <div class={'ls-dv-field-properties-section'}>
+            <div class={'ls-dv-field-properties-section-text'}>
+              <p class={'ls-dv-field-properties-section-title'}>Height and Width</p>
+              <p class={'ls-dv-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
             </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'} data-tooltip="Set field width in pixels">
+            <div class={'ls-dv-input-row'}>
+              <div class={'ls-dv-input-wrapper'} data-tooltip="Set field width in pixels">
                 <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
-                <input class={'has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
+                <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
-              <div class={'input-wrapper'} data-tooltip="Set field height in pixels">
+              <div class={'ls-dv-input-wrapper'} data-tooltip="Set field height in pixels">
                 <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
-                <input class={'has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
+                <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
             </div>
 
@@ -92,18 +92,18 @@ export class LsFieldDimensions {
           </div>
         )}
         {this.isSingle(this.dataItem) && (
-          <div class={'field-set'}>
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Height and Width</p>
-                <p class={'ls-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
+          <div class={'ls-dv-field-set'}>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Height and Width</p>
+                <p class={'ls-dv-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
               </div>
-              <div class={'input-row'}>
-                <div class={'input-wrapper'} data-tooltip="Set field width in pixels">
+              <div class={'ls-dv-input-row'}>
+                <div class={'ls-dv-input-wrapper'} data-tooltip="Set field width in pixels">
                   <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
                   <input
                     type="number"
-                    class={'has-leading-icon'}
+                    class={'ls-dv-has-leading-icon'}
                     aria="field-width"
                     id="field-width"
                     min={5}
@@ -118,11 +118,11 @@ export class LsFieldDimensions {
                     }}
                   />
                 </div>
-                <div class={'input-wrapper'} data-tooltip="Set field height in pixels">
+                <div class={'ls-dv-input-wrapper'} data-tooltip="Set field height in pixels">
                   <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
                   <input
                     type="number"
-                    class={'has-leading-icon'}
+                    class={'ls-dv-has-leading-icon'}
                     aria="field-height"
                     id="field-height"
                     value={this.dataItem?.height}
@@ -139,12 +139,12 @@ export class LsFieldDimensions {
               </div>
             </div>
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Scale and Resize</p>
-                <p class={'ls-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Scale and Resize</p>
+                <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
               </div>
-              <div class={'button-group'}>
+              <div class={'ls-dv-button-group'}>
                 <button disabled data-tooltip="Select multiple Fields to to access scale controls">
                   <ls-icon name="field-scale"></ls-icon>
                 </button>

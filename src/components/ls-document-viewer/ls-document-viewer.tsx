@@ -608,7 +608,7 @@ export class LsDocumentViewer {
   showPageFields(page: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     Array.from(fields).forEach(fx => {
-      fx.className = fx.dataItem.page === page ? '' : 'hidden';
+      fx.className = fx.dataItem.page === page ? '' : 'ls-dv-hidden';
       // Find assignee for this field
       const data = fx.dataItem;
       const assignee = this.mode === 'compose' ? this._recipients?.find(r => r.signerIndex === data.signer) : this._template.roles.find(r => r.signerIndex === data.signer);
@@ -696,24 +696,24 @@ export class LsDocumentViewer {
           {this.isLoading && (
             <>
               <ls-page-loader />
-              <div class={'custom-loader-slot'}>
+              <div class={'ls-dv-custom-loader-slot'}>
                 <slot name="custom-loader"></slot>
               </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
           )}
-          <div class="page-header">
-            <div class={'left-slot-wrapper'}>
+          <div class="ls-dv-page-header">
+            <div class={'ls-dv-left-slot-wrapper'}>
               <slot name="left-button" />
             </div>
-            <div class={'right-slot-wrapper'}>
+            <div class={'ls-dv-right-slot-wrapper'}>
               <slot name="right-button" />
             </div>
             {this.mode === 'editor' && (
               <div>
-                <span class="header-text-1">Template Creation</span>
+                <span class="ls-dv-header-text-1">Template Creation</span>
                 <span>/</span>
-                <span class="header-text-2">{this._template?.title}</span>
+                <span class="ls-dv-header-text-2">{this._template?.title}</span>
               </div>
             )}
             {this.mode === 'compose' && (
@@ -723,7 +723,7 @@ export class LsDocumentViewer {
             )}
           </div>
           {this.mode === 'editor' && (
-            <div class={'validation-tag-wrapper'}>
+            <div class={'ls-dv-validation-tag-wrapper'}>
               <ls-validation-tag validationErrors={this.validationErrors} />
             </div>
           )}
@@ -750,10 +750,10 @@ export class LsDocumentViewer {
             </ls-left-bar>
             <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} />
             <div id="ls-mid-area">
-              <div class={'document-frame-wrapper'} id="document-frame-wrapper">
+              <div class={'ls-dv-document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
-                  <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'hidden' : ''}></canvas>
-                  <ls-editor-table editor={this} class={this.displayTable ? '' : 'hidden'} />
+                  <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'ls-dv-hidden' : ''}></canvas>
+                  <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
                   <div id="ls-box-selector"></div>
                 </div>
               </div>

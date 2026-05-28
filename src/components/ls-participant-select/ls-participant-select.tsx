@@ -70,8 +70,8 @@ export class LsParticipantSelect {
   render() {
     return (
       <Host>
-        <div class="dropdown">
-          <div class="dropdown-header" onClick={this.toggleDropdown}>
+        <div class="ls-dv-dropdown">
+          <div class="ls-dv-dropdown-header" onClick={this.toggleDropdown}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 0.5H6.5C8.433 0.5 10 2.067 10 4V6.5C10 8.433 8.433 10 6.5 10H4C2.067 10 0.5 8.433 0.5 6.5V4C0.5 2.067 2.067 0.5 4 0.5Z" fill="#78A3FA" stroke="#F7F8FA" />
               <path
@@ -92,9 +92,9 @@ export class LsParticipantSelect {
                 stroke-linejoin="round"
               />
             </svg>
-            <p class={'placing-fields-text'}>Placing Fields for</p>
+            <p class={'ls-dv-placing-fields-text'}>Placing Fields for</p>
             <div
-              class={'selected-role-label'}
+              class={'ls-dv-selected-role-label'}
               style={{
                 background: defaultRolePalette[this.selectedRole?.signerIndex % 100].s20,
                 color: defaultRolePalette[this.selectedRole?.signerIndex % 100].s80,
@@ -115,27 +115,27 @@ export class LsParticipantSelect {
               {this.selectedRole.name ||
                 (this.selectedRole.roleType === 'WITNESS' ? `Witness` : `Participant ${this.selectedRole.signerIndex}`)}
             </div>
-            <button class={'tertiaryGrey expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
+            <button class={'ls-dv-tertiaryGrey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>
             </button>
           </div>
           {this.isOpen && (
-            <div class="dropdown-list">
+            <div class="ls-dv-dropdown-list">
               
               <div
-                class={this.selectedRole?.signerIndex === 0 ? 'dropdown-item selected' : 'dropdown-item'}
+                class={this.selectedRole?.signerIndex === 0 ? 'ls-dv-dropdown-item ls-dv-selected' : 'ls-dv-dropdown-item'}
                 style={{
                   '--background-selected': defaultRolePalette[0].s10,
                   '--check-icon-selected': defaultRolePalette[0].s50,
                 }}
                 onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender', roleType: 'SENDER' })}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle')}
                 onMouseLeave={e =>
-                  (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
+                  (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
                 }
               >
                 <div
-                  class={'role-icon'}
+                  class={'ls-dv-role-icon'}
                   style={{
                     background: defaultRolePalette[0].s50,
                     color: defaultRolePalette[0].s80,
@@ -143,9 +143,9 @@ export class LsParticipantSelect {
                 >
                   <ls-icon name="user" />
                 </div>
-                <div class={'role-text'}>
+                <div class={'ls-dv-role-text'}>
                   <p
-                    class={'role-name'}
+                    class={'ls-dv-role-name'}
                     style={{
                       '--role-name-selected': defaultRolePalette[0].s80,
                     }}
@@ -153,7 +153,7 @@ export class LsParticipantSelect {
                     {'Sender'}
                   </p>
                   <p
-                    class={'role-type'}
+                    class={'ls-dv-role-type'}
                     style={{
                       '--role-type-selected': defaultRolePalette[0].s80,
                     }}
@@ -162,25 +162,25 @@ export class LsParticipantSelect {
                   </p>
                 </div>
 
-                <ls-icon class={'check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle' : 'base-circle'} solid={this.selectedRole?.signerIndex === 0} />
+                <ls-icon class={'ls-dv-check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle' : 'base-circle'} solid={this.selectedRole?.signerIndex === 0} />
               </div>
               {this.roles.map(r => (
                 <div
-                  class={r.signerIndex === this.selectedRole?.signerIndex ? 'dropdown-item selected' : 'dropdown-item'}
+                  class={r.signerIndex === this.selectedRole?.signerIndex ? 'ls-dv-dropdown-item ls-dv-selected' : 'ls-dv-dropdown-item'}
                   style={{
                     '--background-selected': defaultRolePalette[r?.signerIndex % 100].s10,
                     '--check-icon-selected': defaultRolePalette[r?.signerIndex % 100].s50,
                   }}
                   onClick={() => this.selectRole(r)}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.check-icon')?.setAttribute('name', 'check-circle')}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle')}
                   onMouseLeave={e =>
                     (e.currentTarget as HTMLElement)
-                      .querySelector('.check-icon')
+                      .querySelector('.ls-dv-check-icon')
                       ?.setAttribute('name', r.signerIndex !== this.selectedRole?.signerIndex ? 'base-circle' : 'check-circle')
                   }
                 >
                   <div
-                    class={'role-icon'}
+                    class={'ls-dv-role-icon'}
                     style={{
                       background: r.signerIndex > 100 ? defaultRolePalette[r?.signerIndex % 100].s30 : defaultRolePalette[r?.signerIndex % 100].s40,
                       color: defaultRolePalette[r?.signerIndex % 100].s90,
@@ -188,9 +188,9 @@ export class LsParticipantSelect {
                   >
                     <ls-icon name={r.roleType === 'WITNESS' ? 'eye' : r.roleType === 'APPROVER' ? 'check-circle' : 'signature'} />
                   </div>
-                  <div class={'role-text'}>
+                  <div class={'ls-dv-role-text'}>
                     <p
-                      class={'role-name'}
+                      class={'ls-dv-role-name'}
                       style={{
                         '--role-name-selected': defaultRolePalette[r?.signerIndex % 100].s100,
                       }}
@@ -198,7 +198,7 @@ export class LsParticipantSelect {
                       {r.name || (r.signerIndex > 100 ? `Participant ${r.signerIndex - 100} Witness` : `Participant ${r.signerIndex}`)}
                     </p>
                     <p
-                      class={'role-type'}
+                      class={'ls-dv-role-type'}
                       style={{
                         '--role-type-selected': defaultRolePalette[r?.signerIndex % 100].s80,
                       }}
@@ -207,7 +207,7 @@ export class LsParticipantSelect {
                     </p>
                   </div>
                   <ls-icon
-                    class={'check-icon'}
+                    class={'ls-dv-check-icon'}
                     name={r.signerIndex === this.selectedRole?.signerIndex ? 'check-circle' : 'base-circle'}
                     solid={r.signerIndex === this.selectedRole?.signerIndex}
                   />
@@ -215,22 +215,22 @@ export class LsParticipantSelect {
               ))}
               <button
                 onClick={() => this.createHandler()}
-                class={'add-participant-row'}
+                class={'ls-dv-add-participant-row'}
                 style={{
                   '--background-selected': defaultRolePalette[1].s10,
                   '--check-icon-selected': defaultRolePalette[1].s50,
                 }}
               >
                 <div
-                  class={'add-participant-icon'}
+                  class={'ls-dv-add-participant-icon'}
                 >
                   <ls-icon name="user-add" />
                 </div>
-                <div class={'role-text'}>
-                  <p class={'role-name'}>Add Participant</p>
-                  <p class={'role-type'}>Add a new Signer</p>
+                <div class={'ls-dv-role-text'}>
+                  <p class={'ls-dv-role-name'}>Add Participant</p>
+                  <p class={'ls-dv-role-type'}>Add a new Signer</p>
                 </div>
-                <ls-icon class={'plus-icon'} name="plus" />
+                <ls-icon class={'ls-dv-plus-icon'} name="plus" />
               </button>
             </div>
           )}

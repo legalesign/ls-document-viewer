@@ -13,14 +13,14 @@ export class LsFieldPropertiesFile {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
-          <div class={'field-set'} slot="content">
+          <div class={'ls-dv-field-set'} slot="content">
             <ls-field-content dataItem={this.dataItem} />
             <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
-          <div class={'field-set'} slot="dimensions">
+          <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} />
           </div>
-          <div class={'field-set'} slot="placement">
+          <div class={'ls-dv-field-set'} slot="placement">
             <ls-field-placement dataItem={this.dataItem} />
           </div>
         </ls-field-properties-container>

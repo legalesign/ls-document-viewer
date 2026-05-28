@@ -84,7 +84,7 @@ h6 {
   padding: 0px;
 }
 
-.left-slot-wrapper {
+.ls-dv-left-slot-wrapper {
   position: fixed;
   top: 0.375rem;
   left: 0.675rem;
@@ -106,14 +106,14 @@ slot {
 }
 
 
-.right-slot-wrapper {
+.ls-dv-right-slot-wrapper {
   position: fixed;
   top: 0.375rem;
   right: 0.675rem;
   z-index: 2000;
 }
 
-.validation-tag-wrapper {
+.ls-dv-validation-tag-wrapper {
   position: fixed;
   top: 0.375rem;
   right: 0.375rem;
@@ -122,7 +122,7 @@ slot {
 
 
 
-.custom-loader-slot {
+.ls-dv-custom-loader-slot {
   position: absolute;
   top: 0;
   left: 0;
@@ -154,7 +154,7 @@ slot {
 
 }
 
-.document-frame-wrapper {
+.ls-dv-document-frame-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -178,17 +178,17 @@ slot {
 
 }
 
-.prevButton {
+.ls-dv-prevButton {
   position: relative;
   bottom: 1.875rem;
 }
 
-.nextButton {
+.ls-dv-nextButton {
   position: relative;
   bottom: 1.875rem;
 }
 
-.fieldBox {
+.ls-dv-fieldBox {
   z-index: 1000;
 }
 
@@ -208,7 +208,7 @@ slot {
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.04) inset, 0 10px 15px 0 rgba(0, 0, 0, 0.04) inset;
 }
 
-.hidden {
+.ls-dv-hidden {
   visibility: hidden;
   display: none;
   width: 0px;
@@ -216,7 +216,7 @@ slot {
 
 
 
-.page-header {
+.ls-dv-page-header {
   display: flex;
   height: 2.25rem;
   gap: 0.5rem;
@@ -225,7 +225,7 @@ slot {
   align-items: center;
 }
 
-.header-text-1 {
+.ls-dv-header-text-1 {
   color: var(--gray-100, #45484d);
   font-size: 0.875rem;
   font-style: normal;
@@ -233,7 +233,7 @@ slot {
   line-height: 1.25rem;
 }
 
-.header-text-2 {
+.ls-dv-header-text-2 {
   color: var(--gray-100, #45484d);
   font-size: 0.875rem;
   font-style: normal;
@@ -243,7 +243,7 @@ slot {
 
 
 
-.expand-fields-row {
+.ls-dv-expand-fields-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -257,7 +257,7 @@ slot {
   /* 142.857% */
 }
 
-.expand-fields-row p {
+.ls-dv-expand-fields-row p {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -297,8 +297,8 @@ a:hover {
   color: var(--primary-70, #2134dc);
 }
 
-.button-link,
-.button-link:hover {
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
   all: unset;
 }
 
@@ -307,7 +307,7 @@ select {
   height: 2.25rem;
 }
 
-.input-wrapper {
+.ls-dv-input-wrapper {
   position: relative;
   width: fit-content;
 }
@@ -330,7 +330,7 @@ select {
   color: var(--gray-80, #6c6e73);
 }
 
-.has-leading-icon {
+.ls-dv-has-leading-icon {
   padding-left: 2.5rem;
 }
 
@@ -395,7 +395,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked,
-input[type='checkbox'].indeterminate {
+input[type='checkbox'].ls-dv-indeterminate {
   background-color: var(--primary-60, #4456f6);
   border: none;
 }
@@ -412,7 +412,7 @@ input[type='checkbox']:checked::after {
   border-right: 0.125rem solid white;
 }
 
-input[type='checkbox'].indeterminate::after {
+input[type='checkbox'].ls-dv-indeterminate::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -424,7 +424,7 @@ input[type='checkbox'].indeterminate::after {
 }
 
 input[type='checkbox']:checked:hover,
-input[type='checkbox'].indeterminate:hover {
+input[type='checkbox'].ls-dv-indeterminate:hover {
   background-color: var(--primary-70, #2134dc);
   border: none;
 }
@@ -453,13 +453,13 @@ input[type='checkbox']:disabled:checked {
   cursor: not-allowed;
 }
 
-.checkbox-container {
+.ls-dv-checkbox-container {
   display: flex;
   gap: 0.5rem;
   width: 100%;
 }
 
-.checkbox-label {
+.ls-dv-checkbox-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -467,7 +467,7 @@ input[type='checkbox']:disabled:checked {
   line-height: 1rem;
 }
 
-.form-label {
+.ls-dv-form-label {
   color: var(--gray-100, #45484d);
   font-size: 1rem;
   font-style: normal;
@@ -475,7 +475,7 @@ input[type='checkbox']:disabled:checked {
   line-height: 1.5rem;
 }
 
-.form-field {
+.ls-dv-form-field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -484,7 +484,7 @@ input[type='checkbox']:disabled:checked {
 
 
 
-.loading-box {
+.ls-dv-loading-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -508,18 +508,18 @@ button {
   min-width: 2.25rem;
 }
 
-button.tertiaryGrey {
+button.ls-dv-tertiaryGrey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);
 }
 
-button.tertiaryGrey:hover {
+button.ls-dv-tertiaryGrey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group {
+.ls-dv-button-group {
   display: flex;
   border-radius: 0.625rem;
   border: 1px solid var(--gray-30, #e0e2e5);
@@ -527,7 +527,7 @@ button.tertiaryGrey:hover {
   overflow: clip;
 }
 
-.button-group button {
+.ls-dv-button-group button {
   display: flex;
   background: transparent;
   border-radius: unset;
@@ -537,18 +537,18 @@ button.tertiaryGrey:hover {
   color: var(--gray-80, #6c6e73);
 }
 
-.button-group button:hover {
+.ls-dv-button-group button:hover {
   background: var(--gray-10, #f7f8fa);
 }
 
-.button-group> :first-child {
+.ls-dv-button-group> :first-child {
   border-radius: 0.625rem 0 0 0.625rem;
 }
 
-.button-group> :last-child {
+.ls-dv-button-group> :last-child {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.button-group> :not(:first-child) {
+.ls-dv-button-group> :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }

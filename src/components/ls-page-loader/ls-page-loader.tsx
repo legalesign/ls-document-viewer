@@ -9,7 +9,7 @@ export class LsPageLoader {
   render() {
     return (
       <Host>
-        <div class={'loading-animation'}>
+        <div class={'ls-dv-loading-animation'}>
           <svg class="block w-full h-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20">
             <g id="Icon/solid/logo">
               <g id="Icon">

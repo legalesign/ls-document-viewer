@@ -17,12 +17,12 @@ export class LsToggle {
   render() {
     return (
       <Host>
-        <label class="switch">
+        <label class="ls-dv-switch">
           <input type="checkbox" checked={this.checked}  onChange={(e) => {
             this.changeHandler((e.target as any).checked)
             }
             }/>
-          <span class={`${this.indeterminate ? 'indeterminate' : 'slider'} round`}></span>
+          <span class={`${this.indeterminate ? 'ls-dv-indeterminate' : 'ls-dv-slider'} ls-dv-round`}></span>
         </label>
         <slot></slot>
       </Host>

@@ -17,7 +17,7 @@ export class LsValidationTag {
   @Event() changeSigner: EventEmitter<number>;
 
   private handleClickOutside = (event: MouseEvent) => {
-    const dropdowns = this.el.shadowRoot.querySelectorAll('.field-dropdown');
+    const dropdowns = this.el.shadowRoot.querySelectorAll('.ls-dv-field-dropdown');
     let clickedInside = false;
     dropdowns.forEach(dropdown => {
       if (dropdown.contains(event.target as Node)) {
@@ -44,10 +44,10 @@ export class LsValidationTag {
     return (
       <Host ref={el => (this.el = el as HTMLElement)}>
         <div
-          class={`valid-label ${this.validationErrors.length === 0 ? 'valid' : 'invalid'} ${this.type === 'compose' ? 'compose' : 'default'}`}
+          class={`ls-dv-valid-label ${this.validationErrors.length === 0 ? 'ls-dv-valid' : 'ls-dv-invalid'} ${this.type === 'compose' ? 'ls-dv-compose' : 'ls-dv-default'}`}
           onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
         >
-          {this.validationErrors.length > 0 && <div class={`field-counter ${this.type === 'compose' ? 'compose' : 'default'}`}>{this.validationErrors.length}</div>}
+          {this.validationErrors.length > 0 && <div class={`ls-dv-field-counter ${this.type === 'compose' ? 'ls-dv-compose' : 'ls-dv-default'}`}>{this.validationErrors.length}</div>}
           {this.type === 'compose' ? (this.validationErrors.length === 0 ? 'Ready' : `Required`) : this.validationErrors.length === 0 ? 'Ready to Send' : `Requires Fields`}
           {this.validationErrors.length > 0 && this.showDropDown && this.type !== 'compose' && (
             <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
@@ -56,8 +56,8 @@ export class LsValidationTag {
           {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check" solid size="1rem" customStyle={{ marginRight: '-0.125rem' }} />}
         </div>
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
-          <div class={'field-dropdown'}>
-            <div class={'dropdown-header'}>
+          <div class={'ls-dv-field-dropdown'}>
+            <div class={'ls-dv-dropdown-header'}>
               <h2>Fields Required</h2>
               <p>
                 {this.validationErrors.length} {this.validationErrors.length === 1 ? 'Recipient needs a Signature Field' : 'Recipients need Signature Fields'} placed for them
@@ -70,7 +70,7 @@ export class LsValidationTag {
               return (
                 <div
                   key={idx}
-                  class={'required-field'}
+                  class={'ls-dv-required-field'}
                   style={{
                     '--field-background': pallette.s10,
                     '--field-border-color': pallette.s10,
@@ -80,12 +80,12 @@ export class LsValidationTag {
                     '--field-border-color-hover': pallette.s60,
                   }}
                 >
-                  <div class={'required-field-items-left'}>
-                    <div class={'dot'} style={{ background: pallette.s60 }} />
+                  <div class={'ls-dv-required-field-items-left'}>
+                    <div class={'ls-dv-dot'} style={{ background: pallette.s60 }} />
                     {field?.role && (
-                      <div class={'required-field-items-left'}>
+                      <div class={'ls-dv-required-field-items-left'}>
                         <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
-                        <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                        <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
                           {field.role?.roleType.toLowerCase() || `Signer ${field.role?.signerIndex + 1}`}
                         </div>
                       </div>
@@ -93,7 +93,7 @@ export class LsValidationTag {
                     {field?.element && (
                       <>
                         <p style={{ color: pallette.s80 }}>{field.role?.name || `${field.element.formElementType} ${field?.element?.label + 1}`}</p>
-                        <div class={'role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
+                        <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
                           {field.description}
                         </div>
                       </>
@@ -105,26 +105,26 @@ export class LsValidationTag {
           </div>
         )}
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type === 'compose' && (
-          <div class={'field-dropdown compose'}>
-            <div class="validation-tag-header">
-              <p class="validation-tag-title">Recipients Missing Signature</p>
+          <div class={'ls-dv-field-dropdown ls-dv-compose'}>
+            <div class="ls-dv-validation-tag-header">
+              <p class="ls-dv-validation-tag-title">Recipients Missing Signature</p>
             </div>
             {this.validationErrors.map((field, idx) => {
               const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
               const pallette = defaultRolePalette[signerIndex || field?.element?.signer || 0];
               return (
                 <div
-                  class="validation-tag-row"
+                  class="ls-dv-validation-tag-row"
                   key={idx}
                   onClick={() => {
                     this.changeSigner.emit(field?.role?.signerIndex);
                     this.isExpanded = false;
                   }}
                 >
-                  <div class="validation-tag-bar" style={{ background: pallette.s60 }}></div>
-                  <div class="validation-tag-details">
-                    <p class="validation-tag-name">{field?.role?.previousRecipientDecides ? `Recipient ${field?.role?.signerIndex + 1}` : `${field?.role?.firstName} ${field?.role?.lastName}`}</p>
-                    <p class="validation-tag-email">{field?.role?.previousRecipientDecides ? `Details to be Decided` : field?.role?.email}</p>
+                  <div class="ls-dv-validation-tag-bar" style={{ background: pallette.s60 }}></div>
+                  <div class="ls-dv-validation-tag-details">
+                    <p class="ls-dv-validation-tag-name">{field?.role?.previousRecipientDecides ? `Recipient ${field?.role?.signerIndex + 1}` : `${field?.role?.firstName} ${field?.role?.lastName}`}</p>
+                    <p class="ls-dv-validation-tag-email">{field?.role?.previousRecipientDecides ? `Details to be Decided` : field?.role?.email}</p>
                   </div>
                 </div>
               );

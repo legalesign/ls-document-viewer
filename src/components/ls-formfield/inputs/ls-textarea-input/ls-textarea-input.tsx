@@ -41,24 +41,24 @@ export class LsTextareaInput {
     } = this;
 
     const inputClass = clsx(
-      'input-base',
+      'ls-dv-input-base',
       disabled
-        ? 'disabled'
+        ? 'ls-dv-disabled'
         : dirty && valid
-          ? 'valid'
+          ? 'ls-dv-valid'
           : dirty && !valid
-            ? 'invalid'
+            ? 'ls-dv-invalid'
             : displayOnly
               ? 'displayOnly'
-              : 'default',
-      fieldIcon && 'icon-input',
-      dirty && 'button-input',
-      buttonIcon && 'button-input',
-      buttonIcon && dirty && 'right-items-input',
+              : 'ls-dv-default',
+      fieldIcon && 'ls-dv-icon-input',
+      dirty && 'ls-dv-button-input',
+      buttonIcon && 'ls-dv-button-input',
+      buttonIcon && dirty && 'ls-dv-right-items-input',
     );
 
     return (
-      <host class='host'>
+      <host class='ls-dv-host'>
         {fieldIcon && (
           <ls-icon
             id={disabled ? 'fieldIconDisabled' : 'fieldIcon'}
@@ -76,7 +76,7 @@ export class LsTextareaInput {
           required={required}
           disabled={disabled}
         />
-        <div class='right-items'>
+        <div class='ls-dv-right-items'>
           {dirty && !disabled && (
             <ls-icon
               id={valid ? 'validIcon' : 'invalidIcon'}
@@ -84,7 +84,7 @@ export class LsTextareaInput {
             ></ls-icon>
           )}
           {buttonIcon && (
-            <button class='button' onClick={buttonClick}>
+            <button class='ls-dv-button' onClick={buttonClick}>
               <ls-icon id='buttonIcon' name={buttonIcon}></ls-icon>
             </button>
           )}

@@ -73,15 +73,15 @@ export class LsFormfield {
       labelIcon,
     } = this;
 
-    const countClass = value && value.toString().length > countMax ? 'formfield-count-error' : 'formfield-count';
+    const countClass = value && value.toString().length > countMax ? 'ls-dv-formfield-count-error' : 'ls-dv-formfield-count';
 
     return (
-      <host class="formfield-host">
+      <host class="ls-dv-formfield-host">
         {label?.length > 1 || extraLabel !== 'none' && (
-          <div class="formfield-top-elements">
-            <div class="formfield-left-side">
+          <div class="ls-dv-formfield-top-elements">
+            <div class="ls-dv-formfield-left-side">
               {labelIcon && <ls-icon name={labelIcon}></ls-icon>}
-              <label htmlFor={name} class="formfield-label">
+              <label htmlFor={name} class="ls-dv-formfield-label">
                 {label}
               </label>
               {infoTooltipText && <ls-icon name={'information-circle'}></ls-icon>}
@@ -204,10 +204,10 @@ export class LsFormfield {
           count ||
           countMax ||
           (descriptionText && (
-            <div class="formfield-bottom-elements">
-              {errorText && !valid ? <p class="formfield-error-text">{errorText}</p> : descriptionText ? <p class="formfield-description-text">{descriptionText}</p> : ''}
+            <div class="ls-dv-formfield-bottom-elements">
+              {errorText && !valid ? <p class="ls-dv-formfield-error-text">{errorText}</p> : descriptionText ? <p class="ls-dv-formfield-description-text">{descriptionText}</p> : ''}
               {count && (
-                <div class="formfield-count-container">
+                <div class="ls-dv-formfield-count-container">
                   <p class={countClass}>{value?.toString()?.length}</p>
                   {countMax > 0 && (
                     <div class={countClass}>

@@ -72,15 +72,15 @@ export class LsFieldFormat {
     return (
       <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
         {this.dataItem && this.dataItem.length > 1 && (
-          <div class={'ls-field-format-bar'}>
-            <div class="input-wrapper" data-tooltip="Font Family">
+          <div class={'ls-dv-field-format-bar'}>
+            <div class="ls-dv-input-wrapper" data-tooltip="Font Family">
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
                 id="ls-toolbar-font-select"
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
               >
                 <option disabled selected={this.allElementsSame()?.fontName === 'mixed'} value={'mixed'}>
                   Mixed
@@ -93,7 +93,7 @@ export class LsFieldFormat {
               </select>
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
             </div>
-            <div class="input-wrapper" data-tooltip="Font Size">
+            <div class="ls-dv-input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
@@ -104,10 +104,10 @@ export class LsFieldFormat {
                   if ((input.target as HTMLInputElement).value === '') return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
               />
             </div>
-            <div class={'button-group'}>
+            <div class={'ls-dv-button-group'}>
               <button
                 onClick={() => {
                   this.alter({ align: 'left' });
@@ -136,8 +136,8 @@ export class LsFieldFormat {
           </div>
         )}
         {this.dataItem && this.dataItem.length === 1 && (
-          <div class={'ls-field-format-bar'}>
-            <div class="input-wrapper" data-tooltip="Font Family">
+          <div class={'ls-dv-field-format-bar'}>
+            <div class="ls-dv-input-wrapper" data-tooltip="Font Family">
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
@@ -145,7 +145,7 @@ export class LsFieldFormat {
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
               >
                 <option value="arial">Arial</option>
                 <option value="liberation sans">Liberation Sans</option>
@@ -154,7 +154,7 @@ export class LsFieldFormat {
                 <option value="verdana">Verdana</option>
               </select>
             </div>
-            <div class="input-wrapper" data-tooltip="Font Size">
+            <div class="ls-dv-input-wrapper" data-tooltip="Font Size">
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
@@ -166,10 +166,10 @@ export class LsFieldFormat {
                   if ((input.target as HTMLInputElement).value === '') return;
                   this.alter({ fontSize: (input.target as HTMLInputElement).value });
                 }}
-                class={'has-leading-icon'}
+                class={'ls-dv-has-leading-icon'}
               />
             </div>
-            <div class={'button-group'}>
+            <div class={'ls-dv-button-group'}>
               <button
                 onClick={() => {
                   this.alter({ align: 'left' });

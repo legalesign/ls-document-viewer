@@ -52,8 +52,8 @@ export class LsTooltip {
         });
       })
       .then(() => {
-        innerTooltip.classList.remove('hidden');
-        innerTooltip.classList.add('visible');
+        innerTooltip.classList.remove('ls-dv-hidden');
+        innerTooltip.classList.add('ls-dv-visible');
         this.referenceElement = null;
       });
   }
@@ -61,15 +61,15 @@ export class LsTooltip {
   @Method()
   async hide() {
     const innerTooltip = this.el.shadowRoot.getElementById('ls-tooltip-inner') as HTMLElement;
-    innerTooltip.classList.remove('visible');
-    innerTooltip.classList.add('hidden');
+    innerTooltip.classList.remove('ls-dv-visible');
+    innerTooltip.classList.add('ls-dv-hidden');
   }
 
   render() {
     return (
-      <div id="ls-tooltip-inner" class="tooltip hidden" role="tooltip">
+      <div id="ls-tooltip-inner" class="ls-dv-tooltip ls-dv-hidden" role="tooltip">
         <div id="arrow"></div>
-        {this.tooltipTitle && <p class="tooltip-title">{this.tooltipTitle}</p>}
+        {this.tooltipTitle && <p class="ls-dv-tooltip-title">{this.tooltipTitle}</p>}
         {this.tooltipText}
         <slot />
       </div>

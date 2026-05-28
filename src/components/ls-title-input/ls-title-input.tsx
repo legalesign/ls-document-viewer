@@ -59,7 +59,7 @@ export class LsTitleInput {
             <ls-icon
               name="check"
               size="1rem"
-              class='editButton'
+              class='ls-dv-editButton'
               onClick={() => {
                 this.editTitle = false;
               }}
@@ -67,7 +67,7 @@ export class LsTitleInput {
           </div>
         ) : (
           <div
-            class="template-title"
+            class="ls-dv-template-title"
             onClick={() => {
               this.editTitle = !this.editTitle;
             }}

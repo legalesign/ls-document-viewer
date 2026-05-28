@@ -76,12 +76,12 @@ export class LsFieldPropertiesAdvanced {
   render() {
     return (
       <Host>
-        <div class={'expand-fields-row'} onClick={() => (this.expanded = !this.expanded)}>
+        <div class={'ls-dv-expand-fields-row'} onClick={() => (this.expanded = !this.expanded)}>
           <ls-icon name={this.expanded ? 'expand' : 'collapse'} size="1.25rem" solid />
           <p>Advanced Properties</p>
         </div>
         {this.expanded && (
-          <div class={'field-set'}>
+          <div class={'ls-dv-field-set'}>
             <ls-props-section sectionTitle="Field Order" sectionDescription="Determines what order fields will be filled in by the user">
               <input value={this.getValue('fieldOrder')} type="number" placeholder="eg. 1" onInput={e => {
                 console.log(e);

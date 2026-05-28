@@ -77,21 +77,21 @@ export class LsFieldPlacement {
     return (
       <Host>
         {this.isMultiple(this.dataItem) && (
-          <div class={'ls-field-properties-section'}>
-            <div class={'ls-field-properties-section-text'}>
-              <p class={'ls-field-properties-section-title'}>Location</p>
-              <p class={'ls-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+          <div class={'ls-dv-field-properties-section'}>
+            <div class={'ls-dv-field-properties-section-text'}>
+              <p class={'ls-dv-field-properties-section-title'}>Location</p>
+              <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
             </div>
-            <div class={'input-row'}>
-              <div class={'input-wrapper'}>
+            <div class={'ls-dv-input-row'}>
+              <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
-                <input type="number" class={'has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} />
+                <input type="number" class={'ls-dv-has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} />
               </div>
-              <div class={'input-wrapper'}>
+              <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
                 <input
                   type="number"
-                  class={'has-leading-icon'}
+                  class={'ls-dv-has-leading-icon'}
                   aria="left-location"
                   id="left-location"
                   onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
@@ -101,16 +101,16 @@ export class LsFieldPlacement {
           </div>
         )}
         {this.isSingle(this.dataItem) && (
-          <div class={'field-set'}>
+          <div class={'ls-dv-field-set'}>
             {/* @Alex I couldn't get this to work?? Only Top and Left */}
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Alignment</p>
-                <p class={'ls-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
+                <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
               </div>
-              <div class={'multi-button-group-row'}>
-                <div class={'button-group'}>
+              <div class={'ls-dv-multi-button-group-row'}>
+                <div class={'ls-dv-button-group'}>
                   <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip="Align Left">
                     <ls-icon name="field-alignment-left"></ls-icon>
                   </button>
@@ -121,7 +121,7 @@ export class LsFieldPlacement {
                     <ls-icon name="field-alignment-right"></ls-icon>
                   </button>
                 </div>
-                <div class={'button-group'}>
+                <div class={'ls-dv-button-group'}>
                   <button onClick={() => this.alter({ top: 0 })} data-tooltip="Align Top">
                     <ls-icon name="field-alignment-top"></ls-icon>
                   </button>
@@ -135,28 +135,28 @@ export class LsFieldPlacement {
               </div>
             </div>
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Location</p>
-                <p class={'ls-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Location</p>
+                <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
               </div>
-              <div class={'input-row'}>
-                <div class={'input-wrapper'}>
+              <div class={'ls-dv-input-row'}>
+                <div class={'ls-dv-input-wrapper'}>
                   <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
                   <input
                     type="number"
-                    class={'has-leading-icon'}
+                    class={'ls-dv-has-leading-icon'}
                     aria="top-location"
                     id="top-location"
                     value={this.dataItem?.left}
                     onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
                   />
                 </div>
-                <div class={'input-wrapper'}>
+                <div class={'ls-dv-input-wrapper'}>
                   <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
                   <input
                     type="number"
-                    class={'has-leading-icon'}
+                    class={'ls-dv-has-leading-icon'}
                     aria="left-location"
                     id="left-location"
                     value={this.dataItem?.top}
@@ -167,12 +167,12 @@ export class LsFieldPlacement {
               </div>
             </div>
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Distribution</p>
-                <p class={'ls-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
+                <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
               </div>
-              <div class={'button-group'}>
+              <div class={'ls-dv-button-group'}>
                 <button disabled data-tooltip="Select multiple Fields to to access distribution controls">
                   <ls-icon name="field-distribute-vertically"></ls-icon>
                 </button>
@@ -182,19 +182,19 @@ export class LsFieldPlacement {
               </div>
             </div>
 
-            <div class={'ls-field-properties-section'}>
-              <div class={'ls-field-properties-section-text'}>
-                <p class={'ls-field-properties-section-title'}>Gap</p>
-                <p class={'ls-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+            <div class={'ls-dv-field-properties-section'}>
+              <div class={'ls-dv-field-properties-section-text'}>
+                <p class={'ls-dv-field-properties-section-title'}>Gap</p>
+                <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
               </div>
-              <div class={'input-row'}>
-                <div class={'input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+              <div class={'ls-dv-input-row'}>
+                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
-                  <input type="number" value="0" class={'has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
+                  <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
                 </div>
-                <div class={'input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
-                  <input type="number" value="0" class={'has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
+                  <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
                 </div>
               </div>
             </div>
