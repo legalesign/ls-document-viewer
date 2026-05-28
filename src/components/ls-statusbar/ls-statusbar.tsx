@@ -54,7 +54,8 @@ export class LsStatusbar {
     } else {
       for (let i = 0; i < Math.abs(diff); i++) this.editor.pagePrev();
     }
-    this.showThumbnails = false;
+    this.page = pageNum;
+    this.renderThumbnails();
   }
 
   getPageFieldColors(pageNum: number): { s40: string; s60: string }[] {
@@ -109,6 +110,14 @@ export class LsStatusbar {
       });
     }
   }
+
+  private outsideClickHandler = (e: MouseEvent) => {
+    const path = e.composedPath();
+    if (!path.includes(this.component)) {
+      this.showThumbnails = false;
+      document.removeEventListener('click', this.outsideClickHandler);
+    }
+  };
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
@@ -169,12 +178,15 @@ export class LsStatusbar {
                 this.showThumbnails = !this.showThumbnails;
                 if (this.showThumbnails) {
                   setTimeout(() => this.renderThumbnails(), 0);
+                  setTimeout(() => document.addEventListener('click', this.outsideClickHandler), 0);
+                } else {
+                  document.removeEventListener('click', this.outsideClickHandler);
                 }
               }}
               id="page-thumbnails-btn"
               data-tooltip="Page Thumbnails"
             >
-              <ls-icon name="side-panel-open-right" />
+              <ls-icon name={!this.showThumbnails ? "side-panel-open-right" : "side-panel-close-right"} />
             </button>
           </div>
           {this.showThumbnails && (
