@@ -88,7 +88,7 @@ export class LsLeftBar {
           </div>
           <h1 class="ls-dv-properties-header-title">Field Properties</h1>
           <button
-            class="ls-dv-tertiaryGrey"
+            class="ls-dv-tertiary-grey"
             onClick={e => {
               this.clearSelected.emit();
               e.preventDefault();
@@ -301,7 +301,7 @@ export class LsLeftBar {
 
   private renderEditor() {
     return (
-      <div id="ls-left-box" class="ls-dv-leftBox">
+      <div id="ls-left-box" class="ls-dv-left-box">
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-feature-column mode={this.mode} onManage={manager => this.managerChange.emit(manager.detail)} />
           {this.renderToolbox()}
@@ -316,7 +316,7 @@ export class LsLeftBar {
 
   private renderCompose() {
     return (
-      <div id="ls-left-box" class="ls-dv-leftBox">
+      <div id="ls-left-box" class="ls-dv-left-box">
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-recipient-manager id="ls-recipient-manager" class="ls-dv-compose-toolbox">
             <div class="ls-dv-scroll-gradient-top" />

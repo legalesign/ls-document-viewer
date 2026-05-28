@@ -27,7 +27,7 @@ export class LsRadioInput {
       customStyle,
     } = this;
     const radioLabelClass = clsx(
-      'ls-dv-radioLabel',
+      'ls-dv-radio-label',
       disabled && 'ls-dv-disabled',
       checked && 'ls-dv-checked',
     );
@@ -41,7 +41,7 @@ export class LsRadioInput {
       >
         <input
           type='radio'
-          class='ls-dv-inputClass'
+          class='ls-dv-input-class'
           id={radioId}
           name={name}
           value={label}
@@ -49,7 +49,7 @@ export class LsRadioInput {
           tabIndex={0}
           checked={checked}
         />
-        <div class='ls-dv-spanContainer'>
+        <div class='ls-dv-span-container'>
           <span>{icon && <ls-icon name={icon} size={"16"}></ls-icon>}</span>
           <span>{label}</span>
         </div>

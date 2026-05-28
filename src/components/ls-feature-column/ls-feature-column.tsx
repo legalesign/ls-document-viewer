@@ -32,7 +32,7 @@ export class LsFeatureColoumn {
     return (
       <Host>
         <div
-          class={this.mode !== "editor" ? 'ls-dv-hidden' : this.manager === 'document' ? 'ls-dv-activeIcon' : 'ls-dv-defaultIcon'}
+          class={this.mode !== "editor" ? 'ls-dv-hidden' : this.manager === 'document' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
           onClick={() => {
             this.manage.emit('document');
             this.manager = 'document';
@@ -44,7 +44,7 @@ export class LsFeatureColoumn {
           <ls-icon name="document" size="1.5rem" />
         </div>
         <div
-          class={this.manager === 'toolbox' ? 'ls-dv-activeIcon' : 'ls-dv-defaultIcon'}
+          class={this.manager === 'toolbox' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
           onClick={() => {
             this.manage.emit('toolbox');
             this.manager = 'toolbox';
@@ -57,7 +57,7 @@ export class LsFeatureColoumn {
         </div>
         
         <div
-          class={this.mode !== "editor" ? 'ls-dv-hidden' : this.manager === 'participant' ? 'ls-dv-activeIcon' : 'ls-dv-defaultIcon'}
+          class={this.mode !== "editor" ? 'ls-dv-hidden' : this.manager === 'participant' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
           onClick={() => {
             this.manage.emit('participant');
             this.manager = 'participant';
@@ -70,7 +70,7 @@ export class LsFeatureColoumn {
         </div>
 
         <div
-          class={this.mode !== "compose" ? 'ls-dv-hidden' : this.manager === 'recipient' ? 'ls-dv-activeIcon' : 'ls-dv-defaultIcon'}
+          class={this.mode !== "compose" ? 'ls-dv-hidden' : this.manager === 'recipient' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
           onClick={() => {
             this.manage.emit('recipient');
             this.manager = 'recipient';
@@ -83,7 +83,7 @@ export class LsFeatureColoumn {
         </div>
 
         <div
-          class={this.mode !== "preview" ? 'ls-dv-hidden' : this.manager === 'validation' ? 'ls-dv-activeIcon' : 'ls-dv-defaultIcon'}
+          class={this.mode !== "preview" ? 'ls-dv-hidden' : this.manager === 'validation' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
           onClick={() => {
             this.manage.emit('validation');
             this.manager = 'validation';

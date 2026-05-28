@@ -115,7 +115,7 @@ export class LsParticipantSelect {
               {this.selectedRole.name ||
                 (this.selectedRole.roleType === 'WITNESS' ? `Witness` : `Participant ${this.selectedRole.signerIndex}`)}
             </div>
-            <button class={'ls-dv-tertiaryGrey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
+            <button class={'ls-dv-tertiary-grey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>
             </button>
           </div>

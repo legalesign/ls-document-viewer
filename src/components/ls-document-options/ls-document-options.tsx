@@ -83,7 +83,7 @@ export class LsDocumentOptions {
           <div class={'ls-dv-template-detail-section ls-dv-column'}>
             <p class="ls-dv-template-detail-section-title">Name</p>
             <div
-              class="ls-dv-editButton"
+              class="ls-dv-edit-button"
               onClick={() => {
                 this.editTitle = !this.editTitle;
               }}

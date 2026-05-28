@@ -115,7 +115,7 @@ export class LsParticipantCard {
               <div class={'ls-dv-button-set ls-dv-hidden'}>
                 {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-innerButton"
+                    class="ls-dv-inner-button"
                     onClick={() => {
                       this.swapHandler(this.signer, this.template.roles[this.index - 1]);
                     }}
@@ -130,7 +130,7 @@ export class LsParticipantCard {
                 )}
                 {this.signer.signerIndex !== this.template.roles.length && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-innerButton"
+                    class="ls-dv-inner-button"
                     onClick={() => {
                       this.swapHandler(this.signer, this.template.roles[this.index + 1]);
                     }}
@@ -144,7 +144,7 @@ export class LsParticipantCard {
                   </div>
                 )}
                 <div
-                  class="ls-dv-innerButton"
+                  class="ls-dv-inner-button"
                   onClick={() => {
                     this.editable = !this.editable;
                   }}
@@ -157,7 +157,7 @@ export class LsParticipantCard {
             
                 </div>
                 <div
-                  class="ls-dv-innerButton"
+                  class="ls-dv-inner-button"
                   onClick={() => {
                     this.deleteHandler(this.signer);
                   }}

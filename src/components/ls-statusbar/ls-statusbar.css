@@ -181,7 +181,7 @@ button {
   text-transform: capitalize;
 }
 
-button.ls-dv-tertiaryGrey:hover {
+button.ls-dv-tertiary-grey:hover {
   background: var(--gray-10, #f7f8fa);
 }
 

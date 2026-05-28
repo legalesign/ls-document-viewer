@@ -317,13 +317,13 @@ button {
   min-width: 2.25rem;
 }
 
-button.ls-dv-tertiaryGrey {
+button.ls-dv-tertiary-grey {
   border: 1px solid var(--gray-40, #d8d9dc);
   background-color: white;
   color: var(--gray-80, #787a80);
 }
 
-button.ls-dv-tertiaryGrey:hover {
+button.ls-dv-tertiary-grey:hover {
   border: 1px solid var(--gray-50, #c8c9cc);
   background: var(--gray-10, #f7f8fa);
 }
