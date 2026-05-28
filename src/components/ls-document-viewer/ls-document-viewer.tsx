@@ -461,15 +461,20 @@ export class LsDocumentViewer {
    * Render the page based on pageNumber
    * {number} pageNumber
    */
+  private readonly RENDER_SCALE = 2;
+
   renderPage(pageNumber: number): void {
     this.isPageRendering = true;
     if (this.pdfDocument !== undefined && this.pdfDocument !== null) {
       this.pdfDocument.getPage(pageNumber).then((page: PDFPageProxy) => {
-        const viewport: PageViewport = page.getViewport({ scale: this.zoom });
+        const viewport: PageViewport = page.getViewport({ scale: this.zoom * this.RENDER_SCALE });
+
         this.canvas.height = Math.floor(viewport.height);
         this.canvas.width = Math.floor(viewport.width);
 
-        // Render PDF page into canvas context
+        this.canvas.style.width = Math.floor(this.pageDimensions[this.pageNum - 1].width * this.zoom) + 'px';
+        this.canvas.style.height = Math.floor(this.pageDimensions[this.pageNum - 1].height * this.zoom) + 'px';
+
         const renderContext = {
           canvasContext: this.ctx,
           viewport,
