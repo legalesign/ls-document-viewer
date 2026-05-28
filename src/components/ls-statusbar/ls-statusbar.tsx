@@ -1,6 +1,7 @@
-import { Component, Host, Prop, h, Element } from '@stencil/core';
+import { Component, Host, Prop, State, h, Element } from '@stencil/core';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { attachAllTooltips } from '../../utils/tooltip';
+import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-statusbar',
@@ -16,6 +17,8 @@ export class LsStatusbar {
   @Prop({ mutable: true }) zoom: number;
   @Prop({ mutable: true }) page: number;
   @Prop({ mutable: true }) pageCount: number;
+
+  @State() showThumbnails: boolean = false;
 
   /**
    * The parent editor control.
@@ -33,7 +36,6 @@ export class LsStatusbar {
     const midBox = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
     const space = midBox.clientWidth - leftBox.clientWidth - 60; // 60 for padding/margin
 
-    
     console.log('Space width:', space, 'Page width:', this.editor.pageDimensions[0].width);
     const scale: number = space / this.editor.pageDimensions[0].width;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
@@ -45,6 +47,69 @@ export class LsStatusbar {
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
+  goToPage(pageNum: number) {
+    const diff = pageNum - this.editor.pageNum;
+    if (diff > 0) {
+      for (let i = 0; i < diff; i++) this.editor.pageNext();
+    } else {
+      for (let i = 0; i < Math.abs(diff); i++) this.editor.pagePrev();
+    }
+    this.showThumbnails = false;
+  }
+
+  getPageFieldColors(pageNum: number): { s40: string; s60: string }[] {
+    const template = (this.editor as any)._template;
+    if (!template?.elementConnection?.templateElements) return [];
+    const signers = new Set<number>();
+    template.elementConnection.templateElements.filter(el => el.page === pageNum).forEach(el => signers.add(el.signer));
+    return Array.from(signers).map(s => ({
+      s40: defaultRolePalette[s]?.s40 || defaultRolePalette[0].s40,
+      s60: defaultRolePalette[s]?.s60 || defaultRolePalette[0].s60,
+    }));
+  }
+
+  renderThumbnails() {
+    const pdfDoc = (this.editor as any).pdfDocument;
+    if (!pdfDoc) return;
+    const container = this.component.shadowRoot.getElementById('ls-thumbnail-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    for (let i = 1; i <= this.pageCount; i++) {
+      pdfDoc.getPage(i).then(page => {
+        const viewport = page.getViewport({ scale: 0.2 });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.className = i === this.page ? 'ls-dv-thumbnail active' : 'ls-dv-thumbnail';
+        canvas.addEventListener('click', () => this.goToPage(i));
+        const ctx = canvas.getContext('2d');
+        page.render({ canvasContext: ctx, viewport });
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'ls-dv-thumbnail-wrapper';
+        wrapper.addEventListener('click', () => this.goToPage(i));
+
+        const dots = document.createElement('div');
+        dots.className = 'ls-dv-thumbnail-dots';
+        this.getPageFieldColors(i).forEach(color => {
+          const dot = document.createElement('span');
+          dot.className = 'ls-dv-thumbnail-dot';
+          dot.style.setProperty('--dot-color-40', color.s40);
+          dot.style.setProperty('--dot-color-60', color.s60);
+          dots.appendChild(dot);
+        });
+
+        const label = document.createElement('span');
+        label.textContent = `${i}`;
+        wrapper.appendChild(canvas);
+        wrapper.appendChild(dots);
+        wrapper.appendChild(label);
+        container.appendChild(wrapper);
+      });
+    }
+  }
+
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
     this.zoom = this.editor.zoom;
@@ -54,50 +119,69 @@ export class LsStatusbar {
     return (
       <Host>
         <div class={'ls-dv-controls-bar'}>
-        {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
+          {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
-        <div class={'ls-dv-status-bar-section'}>
-          <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
-            <ls-icon name="zoom-out" />
-          </button>
-          <span>{Math.round(this.zoom * 100)}%</span>
-          <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip="Zoom In">
-            <ls-icon name="zoom-in" />
-          </button>
-        </div>
-        <div class={'ls-dv-status-bar-section'}>
-          <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip="Fit Width">
-            <ls-icon name="fit-width" />
-          </button>
-          <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip="Fit Height">
-            <ls-icon name="fit-height" />
-          </button>
-        </div>
-        <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
-          <button
-            onClick={() => {
-              this.editor.pagePrev();
-            }}
-            disabled={this.page === 1}
-            id="prev-page-btn"
-            data-tooltip={this.page === 1 ? 'No Previous Page' : 'Previous Page'}
-          >
-            <ls-icon name="chevron-left" />
-          </button>
-          <p>
-            {this.page} / {this.pageCount}
-          </p>
-          <button
-            onClick={() => {
-              this.editor.pageNext();
-            }}
-            disabled={this.page === this.pageCount}
-            id="next-page-btn"
-            data-tooltip={this.page === this.pageCount ? 'No Next Page' : 'Next Page'}
-          >
-            <ls-icon name="chevron-right" />
-          </button>
-        </div>
+          <div class={'ls-dv-status-bar-section'}>
+            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
+              <ls-icon name="zoom-out" />
+            </button>
+            <span>{Math.round(this.zoom * 100)}%</span>
+            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip="Zoom In">
+              <ls-icon name="zoom-in" />
+            </button>
+          </div>
+          <div class={'ls-dv-status-bar-section'}>
+            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip="Fit Width">
+              <ls-icon name="fit-width" />
+            </button>
+            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip="Fit Height">
+              <ls-icon name="fit-height" />
+            </button>
+          </div>
+          <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
+            <button
+              onClick={() => {
+                this.editor.pagePrev();
+              }}
+              disabled={this.page === 1}
+              id="prev-page-btn"
+              data-tooltip={this.page === 1 ? 'No Previous Page' : 'Previous Page'}
+            >
+              <ls-icon name="chevron-left" />
+            </button>
+            <p>
+              {this.page} / {this.pageCount}
+            </p>
+            <button
+              onClick={() => {
+                this.editor.pageNext();
+              }}
+              disabled={this.page === this.pageCount}
+              id="next-page-btn"
+              data-tooltip={this.page === this.pageCount ? 'No Next Page' : 'Next Page'}
+            >
+              <ls-icon name="chevron-right" />
+            </button>
+          </div>
+          <div class={'ls-dv-status-bar-section'}>
+            <button
+              onClick={() => {
+                this.showThumbnails = !this.showThumbnails;
+                if (this.showThumbnails) {
+                  setTimeout(() => this.renderThumbnails(), 0);
+                }
+              }}
+              id="page-thumbnails-btn"
+              data-tooltip="Page Thumbnails"
+            >
+              <ls-icon name="side-panel-open-right" />
+            </button>
+          </div>
+          {this.showThumbnails && (
+            <div class="ls-dv-thumbnail-popover">
+              <div id="ls-thumbnail-container" class="ls-dv-thumbnail-grid"></div>
+            </div>
+          )}
         </div>
         <ls-helper-bar />
         <ls-tooltip id="ls-tooltip-master" />
