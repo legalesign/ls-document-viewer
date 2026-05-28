@@ -312,7 +312,7 @@ export class LsDocumentViewer {
     if (event.detail.length === 0) {
       this.selected = [];
     } else {
-      console.log(event.detail, 'selected')
+      console.log(event.detail, 'selected');
       this.selectedDataItems = event.detail as any as LSApiElement[];
     }
 
@@ -351,7 +351,6 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
-    
   }
 
   /**
@@ -368,7 +367,6 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
-    
   }
 
   /**
@@ -654,8 +652,6 @@ export class LsDocumentViewer {
         generateRoles.bind(this)();
       }
 
-
-
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
       this.validate.emit({ valid: this.validationErrors.length === 0 });
@@ -686,14 +682,11 @@ export class LsDocumentViewer {
 
   /// Check if the current signer has a role of the specified type
   checkType(type: LSApiRoleType): boolean {
-
-    if (this.mode === "compose" && this._recipients) {
+    if (this.mode === 'compose' && this._recipients) {
       return this._recipients.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
     } else if (this._template) {
       return this._template.roles.find(r => r.roleType === type && r.signerIndex === this.signer) !== undefined;
-    }
-    else
-      return false;
+    } else return false;
   }
 
   render() {
@@ -703,7 +696,9 @@ export class LsDocumentViewer {
           {this.isLoading && (
             <>
               <ls-page-loader />
-              <div class={'custom-loader-slot'}><slot name='custom-loader'></slot></div>
+              <div class={'custom-loader-slot'}>
+                <slot name="custom-loader"></slot>
+              </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
           )}
@@ -747,7 +742,9 @@ export class LsDocumentViewer {
               displayTable={this.displayTable}
               selectedDataItems={this.selectedDataItems}
               onManagerChange={e => this.handleManagerChange(e.detail)}
-              onClearSelected={() => { this.selected = []; }}
+              onClearSelected={() => {
+                this.selected = [];
+              }}
             >
               <slot name="recipient-panel" slot="recipient-panel" />
             </ls-left-bar>

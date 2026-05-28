@@ -315,7 +315,7 @@ export class LsLeftBar {
 
   private renderCompose() {
     return (
-      <div id="ls-left-box" class="leftBox" style={{ borderRadius: '1.75rem' }}>
+      <div id="ls-left-box" class="leftBox">
         <div class={!this.selected || this.selected.length === 0 ? 'left-box-inner' : 'hidden'}>
           <ls-recipient-manager id="ls-recipient-manager" class="compose-toolbox">
             <div class="scroll-gradient-top" />
