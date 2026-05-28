@@ -110,15 +110,7 @@ Type: `Promise<void>`
 - [ls-page-loader](../ls-page-loader)
 - [ls-compose-loader](../ls-compose-loader)
 - [ls-validation-tag](../ls-validation-tag)
-- [ls-feature-column](../ls-feature-column)
-- [ls-toolbox-field](../ls-toolbox-field)
-- [ls-participant-manager](../ls-participant-manager)
-- [ls-document-options](../ls-document-options)
-- [ls-validation-manager](../ls-validation-manager)
-- [ls-recipient-manager](../ls-recipient-manager)
-- [ls-recipient-card](../ls-recipient-card)
-- [ls-icon](../ls-icon)
-- [ls-field-properties](../ls-field-properties)
+- [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
@@ -131,38 +123,23 @@ graph TD;
   ls-document-viewer --> ls-page-loader
   ls-document-viewer --> ls-compose-loader
   ls-document-viewer --> ls-validation-tag
-  ls-document-viewer --> ls-feature-column
-  ls-document-viewer --> ls-toolbox-field
-  ls-document-viewer --> ls-participant-manager
-  ls-document-viewer --> ls-document-options
-  ls-document-viewer --> ls-validation-manager
-  ls-document-viewer --> ls-recipient-manager
-  ls-document-viewer --> ls-recipient-card
-  ls-document-viewer --> ls-icon
-  ls-document-viewer --> ls-field-properties
+  ls-document-viewer --> ls-left-bar
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
   ls-document-viewer --> ls-tooltip
   ls-document-viewer --> ls-editor-field
   ls-validation-tag --> ls-icon
-  ls-feature-column --> ls-icon
-  ls-feature-column --> ls-tooltip
-  ls-toolbox-field --> ls-icon
-  ls-toolbox-field --> ls-tooltip
-  ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
-  ls-participant-card --> ls-icon
-  ls-participant-card --> ls-input-wrapper
-  ls-participant-card --> ls-tooltip
-  ls-input-wrapper --> ls-icon
-  ls-document-options --> ls-icon
-  ls-document-options --> ls-toggle
-  ls-document-options --> ls-tooltip
-  ls-validation-manager --> ls-toolbox-field
-  ls-recipient-card --> ls-icon
-  ls-recipient-card --> ls-toolbox-field
-  ls-recipient-card --> ls-tooltip
+  ls-left-bar --> ls-icon
+  ls-left-bar --> ls-field-properties
+  ls-left-bar --> ls-toolbox-field
+  ls-left-bar --> ls-feature-column
+  ls-left-bar --> ls-participant-manager
+  ls-left-bar --> ls-document-options
+  ls-left-bar --> ls-validation-manager
+  ls-left-bar --> ls-recipient-manager
+  ls-left-bar --> ls-validation-tag
+  ls-left-bar --> ls-recipient-card
   ls-field-properties --> ls-field-properties-signature
   ls-field-properties --> ls-field-properties-date
   ls-field-properties --> ls-field-properties-text
@@ -185,6 +162,7 @@ graph TD;
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
+  ls-input-wrapper --> ls-icon
   ls-editor-field --> ls-icon
   ls-editor-field --> ls-editor-field
   ls-field-properties-advanced --> ls-icon
@@ -255,6 +233,22 @@ graph TD;
   ls-field-distribute --> ls-icon
   ls-field-distribute --> ls-tooltip
   ls-field-distribute --> ls-editor-field
+  ls-toolbox-field --> ls-icon
+  ls-toolbox-field --> ls-tooltip
+  ls-feature-column --> ls-icon
+  ls-feature-column --> ls-tooltip
+  ls-participant-manager --> ls-participant-card
+  ls-participant-manager --> ls-icon
+  ls-participant-card --> ls-icon
+  ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-tooltip
+  ls-document-options --> ls-icon
+  ls-document-options --> ls-toggle
+  ls-document-options --> ls-tooltip
+  ls-validation-manager --> ls-toolbox-field
+  ls-recipient-card --> ls-icon
+  ls-recipient-card --> ls-toolbox-field
+  ls-recipient-card --> ls-tooltip
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
   ls-toolbar --> ls-tooltip

@@ -16,7 +16,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -28,7 +28,7 @@ graph TD;
   ls-validation-manager --> ls-toolbox-field
   ls-toolbox-field --> ls-icon
   ls-toolbox-field --> ls-tooltip
-  ls-document-viewer --> ls-validation-manager
+  ls-left-bar --> ls-validation-manager
   style ls-validation-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

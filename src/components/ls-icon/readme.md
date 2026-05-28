@@ -21,7 +21,6 @@
 ### Used by
 
  - [ls-document-options](../ls-document-options)
- - [ls-document-viewer](../ls-document-viewer)
  - [ls-editor-field](../ls-editor-field)
  - [ls-feature-column](../ls-feature-column)
  - [ls-field-alignment](../ls-field-alignment)
@@ -37,6 +36,7 @@
  - [ls-formfield](../ls-formfield)
  - [ls-helper-bar](../ls-helper-bar)
  - [ls-input-wrapper](../ls-input-wrapper)
+ - [ls-left-bar](../ls-left-bar)
  - [ls-number-input](../ls-formfield/inputs/ls-number-input)
  - [ls-participant-card](../ls-participant-card)
  - [ls-participant-manager](../ls-participant-manager)
@@ -55,7 +55,6 @@
 ```mermaid
 graph TD;
   ls-document-options --> ls-icon
-  ls-document-viewer --> ls-icon
   ls-editor-field --> ls-icon
   ls-feature-column --> ls-icon
   ls-field-alignment --> ls-icon
@@ -71,6 +70,7 @@ graph TD;
   ls-formfield --> ls-icon
   ls-helper-bar --> ls-icon
   ls-input-wrapper --> ls-icon
+  ls-left-bar --> ls-icon
   ls-number-input --> ls-icon
   ls-participant-card --> ls-icon
   ls-participant-manager --> ls-icon

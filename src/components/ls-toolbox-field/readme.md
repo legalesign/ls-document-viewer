@@ -34,7 +34,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
  - [ls-recipient-card](../ls-recipient-card)
  - [ls-validation-manager](../ls-validation-manager)
 
@@ -48,7 +48,7 @@
 graph TD;
   ls-toolbox-field --> ls-icon
   ls-toolbox-field --> ls-tooltip
-  ls-document-viewer --> ls-toolbox-field
+  ls-left-bar --> ls-toolbox-field
   ls-recipient-card --> ls-toolbox-field
   ls-validation-manager --> ls-toolbox-field
   style ls-toolbox-field fill:#f9f,stroke:#333,stroke-width:4px

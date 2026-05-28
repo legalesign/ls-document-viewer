@@ -16,7 +16,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -127,7 +127,7 @@ graph TD;
   ls-field-distribute --> ls-icon
   ls-field-distribute --> ls-tooltip
   ls-field-distribute --> ls-editor-field
-  ls-document-viewer --> ls-field-properties
+  ls-left-bar --> ls-field-properties
   style ls-field-properties fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

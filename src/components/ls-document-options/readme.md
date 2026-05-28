@@ -24,7 +24,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -38,7 +38,7 @@ graph TD;
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip
-  ls-document-viewer --> ls-document-options
+  ls-left-bar --> ls-document-options
   style ls-document-options fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

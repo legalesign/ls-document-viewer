@@ -29,7 +29,7 @@
 
 ### Used by
 
- - [ls-document-viewer](../ls-document-viewer)
+ - [ls-left-bar](../ls-left-bar)
 
 ### Depends on
 
@@ -45,7 +45,7 @@ graph TD;
   ls-recipient-card --> ls-tooltip
   ls-toolbox-field --> ls-icon
   ls-toolbox-field --> ls-tooltip
-  ls-document-viewer --> ls-recipient-card
+  ls-left-bar --> ls-recipient-card
   style ls-recipient-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
