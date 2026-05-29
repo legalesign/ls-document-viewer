@@ -76,7 +76,7 @@ jobs:
       - name: Build and publish ls-document-viewer-react
         run: |
           cd ../ls-document-viewer-react
-          node -e "const p=require('./package.json'); p.version='${{ env.NEW_VERSION }}'; p.dependencies['legalesign-document-viewer']='^${{ env.NEW_VERSION }}'; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
+          node -e "const p=require('./package.json'); p.version='${{ env.NEW_VERSION }}'; p.dependencies['legalesign-document-viewer']='^${{ env.NEW_VERSION }}'; p.repository={type:'git',url:'https://github.com/legalesign/ls-document-viewer.git'}; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
           pnpm link $GITHUB_WORKSPACE
           pnpm install --no-frozen-lockfile
           pnpm build
