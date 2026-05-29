@@ -61,11 +61,5 @@
     "clsx": "^2.1.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.4.449"
-  },
-  "pnpm": {
-  "overrides": {
-    "immutable": "4.3.7"
   }
-}
-
 }

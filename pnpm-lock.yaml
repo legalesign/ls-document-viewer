@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  immutable: 4.3.7
-
 importers:
 
   .:
@@ -918,8 +915,8 @@ packages:
     resolution: {integrity: sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==}
     engines: {node: '>= 14'}
 
-  immutable@4.3.7:
-    resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
+  immutable@5.1.6:
+    resolution: {integrity: sha512-q1swsS8K7L8usSHuOqF2TAoCCkonYz0SG38wLAggaa4Wml70zixIvt2ql4coQ2C2B3hTjltJry4r6bULwgAXLQ==}
 
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
@@ -2444,7 +2441,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  immutable@4.3.7: {}
+  immutable@5.1.6: {}
 
   import-fresh@3.3.1:
     dependencies:
@@ -2879,7 +2876,7 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 2.12.0
       colorjs.io: 0.5.2
-      immutable: 4.3.7
+      immutable: 5.1.6
       rxjs: 7.8.2
       supports-color: 8.1.1
       sync-child-process: 1.0.2
@@ -2907,7 +2904,7 @@ snapshots:
   sass@1.100.0:
     dependencies:
       chokidar: 5.0.0
-      immutable: 4.3.7
+      immutable: 5.1.6
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.6
