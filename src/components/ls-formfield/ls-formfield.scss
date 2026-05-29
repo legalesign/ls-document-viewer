@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,11 +25,11 @@
   gap: 0.5rem;
 
   ls-icon {
-    color: var(--gray-80, #787A80);
+    color: $gray-80;
   }
 
   .ls-dv-formfield-label {
-    color: var(--gray-100, #45484D);
+    color: $gray-100;
     /* text-base/leading-6/font-medium */
     font-size: 1rem;
     font-style: normal;
@@ -48,7 +49,7 @@
 }
 
 .ls-dv-formfield-description-text {
-  color: var(--Grey-80, #6C6E73);
+  color: $gray-80;
   width: 100%;
   /* text-xs/leading-4/font-light */
   font-size: 0.75rem;
@@ -58,7 +59,7 @@
 }
 
 .ls-dv-formfield-error-text {
-  color: var(--red-70, #DC2721);
+  color: $red-70;
   width: 100%;
   /* text-xs/leading-4/font-light */
   font-size: 0.75rem;
@@ -84,7 +85,7 @@
 .ls-dv-formfield-count {
   display: flex;
   align-items: center;
-  color: var(--Grey-70, #6C6E73);
+  color: $gray-70;
   gap: 0.125rem;
 }
 
@@ -92,7 +93,7 @@
   display: flex;
   align-items: center;
   gap: 0.125rem;
-  color: var(--red-70, #DC2721);
+  color: $red-70;
 }
 
 

@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +15,7 @@
   right: 0.675rem;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
 }
 
 #selectLeadingIcon {
@@ -23,7 +24,7 @@
   left: 0.675rem;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
 }
 
 

@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 * {
   margin: 0;
   box-sizing: border-box;
@@ -17,9 +18,9 @@
   width: 100%;
   gap: 0.125rem;
   padding: 0.125rem;
-  border: 1px solid var(--gray-30, #e0e2e5);
+  border: 1px solid $gray-30;
   border-radius: 0.75rem;
-  background: var(--white, #ffffff);
+  background: $white;
 }
 
 .ls-dv-tab {
@@ -34,23 +35,23 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 142.857% */
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
   text-transform: capitalize;
 }
 
 .ls-dv-tab.ls-dv-active {
-  background: var(--primary-10, #eff4ff);
-  color: var(--primary-60, #4456f6);
+  background: $primary-10;
+  color: $primary-60;
 }
 
 .ls-dv-tab:not(.ls-dv-active):hover {
-  background: var(--gray-10, #f7f8fa);
+  background: $gray-10;
 }
 
 .ls-dv-button-footer {
   display: flex;
   padding-top: 1rem;
-  border-top: 1px solid var(--gray-20, #f0f1f2);
+  border-top: 1px solid $gray-20;
   flex-direction: column;
   justify-content: flex-end;
   gap: 0.75rem;

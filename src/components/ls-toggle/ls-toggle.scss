@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   display: block;
 }
@@ -25,7 +26,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--gray-20, #edeff2);
+  background-color: $gray-20;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -37,7 +38,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--primary-60, #4456f6);
+  background-color: $primary-60;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -66,12 +67,12 @@
 }
 
 input:checked + .ls-dv-slider {
-  background-color: var(--primary-60, #4456f6);
+  background-color: $primary-60;
 }
 
 input:focus + .ls-dv-slider {
-  box-shadow: 0 0 1px var(--primary-60, #4456f6);
-  outline: 0.25rem solid var(--primary-20, #e3e6ff);
+  box-shadow: 0 0 1px $primary-60;
+  outline: 0.25rem solid $primary-20;
 }
 
 input:checked + .ls-dv-slider:before {

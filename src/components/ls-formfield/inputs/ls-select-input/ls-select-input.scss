@@ -1,3 +1,4 @@
+@import '../../../../global/tokens';
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,14 +14,14 @@
   position: absolute;
   top: 0.5rem;
   left: 0.75rem;
-  color: var(--gray-80)
+  color: $gray-80
 }
 
 #fieldIconDisabled {
   position: absolute;
   top: 0.5rem;
   left: 0.75rem;
-  color: var(--gray-60)
+  color: $gray-60
 }
 
 .ls-dv-icon-input {
@@ -67,70 +68,70 @@ select {
 }
 
 #select-arrow {
-  color: var(--gray-70);
+  color: $gray-70;
   margin-right: 0.25rem;
   margin-left: -0.125rem;
 }
 
 #select-arrow-disabled {
-  color: var(--gray-40);
+  color: $gray-40;
   margin-right: 0.25rem;
   margin-left: -0.125rem;
 }
 
 .ls-dv-input-base:active:not(:disabled) {
-  outline: 1px solid var(--Legalesign-Blue-60, #4456F6);
+  outline: 1px solid $primary-60;
   box-shadow: 0px 0px 3px 0px rgba(0, 15, 153, 0.25), 0px 0px 2px 0px rgba(0, 15, 153, 0.06), 0px 0px 0px 4px #9DC3FC;
 }
 
 .ls-dv-input-base:focus:not(:disabled) {
-  outline: 1px solid var(--Legalesign-Blue-60, #4456F6);
+  outline: 1px solid $primary-60;
   box-shadow: 0px 0px 3px 0px rgba(0, 15, 153, 0.25), 0px 0px 2px 0px rgba(0, 15, 153, 0.06), 0px 0px 0px 4px #9DC3FC;
 }
 
 
 .ls-dv-default {
-  border: 1px solid var(--gray-40, #D8D9DC);
-  background: var(--White, #FFF);
-  color: var(--gray-100);
+  border: 1px solid $gray-40;
+  background: $white;
+  color: $gray-100;
 }
 
 .ls-dv-default:hover {
-  border: 1px solid var(--gray-50, #D8D9DC);
-  background: var(--White, #FFF);
-  color: var(--gray-110);
+  border: 1px solid $gray-50;
+  background: $white;
+  color: $gray-110;
 }
 
 
 .ls-dv-disabled {
-  border: 1px solid var(--gray-40, #D8D9DC);
-  background: var(--gray-10, #F7F8FA);
-  color: var(--gray-60);
+  border: 1px solid $gray-40;
+  background: $gray-10;
+  color: $gray-60;
   cursor: not-allowed;
 }
 
 .ls-dv-invalid {
-  border: 1px solid var(--red-40, #FFA19E);
-  background: var(--White, #FFF);
-  color: var(--Red-100, #7A1714);
+  border: 1px solid $red-40;
+  background: $white;
+  color: $red-100;
 }
 
 .ls-dv-invalid:hover {
-  border: 1px solid var(--red-50, #FFA19E);
-  background: var(--White, #FFF);
-  color: var(--Red-100, #7A1714);
+  border: 1px solid $red-50;
+  background: $white;
+  color: $red-100;
 }
 
 .ls-dv-valid {
-  border: 1px solid var(--green-40, #72F0C2);
-  background: var(--White, #FFF);
-  color: var(--Green-100, #125241);
+  border: 1px solid $green-40;
+  background: $white;
+  color: $green-100;
 }
 
 .ls-dv-valid:hover {
-  border: 1px solid var(--green-50, #72F0C2);
-  background: var(--White, #FFF);
-  color: var(--Green-100, #125241);
+  border: 1px solid $green-50;
+  background: $white;
+  color: $green-100;
 }
 
 
@@ -146,12 +147,12 @@ select {
 
 #invalidIcon {
   margin: 0 0.5rem;
-  color: var(--red-70);
+  color: $red-70;
 }
 
 #validIcon {
   margin: 0 0.5rem;
-  color: var(--green-60);
+  color: $green-60;
 }
 
 .ls-dv-button {
@@ -162,12 +163,12 @@ select {
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 1px solid var(--gray-50, #C8C9CC);
-  background: var(--White, #FFF);
+  border: 1px solid $gray-50;
+  background: $white;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
   #buttonIcon {
-    color: var(--gray-90);
+    color: $gray-90;
   }
 }
 
@@ -179,12 +180,12 @@ select {
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 1px solid var(--gray-50, #C8C9CC);
-  background: var(--gray-20, #EDEFF2);
+  border: 1px solid $gray-50;
+  background: $gray-20;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 
   #buttonIcon {
-    color: var(--gray-100);
+    color: $gray-100;
   }
 }
 
@@ -196,12 +197,12 @@ select {
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 1px solid var(--Primary-Blue-Light, #4456F6);
-  background: var(--White, #FFF);
+  border: 1px solid $primary-60;
+  background: $white;
   box-shadow: 0px 0px 4px 0px #C7DDFF inset, 0px 0px 0px 4px #9DC3FC;
 
   #buttonIcon {
-    color: var(--gray-100);
+    color: $gray-100;
   }
 }
 
@@ -213,12 +214,12 @@ select {
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 1px solid var(--Primary-Blue-Light, #4456F6);
-  background: var(--White, #FFF);
+  border: 1px solid $primary-60;
+  background: $white;
   box-shadow: 0px 0px 4px 0px #C7DDFF inset, 0px 0px 0px 4px #9DC3FC;
 
   #buttonIcon {
-    color: var(--gray-100);
+    color: $gray-100;
   }
 }
 

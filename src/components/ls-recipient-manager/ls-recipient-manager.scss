@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   display: block;
 }
@@ -11,7 +12,7 @@
 }
 
 .ls-dv-toolbox-section-title {
-  color: var(--gray-100, #45484d);
+  color: $gray-100;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -20,7 +21,7 @@
 }
 
 .ls-dv-toolbox-section-description {
-  color: var(--gray-80, #5e6066);
+  color: $gray-80;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;

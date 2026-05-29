@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   position: fixed;
   display: flex;
@@ -16,5 +17,5 @@
   position: relative;
   width: 200px;
   height: 200px;
-  color: var(--primary-60, #0c7cba);
+  color: $primary-60;
 }

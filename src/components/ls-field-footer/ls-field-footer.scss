@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   display: block;
 }
@@ -5,7 +6,7 @@
 .ls-dv-button-footer {
   display: flex;
   padding-top: 1rem;
-  border-top: 1px solid var(--gray-20, #f0f1f2);
+  border-top: 1px solid $gray-20;
   flex-direction: column;
   justify-content: flex-end;
   gap: 0.75rem;
@@ -14,26 +15,26 @@
 
 
 button.ls-dv-secondary {
-  border: 1px solid var(--gray-50, #c8c9cc);
-  background: var(--white, #fff);
-  color: var(--gray-90, #5e6066);
+  border: 1px solid $gray-50;
+  background: $white;
+  color: $gray-90;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 button.ls-dv-secondary:hover {
-  border: 1px solid var(--gray-50, #c8c9cc);
-  background: var(--gray-10, #f7f8fa);
+  border: 1px solid $gray-50;
+  background: $gray-10;
 }
 
 button.ls-dv-destructive {
-  border: 1px solid var(--red-60, #f04438);
+  border: 1px solid $red-60;
   background-color: white;
-  color: var(--red-60, #f04438);
+  color: $red-60;
 }
 
 button.ls-dv-destructive:hover {
-  border: 1px solid var(--red-70, #d92d20);
-  background: var(--red-10, #fff1f0);
+  border: 1px solid $red-70;
+  background: $red-10;
 }
 
 button {
@@ -46,7 +47,7 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-lg);
-  background-color: var(--primary-60, #4456f6);
+  background-color: $primary-60;
   color: white;
   font-weight: 500;
   text-transform: capitalize;

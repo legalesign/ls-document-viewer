@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   display: block;
   position: absolute;
@@ -69,7 +70,7 @@ input {
 }
 
 .ls-dv-required-icon {
-  color: var(--red-60, #f64a44);
+  color: $red-60;
 }
 
 .ls-dv-x-button {
@@ -78,12 +79,12 @@ input {
   transform: translate(55%, -55%);
   position: absolute;
   color: white;
-  background: var(--gray-80, #3a3a3a);
+  background: $gray-80;
   border-radius: 50%;
   top: 0;
   right: 0;
 }
 
 .ls-dv-x-button:hover {
-  background: var(--gray-90, #1c1c1c);
+  background: $gray-90;
 }

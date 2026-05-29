@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   display: flex;
   flex-direction: column;
@@ -44,7 +45,7 @@
 }
 
 .ls-dv-field-properties-section-title {
-  color: var(--gray-90, #5e6066);
+  color: $gray-90;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -53,7 +54,7 @@
 
 .ls-dv-field-properties-section-description {
   overflow: hidden;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
   text-overflow: ellipsis;
   font-size: 0.75rem;
   font-style: normal;
@@ -74,7 +75,7 @@
 /* Global Styles */
 
 p {
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
   font-family: var(--font-family);
   font-size: var(--text-sm);
   font-style: normal;
@@ -83,7 +84,7 @@ p {
 }
 
 a {
-  color: var(--primary-60, #4456f6);
+  color: $primary-60;
   font-size: var(--text-sm);
   font-style: normal;
   font-weight: 400;
@@ -93,7 +94,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: var(--primary-70, #2134dc);
+  color: $primary-70;
 }
 
 .ls-dv-button-link,
@@ -117,7 +118,7 @@ select {
   right: 0.675rem;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
 }
 
 #selectLeadingIcon {
@@ -126,7 +127,7 @@ select {
   left: 0.675rem;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
 }
 
 #selectLeadingIconDisabled {
@@ -135,7 +136,7 @@ select {
   left: 0.675rem;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--gray-50, #d8d9dc);
+  color: $gray-50;
 }
 
 
@@ -146,50 +147,50 @@ select {
 input,
 select,
 textarea {
-  border: 1px solid var(--gray-40, #d8d9dc);
+  border: 1px solid $gray-40;
   box-shadow: 0 1px 0.125rem rgba(0, 0, 0, 0.05);
   padding: 0.5rem 0.75rem;
   font-family: var(--font-family);
   font-size: var(--text-sm);
   border-radius: 0.625rem;
-  color: var(--gray-100, #45484d);
+  color: $gray-100;
   font-weight: 400;
 }
 
 input::placeholder,
 select::placeholder,
 textarea::placeholder {
-  color: var(--gray-60, #afb0b2);
+  color: $gray-60;
 }
 
 input:hover:not(:disabled),
 select:hover:not(:disabled),
 textarea:hover:not(:disabled) {
-  border-color: var(--gray-50, #c8c9cc);
-  background-color: var(--white, #fff);
+  border-color: $gray-50;
+  background-color: $white;
 }
 
 input:focus:not(:disabled),
 select:focus:not(:disabled),
 textarea:focus:not(:disabled) {
   outline: none;
-  box-shadow: 0 0 0 0.25rem var(--primary-40, #79adfc);
-  border-color: var(--primary-60, #4456f6);
-  background-color: var(--white, #fff);
+  box-shadow: 0 0 0 0.25rem $primary-40;
+  border-color: $primary-60;
+  background-color: $white;
 }
 
 input:active:not(:disabled),
 select:active:not(:disabled),
 textarea:active:not(:disabled) {
-  border-color: var(--primary-50, #5185ff);
+  border-color: $primary-50;
 }
 
 input:disabled,
 select:disabled,
 textarea:disabled {
   cursor: not-allowed;
-  background-color: var(--gray-10, #f7f8fa);
-  color: var(--gray-50, #d8d9dc);
+  background-color: $gray-10;
+  color: $gray-50;
   box-shadow: none;
 }
 
@@ -207,7 +208,7 @@ input[type='checkbox'] {
 
 input[type='checkbox']:checked,
 input[type='checkbox'].ls-dv-indeterminate {
-  background-color: var(--primary-60, #4456f6);
+  background-color: $primary-60;
   border: none;
 }
 
@@ -236,7 +237,7 @@ input[type='checkbox'].ls-dv-indeterminate::after {
 
 input[type='checkbox']:checked:hover,
 input[type='checkbox'].ls-dv-indeterminate:hover {
-  background-color: var(--primary-70, #2134dc);
+  background-color: $primary-70;
   border: none;
 }
 
@@ -247,7 +248,7 @@ input[type='checkbox']:hover {
 input[type='checkbox']:focus,
 input[type='checkbox']:active {
   outline: none;
-  box-shadow: 0 0 0 0.25rem var(--primary-20, #c7ddff);
+  box-shadow: 0 0 0 0.25rem $primary-20;
   background-color: #f0f4f8;
 }
 
@@ -271,7 +272,7 @@ input[type='checkbox']:disabled:checked {
 }
 
 .ls-dv-checkbox-label {
-  color: var(--gray-100, #45484d);
+  color: $gray-100;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -279,7 +280,7 @@ input[type='checkbox']:disabled:checked {
 }
 
 .ls-dv-form-label {
-  color: var(--gray-100, #45484d);
+  color: $gray-100;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
@@ -299,7 +300,7 @@ input[type='checkbox']:disabled:checked {
   align-items: center;
   width: 100%;
   height: 100vh;
-  color: var(--primary-60, #0c7cba);
+  color: $primary-60;
 }
 
 button {
@@ -310,7 +311,7 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-lg);
-  background-color: var(--primary-60, #4456f6);
+  background-color: $primary-60;
   color: white;
   text-transform: capitalize;
   min-height: 2.25rem;
@@ -318,21 +319,21 @@ button {
 }
 
 button.ls-dv-tertiary-grey {
-  border: 1px solid var(--gray-40, #d8d9dc);
+  border: 1px solid $gray-40;
   background-color: white;
-  color: var(--gray-80, #787a80);
+  color: $gray-80;
 }
 
 button.ls-dv-tertiary-grey:hover {
-  border: 1px solid var(--gray-50, #c8c9cc);
-  background: var(--gray-10, #f7f8fa);
+  border: 1px solid $gray-50;
+  background: $gray-10;
 }
 
 .ls-dv-button-group {
   display: flex;
   border-radius: 0.625rem;
-  border: 1px solid var(--gray-30, #e0e2e5);
-  background: var(--white, #ffffff);
+  border: 1px solid $gray-30;
+  background: $white;
   overflow: clip;
   width: 100%;
 }
@@ -344,17 +345,17 @@ button.ls-dv-tertiary-grey:hover {
   border-radius: unset;
   padding: 0.25rem 0.75rem;
   min-width: 2.156rem;
-  color: var(--gray-80, #6c6e73);
+  color: $gray-80;
 }
 
 .ls-dv-button-group button:disabled {
-  background: var(--gray-10, #f7f8fa);
+  background: $gray-10;
   cursor: not-allowed;
-  color: var(--gray-50, #d8d9dc);
+  color: $gray-50;
 }
 
 .ls-dv-button-group button:hover {
-  background: var(--gray-10, #f7f8fa);
+  background: $gray-10;
 }
 
 .ls-dv-button-group > :first-child {
@@ -366,5 +367,5 @@ button.ls-dv-tertiary-grey:hover {
 }
 
 .ls-dv-button-group > :not(:first-child) {
-  border-left: 1px solid var(--gray-30, #e0e2e5);
+  border-left: 1px solid $gray-30;
 }

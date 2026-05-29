@@ -1,3 +1,4 @@
+@import '../../../../global/tokens';
 .ls-dv-radio-label{
   display: flex;
   align-items: center;
@@ -7,26 +8,26 @@
 }
 
 .ls-dv-radio-label.ls-dv-checked {
-  background-color: var(--primary-10);
-  border-color: var(--primary-20);
-  color: var(--primary-90)
+  background-color: $primary-10;
+  border-color: $primary-20;
+  color: $primary-90
 }
 
 .ls-dv-radio-label:not(checked) {
-  color: var(--gray-90);
-  background-color: var(--gray-10);
-  border: 1px solid var(--gray-20);
+  color: $gray-90;
+  background-color: $gray-10;
+  border: 1px solid $gray-20;
 }
 
 .ls-dv-radio-label.ls-dv-checked:hover {
-  border-color: var(--primary-30);
-  color: var(--primary-100);
+  border-color: $primary-30;
+  color: $primary-100;
   
 }
 
 .ls-dv-radio-label:not(.ls-dv-checked):not(.ls-dv-disabled):hover {
-  border-color: var(--gray-50);
-  color: var(--gray-100);
+  border-color: $gray-50;
+  color: $gray-100;
 }
 
 .ls-dv-radio-label:focus:not(.ls-dv-disabled) {
@@ -40,14 +41,14 @@
 }
 
 .ls-dv-radio-label.ls-dv-disabled.ls-dv-checked {
-  background-color: var(--primary-10);
-  color: var(--primary-40);
-  border-color: var(--primary-40);
+  background-color: $primary-10;
+  color: $primary-40;
+  border-color: $primary-40;
 }
 
 .ls-dv-radio-label.ls-dv-disabled:not(.ls-dv-checked) {
-  background-color: var(--gray-10);
-  color: var(--gray-60);
+  background-color: $gray-10;
+  color: $gray-60;
 }
 
 .ls-dv-input-class {

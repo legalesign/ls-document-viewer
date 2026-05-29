@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   position: relative;
   border-radius: 0.875rem;
@@ -10,7 +11,7 @@
 
 .ls-dv-field-type-inner {
   border-radius: 0.625rem;
-  background: var(--white, #fff);
+  background: $white;
   display: flex;
   padding: 0.25rem 0.5rem 0.25rem 0.25rem;
   align-items: center;
@@ -27,7 +28,7 @@
 }
 
 .ls-dv-field-type-name {
-  color: var(--gray-100, #45484d);
+  color: $gray-100;
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;

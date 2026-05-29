@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   position: absolute;
   pointer-events: none;
@@ -12,8 +13,8 @@
 .ls-dv-tooltip {
   position: absolute;
   border-radius: 0.625rem;
-  background: var(--gray-100, #45484d);
-  color: var(--white, #fff);
+  background: $gray-100;
+  color: $white;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
@@ -47,7 +48,7 @@
 }
 #arrow {
   position: absolute;
-  background: var(--gray-100, #45484d);
+  background: $gray-100;
   width: 0.625rem;
   height: 0.625rem;
   transform: rotate(45deg);

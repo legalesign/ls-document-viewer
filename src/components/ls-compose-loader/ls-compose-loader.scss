@@ -1,3 +1,4 @@
+@import '../../global/tokens';
 :host {
   position: fixed;
   display: flex;
@@ -17,13 +18,13 @@
 .ls-dv-compose-loader {
   display: flex;
   flex-direction: column;
-  background: var(--gray-10);
+  background: $gray-10;
   width: 100vw;
   height: 100vh;
 }
 
 .ls-dv-compose-loader__header {
-  border-bottom: 1px solid var(--gray-20);
+  border-bottom: 1px solid $gray-20;
   pointer-events: none;
   height: 2rem;
   background: white;
@@ -35,7 +36,7 @@
 .ls-dv-compose-loader__header-skeleton {
   width: 10rem;
   height: 0.75rem;
-  background: linear-gradient(90deg, var(--gray-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $gray-30 25%, transparent 100%);
   border-radius: 0.625rem;
   animation: pulse 1.5s infinite;
 }
@@ -53,7 +54,7 @@
 
 .ls-dv-compose-loader__header-docname {
   margin-left: 1rem;
-  color: var(--gray-100);
+  color: $gray-100;
 }
 
 .ls-dv-compose-loader__main {
@@ -75,9 +76,9 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
-  background: var(--white, #fff);
+  background: $white;
   border-radius: 1.5rem;
-  border: 1px solid var(--gray-30);
+  border: 1px solid $gray-30;
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 5rem);
@@ -86,7 +87,7 @@
 
 .ls-dv-compose-loader__skeleton,
 .ls-dv-compose-loader__icon-skeleton {
-  background: linear-gradient(90deg, var(--gray-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $gray-30 25%, transparent 100%);
   border-radius: 0.625rem;
   animation: pulse 1.5s infinite;
 }
@@ -130,27 +131,27 @@
 
 .ls-dv-skeleton-line--blue,
 .ls-dv-skeleton-short--blue {
-  background: linear-gradient(90deg, var(--blue-50) 25%, transparent 100%);
+  background: linear-gradient(90deg, $blue-50 25%, transparent 100%);
 }
 .ls-dv-compose-loader__skeleton-box--blue {
-  background: linear-gradient(90deg, var(--blue-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $blue-30 25%, transparent 100%);
 }
 
 
 .ls-dv-skeleton-line--green,
 .ls-dv-skeleton-short--green {
-  background: linear-gradient(90deg, var(--green-50) 25%, transparent 100%);
+  background: linear-gradient(90deg, $green-50 25%, transparent 100%);
 }
 .ls-dv-compose-loader__skeleton-box--green {
-  background: linear-gradient(90deg, var(--green-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $green-30 25%, transparent 100%);
 }
 
 .ls-dv-skeleton-line--gray,
 .ls-dv-skeleton-short--gray {
-  background: linear-gradient(90deg, var(--gray-50) 25%, transparent 100%);
+  background: linear-gradient(90deg, $gray-50 25%, transparent 100%);
 }
 .ls-dv-compose-loader__skeleton-box--gray {
-  background: linear-gradient(90deg, var(--gray-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $gray-30 25%, transparent 100%);
 }
 
 .ls-dv-compose-loader__skeleton-group {
@@ -163,22 +164,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  border: 1px solid var(--gray-30);
+  border: 1px solid $gray-30;
   padding: 0.75rem;
   border-radius: 1.5rem;
-  background: var(--gray-10);
+  background: $gray-10;
   margin-top: 0.25rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .ls-dv-compose-loader__section--blue {
-  border-color: var(--blue-30);
-  background: var(--blue-10);
+  border-color: $blue-30;
+  background: $blue-10;
 }
 
 .ls-dv-compose-loader__section--green {
-  border-color: var(--green-30);
-  background: var(--green-10);
+  border-color: $green-30;
+  background: $green-10;
 }
 
 .ls-dv-compose-loader__skeleton-box--green,
@@ -194,8 +195,8 @@
 .ls-dv-compose-loader__row {
   display: flex;
   gap: 0.75rem;
-  background: var(--white, #fff);
-  border: 1px solid var(--gray-20);
+  background: $white;
+  border: 1px solid $gray-20;
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   border-radius: 0.625rem;
   align-items: center;
@@ -207,15 +208,15 @@
   justify-content: center;
   min-width: 2.375rem;
   min-height: 2.375rem;
-  background: var(--blue-10);
-  border: 1px solid var(--blue-30);
+  background: $blue-10;
+  border: 1px solid $blue-30;
   border-radius: 0.625rem;
 }
 
 .ls-dv-compose-loader__icon--blue {
   width: 1.25rem;
   height: 1.25rem;
-  background: linear-gradient(90deg, var(--blue-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $blue-30 25%, transparent 100%);
   border-radius: 0.625rem;
 }
 
@@ -225,15 +226,15 @@
   justify-content: center;
   min-width: 2.375rem;
   min-height: 2.375rem;
-  background: var(--green-10);
-  border: 1px solid var(--green-30);
+  background: $green-10;
+  border: 1px solid $green-30;
   border-radius: 0.625rem;
 }
 
 .ls-dv-compose-loader__icon--green {
   width: 1.25rem;
   height: 1.25rem;
-  background: linear-gradient(90deg, var(--green-30) 25%, transparent 100%);
+  background: linear-gradient(90deg, $green-30 25%, transparent 100%);
   border-radius: 0.625rem;
 }
 
@@ -253,8 +254,8 @@
 }
 
 .ls-dv-compose-loader__preview-box {
-  background: var(--white, #fff);
-  border: 1px solid var(--gray-30);
+  background: $white;
+  border: 1px solid $gray-30;
   aspect-ratio: 1/1.414;
   height: 100%;
   margin-top: 7rem;
@@ -268,7 +269,7 @@
   right: 1rem;
   border-radius: 1rem;
   padding: 0.25rem;
-  background: var(--white, #fff);
+  background: $white;
 }
 
 .ls-dv-compose-loader__action-btn {
@@ -278,7 +279,7 @@
   align-items: center;
   gap: 0.75rem;
   border: none;
-  background: var(--primary-60);
+  background: $primary-60;
   cursor: not-allowed;
 }
 
