@@ -20,10 +20,7 @@
   line-height: 1.25rem; /* 142.857% */
   width: fit-content;
 }
-.ls-dv-valid-label:hover {
-  cursor: pointer;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
+
 
 .ls-dv-valid {
   background-color: var(--green-30, #9df5d4);
