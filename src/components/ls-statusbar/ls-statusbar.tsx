@@ -2,6 +2,7 @@ import { Component, Host, Prop, State, h, Element } from '@stencil/core';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { attachAllTooltips } from '../../utils/tooltip';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { version } from '../../../package.json';
 
 @Component({
   tag: 'ls-statusbar',
@@ -196,6 +197,7 @@ export class LsStatusbar {
           )}
         </div>
         <ls-helper-bar />
+        <span class="ls-dv-version">v{version}</span>
         <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>

@@ -1,0 +1,102 @@
+name: Publish to NPM
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - prod
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: prod
+          token: ${{ secrets.PAT_TOKEN }}
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Clone ls-document-viewer-react
+        run: git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/legalesign/ls-document-viewer-react.git ../ls-document-viewer-react
+
+      - name: Determine version bump
+        id: bump
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if [[ "$TITLE" == *"BREAKING CHANGE"* ]] || [[ "$TITLE" == *"BREAKING-CHANGE"* ]]; then
+            echo "type=major" >> $GITHUB_OUTPUT
+          elif [[ "$TITLE" == feat:* ]] || [[ "$TITLE" == feat\(* ]]; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+          else
+            echo "type=patch" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump version
+        run: |
+          BUMP_TYPE=${{ steps.bump.outputs.type }}
+          CURRENT=$(node -p "require('./package.json').version")
+          IFS='.' read -r major minor patch <<< "$CURRENT"
+          case $BUMP_TYPE in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            patch) patch=$((patch + 1)) ;;
+          esac
+          NEW_VERSION="$major.$minor.$patch"
+          node -e "const p=require('./package.json'); p.version='$NEW_VERSION'; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Build ls-document-viewer
+        run: pnpm build
+
+      - name: Publish ls-document-viewer
+        run: pnpm publish --access public --no-git-checks
+
+      - name: Build and publish ls-document-viewer-react
+        run: |
+          cd ../ls-document-viewer-react
+          node -e "const p=require('./package.json'); p.version='${{ env.NEW_VERSION }}'; p.dependencies['legalesign-document-viewer']='^${{ env.NEW_VERSION }}'; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
+          pnpm install --no-frozen-lockfile
+          pnpm link ../ls-document-viewer
+          pnpm build
+          pnpm publish --access public --no-git-checks
+
+      - name: Commit and push ls-document-viewer-react
+        run: |
+          cd ../ls-document-viewer-react
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: bump version to v${{ env.NEW_VERSION }} [skip ci]" || true
+          git tag "v${{ env.NEW_VERSION }}"
+          git push
+          git push --tags
+
+      - name: Commit and tag ls-document-viewer
+        run: |
+          git add package.json
+          git commit -m "chore: bump version to v${{ env.NEW_VERSION }} [skip ci]"
+          git tag "v${{ env.NEW_VERSION }}"
+          git push
+          git push --tags
