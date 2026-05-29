@@ -34,7 +34,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(@stencil/core@4.39.0)(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@stencil/sass':
-        specifier: ^3.0.12
+        specifier: ^3.2.3
         version: 3.2.3(@stencil/core@4.39.0)
       '@types/jest':
         specifier: ^30.0.0
