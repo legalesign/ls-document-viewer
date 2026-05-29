@@ -6,7 +6,7 @@ import { outOfBounds } from '../ls-document-viewer/mouseHandlers';
 
 @Component({
   tag: 'ls-field-distribute',
-  styleUrl: 'ls-field-distribute.css',
+  styleUrl: 'ls-field-distribute.scss',
   shadow: true,
 })
 export class LsFieldDistribute {

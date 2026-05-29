@@ -3,7 +3,7 @@ import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-field-properties-date',
-  styleUrl: 'ls-field-properties-date.css',
+  styleUrl: 'ls-field-properties-date.scss',
   shadow: true,
 })
 export class LsFieldPropertiesDate {

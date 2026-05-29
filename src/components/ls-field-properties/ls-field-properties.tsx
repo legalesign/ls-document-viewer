@@ -3,7 +3,7 @@ import { LSApiElement } from '../../types/LSApiElement';
 
 @Component({
   tag: 'ls-field-properties',
-  styleUrl: 'ls-field-properties.css',
+  styleUrl: 'ls-field-properties.scss',
   shadow: true,
 })
 export class LsFieldProperties {

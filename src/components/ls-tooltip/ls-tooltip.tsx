@@ -3,7 +3,7 @@ import { Component, Element, Method, Prop, Watch, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-tooltip',
-  styleUrl: 'ls-tooltip.css',
+  styleUrl: 'ls-tooltip.scss',
   shadow: true,
 })
 export class LsTooltip {

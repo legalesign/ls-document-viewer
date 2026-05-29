@@ -3,7 +3,7 @@ import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '..
 
 @Component({
   tag: 'ls-toolbar',
-  styleUrl: 'ls-toolbar.css',
+  styleUrl: 'ls-toolbar.scss',
   shadow: true,
 })
 export class LsToolbar {

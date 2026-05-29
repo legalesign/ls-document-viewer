@@ -3,7 +3,7 @@ import { Icon } from '../../components';
 
 @Component({
   tag: 'ls-input-wrapper',
-  styleUrl: 'ls-input-wrapper.css',
+  styleUrl: 'ls-input-wrapper.scss',
   shadow: true,
 })
 export class LsInputWrapper {

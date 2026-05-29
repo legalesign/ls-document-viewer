@@ -4,7 +4,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 
 @Component({
   tag: 'ls-compose-manager',
-  styleUrl: 'ls-compose-manager.css',
+  styleUrl: 'ls-compose-manager.scss',
   shadow: true,
 })
 export class LsComposeManager {

@@ -4,7 +4,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-validation-manager',
-  styleUrl: 'ls-validation-manager.css',
+  styleUrl: 'ls-validation-manager.scss',
   shadow: true,
 })
 

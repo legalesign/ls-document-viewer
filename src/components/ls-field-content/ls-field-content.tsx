@@ -5,7 +5,7 @@ import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-vie
 
 @Component({
   tag: 'ls-field-content',
-  styleUrl: 'ls-field-content.css',
+  styleUrl: 'ls-field-content.scss',
   shadow: true,
 })
 export class LsFieldContent {

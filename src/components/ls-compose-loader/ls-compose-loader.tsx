@@ -2,7 +2,7 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-compose-loader',
-  styleUrl: 'ls-compose-loader.css',
+  styleUrl: 'ls-compose-loader.scss',
   shadow: true,
 })
 export class LsComposeLoader {

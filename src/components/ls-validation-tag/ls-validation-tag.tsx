@@ -4,7 +4,7 @@ import { ValidationError } from '../../types/ValidationError';
 
 @Component({
   tag: 'ls-validation-tag',
-  styleUrl: 'ls-validation-tag.css',
+  styleUrl: 'ls-validation-tag.scss',
   shadow: true,
 })
 export class LsValidationTag {

@@ -3,7 +3,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-helper-bar',
-  styleUrl: 'ls-helper-bar.css',
+  styleUrl: 'ls-helper-bar.scss',
   shadow: true,
 })
 export class LsHelperBar {

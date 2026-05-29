@@ -6,7 +6,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-participant-manager',
-  styleUrl: 'ls-participant-manager.css',
+  styleUrl: 'ls-participant-manager.scss',
   shadow: true,
 })
 export class LsParticipantManager {
