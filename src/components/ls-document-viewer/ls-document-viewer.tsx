@@ -719,6 +719,9 @@ export class LsDocumentViewer {
                 <span class="ls-dv-header-text-1">Template Creation</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
+                <div class={'ls-dv-validation-tag-wrapper'}>
+                  <ls-validation-tag validationErrors={this.validationErrors} />
+                </div>
               </div>
             )}
             {this.mode === 'compose' && (
@@ -727,11 +730,6 @@ export class LsDocumentViewer {
               </div>
             )}
           </div>
-          {this.mode === 'editor' && (
-            <div class={'ls-dv-validation-tag-wrapper'}>
-              <ls-validation-tag validationErrors={this.validationErrors} />
-            </div>
-          )}
 
           <form id="ls-editor-form">
             <ls-left-bar
