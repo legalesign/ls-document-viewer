@@ -5,7 +5,11 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'ls-document-viewer',
   globalStyle: 'src/global/global.scss',
-  plugins: [sass()],
+  plugins: [
+    sass({
+      injectGlobalPaths: ['src/global/_tokens.scss'],
+    }),
+  ],
   outputTargets: [
     reactOutputTarget({
       outDir: '../ls-document-viewer-react/lib/components/stencil-generated/',
