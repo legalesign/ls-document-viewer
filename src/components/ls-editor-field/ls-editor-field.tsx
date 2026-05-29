@@ -192,6 +192,8 @@ export class LsEditorField {
       : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}` };
 
     const zoomValue = parseFloat(this.zoom) || 1;
+    const topOffest = (this.dataItem.height ?? 1) + 4;
+    
 
     return (
       <Host id={this.dataItem ? 'ls-field-' + this.dataItem.id : undefined} style={hostStyle} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -236,7 +238,7 @@ export class LsEditorField {
                 color: `${defaultRolePalette[this.dataItem?.signer % 100].s80}`,
                 borderRadius: `${0.25 * zoomValue}rem`,
                 padding: `${0.125 * zoomValue}rem ${0.25 * zoomValue}rem`,
-                top: `-${1.375 * zoomValue}rem`,
+                top: `-${topOffest * zoomValue}px`,
                 fontWeight: '500',
                 left: `-${2 * zoomValue}px`,
                 whiteSpace: 'nowrap',
