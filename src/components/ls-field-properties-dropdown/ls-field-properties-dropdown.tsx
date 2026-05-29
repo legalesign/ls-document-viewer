@@ -3,7 +3,7 @@ import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-field-properties-dropdown',
-  styleUrl: 'ls-field-properties-dropdown.css',
+  styleUrl: 'ls-field-properties-dropdown.scss',
   shadow: true,
 })
 export class LsFieldPropertiesDropdown {

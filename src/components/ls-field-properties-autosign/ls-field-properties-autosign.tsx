@@ -3,7 +3,7 @@ import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-field-properties-autosign',
-  styleUrl: 'ls-field-properties-autosign.css',
+  styleUrl: 'ls-field-properties-autosign.scss',
   shadow: true,
 })
 export class LsFieldPropertiesAutosign {

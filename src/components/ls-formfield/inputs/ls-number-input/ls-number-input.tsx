@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 @Component({
   tag: 'ls-number-input',
-  styleUrl: 'ls-number-input.css',
+  styleUrl: 'ls-number-input.scss',
   shadow: true,
 })
 export class LsNumberInput {

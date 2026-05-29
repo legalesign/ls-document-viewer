@@ -4,7 +4,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-field-properties-advanced',
-  styleUrl: 'ls-field-properties-advanced.css',
+  styleUrl: 'ls-field-properties-advanced.scss',
   shadow: true,
 })
 export class LsFieldPropertiesAdvanced {

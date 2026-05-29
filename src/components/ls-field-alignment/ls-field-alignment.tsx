@@ -4,7 +4,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-alignment',
-  styleUrl: 'ls-field-alignment.css',
+  styleUrl: 'ls-field-alignment.scss',
   shadow: true,
 })
 export class LsFieldAlignment {

@@ -4,7 +4,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-title-input',
-  styleUrl: 'ls-title-input.css',
+  styleUrl: 'ls-title-input.scss',
   shadow: true,
 })
 export class LsTitleInput {

@@ -5,7 +5,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-document-options',
-  styleUrl: 'ls-document-options.css',
+  styleUrl: 'ls-document-options.scss',
   shadow: true,
 })
 export class LsDocumentOptions {

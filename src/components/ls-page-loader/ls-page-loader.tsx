@@ -2,7 +2,7 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-page-loader',
-  styleUrl: 'ls-page-loader.css',
+  styleUrl: 'ls-page-loader.scss',
   shadow: true,
 })
 export class LsPageLoader {

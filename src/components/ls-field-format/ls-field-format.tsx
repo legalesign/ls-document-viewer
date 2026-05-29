@@ -4,7 +4,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-format',
-  styleUrl: 'ls-field-format.css',
+  styleUrl: 'ls-field-format.scss',
   shadow: true,
 })
 export class LsFieldFormat {

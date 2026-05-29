@@ -5,7 +5,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-placement',
-  styleUrl: 'ls-field-placement.css',
+  styleUrl: 'ls-field-placement.scss',
   shadow: true,
 })
 export class LsFieldPlacement {

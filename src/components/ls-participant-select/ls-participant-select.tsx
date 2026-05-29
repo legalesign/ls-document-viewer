@@ -4,7 +4,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-participant-select',
-  styleUrl: 'ls-participant-select.css',
+  styleUrl: 'ls-participant-select.scss',
   shadow: true,
 })
 export class LsParticipantSelect {

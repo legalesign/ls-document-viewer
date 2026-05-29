@@ -4,7 +4,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-size',
-  styleUrl: 'ls-field-size.css',
+  styleUrl: 'ls-field-size.scss',
   shadow: true,
 })
 export class LsFieldSize {

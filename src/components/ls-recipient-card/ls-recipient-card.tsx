@@ -7,7 +7,7 @@ import { IToolboxField } from '../interfaces/IToolboxField';
 
 @Component({
   tag: 'ls-recipient-card',
-  styleUrl: 'ls-recipient-card.css',
+  styleUrl: 'ls-recipient-card.scss',
   shadow: true,
 })
 export class LsRecipientCard {

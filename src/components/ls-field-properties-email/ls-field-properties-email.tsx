@@ -4,7 +4,7 @@ import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-field-properties-email',
-  styleUrl: 'ls-field-properties-email.css',
+  styleUrl: 'ls-field-properties-email.scss',
   shadow: true,
 })
 export class LsFieldPropertiesEmail {

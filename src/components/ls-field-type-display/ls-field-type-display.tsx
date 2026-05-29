@@ -5,7 +5,7 @@ import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 
 @Component({
   tag: 'ls-field-type-display',
-  styleUrl: 'ls-field-type-display.css',
+  styleUrl: 'ls-field-type-display.scss',
   shadow: true,
 })
 export class LsFieldTypeDisplay {

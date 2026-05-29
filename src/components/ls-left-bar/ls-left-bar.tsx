@@ -6,7 +6,7 @@ import { IToolboxField } from '../interfaces/IToolboxField';
 
 @Component({
   tag: 'ls-left-bar',
-  styleUrl: 'ls-left-bar.css',
+  styleUrl: 'ls-left-bar.scss',
   shadow: true,
 })
 export class LsLeftBar {

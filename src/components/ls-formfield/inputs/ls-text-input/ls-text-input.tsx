@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 @Component({
   tag: 'ls-text-input',
-  styleUrl: 'ls-text-input.css',
+  styleUrl: 'ls-text-input.scss',
   shadow: true,
 })
 export class LsTextInput {

@@ -3,7 +3,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
 
 @Component({
   tag: 'ls-field-footer',
-  styleUrl: 'ls-field-footer.css',
+  styleUrl: 'ls-field-footer.scss',
   shadow: true,
 })
 export class LsFieldFooter {
