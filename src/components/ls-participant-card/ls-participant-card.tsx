@@ -85,6 +85,11 @@ export class LsParticipantCard {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
+    const formatRoleName = (signer: LSApiRole): string => {
+      if (signer.roleType == 'WITNESS') return `Participant ${signer.signerIndex % 100} Witness`;
+      return `Participant ${signer.signerIndex}`;
+    };
+
     return (
       <Host>
         <div
@@ -110,7 +115,7 @@ export class LsParticipantCard {
                 }}
               >
                 <ls-icon name={this.signer?.roleType === 'APPROVER' ? 'check-circle' : this.signer?.roleType === 'SIGNER' ? 'signature' : 'eye'} />
-                {(this.signer?.ordinal || '')}
+                {this.signer?.ordinal || ''}
               </div>
               <div class={'ls-dv-button-set ls-dv-hidden'}>
                 {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
@@ -153,8 +158,7 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? "Save Changes" : "Edit Participant"} />
-            
+                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? 'Save Changes' : 'Edit Participant'} />
                 </div>
                 <div
                   class="ls-dv-inner-button"
@@ -242,7 +246,7 @@ export class LsParticipantCard {
                     color: defaultRolePalette[this.signer?.signerIndex % 100].s100,
                   }}
                 >
-                  {this.signer.name || `${this.signer.signerIndex > 100 ? 'Witness' : 'Signer'} ${this.signer.signerIndex + 1}`}
+                  {this.signer.name || formatRoleName(this.signer)}
                 </p>
                 <p
                   class="ls-dv-participant-text-type"
