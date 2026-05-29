@@ -85,7 +85,7 @@ export class LsParticipantCard {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
-    const formatRoleName = (signer: LSApiRole): string => {
+    const formatRoleName = (signer: LSApiRole) => {
       if (signer.roleType == 'WITNESS') return `Participant ${signer.signerIndex % 100} Witness`;
       return `Participant ${signer.signerIndex}`;
     };
