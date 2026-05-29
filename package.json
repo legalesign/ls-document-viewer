@@ -47,7 +47,6 @@
   "devDependencies": {
     "@stencil/core": "^4.39.0",
     "@stencil/react-output-target": "^1.2.0",
-    "@stencil/sass": "^3.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.2",
     "puppeteer": "^24.33.0",
