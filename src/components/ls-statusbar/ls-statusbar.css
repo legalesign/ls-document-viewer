@@ -298,8 +298,10 @@ button.ls-dv-tertiary-grey:hover {
 }
 
 .ls-dv-version {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
   color: var(--gray-50, #afb0b2);
   font-size: 0.625rem;
-  align-self: center;
-  padding: 0 0.25rem;
+  padding-bottom: 0.25rem;
 }

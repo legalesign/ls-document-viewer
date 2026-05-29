@@ -128,7 +128,6 @@ export class LsStatusbar {
   render() {
     return (
       <Host>
-        <span class="ls-dv-version">v{version}</span>
         <div class={'ls-dv-controls-bar'}>
           {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
@@ -198,6 +197,7 @@ export class LsStatusbar {
           )}
         </div>
         <ls-helper-bar />
+        <span class="ls-dv-version">v{version}</span>
         <ls-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>
