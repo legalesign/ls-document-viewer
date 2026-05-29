@@ -716,7 +716,7 @@ export class LsDocumentViewer {
             </div>
             {this.mode === 'editor' && (
               <div>
-                <span class="ls-dv-header-text-1">Template Creation</span>
+                <span class="ls-dv-header-text-1">Template Creation TESTING</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
               </div>
