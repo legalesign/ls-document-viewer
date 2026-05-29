@@ -77,8 +77,8 @@ jobs:
         run: |
           cd ../ls-document-viewer-react
           node -e "const p=require('./package.json'); p.version='${{ env.NEW_VERSION }}'; p.dependencies['legalesign-document-viewer']='^${{ env.NEW_VERSION }}'; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
+          pnpm link $GITHUB_WORKSPACE
           pnpm install --no-frozen-lockfile
-          pnpm link ../ls-document-viewer
           pnpm build
           pnpm publish --access public --no-git-checks
 
