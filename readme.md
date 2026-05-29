@@ -312,3 +312,83 @@ The component uses modern web standards and supports:
 ## Getting Help
 
 For technical support or questions about integration, contact the Legalesign support team or visit the API documentation at [https://apidocs.legalesign.com](https://apidocs.legalesign.com).
+
+## Release Versioning
+
+```
+major.minor.patch
+0.9.8
+```
+
+Versioning is automated via GitHub Actions when merging to `prod` branch. The version bump type is determined by PR title:
+
+| PR title | Bump | Example |
+|---|---|---|
+| `fix: ...`, `chore: ...`, anything else | patch | 0.9.8 → 0.9.9 |
+| `feat: ...`, `feat(...): ...` | minor | 0.9.8 → 0.10.0 |
+| Contains `BREAKING CHANGE` | major | 0.9.8 → 1.0.0 |
+
+The version is read from `package.json` and displayed in the statusbar (bottom-right). Both `legalesign-document-viewer` and `legalesign-document-viewer-react` are published and kept in sync at the same version.
+
+### How It Works
+
+1. PR is merged to `prod`
+2. GitHub Actions workflow (`.github/workflows/publish.yml`) runs
+3. Version in `package.json` is bumped based on PR title
+4. `legalesign-document-viewer` is built and published to npm (OIDC trusted publishing)
+5. `legalesign-document-viewer-react` is cloned, regenerated, bumped, built, and published
+6. Version bump is committed back to both repos with `[skip ci]` and git tags are pushed
+
+### Secrets
+
+| Secret | What | Used for |
+|---|---|---|
+| `PAT_TOKEN` | GitHub classic Personal Access Token (`repo` scope) | Pushing version bump commits and tags back to `prod`, cloning/pushing to `ls-document-viewer-react` |
+
+### NPM Trusted Publishing
+
+Publishing uses OIDC — no npm token required. Trusted publishers are configured on npmjs.com for both packages:
+- Provider: GitHub Actions
+- Repository: `legalesign/ls-document-viewer`
+- Workflow: `publish.yml`
+
+### Branch Protection
+
+If `prod` has branch protection enabled, a bypass rule must be configured:
+
+**GitHub → repo Settings → Branches → `prod` rule → "Allow specified actors to bypass required pull requests"**
+
+## Testing App
+
+The [ls-document-viewer-testing](https://github.com/legalesign/ls-document-viewer-testing) repo is a React app that consumes this component for testing. It is deployed to AWS Amplify at [document-viewer.legalesign.io](https://document-viewer.legalesign.io).
+
+### Automation
+
+- **Push to `main`**: `trigger-testing.yml` dispatches an event to the testing repo, which rebuilds with the latest code
+- **PR opened**: `pr-preview.yml` creates a `pr-{number}` branch in the testing repo, triggering an Amplify preview deployment
+- **PR closed/merged**: The preview branch is deleted and the Amplify deployment is torn down
+
+### PR Preview URLs
+
+When a PR is opened, a comment is posted with the preview URL:
+```
+https://pr-{number}.d25xecos8zk1f0.amplifyapp.com
+```
+
+### Local Development with Testing App
+
+Both repos must be siblings:
+```
+parent/
+├── ls-document-viewer/
+├── ls-document-viewer-react/
+└── ls-document-viewer-testing/
+```
+
+The testing app aliases local source via Vite when started with `pnpm start` (`LOCAL_VIEWER=1`). Since this is a Stencil component, changes require rebuilding:
+
+1. Make changes in `ls-document-viewer`
+2. Run `pnpm build` in `ls-document-viewer`
+3. Restart the testing app dev server
+
+Alternatively, run `pnpm start` in `ls-document-viewer` (Stencil watch mode) in a separate terminal for automatic rebuilds on file change.
