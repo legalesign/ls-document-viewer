@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Получатели и полета",
+    "description": "Изберете Получател за разширение и плъзнете, за да поставите полетата за подпис там, където искате да подпишат.",
+    "recipientfields": "Полета за получатели",
+    "recipientfieldsdescription": "Изберете и щракнете, за да поставите полетата за подпис на документа."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Разширени свойства",
+    "fieldorder": "Полев ред",
+    "fieldorderdescription": "Определя какви полета за поръчка ще бъдат попълнени от потребителя",
+    "refname": "Реф. Име",
+    "linktype": "Тип връзка",
+    "linktypedescription": "Определя по какъв начин това поле е свързано с други полета",
+    "linkvalue": "Стойност на връзката",
+    "linkvaluedescription": "Полетата със същата стойност на връзката ще бъдат свързани заедно",
+    "fieldtype": "Тип на полето",
+    "fieldtypedescription": "Полето, което сте избрали в момента",
+    "fieldlabel": "Етикет на полето",
+    "fieldlabeldescription": "Добавете етикет, за да изясните информацията, изисквана от получателя.",
+    "value": "Стойност",
+    "valuedescription": "Предварително попълнена стойност, която може да бъде променена от подписващия.",
+    "options": "Опции",
+    "optionsdescription": "Определете наличните опции в падащото меню. Една опция на ред.",
+    "requiredfield": "Задължително поле",
+    "contentformat": "Формат на съдържанието",
+    "contentformatdescription": "Изберете конкретния формат, който искате получателят да въведе."
+  },
+  "alignment": {
+    "alignleft": "Подравнете наляво",
+    "aligncenter": "Подравняване на центъра",
+    "alignright": "Подравнете надясно",
+    "aligntop": "Подравнете отгоре",
+    "alignmiddle": "Подравнете средата",
+    "alignbottom": "Подравнете дъното",
+    "distributehorizontally": "Разпределете избраните полета хоризонтално",
+    "distributevertically": "Разпределете избраните полета вертикално",
+    "selectmultipledistribution": "Изберете няколко полета за достъп до контролите за разпространение",
+    "selectmultiplescale": "Изберете няколко полета, за да получите достъп до контролите за мащаба",
+    "selectmultiplewidth": "Изберете няколко полета, за да получите достъп до контролите за ширина на съвпадението",
+    "selectmultipleheight": "Изберете няколко полета, за да получите достъп до контролите за височина на съвпадението",
+    "matchsize": "Направете избраните полета със същата височина и ширина като първото избрано поле",
+    "matchwidth": "Направете избраните полета със същата ширина като първото избрано поле",
+    "matchheight": "Направете избраните полета със същата височина като първото избрано поле"
+  },
+  "format": {
+    "aligntextleft": "Подравнете текста наляво",
+    "aligntextcenter": "Подравняване на текстов център",
+    "aligntextright": "Подравнете текста надясно",
+    "fontfamily": "Семейство шрифтове",
+    "fontsize": "Размер на шрифта"
+  },
+  "statusbar": {
+    "pagethumbnails": "Миниатюри на страници"
   }
 }

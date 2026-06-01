@@ -1,6 +1,7 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-field-properties-advanced',
@@ -78,11 +79,11 @@ export class LsFieldPropertiesAdvanced {
       <Host>
         <div class={'ls-dv-expand-fields-row'} onClick={() => (this.expanded = !this.expanded)}>
           <ls-icon name={this.expanded ? 'expand' : 'collapse'} size="1.25rem" solid />
-          <p>Advanced Properties</p>
+          <p>{dvI18n.t('fieldproperties.advancedproperties')}</p>
         </div>
         {this.expanded && (
           <div class={'ls-dv-field-set'}>
-            <ls-props-section sectionTitle="Field Order" sectionDescription="Determines what order fields will be filled in by the user">
+            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldorder')} sectionDescription={dvI18n.t('fieldproperties.fieldorderdescription')}>
               <input value={this.getValue('fieldOrder')} type="number" placeholder="eg. 1" onInput={e => {
                 console.log(e);
                 this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
@@ -91,11 +92,11 @@ export class LsFieldPropertiesAdvanced {
               />
             </ls-props-section>
 
-            <ls-props-section sectionTitle="Ref. Name">
+            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.refname')}>
               <input value={this.getValue('link')} placeholder="eg. checkbox group" onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} />
             </ls-props-section>
 
-            <ls-props-section sectionTitle="Link Type" sectionDescription="Determines  in what way this field is linked to other fields">
+            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
               <select onChange={e => this.alter({ linkType: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field">
                 <option value="0" selected={this.getValue('linkType') === '0'}>
                   None
@@ -112,7 +113,7 @@ export class LsFieldPropertiesAdvanced {
               </select>
             </ls-props-section>
 
-            <ls-props-section sectionTitle="Link Value" sectionDescription="Fields with the same Link Value will be linked together">
+            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linkvalue')} sectionDescription={dvI18n.t('fieldproperties.linkvaluedescription')}>
               <input
                 value={this.getValue('logicAction')}
                 width="30"

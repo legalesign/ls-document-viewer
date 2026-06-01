@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "المستلمون والحقول",
+    "description": "حدد المستلم لتوسيعه واسحب لوضع حقول التوقيع في المكان الذي تريد تسجيلها فيه.",
+    "recipientfields": "حقول المستلمين",
+    "recipientfieldsdescription": "حدد وانقر لوضع حقول التوقيع في مكان المستند."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "خصائص متقدمة",
+    "fieldorder": "الترتيب الميداني",
+    "fieldorderdescription": "يحدد حقول الطلبات التي سيتم ملؤها من قبل المستخدم",
+    "refname": "المرجع. الاسم",
+    "linktype": "نوع الارتباط",
+    "linktypedescription": "يحدد الطريقة التي يرتبط بها هذا الحقل بالحقول الأخرى",
+    "linkvalue": "قيمة الارتباط",
+    "linkvaluedescription": "سيتم ربط الحقول التي لها نفس قيمة الارتباط معًا",
+    "fieldtype": "نوع الحقل",
+    "fieldtypedescription": "الحقل الذي حددته حاليًا",
+    "fieldlabel": "تسمية الحقل",
+    "fieldlabeldescription": "أضف تصنيفًا لتوضيح المعلومات المطلوبة من المستلم.",
+    "value": "القيمة",
+    "valuedescription": "قيمة مملوءة مسبقًا يمكن أن يغيرها الموقّع.",
+    "options": "خيارات",
+    "optionsdescription": "حدد الخيارات المتاحة في القائمة المنسدلة. خيار واحد لكل سطر.",
+    "requiredfield": "الحقل المطلوب",
+    "contentformat": "صيغة المحتوى",
+    "contentformatdescription": "حدد التنسيق المحدد الذي تريد أن يدخله المستلم."
+  },
+  "alignment": {
+    "alignleft": "محاذاة إلى اليسار",
+    "aligncenter": "مركز المحاذاة",
+    "alignright": "محاذاة يمينًا",
+    "aligntop": "ألاين توب",
+    "alignmiddle": "محاذاة الوسط",
+    "alignbottom": "محاذاة الجزء السفلي",
+    "distributehorizontally": "توزيع الحقول المحددة أفقيًا",
+    "distributevertically": "توزيع الحقول المحددة عموديًا",
+    "selectmultipledistribution": "حدد حقول متعددة للوصول إلى عناصر التحكم في التوزيع",
+    "selectmultiplescale": "حدد حقول متعددة للوصول إلى عناصر التحكم في المقياس",
+    "selectmultiplewidth": "حدد حقول متعددة للوصول إلى عناصر تحكم عرض المطابقة",
+    "selectmultipleheight": "حدد حقول متعددة للوصول إلى عناصر التحكم في ارتفاع المطابقة",
+    "matchsize": "اجعل الحقول المحددة بنفس ارتفاع وعرض الحقل المحدد الأول",
+    "matchwidth": "اجعل الحقول المحددة بنفس عرض الحقل المحدد الأول",
+    "matchheight": "اجعل الحقول المحددة بنفس ارتفاع الحقل المحدد الأول"
+  },
+  "format": {
+    "aligntextleft": "محاذاة النص إلى اليسار",
+    "aligntextcenter": "مركز محاذاة النص",
+    "aligntextright": "محاذاة النص إلى اليمين",
+    "fontfamily": "عائلة الخطوط",
+    "fontsize": "حجم الخط"
+  },
+  "statusbar": {
+    "pagethumbnails": "مصغرات الصفحة"
   }
 }

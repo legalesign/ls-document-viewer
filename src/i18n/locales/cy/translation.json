@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Derbynwyr a Meysydd",
+    "description": "Dewiswch Derbynnydd i Ehangu a Llusgo i osod meysydd Llofnod lle hoffech iddynt Arwyddo.",
+    "recipientfields": "Meysydd Derbynydd",
+    "recipientfieldsdescription": "Dewiswch a Cliciwch i osod meysydd Llofnod lle ar y Ddogfen."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Eiddo Uwch",
+    "fieldorder": "Gorchymyn Maes",
+    "fieldorderdescription": "Yn penderfynu pa feysydd archeb fydd yn cael eu llenwi gan y defnyddiwr",
+    "refname": "Cyf. Enw",
+    "linktype": "Math Cyswllt",
+    "linktypedescription": "Yn penderfynu ym mha ffordd y mae'r maes hwn wedi'i gysylltu â meysydd eraill",
+    "linkvalue": "Gwerth Cyswllt",
+    "linkvaluedescription": "Bydd meysydd â'r un Gwerth Cyswllt yn cael eu cysylltu â'i gilydd",
+    "fieldtype": "Math o Faes",
+    "fieldtypedescription": "Y Maes rydych wedi'i ddewis ar hyn o bryd",
+    "fieldlabel": "Label Maes",
+    "fieldlabeldescription": "Ychwanegwch label i egluro'r wybodaeth sy'n ofynnol gan y Derbynnydd.",
+    "value": "Gwerth",
+    "valuedescription": "Gwerth wedi'i lenwi ymlaen llaw y gall y llofnodwr ei newid.",
+    "options": "Opsiynau",
+    "optionsdescription": "Diffiniwch yr opsiynau sydd ar gael yn y gwymplen. Un opsiwn fesul llinell.",
+    "requiredfield": "Maes Gofynnol",
+    "contentformat": "Fformat Cynnwys",
+    "contentformatdescription": "Dewiswch y fformat penodol rydych chi am i'r Derbynnydd ei nodi."
+  },
+  "alignment": {
+    "alignleft": "Alinio Chwith",
+    "aligncenter": "Canolfan alinio",
+    "alignright": "Alinio i'r Dde",
+    "aligntop": "Alinio Top",
+    "alignmiddle": "Alinio Canol",
+    "alignbottom": "Alinio Gwaelod",
+    "distributehorizontally": "Dosbarthu meysydd dethol yn llorweddol",
+    "distributevertically": "Dosbarthu meysydd dethol yn fertigol",
+    "selectmultipledistribution": "Dewiswch sawl Meysydd i gael mynediad at reolaethau dosbarthu",
+    "selectmultiplescale": "Dewiswch sawl Meysydd i gael mynediad at reolaethau graddfa",
+    "selectmultiplewidth": "Dewiswch sawl Meysydd i gael mynediad at reolaethau lled cyfatebol",
+    "selectmultipleheight": "Dewiswch sawl Meysydd i gael mynediad at reolaethau uchder cyfatebol",
+    "matchsize": "Gwnewch y meysydd dethol yr un uchder a lled â'r maes cyntaf a ddewiswyd",
+    "matchwidth": "Gwnewch y meysydd dethol yr un lled â'r maes cyntaf a ddewiswyd",
+    "matchheight": "Gwnewch y meysydd dethol yr un uchder â'r maes cyntaf a ddewiswyd"
+  },
+  "format": {
+    "aligntextleft": "Alinio Testun Chwith",
+    "aligntextcenter": "Alinio Canolfan Testun",
+    "aligntextright": "Alinio Testun i'r Dde",
+    "fontfamily": "Teulu Ffont",
+    "fontsize": "Maint Ffont"
+  },
+  "statusbar": {
+    "pagethumbnails": "Mân-luniau Tudalen"
   }
 }

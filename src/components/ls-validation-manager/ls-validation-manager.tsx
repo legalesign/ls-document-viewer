@@ -59,12 +59,12 @@ export class LsValidationManager {
                      <ls-toolbox-field
                           elementType="signature"
                           formElementType="signature"
-                          label="Signature"
+                          label={dvI18n.t('toolbox.signature')}
                           defaultHeight={27}
                           defaultWidth={120}
                           validation={0}
                           icon="signature"
-                          tooltip="Use this field to collect Signatures from Participants"
+                          tooltip={dvI18n.t('toolbox.signaturetooltip')}
                           signer={field.element.signer}
                         />
 

@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "נמענים ושדות",
+    "description": "בחר נמען להרחבה וגרור כדי למקם שדות חתימה במקום שבו ברצונך לחתום.",
+    "recipientfields": "שדות נמען",
+    "recipientfieldsdescription": "בחר ולחץ כדי למקם שדות חתימה במקום במסמך."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "מאפיינים מתקדמים",
+    "fieldorder": "סדר שדה",
+    "fieldorderdescription": "קובע אילו שדות הזמנה ימלאו על ידי המשתמש",
+    "refname": "אסמכתה שם",
+    "linktype": "סוג קישור",
+    "linktypedescription": "קובע באיזו דרך שדה זה מקושר לשדות אחרים",
+    "linkvalue": "ערך קישור",
+    "linkvaluedescription": "שדות עם אותו ערך קישור יקושרו יחד",
+    "fieldtype": "סוג שדה",
+    "fieldtypedescription": "השדה שבחרת כרגע",
+    "fieldlabel": "תווית שדה",
+    "fieldlabeldescription": "הוסף תווית כדי להבהיר את המידע הנדרש מהנמען.",
+    "value": "ערך",
+    "valuedescription": "ערך מלא מראש שניתן לשנות על-ידי החותם.",
+    "options": "אופציות",
+    "optionsdescription": "הגדר את האפשרויות הזמינות בתפריט הנפתח. אפשרות אחת לכל שורה.",
+    "requiredfield": "שדה חובה",
+    "contentformat": "פורמט תוכן",
+    "contentformatdescription": "בחר את הפורמט הספציפי שברצונך שהנמען יזן."
+  },
+  "alignment": {
+    "alignleft": "יישור שמאלה",
+    "aligncenter": "מרכז יישור",
+    "alignright": "יישור ימינה",
+    "aligntop": "יישר את החלק העליון",
+    "alignmiddle": "יישר אמצע",
+    "alignbottom": "יישר תחתית",
+    "distributehorizontally": "הפץ שדות שנבחרו בצורה אופקית",
+    "distributevertically": "הפץ שדות שנבחרו בצורה אנכית",
+    "selectmultipledistribution": "בחר שדות מרובים כדי לגשת לבקרות הפצה",
+    "selectmultiplescale": "בחר שדות מרובים כדי לגשת לבקרי קנה מידה",
+    "selectmultiplewidth": "בחר שדות מרובים כדי לגשת לבקרי רוחב התאמה",
+    "selectmultipleheight": "בחר שדות מרובים כדי לגשת לבקרי גובה התאמה",
+    "matchsize": "הפוך את השדות שנבחרו לאותם גובה ורוחב כמו השדה הראשון שנבחר",
+    "matchwidth": "הפוך את השדות שנבחרו לרוחב זהה לשדה הראשון שנבחר",
+    "matchheight": "הפוך את השדות שנבחרו לגובה זהה לשדה הראשון שנבחר"
+  },
+  "format": {
+    "aligntextleft": "יישור טקסט שמאלה",
+    "aligntextcenter": "יישור מרכז טקסט",
+    "aligntextright": "יישור טקסט ימינה",
+    "fontfamily": "משפחת גופנים",
+    "fontsize": "גודל גופן"
+  },
+  "statusbar": {
+    "pagethumbnails": "תמונות ממוזערות של עמוד"
   }
 }

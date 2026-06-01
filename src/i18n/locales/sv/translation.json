@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Mottagare och fält",
+    "description": "Välj Mottagare att expandera och dra för att placera signaturfält där du vill att de ska signeras.",
+    "recipientfields": "Mottagarfält",
+    "recipientfieldsdescription": "Markera och klicka för att placera signaturfält där i dokumentet."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Avancerade egenskaper",
+    "fieldorder": "Fältordning",
+    "fieldorderdescription": "Bestämmer vilka orderfält som ska fyllas i av användaren",
+    "refname": "Ref. Namn",
+    "linktype": "Länktyp",
+    "linktypedescription": "Bestämmer på vilket sätt fältet är länkat till andra fält",
+    "linkvalue": "Länkvärde",
+    "linkvaluedescription": "Fält med samma länkvärde kommer att länkas samman",
+    "fieldtype": "Fälttyp",
+    "fieldtypedescription": "Fältet du just nu har valt",
+    "fieldlabel": "Fältetikett",
+    "fieldlabeldescription": "Lägg till en etikett för att klargöra den information som krävs från mottagaren.",
+    "value": "Värde",
+    "valuedescription": "Ett förfyllt värde som kan ändras av signeraren.",
+    "options": "Alternativ",
+    "optionsdescription": "Definiera de alternativ som finns tillgängliga i rullgardinsmenyn. Ett alternativ per rad.",
+    "requiredfield": "Obligatoriskt fält",
+    "contentformat": "Innehållsformat",
+    "contentformatdescription": "Välj det specifika format som du vill att mottagaren ska ange."
+  },
+  "alignment": {
+    "alignleft": "Justera vänster",
+    "aligncenter": "Justera centrum",
+    "alignright": "Justera höger",
+    "aligntop": "Justera toppen",
+    "alignmiddle": "Justera mitten",
+    "alignbottom": "Justera botten",
+    "distributehorizontally": "Fördela markerade fält horisontellt",
+    "distributevertically": "Fördela markerade fält vertikalt",
+    "selectmultipledistribution": "Välj flera fält för att komma åt distributionskontroller",
+    "selectmultiplescale": "Markera flera fält för att komma åt skalkontroller",
+    "selectmultiplewidth": "Markera flera fält för att komma åt matchningsbreddskontroller",
+    "selectmultipleheight": "Välj flera fält för att komma åt matchningshöjdskontroller",
+    "matchsize": "Gör markerade fält samma höjd och bredd som det första markerade fältet",
+    "matchwidth": "Gör markerade fält samma bredd som det första markerade fältet",
+    "matchheight": "Gör markerade fält lika höga som det första markerade fältet"
+  },
+  "format": {
+    "aligntextleft": "Justera text åt vänster",
+    "aligntextcenter": "Justera textcentrum",
+    "aligntextright": "Justera text åt höger",
+    "fontfamily": "Teckensnittsfamilj",
+    "fontsize": "Teckenstorlek"
+  },
+  "statusbar": {
+    "pagethumbnails": "Sidminiatyrer"
   }
 }

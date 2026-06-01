@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { Element } from '@stencil/core';
 import { attachAllTooltips } from '../../utils/tooltip';
@@ -145,13 +146,13 @@ export class LsFieldDimensions {
                 <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
               </div>
               <div class={'ls-dv-button-group'}>
-                <button disabled data-tooltip="Select multiple Fields to to access scale controls">
+                <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplescale')}>
                   <ls-icon name="field-scale"></ls-icon>
                 </button>
-                <button disabled data-tooltip="Select multiple Fields to to access match width controls">
+                <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplewidth')}>
                   <ls-icon name="field-match-width"></ls-icon>
                 </button>
-                <button disabled data-tooltip="Select multiple Fields to to access match height controls">
+                <button disabled data-tooltip={dvI18n.t('alignment.selectmultipleheight')}>
                   <ls-icon name="field-match-height"></ls-icon>
                 </button>
               </div>

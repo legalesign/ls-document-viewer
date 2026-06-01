@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Destinatarios y campos",
+    "description": "Selecciona Destinatario para expandirlo y arrastra para colocar los campos de firma donde quieres que firmen.",
+    "recipientfields": "Campos de destinatarios",
+    "recipientfieldsdescription": "Seleccione y haga clic para colocar los campos de firma en cualquier parte del documento."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Propiedades avanzadas",
+    "fieldorder": "Orden de campo",
+    "fieldorderdescription": "Determina qué campos de pedido rellenará el usuario",
+    "refname": "Árbitro. Nombre",
+    "linktype": "Tipo de enlace",
+    "linktypedescription": "Determina de qué manera este campo está vinculado a otros campos",
+    "linkvalue": "Valor del enlace",
+    "linkvaluedescription": "Los campos con el mismo valor de enlace se vincularán entre sí",
+    "fieldtype": "Tipo de campo",
+    "fieldtypedescription": "El campo que ha seleccionado actualmente",
+    "fieldlabel": "Etiqueta de campo",
+    "fieldlabeldescription": "Agregue una etiqueta para aclarar la información requerida del destinatario.",
+    "value": "Valor",
+    "valuedescription": "Un valor rellenado previamente que el firmante puede modificar.",
+    "options": "Opciones",
+    "optionsdescription": "Defina las opciones disponibles en el menú desplegable. Una opción por línea.",
+    "requiredfield": "Campo obligatorio",
+    "contentformat": "Formato de contenido",
+    "contentformatdescription": "Selecciona el formato específico que deseas que introduzca el destinatario."
+  },
+  "alignment": {
+    "alignleft": "Alinear a la izquierda",
+    "aligncenter": "Centro de alineación",
+    "alignright": "Alinear a la derecha",
+    "aligntop": "Alinear la parte superior",
+    "alignmiddle": "Alinear en el centro",
+    "alignbottom": "Alinear la parte inferior",
+    "distributehorizontally": "Distribuir los campos seleccionados horizontalmente",
+    "distributevertically": "Distribuir los campos seleccionados verticalmente",
+    "selectmultipledistribution": "Seleccione varios campos para acceder a los controles de distribución",
+    "selectmultiplescale": "Seleccione varios campos para acceder a los controles de escala",
+    "selectmultiplewidth": "Seleccione varios campos para acceder a los controles de ancho de coincidencia",
+    "selectmultipleheight": "Seleccione varios campos para acceder a los controles de altura coincidentes",
+    "matchsize": "Hacer que los campos seleccionados tengan la misma altura y ancho que el primer campo seleccionado",
+    "matchwidth": "Hacer que los campos seleccionados tengan el mismo ancho que el primer campo seleccionado",
+    "matchheight": "Hacer que los campos seleccionados tengan la misma altura que el primer campo seleccionado"
+  },
+  "format": {
+    "aligntextleft": "Alinear texto a la izquierda",
+    "aligntextcenter": "Alinear el centro de texto",
+    "aligntextright": "Alinear texto a la derecha",
+    "fontfamily": "Familia de fuentes",
+    "fontsize": "Tamaño de fuente"
+  },
+  "statusbar": {
+    "pagethumbnails": "Miniaturas de página"
   }
 }

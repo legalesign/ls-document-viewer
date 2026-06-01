@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { attachAllTooltips } from '../../utils/tooltip';
 
@@ -174,8 +175,8 @@ export class LsFieldAlignment {
                 onClick={() => {
                   this.right();
                 }}
-                aria-label="Align selected fields vertically about their right edge."
-                data-tooltip="Align Right"
+                aria-label={dvI18n.t('alignment.alignright')}
+                data-tooltip={dvI18n.t('alignment.alignright')}
               >
                 <ls-icon name="field-alignment-right"></ls-icon>
               </button>

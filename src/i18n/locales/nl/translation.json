@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Ontvangers en velden",
+    "description": "Selecteer de ontvanger om uit te vouwen en sleep om de handtekeningvelden te plaatsen op de plek waar u ze wilt laten ondertekenen.",
+    "recipientfields": "Velden voor ontvangers",
+    "recipientfieldsdescription": "Selecteer en klik om de handtekeningvelden op het document te plaatsen."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Geavanceerde eigenschappen",
+    "fieldorder": "Bestelling in het veld",
+    "fieldorderdescription": "Bepaalt welke bestelvelden door de gebruiker worden ingevuld",
+    "refname": "Ref. Naam",
+    "linktype": "Soort link",
+    "linktypedescription": "Bepaalt op welke manier dit veld is gekoppeld aan andere velden",
+    "linkvalue": "Linkwaarde",
+    "linkvaluedescription": "Velden met dezelfde linkwaarde worden aan elkaar gekoppeld",
+    "fieldtype": "Veldtype",
+    "fieldtypedescription": "Het veld dat je momenteel hebt geselecteerd",
+    "fieldlabel": "Veldetiket",
+    "fieldlabeldescription": "Voeg een label toe om de vereiste informatie van de ontvanger te verduidelijken.",
+    "value": "Waarde",
+    "valuedescription": "Een vooraf ingevulde waarde die door de ondertekenaar kan worden gewijzigd.",
+    "options": "Opties",
+    "optionsdescription": "Definieer de beschikbare opties in de keuzelijst. Eén optie per regel.",
+    "requiredfield": "Verplicht veld",
+    "contentformat": "Inhoudsindeling",
+    "contentformatdescription": "Selecteer het specifieke formaat dat de ontvanger moet invoeren."
+  },
+  "alignment": {
+    "alignleft": "Links uitlijnen",
+    "aligncenter": "Midden uitlijnen",
+    "alignright": "Rechts uitlijnen",
+    "aligntop": "Bovenkant uitlijnen",
+    "alignmiddle": "Midden uitlijnen",
+    "alignbottom": "Onderkant uitlijnen",
+    "distributehorizontally": "Geselecteerde velden horizontaal verdelen",
+    "distributevertically": "Geselecteerde velden verticaal verdelen",
+    "selectmultipledistribution": "Selecteer meerdere velden om toegang te krijgen tot distributiecontroles",
+    "selectmultiplescale": "Selecteer meerdere velden om toegang te krijgen tot schaalbesturingselementen",
+    "selectmultiplewidth": "Selecteer meerdere velden om toegang te krijgen tot de regelaars voor de juiste breedte",
+    "selectmultipleheight": "Selecteer meerdere velden om toegang te krijgen tot de regelaars voor de matchhoogte",
+    "matchsize": "Maak geselecteerde velden even hoog en breed als het eerste geselecteerde veld",
+    "matchwidth": "Maak geselecteerde velden even breed als het eerste geselecteerde veld",
+    "matchheight": "Geselecteerde velden even hoog maken als het eerste geselecteerde veld"
+  },
+  "format": {
+    "aligntextleft": "Tekst links uitlijnen",
+    "aligntextcenter": "Tekstcentrum uitlijnen",
+    "aligntextright": "Tekst rechts uitlijnen",
+    "fontfamily": "Font-familie",
+    "fontsize": "Lettergrootte"
+  },
+  "statusbar": {
+    "pagethumbnails": "Miniaturen van pagina's"
   }
 }

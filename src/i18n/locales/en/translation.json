@@ -127,7 +127,10 @@
     "value": "Value",
     "valuedescription": "A prefilled value that can be altered by the signer.",
     "options": "Options",
-    "optionsdescription": "Define the options available in the dropdown. One option per line."
+    "optionsdescription": "Define the options available in the dropdown. One option per line.",
+    "requiredfield": "Required Field",
+    "contentformat": "Content Format",
+    "contentformatdescription": "Select the specific format you want the Recipient to enter."
   },
   "alignment": {
     "alignleft": "Align Left",

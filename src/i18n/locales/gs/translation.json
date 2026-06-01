@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "[NEEDS TRANSLATION] Recipients & Fields",
+    "description": "[NEEDS TRANSLATION] Select Recipient to Expand and Drag to place Signature fields where you'd like them to Sign.",
+    "recipientfields": "[NEEDS TRANSLATION] Recipient Fields",
+    "recipientfieldsdescription": "[NEEDS TRANSLATION] Select and Click to place Signature fields where on the Document."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "[NEEDS TRANSLATION] Advanced Properties",
+    "fieldorder": "[NEEDS TRANSLATION] Field Order",
+    "fieldorderdescription": "[NEEDS TRANSLATION] Determines what order fields will be filled in by the user",
+    "refname": "[NEEDS TRANSLATION] Ref. Name",
+    "linktype": "[NEEDS TRANSLATION] Link Type",
+    "linktypedescription": "[NEEDS TRANSLATION] Determines in what way this field is linked to other fields",
+    "linkvalue": "[NEEDS TRANSLATION] Link Value",
+    "linkvaluedescription": "[NEEDS TRANSLATION] Fields with the same Link Value will be linked together",
+    "fieldtype": "[NEEDS TRANSLATION] Field Type",
+    "fieldtypedescription": "[NEEDS TRANSLATION] The Field you currently have selected",
+    "fieldlabel": "[NEEDS TRANSLATION] Field Label",
+    "fieldlabeldescription": "[NEEDS TRANSLATION] Add a label to clarify the information required from the Recipient.",
+    "value": "[NEEDS TRANSLATION] Value",
+    "valuedescription": "[NEEDS TRANSLATION] A prefilled value that can be altered by the signer.",
+    "options": "[NEEDS TRANSLATION] Options",
+    "optionsdescription": "[NEEDS TRANSLATION] Define the options available in the dropdown. One option per line.",
+    "requiredfield": "[NEEDS TRANSLATION] Required Field",
+    "contentformat": "[NEEDS TRANSLATION] Content Format",
+    "contentformatdescription": "[NEEDS TRANSLATION] Select the specific format you want the Recipient to enter."
+  },
+  "alignment": {
+    "alignleft": "[NEEDS TRANSLATION] Align Left",
+    "aligncenter": "[NEEDS TRANSLATION] Align Center",
+    "alignright": "[NEEDS TRANSLATION] Align Right",
+    "aligntop": "[NEEDS TRANSLATION] Align Top",
+    "alignmiddle": "[NEEDS TRANSLATION] Align Middle",
+    "alignbottom": "[NEEDS TRANSLATION] Align Bottom",
+    "distributehorizontally": "[NEEDS TRANSLATION] Distribute selected fields horizontally",
+    "distributevertically": "[NEEDS TRANSLATION] Distribute selected fields vertically",
+    "selectmultipledistribution": "[NEEDS TRANSLATION] Select multiple Fields to to access distribution controls",
+    "selectmultiplescale": "[NEEDS TRANSLATION] Select multiple Fields to to access scale controls",
+    "selectmultiplewidth": "[NEEDS TRANSLATION] Select multiple Fields to to access match width controls",
+    "selectmultipleheight": "[NEEDS TRANSLATION] Select multiple Fields to to access match height controls",
+    "matchsize": "[NEEDS TRANSLATION] Make selected fields the same height and width as the first selected field",
+    "matchwidth": "[NEEDS TRANSLATION] Make selected fields the same width as the first selected field",
+    "matchheight": "[NEEDS TRANSLATION] Make selected fields the same height as the first selected field"
+  },
+  "format": {
+    "aligntextleft": "[NEEDS TRANSLATION] Align Text Left",
+    "aligntextcenter": "[NEEDS TRANSLATION] Align Text Center",
+    "aligntextright": "[NEEDS TRANSLATION] Align Text Right",
+    "fontfamily": "[NEEDS TRANSLATION] Font Family",
+    "fontsize": "[NEEDS TRANSLATION] Font Size"
+  },
+  "statusbar": {
+    "pagethumbnails": "[NEEDS TRANSLATION] Page Thumbnails"
   }
 }

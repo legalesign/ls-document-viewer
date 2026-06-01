@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Empfänger und Felder",
+    "description": "Wählen Sie Empfänger zum Erweitern aus und ziehen Sie, um die Signaturfelder dort zu platzieren, wo sie unterschreiben sollen.",
+    "recipientfields": "Felder für Empfänger",
+    "recipientfieldsdescription": "Wählen Sie und klicken Sie, um die Signaturfelder an einer beliebigen Stelle im Dokument zu platzieren."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Erweiterte Eigenschaften",
+    "fieldorder": "Reihenfolge der Felder",
+    "fieldorderdescription": "Legt fest, welche Felder in welcher Reihenfolge vom Benutzer ausgefüllt werden",
+    "refname": "Ref. Name",
+    "linktype": "Link-Typ",
+    "linktypedescription": "Legt fest, auf welche Weise dieses Feld mit anderen Feldern verknüpft ist",
+    "linkvalue": "Link-Wert",
+    "linkvaluedescription": "Felder mit demselben Linkwert werden miteinander verknüpft",
+    "fieldtype": "Typ des Feldes",
+    "fieldtypedescription": "Das Feld, das Sie gerade ausgewählt haben",
+    "fieldlabel": "Feldbeschriftung",
+    "fieldlabeldescription": "Fügen Sie ein Etikett hinzu, um die vom Empfänger benötigten Informationen zu verdeutlichen.",
+    "value": "Wert",
+    "valuedescription": "Ein vorausgefüllter Wert, der vom Unterzeichner geändert werden kann.",
+    "options": "Optionen",
+    "optionsdescription": "Definieren Sie die verfügbaren Optionen in der Dropdownliste. Eine Option pro Zeile.",
+    "requiredfield": "Erforderliches Feld",
+    "contentformat": "Format des Inhalts",
+    "contentformatdescription": "Wählen Sie das spezifische Format aus, das der Empfänger eingeben soll."
+  },
+  "alignment": {
+    "alignleft": "Links ausrichten",
+    "aligncenter": "Mittig ausrichten",
+    "alignright": "Rechts ausrichten",
+    "aligntop": "Oben ausrichten",
+    "alignmiddle": "Mittig ausrichten",
+    "alignbottom": "Unten ausrichten",
+    "distributehorizontally": "Ausgewählte Felder horizontal verteilen",
+    "distributevertically": "Ausgewählte Felder vertikal verteilen",
+    "selectmultipledistribution": "Wählen Sie mehrere Felder aus, um auf Verteilungskontrollen zuzugreifen",
+    "selectmultiplescale": "Wählen Sie mehrere Felder aus, um auf Skalierungssteuerungen zuzugreifen",
+    "selectmultiplewidth": "Wählen Sie mehrere Felder aus, um auf Steuerelemente für die Matchbreite zuzugreifen",
+    "selectmultipleheight": "Wählen Sie mehrere Felder aus, um auf Steuerelemente für die Abgleichshöhe zuzugreifen",
+    "matchsize": "Ordnen Sie ausgewählten Feldern die gleiche Höhe und Breite wie das erste ausgewählte Feld zu",
+    "matchwidth": "Ordnen Sie ausgewählten Feldern die gleiche Breite wie das erste ausgewählte Feld zu",
+    "matchheight": "Ordnen Sie den ausgewählten Feldern die gleiche Höhe wie das erste ausgewählte Feld zu"
+  },
+  "format": {
+    "aligntextleft": "Text links ausrichten",
+    "aligntextcenter": "Textmitte ausrichten",
+    "aligntextright": "Text nach rechts ausrichten",
+    "fontfamily": "Schriftfamilie",
+    "fontsize": "Schriftgröße"
+  },
+  "statusbar": {
+    "pagethumbnails": "Seiten-Thumbnails"
   }
 }

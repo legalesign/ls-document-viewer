@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Vastaanottajat ja kentät",
+    "description": "Valitse laajennettava vastaanottaja ja sijoita allekirjoituskentät sinne, missä haluat niiden allekirjoittavan vetämällä.",
+    "recipientfields": "Vastaanottajan kentät",
+    "recipientfieldsdescription": "Valitse ja napsauta, jos haluat sijoittaa Allekirjoituskentät asiakirjan sijaintiin."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Edistyneet ominaisuudet",
+    "fieldorder": "Kenttäjärjestys",
+    "fieldorderdescription": "Määrittää, mitkä tilauskentät käyttäjä täyttää",
+    "refname": "Viite. Nimi",
+    "linktype": "Linkkityyppi",
+    "linktypedescription": "Määrittää, millä tavalla tämä kenttä linkitetään muihin kenttiin",
+    "linkvalue": "Linkin arvo",
+    "linkvaluedescription": "Kentät, joilla on sama linkkiarvo, linkitetään toisiinsa",
+    "fieldtype": "Kenttätyyppi",
+    "fieldtypedescription": "Tällä hetkellä valitsemasi kenttä",
+    "fieldlabel": "Kenttätunniste",
+    "fieldlabeldescription": "Lisää tarra, joka selventää Vastaanottajalta vaadittavat tiedot.",
+    "value": "Arvo",
+    "valuedescription": "Esitäytetty arvo, jota allekirjoittaja voi muuttaa.",
+    "options": "Vaihtoehdot",
+    "optionsdescription": "Määritä avattavasta valikosta käytettävissä olevat vaihtoehdot. Yksi vaihtoehto riviä kohden.",
+    "requiredfield": "Pakollinen kenttä",
+    "contentformat": "Sisällön muoto",
+    "contentformatdescription": "Valitse tietty muoto, jonka haluat Vastaanottajan antavan."
+  },
+  "alignment": {
+    "alignleft": "Kohdista vasemmalle",
+    "aligncenter": "Kohdista keskipiste",
+    "alignright": "Kohdista oikealle",
+    "aligntop": "Kohdista yläosa",
+    "alignmiddle": "Kohdista keskelle",
+    "alignbottom": "Kohdista pohja",
+    "distributehorizontally": "Jaa valitut kentät vaakasuunnassa",
+    "distributevertically": "Jaa valitut kentät pystysuunnassa",
+    "selectmultipledistribution": "Valitse useita kenttiä, joita haluat käyttää jakelunhallintalaitteita",
+    "selectmultiplescale": "Valitse useita kenttiä, jotta voit käyttää skaalausohjaimia",
+    "selectmultiplewidth": "Valitse useita kenttiä, jotta voit käyttää vastaavuusleveyden säätimiä",
+    "selectmultipleheight": "Valitse useita kenttiä, jotta voit käyttää vastaavan korkeuden säätimiä",
+    "matchsize": "Tee valittujen kenttien korkeudesta ja leveydestä samaa korkeutta ja leveyttä kuin ensimmäisen valitun kentän",
+    "matchwidth": "Tee valittujen kenttien leveydeltään sama kuin ensimmäinen valittu kenttä",
+    "matchheight": "Valitujen kenttien korkeus on sama kuin ensimmäinen valittu kenttä"
+  },
+  "format": {
+    "aligntextleft": "Kohdista teksti vasemmalle",
+    "aligntextcenter": "Kohdista tekstikeskus",
+    "aligntextright": "Kohdista teksti oikealle",
+    "fontfamily": "Fonttiperhe",
+    "fontsize": "Kirjasinkoko"
+  },
+  "statusbar": {
+    "pagethumbnails": "Sivun pikkukuvat"
   }
 }

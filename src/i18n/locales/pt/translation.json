@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Destinatários e campos",
+    "description": "Selecione Destinatário para expandir e arraste para colocar os campos de assinatura onde você gostaria que eles assinassem.",
+    "recipientfields": "Campos do destinatário",
+    "recipientfieldsdescription": "Selecione e clique para colocar os campos de assinatura no local do documento."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Propriedades avançadas",
+    "fieldorder": "Ordem de campo",
+    "fieldorderdescription": "Determina quais campos do pedido serão preenchidos pelo usuário",
+    "refname": "Árbitro. Nome",
+    "linktype": "Tipo de link",
+    "linktypedescription": "Determina de que forma esse campo está vinculado a outros campos",
+    "linkvalue": "Valor do link",
+    "linkvaluedescription": "Os campos com o mesmo valor do link serão vinculados",
+    "fieldtype": "Tipo de campo",
+    "fieldtypedescription": "O campo que você selecionou atualmente",
+    "fieldlabel": "Rótulo de campo",
+    "fieldlabeldescription": "Adicione uma etiqueta para esclarecer as informações exigidas do destinatário.",
+    "value": "Valor",
+    "valuedescription": "Um valor pré-preenchido que pode ser alterado pelo signatário.",
+    "options": "Opções",
+    "optionsdescription": "Defina as opções disponíveis no menu suspenso. Uma opção por linha.",
+    "requiredfield": "Campo obrigatório",
+    "contentformat": "Formato de conteúdo",
+    "contentformatdescription": "Selecione o formato específico que você deseja que o Destinatário insira."
+  },
+  "alignment": {
+    "alignleft": "Alinhar à esquerda",
+    "aligncenter": "Alinhar o centro",
+    "alignright": "Alinhar à direita",
+    "aligntop": "Alinhar a parte superior",
+    "alignmiddle": "Alinhar ao meio",
+    "alignbottom": "Alinhar a parte inferior",
+    "distributehorizontally": "Distribuir os campos selecionados horizontalmente",
+    "distributevertically": "Distribuir os campos selecionados verticalmente",
+    "selectmultipledistribution": "Selecione vários campos para acessar os controles de distribuição",
+    "selectmultiplescale": "Selecione vários campos para acessar os controles de escala",
+    "selectmultiplewidth": "Selecione vários campos para acessar os controles de largura de correspondência",
+    "selectmultipleheight": "Selecione vários campos para acessar os controles de altura de correspondência",
+    "matchsize": "Tornar os campos selecionados com a mesma altura e largura do primeiro campo selecionado",
+    "matchwidth": "Tornar os campos selecionados com a mesma largura do primeiro campo selecionado",
+    "matchheight": "Tornar os campos selecionados da mesma altura do primeiro campo selecionado"
+  },
+  "format": {
+    "aligntextleft": "Alinhar texto à esquerda",
+    "aligntextcenter": "Alinhar centro de texto",
+    "aligntextright": "Alinhar texto à direita",
+    "fontfamily": "Família de fontes",
+    "fontsize": "Tamanho da fonte"
+  },
+  "statusbar": {
+    "pagethumbnails": "Miniaturas de páginas"
   }
 }

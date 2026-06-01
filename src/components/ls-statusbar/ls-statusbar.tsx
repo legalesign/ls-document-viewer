@@ -1,4 +1,5 @@
 import { Component, Host, Prop, State, h, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { attachAllTooltips } from '../../utils/tooltip';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
@@ -185,7 +186,7 @@ export class LsStatusbar {
                 }
               }}
               id="page-thumbnails-btn"
-              data-tooltip="Page Thumbnails"
+              data-tooltip={dvI18n.t('statusbar.pagethumbnails')}
             >
               <ls-icon name={!this.showThumbnails ? 'side-panel-open-right' : 'side-panel-close-right'} />
             </button>

@@ -129,7 +129,7 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip="Move Up"
+                    data-tooltip={dvI18n.t('participants.moveup')}
                   >
                     <ls-icon name="arrow-up" size="1.125rem" />
                   </div>
@@ -144,7 +144,7 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip="Move Down"
+                    data-tooltip={dvI18n.t('participants.movedown')}
                   >
                     <ls-icon name="arrow-down" size="1.125rem" />
                   </div>

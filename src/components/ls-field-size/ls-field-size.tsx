@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { attachAllTooltips } from '../../utils/tooltip';
 
@@ -44,22 +45,22 @@ export class LsFieldSize {
           <div class={'ls-dv-button-group'}>
             <button
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
-              aria-label="Make selected fields the same height and width as the first selected field."
-              data-tooltip="Make selected fields the same height and width as the first selected field"
+              aria-label={dvI18n.t('alignment.matchsize')}
+              data-tooltip={dvI18n.t('alignment.matchsize')}
             >
               <ls-icon name="field-scale"></ls-icon>
             </button>
             <button
-              aria-label="Make selected fields the same width as the first selected field"
+              aria-label={dvI18n.t('alignment.matchwidth')}
               onClick={() => this.alter({ width: this.dataItem[0].width })}
-              data-tooltip="Make selected fields the same width as the first selected field"
+              data-tooltip={dvI18n.t('alignment.matchwidth')}
             >
               <ls-icon name="field-match-width"></ls-icon>
             </button>
             <button
               onClick={() => this.alter({ height: this.dataItem[0].height })}
-              aria-label="Make selected fields the same height as the first selected field."
-              data-tooltip="Make selected fields the same height as the first selected field"
+              aria-label={dvI18n.t('alignment.matchheight')}
+              data-tooltip={dvI18n.t('alignment.matchheight')}
             >
               <ls-icon name="field-match-height"></ls-icon>
             </button>

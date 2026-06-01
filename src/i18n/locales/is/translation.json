@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Viðtakendur og reitir",
+    "description": "Veldu Viðtakanda til að stækka og dragðu til að setja undirskriftarreitina þar sem þú vilt að þeir skrifi undir.",
+    "recipientfields": "Viðtakandi reitir",
+    "recipientfieldsdescription": "Veldu og smelltu til að setja undirskriftarreitina þar sem á skjalinu er."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Ítarlegri eiginleikar",
+    "fieldorder": "Vettvangspöntun",
+    "fieldorderdescription": "Ákvarðar hvaða pöntunarreiti notandinn fyllir út",
+    "refname": "Ref. Nafn",
+    "linktype": "Tegund tengla",
+    "linktypedescription": "Ákvarðar á hvaða hátt þessi reitur er tengdur öðrum sviðum",
+    "linkvalue": "Hlekkur gildi",
+    "linkvaluedescription": "Reitir með sama tengingargildi verða tengdir saman",
+    "fieldtype": "Tegund sviðs",
+    "fieldtypedescription": "Reiturinn sem þú hefur valið núna",
+    "fieldlabel": "Vettvangsmerki",
+    "fieldlabeldescription": "Bættu við merkimiða til að skýra upplýsingarnar sem krafist er frá viðtakandanum.",
+    "value": "Verðmæti",
+    "valuedescription": "Forfyllt gildi sem undirritari getur breytt.",
+    "options": "Valkostir",
+    "optionsdescription": "Skilgreindu valkostina sem eru í boði í fellilistanum. Einn valkostur á hverri línu.",
+    "requiredfield": "Nauðsynlegt reitur",
+    "contentformat": "Innihaldssnið",
+    "contentformatdescription": "Veldu tiltekið snið sem þú vilt að viðtakandinn slá inn."
+  },
+  "alignment": {
+    "alignleft": "Stilltu til vinstri",
+    "aligncenter": "Samræma miðju",
+    "alignright": "Stilltu til hægri",
+    "aligntop": "Stilltu toppinn",
+    "alignmiddle": "Samræma miðju",
+    "alignbottom": "Stilltu botn",
+    "distributehorizontally": "Dreifa völdum reitum lárétt",
+    "distributevertically": "Dreifa völdum reitum lóðrétt",
+    "selectmultipledistribution": "Veldu marga reiti til að fá aðgang að dreifingarstýringum",
+    "selectmultiplescale": "Veldu marga reiti til að fá aðgang að kvarðastýringum",
+    "selectmultiplewidth": "Veldu marga reiti til að fá aðgang að samsvarandi breiddarstýringum",
+    "selectmultipleheight": "Veldu marga reiti til að fá aðgang að samsvörun hæðarstýringar",
+    "matchsize": "Gerðu valda reiti í sömu hæð og breidd og fyrsta völdu reitinn",
+    "matchwidth": "Gerðu valda reiti á sömu breidd og fyrsta völdu reitinn",
+    "matchheight": "Gerðu valda reiti í sömu hæð og fyrsta völdu reitinn"
+  },
+  "format": {
+    "aligntextleft": "Samræma texta til vinstri",
+    "aligntextcenter": "Samræma textamiðstöð",
+    "aligntextright": "Samræma texta til hægri",
+    "fontfamily": "Leturfjölskylda",
+    "fontsize": "Leturstærð"
+  },
+  "statusbar": {
+    "pagethumbnails": "Smámyndir síðunnar"
   }
 }

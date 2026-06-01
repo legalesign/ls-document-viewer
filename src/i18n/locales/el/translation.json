@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Παραλήπτες & Πεδία",
+    "description": "Επιλέξτε Παραλήπτης για επέκταση και Σύρετε για να τοποθετήσετε τα πεδία υπογραφής εκεί που θέλετε να υπογραφούν.",
+    "recipientfields": "Πεδία παραλήπτη",
+    "recipientfieldsdescription": "Επιλέξτε και κάντε κλικ για να τοποθετήσετε τα πεδία υπογραφής εκεί που βρίσκεται στο Έγγραφο."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Προηγμένες ιδιότητες",
+    "fieldorder": "Παραγγελία πεδίου",
+    "fieldorderdescription": "Καθορίζει ποια πεδία παραγγελίας θα συμπληρωθούν από τον χρήστη",
+    "refname": "Αναφ. Όνομα",
+    "linktype": "Τύπος συνδέσμου",
+    "linktypedescription": "Καθορίζει με ποιον τρόπο αυτό το πεδίο συνδέεται με άλλα πεδία",
+    "linkvalue": "Τιμή συνδέσμου",
+    "linkvaluedescription": "Τα πεδία με την ίδια τιμή σύνδεσης θα συνδεθούν μεταξύ τους",
+    "fieldtype": "Τύπος πεδίου",
+    "fieldtypedescription": "Το πεδίο που έχετε επιλέξει αυτήν τη στιγμή",
+    "fieldlabel": "Ετικέτα πεδίου",
+    "fieldlabeldescription": "Προσθέστε μια ετικέτα για να διευκρινίσετε τις πληροφορίες που απαιτούνται από τον παραλήπτη.",
+    "value": "Αξία",
+    "valuedescription": "Μια προσυμπληρωμένη τιμή που μπορεί να τροποποιηθεί από τον υπογράφοντα.",
+    "options": "Επιλογές",
+    "optionsdescription": "Ορίστε τις διαθέσιμες επιλογές στο αναπτυσσόμενο μενού. Μία επιλογή ανά γραμμή.",
+    "requiredfield": "Απαραίτητο πεδίο",
+    "contentformat": "Μορφή περιεχομένου",
+    "contentformatdescription": "Επιλέξτε τη συγκεκριμένη μορφή που θέλετε να εισαγάγει ο παραλήπτης."
+  },
+  "alignment": {
+    "alignleft": "Ευθυγράμμιση αριστερά",
+    "aligncenter": "Ευθυγράμμιση Κέντρου",
+    "alignright": "Ευθυγράμμιση δεξιά",
+    "aligntop": "Ευθυγραμμίστε την κορυφή",
+    "alignmiddle": "Ευθυγραμμίστε τη μέση",
+    "alignbottom": "Ευθυγράμμιση κάτω",
+    "distributehorizontally": "Διανομή επιλεγμένων πεδίων οριζόντια",
+    "distributevertically": "Κατανομή επιλεγμένων πεδίων κάθετα",
+    "selectmultipledistribution": "Επιλέξτε πολλά πεδία για πρόσβαση στα στοιχεία ελέγχου διανομής",
+    "selectmultiplescale": "Επιλέξτε πολλά πεδία για πρόσβαση στα στοιχεία ελέγχου κλίμακας",
+    "selectmultiplewidth": "Επιλέξτε πολλά πεδία για πρόσβαση στα στοιχεία ελέγχου πλάτους αντιστοίχισης",
+    "selectmultipleheight": "Επιλέξτε πολλά πεδία για πρόσβαση στα στοιχεία ελέγχου ύψους αντιστοίχισης",
+    "matchsize": "Κάντε τα επιλεγμένα πεδία στο ίδιο ύψος και πλάτος με το πρώτο επιλεγμένο πεδίο",
+    "matchwidth": "Κάντε τα επιλεγμένα πεδία στο ίδιο πλάτος με το πρώτο επιλεγμένο πεδίο",
+    "matchheight": "Κάντε τα επιλεγμένα πεδία στο ίδιο ύψος με το πρώτο επιλεγμένο πεδίο"
+  },
+  "format": {
+    "aligntextleft": "Ευθυγράμμιση κειμένου αριστερά",
+    "aligntextcenter": "Ευθυγράμμιση κέντρου κειμένου",
+    "aligntextright": "Ευθυγράμμιση κειμένου δεξιά",
+    "fontfamily": "Οικογένεια γραμματοσειρών",
+    "fontsize": "Μέγεθος γραμματοσειράς"
+  },
+  "statusbar": {
+    "pagethumbnails": "Μικρογραφίες σελίδας"
   }
 }

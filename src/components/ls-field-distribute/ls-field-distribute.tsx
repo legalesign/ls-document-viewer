@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { oob } from '../ls-document-viewer/editorUtils';
 import { attachAllTooltips } from '../../utils/tooltip';
@@ -192,8 +193,8 @@ export class LsFieldDistribute {
               onClick={() => {
                 this.distributeVertical();
               }}
-              aria-label="Distribute selected fields vertically."
-              data-tooltip="Distribute selected fields vertically"
+              aria-label={dvI18n.t('alignment.distributevertically')}
+              data-tooltip={dvI18n.t('alignment.distributevertically')}
             >
               <ls-icon name="field-distribute-vertically"></ls-icon>
             </button>
@@ -201,8 +202,8 @@ export class LsFieldDistribute {
               onClick={() => {
                 this.distributeHorizontal();
               }}
-              aria-label="Distribute selected fields horizontally."
-              data-tooltip="Distribute selected fields horizontally"
+              aria-label={dvI18n.t('alignment.distributehorizontally')}
+              data-tooltip={dvI18n.t('alignment.distributehorizontally')}
             >
               <ls-icon name="field-distribute-horizontally"></ls-icon>
             </button>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Host, Prop, h, Element, Event, Watch } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { attachAllTooltips } from '../../utils/tooltip';
 
@@ -73,7 +74,7 @@ export class LsFieldFormat {
       <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
         {this.dataItem && this.dataItem.length > 1 && (
           <div class={'ls-dv-field-format-bar'}>
-            <div class="ls-dv-input-wrapper" data-tooltip="Font Family">
+            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontfamily')}>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
                 id="ls-toolbar-font-select"
@@ -93,7 +94,7 @@ export class LsFieldFormat {
               </select>
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
             </div>
-            <div class="ls-dv-input-wrapper" data-tooltip="Font Size">
+            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontsize')}>
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
@@ -112,7 +113,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                data-tooltip="Align Text Left"
+                data-tooltip={dvI18n.t('format.aligntextleft')}
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -120,7 +121,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
-                data-tooltip="Align Text Center"
+                data-tooltip={dvI18n.t('format.aligntextcenter')}
               >
                 <ls-icon name="menu-alt-5"></ls-icon>
               </button>
@@ -128,7 +129,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
-                data-tooltip="Align Text Right"
+                data-tooltip={dvI18n.t('format.aligntextright')}
               >
                 <ls-icon name="menu-alt-3"></ls-icon>
               </button>
@@ -137,7 +138,7 @@ export class LsFieldFormat {
         )}
         {this.dataItem && this.dataItem.length === 1 && (
           <div class={'ls-dv-field-format-bar'}>
-            <div class="ls-dv-input-wrapper" data-tooltip="Font Family">
+            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontfamily')}>
               <ls-icon id="selectorIcon" name="selector"></ls-icon>
               <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
               <select
@@ -154,7 +155,7 @@ export class LsFieldFormat {
                 <option value="verdana">Verdana</option>
               </select>
             </div>
-            <div class="ls-dv-input-wrapper" data-tooltip="Font Size">
+            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontsize')}>
               <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
@@ -174,7 +175,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                data-tooltip="Align Text Left"
+                data-tooltip={dvI18n.t('format.aligntextleft')}
               >
                 <ls-icon name="menu-alt-2"></ls-icon>
               </button>
@@ -182,7 +183,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
-                data-tooltip="Align Text Center"
+                data-tooltip={dvI18n.t('format.aligntextcenter')}
               >
                 <ls-icon name="menu-alt-5"></ls-icon>
               </button>
@@ -190,7 +191,7 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
-                data-tooltip="Align Text Right"
+                data-tooltip={dvI18n.t('format.aligntextright')}
               >
                 <ls-icon name="menu-alt-3"></ls-icon>
               </button>

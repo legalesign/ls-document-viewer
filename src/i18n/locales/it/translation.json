@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Destinatari e campi",
+    "description": "Seleziona Destinatario da espandere e trascina per posizionare i campi Firma nel punto in cui desideri che firmino.",
+    "recipientfields": "Campi destinatari",
+    "recipientfieldsdescription": "Seleziona e fai clic per posizionare i campi della firma in un punto qualsiasi del documento."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Proprietà avanzate",
+    "fieldorder": "Ordine sul campo",
+    "fieldorderdescription": "Determina quali campi dell'ordine verranno compilati dall'utente",
+    "refname": "Rif. Nome",
+    "linktype": "Tipo di link",
+    "linktypedescription": "Determina in che modo questo campo è collegato ad altri campi",
+    "linkvalue": "Valore del link",
+    "linkvaluedescription": "I campi con lo stesso valore di collegamento verranno collegati tra loro",
+    "fieldtype": "Tipo di campo",
+    "fieldtypedescription": "Il campo attualmente selezionato",
+    "fieldlabel": "Etichetta di campo",
+    "fieldlabeldescription": "Aggiungi un'etichetta per chiarire le informazioni richieste al destinatario.",
+    "value": "Valore",
+    "valuedescription": "Un valore precompilato che può essere modificato dal firmatario.",
+    "options": "Opzioni",
+    "optionsdescription": "Definisci le opzioni disponibili nel menu a discesa. Un'opzione per riga.",
+    "requiredfield": "Campo obbligatorio",
+    "contentformat": "Formato del contenuto",
+    "contentformatdescription": "Seleziona il formato specifico che desideri che il destinatario inserisca."
+  },
+  "alignment": {
+    "alignleft": "Allinea a sinistra",
+    "aligncenter": "Allinea al centro",
+    "alignright": "Allinea a destra",
+    "aligntop": "Allinea in alto",
+    "alignmiddle": "Allinea al centro",
+    "alignbottom": "Allinea in basso",
+    "distributehorizontally": "Distribuisci orizzontalmente i campi selezionati",
+    "distributevertically": "Distribuisci verticalmente i campi selezionati",
+    "selectmultipledistribution": "Seleziona più campi per accedere ai controlli di distribuzione",
+    "selectmultiplescale": "Seleziona più campi per accedere ai controlli di scala",
+    "selectmultiplewidth": "Seleziona più campi per accedere ai controlli della larghezza della partita",
+    "selectmultipleheight": "Seleziona più campi per accedere ai controlli dell'altezza della partita",
+    "matchsize": "Rendi i campi selezionati della stessa altezza e larghezza del primo campo selezionato",
+    "matchwidth": "Rendi i campi selezionati della stessa larghezza del primo campo selezionato",
+    "matchheight": "Fai in modo che i campi selezionati abbiano la stessa altezza del primo campo selezionato"
+  },
+  "format": {
+    "aligntextleft": "Allinea testo a sinistra",
+    "aligntextcenter": "Allinea il centro del testo",
+    "aligntextright": "Allinea il testo a destra",
+    "fontfamily": "Famiglia di caratteri",
+    "fontsize": "Dimensione del carattere"
+  },
+  "statusbar": {
+    "pagethumbnails": "Anteprime delle pagine"
   }
 }

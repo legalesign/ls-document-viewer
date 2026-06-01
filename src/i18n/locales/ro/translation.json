@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Destinatari și câmpuri",
+    "description": "Selectați Destinatar de extins și Trageți pentru a plasa câmpurile de semnătură acolo unde doriți să se semneze.",
+    "recipientfields": "Câmpurile destinatarului",
+    "recipientfieldsdescription": "Selectați și faceți clic pentru a plasa câmpurile de semnătură în locul documentului."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Proprietăți avansate",
+    "fieldorder": "Ordinea câmpului",
+    "fieldorderdescription": "Determină ce câmpuri de ordine vor fi completate de utilizator",
+    "refname": "Ref. Nume",
+    "linktype": "Tipul legăturii",
+    "linktypedescription": "Determină modul în care acest câmp este legat de alte câmpuri",
+    "linkvalue": "Valoarea legăturii",
+    "linkvaluedescription": "Câmpurile cu aceeași valoare a legăturii vor fi legate între ele",
+    "fieldtype": "Tipul câmpului",
+    "fieldtypedescription": "Câmpul pe care l-ați selectat în prezent",
+    "fieldlabel": "Eticheta câmpului",
+    "fieldlabeldescription": "Adăugați o etichetă pentru a clarifica informațiile solicitate de la destinatar.",
+    "value": "Valoare",
+    "valuedescription": "O valoare precompletată care poate fi modificată de semnatar.",
+    "options": "Opțiuni",
+    "optionsdescription": "Definiți opțiunile disponibile în meniul derulant. O opțiune pe linie.",
+    "requiredfield": "Câmp obligatoriu",
+    "contentformat": "Formatul conținutului",
+    "contentformatdescription": "Selectați formatul specific pe care doriți să îl introducă destinatarul."
+  },
+  "alignment": {
+    "alignleft": "Aliniați la stânga",
+    "aligncenter": "Alinierea centrului",
+    "alignright": "Aliniați la dreapta",
+    "aligntop": "Aliniați partea de sus",
+    "alignmiddle": "Aliniați mijlocul",
+    "alignbottom": "Aliniați partea de jos",
+    "distributehorizontally": "Distribuiți câmpurile selectate orizontal",
+    "distributevertically": "Distribuiți câmpurile selectate pe verticală",
+    "selectmultipledistribution": "Selectați mai multe câmpuri pentru a accesa controalele de distribuție",
+    "selectmultiplescale": "Selectați mai multe câmpuri pentru a accesa controalele de scară",
+    "selectmultiplewidth": "Selectați mai multe câmpuri pentru a accesa controalele de lățime de potrivire",
+    "selectmultipleheight": "Selectați mai multe câmpuri pentru a accesa controalele de înălțime de potrivire",
+    "matchsize": "Faceți câmpurile selectate la aceeași înălțime și lățime ca primul câmp selectat",
+    "matchwidth": "Faceți câmpurile selectate la aceeași lățime ca primul câmp selectat",
+    "matchheight": "Faceți câmpurile selectate la aceeași înălțime ca primul câmp selectat"
+  },
+  "format": {
+    "aligntextleft": "Alinierea textului la stânga",
+    "aligntextcenter": "Centrul de aliniere a textului",
+    "aligntextright": "Alinierea textului spre dreapta",
+    "fontfamily": "Familie de fonturi",
+    "fontsize": "Dimensiunea fontului"
+  },
+  "statusbar": {
+    "pagethumbnails": "Miniaturi de pagină"
   }
 }

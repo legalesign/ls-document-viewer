@@ -77,6 +77,12 @@
     "participantwitness": "[NEEDS TRANSLATION] Participant {{index}} Witness",
     "placeholder": "[NEEDS TRANSLATION] Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Destinataires et champs",
+    "description": "Sélectionnez le destinataire à développer et faites glisser le pointeur pour placer les champs de signature à l'endroit où vous souhaitez qu'il signe.",
+    "recipientfields": "Champs du destinataire",
+    "recipientfieldsdescription": "Sélectionnez et cliquez pour placer les champs de signature à n'importe quel endroit du document."
+  },
   "documentoptions": {
     "title": "[NEEDS TRANSLATION] Template Details",
     "description": "[NEEDS TRANSLATION] Details and insights about the Template.",
@@ -104,5 +110,53 @@
     "autherrormessage": "[NEEDS TRANSLATION] Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "[NEEDS TRANSLATION] Close Properties Panel",
     "fieldproperties": "[NEEDS TRANSLATION] Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Propriétés avancées",
+    "fieldorder": "Ordre des champs",
+    "fieldorderdescription": "Détermine les champs de commande qui seront remplis par l'utilisateur",
+    "refname": "Réf. Nom",
+    "linktype": "Type de lien",
+    "linktypedescription": "Détermine de quelle manière ce champ est lié à d'autres champs",
+    "linkvalue": "Valeur du lien",
+    "linkvaluedescription": "Les champs ayant la même valeur de lien seront liés entre eux",
+    "fieldtype": "Type de champ",
+    "fieldtypedescription": "Le champ que vous avez actuellement sélectionné",
+    "fieldlabel": "Libellé du champ",
+    "fieldlabeldescription": "Ajoutez une étiquette pour clarifier les informations requises de la part du destinataire.",
+    "value": "Valeur",
+    "valuedescription": "Valeur préremplie qui peut être modifiée par le signataire.",
+    "options": "Options",
+    "optionsdescription": "Définissez les options disponibles dans la liste déroulante. Une option par ligne.",
+    "requiredfield": "Champ obligatoire",
+    "contentformat": "Format du contenu",
+    "contentformatdescription": "Sélectionnez le format spécifique que vous souhaitez que le destinataire saisisse."
+  },
+  "alignment": {
+    "alignleft": "Aligner à gauche",
+    "aligncenter": "Aligner le centre",
+    "alignright": "Aligner à droite",
+    "aligntop": "Aligner le haut",
+    "alignmiddle": "Aligner le milieu",
+    "alignbottom": "Aligner le bas",
+    "distributehorizontally": "Répartir les champs sélectionnés horizontalement",
+    "distributevertically": "Répartir les champs sélectionnés verticalement",
+    "selectmultipledistribution": "Sélectionnez plusieurs champs pour accéder aux contrôles de distribution",
+    "selectmultiplescale": "Sélectionnez plusieurs champs pour accéder aux commandes d'échelle",
+    "selectmultiplewidth": "Sélectionnez plusieurs champs pour accéder aux contrôles de largeur de correspondance",
+    "selectmultipleheight": "Sélectionnez plusieurs champs pour accéder aux commandes de hauteur des matchs",
+    "matchsize": "Faire en sorte que les champs sélectionnés aient la même hauteur et la même largeur que le premier champ sélectionné",
+    "matchwidth": "Faire en sorte que les champs sélectionnés aient la même largeur que le premier champ sélectionné",
+    "matchheight": "Faire en sorte que les champs sélectionnés aient la même hauteur que le premier champ sélectionné"
+  },
+  "format": {
+    "aligntextleft": "Aligner le texte à gauche",
+    "aligntextcenter": "Aligner le centre du texte",
+    "aligntextright": "Aligner le texte à droite",
+    "fontfamily": "Famille de polices",
+    "fontsize": "Taille de police"
+  },
+  "statusbar": {
+    "pagethumbnails": "Miniatures des pages"
   }
 }
