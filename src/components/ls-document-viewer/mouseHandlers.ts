@@ -28,8 +28,21 @@ export function mouseDown(e) {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
     const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY };
     this.startMouse = fdims;
-    // west edge
-    if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
+    // corners (check before edges)
+    if (Math.abs(e.clientX - right) < 8 && Math.abs(e.clientY - bottom) < 8) {
+      this.edgeSide = 'se';
+      this.hitField = f;
+    } else if (Math.abs(e.clientX - left) < 8 && Math.abs(e.clientY - top) < 8) {
+      this.edgeSide = 'nw';
+      this.hitField = f;
+    } else if (Math.abs(e.clientX - right) < 8 && Math.abs(e.clientY - top) < 8) {
+      this.edgeSide = 'ne';
+      this.hitField = f;
+    } else if (Math.abs(e.clientX - left) < 8 && Math.abs(e.clientY - bottom) < 8) {
+      this.edgeSide = 'sw';
+      this.hitField = f;
+      // west edge
+    } else if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
       this.edgeSide = 'w';
       this.hitField = f;
       // right / east edge
