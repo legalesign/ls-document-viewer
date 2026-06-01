@@ -391,4 +391,4 @@ The testing app aliases local source via Vite when started with `pnpm start` (`L
 2. Run `pnpm build` in `ls-document-viewer`
 3. Restart the testing app dev server
 
-Alternatively, run `pnpm start` in `ls-document-viewer` (Stencil watch mode) in a separate terminal for automatic rebuilds on file change.
+**Important:** Do not run `pnpm start` (Stencil watch mode) in `ls-document-viewer` at the same time as the testing app — Stencil's watch mode clears the `dist/components/` files that the React wrapper depends on.

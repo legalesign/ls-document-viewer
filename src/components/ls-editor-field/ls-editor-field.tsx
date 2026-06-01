@@ -69,14 +69,26 @@ export class LsEditorField {
     if (this.readonly) return;
     if (!e.clientX) return;
 
-    // Determine which edge is being moved over and what cursor to show.
-    if (Math.abs(e.offsetX) < 5) {
+    // While dragging (button held), keep current cursor
+    if (e.buttons === 1) return;
+
+    // Scale edge threshold so short/narrow fields still have a usable move zone
+    const edgeX = Math.min(8, this.component.clientWidth * 0.25);
+    const edgeY = Math.min(8, this.component.clientHeight * 0.25);
+
+    const nearLeft = e.offsetX < edgeX;
+    const nearRight = (this.component.clientWidth - e.offsetX) < edgeX;
+    const nearTop = e.offsetY < edgeY;
+    const nearBottom = (this.component.clientHeight - e.offsetY) < edgeY;
+
+    // Corners first
+    if ((nearRight && nearBottom) || (nearLeft && nearTop)) {
+      this.component.style.cursor = 'nwse-resize';
+    } else if ((nearLeft && nearBottom) || (nearRight && nearTop)) {
+      this.component.style.cursor = 'nesw-resize';
+    } else if (nearLeft || nearRight) {
       this.component.style.cursor = 'ew-resize';
-    } else if (Math.abs(e.offsetX - this.component.clientWidth) < 5) {
-      this.component.style.cursor = 'ew-resize';
-    } else if (Math.abs(e.offsetY) < 5) {
-      this.component.style.cursor = 'ns-resize';
-    } else if (Math.abs(e.offsetY - this.component.clientHeight) < 5) {
+    } else if (nearTop || nearBottom) {
       this.component.style.cursor = 'ns-resize';
     } else {
       this.component.style.cursor = 'move';
@@ -105,6 +117,23 @@ export class LsEditorField {
     }
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  @Listen('mousedown', { capture: true })
+  handleMouseDown(e) {
+    if (this.readonly) return;
+    const edgeX = Math.min(8, this.component.clientWidth * 0.25);
+    const edgeY = Math.min(8, this.component.clientHeight * 0.25);
+
+    const nearLeft = e.offsetX < edgeX;
+    const nearRight = (this.component.clientWidth - e.offsetX) < edgeX;
+    const nearTop = e.offsetY < edgeY;
+    const nearBottom = (this.component.clientHeight - e.offsetY) < edgeY;
+
+    if (nearLeft || nearRight || nearTop || nearBottom) {
+      // Prevent native drag so mousemove keeps firing during resize
+      e.preventDefault();
+    }
   }
 
   @Listen('dragstart', { capture: false, passive: false })
