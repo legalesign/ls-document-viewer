@@ -122,6 +122,7 @@
     "linkvaluedescription": "שדות עם אותו ערך קישור יקושרו יחד",
     "fieldtype": "סוג שדה",
     "fieldtypedescription": "השדה שבחרת כרגע",
+    "fieldtypedescriptionmultiple": "השדות שבחרת כרגע",
     "fieldlabel": "תווית שדה",
     "fieldlabeldescription": "הוסף תווית כדי להבהיר את המידע הנדרש מהנמען.",
     "value": "ערך",
@@ -130,7 +131,15 @@
     "optionsdescription": "הגדר את האפשרויות הזמינות בתפריט הנפתח. אפשרות אחת לכל שורה.",
     "requiredfield": "שדה חובה",
     "contentformat": "פורמט תוכן",
-    "contentformatdescription": "בחר את הפורמט הספציפי שברצונך שהנמען יזן."
+    "contentformatdescription": "בחר את הפורמט הספציפי שברצונך שהנמען יזן.",
+    "linktypenoption": "אף אחד",
+    "linktypeoneofgroup": "אחת מקבוצה (למשל בחר תיבת סימון אחת)",
+    "linktypeaddtotal": "הוסף לסך הכל",
+    "linktypeconditional": "הפוך את זה מותנה ב...",
+    "assignedto": "מוקצה ל:",
+    "placeholdereg1": "למשל. 1",
+    "placeholdercheckboxgroup": "למשל. קבוצת תיבות סימון",
+    "placeholdersignhere": "למשל. לחתום כאן"
   },
   "alignment": {
     "alignleft": "יישור שמאלה",
@@ -155,6 +164,12 @@
     "aligntextright": "יישור טקסט ימינה",
     "fontfamily": "משפחת גופנים",
     "fontsize": "גודל גופן"
+  },
+  "tabs": {
+    "content": "תוכן",
+    "placement": "מיקום",
+    "dimensions": "מידות",
+    "format": "פורמט"
   },
   "statusbar": {
     "pagethumbnails": "תמונות ממוזערות של עמוד"

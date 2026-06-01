@@ -122,6 +122,7 @@
     "linkvaluedescription": "Les champs ayant la même valeur de lien seront liés entre eux",
     "fieldtype": "Type de champ",
     "fieldtypedescription": "Le champ que vous avez actuellement sélectionné",
+    "fieldtypedescriptionmultiple": "Les champs que vous avez actuellement sélectionnés",
     "fieldlabel": "Libellé du champ",
     "fieldlabeldescription": "Ajoutez une étiquette pour clarifier les informations requises de la part du destinataire.",
     "value": "Valeur",
@@ -130,7 +131,15 @@
     "optionsdescription": "Définissez les options disponibles dans la liste déroulante. Une option par ligne.",
     "requiredfield": "Champ obligatoire",
     "contentformat": "Format du contenu",
-    "contentformatdescription": "Sélectionnez le format spécifique que vous souhaitez que le destinataire saisisse."
+    "contentformatdescription": "Sélectionnez le format spécifique que vous souhaitez que le destinataire saisisse.",
+    "linktypenoption": "Aucune",
+    "linktypeoneofgroup": "Un membre d'un groupe (par exemple, cochez une case)",
+    "linktypeaddtotal": "Ajouter à un total",
+    "linktypeconditional": "Faites en sorte que cela soit conditionnel à...",
+    "assignedto": "Assigné à :",
+    "placeholdereg1": "par exemple 1",
+    "placeholdercheckboxgroup": "par exemple, groupe de cases à cocher",
+    "placeholdersignhere": "par exemple. Signez ici"
   },
   "alignment": {
     "alignleft": "Aligner à gauche",
@@ -155,6 +164,12 @@
     "aligntextright": "Aligner le texte à droite",
     "fontfamily": "Famille de polices",
     "fontsize": "Taille de police"
+  },
+  "tabs": {
+    "content": "Contenu",
+    "placement": "Placement",
+    "dimensions": "Dimensions",
+    "format": "Formater"
   },
   "statusbar": {
     "pagethumbnails": "Miniatures des pages"

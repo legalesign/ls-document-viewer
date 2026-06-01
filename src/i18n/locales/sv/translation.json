@@ -122,6 +122,7 @@
     "linkvaluedescription": "Fält med samma länkvärde kommer att länkas samman",
     "fieldtype": "Fälttyp",
     "fieldtypedescription": "Fältet du just nu har valt",
+    "fieldtypedescriptionmultiple": "Fälten du för närvarande har valt",
     "fieldlabel": "Fältetikett",
     "fieldlabeldescription": "Lägg till en etikett för att klargöra den information som krävs från mottagaren.",
     "value": "Värde",
@@ -130,7 +131,15 @@
     "optionsdescription": "Definiera de alternativ som finns tillgängliga i rullgardinsmenyn. Ett alternativ per rad.",
     "requiredfield": "Obligatoriskt fält",
     "contentformat": "Innehållsformat",
-    "contentformatdescription": "Välj det specifika format som du vill att mottagaren ska ange."
+    "contentformatdescription": "Välj det specifika format som du vill att mottagaren ska ange.",
+    "linktypenoption": "Ingen",
+    "linktypeoneofgroup": "En i en grupp (t.ex. markera en kryssruta)",
+    "linktypeaddtotal": "Lägg till i en total",
+    "linktypeconditional": "Gör detta villkorat av...",
+    "assignedto": "Tilldelad till:",
+    "placeholdereg1": "t.ex. 1",
+    "placeholdercheckboxgroup": "t.ex. kryssrutegrupp",
+    "placeholdersignhere": "t.ex. Signera här"
   },
   "alignment": {
     "alignleft": "Justera vänster",
@@ -155,6 +164,12 @@
     "aligntextright": "Justera text åt höger",
     "fontfamily": "Teckensnittsfamilj",
     "fontsize": "Teckenstorlek"
+  },
+  "tabs": {
+    "content": "Innehåll",
+    "placement": "Placering",
+    "dimensions": "Mått",
+    "format": "Formatera"
   },
   "statusbar": {
     "pagethumbnails": "Sidminiatyrer"

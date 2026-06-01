@@ -3,6 +3,7 @@ import { LSApiElement } from '../../components';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-editor-field',
@@ -290,7 +291,7 @@ export class LsEditorField {
                 fontFamily: 'sans-serif',
               }}
             >
-              Assigned to: {this.assignee}
+              {dvI18n.t('fieldproperties.assignedto')} {this.assignee}
             </p>
           )}
           {this.floatingActive && (

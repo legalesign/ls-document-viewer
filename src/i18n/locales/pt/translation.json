@@ -122,6 +122,7 @@
     "linkvaluedescription": "Os campos com o mesmo valor do link serão vinculados",
     "fieldtype": "Tipo de campo",
     "fieldtypedescription": "O campo que você selecionou atualmente",
+    "fieldtypedescriptionmultiple": "Os campos que você selecionou atualmente",
     "fieldlabel": "Rótulo de campo",
     "fieldlabeldescription": "Adicione uma etiqueta para esclarecer as informações exigidas do destinatário.",
     "value": "Valor",
@@ -130,7 +131,15 @@
     "optionsdescription": "Defina as opções disponíveis no menu suspenso. Uma opção por linha.",
     "requiredfield": "Campo obrigatório",
     "contentformat": "Formato de conteúdo",
-    "contentformatdescription": "Selecione o formato específico que você deseja que o Destinatário insira."
+    "contentformatdescription": "Selecione o formato específico que você deseja que o Destinatário insira.",
+    "linktypenoption": "Nenhum",
+    "linktypeoneofgroup": "Um de um grupo (por exemplo, selecione uma caixa de seleção)",
+    "linktypeaddtotal": "Adicionar a um total",
+    "linktypeconditional": "Faça com que isso dependa de...",
+    "assignedto": "Atribuído a:",
+    "placeholdereg1": "por exemplo, 1",
+    "placeholdercheckboxgroup": "por exemplo, grupo de caixas de seleção",
+    "placeholdersignhere": "por exemplo. Assine aqui"
   },
   "alignment": {
     "alignleft": "Alinhar à esquerda",
@@ -155,6 +164,12 @@
     "aligntextright": "Alinhar texto à direita",
     "fontfamily": "Família de fontes",
     "fontsize": "Tamanho da fonte"
+  },
+  "tabs": {
+    "content": "Conteúdo",
+    "placement": "Posicionamento",
+    "dimensions": "Dimensões",
+    "format": "Formato"
   },
   "statusbar": {
     "pagethumbnails": "Miniaturas de páginas"

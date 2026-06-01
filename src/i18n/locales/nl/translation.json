@@ -122,6 +122,7 @@
     "linkvaluedescription": "Velden met dezelfde linkwaarde worden aan elkaar gekoppeld",
     "fieldtype": "Veldtype",
     "fieldtypedescription": "Het veld dat je momenteel hebt geselecteerd",
+    "fieldtypedescriptionmultiple": "De velden die je momenteel hebt geselecteerd",
     "fieldlabel": "Veldetiket",
     "fieldlabeldescription": "Voeg een label toe om de vereiste informatie van de ontvanger te verduidelijken.",
     "value": "Waarde",
@@ -130,7 +131,15 @@
     "optionsdescription": "Definieer de beschikbare opties in de keuzelijst. Eén optie per regel.",
     "requiredfield": "Verplicht veld",
     "contentformat": "Inhoudsindeling",
-    "contentformatdescription": "Selecteer het specifieke formaat dat de ontvanger moet invoeren."
+    "contentformatdescription": "Selecteer het specifieke formaat dat de ontvanger moet invoeren.",
+    "linktypenoption": "Geen",
+    "linktypeoneofgroup": "Eén van een groep (selecteer bijvoorbeeld een selectievakje)",
+    "linktypeaddtotal": "Aan een totaal toevoegen",
+    "linktypeconditional": "Maak dit afhankelijk van...",
+    "assignedto": "Toegewezen aan:",
+    "placeholdereg1": "bijv. 1",
+    "placeholdercheckboxgroup": "bijv. checkbox-groep",
+    "placeholdersignhere": "bijv. Hier aanmelden"
   },
   "alignment": {
     "alignleft": "Links uitlijnen",
@@ -155,6 +164,12 @@
     "aligntextright": "Tekst rechts uitlijnen",
     "fontfamily": "Font-familie",
     "fontsize": "Lettergrootte"
+  },
+  "tabs": {
+    "content": "Inhoud",
+    "placement": "Plaatsing",
+    "dimensions": "Dimensies",
+    "format": "Formaat"
   },
   "statusbar": {
     "pagethumbnails": "Miniaturen van pagina's"

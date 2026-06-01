@@ -122,6 +122,7 @@
     "linkvaluedescription": "[NEEDS TRANSLATION] Fields with the same Link Value will be linked together",
     "fieldtype": "[NEEDS TRANSLATION] Field Type",
     "fieldtypedescription": "[NEEDS TRANSLATION] The Field you currently have selected",
+    "fieldtypedescriptionmultiple": "[NEEDS TRANSLATION] The Fields you currently have selected",
     "fieldlabel": "[NEEDS TRANSLATION] Field Label",
     "fieldlabeldescription": "[NEEDS TRANSLATION] Add a label to clarify the information required from the Recipient.",
     "value": "[NEEDS TRANSLATION] Value",
@@ -130,7 +131,15 @@
     "optionsdescription": "[NEEDS TRANSLATION] Define the options available in the dropdown. One option per line.",
     "requiredfield": "[NEEDS TRANSLATION] Required Field",
     "contentformat": "[NEEDS TRANSLATION] Content Format",
-    "contentformatdescription": "[NEEDS TRANSLATION] Select the specific format you want the Recipient to enter."
+    "contentformatdescription": "[NEEDS TRANSLATION] Select the specific format you want the Recipient to enter.",
+    "linktypenoption": "[NEEDS TRANSLATION] None",
+    "linktypeoneofgroup": "[NEEDS TRANSLATION] One of a group (e.g. select one checkbox)",
+    "linktypeaddtotal": "[NEEDS TRANSLATION] Add to a total",
+    "linktypeconditional": "[NEEDS TRANSLATION] Make this conditional upon...",
+    "assignedto": "[NEEDS TRANSLATION] Assigned to:",
+    "placeholdereg1": "[NEEDS TRANSLATION] eg. 1",
+    "placeholdercheckboxgroup": "[NEEDS TRANSLATION] eg. checkbox group",
+    "placeholdersignhere": "[NEEDS TRANSLATION] eg. Sign Here"
   },
   "alignment": {
     "alignleft": "[NEEDS TRANSLATION] Align Left",
@@ -155,6 +164,12 @@
     "aligntextright": "[NEEDS TRANSLATION] Align Text Right",
     "fontfamily": "[NEEDS TRANSLATION] Font Family",
     "fontsize": "[NEEDS TRANSLATION] Font Size"
+  },
+  "tabs": {
+    "content": "[NEEDS TRANSLATION] Content",
+    "placement": "[NEEDS TRANSLATION] Placement",
+    "dimensions": "[NEEDS TRANSLATION] Dimensions",
+    "format": "[NEEDS TRANSLATION] Format"
   },
   "statusbar": {
     "pagethumbnails": "[NEEDS TRANSLATION] Page Thumbnails"

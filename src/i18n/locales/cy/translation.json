@@ -122,6 +122,7 @@
     "linkvaluedescription": "Bydd meysydd â'r un Gwerth Cyswllt yn cael eu cysylltu â'i gilydd",
     "fieldtype": "Math o Faes",
     "fieldtypedescription": "Y Maes rydych wedi'i ddewis ar hyn o bryd",
+    "fieldtypedescriptionmultiple": "Y Meysydd rydych chi wedi'u dewis ar hyn o bryd",
     "fieldlabel": "Label Maes",
     "fieldlabeldescription": "Ychwanegwch label i egluro'r wybodaeth sy'n ofynnol gan y Derbynnydd.",
     "value": "Gwerth",
@@ -130,7 +131,15 @@
     "optionsdescription": "Diffiniwch yr opsiynau sydd ar gael yn y gwymplen. Un opsiwn fesul llinell.",
     "requiredfield": "Maes Gofynnol",
     "contentformat": "Fformat Cynnwys",
-    "contentformatdescription": "Dewiswch y fformat penodol rydych chi am i'r Derbynnydd ei nodi."
+    "contentformatdescription": "Dewiswch y fformat penodol rydych chi am i'r Derbynnydd ei nodi.",
+    "linktypenoption": "Dim",
+    "linktypeoneofgroup": "Un o grŵp (e.e. dewiswch un blwch gwirio)",
+    "linktypeaddtotal": "Ychwanegu at gyfanswm",
+    "linktypeconditional": "Gwnewch hyn yn amodol ar...",
+    "assignedto": "Wedi'i neilltuo i:",
+    "placeholdereg1": "e.e. 1",
+    "placeholdercheckboxgroup": "e.e. grŵp blwch gwirio",
+    "placeholdersignhere": "ee. Llofnodi Yma"
   },
   "alignment": {
     "alignleft": "Alinio Chwith",
@@ -155,6 +164,12 @@
     "aligntextright": "Alinio Testun i'r Dde",
     "fontfamily": "Teulu Ffont",
     "fontsize": "Maint Ffont"
+  },
+  "tabs": {
+    "content": "Cynnwys",
+    "placement": "Lleoliad",
+    "dimensions": "Dimensiynau",
+    "format": "Fformat"
   },
   "statusbar": {
     "pagethumbnails": "Mân-luniau Tudalen"

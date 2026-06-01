@@ -122,6 +122,7 @@
     "linkvaluedescription": "I campi con lo stesso valore di collegamento verranno collegati tra loro",
     "fieldtype": "Tipo di campo",
     "fieldtypedescription": "Il campo attualmente selezionato",
+    "fieldtypedescriptionmultiple": "I campi che hai attualmente selezionato",
     "fieldlabel": "Etichetta di campo",
     "fieldlabeldescription": "Aggiungi un'etichetta per chiarire le informazioni richieste al destinatario.",
     "value": "Valore",
@@ -130,7 +131,15 @@
     "optionsdescription": "Definisci le opzioni disponibili nel menu a discesa. Un'opzione per riga.",
     "requiredfield": "Campo obbligatorio",
     "contentformat": "Formato del contenuto",
-    "contentformatdescription": "Seleziona il formato specifico che desideri che il destinatario inserisca."
+    "contentformatdescription": "Seleziona il formato specifico che desideri che il destinatario inserisca.",
+    "linktypenoption": "Nessuna",
+    "linktypeoneofgroup": "Uno di un gruppo (ad esempio seleziona una casella di controllo)",
+    "linktypeaddtotal": "Aggiungi a un totale",
+    "linktypeconditional": "Condizionalo a...",
+    "assignedto": "Assegnato a:",
+    "placeholdereg1": "ad esempio 1",
+    "placeholdercheckboxgroup": "ad es. gruppo di caselle di controllo",
+    "placeholdersignhere": "ad esempio. Firma qui"
   },
   "alignment": {
     "alignleft": "Allinea a sinistra",
@@ -155,6 +164,12 @@
     "aligntextright": "Allinea il testo a destra",
     "fontfamily": "Famiglia di caratteri",
     "fontsize": "Dimensione del carattere"
+  },
+  "tabs": {
+    "content": "Contenuto",
+    "placement": "Posizionamento",
+    "dimensions": "Dimensioni",
+    "format": "Formato"
   },
   "statusbar": {
     "pagethumbnails": "Anteprime delle pagine"

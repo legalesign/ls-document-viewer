@@ -122,6 +122,7 @@
     "linkvaluedescription": "Reitir með sama tengingargildi verða tengdir saman",
     "fieldtype": "Tegund sviðs",
     "fieldtypedescription": "Reiturinn sem þú hefur valið núna",
+    "fieldtypedescriptionmultiple": "Reitirnir sem þú hefur valið núna",
     "fieldlabel": "Vettvangsmerki",
     "fieldlabeldescription": "Bættu við merkimiða til að skýra upplýsingarnar sem krafist er frá viðtakandanum.",
     "value": "Verðmæti",
@@ -130,7 +131,15 @@
     "optionsdescription": "Skilgreindu valkostina sem eru í boði í fellilistanum. Einn valkostur á hverri línu.",
     "requiredfield": "Nauðsynlegt reitur",
     "contentformat": "Innihaldssnið",
-    "contentformatdescription": "Veldu tiltekið snið sem þú vilt að viðtakandinn slá inn."
+    "contentformatdescription": "Veldu tiltekið snið sem þú vilt að viðtakandinn slá inn.",
+    "linktypenoption": "Enginn",
+    "linktypeoneofgroup": "Einn af hópi (t.d. veldu einn gátreit)",
+    "linktypeaddtotal": "Bæta við samtals",
+    "linktypeconditional": "Gerðu þetta skilyrt við...",
+    "assignedto": "Úthlutað til:",
+    "placeholdereg1": "td. 1",
+    "placeholdercheckboxgroup": "td gátreitahópur",
+    "placeholdersignhere": "td. Skráðu þig hér"
   },
   "alignment": {
     "alignleft": "Stilltu til vinstri",
@@ -155,6 +164,12 @@
     "aligntextright": "Samræma texta til hægri",
     "fontfamily": "Leturfjölskylda",
     "fontsize": "Leturstærð"
+  },
+  "tabs": {
+    "content": "Innihald",
+    "placement": "Staðsetning",
+    "dimensions": "Mál",
+    "format": "snið"
   },
   "statusbar": {
     "pagethumbnails": "Smámyndir síðunnar"

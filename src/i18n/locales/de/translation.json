@@ -122,6 +122,7 @@
     "linkvaluedescription": "Felder mit demselben Linkwert werden miteinander verknüpft",
     "fieldtype": "Typ des Feldes",
     "fieldtypedescription": "Das Feld, das Sie gerade ausgewählt haben",
+    "fieldtypedescriptionmultiple": "Die Felder, die Sie derzeit ausgewählt haben",
     "fieldlabel": "Feldbeschriftung",
     "fieldlabeldescription": "Fügen Sie ein Etikett hinzu, um die vom Empfänger benötigten Informationen zu verdeutlichen.",
     "value": "Wert",
@@ -130,7 +131,15 @@
     "optionsdescription": "Definieren Sie die verfügbaren Optionen in der Dropdownliste. Eine Option pro Zeile.",
     "requiredfield": "Erforderliches Feld",
     "contentformat": "Format des Inhalts",
-    "contentformatdescription": "Wählen Sie das spezifische Format aus, das der Empfänger eingeben soll."
+    "contentformatdescription": "Wählen Sie das spezifische Format aus, das der Empfänger eingeben soll.",
+    "linktypenoption": "Keine",
+    "linktypeoneofgroup": "Eines aus einer Gruppe (z. B. ein Kontrollkästchen auswählen)",
+    "linktypeaddtotal": "Zu einer Gesamtsumme hinzufügen",
+    "linktypeconditional": "Machen Sie das abhängig von...",
+    "assignedto": "Zugewiesen an:",
+    "placeholdereg1": "z. B. 1",
+    "placeholdercheckboxgroup": "z.B. Checkbox-Gruppe",
+    "placeholdersignhere": "z. B. Unterschreiben Sie hier"
   },
   "alignment": {
     "alignleft": "Links ausrichten",
@@ -155,6 +164,12 @@
     "aligntextright": "Text nach rechts ausrichten",
     "fontfamily": "Schriftfamilie",
     "fontsize": "Schriftgröße"
+  },
+  "tabs": {
+    "content": "Inhalt",
+    "placement": "Platzierung",
+    "dimensions": "Abmessungen",
+    "format": "Formatieren"
   },
   "statusbar": {
     "pagethumbnails": "Seiten-Thumbnails"

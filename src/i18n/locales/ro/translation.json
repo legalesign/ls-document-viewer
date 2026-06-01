@@ -122,6 +122,7 @@
     "linkvaluedescription": "Câmpurile cu aceeași valoare a legăturii vor fi legate între ele",
     "fieldtype": "Tipul câmpului",
     "fieldtypedescription": "Câmpul pe care l-ați selectat în prezent",
+    "fieldtypedescriptionmultiple": "Câmpurile pe care le-ați selectat în prezent",
     "fieldlabel": "Eticheta câmpului",
     "fieldlabeldescription": "Adăugați o etichetă pentru a clarifica informațiile solicitate de la destinatar.",
     "value": "Valoare",
@@ -130,7 +131,15 @@
     "optionsdescription": "Definiți opțiunile disponibile în meniul derulant. O opțiune pe linie.",
     "requiredfield": "Câmp obligatoriu",
     "contentformat": "Formatul conținutului",
-    "contentformatdescription": "Selectați formatul specific pe care doriți să îl introducă destinatarul."
+    "contentformatdescription": "Selectați formatul specific pe care doriți să îl introducă destinatarul.",
+    "linktypenoption": "Niciuna",
+    "linktypeoneofgroup": "Unul dintr-un grup (de exemplu, bifați o casetă de selectare)",
+    "linktypeaddtotal": "Adaugă la un total",
+    "linktypeconditional": "Faceți acest lucru condiționat de...",
+    "assignedto": "Atribuit la:",
+    "placeholdereg1": "ex. 1",
+    "placeholdercheckboxgroup": "de ex. grup de casete de selectare",
+    "placeholdersignhere": "de ex. Semnează aici"
   },
   "alignment": {
     "alignleft": "Aliniați la stânga",
@@ -155,6 +164,12 @@
     "aligntextright": "Alinierea textului spre dreapta",
     "fontfamily": "Familie de fonturi",
     "fontsize": "Dimensiunea fontului"
+  },
+  "tabs": {
+    "content": "Continut",
+    "placement": "Amplasare",
+    "dimensions": "Dimensiuni",
+    "format": "Formatul"
   },
   "statusbar": {
     "pagethumbnails": "Miniaturi de pagină"

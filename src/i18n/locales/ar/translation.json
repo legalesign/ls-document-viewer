@@ -122,6 +122,7 @@
     "linkvaluedescription": "سيتم ربط الحقول التي لها نفس قيمة الارتباط معًا",
     "fieldtype": "نوع الحقل",
     "fieldtypedescription": "الحقل الذي حددته حاليًا",
+    "fieldtypedescriptionmultiple": "الحقول التي حددتها حاليًا",
     "fieldlabel": "تسمية الحقل",
     "fieldlabeldescription": "أضف تصنيفًا لتوضيح المعلومات المطلوبة من المستلم.",
     "value": "القيمة",
@@ -130,7 +131,15 @@
     "optionsdescription": "حدد الخيارات المتاحة في القائمة المنسدلة. خيار واحد لكل سطر.",
     "requiredfield": "الحقل المطلوب",
     "contentformat": "صيغة المحتوى",
-    "contentformatdescription": "حدد التنسيق المحدد الذي تريد أن يدخله المستلم."
+    "contentformatdescription": "حدد التنسيق المحدد الذي تريد أن يدخله المستلم.",
+    "linktypenoption": "لا شيء",
+    "linktypeoneofgroup": "واحدة من مجموعة (على سبيل المثال، حدد مربع اختيار واحد)",
+    "linktypeaddtotal": "إضافة إلى المجموع",
+    "linktypeconditional": "اجعل هذا مشروطًا بـ...",
+    "assignedto": "تم تعيينه لـ:",
+    "placeholdereg1": "على سبيل المثال. 1",
+    "placeholdercheckboxgroup": "على سبيل المثال. مجموعة مربعات الاختيار",
+    "placeholdersignhere": "على سبيل المثال. قم بالتوقيع هنا"
   },
   "alignment": {
     "alignleft": "محاذاة إلى اليسار",
@@ -155,6 +164,12 @@
     "aligntextright": "محاذاة النص إلى اليمين",
     "fontfamily": "عائلة الخطوط",
     "fontsize": "حجم الخط"
+  },
+  "tabs": {
+    "content": "المحتوى",
+    "placement": "التنسيب",
+    "dimensions": "الأبعاد",
+    "format": "صيغة"
   },
   "statusbar": {
     "pagethumbnails": "مصغرات الصفحة"

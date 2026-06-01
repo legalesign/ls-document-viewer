@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Recipients Missing Signature",
     "detailstobedecided": "Details to be Decided",
     "tobedecided": "To Be Decided",
-    "previousrecipientdecidesdetails": "Previous Recipient Decides Details"
+    "previousrecipientdecidesdetails": "Previous Recipient Decides Details",
+    "duplicate": "Duplicate",
+    "delete": "Delete"
   },
   "toolbox": {
     "title": "Fields",
@@ -122,6 +124,7 @@
     "linkvaluedescription": "Fields with the same Link Value will be linked together",
     "fieldtype": "Field Type",
     "fieldtypedescription": "The Field you currently have selected",
+    "fieldtypedescriptionmultiple": "The Fields you currently have selected",
     "fieldlabel": "Field Label",
     "fieldlabeldescription": "Add a label to clarify the information required from the Recipient.",
     "value": "Value",
@@ -130,7 +133,15 @@
     "optionsdescription": "Define the options available in the dropdown. One option per line.",
     "requiredfield": "Required Field",
     "contentformat": "Content Format",
-    "contentformatdescription": "Select the specific format you want the Recipient to enter."
+    "contentformatdescription": "Select the specific format you want the Recipient to enter.",
+    "linktypenoption": "None",
+    "linktypeoneofgroup": "One of a group (e.g. select one checkbox)",
+    "linktypeaddtotal": "Add to a total",
+    "linktypeconditional": "Make this conditional upon...",
+    "assignedto": "Assigned to:",
+    "placeholdereg1": "eg. 1",
+    "placeholdercheckboxgroup": "eg. checkbox group",
+    "placeholdersignhere": "eg. Sign Here"
   },
   "alignment": {
     "alignleft": "Align Left",
@@ -155,6 +166,12 @@
     "aligntextright": "Align Text Right",
     "fontfamily": "Font Family",
     "fontsize": "Font Size"
+  },
+  "tabs": {
+    "content": "Content",
+    "placement": "Placement",
+    "dimensions": "Dimensions",
+    "format": "Format"
   },
   "statusbar": {
     "pagethumbnails": "Page Thumbnails"

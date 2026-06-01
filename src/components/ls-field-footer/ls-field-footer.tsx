@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-field-footer',
@@ -72,11 +73,11 @@ export class LsFieldFooter {
         <div class={'ls-dv-button-footer'}>
           <button class={'ls-dv-secondary ls-dv-full-rounded'} onClick={() => this.duplicateField()}>
             <ls-icon name="field-duplicate" size="1.25rem" />
-            Duplicate
+            {dvI18n.t('common.duplicate')}
           </button>
           <button class={'ls-dv-destructive ls-dv-full-rounded'} onClick={() => this.deleteField()}>
             <ls-icon name="trash" size="1.25rem" color='var(--red-60)' />
-            Delete
+            {dvI18n.t('common.delete')}
           </button>
         </div>
         <slot></slot>

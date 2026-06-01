@@ -205,7 +205,7 @@ export class LsParticipantCard {
                   type="text"
                   id="participant-description"
                   name="participantDescription"
-                  placeholder="Description, eg. Tenant 1, Agent"
+                  placeholder={dvI18n.t('participants.placeholder')}
                   defaultValue={this.signer.name}
                   onInput={e => this.alter({ name: (e.target as HTMLInputElement).value })}
                   onKeyUp={e => {

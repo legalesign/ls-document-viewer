@@ -84,7 +84,7 @@ export class LsFieldPropertiesAdvanced {
         {this.expanded && (
           <div class={'ls-dv-field-set'}>
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldorder')} sectionDescription={dvI18n.t('fieldproperties.fieldorderdescription')}>
-              <input value={this.getValue('fieldOrder')} type="number" placeholder="eg. 1" onInput={e => {
+              <input value={this.getValue('fieldOrder')} type="number" placeholder={dvI18n.t('fieldproperties.placeholdereg1')} onInput={e => {
                 console.log(e);
                 this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
               }} 
@@ -93,22 +93,22 @@ export class LsFieldPropertiesAdvanced {
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.refname')}>
-              <input value={this.getValue('link')} placeholder="eg. checkbox group" onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} />
+              <input value={this.getValue('link')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} />
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
               <select onChange={e => this.alter({ linkType: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field">
                 <option value="0" selected={this.getValue('linkType') === '0'}>
-                  None
+                  {dvI18n.t('fieldproperties.linktypenoption')}
                 </option>
                 <option value="1" selected={this.getValue('linkType') === '1'}>
-                  One of a group (e.g. select one checkbox)
+                  {dvI18n.t('fieldproperties.linktypeoneofgroup')}
                 </option>
                 <option value="2" selected={this.getValue('linkType') === '2'}>
-                  Add to a total
+                  {dvI18n.t('fieldproperties.linktypeaddtotal')}
                 </option>
                 <option value="3" selected={this.getValue('linkType') === '3'}>
-                  Make this conditional upon...
+                  {dvI18n.t('fieldproperties.linktypeconditional')}
                 </option>
               </select>
             </ls-props-section>
@@ -117,7 +117,7 @@ export class LsFieldPropertiesAdvanced {
               <input
                 value={this.getValue('logicAction')}
                 width="30"
-                placeholder="eg. checkbox group"
+                placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')}
                 onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })}
               />
             </ls-props-section>

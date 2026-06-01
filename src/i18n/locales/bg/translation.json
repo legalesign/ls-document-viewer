@@ -122,6 +122,7 @@
     "linkvaluedescription": "Полетата със същата стойност на връзката ще бъдат свързани заедно",
     "fieldtype": "Тип на полето",
     "fieldtypedescription": "Полето, което сте избрали в момента",
+    "fieldtypedescriptionmultiple": "Полетата, които сте избрали в момента",
     "fieldlabel": "Етикет на полето",
     "fieldlabeldescription": "Добавете етикет, за да изясните информацията, изисквана от получателя.",
     "value": "Стойност",
@@ -130,7 +131,15 @@
     "optionsdescription": "Определете наличните опции в падащото меню. Една опция на ред.",
     "requiredfield": "Задължително поле",
     "contentformat": "Формат на съдържанието",
-    "contentformatdescription": "Изберете конкретния формат, който искате получателят да въведе."
+    "contentformatdescription": "Изберете конкретния формат, който искате получателят да въведе.",
+    "linktypenoption": "Няма",
+    "linktypeoneofgroup": "Един от група (например изберете едно квадратче за отметка)",
+    "linktypeaddtotal": "Добавяне към обща сума",
+    "linktypeconditional": "Направете това условно от...",
+    "assignedto": "Присвоен на:",
+    "placeholdereg1": "напр. 1",
+    "placeholdercheckboxgroup": "напр. група квадратчета за отметка",
+    "placeholdersignhere": "напр. Подпишете тук"
   },
   "alignment": {
     "alignleft": "Подравнете наляво",
@@ -155,6 +164,12 @@
     "aligntextright": "Подравнете текста надясно",
     "fontfamily": "Семейство шрифтове",
     "fontsize": "Размер на шрифта"
+  },
+  "tabs": {
+    "content": "Съдържание",
+    "placement": "Поставяне",
+    "dimensions": "Размери",
+    "format": "Формат"
   },
   "statusbar": {
     "pagethumbnails": "Миниатюри на страници"
