@@ -77,6 +77,12 @@
     "participantwitness": "Participant {{index}} Witness",
     "placeholder": "Description, eg. Tenant 1, Agent"
   },
+  "recipients": {
+    "title": "Recipients & Fields",
+    "description": "Select Recipient to Expand and Drag to place Signature fields where you'd like them to Sign.",
+    "recipientfields": "Recipient Fields",
+    "recipientfieldsdescription": "Select and Click to place Signature fields where on the Document."
+  },
   "documentoptions": {
     "title": "Template Details",
     "description": "Details and insights about the Template.",
@@ -104,5 +110,50 @@
     "autherrormessage": "Unable to load template. Please check your access token is valid and try again.",
     "closepropertiespanel": "Close Properties Panel",
     "fieldproperties": "Field Properties"
+  },
+  "fieldproperties": {
+    "advancedproperties": "Advanced Properties",
+    "fieldorder": "Field Order",
+    "fieldorderdescription": "Determines what order fields will be filled in by the user",
+    "refname": "Ref. Name",
+    "linktype": "Link Type",
+    "linktypedescription": "Determines in what way this field is linked to other fields",
+    "linkvalue": "Link Value",
+    "linkvaluedescription": "Fields with the same Link Value will be linked together",
+    "fieldtype": "Field Type",
+    "fieldtypedescription": "The Field you currently have selected",
+    "fieldlabel": "Field Label",
+    "fieldlabeldescription": "Add a label to clarify the information required from the Recipient.",
+    "value": "Value",
+    "valuedescription": "A prefilled value that can be altered by the signer.",
+    "options": "Options",
+    "optionsdescription": "Define the options available in the dropdown. One option per line."
+  },
+  "alignment": {
+    "alignleft": "Align Left",
+    "aligncenter": "Align Center",
+    "alignright": "Align Right",
+    "aligntop": "Align Top",
+    "alignmiddle": "Align Middle",
+    "alignbottom": "Align Bottom",
+    "distributehorizontally": "Distribute selected fields horizontally",
+    "distributevertically": "Distribute selected fields vertically",
+    "selectmultipledistribution": "Select multiple Fields to to access distribution controls",
+    "selectmultiplescale": "Select multiple Fields to to access scale controls",
+    "selectmultiplewidth": "Select multiple Fields to to access match width controls",
+    "selectmultipleheight": "Select multiple Fields to to access match height controls",
+    "matchsize": "Make selected fields the same height and width as the first selected field",
+    "matchwidth": "Make selected fields the same width as the first selected field",
+    "matchheight": "Make selected fields the same height as the first selected field"
+  },
+  "format": {
+    "aligntextleft": "Align Text Left",
+    "aligntextcenter": "Align Text Center",
+    "aligntextright": "Align Text Right",
+    "fontfamily": "Font Family",
+    "fontsize": "Font Size"
+  },
+  "statusbar": {
+    "pagethumbnails": "Page Thumbnails"
   }
 }
