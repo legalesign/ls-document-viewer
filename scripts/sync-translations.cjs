@@ -335,8 +335,12 @@ const main = async () => {
 
     const missing = sourceKeys.filter((k) => !targetKeys.includes(k));
     const extra = targetKeys.filter((k) => !sourceKeys.includes(k));
+    const placeholders = sourceKeys.filter((k) => {
+      const val = getNestedValue(target, k);
+      return typeof val === 'string' && val.startsWith(PLACEHOLDER_PREFIX);
+    });
 
-    if (missing.length === 0 && extra.length === 0) {
+    if (missing.length === 0 && extra.length === 0 && placeholders.length === 0) {
       console.log(`✅ ${lang}: all ${sourceKeys.length} keys in sync`);
       continue;
     }
@@ -352,6 +356,10 @@ const main = async () => {
       }
     }
 
+    if (placeholders.length > 0) {
+      console.log(`🔄 ${lang}: ${placeholders.length} placeholder(s) to translate`);
+    }
+
     if (extra.length > 0) {
       console.log(`🗑️  ${lang}: ${extra.length} extra key(s)`);
       for (const key of extra) {
@@ -360,8 +368,10 @@ const main = async () => {
     }
 
     if (!CHECK_ONLY) {
-      if (missing.length > 0) {
-        const textsToTranslate = missing.map((k) => getNestedValue(source, k));
+      const keysToTranslate = [...missing, ...placeholders];
+
+      if (keysToTranslate.length > 0) {
+        const textsToTranslate = keysToTranslate.map((k) => getNestedValue(source, k));
         let translations;
 
         if (useTranslate) {
@@ -370,10 +380,10 @@ const main = async () => {
           totalTranslated += translatedCount;
         }
 
-        for (let i = 0; i < missing.length; i++) {
+        for (let i = 0; i < keysToTranslate.length; i++) {
           const enValue = textsToTranslate[i];
           const translated = translations?.[i];
-          setNestedValue(target, missing[i], translated || `${PLACEHOLDER_PREFIX}${enValue}`);
+          setNestedValue(target, keysToTranslate[i], translated || `${PLACEHOLDER_PREFIX}${enValue}`);
         }
       }
 
