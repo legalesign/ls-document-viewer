@@ -552,3 +552,44 @@ button.ls-dv-tertiary-grey:hover {
 .ls-dv-button-group> :not(:first-child) {
   border-left: 1px solid var(--gray-30, #e0e2e5);
 }
+
+
+.ls-dv-error-state {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: 4000;
+  background-color: var(--gray-10, #f7f8fa);
+}
+
+.ls-dv-error-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background: white;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+  max-width: 24rem;
+  text-align: center;
+  color: var(--gray-80, #6c6e73);
+}
+
+.ls-dv-error-title {
+  color: var(--gray-100, #45484d);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.ls-dv-error-message {
+  color: var(--gray-80, #6c6e73);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
