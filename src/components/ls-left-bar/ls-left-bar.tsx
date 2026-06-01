@@ -3,6 +3,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSApiRoleType } from '../../types/LSApiRole';
 import { ValidationError } from '../../types/ValidationError';
 import { IToolboxField } from '../interfaces/IToolboxField';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-left-bar',
@@ -86,7 +87,7 @@ export class LsLeftBar {
           <div class="ls-dv-properties-header-icon">
             <ls-icon name="pre-filled-content" />
           </div>
-          <h1 class="ls-dv-properties-header-title">Field Properties</h1>
+          <h1 class="ls-dv-properties-header-title">{dvI18n.t('viewer.fieldproperties')}</h1>
           <button
             class="ls-dv-tertiary-grey"
             onClick={e => {
@@ -94,7 +95,7 @@ export class LsLeftBar {
               e.preventDefault();
             }}
             style={{ borderRadius: '0.75rem' }}
-            data-tooltip="Close Properties Panel"
+            data-tooltip={dvI18n.t('viewer.closepropertiespanel')}
           >
             <ls-icon name="x" size="1.25rem" />
           </button>
@@ -108,20 +109,20 @@ export class LsLeftBar {
     return (
       <div id="ls-toolbox" class={this.manager === 'toolbox' ? 'ls-dv-toolbox' : 'ls-dv-hidden'}>
         <div class="ls-dv-editor-infobox">
-          <h2 class="ls-dv-toolbox-section-title">Fields</h2>
-          <p class="ls-dv-toolbox-section-description">Drag and drop, or select and double click, to place fields on the Document.</p>
+          <h2 class="ls-dv-toolbox-section-title">{dvI18n.t('toolbox.title')}</h2>
+          <p class="ls-dv-toolbox-section-description">{dvI18n.t('toolbox.description')}</p>
         </div>
         <div class="ls-dv-fields-box">
           {this.signer > 0 && this.showTool('signature') && !this.checkType('APPROVER') && (
             <ls-toolbox-field
               elementType="signature"
               formElementType="signature"
-              label="Signature"
+              label={dvI18n.t('toolbox.signature')}
               defaultHeight={25}
               defaultWidth={97}
               validation={0}
               icon="signature"
-              tooltip="Use this field to collect Signatures from Participants"
+              tooltip={dvI18n.t('toolbox.signaturetooltip')}
               signer={this.signer}
             />
           )}
@@ -129,12 +130,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="admin"
               formElementType="auto sign"
-              label="Auto Sign"
+              label={dvI18n.t('toolbox.autosign')}
               defaultHeight={25}
               defaultWidth={97}
               validation={3000}
               icon="auto-sign"
-              tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
+              tooltip={dvI18n.t('toolbox.autosigntooltip')}
               signer={this.signer}
             />
           )}
@@ -142,12 +143,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="text"
-              label="Text"
+              label={dvI18n.t('toolbox.text')}
               defaultHeight={16}
               defaultWidth={150}
               validation={0}
               icon="text"
-              tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
+              tooltip={dvI18n.t('toolbox.texttooltip')}
               signer={this.signer}
             />
           )}
@@ -155,12 +156,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="signing date"
-              label="Signing Date"
+              label={dvI18n.t('toolbox.signingdate')}
               defaultHeight={16}
               defaultWidth={100}
               validation={32}
               icon="auto-date"
-              tooltip="Automatically inserts the date upon completion by the assigned Participant"
+              tooltip={dvI18n.t('toolbox.signingdatetooltip')}
               signer={this.signer}
             />
           )}
@@ -168,12 +169,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="date"
-              label="Date"
+              label={dvI18n.t('toolbox.date')}
               defaultHeight={16}
               defaultWidth={100}
               validation={4}
               icon="calender"
-              tooltip="A field for collecting dates with built-in date formatting options"
+              tooltip={dvI18n.t('toolbox.datetooltip')}
               signer={this.signer}
             />
           )}
@@ -181,12 +182,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="email"
-              label="Email"
+              label={dvI18n.t('toolbox.email')}
               defaultHeight={16}
               defaultWidth={150}
               validation={1}
               icon="at-symbol"
-              tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
+              tooltip={dvI18n.t('toolbox.emailtooltip')}
               signer={this.signer}
             />
           )}
@@ -194,12 +195,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="initials"
               formElementType="initials"
-              label="Initials"
+              label={dvI18n.t('toolbox.initials')}
               defaultHeight={25}
               defaultWidth={70}
               validation={2000}
               icon="initials"
-              tooltip="Use this field anywhere Participants are required to Initial your document"
+              tooltip={dvI18n.t('toolbox.initialstooltip')}
               signer={this.signer}
             />
           )}
@@ -207,12 +208,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="number"
-              label="Number"
+              label={dvI18n.t('toolbox.number')}
               defaultHeight={16}
               defaultWidth={150}
               validation={50}
               icon="hashtag"
-              tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
+              tooltip={dvI18n.t('toolbox.numbertooltip')}
               signer={this.signer}
             />
           )}
@@ -220,12 +221,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="dropdown"
-              label="Dropdown"
+              label={dvI18n.t('toolbox.dropdown')}
               defaultHeight={16}
               defaultWidth={100}
               validation={20}
               icon="dropdown"
-              tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
+              tooltip={dvI18n.t('toolbox.dropdowntooltip')}
               signer={this.signer}
             />
           )}
@@ -233,12 +234,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="checkbox"
-              label="Checkbox"
+              label={dvI18n.t('toolbox.checkbox')}
               defaultHeight={16}
               defaultWidth={16}
               validation={25}
               icon="check"
-              tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
+              tooltip={dvI18n.t('toolbox.checkboxtooltip')}
               signer={this.signer}
             />
           )}
@@ -246,12 +247,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="regex"
-              label="Regex"
+              label={dvI18n.t('toolbox.regex')}
               defaultHeight={16}
               defaultWidth={150}
               validation={93}
               icon="code"
-              tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
+              tooltip={dvI18n.t('toolbox.regextooltip')}
               signer={this.signer}
             />
           )}
@@ -259,12 +260,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="image"
-              label="Image"
+              label={dvI18n.t('toolbox.image')}
               defaultHeight={16}
               defaultWidth={100}
               validation={90}
               icon="photograph"
-              tooltip="Use when you need Participants to upload their own images during the signing process"
+              tooltip={dvI18n.t('toolbox.imagetooltip')}
               signer={this.signer}
             />
           )}
@@ -272,12 +273,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="file"
-              label="File"
+              label={dvI18n.t('toolbox.file')}
               defaultHeight={16}
               defaultWidth={100}
               validation={74}
               icon="upload"
-              tooltip="Use when you need Participants to upload their own documents during the signing process"
+              tooltip={dvI18n.t('toolbox.filetooltip')}
               signer={this.signer}
             />
           )}
@@ -285,12 +286,12 @@ export class LsLeftBar {
             <ls-toolbox-field
               elementType="text"
               formElementType="drawn"
-              label="Drawn"
+              label={dvI18n.t('toolbox.drawn')}
               defaultHeight={120}
               defaultWidth={120}
               validation={90}
               icon="pencil"
-              tooltip="Allow users to draw on the document using their mouse or touchscreen"
+              tooltip={dvI18n.t('toolbox.drawntooltip')}
               signer={this.signer}
             />
           )}

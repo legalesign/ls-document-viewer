@@ -4,6 +4,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { attachAllTooltips } from '../../utils/tooltip';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-participant-card',
@@ -86,8 +87,8 @@ export class LsParticipantCard {
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
     const formatRoleName = (signer: LSApiRole) => {
-      if (signer.roleType == 'WITNESS') return `Participant ${signer.signerIndex % 100} Witness`;
-      return `Participant ${signer.signerIndex}`;
+      if (signer.roleType == 'WITNESS') return dvI18n.t('participants.participantwitness', { index: signer.signerIndex % 100 });
+      return dvI18n.t('participants.participant', { index: signer.signerIndex });
     };
 
     return (
@@ -158,7 +159,7 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? 'Save Changes' : 'Edit Participant'} />
+                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')} />
                 </div>
                 <div
                   class="ls-dv-inner-button"
@@ -169,7 +170,7 @@ export class LsParticipantCard {
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
-                  data-tooltip="Delete Participant"
+                  data-tooltip={dvI18n.t('participants.deleteparticipant')}
                   data-tooltip-placement="top-end"
                 >
                   <ls-icon name="trash" size="1.125rem" />
@@ -188,10 +189,10 @@ export class LsParticipantCard {
                       disabled={child ? true : false}
                     >
                       <option value="APPROVER" selected={this.signer?.roleType === 'APPROVER'}>
-                        Approver
+                        {dvI18n.t('participants.approver')}
                       </option>
                       <option value="SIGNER" selected={this.signer?.roleType === 'SIGNER'}>
-                        Signer
+                        {dvI18n.t('participants.signer')}
                       </option>
                     </select>
                   </ls-input-wrapper>
@@ -214,7 +215,7 @@ export class LsParticipantCard {
                 {this.signer?.roleType === 'SIGNER' && !child ? (
                   <button class={'ls-dv-tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
                     <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
-                    Add Witness
+                    {dvI18n.t('participants.addwitness')}
                   </button>
                 ) : this.signer?.roleType === 'SIGNER' && child ? (
                   <button
@@ -224,7 +225,7 @@ export class LsParticipantCard {
                     }}
                   >
                     <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
-                    Remove Witness
+                    {dvI18n.t('participants.removewitness')}
                   </button>
                 ) : this.signer?.roleType === 'WITNESS' ? (
                   <button
@@ -234,7 +235,7 @@ export class LsParticipantCard {
                     }}
                   >
                     <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
-                    Remove Witness
+                    {dvI18n.t('participants.removewitness')}
                   </button>
                 ) : null}
               </div>
@@ -266,7 +267,7 @@ export class LsParticipantCard {
                     }}
                   >
                     {participantFields.length === 0 && <ls-icon name="exclamation-circle" size="1rem" style={{ marginRight: '0.125rem' }} />}
-                    {participantFields.length === 0 ? 'Signature Required' : `${participantFields.length} ${participantFields.length === 1 ? 'Field' : 'Fields'}`}
+                    {participantFields.length === 0 ? dvI18n.t('participants.signaturerequired') : `${participantFields.length} ${participantFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
                   </div>
                 )}
               </div>
