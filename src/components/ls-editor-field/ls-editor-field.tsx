@@ -69,14 +69,19 @@ export class LsEditorField {
     if (this.readonly) return;
     if (!e.clientX) return;
 
-    // Determine which edge is being moved over and what cursor to show.
-    if (Math.abs(e.offsetX) < 5) {
+    const nearLeft = Math.abs(e.offsetX) < 8;
+    const nearRight = Math.abs(e.offsetX - this.component.clientWidth) < 8;
+    const nearTop = Math.abs(e.offsetY) < 8;
+    const nearBottom = Math.abs(e.offsetY - this.component.clientHeight) < 8;
+
+    // Corners first
+    if ((nearRight && nearBottom) || (nearLeft && nearTop)) {
+      this.component.style.cursor = 'nwse-resize';
+    } else if ((nearLeft && nearBottom) || (nearRight && nearTop)) {
+      this.component.style.cursor = 'nesw-resize';
+    } else if (nearLeft || nearRight) {
       this.component.style.cursor = 'ew-resize';
-    } else if (Math.abs(e.offsetX - this.component.clientWidth) < 5) {
-      this.component.style.cursor = 'ew-resize';
-    } else if (Math.abs(e.offsetY) < 5) {
-      this.component.style.cursor = 'ns-resize';
-    } else if (Math.abs(e.offsetY - this.component.clientHeight) < 5) {
+    } else if (nearTop || nearBottom) {
       this.component.style.cursor = 'ns-resize';
     } else {
       this.component.style.cursor = 'move';
@@ -105,6 +110,20 @@ export class LsEditorField {
     }
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  @Listen('mousedown', { capture: true })
+  handleMouseDown(e) {
+    if (this.readonly) return;
+    const nearLeft = Math.abs(e.offsetX) < 8;
+    const nearRight = Math.abs(e.offsetX - this.component.clientWidth) < 8;
+    const nearTop = Math.abs(e.offsetY) < 8;
+    const nearBottom = Math.abs(e.offsetY - this.component.clientHeight) < 8;
+
+    if (nearLeft || nearRight || nearTop || nearBottom) {
+      // Prevent native drag so mousemove keeps firing during resize
+      e.preventDefault();
+    }
   }
 
   @Listen('dragstart', { capture: false, passive: false })
