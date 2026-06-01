@@ -109,6 +109,7 @@ Type: `Promise<void>`
 
 - [ls-page-loader](../ls-page-loader)
 - [ls-compose-loader](../ls-compose-loader)
+- [ls-icon](../ls-icon)
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
@@ -122,6 +123,7 @@ Type: `Promise<void>`
 graph TD;
   ls-document-viewer --> ls-page-loader
   ls-document-viewer --> ls-compose-loader
+  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-left-bar
   ls-document-viewer --> ls-toolbar
