@@ -112,6 +112,7 @@ export class LsDocumentViewer {
   @State() _template: LSApiTemplate;
   @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
+  @State() error: string | null = null;
 
   /**
    * The following state properties define the defaults for field
@@ -666,6 +667,8 @@ export class LsDocumentViewer {
       this.isLoading = false;
     } catch (e) {
       console.error('Your access token is invalid.', e);
+      this.error = 'Unable to load template. Please check your access token is valid and try again.';
+      this.isLoading = false;
     }
   }
 
@@ -706,6 +709,15 @@ export class LsDocumentViewer {
               </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
+          )}
+          {this.error && (
+            <div class="ls-dv-error-state">
+              <div class="ls-dv-error-card">
+                <ls-icon name="exclamation-circle" size="2rem" style={{ color: 'var(--red-60, #dc2626)' }} />
+                <p class="ls-dv-error-title">Authentication Error</p>
+                <p class="ls-dv-error-message">{this.error}</p>
+              </div>
+            </div>
           )}
           <div class="ls-dv-page-header">
             <div class={'ls-dv-left-slot-wrapper'}>

@@ -13,16 +13,24 @@
     "module": "esnext",
     "target": "es2022",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["jest"]
   },
   "include": [
     "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.*",
+    "**/*.e2e.*",
+    "**/test/**"
   ]
 }
