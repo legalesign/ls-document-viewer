@@ -69,10 +69,17 @@ export class LsEditorField {
     if (this.readonly) return;
     if (!e.clientX) return;
 
-    const nearLeft = Math.abs(e.offsetX) < 8;
-    const nearRight = Math.abs(e.offsetX - this.component.clientWidth) < 8;
-    const nearTop = Math.abs(e.offsetY) < 8;
-    const nearBottom = Math.abs(e.offsetY - this.component.clientHeight) < 8;
+    // While dragging (button held), keep current cursor
+    if (e.buttons === 1) return;
+
+    // Scale edge threshold so short/narrow fields still have a usable move zone
+    const edgeX = Math.min(8, this.component.clientWidth * 0.25);
+    const edgeY = Math.min(8, this.component.clientHeight * 0.25);
+
+    const nearLeft = e.offsetX < edgeX;
+    const nearRight = (this.component.clientWidth - e.offsetX) < edgeX;
+    const nearTop = e.offsetY < edgeY;
+    const nearBottom = (this.component.clientHeight - e.offsetY) < edgeY;
 
     // Corners first
     if ((nearRight && nearBottom) || (nearLeft && nearTop)) {
@@ -115,10 +122,13 @@ export class LsEditorField {
   @Listen('mousedown', { capture: true })
   handleMouseDown(e) {
     if (this.readonly) return;
-    const nearLeft = Math.abs(e.offsetX) < 8;
-    const nearRight = Math.abs(e.offsetX - this.component.clientWidth) < 8;
-    const nearTop = Math.abs(e.offsetY) < 8;
-    const nearBottom = Math.abs(e.offsetY - this.component.clientHeight) < 8;
+    const edgeX = Math.min(8, this.component.clientWidth * 0.25);
+    const edgeY = Math.min(8, this.component.clientHeight * 0.25);
+
+    const nearLeft = e.offsetX < edgeX;
+    const nearRight = (this.component.clientWidth - e.offsetX) < edgeX;
+    const nearTop = e.offsetY < edgeY;
+    const nearBottom = (this.component.clientHeight - e.offsetY) < edgeY;
 
     if (nearLeft || nearRight || nearTop || nearBottom) {
       // Prevent native drag so mousemove keeps firing during resize

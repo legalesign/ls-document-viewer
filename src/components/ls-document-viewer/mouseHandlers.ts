@@ -28,33 +28,36 @@ export function mouseDown(e) {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
     const fdims = { left: f.offsetLeft, top: f.offsetTop, height, width, x: e.screenX, y: e.screenY };
     this.startMouse = fdims;
+    // Scale edge threshold for small fields
+    const edgeX = Math.min(8, width * 0.25);
+    const edgeY = Math.min(8, height * 0.25);
     // corners (check before edges)
-    if (Math.abs(e.clientX - right) < 8 && Math.abs(e.clientY - bottom) < 8) {
+    if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
       this.edgeSide = 'se';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < 8 && Math.abs(e.clientY - top) < 8) {
+    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - top) < edgeY) {
       this.edgeSide = 'nw';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - right) < 8 && Math.abs(e.clientY - top) < 8) {
+    } else if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - top) < edgeY) {
       this.edgeSide = 'ne';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < 8 && Math.abs(e.clientY - bottom) < 8) {
+    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
       this.edgeSide = 'sw';
       this.hitField = f;
       // west edge
-    } else if (Math.abs(e.clientX - left) < 5 && e.clientY >= top && e.clientY <= bottom) {
+    } else if (Math.abs(e.clientX - left) < edgeX && e.clientY >= top && e.clientY <= bottom) {
       this.edgeSide = 'w';
       this.hitField = f;
       // right / east edge
-    } else if (Math.abs(e.clientX - right) < 5 && e.clientY >= top && e.clientY <= bottom) {
+    } else if (Math.abs(e.clientX - right) < edgeX && e.clientY >= top && e.clientY <= bottom) {
       this.edgeSide = 'e';
       this.hitField = f;
       // north edge
-    } else if (Math.abs(e.clientY - top) < 5 && e.clientX >= left && e.clientX <= right) {
+    } else if (Math.abs(e.clientY - top) < edgeY && e.clientX >= left && e.clientX <= right) {
       this.edgeSide = 'n';
       this.hitField = f;
       // south edge
-    } else if (Math.abs(e.clientY - bottom) < 5 && e.clientX >= left && e.clientX <= right) {
+    } else if (Math.abs(e.clientY - bottom) < edgeY && e.clientX >= left && e.clientX <= right) {
       this.edgeSide = 's';
       this.hitField = f;
     } else if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
