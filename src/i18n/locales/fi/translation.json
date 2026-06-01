@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Vastaanottajan allekirjoitus puuttuu",
     "detailstobedecided": "Yksityiskohdat päätettävät",
     "tobedecided": "Päätettävä",
-    "previousrecipientdecidesdetails": "Edellinen vastaanottaja päättää yksityiskohdista"
+    "previousrecipientdecidesdetails": "Edellinen vastaanottaja päättää yksityiskohdista",
+    "duplicate": "Kaksoiskappale",
+    "delete": "Poistaa"
   },
   "toolbox": {
     "title": "Kentät",
@@ -101,7 +103,7 @@
   },
   "validation": {
     "description": "Tämän asiakirjan kentät on lisättävä tai korjattava ennen sen lähettämistä.",
-    "recipientneedsignature": "Vastaanottaja tarvitsee allekirjoituskentän",
+    "recipientneedsignature": "Vastaanottaja tarvitsee allekirjoituskentän.",
     "recipientsneedsignatures": "Vastaanottajat tarvitsevat allekirjoituskentät"
   },
   "viewer": {
@@ -157,6 +159,27 @@
     "matchsize": "Tee valittujen kenttien korkeudesta ja leveydestä samaa korkeutta ja leveyttä kuin ensimmäisen valitun kentän",
     "matchwidth": "Tee valittujen kenttien leveydeltään sama kuin ensimmäinen valittu kenttä",
     "matchheight": "Valitujen kenttien korkeus on sama kuin ensimmäinen valittu kenttä"
+  },
+  "dimensions": {
+    "heightandwidth": "Korkeus ja leveys",
+    "heightandwidthdescription": "Määritä yhden tai useamman kentän korkeus ja leveys",
+    "setwidthtooltip": "Kentän leveyden määrittäminen pikseleinä",
+    "setheighttooltip": "Kentän korkeuden asettaminen pikseleinä",
+    "scaleandresize": "Skaalaa ja muuta kokoa",
+    "scaleandresizedescription": "Valitse useita kenttiä ja sovita niiden mitat"
+  },
+  "placement": {
+    "location": "Sijainti",
+    "locationdescription": "Käytä koordinaatteja kenttien siirtämiseen sivulla",
+    "alignment": "Kohdistus",
+    "alignmentdescription": "Kohdista kentät suhteessa sivuun tai monivalintaan ja kohdista sitten toisiinsa.",
+    "distribution": "Jakelu",
+    "distributiondescription": "Valitse useita kenttiä ja aseta ne tasaisesti",
+    "gap": "aukko",
+    "gapdescription": "Määritä tarkka aukko monivalintakenttien välillä.",
+    "selectmultiplegap": "Valitse useita kenttiä, joiden avulla voit käyttää aukon hallintalaitteita",
+    "setverticalgap": "Aseta pystysuora väli valittujen kenttien välillä",
+    "sethorizontalgap": "Aseta vaakasuora väli valittujen kenttien välillä"
   },
   "format": {
     "aligntextleft": "Kohdista teksti vasemmalle",

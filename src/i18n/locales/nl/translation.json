@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Handtekening van ontvangers ontbreekt",
     "detailstobedecided": "Details moeten nog worden bepaald",
     "tobedecided": "Te beslissen",
-    "previousrecipientdecidesdetails": "De vorige ontvanger beslist over de details"
+    "previousrecipientdecidesdetails": "De vorige ontvanger beslist over de details",
+    "duplicate": "Duplicaat",
+    "delete": "Verwijderen"
   },
   "toolbox": {
     "title": "Velden",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Dit document moet worden toegevoegd of gecorrigeerd voordat het kan worden verzonden.",
-    "recipientneedsignature": "De ontvanger heeft een handtekeningveld nodig",
-    "recipientsneedsignatures": "Ontvangers hebben handtekeningvelden nodig"
+    "recipientneedsignature": "De ontvanger moet een handtekeningveld hebben dat voor hem of haar is geplaatst",
+    "recipientsneedsignatures": "Ontvangers hebben handtekeningvelden nodig die voor hen zijn geplaatst"
   },
   "viewer": {
     "templatecreation": "Creatie van sjablonen",
@@ -157,6 +159,27 @@
     "matchsize": "Maak geselecteerde velden even hoog en breed als het eerste geselecteerde veld",
     "matchwidth": "Maak geselecteerde velden even breed als het eerste geselecteerde veld",
     "matchheight": "Geselecteerde velden even hoog maken als het eerste geselecteerde veld"
+  },
+  "dimensions": {
+    "heightandwidth": "Hoogte en breedte",
+    "heightandwidthdescription": "Definieer de hoogte en breedte van een of meerdere velden",
+    "setwidthtooltip": "De veldbreedte in pixels instellen",
+    "setheighttooltip": "Stel de veldhoogte in pixels in",
+    "scaleandresize": "Schalen en verkleinen",
+    "scaleandresizedescription": "Selecteer meerdere velden en pas hun afmetingen aan"
+  },
+  "placement": {
+    "location": "Locatie",
+    "locationdescription": "Gebruik coördinaten om je velden op de pagina te verplaatsen",
+    "alignment": "Uitlijning",
+    "alignmentdescription": "Lijn uw velden uit ten opzichte van de pagina of selecteer meerdere velden en lijn ze vervolgens uit met elkaar.",
+    "distribution": "Distributie",
+    "distributiondescription": "Selecteer meerdere velden en verdeel ze gelijkmatig",
+    "gap": "Gap",
+    "gapdescription": "Definieer de exacte afstand tussen velden met meerdere selecties.",
+    "selectmultiplegap": "Selecteer meerdere velden om toegang te krijgen tot hiaatcontroles",
+    "setverticalgap": "Verticale afstand tussen geselecteerde velden instellen",
+    "sethorizontalgap": "Horizontale afstand tussen geselecteerde velden instellen"
   },
   "format": {
     "aligntextleft": "Tekst links uitlijnen",

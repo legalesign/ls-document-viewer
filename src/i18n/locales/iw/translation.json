@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "חתימה חסרה לנמענים",
     "detailstobedecided": "פרטים שייקבעו",
     "tobedecided": "יוחלט",
-    "previousrecipientdecidesdetails": "הנמען הקודם מחליט פרטים"
+    "previousrecipientdecidesdetails": "הנמען הקודם מחליט פרטים",
+    "duplicate": "שכפול",
+    "delete": "מחק"
   },
   "toolbox": {
     "title": "שדות",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "מסמך זה צריך להוסיף או לתקן שדות לפני שניתן יהיה לשלוח אותו.",
-    "recipientneedsignature": "הנמען זקוק לשדה חתימה",
-    "recipientsneedsignatures": "הנמענים זקוקים לשדות חתימה"
+    "recipientneedsignature": "הנמען זקוק לשדה חתימה שיוצב עבורו",
+    "recipientsneedsignatures": "הנמענים צריכים להציב עבורם שדות חתימה"
   },
   "viewer": {
     "templatecreation": "יצירת תבנית",
@@ -157,6 +159,27 @@
     "matchsize": "הפוך את השדות שנבחרו לאותם גובה ורוחב כמו השדה הראשון שנבחר",
     "matchwidth": "הפוך את השדות שנבחרו לרוחב זהה לשדה הראשון שנבחר",
     "matchheight": "הפוך את השדות שנבחרו לגובה זהה לשדה הראשון שנבחר"
+  },
+  "dimensions": {
+    "heightandwidth": "גובה ורוחב",
+    "heightandwidthdescription": "הגדר את הגובה והרוחב של שדה אחד או מספר שדות",
+    "setwidthtooltip": "הגדרת רוחב השדה בפיקסלים",
+    "setheighttooltip": "הגדרת גובה השדה בפיקסלים",
+    "scaleandresize": "קנה מידה ושינוי גודל",
+    "scaleandresizedescription": "בחר שדות מרובים והתאם את המידות שלהם"
+  },
+  "placement": {
+    "location": "מיקום",
+    "locationdescription": "השתמש בקואורדינטות כדי להזיז את השדות שלך בדף",
+    "alignment": "יישור",
+    "alignmentdescription": "יישר את השדות ביחס לדף או בחירה מרובה ויישר זה לזה.",
+    "distribution": "הפצה",
+    "distributiondescription": "בחר שדות מרובים ומרווח אותם באופן שווה",
+    "gap": "פער",
+    "gapdescription": "הגדר את הפער המדויק בין שדות בחירה מרובה.",
+    "selectmultiplegap": "בחר שדות מרובים כדי לגשת לבקרות פערים",
+    "setverticalgap": "הגדרת פער אנכי בין שדות שנבחרו",
+    "sethorizontalgap": "הגדרת פער אופקי בין שדות נבחרים"
   },
   "format": {
     "aligntextleft": "יישור טקסט שמאלה",

@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Viðtakendur vantar undirskrift",
     "detailstobedecided": "Upplýsingar sem þarf að ákveða",
     "tobedecided": "Að ákveða",
-    "previousrecipientdecidesdetails": "Fyrri viðtakandi ákveður upplýsingar"
+    "previousrecipientdecidesdetails": "Fyrri viðtakandi ákveður upplýsingar",
+    "duplicate": "Afrit",
+    "delete": "Eyða"
   },
   "toolbox": {
     "title": "Reitir",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Þetta skjal þarf reitum bætt við eða leiðrétta áður en hægt er að senda það.",
-    "recipientneedsignature": "Viðtakandi þarf undirskriftarreit",
-    "recipientsneedsignatures": "Viðtakendur þurfa undirskriftarreiti"
+    "recipientneedsignature": "Viðtakandi þarf undirskriftarreit fyrir þá",
+    "recipientsneedsignatures": "Viðtakendur þurfa undirskriftarreitina sett fyrir þá"
   },
   "viewer": {
     "templatecreation": "Sniðmátasköpun",
@@ -157,6 +159,27 @@
     "matchsize": "Gerðu valda reiti í sömu hæð og breidd og fyrsta völdu reitinn",
     "matchwidth": "Gerðu valda reiti á sömu breidd og fyrsta völdu reitinn",
     "matchheight": "Gerðu valda reiti í sömu hæð og fyrsta völdu reitinn"
+  },
+  "dimensions": {
+    "heightandwidth": "Hæð og breidd",
+    "heightandwidthdescription": "Skilgreina hæð og breidd eins eða margra sviða",
+    "setwidthtooltip": "Stilltu reitsbreidd í pixlum",
+    "setheighttooltip": "Stilltu reitshæð í pixlum",
+    "scaleandresize": "Skala og breyta stærð",
+    "scaleandresizedescription": "Fjölvelja reiti og passa við stærðir þeirra"
+  },
+  "placement": {
+    "location": "Staðsetning",
+    "locationdescription": "Notaðu hnit til að færa reitina þína á síðunni",
+    "alignment": "Jöfnun",
+    "alignmentdescription": "Réttu reitina þína miðað við síðuna eða fjölveldu og samræma síðan hvert við annað.",
+    "distribution": "Dreifing",
+    "distributiondescription": "Margveldu reiti og skiptu þeim jafnt út",
+    "gap": "Gap",
+    "gapdescription": "Skilgreindu nákvæma bilið milli fjölvalreita.",
+    "selectmultiplegap": "Veldu marga reiti til að fá aðgang að bilstýringum",
+    "setverticalgap": "Stilltu lóðrétt bil milli valda reita",
+    "sethorizontalgap": "Stilltu lárétt bil milli valinna reita"
   },
   "format": {
     "aligntextleft": "Samræma texta til vinstri",

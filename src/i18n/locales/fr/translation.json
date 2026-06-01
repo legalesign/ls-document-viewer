@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Signature manquante des destinataires",
     "detailstobedecided": "Détails à déterminer",
     "tobedecided": "À décider",
-    "previousrecipientdecidesdetails": "Le bénéficiaire précédent décide des détails"
+    "previousrecipientdecidesdetails": "Le bénéficiaire précédent décide des détails",
+    "duplicate": "Dupliquer",
+    "delete": "Supprimer"
   },
   "toolbox": {
     "title": "Champs",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Ce document nécessite l'ajout ou la correction de champs avant de pouvoir être envoyé.",
-    "recipientneedsignature": "Le destinataire a besoin d'un champ de signature",
-    "recipientsneedsignatures": "Les destinataires ont besoin de champs de signature"
+    "recipientneedsignature": "Le destinataire a besoin qu'un champ de signature soit placé pour lui",
+    "recipientsneedsignatures": "Les destinataires ont besoin de champs de signature placés pour eux"
   },
   "viewer": {
     "templatecreation": "Création de modèles",
@@ -157,6 +159,27 @@
     "matchsize": "Faire en sorte que les champs sélectionnés aient la même hauteur et la même largeur que le premier champ sélectionné",
     "matchwidth": "Faire en sorte que les champs sélectionnés aient la même largeur que le premier champ sélectionné",
     "matchheight": "Faire en sorte que les champs sélectionnés aient la même hauteur que le premier champ sélectionné"
+  },
+  "dimensions": {
+    "heightandwidth": "Hauteur et largeur",
+    "heightandwidthdescription": "Définissez la hauteur et la largeur d'un ou de plusieurs champs",
+    "setwidthtooltip": "Définir la largeur du champ en pixels",
+    "setheighttooltip": "Régler la hauteur du champ en pixels",
+    "scaleandresize": "Redimensionner et redimensionner",
+    "scaleandresizedescription": "Sélectionnez plusieurs champs et faites correspondre leurs dimensions"
+  },
+  "placement": {
+    "location": "Lieu",
+    "locationdescription": "Utilisez les coordonnées pour déplacer vos champs sur la page",
+    "alignment": "Alignement",
+    "alignmentdescription": "Alignez vos champs par rapport à la page ou effectuez une sélection multiple et alignez-les les uns par rapport aux autres.",
+    "distribution": "Distribution",
+    "distributiondescription": "Sélectionnez plusieurs champs et espacez-les uniformément",
+    "gap": "Écart",
+    "gapdescription": "Définissez l'écart exact entre les champs à sélection multiple.",
+    "selectmultiplegap": "Sélectionnez plusieurs champs pour accéder aux contrôles d'écart",
+    "setverticalgap": "Définir l'écart vertical entre les champs sélectionnés",
+    "sethorizontalgap": "Définir un écart horizontal entre les champs sélectionnés"
   },
   "format": {
     "aligntextleft": "Aligner le texte à gauche",

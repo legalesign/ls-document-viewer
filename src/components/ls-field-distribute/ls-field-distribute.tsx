@@ -185,8 +185,8 @@ export class LsFieldDistribute {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
-            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.distribution')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.distributiondescription')}</p>
           </div>
           <div class={'ls-dv-button-group'}>
             <button
@@ -211,11 +211,11 @@ export class LsFieldDistribute {
         </div>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Gap</p>
-            <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.gap')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.gapdescription')}</p>
           </div>
           <div class={'ls-dv-input-row'}>
-            <div class={'ls-dv-input-wrapper'} data-tooltip="Set vertical gap between selected fields">
+            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.setverticalgap')}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
               <input
                 type="number"
@@ -230,7 +230,7 @@ export class LsFieldDistribute {
                 size={4}
               />
             </div>
-            <div class={'ls-dv-input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
+            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.sethorizontalgap')}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
               <input
                 type="number"

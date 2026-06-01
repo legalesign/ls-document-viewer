@@ -61,7 +61,7 @@ export class LsValidationTag {
             <div class={'ls-dv-dropdown-header'}>
               <h2>{dvI18n.t('common.fieldsrequired')}</h2>
               <p>
-                {this.validationErrors.length} {this.validationErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')} placed for them
+                {this.validationErrors.length} {this.validationErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')}
               </p>
             </div>
             {this.validationErrors.map((field, idx) => {

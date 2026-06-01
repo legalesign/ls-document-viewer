@@ -103,8 +103,8 @@
   },
   "validation": {
     "description": "This document needs fields added or corrected before it can be sent.",
-    "recipientneedsignature": "Recipient needs a Signature Field",
-    "recipientsneedsignatures": "Recipients need Signature Fields"
+    "recipientneedsignature": "Recipient needs a Signature Field placed for them",
+    "recipientsneedsignatures": "Recipients need Signature Fields placed for them"
   },
   "viewer": {
     "templatecreation": "Template Creation",
@@ -159,6 +159,27 @@
     "matchsize": "Make selected fields the same height and width as the first selected field",
     "matchwidth": "Make selected fields the same width as the first selected field",
     "matchheight": "Make selected fields the same height as the first selected field"
+  },
+  "dimensions": {
+    "heightandwidth": "Height and Width",
+    "heightandwidthdescription": "Define the height and width of one or multiple fields",
+    "setwidthtooltip": "Set field width in pixels",
+    "setheighttooltip": "Set field height in pixels",
+    "scaleandresize": "Scale and Resize",
+    "scaleandresizedescription": "Multi-select fields and match their dimensions"
+  },
+  "placement": {
+    "location": "Location",
+    "locationdescription": "Use coordinates to move your fields on the page",
+    "alignment": "Alignment",
+    "alignmentdescription": "Align your Fields relative to the page or multi-select and align then to each other.",
+    "distribution": "Distribution",
+    "distributiondescription": "Multi-select fields and evenly space them out",
+    "gap": "Gap",
+    "gapdescription": "Define the exact gap between multi-select fields.",
+    "selectmultiplegap": "Select multiple Fields to to access gap controls",
+    "setverticalgap": "Set vertical gap between selected fields",
+    "sethorizontalgap": "Set horizontal gap between selected fields"
   },
   "format": {
     "aligntextleft": "Align Text Left",

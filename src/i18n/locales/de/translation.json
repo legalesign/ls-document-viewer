@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Empfänger mit fehlender Signatur",
     "detailstobedecided": "Einzelheiten müssen noch festgelegt werden",
     "tobedecided": "Noch zu entscheiden",
-    "previousrecipientdecidesdetails": "Der vorherige Empfänger entscheidet über die Details"
+    "previousrecipientdecidesdetails": "Der vorherige Empfänger entscheidet über die Details",
+    "duplicate": "Duplikat",
+    "delete": "Löschen"
   },
   "toolbox": {
     "title": "Felder",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Für dieses Dokument müssen Felder hinzugefügt oder korrigiert werden, bevor es gesendet werden kann.",
-    "recipientneedsignature": "Der Empfänger benötigt ein Signaturfeld",
-    "recipientsneedsignatures": "Empfänger benötigen Signaturfelder"
+    "recipientneedsignature": "Der Empfänger muss ein Unterschriftsfeld für ihn eingerichtet haben",
+    "recipientsneedsignatures": "Empfänger müssen Unterschriftsfelder für sie platziert haben"
   },
   "viewer": {
     "templatecreation": "Erstellung von Vorlagen",
@@ -157,6 +159,27 @@
     "matchsize": "Ordnen Sie ausgewählten Feldern die gleiche Höhe und Breite wie das erste ausgewählte Feld zu",
     "matchwidth": "Ordnen Sie ausgewählten Feldern die gleiche Breite wie das erste ausgewählte Feld zu",
     "matchheight": "Ordnen Sie den ausgewählten Feldern die gleiche Höhe wie das erste ausgewählte Feld zu"
+  },
+  "dimensions": {
+    "heightandwidth": "Höhe und Breite",
+    "heightandwidthdescription": "Definieren Sie die Höhe und Breite eines oder mehrerer Felder",
+    "setwidthtooltip": "Stellen Sie die Feldbreite in Pixeln ein",
+    "setheighttooltip": "Stellen Sie die Feldhöhe in Pixeln ein",
+    "scaleandresize": "Skalieren und Größe ändern",
+    "scaleandresizedescription": "Wählen Sie mehrere Felder aus und passen Sie ihre Dimensionen an"
+  },
+  "placement": {
+    "location": "Standort",
+    "locationdescription": "Verwenden Sie Koordinaten, um Ihre Felder auf der Seite zu verschieben",
+    "alignment": "Ausrichtung",
+    "alignmentdescription": "Richten Sie Ihre Felder relativ zur Seite aus oder wählen Sie mehrere Felder aus und richten Sie sie aneinander aus.",
+    "distribution": "Vertrieb",
+    "distributiondescription": "Wählen Sie mehrere Felder aus und verteilen Sie sie gleichmäßig",
+    "gap": "Lücke",
+    "gapdescription": "Definieren Sie den genauen Abstand zwischen Feldern mit Mehrfachauswahl.",
+    "selectmultiplegap": "Wählen Sie mehrere Felder aus, um auf Lückenkontrollen zuzugreifen",
+    "setverticalgap": "Vertikalen Abstand zwischen ausgewählten Feldern festlegen",
+    "sethorizontalgap": "Horizontalen Abstand zwischen ausgewählten Feldern festlegen"
   },
   "format": {
     "aligntextleft": "Text links ausrichten",

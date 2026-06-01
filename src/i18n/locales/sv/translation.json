@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Mottagare saknar signatur",
     "detailstobedecided": "Detaljer som ska beslutas",
     "tobedecided": "Beslutas",
-    "previousrecipientdecidesdetails": "Tidigare mottagare bestämmer detaljer"
+    "previousrecipientdecidesdetails": "Tidigare mottagare bestämmer detaljer",
+    "duplicate": "Duplicera",
+    "delete": "Ta bort"
   },
   "toolbox": {
     "title": "Fält",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Detta dokument behöver fält läggas till eller korrigeras innan det kan skickas.",
-    "recipientneedsignature": "Mottagaren behöver ett signaturfält",
-    "recipientsneedsignatures": "Mottagare behöver signaturfält"
+    "recipientneedsignature": "Mottagaren behöver ett signaturfält placerat för dem",
+    "recipientsneedsignatures": "Mottagare behöver signaturfält placerade för dem"
   },
   "viewer": {
     "templatecreation": "Skapa mall",
@@ -157,6 +159,27 @@
     "matchsize": "Gör markerade fält samma höjd och bredd som det första markerade fältet",
     "matchwidth": "Gör markerade fält samma bredd som det första markerade fältet",
     "matchheight": "Gör markerade fält lika höga som det första markerade fältet"
+  },
+  "dimensions": {
+    "heightandwidth": "Höjd och bredd",
+    "heightandwidthdescription": "Definiera höjd och bredd på ett eller flera fält",
+    "setwidthtooltip": "Ange fältbredd i pixlar",
+    "setheighttooltip": "Ställ in fälthöjd i pixlar",
+    "scaleandresize": "Skala och ändra storlek",
+    "scaleandresizedescription": "Välj flera fält och matcha deras dimensioner"
+  },
+  "placement": {
+    "location": "Plats",
+    "locationdescription": "Använd koordinater för att flytta dina fält på sidan",
+    "alignment": "Justering",
+    "alignmentdescription": "Justera fälten i förhållande till sidan eller flera markeringar och justera sedan mot varandra.",
+    "distribution": "Distribution",
+    "distributiondescription": "Välj flera fält och placera dem jämnt",
+    "gap": "Gap",
+    "gapdescription": "Definiera det exakta gapet mellan flera markeringsfält.",
+    "selectmultiplegap": "Markera flera fält för att komma åt mellanrumskontroller",
+    "setverticalgap": "Ställ in vertikalt mellanrum mellan markerade fält",
+    "sethorizontalgap": "Ställ in vågrätt mellanrum mellan markerade fält"
   },
   "format": {
     "aligntextleft": "Justera text åt vänster",

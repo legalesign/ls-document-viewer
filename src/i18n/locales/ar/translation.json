@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "التوقيع المفقود للمستلمين",
     "detailstobedecided": "التفاصيل التي سيتم تحديدها",
     "tobedecided": "سيتم اتخاذ قرار بشأنه",
-    "previousrecipientdecidesdetails": "المستلم السابق يقرر التفاصيل"
+    "previousrecipientdecidesdetails": "المستلم السابق يقرر التفاصيل",
+    "duplicate": "مكرر",
+    "delete": "حذف"
   },
   "toolbox": {
     "title": "حقول",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "تحتاج هذه الوثيقة إلى إضافة حقول أو تصحيحها قبل إرسالها.",
-    "recipientneedsignature": "يحتاج المستلم إلى حقل التوقيع",
-    "recipientsneedsignatures": "يحتاج المستلمون إلى حقول التوقيع"
+    "recipientneedsignature": "يحتاج المستلم إلى حقل توقيع تم وضعه له",
+    "recipientsneedsignatures": "يحتاج المستلمون إلى حقول التوقيع الموضوعة لهم"
   },
   "viewer": {
     "templatecreation": "إنشاء قالب",
@@ -157,6 +159,27 @@
     "matchsize": "اجعل الحقول المحددة بنفس ارتفاع وعرض الحقل المحدد الأول",
     "matchwidth": "اجعل الحقول المحددة بنفس عرض الحقل المحدد الأول",
     "matchheight": "اجعل الحقول المحددة بنفس ارتفاع الحقل المحدد الأول"
+  },
+  "dimensions": {
+    "heightandwidth": "الارتفاع والعرض",
+    "heightandwidthdescription": "حدد ارتفاع وعرض حقل واحد أو عدة حقول",
+    "setwidthtooltip": "تعيين عرض الحقل بالبكسل",
+    "setheighttooltip": "تعيين ارتفاع الحقل بالبكسل",
+    "scaleandresize": "القياس وتغيير الحجم",
+    "scaleandresizedescription": "حدد الحقول المتعددة وقم بمطابقة أبعادها"
+  },
+  "placement": {
+    "location": "الموقع",
+    "locationdescription": "استخدم الإحداثيات لنقل الحقول الخاصة بك على الصفحة",
+    "alignment": "المحاذاة",
+    "alignmentdescription": "قم بمحاذاة الحقول الخاصة بك بالنسبة للصفحة أو التحديد المتعدد والمحاذاة بعد ذلك مع بعضها البعض.",
+    "distribution": "التوزيع",
+    "distributiondescription": "حدد الحقول المتعددة وقم بتباعد بينها بالتساوي",
+    "gap": "الفجوة",
+    "gapdescription": "حدد الفجوة الدقيقة بين الحقول متعددة التحديد.",
+    "selectmultiplegap": "حدد حقول متعددة للوصول إلى عناصر التحكم في الفجوات",
+    "setverticalgap": "تعيين فجوة رأسية بين الحقول المحددة",
+    "sethorizontalgap": "تعيين فجوة أفقية بين الحقول المحددة"
   },
   "format": {
     "aligntextleft": "محاذاة النص إلى اليسار",

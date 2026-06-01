@@ -160,15 +160,15 @@ export class LsFieldAlignment {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
-            <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.alignment')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.alignmentdescription')}</p>
           </div>
           <div class={'ls-dv-multi-button-group-row'}>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.left()} aria-label="Align selected fields vertically about their left edge." data-tooltip="Align Left">
+              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip={dvI18n.t('alignment.alignleft')}>
                 <ls-icon name="field-alignment-left"></ls-icon>
               </button>
-              <button onClick={() => this.center()} aria-label="Align selected fields vertically about their centre." data-tooltip="Align Center">
+              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip={dvI18n.t('alignment.aligncenter')}>
                 <ls-icon name="field-alignment-centre"></ls-icon>
               </button>
               <button
@@ -182,13 +182,13 @@ export class LsFieldAlignment {
               </button>
             </div>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.top()} aria-label="Align selected fields by their top." data-tooltip="Align Top">
+              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip={dvI18n.t('alignment.aligntop')}>
                 <ls-icon name="field-alignment-top"></ls-icon>
               </button>
-              <button onClick={() => this.middle()} aria-label="Align selected fields by their middles." data-tooltip="Align Middle">
+              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip={dvI18n.t('alignment.alignmiddle')}>
                 <ls-icon name="field-alignment-middle"></ls-icon>
               </button>
-              <button onClick={() => this.bottom()} aria-label="Align selected fields by their bottoms." data-tooltip="Align Bottom">
+              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip={dvI18n.t('alignment.alignbottom')}>
                 <ls-icon name="field-alignment-bottom"></ls-icon>
               </button>
             </div>

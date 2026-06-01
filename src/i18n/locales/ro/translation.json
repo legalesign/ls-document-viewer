@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Destinatarii lipsesc semnătura",
     "detailstobedecided": "Detalii care urmează să fie decise",
     "tobedecided": "Urmează să fie decis",
-    "previousrecipientdecidesdetails": "Destinatarul anterior decide detaliile"
+    "previousrecipientdecidesdetails": "Destinatarul anterior decide detaliile",
+    "duplicate": "Duplicare",
+    "delete": "Șterge"
   },
   "toolbox": {
     "title": "Câmpuri",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Acest document are nevoie de câmpuri adăugate sau corectate înainte de a putea fi trimis.",
-    "recipientneedsignature": "Destinatarul are nevoie de un câmp de semnătură",
-    "recipientsneedsignatures": "Destinatarii au nevoie de câmpuri semnături"
+    "recipientneedsignature": "Destinatarul are nevoie de un câmp de semnătură plasat pentru ei",
+    "recipientsneedsignatures": "Destinatarii au nevoie de câmpuri de semnătură plasate pentru ei"
   },
   "viewer": {
     "templatecreation": "Crearea șablonului",
@@ -157,6 +159,27 @@
     "matchsize": "Faceți câmpurile selectate la aceeași înălțime și lățime ca primul câmp selectat",
     "matchwidth": "Faceți câmpurile selectate la aceeași lățime ca primul câmp selectat",
     "matchheight": "Faceți câmpurile selectate la aceeași înălțime ca primul câmp selectat"
+  },
+  "dimensions": {
+    "heightandwidth": "Înălțime și lățime",
+    "heightandwidthdescription": "Definiți înălțimea și lățimea unuia sau mai multor câmpuri",
+    "setwidthtooltip": "Setați lățimea câmpului în pixeli",
+    "setheighttooltip": "Setarea înălțimii câmpului în pixeli",
+    "scaleandresize": "Scalare și redimensionare",
+    "scaleandresizedescription": "Selectați mai multe câmpuri și potriviți dimensiunile acestora"
+  },
+  "placement": {
+    "location": "Locaţie",
+    "locationdescription": "Utilizați coordonatele pentru a muta câmpurile de pe pagină",
+    "alignment": "Alinierea",
+    "alignmentdescription": "Aliniați câmpurile în raport cu pagina sau selectați multiplă și aliniați apoi unul cu celălalt.",
+    "distribution": "Distribuție",
+    "distributiondescription": "Selectați mai multe câmpuri și spațiați-le uniform",
+    "gap": "Decalaj",
+    "gapdescription": "Definiți decalajul exact dintre câmpurile de selecție multiplă.",
+    "selectmultiplegap": "Selectați mai multe câmpuri pentru a accesa controalele de decalaj",
+    "setverticalgap": "Setarea decalajului vertical între câmpurile selectate",
+    "sethorizontalgap": "Setarea decalajului orizontal între câmpurile selectate"
   },
   "format": {
     "aligntextleft": "Alinierea textului la stânga",

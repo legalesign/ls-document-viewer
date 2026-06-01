@@ -84,8 +84,8 @@ export class LsFieldPlacement {
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-dv-field-properties-section'}>
             <div class={'ls-dv-field-properties-section-text'}>
-              <p class={'ls-dv-field-properties-section-title'}>Location</p>
-              <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+              <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.location')}</p>
+              <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.locationdescription')}</p>
             </div>
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'}>
@@ -111,8 +111,8 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
-                <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.alignment')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.alignmentdescription')}</p>
               </div>
               <div class={'ls-dv-multi-button-group-row'}>
                 <div class={'ls-dv-button-group'}>
@@ -142,8 +142,8 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Location</p>
-                <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.location')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.locationdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
                 <div class={'ls-dv-input-wrapper'}>
@@ -174,8 +174,8 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
-                <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.distribution')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.distributiondescription')}</p>
               </div>
               <div class={'ls-dv-button-group'}>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultipledistribution')}>
@@ -189,15 +189,15 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Gap</p>
-                <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.gap')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.gapdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
                 </div>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
                 </div>

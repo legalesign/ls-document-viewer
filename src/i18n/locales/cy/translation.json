@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Llofnod Coll y derbynwyr",
     "detailstobedecided": "Manylion i'w Penderfynu",
     "tobedecided": "I'w Penderfynu",
-    "previousrecipientdecidesdetails": "Blaenorol Derbynydd Penderfynu Manylion"
+    "previousrecipientdecidesdetails": "Blaenorol Derbynydd Penderfynu Manylion",
+    "duplicate": "Dyblyg",
+    "delete": "Dileu"
   },
   "toolbox": {
     "title": "Meysydd",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Mae angen ychwanegu neu gywiro meysydd ar y ddogfen hon cyn y gellir ei hanfon.",
-    "recipientneedsignature": "Mae angen Maes Llofnod ar y derbynnydd",
-    "recipientsneedsignatures": "Mae angen Meysydd Llofnod ar dderbynwyr"
+    "recipientneedsignature": "Mae angen Maes Llofnod wedi'i osod ar ei gyfer y derbynnydd",
+    "recipientsneedsignatures": "Mae angen i dderbynwyr osod Meysydd Llofnod ar eu cyfer"
   },
   "viewer": {
     "templatecreation": "Creu Templed",
@@ -157,6 +159,27 @@
     "matchsize": "Gwnewch y meysydd dethol yr un uchder a lled â'r maes cyntaf a ddewiswyd",
     "matchwidth": "Gwnewch y meysydd dethol yr un lled â'r maes cyntaf a ddewiswyd",
     "matchheight": "Gwnewch y meysydd dethol yr un uchder â'r maes cyntaf a ddewiswyd"
+  },
+  "dimensions": {
+    "heightandwidth": "Uchder a Lled",
+    "heightandwidthdescription": "Diffinio uchder a lled un neu sawl maes",
+    "setwidthtooltip": "Gosodwch led y maes mewn picseli",
+    "setheighttooltip": "Gosodwch uchder y maes mewn picseli",
+    "scaleandresize": "Graddfa ac Newid Maint",
+    "scaleandresizedescription": "Meysydd aml-ddewis ac yn cyd-fynd â'u dimensiynau"
+  },
+  "placement": {
+    "location": "Lleoliad",
+    "locationdescription": "Defnyddiwch gyfesurynnau i symud eich meysydd ar y dudalen",
+    "alignment": "Aliniad",
+    "alignmentdescription": "Aliniwch eich Meysydd mewn perthynas â'r dudalen neu aml-ddewiswch ac alinio wedyn â'i gilydd.",
+    "distribution": "Dosbarthu",
+    "distributiondescription": "Caeau aml-ddewis a'u gosodwch yn gyfartal",
+    "gap": "Bwlch",
+    "gapdescription": "Diffiniwch yr union fwlch rhwng meysydd aml-ddewis.",
+    "selectmultiplegap": "Dewiswch sawl Meysydd i gael mynediad at reolaethau bwlch",
+    "setverticalgap": "Gosod bwlch fertigol rhwng meysydd dethol",
+    "sethorizontalgap": "Gosod bwlch llorweddol rhwng meysydd dethol"
   },
   "format": {
     "aligntextleft": "Alinio Testun Chwith",

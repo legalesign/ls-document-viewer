@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "[NEEDS TRANSLATION] Recipients Missing Signature",
     "detailstobedecided": "[NEEDS TRANSLATION] Details to be Decided",
     "tobedecided": "[NEEDS TRANSLATION] To Be Decided",
-    "previousrecipientdecidesdetails": "[NEEDS TRANSLATION] Previous Recipient Decides Details"
+    "previousrecipientdecidesdetails": "[NEEDS TRANSLATION] Previous Recipient Decides Details",
+    "duplicate": "[NEEDS TRANSLATION] Duplicate",
+    "delete": "[NEEDS TRANSLATION] Delete"
   },
   "toolbox": {
     "title": "[NEEDS TRANSLATION] Fields",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "[NEEDS TRANSLATION] This document needs fields added or corrected before it can be sent.",
-    "recipientneedsignature": "[NEEDS TRANSLATION] Recipient needs a Signature Field",
-    "recipientsneedsignatures": "[NEEDS TRANSLATION] Recipients need Signature Fields"
+    "recipientneedsignature": "Tha feum aig an fhaightear air raon ainm-sgrìobhte air a chur dhaibh",
+    "recipientsneedsignatures": "Tha feum aig faightearan air raointean ainm-sgrìobhte air an cur dhaibh"
   },
   "viewer": {
     "templatecreation": "[NEEDS TRANSLATION] Template Creation",
@@ -157,6 +159,27 @@
     "matchsize": "[NEEDS TRANSLATION] Make selected fields the same height and width as the first selected field",
     "matchwidth": "[NEEDS TRANSLATION] Make selected fields the same width as the first selected field",
     "matchheight": "[NEEDS TRANSLATION] Make selected fields the same height as the first selected field"
+  },
+  "dimensions": {
+    "heightandwidth": "[NEEDS TRANSLATION] Height and Width",
+    "heightandwidthdescription": "[NEEDS TRANSLATION] Define the height and width of one or multiple fields",
+    "setwidthtooltip": "[NEEDS TRANSLATION] Set field width in pixels",
+    "setheighttooltip": "[NEEDS TRANSLATION] Set field height in pixels",
+    "scaleandresize": "[NEEDS TRANSLATION] Scale and Resize",
+    "scaleandresizedescription": "[NEEDS TRANSLATION] Multi-select fields and match their dimensions"
+  },
+  "placement": {
+    "location": "[NEEDS TRANSLATION] Location",
+    "locationdescription": "[NEEDS TRANSLATION] Use coordinates to move your fields on the page",
+    "alignment": "[NEEDS TRANSLATION] Alignment",
+    "alignmentdescription": "[NEEDS TRANSLATION] Align your Fields relative to the page or multi-select and align then to each other.",
+    "distribution": "[NEEDS TRANSLATION] Distribution",
+    "distributiondescription": "[NEEDS TRANSLATION] Multi-select fields and evenly space them out",
+    "gap": "[NEEDS TRANSLATION] Gap",
+    "gapdescription": "[NEEDS TRANSLATION] Define the exact gap between multi-select fields.",
+    "selectmultiplegap": "[NEEDS TRANSLATION] Select multiple Fields to to access gap controls",
+    "setverticalgap": "[NEEDS TRANSLATION] Set vertical gap between selected fields",
+    "sethorizontalgap": "[NEEDS TRANSLATION] Set horizontal gap between selected fields"
   },
   "format": {
     "aligntextleft": "[NEEDS TRANSLATION] Align Text Left",

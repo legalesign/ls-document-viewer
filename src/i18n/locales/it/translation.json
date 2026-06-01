@@ -12,7 +12,9 @@
     "recipientsmissingsignature": "Firma mancante dei destinatari",
     "detailstobedecided": "Dettagli da decidere",
     "tobedecided": "Da decidere",
-    "previousrecipientdecidesdetails": "Il destinatario precedente decide i dettagli"
+    "previousrecipientdecidesdetails": "Il destinatario precedente decide i dettagli",
+    "duplicate": "Duplicato",
+    "delete": "Elimina"
   },
   "toolbox": {
     "title": "Campi",
@@ -101,8 +103,8 @@
   },
   "validation": {
     "description": "Questo documento richiede l'aggiunta o la correzione dei campi prima di poter essere inviato.",
-    "recipientneedsignature": "Il destinatario ha bisogno di un campo firma",
-    "recipientsneedsignatures": "I destinatari hanno bisogno dei campi di firma"
+    "recipientneedsignature": "Il destinatario deve inserire un campo firma per lui",
+    "recipientsneedsignatures": "I destinatari devono inserire campi di firma per loro"
   },
   "viewer": {
     "templatecreation": "Creazione di modelli",
@@ -157,6 +159,27 @@
     "matchsize": "Rendi i campi selezionati della stessa altezza e larghezza del primo campo selezionato",
     "matchwidth": "Rendi i campi selezionati della stessa larghezza del primo campo selezionato",
     "matchheight": "Fai in modo che i campi selezionati abbiano la stessa altezza del primo campo selezionato"
+  },
+  "dimensions": {
+    "heightandwidth": "Altezza e larghezza",
+    "heightandwidthdescription": "Definire l'altezza e la larghezza di uno o più campi",
+    "setwidthtooltip": "Imposta la larghezza del campo in pixel",
+    "setheighttooltip": "Imposta l'altezza del campo in pixel",
+    "scaleandresize": "Ridimensiona e ridimensiona",
+    "scaleandresizedescription": "Seleziona più campi e abbina le loro dimensioni"
+  },
+  "placement": {
+    "location": "Posizione",
+    "locationdescription": "Usa le coordinate per spostare i campi nella pagina",
+    "alignment": "Allineamento",
+    "alignmentdescription": "Allinea i campi rispetto alla pagina o seleziona più campi e allineali tra loro.",
+    "distribution": "Distribuzione",
+    "distributiondescription": "Selezione multipla dei campi e distanziali uniformemente",
+    "gap": "Gap",
+    "gapdescription": "Definisci lo spazio esatto tra i campi a selezione multipla.",
+    "selectmultiplegap": "Seleziona più campi per accedere ai controlli delle lacune",
+    "setverticalgap": "Imposta lo spazio verticale tra i campi selezionati",
+    "sethorizontalgap": "Imposta lo spazio orizzontale tra i campi selezionati"
   },
   "format": {
     "aligntextleft": "Allinea testo a sinistra",

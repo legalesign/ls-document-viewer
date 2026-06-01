@@ -39,8 +39,8 @@ export class LsFieldSize {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Scale and Resize</p>
-            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('dimensions.scaleandresize')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.scaleandresizedescription')}</p>
           </div>
           <div class={'ls-dv-button-group'}>
             <button
