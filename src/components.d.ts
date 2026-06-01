@@ -63,6 +63,10 @@ export namespace Components {
         "filtertoolbox"?: string;
         "groupInfo": any;
         /**
+          * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
+         */
+        "language": string;
+        /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
          */
@@ -1516,6 +1520,10 @@ declare namespace LocalJSX {
          */
         "filtertoolbox"?: string;
         "groupInfo"?: any;
+        /**
+          * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
+         */
+        "language"?: string;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
