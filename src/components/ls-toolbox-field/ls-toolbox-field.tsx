@@ -5,7 +5,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-toolbox-field',
-  styleUrl: 'ls-toolbox-field.css',
+  styleUrl: 'ls-toolbox-field.scss',
   shadow: true,
 })
 export class LsToolboxField {

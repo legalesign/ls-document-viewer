@@ -2,7 +2,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-props-section',
-  styleUrl: 'ls-props-section.css',
+  styleUrl: 'ls-props-section.scss',
   shadow: true,
 })
 export class LsPropsSection {

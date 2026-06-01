@@ -1,2 +1,4 @@
+overrides:
+  immutable: 5.1.5
 allowBuilds:
   puppeteer: true

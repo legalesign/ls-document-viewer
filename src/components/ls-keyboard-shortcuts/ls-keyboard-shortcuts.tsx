@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-keyboard-shortcuts',
-  styleUrl: 'ls-keyboard-shortcuts.css',
+  styleUrl: 'ls-keyboard-shortcuts.scss',
   shadow: true,
 })
 export class LsKeyboardShortcuts {

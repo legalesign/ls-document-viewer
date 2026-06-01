@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 @Component({
   tag: 'ls-select-input',
-  styleUrl: 'ls-select-input.css',
+  styleUrl: 'ls-select-input.scss',
   shadow: false,
 })
 export class LsSelectInput {

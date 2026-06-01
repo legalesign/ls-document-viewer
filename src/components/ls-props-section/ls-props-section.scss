@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ls-dv-field-properties-section {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ls-dv-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ls-dv-field-properties-section-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.25rem;
+}
+
+.ls-dv-field-properties-section-title {
+  color: $gray-90;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.ls-dv-field-properties-section-description {
+  overflow: hidden;
+  color: $gray-80;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.75rem; /* 120% */
+}

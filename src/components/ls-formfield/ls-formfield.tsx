@@ -4,7 +4,7 @@ import { State, Watch } from '@stencil/core/internal';
 
 @Component({
   tag: 'ls-formfield',
-  styleUrl: 'ls-formfield.css',
+  styleUrl: 'ls-formfield.scss',
   shadow: false,
 })
 export class LsFormfield {

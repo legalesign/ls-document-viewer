@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 @Component({
   tag: 'ls-radio-input',
-  styleUrl: 'ls-radio-input.css',
+  styleUrl: 'ls-radio-input.scss',
   shadow: false,
 })
 export class LsRadioInput {

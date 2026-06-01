@@ -6,7 +6,7 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 
 @Component({
   tag: 'ls-editor-field',
-  styleUrl: 'ls-editor-field.css',
+  styleUrl: 'ls-editor-field.scss',
   shadow: true,
 })
 export class LsEditorField {

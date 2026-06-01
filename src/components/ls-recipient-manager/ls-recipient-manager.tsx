@@ -2,7 +2,7 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-recipient-manager',
-  styleUrl: 'ls-recipient-manager.css',
+  styleUrl: 'ls-recipient-manager.scss',
   shadow: true,
 })
 export class LsRecipientManager {

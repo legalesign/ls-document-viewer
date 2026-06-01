@@ -5,7 +5,7 @@ import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 
 @Component({
   tag: 'ls-field-properties-multiple',
-  styleUrl: 'ls-field-properties-multiple.css',
+  styleUrl: 'ls-field-properties-multiple.scss',
   shadow: true,
 })
 export class LsFieldPropertiesMultiple {

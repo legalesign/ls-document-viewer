@@ -2,7 +2,7 @@ import { Component, Host, Prop, h, Event as StencilEvent, EventEmitter  } from '
 
 @Component({
   tag: 'ls-toggle',
-  styleUrl: 'ls-toggle.css',
+  styleUrl: 'ls-toggle.scss',
   shadow: false,
 })
 export class LsToggle {

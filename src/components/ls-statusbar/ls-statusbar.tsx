@@ -6,7 +6,7 @@ import { version } from '../../../package.json';
 
 @Component({
   tag: 'ls-statusbar',
-  styleUrl: 'ls-statusbar.css',
+  styleUrl: 'ls-statusbar.scss',
   shadow: true,
 })
 export class LsStatusbar {

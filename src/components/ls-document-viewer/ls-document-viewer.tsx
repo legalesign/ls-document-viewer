@@ -31,7 +31,7 @@ GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.
 
 @Component({
   tag: 'ls-document-viewer',
-  styleUrl: 'ls-document-viewer.css',
+  styleUrl: 'ls-document-viewer.scss',
   shadow: true,
 })
 export class LsDocumentViewer {

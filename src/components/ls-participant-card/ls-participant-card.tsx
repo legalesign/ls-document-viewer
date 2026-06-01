@@ -7,7 +7,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-participant-card',
-  styleUrl: 'ls-participant-card.css',
+  styleUrl: 'ls-participant-card.scss',
   shadow: true,
 })
 export class LsParticipantCard {

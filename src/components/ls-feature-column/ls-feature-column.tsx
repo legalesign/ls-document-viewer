@@ -3,7 +3,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-feature-column',
-  styleUrl: 'ls-feature-column.css',
+  styleUrl: 'ls-feature-column.scss',
   shadow: true,
 })
 export class LsFeatureColoumn {
