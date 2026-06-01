@@ -2,6 +2,7 @@ import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from 
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
+import { dvI18n } from '../../i18n/i18n';
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
@@ -102,6 +103,19 @@ export class LsDocumentViewer {
    */
   @Prop() recipients: string;
   @Prop() _recipients: any[];
+
+  /**
+   * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de').
+   * {string}
+   */
+  @Prop() language: string;
+
+  @Watch('language')
+  languageChanged(newLang: string) {
+    if (newLang) {
+      dvI18n.changeLanguage(newLang);
+    }
+  }
 
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1;
@@ -673,6 +687,9 @@ export class LsDocumentViewer {
   }
 
   componentWillLoad() {
+    if (this.language) {
+      dvI18n.changeLanguage(this.language);
+    }
     if (this.token && !this._template) this.load();
   }
 
@@ -714,7 +731,7 @@ export class LsDocumentViewer {
             <div class="ls-dv-error-state">
               <div class="ls-dv-error-card">
                 <ls-icon name="exclamation-circle" size="2rem" style={{ color: 'var(--red-60, #dc2626)' }} />
-                <p class="ls-dv-error-title">Authentication Error</p>
+                <p class="ls-dv-error-title">{dvI18n.t('viewer.autherror')}</p>
                 <p class="ls-dv-error-message">{this.error}</p>
               </div>
             </div>
@@ -728,7 +745,7 @@ export class LsDocumentViewer {
             </div>
             {this.mode === 'editor' && (
               <div>
-                <span class="ls-dv-header-text-1">Template Creation</span>
+                <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
                 <div class={'ls-dv-validation-tag-wrapper'}>
