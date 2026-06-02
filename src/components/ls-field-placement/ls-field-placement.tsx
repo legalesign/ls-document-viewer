@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { attachAllTooltips } from '../../utils/tooltip';
@@ -83,8 +84,8 @@ export class LsFieldPlacement {
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-dv-field-properties-section'}>
             <div class={'ls-dv-field-properties-section-text'}>
-              <p class={'ls-dv-field-properties-section-title'}>Location</p>
-              <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+              <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.location')}</p>
+              <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.locationdescription')}</p>
             </div>
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'}>
@@ -110,29 +111,29 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
-                <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.alignment')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.alignmentdescription')}</p>
               </div>
               <div class={'ls-dv-multi-button-group-row'}>
                 <div class={'ls-dv-button-group'}>
-                  <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip="Align Left">
+                  <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip={dvI18n.t('alignment.alignleft')}>
                     <ls-icon name="field-alignment-left"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip="Align Center">
+                  <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip={dvI18n.t('alignment.aligncenter')}>
                     <ls-icon name="field-alignment-centre"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip="Align Right">
+                  <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip={dvI18n.t('alignment.alignright')}>
                     <ls-icon name="field-alignment-right"></ls-icon>
                   </button>
                 </div>
                 <div class={'ls-dv-button-group'}>
-                  <button onClick={() => this.alter({ top: 0 })} data-tooltip="Align Top">
+                  <button onClick={() => this.alter({ top: 0 })} data-tooltip={dvI18n.t('alignment.aligntop')}>
                     <ls-icon name="field-alignment-top"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip="Align Middle">
+                  <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip={dvI18n.t('alignment.alignmiddle')}>
                     <ls-icon name="field-alignment-middle"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip="Align Bottom">
+                  <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip={dvI18n.t('alignment.alignbottom')}>
                     <ls-icon name="field-alignment-bottom"></ls-icon>
                   </button>
                 </div>
@@ -141,8 +142,8 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Location</p>
-                <p class={'ls-dv-field-properties-section-description'}>Use coordinates to move your fields on the page</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.location')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.locationdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
                 <div class={'ls-dv-input-wrapper'}>
@@ -173,14 +174,14 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
-                <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.distribution')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.distributiondescription')}</p>
               </div>
               <div class={'ls-dv-button-group'}>
-                <button disabled data-tooltip="Select multiple Fields to to access distribution controls">
+                <button disabled data-tooltip={dvI18n.t('alignment.selectmultipledistribution')}>
                   <ls-icon name="field-distribute-vertically"></ls-icon>
                 </button>
-                <button disabled data-tooltip="Select multiple Fields to to access distribution controls">
+                <button disabled data-tooltip={dvI18n.t('alignment.selectmultipledistribution')}>
                   <ls-icon name="field-distribute-horizontally"></ls-icon>
                 </button>
               </div>
@@ -188,15 +189,15 @@ export class LsFieldPlacement {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Gap</p>
-                <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.gap')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.gapdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
                 </div>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Select multiple Fields to to access gap controls">
+                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
                   <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
                 </div>

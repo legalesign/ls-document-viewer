@@ -2,6 +2,27 @@ import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
+import { dvI18n } from '../../i18n/i18n';
+
+const fieldTypeKeyMap: { [key: string]: string } = {
+  'signature': 'toolbox.signature',
+  'auto sign': 'toolbox.autosign',
+  'text': 'toolbox.text',
+  'signing date': 'toolbox.signingdate',
+  'date': 'toolbox.date',
+  'initials': 'toolbox.initials',
+  'checkbox': 'toolbox.checkbox',
+  'email': 'toolbox.email',
+  'number': 'toolbox.number',
+  'image': 'toolbox.image',
+  'dropdown': 'toolbox.dropdown',
+  'file': 'toolbox.file',
+  'drawn field': 'toolbox.drawn',
+  'drawn': 'toolbox.drawn',
+  'regular expression': 'toolbox.regex',
+  'regex': 'toolbox.regex',
+  'mixed': 'common.fields',
+};
 
 @Component({
   tag: 'ls-field-properties-multiple',
@@ -80,8 +101,8 @@ export class LsFieldPropertiesMultiple {
           <div class={'ls-dv-field-set'} slot="content">
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Field Type</p>
-                <p class={'ls-dv-field-properties-section-description'}>The Fields you currently have selected</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldtype')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldtypedescriptionmultiple')}</p>
               </div>
               <div
                 class={'ls-dv-field-type-wrapper'}
@@ -102,24 +123,24 @@ export class LsFieldPropertiesMultiple {
                     <ls-icon name={getFieldIcon(this.allElementsSame().elementType)} size="1.25rem" />
                   </div>
                   <p class={'ls-dv-field-type-name'}>
-                    {this.dataItem.length} {this.allElementsSame().elementType} {'Fields'}
+                    {this.dataItem.length} {dvI18n.t(fieldTypeKeyMap[this.allElementsSame().elementType] || 'common.fields')} {dvI18n.t('common.fields')}
                   </p>
                 </div>
               </div>
             </div>
             <div class={'ls-dv-field-properties-section ls-dv-row'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Required Field</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.requiredfield')}</p>
               </div>
               <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Field Label</p>
-                <p class={'ls-dv-field-properties-section-description'}>Add a label to clarify the information required from the Recipient.</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder="eg. Sign Here" />
+              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={dvI18n.t('fieldproperties.placeholdersignhere')} />
             </div>
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

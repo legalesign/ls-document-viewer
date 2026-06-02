@@ -392,3 +392,145 @@ The testing app aliases local source via Vite when started with `pnpm start` (`L
 3. Restart the testing app dev server
 
 **Important:** Do not run `pnpm start` (Stencil watch mode) in `ls-document-viewer` at the same time as the testing app — Stencil's watch mode clears the `dist/components/` files that the React wrapper depends on.
+
+## Internationalization (i18n)
+
+The component uses [i18next](https://www.i18next.com/) with translations bundled directly into the build. All user-facing strings are translated — no hardcoded English in components.
+
+### Language Prop
+
+Set the language via the `language` attribute. This overrides the browser's detected language.
+
+```html
+<ls-document-viewer language="fr" ...></ls-document-viewer>
+```
+
+**Priority order:**
+1. `language` prop (if set) — always wins, regardless of browser settings
+2. Browser language (auto-detected) — used when no `language` prop is provided
+3. English — final fallback if the browser language isn't in the supported list
+
+For example, if a user's browser is set to French but your app passes `language="es"`, the component will display in Spanish.
+
+### Supported Languages
+
+| Code | Language | Code | Language |
+|------|----------|------|----------|
+| `en` | English | `nl` | Dutch |
+| `fr` | French | `fi` | Finnish |
+| `bg` | Bulgarian | `it` | Italian |
+| `es` | Spanish | `he` | Hebrew |
+| `de` | German | `sv` | Swedish |
+| `gs` | Scottish Gaelic | `cy` | Welsh |
+| `ar` | Arabic | `is` | Icelandic |
+| `el` | Greek | `iw` | Hebrew (legacy) |
+| `pt` | Portuguese | `ro` | Romanian |
+
+### File Structure
+
+```
+src/i18n/
+├── i18n.ts                    ← i18next instance config
+└── locales/
+    ├── en/translation.json    ← source of truth
+    ├── fr/translation.json
+    ├── bg/translation.json
+    └── .../translation.json
+```
+
+Translations are imported in `src/i18n/i18n.ts` and bundled at build time.
+
+### Translation Keys
+
+Keys use dot-separated namespaces with lowercase words:
+
+```json
+{
+  "toolbox": {
+    "signature": "Signature",
+    "signaturetooltip": "Use this field to collect Signatures from Participants"
+  },
+  "participants": {
+    "participant": "Participant {{index}}"
+  }
+}
+```
+
+Interpolation uses i18next `{{variable}}` syntax.
+
+### Using Translations in Components
+
+Import `dvI18n` and call `t()` in render methods:
+
+```tsx
+import { dvI18n } from '../../i18n/i18n';
+
+render() {
+  return <p>{dvI18n.t('toolbox.signature')}</p>;
+}
+```
+
+### Adding a New String
+
+1. Add the key to `src/i18n/locales/en/translation.json`
+2. Use it in a component: `dvI18n.t('namespace.key')`
+3. Run `pnpm translate` to sync all languages
+4. Manually translate Scottish Gaelic (`gs`) — Amazon Translate doesn't support it
+5. Commit the updated translation files with your PR
+
+### Removing a String
+
+1. Remove the key from `src/i18n/locales/en/translation.json`
+2. Run `pnpm translate` — it removes the key from all other languages automatically
+3. Commit the updated translation files with your PR
+
+### Adding a New Language
+
+1. Create `src/i18n/locales/{code}/translation.json` (can be empty `{}`)
+2. Add the import and registration in `src/i18n/i18n.ts`
+3. Add the code to `supportedLngs` in `src/i18n/i18n.ts`
+4. Run `pnpm translate` — it fills all keys automatically
+
+### Sync Script
+
+The sync script keeps all translation files in sync with English.
+
+```sh
+# Sync all languages with Amazon Translate
+pnpm translate
+
+# Check only — exits with code 1 if out of sync
+pnpm translate:check
+```
+
+The script reads AWS credentials from the project `.env` file:
+
+```
+AWS_TRANSLATE_ACCESS_KEY_ID=<translate_user_access_key>
+AWS_TRANSLATE_SECRET_ACCESS_KEY=<translate_user_secret_key>
+```
+
+Without credentials, missing keys are filled with `[NEEDS TRANSLATION] English text` placeholders.
+
+The script (`scripts/sync-translations.cjs`):
+- Reads `en/translation.json` as the source of truth
+- Adds missing keys to every other language (auto-translated or placeholder)
+- Re-translates any values prefixed with `[NEEDS TRANSLATION]`
+- Removes extra keys not present in English
+- Reorders keys to match English structure
+- Preserves existing translated values
+
+#### AWS IAM Policy for Translation
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "translate:TranslateText",
+      "Resource": "*"
+    }
+  ]
+}
+```

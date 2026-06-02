@@ -1,6 +1,7 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { ValidationError } from '../../types/ValidationError';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-validation-manager',
@@ -21,9 +22,9 @@ export class LsValidationManager {
       <Host>
         <div>
           <div>
-            <div class={'ls-dv-validation-section-title'}>Action Required</div>
+            <div class={'ls-dv-validation-section-title'}>{dvI18n.t('common.actionrequired')}</div>
             <p class="ls-dv-toolbox-section-description">
-              This document needs fields added or corrected before it can be sent.
+              {dvI18n.t('validation.description')}
             </p>
           </div>
           {this.validationErrors && this.validationErrors.map((field, idx) => {
@@ -49,7 +50,7 @@ export class LsValidationManager {
                     <div class={'ls-dv-required-field-items-left'}>
                       <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
                       <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
-                        {field.role?.roleType.toLowerCase() || `Signer ${field.role?.signerIndex + 1}`}
+                        {field.role?.roleType ? dvI18n.t(`participants.${field.role.roleType.toLowerCase()}`) : `Signer ${field.role?.signerIndex + 1}`}
                       </div>
                     </div>
                   )}
@@ -58,12 +59,12 @@ export class LsValidationManager {
                      <ls-toolbox-field
                           elementType="signature"
                           formElementType="signature"
-                          label="Signature"
+                          label={dvI18n.t('toolbox.signature')}
                           defaultHeight={27}
                           defaultWidth={120}
                           validation={0}
                           icon="signature"
-                          tooltip="Use this field to collect Signatures from Participants"
+                          tooltip={dvI18n.t('toolbox.signaturetooltip')}
                           signer={field.element.signer}
                         />
 

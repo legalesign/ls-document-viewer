@@ -2,6 +2,7 @@ import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-field-content',
@@ -55,13 +56,13 @@ export class LsFieldContent {
   render() {
     return (
       <Host>
-        <ls-props-section sectionTitle="Field Type" sectionDescription="The Field you currently have selected">
+        <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldtype')} sectionDescription={dvI18n.t('fieldproperties.fieldtypedescription')}>
           <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
-        <ls-props-section sectionTitle="Required Field" row={true}>
+        <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
           <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => this.alter({ optional: !ev.detail })} />
         </ls-props-section>
-        <ls-props-section sectionTitle="Field Label" sectionDescription="Add a label to clarify the information required from the Recipient.">
+        <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldlabel')} sectionDescription={dvI18n.t('fieldproperties.fieldlabeldescription')}>
           <input
             value={this.dataItem?.label}
             placeholder={getFieldTitleSuggestion(this.dataItem?.formElementType)}
@@ -69,7 +70,7 @@ export class LsFieldContent {
           />
         </ls-props-section>
         {this.supportsValue() && (
-          <ls-props-section sectionTitle="Value" sectionDescription="A prefilled value that can be altered by the signer.">
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.value')} sectionDescription={dvI18n.t('fieldproperties.valuedescription')}>
             <input
               value={this.dataItem?.value}
               placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
@@ -78,7 +79,7 @@ export class LsFieldContent {
           </ls-props-section>
         )}
         {this.dataItem.validation === 20 && (
-          <ls-props-section sectionTitle="Options" sectionDescription="Define the options available in the dropdown. One option per line.">
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.options')} sectionDescription={dvI18n.t('fieldproperties.optionsdescription')}>
             <textarea
               value={this.dataItem?.options}
               placeholder="Option 1&#10;Option 2&#10;Option 3"
@@ -88,7 +89,7 @@ export class LsFieldContent {
         )}
 
         {this.showValidationTypes && (
-          <ls-props-section sectionTitle="Content Format" sectionDescription="Select the specific format you want the Recipient to enter.">
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
               <select onChange={ev => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value) })}>
                 {validationTypes

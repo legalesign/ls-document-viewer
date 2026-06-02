@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { oob } from '../ls-document-viewer/editorUtils';
 import { attachAllTooltips } from '../../utils/tooltip';
@@ -184,16 +185,16 @@ export class LsFieldDistribute {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Distribution</p>
-            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and evenly space them out</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.distribution')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.distributiondescription')}</p>
           </div>
           <div class={'ls-dv-button-group'}>
             <button
               onClick={() => {
                 this.distributeVertical();
               }}
-              aria-label="Distribute selected fields vertically."
-              data-tooltip="Distribute selected fields vertically"
+              aria-label={dvI18n.t('alignment.distributevertically')}
+              data-tooltip={dvI18n.t('alignment.distributevertically')}
             >
               <ls-icon name="field-distribute-vertically"></ls-icon>
             </button>
@@ -201,8 +202,8 @@ export class LsFieldDistribute {
               onClick={() => {
                 this.distributeHorizontal();
               }}
-              aria-label="Distribute selected fields horizontally."
-              data-tooltip="Distribute selected fields horizontally"
+              aria-label={dvI18n.t('alignment.distributehorizontally')}
+              data-tooltip={dvI18n.t('alignment.distributehorizontally')}
             >
               <ls-icon name="field-distribute-horizontally"></ls-icon>
             </button>
@@ -210,11 +211,11 @@ export class LsFieldDistribute {
         </div>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Gap</p>
-            <p class={'ls-dv-field-properties-section-description'}>Define the exact gap between multi-select fields.</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.gap')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.gapdescription')}</p>
           </div>
           <div class={'ls-dv-input-row'}>
-            <div class={'ls-dv-input-wrapper'} data-tooltip="Set vertical gap between selected fields">
+            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.setverticalgap')}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
               <input
                 type="number"
@@ -229,7 +230,7 @@ export class LsFieldDistribute {
                 size={4}
               />
             </div>
-            <div class={'ls-dv-input-wrapper'} data-tooltip="Set horizontal gap between selected fields">
+            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.sethorizontalgap')}>
               <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
               <input
                 type="number"

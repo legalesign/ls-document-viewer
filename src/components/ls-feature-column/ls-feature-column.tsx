@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, EventEmitter, Event, Element } from '@stencil/core';
 import { attachAllTooltips } from '../../utils/tooltip';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-feature-column',
@@ -37,8 +38,8 @@ export class LsFeatureColoumn {
             this.manage.emit('document');
             this.manager = 'document';
           }}
-          data-tooltip-title="Template Details"
-          data-tooltip="View and edit Template properties"
+          data-tooltip-title={dvI18n.t('featurecolumn.templatedetails')}
+          data-tooltip={dvI18n.t('featurecolumn.templatedetailstooltip')}
           data-tooltip-placement="right"
         >
           <ls-icon name="document" size="1.5rem" />
@@ -49,8 +50,8 @@ export class LsFeatureColoumn {
             this.manage.emit('toolbox');
             this.manager = 'toolbox';
           }}
-          data-tooltip-title="Field Types"
-          data-tooltip="Select and place Form Field Elements"
+          data-tooltip-title={dvI18n.t('featurecolumn.fieldtypes')}
+          data-tooltip={dvI18n.t('featurecolumn.fieldtypestooltip')}
           data-tooltip-placement="right"
         >
           <ls-icon name="typing-input" size="1.5rem" />
@@ -62,8 +63,8 @@ export class LsFeatureColoumn {
             this.manage.emit('participant');
             this.manager = 'participant';
           }}
-          data-tooltip-title="Participants"
-          data-tooltip="Manage Signers, Witnesses and Approvers"
+          data-tooltip-title={dvI18n.t('featurecolumn.participants')}
+          data-tooltip={dvI18n.t('featurecolumn.participantstooltip')}
           data-tooltip-placement="right"
         >
           <ls-icon name="user-group" size="1.5rem" />
@@ -75,8 +76,8 @@ export class LsFeatureColoumn {
             this.manage.emit('recipient');
             this.manager = 'recipient';
           }}
-          data-tooltip-title="Recipients"
-          data-tooltip="View the list of Recipients for this document"
+          data-tooltip-title={dvI18n.t('featurecolumn.recipients')}
+          data-tooltip={dvI18n.t('featurecolumn.recipientstooltip')}
           data-tooltip-placement="right"
         >
           <ls-icon name="user-group" size="1.5rem" />
@@ -88,8 +89,8 @@ export class LsFeatureColoumn {
             this.manage.emit('validation');
             this.manager = 'validation';
           }}
-          data-tooltip-title="Validation"
-          data-tooltip="View the list of Recipients for this document"
+          data-tooltip-title={dvI18n.t('featurecolumn.validation')}
+          data-tooltip={dvI18n.t('featurecolumn.validationtooltip')}
           data-tooltip-placement="right"
         >
           <ls-icon name="adjustments" size="1.5rem" />

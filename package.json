@@ -41,7 +41,9 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "translate": "node scripts/sync-translations.cjs",
+    "translate:check": "node scripts/sync-translations.cjs --check"
   },
   "devDependencies": {
     "@stencil/core": "^4.39.0",
@@ -59,6 +61,8 @@
     "@jest/transform": "^30.2.0",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
+    "i18next": "^26.3.0",
+    "i18next-browser-languagedetector": "^8.2.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.4.449"
   }

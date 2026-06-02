@@ -3,6 +3,7 @@ import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-participant-manager',
@@ -93,8 +94,8 @@ export class LsParticipantManager {
     return (
       <Host>
         <div class="ls-dv-editor-infobox">
-          <h2 class="ls-dv-toolbox-section-title">Participants</h2>
-          <p class="ls-dv-toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
+          <h2 class="ls-dv-toolbox-section-title">{dvI18n.t('participants.title')}</h2>
+          <p class="ls-dv-toolbox-section-description">{dvI18n.t('participants.description')}</p>
         </div>
         <div class="ls-dv-participant-list">
           {this.template &&
@@ -115,7 +116,7 @@ export class LsParticipantManager {
         <div class={'ls-dv-add-participant-button'}>
           <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
             <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
-            <p>Add Participant</p>
+            <p>{dvI18n.t('participants.addparticipant')}</p>
           </button>
         </div>
         <slot></slot>

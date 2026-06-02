@@ -1,4 +1,5 @@
 import { Component, Host, h } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-recipient-manager',
@@ -10,8 +11,8 @@ export class LsRecipientManager {
     return (
       <Host>
         <div class={'ls-dv-editor-infobox'}>
-          <h2 class="ls-dv-toolbox-section-title">Recipients & Fields</h2>
-          <p class="ls-dv-toolbox-section-description">Select Recipient to Expand and Drag to place Signature fields where you’d like them to Sign.</p>
+          <h2 class="ls-dv-toolbox-section-title">{dvI18n.t('recipients.title')}</h2>
+          <p class="ls-dv-toolbox-section-description">{dvI18n.t('recipients.description')}</p>
         </div>
         <slot></slot>
       </Host>
