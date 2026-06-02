@@ -76,7 +76,7 @@
     "witness": "Martor",
     "signaturerequired": "Semnătură necesară",
     "participant": "Participant {{index}}",
-    "participantwitness": "Mar {{index}}tor participant",
+    "participantwitness": "Martor al Participantului {{index}}",
     "placeholder": "Descriere, de ex. Chiriaș 1, Agent"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formatul"
   },
   "statusbar": {
-    "pagethumbnails": "Miniaturi de pagină"
+    "pagethumbnails": "Miniaturi de pagină",
+    "zoomin": "Măriți",
+    "zoomout": "Măriți micșorarea",
+    "fitwidth": "Lățimea de potrivire",
+    "fitheight": "Înălțimea de potrivire",
+    "previouspage": "Pagina anterioara",
+    "nextpage": "Pagina Urmatoare",
+    "nopreviouspage": "Nicio pagină anterioară",
+    "nonextpage": "Nu există pagina următoare"
+  },
+  "helperbar": {
+    "viewdocumentation": "Vizualizați documentația ↗",
+    "contactsupport": "Contactați Asistența"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Plasarea câmpurilor pentru",
+    "sender": "Expeditorul",
+    "you": "Tu",
+    "addnewsigner": "Adăugarea unui semnatar nou"
   }
 }

@@ -76,7 +76,7 @@
     "witness": "Témoin",
     "signaturerequired": "Signature requise",
     "participant": "Participant {{index}}",
-    "participantwitness": "{{index}}Témoin participant",
+    "participantwitness": "Témoin du Participant {{index}}",
     "placeholder": "Description, par ex. Locataire 1, Agent"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formater"
   },
   "statusbar": {
-    "pagethumbnails": "Miniatures des pages"
+    "pagethumbnails": "Miniatures des pages",
+    "zoomin": "Zoomer",
+    "zoomout": "Zoom arrière",
+    "fitwidth": "Largeur d'ajustement",
+    "fitheight": "Hauteur d'ajustement",
+    "previouspage": "Page précédente",
+    "nextpage": "Page suivante",
+    "nopreviouspage": "Aucune page précédente",
+    "nonextpage": "Pas de page suivante"
+  },
+  "helperbar": {
+    "viewdocumentation": "Afficher la documentation ↗",
+    "contactsupport": "Contacter le service d'assistance"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Placer des champs pour",
+    "sender": "Expéditeur",
+    "you": "Vous",
+    "addnewsigner": "Ajouter un nouveau signataire"
   }
 }

@@ -76,7 +76,7 @@
     "witness": "Свидетел",
     "signaturerequired": "Изисква се подпис",
     "participant": "Участник {{index}}",
-    "participantwitness": "Сви {{index}}детел участник",
+    "participantwitness": "Свидетел на Участник {{index}}",
     "placeholder": "Описание, напр. Наемател 1, Агент"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Формат"
   },
   "statusbar": {
-    "pagethumbnails": "Миниатюри на страници"
+    "pagethumbnails": "Миниатюри на страници",
+    "zoomin": "Увеличаване",
+    "zoomout": "Омаловажаване",
+    "fitwidth": "Ширина на монтирането",
+    "fitheight": "Височина на монтирането",
+    "previouspage": "Предишна страница",
+    "nextpage": "Следваща страница",
+    "nopreviouspage": "Няма предишна страница",
+    "nonextpage": "Няма следваща страница"
+  },
+  "helperbar": {
+    "viewdocumentation": "Преглед на документацията ↗",
+    "contactsupport": "Свържете се с поддръжката"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Поставяне на полета за",
+    "sender": "Изпращач",
+    "you": "Ти",
+    "addnewsigner": "Добавяне на нов подписващ"
   }
 }

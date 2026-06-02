@@ -76,7 +76,7 @@
     "witness": "Vitni",
     "signaturerequired": "Undirskrift krafist",
     "participant": "Þátttakandi {{index}}",
-    "participantwitness": "Þátttakandav {{index}}ottur",
+    "participantwitness": "Vitni þátttakanda {{index}}",
     "placeholder": "Lýsing, td. Leigjandi 1, Umboðsmaður"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "snið"
   },
   "statusbar": {
-    "pagethumbnails": "Smámyndir síðunnar"
+    "pagethumbnails": "Smámyndir síðunnar",
+    "zoomin": "Aðdráttur",
+    "zoomout": "Aðdráttur",
+    "fitwidth": "Passaðu breidd",
+    "fitheight": "Passaðu hæð",
+    "previouspage": "Fyrri Síða",
+    "nextpage": "Næsta síða",
+    "nopreviouspage": "Engin fyrri síða",
+    "nonextpage": "Engin næsta síða"
+  },
+  "helperbar": {
+    "viewdocumentation": "Skoða skjöl ↗",
+    "contactsupport": "Hafðu samband við þjónustudeild"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Setja reiti fyrir",
+    "sender": "Sendandi",
+    "you": "Þú",
+    "addnewsigner": "Bæta við nýjum undirritara"
   }
 }

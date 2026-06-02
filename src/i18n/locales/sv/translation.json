@@ -76,7 +76,7 @@
     "witness": "Vittne",
     "signaturerequired": "Signatur krävs",
     "participant": "Deltagare {{index}}",
-    "participantwitness": "Deltagarens {{index}}vittne",
+    "participantwitness": "Vittne till Deltagare {{index}}",
     "placeholder": "Beskrivning, t.ex. Hyresgäst 1, Ombud"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formatera"
   },
   "statusbar": {
-    "pagethumbnails": "Sidminiatyrer"
+    "pagethumbnails": "Sidminiatyrer",
+    "zoomin": "Zooma in",
+    "zoomout": "Zooma ut",
+    "fitwidth": "Anpassa bredd",
+    "fitheight": "Passningshöjd",
+    "previouspage": "Föregående sida",
+    "nextpage": "Nästa sida",
+    "nopreviouspage": "Ingen föregående sida",
+    "nonextpage": "Ingen Nästa sida"
+  },
+  "helperbar": {
+    "viewdocumentation": "Visa dokumentation ↗",
+    "contactsupport": "Kontakta support"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Placera fält för",
+    "sender": "Avsändare",
+    "you": "Du",
+    "addnewsigner": "Lägg till en ny signerare"
   }
 }

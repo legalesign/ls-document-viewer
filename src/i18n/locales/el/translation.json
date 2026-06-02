@@ -76,7 +76,7 @@
     "witness": "Μάρτυρας",
     "signaturerequired": "Απαιτείται υπογραφή",
     "participant": "Συμμετέχων {{index}}",
-    "participantwitness": "Συμμετέχων {{index}}μάρτυρας",
+    "participantwitness": "Μάρτυρας Συμμετέχοντα {{index}}",
     "placeholder": "Περιγραφή, π.χ. Μισθωτής 1, Πράκτορας"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Μορφή"
   },
   "statusbar": {
-    "pagethumbnails": "Μικρογραφίες σελίδας"
+    "pagethumbnails": "Μικρογραφίες σελίδας",
+    "zoomin": "Μεγέθυνση",
+    "zoomout": "Σμείωση",
+    "fitwidth": "Προσαρμογή πλάτους",
+    "fitheight": "Ύψος προσαρμογής",
+    "previouspage": "Προηγούμενη Σελίδα",
+    "nextpage": "ΕΠΟΜΕΝΗ ΣΕΛΙΔΑ",
+    "nopreviouspage": "Καμία προηγούμενη σελίδα",
+    "nonextpage": "Δεν υπάρχει επόμενη σελίδα"
+  },
+  "helperbar": {
+    "viewdocumentation": "Προβολή Τεκμηρίωσης ↗",
+    "contactsupport": "Επικοινωνήστε με την Υποστήριξη"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Τοποθέτηση πεδίων για",
+    "sender": "Αποστολέας",
+    "you": "Εσύ",
+    "addnewsigner": "Προσθήκη νέου υπογράφοντος"
   }
 }

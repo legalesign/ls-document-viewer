@@ -195,6 +195,24 @@
     "format": "Cruth"
   },
   "statusbar": {
-    "pagethumbnails": "Dealbhan-beaga dhuilleagan"
+    "pagethumbnails": "Dealbhan-beaga dhuilleagan",
+    "zoomin": "Sùm a-steach",
+    "zoomout": "Sùm a-mach",
+    "fitwidth": "Freagair an leud",
+    "fitheight": "Freagair an àirde",
+    "previouspage": "Duilleag roimhe",
+    "nextpage": "An ath dhuilleag",
+    "nopreviouspage": "Gun duilleag roimhe",
+    "nonextpage": "Gun ath dhuilleag"
+  },
+  "helperbar": {
+    "viewdocumentation": "Seall an sgrìobhainnean ↗",
+    "contactsupport": "Cuir fios gu taic"
+  },
+  "toolbar": {
+    "placingfieldsfor": "A' cur raointean airson",
+    "sender": "Neach-cuir",
+    "you": "Thu fhèin",
+    "addnewsigner": "Cuir Neach-soidhnigidh ùr ris"
   }
 }

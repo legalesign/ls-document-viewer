@@ -76,7 +76,7 @@
     "witness": "Todistaja",
     "signaturerequired": "Allekirjoitus vaaditaan",
     "participant": "Osallistuja {{index}}",
-    "participantwitness": "Osallistujan {{index}}todistaja",
+    "participantwitness": "Osallistujan {{index}} todistaja",
     "placeholder": "Kuvaus, esim. Vuokralainen 1, agentti"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Muoto"
   },
   "statusbar": {
-    "pagethumbnails": "Sivun pikkukuvat"
+    "pagethumbnails": "Sivun pikkukuvat",
+    "zoomin": "Lähennä",
+    "zoomout": "Lähennä",
+    "fitwidth": "Sovita leveys",
+    "fitheight": "Sovituskorkeus",
+    "previouspage": "Edellinen sivu",
+    "nextpage": "Seuraava sivu",
+    "nopreviouspage": "Ei edellistä sivua",
+    "nonextpage": "Ei seuraavaa sivua"
+  },
+  "helperbar": {
+    "viewdocumentation": "Näytä dokumentaatio ↗",
+    "contactsupport": "Ota yhteyttä tukeen"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Kenttien sijoittaminen",
+    "sender": "Lähettäjä",
+    "you": "Sinä",
+    "addnewsigner": "Lisää uusi allekirjoittaja"
   }
 }

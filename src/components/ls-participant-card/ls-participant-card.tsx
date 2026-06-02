@@ -256,7 +256,7 @@ export class LsParticipantCard {
                     textTransform: 'capitalize',
                   }}
                 >
-                  {this.signer.roleType.toLowerCase()}
+                  {dvI18n.t(`participants.${this.signer.roleType.toLowerCase()}`)}
                 </p>
                 {this.signer?.roleType !== 'APPROVER' && (
                   <div

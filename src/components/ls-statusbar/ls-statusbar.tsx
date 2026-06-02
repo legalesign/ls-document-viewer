@@ -133,19 +133,19 @@ export class LsStatusbar {
           {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template" /></button> */}
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip="Zoom Out">
+            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip={dvI18n.t('statusbar.zoomout')}>
               <ls-icon name="zoom-out" />
             </button>
             <span>{Math.round(this.zoom * 100)}%</span>
-            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip="Zoom In">
+            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip={dvI18n.t('statusbar.zoomin')}>
               <ls-icon name="zoom-in" />
             </button>
           </div>
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip="Fit Width">
+            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip={dvI18n.t('statusbar.fitwidth')}>
               <ls-icon name="fit-width" />
             </button>
-            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip="Fit Height">
+            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip={dvI18n.t('statusbar.fitheight')}>
               <ls-icon name="fit-height" />
             </button>
           </div>
@@ -156,7 +156,7 @@ export class LsStatusbar {
               }}
               disabled={this.page === 1}
               id="prev-page-btn"
-              data-tooltip={this.page === 1 ? 'No Previous Page' : 'Previous Page'}
+              data-tooltip={this.page === 1 ? dvI18n.t('statusbar.nopreviouspage') : dvI18n.t('statusbar.previouspage')}
             >
               <ls-icon name="chevron-left" />
             </button>
@@ -169,7 +169,7 @@ export class LsStatusbar {
               }}
               disabled={this.page === this.pageCount}
               id="next-page-btn"
-              data-tooltip={this.page === this.pageCount ? 'No Next Page' : 'Next Page'}
+              data-tooltip={this.page === this.pageCount ? dvI18n.t('statusbar.nonextpage') : dvI18n.t('statusbar.nextpage')}
             >
               <ls-icon name="chevron-right" />
             </button>

@@ -4,6 +4,26 @@ import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
 import { dvI18n } from '../../i18n/i18n';
 
+const fieldTypeKeyMap: { [key: string]: string } = {
+  'signature': 'toolbox.signature',
+  'auto sign': 'toolbox.autosign',
+  'text': 'toolbox.text',
+  'signing date': 'toolbox.signingdate',
+  'date': 'toolbox.date',
+  'initials': 'toolbox.initials',
+  'checkbox': 'toolbox.checkbox',
+  'email': 'toolbox.email',
+  'number': 'toolbox.number',
+  'image': 'toolbox.image',
+  'dropdown': 'toolbox.dropdown',
+  'file': 'toolbox.file',
+  'drawn field': 'toolbox.drawn',
+  'drawn': 'toolbox.drawn',
+  'regular expression': 'toolbox.regex',
+  'regex': 'toolbox.regex',
+  'mixed': 'common.fields',
+};
+
 @Component({
   tag: 'ls-field-properties-multiple',
   styleUrl: 'ls-field-properties-multiple.scss',
@@ -103,7 +123,7 @@ export class LsFieldPropertiesMultiple {
                     <ls-icon name={getFieldIcon(this.allElementsSame().elementType)} size="1.25rem" />
                   </div>
                   <p class={'ls-dv-field-type-name'}>
-                    {this.dataItem.length} {this.allElementsSame().elementType} {dvI18n.t('common.fields')}
+                    {this.dataItem.length} {dvI18n.t(fieldTypeKeyMap[this.allElementsSame().elementType] || 'common.fields')} {dvI18n.t('common.fields')}
                   </p>
                 </div>
               </div>

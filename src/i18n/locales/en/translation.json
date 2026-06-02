@@ -195,6 +195,24 @@
     "format": "Format"
   },
   "statusbar": {
-    "pagethumbnails": "Page Thumbnails"
+    "pagethumbnails": "Page Thumbnails",
+    "zoomin": "Zoom In",
+    "zoomout": "Zoom Out",
+    "fitwidth": "Fit Width",
+    "fitheight": "Fit Height",
+    "previouspage": "Previous Page",
+    "nextpage": "Next Page",
+    "nopreviouspage": "No Previous Page",
+    "nonextpage": "No Next Page"
+  },
+  "helperbar": {
+    "viewdocumentation": "View Documentation ↗",
+    "contactsupport": "Contact Support"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Placing Fields for",
+    "sender": "Sender",
+    "you": "You",
+    "addnewsigner": "Add a new Signer"
   }
 }

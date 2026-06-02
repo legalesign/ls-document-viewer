@@ -50,7 +50,7 @@ export class LsValidationManager {
                     <div class={'ls-dv-required-field-items-left'}>
                       <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
                       <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
-                        {field.role?.roleType.toLowerCase() || `Signer ${field.role?.signerIndex + 1}`}
+                        {field.role?.roleType ? dvI18n.t(`participants.${field.role.roleType.toLowerCase()}`) : `Signer ${field.role?.signerIndex + 1}`}
                       </div>
                     </div>
                   )}

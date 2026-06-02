@@ -76,7 +76,7 @@
     "witness": "شاهد",
     "signaturerequired": "التوقيع مطلوب",
     "participant": "مشارك {{index}}",
-    "participantwitness": "{{index}}شاهد مشارك",
+    "participantwitness": "شاهد المشارك {{index}}",
     "placeholder": "الوصف، على سبيل المثال. المستأجر 1، الوكيل"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "صيغة"
   },
   "statusbar": {
-    "pagethumbnails": "مصغرات الصفحة"
+    "pagethumbnails": "مصغرات الصفحة",
+    "zoomin": "زووم إن",
+    "zoomout": "زووم أوت",
+    "fitwidth": "عرض الملاءمة",
+    "fitheight": "ارتفاع الملاءمة",
+    "previouspage": "الصفحة السابقة",
+    "nextpage": "الصفحة التالية",
+    "nopreviouspage": "لا توجد صفحة سابقة",
+    "nonextpage": "لا توجد صفحة تالية"
+  },
+  "helperbar": {
+    "viewdocumentation": "عرض الوثائق ↗",
+    "contactsupport": "اتصل بالدعم"
+  },
+  "toolbar": {
+    "placingfieldsfor": "وضع الحقول لـ",
+    "sender": "المُرسِل",
+    "you": "أنت",
+    "addnewsigner": "إضافة موقّع جديد"
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-participant-select',
@@ -92,7 +93,7 @@ export class LsParticipantSelect {
                 stroke-linejoin="round"
               />
             </svg>
-            <p class={'ls-dv-placing-fields-text'}>Placing Fields for</p>
+            <p class={'ls-dv-placing-fields-text'}>{dvI18n.t('toolbar.placingfieldsfor')}</p>
             <div
               class={'ls-dv-selected-role-label'}
               style={{
@@ -113,7 +114,7 @@ export class LsParticipantSelect {
                 }
               />
               {this.selectedRole.name ||
-                (this.selectedRole.roleType === 'WITNESS' ? `Witness` : `Participant ${this.selectedRole.signerIndex}`)}
+                (this.selectedRole.roleType === 'WITNESS' ? dvI18n.t('participants.witness') : dvI18n.t('participants.participant', { index: this.selectedRole.signerIndex }))}
             </div>
             <button class={'ls-dv-tertiary-grey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down"></ls-icon>
@@ -128,7 +129,7 @@ export class LsParticipantSelect {
                   '--background-selected': defaultRolePalette[0].s10,
                   '--check-icon-selected': defaultRolePalette[0].s50,
                 }}
-                onClick={() => this.selectRole({ signerIndex: 0, name: 'Sender', roleType: 'SENDER' })}
+                onClick={() => this.selectRole({ signerIndex: 0, name: dvI18n.t('toolbar.sender'), roleType: 'SENDER' })}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle')}
                 onMouseLeave={e =>
                   (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
@@ -150,7 +151,7 @@ export class LsParticipantSelect {
                       '--role-name-selected': defaultRolePalette[0].s80,
                     }}
                   >
-                    {'Sender'}
+                    {dvI18n.t('toolbar.sender')}
                   </p>
                   <p
                     class={'ls-dv-role-type'}
@@ -158,7 +159,7 @@ export class LsParticipantSelect {
                       '--role-type-selected': defaultRolePalette[0].s80,
                     }}
                   >
-                    You
+                    {dvI18n.t('toolbar.you')}
                   </p>
                 </div>
 
@@ -195,7 +196,7 @@ export class LsParticipantSelect {
                         '--role-name-selected': defaultRolePalette[r?.signerIndex % 100].s100,
                       }}
                     >
-                      {r.name || (r.signerIndex > 100 ? `Participant ${r.signerIndex - 100} Witness` : `Participant ${r.signerIndex}`)}
+                      {r.name || (r.signerIndex > 100 ? dvI18n.t('participants.participantwitness', { index: r.signerIndex - 100 }) : dvI18n.t('participants.participant', { index: r.signerIndex }))}
                     </p>
                     <p
                       class={'ls-dv-role-type'}
@@ -203,7 +204,7 @@ export class LsParticipantSelect {
                         '--role-type-selected': defaultRolePalette[r?.signerIndex % 100].s80,
                       }}
                     >
-                      {r.roleType === 'WITNESS' ? 'Witness' : r.roleType === 'APPROVER' ? 'Approver' : 'Signer'}
+                      {r.roleType === 'WITNESS' ? dvI18n.t('participants.witness') : r.roleType === 'APPROVER' ? dvI18n.t('participants.approver') : dvI18n.t('participants.signer')}
                     </p>
                   </div>
                   <ls-icon
@@ -227,8 +228,8 @@ export class LsParticipantSelect {
                   <ls-icon name="user-add" />
                 </div>
                 <div class={'ls-dv-role-text'}>
-                  <p class={'ls-dv-role-name'}>Add Participant</p>
-                  <p class={'ls-dv-role-type'}>Add a new Signer</p>
+                  <p class={'ls-dv-role-name'}>{dvI18n.t('participants.addparticipant')}</p>
+                  <p class={'ls-dv-role-type'}>{dvI18n.t('toolbar.addnewsigner')}</p>
                 </div>
                 <ls-icon class={'ls-dv-plus-icon'} name="plus" />
               </button>

@@ -1,5 +1,6 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
 import { attachAllTooltips } from '../../utils/tooltip';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-helper-bar',
@@ -32,10 +33,10 @@ export class LsHelperBar {
             <ls-icon name="map" data-tooltip="Take a Guided Tour" data-tooltip-placement="left" />
           </button> */}
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://legalesign.com/articles/', '_blank')}>
-            <ls-icon name="book-open" data-tooltip="View Documentation ↗" data-tooltip-placement="left" />
+            <ls-icon name="book-open" data-tooltip={dvI18n.t('helperbar.viewdocumentation')} data-tooltip-placement="left" />
           </button>
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')}>
-            <ls-icon name="support" data-tooltip="Contact Support" data-tooltip-placement="left" />
+            <ls-icon name="support" data-tooltip={dvI18n.t('helperbar.contactsupport')} data-tooltip-placement="left" />
           </button>
           <div class="ls-dv-divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />
           <button>

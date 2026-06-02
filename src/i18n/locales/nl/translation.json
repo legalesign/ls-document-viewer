@@ -76,7 +76,7 @@
     "witness": "Getuige",
     "signaturerequired": "Handtekening vereist",
     "participant": "Deelnemer {{index}}",
-    "participantwitness": "{{index}}Getuige van de deelnemer",
+    "participantwitness": "Getuige van Deelnemer {{index}}",
     "placeholder": "Beschrijving, bijv. Huurder 1, agent"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formaat"
   },
   "statusbar": {
-    "pagethumbnails": "Miniaturen van pagina's"
+    "pagethumbnails": "Miniaturen van pagina's",
+    "zoomin": "Inzoomen",
+    "zoomout": "Uitzoomen",
+    "fitwidth": "Pasvorm: breedte",
+    "fitheight": "Pasvorm: hoogte",
+    "previouspage": "Vorige pagina",
+    "nextpage": "Volgende pagina",
+    "nopreviouspage": "Geen vorige pagina",
+    "nonextpage": "Geen volgende pagina"
+  },
+  "helperbar": {
+    "viewdocumentation": "Documentatie bekijken ↗",
+    "contactsupport": "Contact opnemen met de klantenservice"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Velden plaatsen voor",
+    "sender": "Afzender",
+    "you": "Jij",
+    "addnewsigner": "Een nieuwe ondertekenaar toevoegen"
   }
 }

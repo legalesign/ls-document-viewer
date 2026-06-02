@@ -76,7 +76,7 @@
     "witness": "עד",
     "signaturerequired": "חתימה נדרשת",
     "participant": "משתתף {{index}}",
-    "participantwitness": "עד משת {{index}}תף",
+    "participantwitness": "עד של משתתף {{index}}",
     "placeholder": "תיאור, למשל. דייר 1, סוכן"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "פורמט"
   },
   "statusbar": {
-    "pagethumbnails": "תמונות ממוזערות של עמוד"
+    "pagethumbnails": "תמונות ממוזערות של עמוד",
+    "zoomin": "התקרב",
+    "zoomout": "התרחקות",
+    "fitwidth": "רוחב התאמה",
+    "fitheight": "גובה התאמה",
+    "previouspage": "העמוד הקודם",
+    "nextpage": "העמוד הבא",
+    "nopreviouspage": "אין דף קודם",
+    "nonextpage": "אין עמוד הבא"
+  },
+  "helperbar": {
+    "viewdocumentation": "צפה בתיעוד ↗",
+    "contactsupport": "צור קשר עם התמיכה"
+  },
+  "toolbar": {
+    "placingfieldsfor": "הצבת שדות עבור",
+    "sender": "שולח",
+    "you": "אתה",
+    "addnewsigner": "הוספת חותם חדש"
   }
 }

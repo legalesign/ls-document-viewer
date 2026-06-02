@@ -76,7 +76,7 @@
     "witness": "Testemunha",
     "signaturerequired": "Assinatura obrigatória",
     "participant": "Participante {{index}}",
-    "participantwitness": "{{index}}Testemunha participante",
+    "participantwitness": "Testemunha do Participante {{index}}",
     "placeholder": "Descrição, por exemplo. Inquilino 1, Agente"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formato"
   },
   "statusbar": {
-    "pagethumbnails": "Miniaturas de páginas"
+    "pagethumbnails": "Miniaturas de páginas",
+    "zoomin": "Ampliar",
+    "zoomout": "Reduzir o zoom",
+    "fitwidth": "Largura de ajuste",
+    "fitheight": "Altura de ajuste",
+    "previouspage": "Página anterior",
+    "nextpage": "Próxima página",
+    "nopreviouspage": "Nenhuma página anterior",
+    "nonextpage": "Nenhuma próxima página"
+  },
+  "helperbar": {
+    "viewdocumentation": "Exibir documentação ↗",
+    "contactsupport": "Contate o suporte"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Colocando campos para",
+    "sender": "Remetente",
+    "you": "Você",
+    "addnewsigner": "Adicionar um novo signatário"
   }
 }

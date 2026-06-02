@@ -5,6 +5,25 @@ import { getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
 
+const fieldTypeKeyMap: { [key: string]: string } = {
+  'signature': 'toolbox.signature',
+  'auto sign': 'toolbox.autosign',
+  'text': 'toolbox.text',
+  'signing date': 'toolbox.signingdate',
+  'date': 'toolbox.date',
+  'initials': 'toolbox.initials',
+  'checkbox': 'toolbox.checkbox',
+  'email': 'toolbox.email',
+  'number': 'toolbox.number',
+  'image': 'toolbox.image',
+  'dropdown': 'toolbox.dropdown',
+  'file': 'toolbox.file',
+  'drawn field': 'toolbox.drawn',
+  'drawn': 'toolbox.drawn',
+  'regular expression': 'toolbox.regex',
+  'regex': 'toolbox.regex',
+};
+
 @Component({
   tag: 'ls-editor-field',
   styleUrl: 'ls-editor-field.scss',
@@ -18,6 +37,10 @@ export class LsEditorField {
   @Prop() readonly: boolean;
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
+
+  private getFieldTypeKey(): string {
+    return fieldTypeKeyMap[this.dataItem?.formElementType] || 'toolbox.text';
+  }
   @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
   @State() heldEdge: string = null;
@@ -258,7 +281,7 @@ export class LsEditorField {
           />
 
           <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
-            {(this.dataItem.value.length && this.dataItem.value) || this.dataItem?.formElementType}
+            {(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
           </div>
           {(this.floatingActive || this.selected) && this.dataItem?.label && (
             <div

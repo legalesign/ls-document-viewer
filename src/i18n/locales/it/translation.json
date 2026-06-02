@@ -76,7 +76,7 @@
     "witness": "Testimone",
     "signaturerequired": "Firma richiesta",
     "participant": "Partecipante {{index}}",
-    "participantwitness": "{{index}}Testimone partecipante",
+    "participantwitness": "Testimone del Partecipante {{index}}",
     "placeholder": "Descrizione, ad es. Inquilino 1, agente"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formato"
   },
   "statusbar": {
-    "pagethumbnails": "Anteprime delle pagine"
+    "pagethumbnails": "Anteprime delle pagine",
+    "zoomin": "Ingrandisci",
+    "zoomout": "Rimpicciolisci",
+    "fitwidth": "Larghezza adatta",
+    "fitheight": "Altezza adatta",
+    "previouspage": "Pagina precedente",
+    "nextpage": "Pagina successiva",
+    "nopreviouspage": "Nessuna pagina precedente",
+    "nonextpage": "Nessuna pagina successiva"
+  },
+  "helperbar": {
+    "viewdocumentation": "Visualizza la documentazione ↗",
+    "contactsupport": "Contatta l'assistenza"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Posizionamento dei campi per",
+    "sender": "Mittente",
+    "you": "Tu",
+    "addnewsigner": "Aggiungi un nuovo firmatario"
   }
 }

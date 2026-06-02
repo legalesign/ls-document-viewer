@@ -76,7 +76,7 @@
     "witness": "Tyst",
     "signaturerequired": "Llofnod Angenrheidiol",
     "participant": "Cyfranogwr {{index}}",
-    "participantwitness": "Ty {{index}}st Cyfranogwr",
+    "participantwitness": "Tyst Cyfranogwr {{index}}",
     "placeholder": "Disgrifiad, ee. Tenant 1, Asiant"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Fformat"
   },
   "statusbar": {
-    "pagethumbnails": "Mân-luniau Tudalen"
+    "pagethumbnails": "Mân-luniau Tudalen",
+    "zoomin": "Chwyddo i Mewn",
+    "zoomout": "Chwyddo Allan",
+    "fitwidth": "Lled Ffit",
+    "fitheight": "Uchder Ffit",
+    "previouspage": "Tudalen flaenorol",
+    "nextpage": "Tudalen nesaf",
+    "nopreviouspage": "Dim Tudalen Blaenorol",
+    "nonextpage": "Dim Tudalen Nesaf"
+  },
+  "helperbar": {
+    "viewdocumentation": "Gweld Dogfennaeth ↗",
+    "contactsupport": "Cysylltu â Chymorth"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Gosod Meysydd ar gyfer",
+    "sender": "Trosglwyddydd",
+    "you": "Chi",
+    "addnewsigner": "Ychwanegu Llofnodwr newydd"
   }
 }

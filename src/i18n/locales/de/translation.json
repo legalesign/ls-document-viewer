@@ -76,7 +76,7 @@
     "witness": "Zeuge",
     "signaturerequired": "Unterschrift erforderlich",
     "participant": "Teilnehmer {{index}}",
-    "participantwitness": "{{index}}Zeuge des Teilnehmers",
+    "participantwitness": "Zeuge von Teilnehmer {{index}}",
     "placeholder": "Beschreibung, z. B. Mieter 1, Agent"
   },
   "recipients": {
@@ -195,6 +195,24 @@
     "format": "Formatieren"
   },
   "statusbar": {
-    "pagethumbnails": "Seiten-Thumbnails"
+    "pagethumbnails": "Seiten-Thumbnails",
+    "zoomin": "Hineinzoomen",
+    "zoomout": "Verkleinern",
+    "fitwidth": "Breite anpassen",
+    "fitheight": "Höhe anpassen",
+    "previouspage": "Vorige Seite",
+    "nextpage": "Nächste Seite",
+    "nopreviouspage": "Keine vorherige Seite",
+    "nonextpage": "Keine nächste Seite"
+  },
+  "helperbar": {
+    "viewdocumentation": "Dokumentation ansehen ↗",
+    "contactsupport": "Support kontaktieren"
+  },
+  "toolbar": {
+    "placingfieldsfor": "Felder platzieren für",
+    "sender": "Absender",
+    "you": "Du",
+    "addnewsigner": "Neuen Unterzeichner hinzufügen"
   }
 }
