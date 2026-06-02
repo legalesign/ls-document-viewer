@@ -2,6 +2,7 @@ import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
 import { IToolboxField } from '../interfaces/IToolboxField';
+import { FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 
 let mousetimer = null;
 
@@ -416,8 +417,8 @@ export function mouseDoubleClick(event) {
         formElementType: 'text',
         elementType: 'text',
         validation: 0,
-        defaultHeight: 16,
-        defaultWidth: 150,
+        defaultHeight: FIELD_DEFAULTS['text'].defaultHeight,
+        defaultWidth: FIELD_DEFAULTS['text'].defaultWidth,
       };
     }
     // Unselect all current selected items
