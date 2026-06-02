@@ -399,11 +399,18 @@ The component uses [i18next](https://www.i18next.com/) with translations bundled
 
 ### Language Prop
 
-Set the language via the `language` attribute. If omitted, the browser's language is auto-detected.
+Set the language via the `language` attribute. This overrides the browser's detected language.
 
 ```html
 <ls-document-viewer language="fr" ...></ls-document-viewer>
 ```
+
+**Priority order:**
+1. `language` prop (if set) — always wins, regardless of browser settings
+2. Browser language (auto-detected) — used when no `language` prop is provided
+3. English — final fallback if the browser language isn't in the supported list
+
+For example, if a user's browser is set to French but your app passes `language="es"`, the component will display in Spanish.
 
 ### Supported Languages
 
