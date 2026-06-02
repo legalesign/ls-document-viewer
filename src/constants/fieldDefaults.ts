@@ -1,5 +1,8 @@
 import { IToolboxField } from '../components/interfaces/IToolboxField';
 
+export const DEFAULT_FONT_SIZE = 12;
+export const DEFAULT_FONT_NAME = 'arial';
+
 export const FIELD_DEFAULTS: Record<string, Pick<IToolboxField, 'defaultWidth' | 'defaultHeight'>> = {
   signature: { defaultWidth: 97, defaultHeight: 25 },
   'auto sign': { defaultWidth: 97, defaultHeight: 25 },
