@@ -195,7 +195,6 @@ export class LsEditorField {
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
 
           movebox.style.height = entry.contentRect.height + 'px';
-          movebox.style.width = entry.contentRect.width + 'px';
         }
       }
     });
@@ -263,10 +262,10 @@ export class LsEditorField {
               class="ls-dv-required-icon"
               customStyle={{
                 position: 'absolute',
-                verticalAlign: 'top',
-                top: `${0.125 * zoomValue}rem`,
+                top: '50%',
                 right: `${0.125 * zoomValue}rem`,
-                lineHeight: `${0.75 * zoomValue}rem`,
+                transform: 'translateY(-50%)',
+                lineHeight: '1',
                 fontSize: `${0.75 * zoomValue}rem`,
               }}
             />

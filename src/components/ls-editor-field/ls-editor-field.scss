@@ -27,10 +27,14 @@
 }
 
 .ls-dv-editor-field-draggable {
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: inherit;
   font-size: inherit;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   /* no extra spaces */
   white-space: nowrap;
@@ -38,7 +42,11 @@
   /* default widths */
   min-width: 2px;
   height: 98%;
-  width: 98%;
+  width: calc(100% - 13px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* .ls-dv-is-selected {
