@@ -79,6 +79,7 @@ export async function syncRoles() {
   const leftBar = this.component.shadowRoot.querySelector('ls-left-bar') as HTMLLsLeftBarElement;
   const participantManager = leftBar?.shadowRoot?.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
   const tresult = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
+  console.log(tresult);
   this.parseTemplate(JSON.stringify(tresult.template));
   if (participantManager) participantManager.template = this._template;
   this.generateFields();
