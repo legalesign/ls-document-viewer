@@ -250,32 +250,41 @@ export class LsParticipantCard {
                   }}
                 />
                 {this.signer?.roleType === 'SIGNER' && !child ? (
-                  <button class={'ls-dv-tertiary' + (this.busy || this.addingWitness ? ' ls-dv-button-loading' : '')} disabled={this.busy || this.addingWitness} onClick={() => { this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}>
-                    {this.busy || this.addingWitness ? (
-                      <ls-icon name="refresh-icon" class="ls-dv-spin" size={16} />
-                    ) : (
-                      <ls-icon name="plus-icon" style={{ marginRight: '0.25rem' }} />
-                    )}
-                    <span class={this.busy || this.addingWitness ? 'ls-dv-text-hidden' : ''}>{dvI18n.t('participants.addwitness')}</span>
-                  </button>
+                  <ls-button
+                    variant="tertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.addwitness')}
+                    leadingIcon="plus-icon"
+                    loading={this.busy || this.addingWitness}
+                    disabled={this.busy || this.addingWitness}
+                    onClick={() => { if (this.busy || this.addingWitness) return; this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}
+                  />
                 ) : this.signer?.roleType === 'SIGNER' && child ? (
-                  <button class={'ls-dv-destructive' + (this.busy ? ' ls-dv-button-loading' : '')} disabled={this.busy} onClick={() => { this.deleteHandler(child); }}>
-                    {this.busy ? (
-                      <ls-icon name="refresh-icon" class="ls-dv-spin" size={16} />
-                    ) : (
-                      <ls-icon name="minus-sm-icon" style={{ marginRight: '0.25rem' }} />
-                    )}
-                    <span class={this.busy ? 'ls-dv-text-hidden' : ''}>{dvI18n.t('participants.removewitness')}</span>
-                  </button>
+                  <ls-button
+                    variant="destructiveTertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.removewitness')}
+                    leadingIcon="minus-sm-icon"
+                    loading={this.busy}
+                    disabled={this.busy}
+                    onClick={() => { if (this.busy) return; this.deleteHandler(child); }}
+                  />
                 ) : this.signer?.roleType === 'WITNESS' ? (
-                  <button class={'ls-dv-destructive' + (this.busy ? ' ls-dv-button-loading' : '')} disabled={this.busy} onClick={() => { this.deleteHandler(this.signer); }}>
-                    {this.busy ? (
-                      <ls-icon name="refresh-icon" class="ls-dv-spin" size={16} />
-                    ) : (
-                      <ls-icon name="minus-sm-icon" style={{ marginRight: '0.25rem' }} />
-                    )}
-                    <span class={this.busy ? 'ls-dv-text-hidden' : ''}>{dvI18n.t('participants.removewitness')}</span>
-                  </button>
+                  <ls-button
+                    variant="destructiveTertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.removewitness')}
+                    leadingIcon="minus-sm-icon"
+                    loading={this.busy}
+                    disabled={this.busy}
+                    onClick={() => { if (this.busy) return; this.deleteHandler(this.signer); }}
+                  />
                 ) : null}
               </div>
             ) : (

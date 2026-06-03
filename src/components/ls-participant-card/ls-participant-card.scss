@@ -434,28 +434,3 @@ button.ls-dv-secondary:hover {
 .ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid $gray-30;
 }
-
-/* Loading State */
-
-.ls-dv-button-loading {
-  pointer-events: none;
-  opacity: 0.7;
-  position: relative;
-}
-
-.ls-dv-text-hidden {
-  visibility: hidden;
-}
-
-.ls-dv-spin {
-  animation: ls-dv-spin 1s linear infinite;
-}
-
-@keyframes ls-dv-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

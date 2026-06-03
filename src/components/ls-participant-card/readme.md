@@ -37,6 +37,7 @@
 
 - ls-icon
 - [ls-input-wrapper](../ls-input-wrapper)
+- ls-button
 - ls-tooltip
 
 ### Graph
@@ -44,8 +45,12 @@
 graph TD;
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
   ls-input-wrapper --> ls-icon
+  ls-button --> ls-icon
+  ls-button --> ls-loading
+  ls-loading --> ls-loading-icon
   ls-participant-manager --> ls-participant-card
   style ls-participant-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

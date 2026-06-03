@@ -244,7 +244,11 @@ graph TD;
   ls-participant-manager --> ls-icon
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
+  ls-button --> ls-icon
+  ls-button --> ls-loading
+  ls-loading --> ls-loading-icon
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip

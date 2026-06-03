@@ -259,7 +259,9 @@ export class LsDocumentViewer {
           .then(() => this.syncChange(me)),
       );
       Promise.all(promises).finally(() => {
-        this.isMutating = false;
+        requestAnimationFrame(() => {
+          this.isMutating = false;
+        });
       });
     }
   }
