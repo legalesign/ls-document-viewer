@@ -78,12 +78,18 @@ export class LsParticipantCard {
     bubbles: true,
     composed: true,
   })
-  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
+  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
   @State() swapUpBtn: HTMLElement;
   @State() swapDownBtn: HTMLElement;
   @State() editBtn: HTMLElement;
   @State() deleteParticipantBtn: HTMLElement;
+  @State() addingWitness: boolean = false;
+
+  @Watch('template')
+  templateChanged() {
+    this.addingWitness = false;
+  }
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
@@ -222,7 +228,7 @@ export class LsParticipantCard {
                   }}
                 />
                 {this.signer?.roleType === 'SIGNER' && !child ? (
-                  <button class={'ls-dv-tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
+                  <button class={'ls-dv-tertiary'} disabled={this.addingWitness} onClick={() => { this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}>
                     <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
                     {dvI18n.t('participants.addwitness')}
                   </button>
