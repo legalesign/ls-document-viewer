@@ -22,15 +22,15 @@
 ### Depends on
 
 - [ls-keyboard-shortcuts](../ls-keyboard-shortcuts)
-- [ls-icon](../ls-icon)
-- [ls-tooltip](../ls-tooltip)
+- ls-icon
+- [ls-dv-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-helper-bar --> ls-keyboard-shortcuts
   ls-helper-bar --> ls-icon
-  ls-helper-bar --> ls-tooltip
+  ls-helper-bar --> ls-dv-tooltip
   ls-statusbar --> ls-helper-bar
   style ls-helper-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
