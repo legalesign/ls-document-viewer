@@ -407,12 +407,20 @@ export namespace Components {
         /**
           * @default false
          */
+        "active": boolean;
+        /**
+          * @default false
+         */
         "editable": boolean;
         "index": number;
         "signer": LSApiRole;
         "template": LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner": number;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -432,6 +440,10 @@ export namespace Components {
           * The id of the currently selected role. {string}
          */
         "selected": string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer": number;
     }
     interface LsPropsSection {
         /**
@@ -564,6 +576,7 @@ export namespace Components {
          */
         "groupInfo": object;
         "mode": string;
+        "signer": number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -1192,6 +1205,7 @@ declare global {
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "opened": LSApiRole;
+        "roleChange": number;
         "addParticipant": { type: LSApiRoleType; parent?: string | null };
     }
     interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
@@ -1878,15 +1892,24 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "active"?: boolean;
+        /**
+          * @default false
+         */
         "editable"?: boolean;
         "index"?: number;
         "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
+        "onRoleChange"?: (event: LsParticipantCardCustomEvent<number>) => void;
         "signer"?: LSApiRole;
         "template"?: LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner"?: number;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -1911,6 +1934,10 @@ declare namespace LocalJSX {
           * The id of the currently selected role. {string}
          */
         "selected"?: string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer"?: number;
     }
     interface LsPropsSection {
         /**
@@ -2050,6 +2077,7 @@ declare namespace LocalJSX {
         "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "signer"?: number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */

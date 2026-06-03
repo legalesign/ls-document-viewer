@@ -780,7 +780,7 @@ export class LsDocumentViewer {
             >
               <slot name="recipient-panel" slot="recipient-panel" />
             </ls-left-bar>
-            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} />
+            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} />
             <div id="ls-mid-area">
               <div class={'ls-dv-document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">

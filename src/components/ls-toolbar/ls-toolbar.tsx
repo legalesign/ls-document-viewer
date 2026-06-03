@@ -41,6 +41,8 @@ export class LsToolbar {
 
   @Prop() mode: string;
 
+  @Prop() signer: number;
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -89,6 +91,7 @@ export class LsToolbar {
             <ls-participant-select
               id="ls-participant-select"
               roles={this.template?.roles}
+              signer={this.signer}
               style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }}
             />
           </div>
