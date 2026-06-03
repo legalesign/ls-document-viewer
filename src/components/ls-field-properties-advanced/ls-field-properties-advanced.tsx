@@ -78,7 +78,7 @@ export class LsFieldPropertiesAdvanced {
     return (
       <Host>
         <div class={'ls-dv-expand-fields-row'} onClick={() => (this.expanded = !this.expanded)}>
-          <ls-icon name={this.expanded ? 'expand' : 'collapse'} size="1.25rem" solid />
+          <ls-icon name={this.expanded ? 'expand-icon' : 'collapse-icon'} size={20} solid />
           <p>{dvI18n.t('fieldproperties.advancedproperties')}</p>
         </div>
         {this.expanded && (

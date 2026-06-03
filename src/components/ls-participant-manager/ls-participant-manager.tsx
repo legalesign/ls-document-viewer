@@ -30,6 +30,12 @@ export class LsParticipantManager {
    */
   @Prop() activeSigner: number;
 
+  /**
+   * Whether a mutation is currently in progress.
+   * {boolean}
+   */
+  @Prop() busy: boolean = false;
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -95,7 +101,6 @@ export class LsParticipantManager {
     observer.observe(this.element.shadowRoot, { childList: true, subtree: true });
   }
 
-
   render() {
     return (
       <Host>
@@ -112,6 +117,7 @@ export class LsParticipantManager {
                   index={index}
                   template={this.template}
                   active={r.signerIndex === this.activeSigner}
+                  busy={this.busy}
                   onOpened={event => {
                     this.handleOpened.bind(this)(event);
                   }}
@@ -122,7 +128,7 @@ export class LsParticipantManager {
         </div>
         <div class={'ls-dv-add-participant-button'}>
           <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
-            <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
+            <ls-icon name="user-add-icon" size={20} />
             <p>{dvI18n.t('participants.addparticipant')}</p>
           </button>
         </div>

@@ -23,19 +23,19 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-helper-bar](../ls-helper-bar)
-- [ls-tooltip](../ls-tooltip)
+- [ls-dv-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
-  ls-statusbar --> ls-tooltip
+  ls-statusbar --> ls-dv-tooltip
   ls-helper-bar --> ls-keyboard-shortcuts
   ls-helper-bar --> ls-icon
-  ls-helper-bar --> ls-tooltip
+  ls-helper-bar --> ls-dv-tooltip
   ls-document-viewer --> ls-statusbar
   style ls-statusbar fill:#f9f,stroke:#333,stroke-width:4px
 ```

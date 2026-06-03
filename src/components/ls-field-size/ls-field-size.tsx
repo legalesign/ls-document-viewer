@@ -48,27 +48,27 @@ export class LsFieldSize {
               aria-label={dvI18n.t('alignment.matchsize')}
               data-tooltip={dvI18n.t('alignment.matchsize')}
             >
-              <ls-icon name="field-scale"></ls-icon>
+              <ls-icon name="field-scale-icon"></ls-icon>
             </button>
             <button
               aria-label={dvI18n.t('alignment.matchwidth')}
               onClick={() => this.alter({ width: this.dataItem[0].width })}
               data-tooltip={dvI18n.t('alignment.matchwidth')}
             >
-              <ls-icon name="field-match-width"></ls-icon>
+              <ls-icon name="field-match-width-icon"></ls-icon>
             </button>
             <button
               onClick={() => this.alter({ height: this.dataItem[0].height })}
               aria-label={dvI18n.t('alignment.matchheight')}
               data-tooltip={dvI18n.t('alignment.matchheight')}
             >
-              <ls-icon name="field-match-height"></ls-icon>
+              <ls-icon name="field-match-height-icon"></ls-icon>
             </button>
           </div>
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master"></ls-tooltip>
+        <ls-dv-tooltip id="ls-tooltip-master"></ls-dv-tooltip>
       </Host>
     );
   }

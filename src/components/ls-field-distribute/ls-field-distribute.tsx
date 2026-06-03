@@ -196,7 +196,7 @@ export class LsFieldDistribute {
               aria-label={dvI18n.t('alignment.distributevertically')}
               data-tooltip={dvI18n.t('alignment.distributevertically')}
             >
-              <ls-icon name="field-distribute-vertically"></ls-icon>
+              <ls-icon name="field-distribute-vertically-icon"></ls-icon>
             </button>
             <button
               onClick={() => {
@@ -205,7 +205,7 @@ export class LsFieldDistribute {
               aria-label={dvI18n.t('alignment.distributehorizontally')}
               data-tooltip={dvI18n.t('alignment.distributehorizontally')}
             >
-              <ls-icon name="field-distribute-horizontally"></ls-icon>
+              <ls-icon name="field-distribute-horizontally-icon"></ls-icon>
             </button>
           </div>
         </div>
@@ -216,7 +216,7 @@ export class LsFieldDistribute {
           </div>
           <div class={'ls-dv-input-row'}>
             <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.setverticalgap')}>
-              <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
+              <ls-icon id="selectLeadingIcon" name="field-distribute-vertically-icon"></ls-icon>
               <input
                 type="number"
                 class={'ls-dv-has-leading-icon'}
@@ -231,7 +231,7 @@ export class LsFieldDistribute {
               />
             </div>
             <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.sethorizontalgap')}>
-              <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
+              <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally-icon"></ls-icon>
               <input
                 type="number"
                 class={'ls-dv-has-leading-icon'}
@@ -247,7 +247,7 @@ export class LsFieldDistribute {
             </div>
           </div>
         </div>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
         <slot></slot>
       </Host>
     );

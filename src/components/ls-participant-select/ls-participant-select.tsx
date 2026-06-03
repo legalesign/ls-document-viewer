@@ -118,22 +118,22 @@ export class LsParticipantSelect {
               }}
             >
               <ls-icon
-                size="1.125rem"
+                size={18}
                 name={
                   this.selectedRole?.roleType === 'SENDER'
-                    ? 'user'
+                    ? 'user-icon'
                     : this.selectedRole?.roleType === 'APPROVER'
-                      ? 'check-circle'
+                      ? 'check-circle-icon'
                       : this.selectedRole?.roleType === 'WITNESS'
-                        ? 'eye'
-                        : 'signature'
+                        ? 'eye-icon'
+                        : 'signature-icon'
                 }
               />
               {this.selectedRole.name ||
                 (this.selectedRole.roleType === 'WITNESS' ? dvI18n.t('participants.witness') : dvI18n.t('participants.participant', { index: this.selectedRole.signerIndex }))}
             </div>
             <button class={'ls-dv-tertiary-grey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
-              <ls-icon name="chevron-down"></ls-icon>
+              <ls-icon name="chevron-down-icon"></ls-icon>
             </button>
           </div>
           {this.isOpen && (
@@ -146,9 +146,9 @@ export class LsParticipantSelect {
                   '--check-icon-selected': defaultRolePalette[0].s50,
                 }}
                 onClick={() => this.selectRole({ signerIndex: 0, name: dvI18n.t('toolbar.sender'), roleType: 'SENDER' })}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle')}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle-icon')}
                 onMouseLeave={e =>
-                  (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle' : 'check-circle')
+                  (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', this.selectedRole?.signerIndex !== 0 ? 'base-circle-icon' : 'check-circle-icon')
                 }
               >
                 <div
@@ -158,7 +158,7 @@ export class LsParticipantSelect {
                     color: defaultRolePalette[0].s80,
                   }}
                 >
-                  <ls-icon name="user" />
+                  <ls-icon name="user-icon" />
                 </div>
                 <div class={'ls-dv-role-text'}>
                   <p
@@ -179,7 +179,7 @@ export class LsParticipantSelect {
                   </p>
                 </div>
 
-                <ls-icon class={'ls-dv-check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle' : 'base-circle'} solid={this.selectedRole?.signerIndex === 0} />
+                <ls-icon class={'ls-dv-check-icon'} name={this.selectedRole?.signerIndex === 0 ? 'check-circle-icon' : 'base-circle-icon'} solid={this.selectedRole?.signerIndex === 0} />
               </div>
               {this.roles.map(r => (
                 <div
@@ -189,11 +189,11 @@ export class LsParticipantSelect {
                     '--check-icon-selected': defaultRolePalette[r?.signerIndex % 100].s50,
                   }}
                   onClick={() => this.selectRole(r)}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle')}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-check-icon')?.setAttribute('name', 'check-circle-icon')}
                   onMouseLeave={e =>
                     (e.currentTarget as HTMLElement)
                       .querySelector('.ls-dv-check-icon')
-                      ?.setAttribute('name', r.signerIndex !== this.selectedRole?.signerIndex ? 'base-circle' : 'check-circle')
+                      ?.setAttribute('name', r.signerIndex !== this.selectedRole?.signerIndex ? 'base-circle-icon' : 'check-circle-icon')
                   }
                 >
                   <div
@@ -203,7 +203,7 @@ export class LsParticipantSelect {
                       color: defaultRolePalette[r?.signerIndex % 100].s90,
                     }}
                   >
-                    <ls-icon name={r.roleType === 'WITNESS' ? 'eye' : r.roleType === 'APPROVER' ? 'check-circle' : 'signature'} />
+                    <ls-icon name={r.roleType === 'WITNESS' ? 'eye-icon' : r.roleType === 'APPROVER' ? 'check-circle-icon' : 'signature-icon'} />
                   </div>
                   <div class={'ls-dv-role-text'}>
                     <p
@@ -225,7 +225,7 @@ export class LsParticipantSelect {
                   </div>
                   <ls-icon
                     class={'ls-dv-check-icon'}
-                    name={r.signerIndex === this.selectedRole?.signerIndex ? 'check-circle' : 'base-circle'}
+                    name={r.signerIndex === this.selectedRole?.signerIndex ? 'check-circle-icon' : 'base-circle-icon'}
                     solid={r.signerIndex === this.selectedRole?.signerIndex}
                   />
                 </div>
@@ -241,13 +241,13 @@ export class LsParticipantSelect {
                 <div
                   class={'ls-dv-add-participant-icon'}
                 >
-                  <ls-icon name="user-add" />
+                  <ls-icon name="user-add-icon" />
                 </div>
                 <div class={'ls-dv-role-text'}>
                   <p class={'ls-dv-role-name'}>{dvI18n.t('participants.addparticipant')}</p>
                   <p class={'ls-dv-role-type'}>{dvI18n.t('toolbar.addnewsigner')}</p>
                 </div>
-                <ls-icon class={'ls-dv-plus-icon'} name="plus" />
+                <ls-icon class={'ls-dv-plus-icon'} name="plus-icon" />
               </button>
             </div>
           )}

@@ -90,8 +90,8 @@ export class LsDocumentOptions {
               }}
             >
               <ls-icon
-                name={this.editTitle ? 'check' : 'pencil-alt'}
-                size="1.25rem"
+                name={this.editTitle ? 'check-icon' : 'pencil-alt-icon'}
+                size={20}
                 id="edit-name-btn"
                 data-tooltip={this.editTitle ? dvI18n.t('common.save') : dvI18n.t('documentoptions.editname')}
               />
@@ -183,7 +183,7 @@ export class LsDocumentOptions {
           </div>
         </div>
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

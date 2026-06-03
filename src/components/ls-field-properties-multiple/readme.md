@@ -29,7 +29,7 @@
 ### Depends on
 
 - [ls-field-properties-container](../ls-field-properties-container)
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-toggle](../ls-toggle)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-size](../ls-field-size)
@@ -51,15 +51,15 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-field-dimensions --> ls-icon
-  ls-field-dimensions --> ls-tooltip
+  ls-field-dimensions --> ls-dv-tooltip
   ls-field-size --> ls-icon
-  ls-field-size --> ls-tooltip
+  ls-field-size --> ls-dv-tooltip
   ls-field-alignment --> ls-icon
-  ls-field-alignment --> ls-tooltip
+  ls-field-alignment --> ls-dv-tooltip
   ls-field-placement --> ls-icon
-  ls-field-placement --> ls-tooltip
+  ls-field-placement --> ls-dv-tooltip
   ls-field-distribute --> ls-icon
-  ls-field-distribute --> ls-tooltip
+  ls-field-distribute --> ls-dv-tooltip
   ls-field-distribute --> ls-editor-field
   ls-editor-field --> ls-icon
   ls-editor-field --> ls-editor-field

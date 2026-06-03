@@ -5,14 +5,14 @@ describe('ls-tooltip', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [LsTooltip],
-      html: `<ls-tooltip></ls-tooltip>`,
+      html: `<ls-dv-tooltip></ls-dv-tooltip>`,
     });
     expect(page.root).toEqualHtml(`
-      <ls-tooltip>
+      <ls-dv-tooltip>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </ls-tooltip>
+      </ls-dv-tooltip>
     `);
   });
 });

@@ -52,22 +52,22 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-options --> ls-tooltip
-  ls-document-viewer --> ls-tooltip
-  ls-feature-column --> ls-tooltip
-  ls-field-alignment --> ls-tooltip
-  ls-field-dimensions --> ls-tooltip
-  ls-field-distribute --> ls-tooltip
-  ls-field-format --> ls-tooltip
-  ls-field-placement --> ls-tooltip
-  ls-field-size --> ls-tooltip
-  ls-helper-bar --> ls-tooltip
-  ls-participant-card --> ls-tooltip
-  ls-recipient-card --> ls-tooltip
-  ls-statusbar --> ls-tooltip
-  ls-toolbar --> ls-tooltip
-  ls-toolbox-field --> ls-tooltip
-  style ls-tooltip fill:#f9f,stroke:#333,stroke-width:4px
+  ls-document-options --> ls-dv-tooltip
+  ls-document-viewer --> ls-dv-tooltip
+  ls-feature-column --> ls-dv-tooltip
+  ls-field-alignment --> ls-dv-tooltip
+  ls-field-dimensions --> ls-dv-tooltip
+  ls-field-distribute --> ls-dv-tooltip
+  ls-field-format --> ls-dv-tooltip
+  ls-field-placement --> ls-dv-tooltip
+  ls-field-size --> ls-dv-tooltip
+  ls-helper-bar --> ls-dv-tooltip
+  ls-participant-card --> ls-dv-tooltip
+  ls-recipient-card --> ls-dv-tooltip
+  ls-statusbar --> ls-dv-tooltip
+  ls-toolbar --> ls-dv-tooltip
+  ls-toolbox-field --> ls-dv-tooltip
+  style ls-dv-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

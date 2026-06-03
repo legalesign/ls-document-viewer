@@ -89,11 +89,11 @@ export class LsFieldPlacement {
             </div>
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'}>
-                <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
+                <ls-icon id="selectLeadingIcon" name="x-letter-icon"></ls-icon>
                 <input type="number" class={'ls-dv-has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} />
               </div>
               <div class={'ls-dv-input-wrapper'}>
-                <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
+                <ls-icon id="selectLeadingIcon" name="y-icon"></ls-icon>
                 <input
                   type="number"
                   class={'ls-dv-has-leading-icon'}
@@ -117,24 +117,24 @@ export class LsFieldPlacement {
               <div class={'ls-dv-multi-button-group-row'}>
                 <div class={'ls-dv-button-group'}>
                   <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip={dvI18n.t('alignment.alignleft')}>
-                    <ls-icon name="field-alignment-left"></ls-icon>
+                    <ls-icon name="field-alignment-left-icon"></ls-icon>
                   </button>
                   <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip={dvI18n.t('alignment.aligncenter')}>
-                    <ls-icon name="field-alignment-centre"></ls-icon>
+                    <ls-icon name="field-alignment-centre-icon"></ls-icon>
                   </button>
                   <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip={dvI18n.t('alignment.alignright')}>
-                    <ls-icon name="field-alignment-right"></ls-icon>
+                    <ls-icon name="field-alignment-right-icon"></ls-icon>
                   </button>
                 </div>
                 <div class={'ls-dv-button-group'}>
                   <button onClick={() => this.alter({ top: 0 })} data-tooltip={dvI18n.t('alignment.aligntop')}>
-                    <ls-icon name="field-alignment-top"></ls-icon>
+                    <ls-icon name="field-alignment-top-icon"></ls-icon>
                   </button>
                   <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip={dvI18n.t('alignment.alignmiddle')}>
-                    <ls-icon name="field-alignment-middle"></ls-icon>
+                    <ls-icon name="field-alignment-middle-icon"></ls-icon>
                   </button>
                   <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip={dvI18n.t('alignment.alignbottom')}>
-                    <ls-icon name="field-alignment-bottom"></ls-icon>
+                    <ls-icon name="field-alignment-bottom-icon"></ls-icon>
                   </button>
                 </div>
               </div>
@@ -147,7 +147,7 @@ export class LsFieldPlacement {
               </div>
               <div class={'ls-dv-input-row'}>
                 <div class={'ls-dv-input-wrapper'}>
-                  <ls-icon id="selectLeadingIcon" name="x-letter"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="x-letter-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -158,7 +158,7 @@ export class LsFieldPlacement {
                   />
                 </div>
                 <div class={'ls-dv-input-wrapper'}>
-                  <ls-icon id="selectLeadingIcon" name="y"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="y-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -179,10 +179,10 @@ export class LsFieldPlacement {
               </div>
               <div class={'ls-dv-button-group'}>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultipledistribution')}>
-                  <ls-icon name="field-distribute-vertically"></ls-icon>
+                  <ls-icon name="field-distribute-vertically-icon"></ls-icon>
                 </button>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultipledistribution')}>
-                  <ls-icon name="field-distribute-horizontally"></ls-icon>
+                  <ls-icon name="field-distribute-horizontally-icon"></ls-icon>
                 </button>
               </div>
             </div>
@@ -194,18 +194,18 @@ export class LsFieldPlacement {
               </div>
               <div class={'ls-dv-input-row'}>
                 <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
-                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically"></ls-icon>
+                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-vertically-icon"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="vertical-gap" id="vertical-gap" disabled />
                 </div>
                 <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.selectmultiplegap')}>
-                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally"></ls-icon>
+                  <ls-icon id="selectLeadingIconDisabled" name="field-distribute-horizontally-icon"></ls-icon>
                   <input type="number" value="0" class={'ls-dv-has-leading-icon'} aria="horizontal-gap" id="horizontal-gap" disabled />
                 </div>
               </div>
             </div>
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

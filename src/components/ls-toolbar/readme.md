@@ -13,6 +13,7 @@
 | `editor`    | --        | The main editor. {LSDocumentViewer}                        | `LsDocumentViewer`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `undefined` |
 | `groupInfo` | --        | The group and experience information. {object}             | `object`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
 | `mode`      | `mode`    |                                                            | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
+| `signer`    | `signer`  |                                                            | `number`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
 | `template`  | --        | The base template information (as JSON). {LSApiTemplate}   | `{ id: string; title: string; pageCount: number; fileName: string; link: string; autoArchive: boolean; valid: boolean; locked: boolean; tags: string[]; groupId: string; roles: LSApiRole[]; canOpenSign: boolean; directLinks: []; elementConnection: { templateElements: LSApiElement[]; totalCount: number; }; elements: LSApiElement[]; createdBy: string; created: Date; modified: Date; lastSent: Date; pageDimensionArray: [number, number][]; pageDimensions: string; fixSignatureScale?: boolean; documentRetentionDays: number; }` | `undefined` |
 
 
@@ -34,16 +35,16 @@
 
 - [ls-field-format](../ls-field-format)
 - [ls-participant-select](../ls-participant-select)
-- [ls-tooltip](../ls-tooltip)
+- [ls-dv-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
-  ls-toolbar --> ls-tooltip
+  ls-toolbar --> ls-dv-tooltip
   ls-field-format --> ls-icon
-  ls-field-format --> ls-tooltip
+  ls-field-format --> ls-dv-tooltip
   ls-participant-select --> ls-icon
   ls-document-viewer --> ls-toolbar
   style ls-toolbar fill:#f9f,stroke:#333,stroke-width:4px

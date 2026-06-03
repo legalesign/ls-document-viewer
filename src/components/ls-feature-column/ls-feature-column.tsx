@@ -42,7 +42,7 @@ export class LsFeatureColoumn {
           data-tooltip={dvI18n.t('featurecolumn.templatedetailstooltip')}
           data-tooltip-placement="right"
         >
-          <ls-icon name="document" size="1.5rem" />
+          <ls-icon name="document-icon" size={24} />
         </div>
         <div
           class={this.manager === 'toolbox' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
@@ -54,7 +54,7 @@ export class LsFeatureColoumn {
           data-tooltip={dvI18n.t('featurecolumn.fieldtypestooltip')}
           data-tooltip-placement="right"
         >
-          <ls-icon name="typing-input" size="1.5rem" />
+          <ls-icon name="typing-input-icon" size={24} />
         </div>
         
         <div
@@ -67,7 +67,7 @@ export class LsFeatureColoumn {
           data-tooltip={dvI18n.t('featurecolumn.participantstooltip')}
           data-tooltip-placement="right"
         >
-          <ls-icon name="user-group" size="1.5rem" />
+          <ls-icon name="user-group-icon" size={24} />
         </div>
 
         <div
@@ -80,7 +80,7 @@ export class LsFeatureColoumn {
           data-tooltip={dvI18n.t('featurecolumn.recipientstooltip')}
           data-tooltip-placement="right"
         >
-          <ls-icon name="user-group" size="1.5rem" />
+          <ls-icon name="user-group-icon" size={24} />
         </div>
 
         <div
@@ -93,11 +93,11 @@ export class LsFeatureColoumn {
           data-tooltip={dvI18n.t('featurecolumn.validationtooltip')}
           data-tooltip-placement="right"
         >
-          <ls-icon name="adjustments" size="1.5rem" />
+          <ls-icon name="adjustments-icon" size={24} />
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

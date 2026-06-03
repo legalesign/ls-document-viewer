@@ -145,7 +145,7 @@ export class LsToolboxField {
             data-tooltip={this.tooltip}
             data-tooltip-placement="right"
           >
-            <ls-icon name={this.icon} size="1.25rem" />
+            <ls-icon name={this.icon as any} size={20} />
           </div>
           <p
             class="ls-dv-toolbox-field-label"
@@ -159,12 +159,12 @@ export class LsToolboxField {
           </p>
           {this.redDot && (
             <div class={'ls-dv-warning-box'} data-tooltip={`${this.label} Field Required`} data-tooltip-placement="left">
-              <ls-icon name="exclamation-circle" size="1.125rem" solid />
+              <ls-icon name="exclamation-circle-icon" size={18} solid />
             </div>
           )}
-          <ls-icon name="drag-vertical" size="1rem" color="#787a80" />
+          <ls-icon name="drag-vertical-icon" size={16} customStyle={{ color: '#787a80' }} />
         </div>
-        <ls-tooltip id="ls-tooltip-master" tooltipText="Something" />
+        <ls-dv-tooltip id="ls-tooltip-master" tooltipText="Something" />
       </Host>
     );
   }

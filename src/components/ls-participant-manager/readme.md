@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute | Description                                              | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default     |
-| ---------- | --------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `editor`   | --        | The base editor. {LSDocumentViewer}                      | `LsDocumentViewer`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `undefined` |
-| `template` | --        | The base template information (as JSON). {LSApiTemplate} | `{ id: string; title: string; pageCount: number; fileName: string; link: string; autoArchive: boolean; valid: boolean; locked: boolean; tags: string[]; groupId: string; roles: LSApiRole[]; canOpenSign: boolean; directLinks: []; elementConnection: { templateElements: LSApiElement[]; totalCount: number; }; elements: LSApiElement[]; createdBy: string; created: Date; modified: Date; lastSent: Date; pageDimensionArray: [number, number][]; pageDimensions: string; fixSignatureScale?: boolean; documentRetentionDays: number; }` | `undefined` |
+| Property       | Attribute       | Description                                              | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default     |
+| -------------- | --------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `activeSigner` | `active-signer` | The currently active signer index. {number}              | `number`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
+| `busy`         | `busy`          | Whether a mutation is currently in progress. {boolean}   | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
+| `editor`       | --              | The base editor. {LSDocumentViewer}                      | `LsDocumentViewer`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `undefined` |
+| `template`     | --              | The base template information (as JSON). {LSApiTemplate} | `{ id: string; title: string; pageCount: number; fileName: string; link: string; autoArchive: boolean; valid: boolean; locked: boolean; tags: string[]; groupId: string; roles: LSApiRole[]; canOpenSign: boolean; directLinks: []; elementConnection: { templateElements: LSApiElement[]; totalCount: number; }; elements: LSApiElement[]; createdBy: string; created: Date; modified: Date; lastSent: Date; pageDimensionArray: [number, number][]; pageDimensions: string; fixSignatureScale?: boolean; documentRetentionDays: number; }` | `undefined` |
 
 
 ## Events
@@ -31,7 +33,7 @@
 ### Depends on
 
 - [ls-participant-card](../ls-participant-card)
-- [ls-icon](../ls-icon)
+- ls-icon
 
 ### Graph
 ```mermaid
@@ -40,7 +42,7 @@ graph TD;
   ls-participant-manager --> ls-icon
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
-  ls-participant-card --> ls-tooltip
+  ls-participant-card --> ls-dv-tooltip
   ls-input-wrapper --> ls-icon
   ls-left-bar --> ls-participant-manager
   style ls-participant-manager fill:#f9f,stroke:#333,stroke-width:4px

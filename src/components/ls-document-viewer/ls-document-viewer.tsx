@@ -137,6 +137,7 @@ export class LsDocumentViewer {
   @State() fontFamily: string = 'arial';
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
+  @State() isMutating: boolean = false;
   @State() selectedDataItems: LSApiElement[] = [];
   @State() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
@@ -250,13 +251,18 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token && this.adapter)
-      event.detail.forEach(me =>
+    if (this.token && this.adapter) {
+      this.isMutating = true;
+      const promises = event.detail.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => matchData.bind(this)(result))
           .then(() => this.syncChange(me)),
       );
+      Promise.all(promises).finally(() => {
+        this.isMutating = false;
+      });
+    }
   }
 
   @Listen('fieldTypeSelected')
@@ -730,7 +736,7 @@ export class LsDocumentViewer {
           {this.error && (
             <div class="ls-dv-error-state">
               <div class="ls-dv-error-card">
-                <ls-icon name="exclamation-circle" size="2rem" style={{ color: 'var(--red-60, #dc2626)' }} />
+                <ls-icon name="exclamation-circle-icon" size={32} style={{ color: 'var(--red-60, #dc2626)' }} />
                 <p class="ls-dv-error-title">{dvI18n.t('viewer.autherror')}</p>
                 <p class="ls-dv-error-message">{this.error}</p>
               </div>
@@ -773,6 +779,7 @@ export class LsDocumentViewer {
               fieldTypeSelected={this.fieldTypeSelected}
               displayTable={this.displayTable}
               selectedDataItems={this.selectedDataItems}
+              busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
                 this.selected = [];
@@ -793,7 +800,7 @@ export class LsDocumentViewer {
             </div>
           </form>
         </>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

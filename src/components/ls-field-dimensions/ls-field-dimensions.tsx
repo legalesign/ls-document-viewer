@@ -75,11 +75,11 @@ export class LsFieldDimensions {
             </div>
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setwidthtooltip')}>
-                <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
               <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setheighttooltip')}>
-                <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
             </div>
@@ -101,7 +101,7 @@ export class LsFieldDimensions {
               </div>
               <div class={'ls-dv-input-row'}>
                 <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setwidthtooltip')}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -120,7 +120,7 @@ export class LsFieldDimensions {
                   />
                 </div>
                 <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setheighttooltip')}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                  <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -147,19 +147,19 @@ export class LsFieldDimensions {
               </div>
               <div class={'ls-dv-button-group'}>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplescale')}>
-                  <ls-icon name="field-scale"></ls-icon>
+                  <ls-icon name="field-scale-icon"></ls-icon>
                 </button>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplewidth')}>
-                  <ls-icon name="field-match-width"></ls-icon>
+                  <ls-icon name="field-match-width-icon"></ls-icon>
                 </button>
                 <button disabled data-tooltip={dvI18n.t('alignment.selectmultipleheight')}>
-                  <ls-icon name="field-match-height"></ls-icon>
+                  <ls-icon name="field-match-height-icon"></ls-icon>
                 </button>
               </div>
             </div>
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

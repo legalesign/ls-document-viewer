@@ -2,11 +2,11 @@ import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { Component, Element, Method, Prop, Watch, h } from '@stencil/core';
 
 @Component({
-  tag: 'ls-tooltip',
+  tag: 'ls-dv-tooltip',
   styleUrl: 'ls-tooltip.scss',
   shadow: true,
 })
-export class LsTooltip {
+export class LsDvTooltip {
   @Element() el: HTMLElement;
   @Prop({ mutable: true }) referenceElement: HTMLElement;
   @Prop({ mutable: true }) placement: 'top' | 'bottom' | 'left' | 'right' = 'top';

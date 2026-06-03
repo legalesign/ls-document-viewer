@@ -28,16 +28,16 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-toggle](../ls-toggle)
-- [ls-tooltip](../ls-tooltip)
+- [ls-dv-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
-  ls-document-options --> ls-tooltip
+  ls-document-options --> ls-dv-tooltip
   ls-left-bar --> ls-document-options
   style ls-document-options fill:#f9f,stroke:#333,stroke-width:4px
 ```

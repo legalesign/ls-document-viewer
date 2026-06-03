@@ -9,6 +9,8 @@
 
 | Property   | Attribute  | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default     |
 | ---------- | ---------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `active`   | `active`   |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
+| `busy`     | `busy`     |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
 | `editable` | `editable` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
 | `index`    | `index`    |             | `number`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
 | `signer`   | --         |             | `{ children?: LSApiRole[]; id?: string; name: string; roleType: LSApiRoleType; signerIndex: number; ordinal: number; signerParent?: string; experience: string; templateId?: string; }`                                                                                                                                                                                                                                                                                                                                                      | `undefined` |
@@ -19,9 +21,10 @@
 
 | Event            | Description | Type                                                                                                                                                                                                 |
 | ---------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>`                                                                                                                                             |
+| `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; signerIndex?: number; }>`                                                                                                                       |
 | `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                                                                                                                                                                       |
 | `opened`         |             | `CustomEvent<{ children?: LSApiRole[]; id?: string; name: string; roleType: LSApiRoleType; signerIndex: number; ordinal: number; signerParent?: string; experience: string; templateId?: string; }>` |
+| `roleChange`     |             | `CustomEvent<number>`                                                                                                                                                                                |
 
 
 ## Dependencies
@@ -32,16 +35,16 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-input-wrapper](../ls-input-wrapper)
-- [ls-tooltip](../ls-tooltip)
+- [ls-dv-tooltip](../ls-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
-  ls-participant-card --> ls-tooltip
+  ls-participant-card --> ls-dv-tooltip
   ls-input-wrapper --> ls-icon
   ls-participant-manager --> ls-participant-card
   style ls-participant-card fill:#f9f,stroke:#333,stroke-width:4px

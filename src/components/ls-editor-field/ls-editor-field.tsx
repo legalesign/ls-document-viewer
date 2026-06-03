@@ -258,8 +258,8 @@ export class LsEditorField {
         >
           {!this.dataItem?.optional && (
             <ls-icon
-              name="required"
-              size={`${0.75 * zoomValue}rem`}
+              name="required-icon"
+              size={Math.round(12 * zoomValue)}
               class="ls-dv-required-icon"
               customStyle={{
                 position: 'absolute',
@@ -331,7 +331,7 @@ export class LsEditorField {
               }}
               onClick={() => this.deleteField()}
             >
-              <ls-icon name="x" size={`${0.75 * zoomValue}rem`} />
+              <ls-icon name="x-icon" size={Math.round(12 * zoomValue)} />
             </button>
           )}
         </div>

@@ -166,10 +166,10 @@ export class LsFieldAlignment {
           <div class={'ls-dv-multi-button-group-row'}>
             <div class={'ls-dv-button-group'}>
               <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip={dvI18n.t('alignment.alignleft')}>
-                <ls-icon name="field-alignment-left"></ls-icon>
+                <ls-icon name="field-alignment-left-icon"></ls-icon>
               </button>
               <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip={dvI18n.t('alignment.aligncenter')}>
-                <ls-icon name="field-alignment-centre"></ls-icon>
+                <ls-icon name="field-alignment-centre-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
@@ -178,25 +178,25 @@ export class LsFieldAlignment {
                 aria-label={dvI18n.t('alignment.alignright')}
                 data-tooltip={dvI18n.t('alignment.alignright')}
               >
-                <ls-icon name="field-alignment-right"></ls-icon>
+                <ls-icon name="field-alignment-right-icon"></ls-icon>
               </button>
             </div>
             <div class={'ls-dv-button-group'}>
               <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip={dvI18n.t('alignment.aligntop')}>
-                <ls-icon name="field-alignment-top"></ls-icon>
+                <ls-icon name="field-alignment-top-icon"></ls-icon>
               </button>
               <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip={dvI18n.t('alignment.alignmiddle')}>
-                <ls-icon name="field-alignment-middle"></ls-icon>
+                <ls-icon name="field-alignment-middle-icon"></ls-icon>
               </button>
               <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip={dvI18n.t('alignment.alignbottom')}>
-                <ls-icon name="field-alignment-bottom"></ls-icon>
+                <ls-icon name="field-alignment-bottom-icon"></ls-icon>
               </button>
             </div>
           </div>
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

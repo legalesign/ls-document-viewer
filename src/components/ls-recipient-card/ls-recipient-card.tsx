@@ -22,8 +22,8 @@ export class LsRecipientCard {
   @Prop() activeRecipient: number;
   @Prop() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
-    formElementType: 'signature',
-    elementType: 'signature',
+    formElementType: 'signature-icon',
+    elementType: 'signature-icon',
     validation: 0,
     defaultHeight: 27,
     defaultWidth: 120,
@@ -89,7 +89,7 @@ export class LsRecipientCard {
 
   render() {
     const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
-    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
+    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature-icon' || f.elementType === 'auto sign');
     return (
       <Host>
         <div
@@ -121,12 +121,12 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s90,
                 }}
               >
-                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} size='1rem' />
+                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle-icon' : this.recipient?.roleType === 'WITNESS' ? 'eye-icon' : 'signature-icon'} size={16} />
                 {dvI18n.t(`participants.${(this.recipient?.roleType || 'SIGNER').toLowerCase()}`)}
               </div>
               <ls-icon
-                name="cursor-click"
-                size="1rem"
+                name="cursor-click-icon"
+                size={16}
                 customStyle={{ color: defaultRolePalette[this.recipient?.signerIndex % 100].s70 }}
                 solid
                 style={{ display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? 'block' : 'none' }}
@@ -164,14 +164,14 @@ export class LsRecipientCard {
                     // display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? '' : 'none',
                   }}
                 >
-                  {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
+                  {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle-icon" size={16} style={{ marginRight: '0.125rem' }} />}
                   {recipientSignatures.length === 0 ? 'Signature Required' : `${recipientFields.length} ${recipientFields.length === 1 ? 'Field' : 'Fields'}`}
                 </div>
               )} */}
             </div>
 
             <div class="ls-dv-fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
-              {this.recipient.signerIndex > 0 && this.showTool('signature') && this.recipient?.roleType !== 'APPROVER' && (
+              {this.recipient.signerIndex > 0 && this.showTool('signature-icon') && this.recipient?.roleType !== 'APPROVER' && (
                 <ls-toolbox-field
                   elementType="signature"
                   formElementType="signature"
@@ -366,7 +366,7 @@ export class LsRecipientCard {
           </div>
         </div>
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-dv-tooltip id="ls-tooltip-master" />
       </Host>
     );
   }

@@ -23,6 +23,7 @@ export class LsLeftBar {
   @Prop() validationErrors: ValidationError[] = [];
   @Prop() fieldTypeSelected: IToolboxField;
   @Prop() displayTable: boolean = false;
+  @Prop() busy: boolean = false;
   @Prop() selectedDataItems: any[] = [];
 
   @Event() managerChange: EventEmitter<string>;
@@ -85,7 +86,7 @@ export class LsLeftBar {
       <div class="ls-dv-field-properties-outer">
         <div class="ls-dv-properties-header">
           <div class="ls-dv-properties-header-icon">
-            <ls-icon name="pre-filled-content" />
+            <ls-icon name="pre-filled-content-icon" />
           </div>
           <h1 class="ls-dv-properties-header-title">{dvI18n.t('viewer.fieldproperties')}</h1>
           <button
@@ -97,7 +98,7 @@ export class LsLeftBar {
             style={{ borderRadius: '0.75rem' }}
             data-tooltip={dvI18n.t('viewer.closepropertiespanel')}
           >
-            <ls-icon name="x" size="1.25rem" />
+            <ls-icon name="x-icon" size={20} />
           </button>
         </div>
         <ls-field-properties id="my-field-panel" dataItem={this.selectedDataItems}></ls-field-properties>
@@ -121,7 +122,7 @@ export class LsLeftBar {
               defaultHeight={25}
               defaultWidth={97}
               validation={0}
-              icon="signature"
+              icon="signature-icon"
               tooltip={dvI18n.t('toolbox.signaturetooltip')}
               signer={this.signer}
             />
@@ -134,7 +135,7 @@ export class LsLeftBar {
               defaultHeight={25}
               defaultWidth={97}
               validation={3000}
-              icon="auto-sign"
+              icon="auto-sign-icon"
               tooltip={dvI18n.t('toolbox.autosigntooltip')}
               signer={this.signer}
             />
@@ -147,7 +148,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={150}
               validation={0}
-              icon="text"
+              icon="text-icon"
               tooltip={dvI18n.t('toolbox.texttooltip')}
               signer={this.signer}
             />
@@ -160,7 +161,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={100}
               validation={32}
-              icon="auto-date"
+              icon="auto-date-icon"
               tooltip={dvI18n.t('toolbox.signingdatetooltip')}
               signer={this.signer}
             />
@@ -173,7 +174,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={100}
               validation={4}
-              icon="calender"
+              icon="calender-icon"
               tooltip={dvI18n.t('toolbox.datetooltip')}
               signer={this.signer}
             />
@@ -186,7 +187,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={150}
               validation={1}
-              icon="at-symbol"
+              icon="at-symbol-icon"
               tooltip={dvI18n.t('toolbox.emailtooltip')}
               signer={this.signer}
             />
@@ -199,7 +200,7 @@ export class LsLeftBar {
               defaultHeight={25}
               defaultWidth={70}
               validation={2000}
-              icon="initials"
+              icon="initials-icon"
               tooltip={dvI18n.t('toolbox.initialstooltip')}
               signer={this.signer}
             />
@@ -212,7 +213,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={150}
               validation={50}
-              icon="hashtag"
+              icon="hashtag-icon"
               tooltip={dvI18n.t('toolbox.numbertooltip')}
               signer={this.signer}
             />
@@ -225,7 +226,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={100}
               validation={20}
-              icon="dropdown"
+              icon="dropdown-icon"
               tooltip={dvI18n.t('toolbox.dropdowntooltip')}
               signer={this.signer}
             />
@@ -238,7 +239,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={16}
               validation={25}
-              icon="check"
+              icon="check-icon"
               tooltip={dvI18n.t('toolbox.checkboxtooltip')}
               signer={this.signer}
             />
@@ -251,7 +252,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={150}
               validation={93}
-              icon="code"
+              icon="code-icon"
               tooltip={dvI18n.t('toolbox.regextooltip')}
               signer={this.signer}
             />
@@ -264,7 +265,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={100}
               validation={90}
-              icon="photograph"
+              icon="photograph-icon"
               tooltip={dvI18n.t('toolbox.imagetooltip')}
               signer={this.signer}
             />
@@ -277,7 +278,7 @@ export class LsLeftBar {
               defaultHeight={16}
               defaultWidth={100}
               validation={74}
-              icon="upload"
+              icon="upload-icon"
               tooltip={dvI18n.t('toolbox.filetooltip')}
               signer={this.signer}
             />
@@ -290,7 +291,7 @@ export class LsLeftBar {
               defaultHeight={120}
               defaultWidth={120}
               validation={90}
-              icon="pencil"
+              icon="pencil-icon"
               tooltip={dvI18n.t('toolbox.drawntooltip')}
               signer={this.signer}
             />
@@ -306,7 +307,7 @@ export class LsLeftBar {
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-feature-column mode={this.mode} onManage={manager => this.managerChange.emit(manager.detail)} />
           {this.renderToolbox()}
-          <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} activeSigner={this.signer} template={this.template} />
+          <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} activeSigner={this.signer} template={this.template} busy={this.busy} />
           <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
           <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
         </div>

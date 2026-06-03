@@ -27,7 +27,7 @@
 graph TD;
   ls-validation-manager --> ls-toolbox-field
   ls-toolbox-field --> ls-icon
-  ls-toolbox-field --> ls-tooltip
+  ls-toolbox-field --> ls-dv-tooltip
   ls-left-bar --> ls-validation-manager
   style ls-validation-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```

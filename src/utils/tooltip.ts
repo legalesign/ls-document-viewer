@@ -1,12 +1,12 @@
 export function showTooltip(event) {
   const rootNode = this.getRootNode();
-  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsTooltipElement;
+  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsDvTooltipElement;
   tooltip.referenceElement = event.currentTarget as HTMLElement;
 }
 
 export function hideTooltip(_event) {
  const rootNode = this.getRootNode();
-  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsTooltipElement;
+  const tooltip = rootNode.getElementById('ls-tooltip-master') as HTMLLsDvTooltipElement;
   // if (this.tooltipLocked) return;
   tooltip.hide();
 }
