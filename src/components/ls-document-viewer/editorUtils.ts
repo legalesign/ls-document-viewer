@@ -76,10 +76,11 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
 }
 
 export async function syncRoles() {
-  var participantManager = this.component.shadowRoot.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
+  const leftBar = this.component.shadowRoot.querySelector('ls-left-bar') as HTMLLsLeftBarElement;
+  const participantManager = leftBar?.shadowRoot?.getElementById('ls-participant-manager') as HTMLLsParticipantManagerElement;
   const tresult = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
   this.parseTemplate(JSON.stringify(tresult.template));
-  participantManager.template = this._template;
+  if (participantManager) participantManager.template = this._template;
   this.generateFields();
   this.validationErrors = validate.bind(this)(this._template);
 }
