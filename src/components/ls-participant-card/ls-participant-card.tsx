@@ -99,6 +99,28 @@ export class LsParticipantCard {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
+    // Find previous and next non-witness roles for swapping
+    const getPreviousNonWitness = () => {
+      for (let i = this.index - 1; i >= 0; i--) {
+        if (this.template.roles[i].roleType !== 'WITNESS') {
+          return this.template.roles[i];
+        }
+      }
+      return null;
+    };
+
+    const getNextNonWitness = () => {
+      for (let i = this.index + 1; i < this.template.roles.length; i++) {
+        if (this.template.roles[i].roleType !== 'WITNESS') {
+          return this.template.roles[i];
+        }
+      }
+      return null;
+    };
+
+    const previousRole = getPreviousNonWitness();
+    const nextRole = getNextNonWitness();
+
     const formatRoleName = (signer: LSApiRole) => {
       if (signer.roleType == 'WITNESS') return dvI18n.t('participants.participantwitness', { index: signer.signerIndex % 100 });
       return dvI18n.t('participants.participant', { index: signer.signerIndex });
@@ -134,11 +156,11 @@ export class LsParticipantCard {
                 {this.signer?.ordinal || ''}
               </div>
               <div class={'ls-dv-button-set ls-dv-hidden'}>
-                {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
+                {previousRole && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="ls-dv-inner-button"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index - 1]);
+                      this.swapHandler(this.signer, previousRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
@@ -149,11 +171,11 @@ export class LsParticipantCard {
                     <ls-icon name="arrow-up" size="1.125rem" />
                   </div>
                 )}
-                {this.signer.signerIndex !== this.template.roles.length && this.signer.roleType !== 'WITNESS' && (
+                {nextRole && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="ls-dv-inner-button"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index + 1]);
+                      this.swapHandler(this.signer, nextRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
