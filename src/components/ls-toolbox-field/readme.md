@@ -41,13 +41,13 @@
 ### Depends on
 
 - ls-icon
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-toolbox-field --> ls-icon
-  ls-toolbox-field --> ls-dv-tooltip
+  ls-toolbox-field --> ls-tooltip
   ls-left-bar --> ls-toolbox-field
   ls-recipient-card --> ls-toolbox-field
   ls-validation-manager --> ls-toolbox-field

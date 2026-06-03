@@ -154,20 +154,6 @@ export namespace Components {
          */
         "zoom": number;
     }
-    interface LsDvTooltip {
-        "hide": () => Promise<void>;
-        /**
-          * @default 'top'
-         */
-        "placement": 'top' | 'bottom' | 'left' | 'right';
-        "referenceElement": HTMLElement;
-        /**
-          * @default false
-         */
-        "tooltipLocked": boolean;
-        "tooltipText": string;
-        "tooltipTitle": string;
-    }
     interface LsEditorField {
         "assignee": string;
         "dataItem": LSApiElement1;
@@ -705,12 +691,6 @@ declare global {
         prototype: HTMLLsDocumentViewerElement;
         new (): HTMLLsDocumentViewerElement;
     };
-    interface HTMLLsDvTooltipElement extends Components.LsDvTooltip, HTMLStencilElement {
-    }
-    var HTMLLsDvTooltipElement: {
-        prototype: HTMLLsDvTooltipElement;
-        new (): HTMLLsDvTooltipElement;
-    };
     interface HTMLLsEditorFieldElementEventMap {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
@@ -1246,7 +1226,6 @@ declare global {
         "ls-compose-manager": HTMLLsComposeManagerElement;
         "ls-document-options": HTMLLsDocumentOptionsElement;
         "ls-document-viewer": HTMLLsDocumentViewerElement;
-        "ls-dv-tooltip": HTMLLsDvTooltipElement;
         "ls-editor-field": HTMLLsEditorFieldElement;
         "ls-editor-table": HTMLLsEditorTableElement;
         "ls-feature-column": HTMLLsFeatureColumnElement;
@@ -1414,19 +1393,6 @@ declare namespace LocalJSX {
           * @default 1.0
          */
         "zoom"?: number;
-    }
-    interface LsDvTooltip {
-        /**
-          * @default 'top'
-         */
-        "placement"?: 'top' | 'bottom' | 'left' | 'right';
-        "referenceElement"?: HTMLElement;
-        /**
-          * @default false
-         */
-        "tooltipLocked"?: boolean;
-        "tooltipText"?: string;
-        "tooltipTitle"?: string;
     }
     interface LsEditorField {
         "assignee"?: string;
@@ -1860,7 +1826,6 @@ declare namespace LocalJSX {
         "ls-compose-manager": LsComposeManager;
         "ls-document-options": LsDocumentOptions;
         "ls-document-viewer": LsDocumentViewer;
-        "ls-dv-tooltip": LsDvTooltip;
         "ls-editor-field": LsEditorField;
         "ls-editor-table": LsEditorTable;
         "ls-feature-column": LsFeatureColumn;
@@ -1920,7 +1885,6 @@ declare module "@stencil/core" {
              * Alex Weinle
              */
             "ls-document-viewer": LocalJSX.LsDocumentViewer & JSXBase.HTMLAttributes<HTMLLsDocumentViewerElement>;
-            "ls-dv-tooltip": LocalJSX.LsDvTooltip & JSXBase.HTMLAttributes<HTMLLsDvTooltipElement>;
             "ls-editor-field": LocalJSX.LsEditorField & JSXBase.HTMLAttributes<HTMLLsEditorFieldElement>;
             "ls-editor-table": LocalJSX.LsEditorTable & JSXBase.HTMLAttributes<HTMLLsEditorTableElement>;
             "ls-feature-column": LocalJSX.LsFeatureColumn & JSXBase.HTMLAttributes<HTMLLsFeatureColumnElement>;

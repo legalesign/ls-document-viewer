@@ -1,5 +1,4 @@
 import { Component, Element, Host, Prop, h } from '@stencil/core';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { dvI18n } from '../../i18n/i18n';
 
 @Component({
@@ -13,7 +12,6 @@ export class LsHelperBar {
   @Prop({ mutable: true }) showShortcuts: boolean = false;
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -30,13 +28,13 @@ export class LsHelperBar {
             <ls-icon name="keyboard-icon" />
           </button>
           {/* <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} data-pendo="launch-new-edit-tour">
-            <ls-icon name="map-icon" data-tooltip="Take a Guided Tour" data-tooltip-placement="left" />
+            <ls-icon name="map-icon" data-tooltip-id="ls-dv-tooltip" data-tooltip-content="Take a Guided Tour" data-tooltip-place="left" />
           </button> */}
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://legalesign.com/articles/', '_blank')}>
-            <ls-icon name="book-open-icon" data-tooltip={dvI18n.t('helperbar.viewdocumentation')} data-tooltip-placement="left" />
+            <ls-icon name="book-open-icon" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('helperbar.viewdocumentation')} data-tooltip-place="left" />
           </button>
           <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')}>
-            <ls-icon name="support-icon" data-tooltip={dvI18n.t('helperbar.contactsupport')} data-tooltip-placement="left" />
+            <ls-icon name="support-icon" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('helperbar.contactsupport')} data-tooltip-place="left" />
           </button>
           <div class="ls-dv-divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />
           <button>
@@ -44,7 +42,7 @@ export class LsHelperBar {
           </button>
         </div>
         <slot></slot>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

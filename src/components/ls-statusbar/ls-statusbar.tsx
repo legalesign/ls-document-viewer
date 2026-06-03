@@ -1,7 +1,6 @@
 import { Component, Host, Prop, State, h, Element } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { version } from '../../../package.json';
 
@@ -122,7 +121,6 @@ export class LsStatusbar {
   };
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
     this.zoom = this.editor.zoom;
   }
 
@@ -133,19 +131,19 @@ export class LsStatusbar {
           {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table-icon" /></button>
         <button onClick={() => this.editor.displayTable = false}><ls-icon name="template-icon" /></button> */}
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip={dvI18n.t('statusbar.zoomout')}>
+            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomout')}>
               <ls-icon name="zoom-out-icon" />
             </button>
             <span>{Math.round(this.zoom * 100)}%</span>
-            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip={dvI18n.t('statusbar.zoomin')}>
+            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomin')}>
               <ls-icon name="zoom-in-icon" />
             </button>
           </div>
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip={dvI18n.t('statusbar.fitwidth')}>
+            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitwidth')}>
               <ls-icon name="fit-width-icon" />
             </button>
-            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip={dvI18n.t('statusbar.fitheight')}>
+            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitheight')}>
               <ls-icon name="fit-height-icon" />
             </button>
           </div>
@@ -156,7 +154,7 @@ export class LsStatusbar {
               }}
               disabled={this.page === 1}
               id="prev-page-btn"
-              data-tooltip={this.page === 1 ? dvI18n.t('statusbar.nopreviouspage') : dvI18n.t('statusbar.previouspage')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.page === 1 ? dvI18n.t('statusbar.nopreviouspage') : dvI18n.t('statusbar.previouspage')}
             >
               <ls-icon name="chevron-left-icon" />
             </button>
@@ -169,7 +167,7 @@ export class LsStatusbar {
               }}
               disabled={this.page === this.pageCount}
               id="next-page-btn"
-              data-tooltip={this.page === this.pageCount ? dvI18n.t('statusbar.nonextpage') : dvI18n.t('statusbar.nextpage')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.page === this.pageCount ? dvI18n.t('statusbar.nonextpage') : dvI18n.t('statusbar.nextpage')}
             >
               <ls-icon name="chevron-right-icon" />
             </button>
@@ -186,7 +184,7 @@ export class LsStatusbar {
                 }
               }}
               id="page-thumbnails-btn"
-              data-tooltip={dvI18n.t('statusbar.pagethumbnails')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.pagethumbnails')}
             >
               <ls-icon name={!this.showThumbnails ? 'side-panel-open-right-icon' : 'side-panel-close-right-icon'} />
             </button>
@@ -199,7 +197,7 @@ export class LsStatusbar {
         </div>
         <ls-helper-bar />
         <span class="ls-dv-version">v{version}</span>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </Host>
     );

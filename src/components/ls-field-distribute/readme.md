@@ -28,14 +28,14 @@
 ### Depends on
 
 - ls-icon
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-distribute --> ls-icon
-  ls-field-distribute --> ls-dv-tooltip
+  ls-field-distribute --> ls-tooltip
   ls-field-distribute --> ls-editor-field
   ls-editor-field --> ls-icon
   ls-editor-field --> ls-editor-field

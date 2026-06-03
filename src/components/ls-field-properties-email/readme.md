@@ -48,9 +48,9 @@ graph TD;
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
-  ls-field-dimensions --> ls-dv-tooltip
+  ls-field-dimensions --> ls-tooltip
   ls-field-placement --> ls-icon
-  ls-field-placement --> ls-dv-tooltip
+  ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
   ls-field-properties --> ls-field-properties-email
   style ls-field-properties-email fill:#f9f,stroke:#333,stroke-width:4px

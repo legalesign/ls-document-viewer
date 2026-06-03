@@ -28,13 +28,13 @@
 ### Depends on
 
 - ls-icon
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-format --> ls-icon
-  ls-field-format --> ls-dv-tooltip
+  ls-field-format --> ls-tooltip
   ls-toolbar --> ls-field-format
   style ls-field-format fill:#f9f,stroke:#333,stroke-width:4px
 ```

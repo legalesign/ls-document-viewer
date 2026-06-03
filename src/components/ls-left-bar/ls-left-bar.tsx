@@ -96,7 +96,7 @@ export class LsLeftBar {
               e.preventDefault();
             }}
             style={{ borderRadius: '0.75rem' }}
-            data-tooltip={dvI18n.t('viewer.closepropertiespanel')}
+            data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('viewer.closepropertiespanel')}
           >
             <ls-icon name="x-icon" size={20} />
           </button>

@@ -3,7 +3,6 @@ import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { dvI18n } from '../../i18n/i18n';
 
 @Component({
@@ -94,7 +93,6 @@ export class LsParticipantCard {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -168,7 +166,7 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip={dvI18n.t('participants.moveup')}
+                    data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.moveup')}
                   >
                     <ls-icon name="arrow-up-icon" size={18} />
                   </div>
@@ -183,7 +181,7 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip={dvI18n.t('participants.movedown')}
+                    data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.movedown')}
                   >
                     <ls-icon name="arrow-down-icon" size={18} />
                   </div>
@@ -198,7 +196,7 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check-icon' : 'pencil-alt-icon'} size={18} data-tooltip={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')} />
+                  <ls-icon name={this.editable ? 'check-icon' : 'pencil-alt-icon'} size={18} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')} />
                 </div>
                 <div
                   class="ls-dv-inner-button"
@@ -209,8 +207,8 @@ export class LsParticipantCard {
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
-                  data-tooltip={dvI18n.t('participants.deleteparticipant')}
-                  data-tooltip-placement="top-end"
+                  data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.deleteparticipant')}
+                  data-tooltip-place="top-end"
                 >
                   <ls-icon name="trash-icon" size={18} />
                 </div>
@@ -316,7 +314,7 @@ export class LsParticipantCard {
           </div>
         </div>
         <slot></slot>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

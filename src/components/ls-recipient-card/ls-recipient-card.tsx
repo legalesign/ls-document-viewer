@@ -366,7 +366,7 @@ export class LsRecipientCard {
           </div>
         </div>
         <slot></slot>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

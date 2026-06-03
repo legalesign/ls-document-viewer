@@ -1,7 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-size',
@@ -31,7 +30,6 @@ export class LsFieldSize {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -46,21 +44,21 @@ export class LsFieldSize {
             <button
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
               aria-label={dvI18n.t('alignment.matchsize')}
-              data-tooltip={dvI18n.t('alignment.matchsize')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchsize')}
             >
               <ls-icon name="field-scale-icon"></ls-icon>
             </button>
             <button
               aria-label={dvI18n.t('alignment.matchwidth')}
               onClick={() => this.alter({ width: this.dataItem[0].width })}
-              data-tooltip={dvI18n.t('alignment.matchwidth')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchwidth')}
             >
               <ls-icon name="field-match-width-icon"></ls-icon>
             </button>
             <button
               onClick={() => this.alter({ height: this.dataItem[0].height })}
               aria-label={dvI18n.t('alignment.matchheight')}
-              data-tooltip={dvI18n.t('alignment.matchheight')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchheight')}
             >
               <ls-icon name="field-match-height-icon"></ls-icon>
             </button>
@@ -68,7 +66,7 @@ export class LsFieldSize {
         </div>
 
         <slot></slot>
-        <ls-dv-tooltip id="ls-tooltip-master"></ls-dv-tooltip>
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

@@ -1,7 +1,6 @@
 import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element, State } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { dvI18n } from '../../i18n/i18n';
 
 @Component({
@@ -58,7 +57,6 @@ export class LsDocumentOptions {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -93,7 +91,7 @@ export class LsDocumentOptions {
                 name={this.editTitle ? 'check-icon' : 'pencil-alt-icon'}
                 size={20}
                 id="edit-name-btn"
-                data-tooltip={this.editTitle ? dvI18n.t('common.save') : dvI18n.t('documentoptions.editname')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.editTitle ? dvI18n.t('common.save') : dvI18n.t('documentoptions.editname')}
               />
             </div>
             {this.editTitle ? (
@@ -183,7 +181,7 @@ export class LsDocumentOptions {
           </div>
         </div>
         <slot></slot>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

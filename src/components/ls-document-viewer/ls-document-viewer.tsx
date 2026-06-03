@@ -17,7 +17,6 @@ import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
 import { ValidationError } from '../../types/ValidationError';
 import { validate } from './validator';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { generateRoles } from './generateRoles';
 
@@ -700,7 +699,6 @@ export class LsDocumentViewer {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   handleManagerChange(manager: string) {
@@ -800,7 +798,7 @@ export class LsDocumentViewer {
             </div>
           </form>
         </>
-        <ls-dv-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

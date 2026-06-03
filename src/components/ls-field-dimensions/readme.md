@@ -39,13 +39,13 @@
 ### Depends on
 
 - ls-icon
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-field-dimensions --> ls-icon
-  ls-field-dimensions --> ls-dv-tooltip
+  ls-field-dimensions --> ls-tooltip
   ls-field-properties-autosign --> ls-field-dimensions
   ls-field-properties-date --> ls-field-dimensions
   ls-field-properties-dropdown --> ls-field-dimensions

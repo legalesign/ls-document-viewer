@@ -1,7 +1,6 @@
 import { Component, Event, Host, Listen, Prop, Element, h, EventEmitter } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -111,7 +110,6 @@ export class LsToolboxField {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -142,8 +140,8 @@ export class LsToolboxField {
           <div
             class="ls-dv-toolbox-field-icon"
             style={{ '--signer-color-light': defaultRolePalette[this.signer % 100].s10, '--signer-color': defaultRolePalette[this.signer % 100].s60 }}
-            data-tooltip={this.tooltip}
-            data-tooltip-placement="right"
+            data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.tooltip}
+            data-tooltip-place="right"
           >
             <ls-icon name={this.icon as any} size={20} />
           </div>
@@ -158,13 +156,13 @@ export class LsToolboxField {
             {this.label}
           </p>
           {this.redDot && (
-            <div class={'ls-dv-warning-box'} data-tooltip={`${this.label} Field Required`} data-tooltip-placement="left">
+            <div class={'ls-dv-warning-box'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={`${this.label} Field Required`} data-tooltip-place="left">
               <ls-icon name="exclamation-circle-icon" size={18} solid />
             </div>
           )}
           <ls-icon name="drag-vertical-icon" size={16} customStyle={{ color: '#787a80' }} />
         </div>
-        <ls-dv-tooltip id="ls-tooltip-master" tooltipText="Something" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

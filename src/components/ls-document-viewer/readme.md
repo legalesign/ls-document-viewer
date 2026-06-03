@@ -116,7 +116,7 @@ Type: `Promise<void>`
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
@@ -130,7 +130,7 @@ graph TD;
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
-  ls-document-viewer --> ls-dv-tooltip
+  ls-document-viewer --> ls-tooltip
   ls-document-viewer --> ls-editor-field
   ls-validation-tag --> ls-icon
   ls-left-bar --> ls-icon
@@ -171,9 +171,9 @@ graph TD;
   ls-field-properties-advanced --> ls-icon
   ls-field-properties-advanced --> ls-props-section
   ls-field-dimensions --> ls-icon
-  ls-field-dimensions --> ls-dv-tooltip
+  ls-field-dimensions --> ls-tooltip
   ls-field-placement --> ls-icon
-  ls-field-placement --> ls-dv-tooltip
+  ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
   ls-field-properties-date --> ls-field-properties-container
   ls-field-properties-date --> ls-field-content
@@ -230,40 +230,40 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-field-size --> ls-icon
-  ls-field-size --> ls-dv-tooltip
+  ls-field-size --> ls-tooltip
   ls-field-alignment --> ls-icon
-  ls-field-alignment --> ls-dv-tooltip
+  ls-field-alignment --> ls-tooltip
   ls-field-distribute --> ls-icon
-  ls-field-distribute --> ls-dv-tooltip
+  ls-field-distribute --> ls-tooltip
   ls-field-distribute --> ls-editor-field
   ls-toolbox-field --> ls-icon
-  ls-toolbox-field --> ls-dv-tooltip
+  ls-toolbox-field --> ls-tooltip
   ls-feature-column --> ls-icon
-  ls-feature-column --> ls-dv-tooltip
+  ls-feature-column --> ls-tooltip
   ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-icon
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
-  ls-participant-card --> ls-dv-tooltip
+  ls-participant-card --> ls-tooltip
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
-  ls-document-options --> ls-dv-tooltip
+  ls-document-options --> ls-tooltip
   ls-validation-manager --> ls-toolbox-field
   ls-recipient-card --> ls-icon
   ls-recipient-card --> ls-toolbox-field
-  ls-recipient-card --> ls-dv-tooltip
+  ls-recipient-card --> ls-tooltip
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
-  ls-toolbar --> ls-dv-tooltip
+  ls-toolbar --> ls-tooltip
   ls-field-format --> ls-icon
-  ls-field-format --> ls-dv-tooltip
+  ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
-  ls-statusbar --> ls-dv-tooltip
+  ls-statusbar --> ls-tooltip
   ls-helper-bar --> ls-keyboard-shortcuts
   ls-helper-bar --> ls-icon
-  ls-helper-bar --> ls-dv-tooltip
+  ls-helper-bar --> ls-tooltip
   style ls-document-viewer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

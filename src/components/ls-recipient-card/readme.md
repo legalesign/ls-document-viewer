@@ -35,16 +35,16 @@
 
 - ls-icon
 - [ls-toolbox-field](../ls-toolbox-field)
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-recipient-card --> ls-icon
   ls-recipient-card --> ls-toolbox-field
-  ls-recipient-card --> ls-dv-tooltip
+  ls-recipient-card --> ls-tooltip
   ls-toolbox-field --> ls-icon
-  ls-toolbox-field --> ls-dv-tooltip
+  ls-toolbox-field --> ls-tooltip
   ls-left-bar --> ls-recipient-card
   style ls-recipient-card fill:#f9f,stroke:#333,stroke-width:4px
 ```

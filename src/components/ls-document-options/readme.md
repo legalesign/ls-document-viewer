@@ -30,14 +30,14 @@
 
 - ls-icon
 - [ls-toggle](../ls-toggle)
-- [ls-dv-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
-  ls-document-options --> ls-dv-tooltip
+  ls-document-options --> ls-tooltip
   ls-left-bar --> ls-document-options
   style ls-document-options fill:#f9f,stroke:#333,stroke-width:4px
 ```
