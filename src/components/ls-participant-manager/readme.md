@@ -33,13 +33,13 @@
 ### Depends on
 
 - [ls-participant-card](../ls-participant-card)
-- ls-icon
+- ls-add-new-button
 
 ### Graph
 ```mermaid
 graph TD;
   ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
+  ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
   ls-participant-card --> ls-button
@@ -48,6 +48,8 @@ graph TD;
   ls-button --> ls-icon
   ls-button --> ls-loading
   ls-loading --> ls-loading-icon
+  ls-add-new-button --> ls-icon
+  ls-add-new-button --> ls-loading
   ls-left-bar --> ls-participant-manager
   style ls-participant-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```

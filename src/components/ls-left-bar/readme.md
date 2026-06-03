@@ -161,7 +161,7 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
   ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
+  ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
   ls-participant-card --> ls-button
@@ -169,6 +169,8 @@ graph TD;
   ls-button --> ls-icon
   ls-button --> ls-loading
   ls-loading --> ls-loading-icon
+  ls-add-new-button --> ls-icon
+  ls-add-new-button --> ls-loading
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip

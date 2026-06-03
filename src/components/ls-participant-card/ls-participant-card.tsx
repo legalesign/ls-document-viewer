@@ -92,8 +92,7 @@ export class LsParticipantCard {
     this.addingWitness = false;
   }
 
-  componentDidLoad() {
-  }
+  componentDidLoad() {}
 
   render() {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
@@ -129,11 +128,15 @@ export class LsParticipantCard {
     return (
       <Host>
         <div
-          class={'ls-dv-participant-card' + (this.active ? ' ls-dv-participant-card-active' : '') + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
+          class={
+            'ls-dv-participant-card' +
+            (this.active ? ' ls-dv-participant-card-active' : '') +
+            (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')
+          }
           style={{
-            background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
-            border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
-            marginTop: this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            'background': defaultRolePalette[this.signer?.signerIndex % 100].s10,
+            'border': `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
+            'marginTop': this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
             '--active-outline-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.remove('ls-dv-hidden')}
@@ -166,7 +169,8 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.moveup')}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={dvI18n.t('participants.moveup')}
                   >
                     <ls-icon name="arrow-up-icon" size={18} />
                   </div>
@@ -181,7 +185,8 @@ export class LsParticipantCard {
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.movedown')}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={dvI18n.t('participants.movedown')}
                   >
                     <ls-icon name="arrow-down-icon" size={18} />
                   </div>
@@ -196,7 +201,12 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check-icon' : 'pencil-alt-icon'} size={18} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')} />
+                  <ls-icon
+                    name={this.editable ? 'check-icon' : 'pencil-alt-icon'}
+                    size={18}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')}
+                  />
                 </div>
                 <div
                   class="ls-dv-inner-button"
@@ -207,7 +217,8 @@ export class LsParticipantCard {
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
-                  data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('participants.deleteparticipant')}
+                  data-tooltip-id="ls-dv-tooltip"
+                  data-tooltip-content={dvI18n.t('participants.deleteparticipant')}
                   data-tooltip-place="top-end"
                 >
                   <ls-icon name="trash-icon" size={18} />
@@ -259,7 +270,11 @@ export class LsParticipantCard {
                     leadingIcon="plus-icon"
                     loading={this.busy || this.addingWitness}
                     disabled={this.busy || this.addingWitness}
-                    onClick={() => { if (this.busy || this.addingWitness) return; this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}
+                    onClick={() => {
+                      if (this.busy || this.addingWitness) return;
+                      this.addingWitness = true;
+                      this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 });
+                    }}
                   />
                 ) : this.signer?.roleType === 'SIGNER' && child ? (
                   <ls-button
@@ -271,7 +286,10 @@ export class LsParticipantCard {
                     leadingIcon="minus-sm-icon"
                     loading={this.busy}
                     disabled={this.busy}
-                    onClick={() => { if (this.busy) return; this.deleteHandler(child); }}
+                    onClick={() => {
+                      if (this.busy) return;
+                      this.deleteHandler(child);
+                    }}
                   />
                 ) : this.signer?.roleType === 'WITNESS' ? (
                   <ls-button
@@ -283,7 +301,10 @@ export class LsParticipantCard {
                     leadingIcon="minus-sm-icon"
                     loading={this.busy}
                     disabled={this.busy}
-                    onClick={() => { if (this.busy) return; this.deleteHandler(this.signer); }}
+                    onClick={() => {
+                      if (this.busy) return;
+                      this.deleteHandler(this.signer);
+                    }}
                   />
                 ) : null}
               </div>
@@ -315,7 +336,9 @@ export class LsParticipantCard {
                     }}
                   >
                     {participantFields.length === 0 && <ls-icon name="exclamation-circle-icon" size={16} style={{ marginRight: '0.125rem' }} />}
-                    {participantFields.length === 0 ? dvI18n.t('participants.signaturerequired') : `${participantFields.length} ${participantFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
+                    {participantFields.length === 0
+                      ? dvI18n.t('participants.signaturerequired')
+                      : `${participantFields.length} ${participantFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
                   </div>
                 )}
               </div>

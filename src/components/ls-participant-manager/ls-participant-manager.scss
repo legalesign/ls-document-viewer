@@ -22,7 +22,6 @@
   margin: 0;
 }
 
-
 .ls-dv-editor-infobox {
   padding: 0.125rem 0.5rem 0.125rem 0.5rem;
 }
@@ -53,21 +52,9 @@
   background-image: linear-gradient(to top, $gray-10 0%, $gray-10 80%, transparent 100%);
 }
 
-.ls-dv-add-participant-button button {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  align-items: center;
+.ls-dv-add-participant-button ls-add-new-button {
   width: 100%;
-  border: 2px dashed $gray-20;
-  background: $white;
-  color: $gray-80;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.25rem; /* 142.857% */
 }
-
 
 /* Global Styles */
 
@@ -347,4 +334,3 @@ button.ls-dv-tertiary-grey:hover {
 .ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid $gray-30;
 }
-
