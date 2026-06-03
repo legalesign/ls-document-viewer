@@ -29,11 +29,14 @@ export class LsParticipantSelect {
 
   @Watch('signer')
   handleSignerChange(newSigner: number) {
-    if (newSigner === 0) {
-      this.selectedRole = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false };
-    } else {
-      const role = this.roles?.find(r => r.signerIndex === newSigner);
-      if (role) this.selectedRole = { ...role, default: false };
+    // Only update if the current selection doesn't match the new signer prop
+    if (this.selectedRole.signerIndex !== newSigner) {
+      if (newSigner === 0) {
+        this.selectedRole = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false };
+      } else {
+        const role = this.roles?.find(r => r.signerIndex === newSigner);
+        if (role) this.selectedRole = { ...role, default: false };
+      }
     }
   }
 

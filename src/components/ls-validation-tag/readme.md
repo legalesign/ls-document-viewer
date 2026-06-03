@@ -18,9 +18,10 @@
 
 ## Events
 
-| Event          | Description | Type                  |
-| -------------- | ----------- | --------------------- |
-| `changeSigner` |             | `CustomEvent<number>` |
+| Event                     | Description | Type                                                       |
+| ------------------------- | ----------- | ---------------------------------------------------------- |
+| `changeSigner`            |             | `CustomEvent<number>`                                      |
+| `selectFieldForPlacement` |             | `CustomEvent<{ signerIndex: number; fieldType: string; }>` |
 
 
 ## Dependencies
