@@ -14,6 +14,12 @@
   align-items: flex-start;
   gap: 0.5rem;
   align-self: stretch;
+  cursor: pointer;
+}
+
+.ls-dv-participant-card-active {
+  outline: 2px solid var(--active-outline-colour);
+  outline-offset: -2px;
 }
 
 .ls-dv-top-card {

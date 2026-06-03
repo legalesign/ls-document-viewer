@@ -24,6 +24,12 @@ export class LsParticipantManager {
    */
   @Prop() template: LSApiTemplate;
 
+  /**
+   * The currently active signer index.
+   * {number}
+   */
+  @Prop() activeSigner: number;
+
   @Event({
     bubbles: true,
     cancelable: true,
@@ -105,6 +111,7 @@ export class LsParticipantManager {
                   signer={r}
                   index={index}
                   template={this.template}
+                  active={r.signerIndex === this.activeSigner}
                   onOpened={event => {
                     this.handleOpened.bind(this)(event);
                   }}

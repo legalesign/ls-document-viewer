@@ -17,6 +17,7 @@ export class LsParticipantCard {
   @Prop() index: number;
   @Prop({ mutable: true }) editable: boolean = false;
   @Prop() template: LSApiTemplate;
+  @Prop() active: boolean = false;
 
   @Event({
     bubbles: true,
@@ -31,6 +32,12 @@ export class LsParticipantCard {
     composed: true,
   })
   opened: EventEmitter<LSApiRole>;
+
+  @Event({
+    bubbles: true,
+    composed: true,
+  })
+  roleChange: EventEmitter<number>;
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
@@ -94,14 +101,16 @@ export class LsParticipantCard {
     return (
       <Host>
         <div
-          class={'ls-dv-participant-card' + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
+          class={'ls-dv-participant-card' + (this.active ? ' ls-dv-participant-card-active' : '') + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
           style={{
             background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
             marginTop: this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            '--active-outline-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.remove('ls-dv-hidden')}
           onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.add('ls-dv-hidden')}
+          onClick={() => this.roleChange.emit(this.signer.signerIndex)}
           onDblClick={() => {
             this.editable = true;
           }}
