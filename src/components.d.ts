@@ -1206,7 +1206,7 @@ declare global {
         "mutate": LSMutateEvent[];
         "opened": LSApiRole;
         "roleChange": number;
-        "addParticipant": { type: LSApiRoleType; parent?: string | null };
+        "addParticipant": { type: LSApiRoleType; parent?: string | null; signerIndex?: number };
     }
     interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1898,7 +1898,7 @@ declare namespace LocalJSX {
          */
         "editable"?: boolean;
         "index"?: number;
-        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
+        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) => void;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
         "onRoleChange"?: (event: LsParticipantCardCustomEvent<number>) => void;
