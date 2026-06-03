@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.ls-dv-participant-card-active {
+.ls-dv-participant-card-active, .ls-dv-participant-card:hover {
   outline: 2px solid var(--active-outline-colour);
   outline-offset: -2px;
 }
