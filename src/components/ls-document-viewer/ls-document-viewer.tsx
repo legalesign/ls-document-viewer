@@ -317,6 +317,39 @@ export class LsDocumentViewer {
     }
   }
 
+  // Handle field selection from validation tag for immediate placement
+  @Listen('selectFieldForPlacement')
+  selectFieldForPlacement(event: CustomEvent<{ signerIndex: number; fieldType: string }>) {
+    const { signerIndex, fieldType } = event.detail;
+    
+    // Update the active signer
+    this.signer = signerIndex;
+    
+    console.log('Selecting field for placement:', event.detail);
+    // Find and select the matching toolbox field
+    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+    fields.forEach(element => {
+      const isMatch = element.formElementType === fieldType;
+      element.isSelected = isMatch;
+      if (isMatch) {
+        // Trigger the field selection event
+        this.fieldTypeSelected = {
+          label: element.label,
+          formElementType: element.formElementType,
+          elementType: element.elementType,
+          validation: element.validation,
+          defaultHeight: element.defaultHeight,
+          defaultWidth: element.defaultWidth,
+        };
+      }
+    });
+    
+    // Switch to toolbox view if not already there
+    if (this.manager !== 'toolbox') {
+      this.manager = 'toolbox';
+    }
+  }
+
   // Send selection changes to bars and panels if in use.
   @Listen('selectFields')
   selectFieldsHandler(event: CustomEvent<LSApiElement[]>) {

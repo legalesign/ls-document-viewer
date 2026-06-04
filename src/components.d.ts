@@ -1206,6 +1206,7 @@ declare global {
     };
     interface HTMLLsValidationTagElementEventMap {
         "changeSigner": number;
+        "selectFieldForPlacement": { signerIndex: number; fieldType: string };
     }
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1804,6 +1805,7 @@ declare namespace LocalJSX {
          */
         "isExpanded"?: boolean;
         "onChangeSigner"?: (event: LsValidationTagCustomEvent<number>) => void;
+        "onSelectFieldForPlacement"?: (event: LsValidationTagCustomEvent<{ signerIndex: number; fieldType: string }>) => void;
         /**
           * @default true
          */

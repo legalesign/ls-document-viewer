@@ -16,6 +16,7 @@ export class LsValidationTag {
   @Prop() showDropDown: boolean = true;
 
   @Event() changeSigner: EventEmitter<number>;
+  @Event() selectFieldForPlacement: EventEmitter<{ signerIndex: number; fieldType: string }>;
 
   private handleClickOutside = (event: MouseEvent) => {
     const dropdowns = this.el.shadowRoot.querySelectorAll('.ls-dv-field-dropdown');
@@ -79,6 +80,21 @@ export class LsValidationTag {
                     '--field-text-color': pallette.s70,
                     '--field-text-color-hover': pallette.s80,
                     '--field-border-color-hover': pallette.s60,
+                  }}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (field?.role) {
+                      // For missing signature validation errors, default to signature field type
+                      const fieldType = field?.element?.formElementType || 'signature';
+                      this.selectFieldForPlacement.emit({
+                        signerIndex: field.role.signerIndex,
+                        fieldType: fieldType,
+                      });
+                      this.isExpanded = false;
+                    } else {
+                      console.log('Missing role data');
+                    }
                   }}
                 >
                   <div class={'ls-dv-required-field-items-left'}>
