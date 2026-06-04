@@ -77,6 +77,7 @@ jobs:
         run: |
           cd ../ls-document-viewer-react
           node -e "const p=require('./package.json'); p.version='${{ env.NEW_VERSION }}'; p.dependencies['legalesign-document-viewer']='^${{ env.NEW_VERSION }}'; p.repository={type:'git',url:'https://github.com/legalesign/ls-document-viewer.git'}; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n')"
+          mkdir -p styles && cp $GITHUB_WORKSPACE/dist/ls-document-viewer/ls-document-viewer.css styles/
           pnpm link $GITHUB_WORKSPACE
           pnpm install --no-frozen-lockfile
           pnpm build
