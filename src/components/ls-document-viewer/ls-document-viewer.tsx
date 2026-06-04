@@ -3,7 +3,6 @@ import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 import { dvI18n } from '../../i18n/i18n';
-import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
