@@ -40,7 +40,7 @@
 - [ls-props-section](../ls-props-section)
 - [ls-field-type-display](../ls-field-type-display)
 - [ls-toggle](../ls-toggle)
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-input-wrapper](../ls-input-wrapper)
 - [ls-editor-field](../ls-editor-field)
 

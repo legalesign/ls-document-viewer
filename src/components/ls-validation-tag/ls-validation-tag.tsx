@@ -52,10 +52,10 @@ export class LsValidationTag {
           {this.validationErrors.length > 0 && <div class={`ls-dv-field-counter ${this.type === 'compose' ? 'ls-dv-compose' : 'ls-dv-default'}`}>{this.validationErrors.length}</div>}
           {this.type === 'compose' ? (this.validationErrors.length === 0 ? dvI18n.t('common.ready') : dvI18n.t('common.required')) : this.validationErrors.length === 0 ? dvI18n.t('common.readytosend') : dvI18n.t('common.requiresfields')}
           {this.validationErrors.length > 0 && this.showDropDown && this.type !== 'compose' && (
-            <ls-icon name={this.isExpanded ? 'chevron-up' : 'chevron-down'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
+            <ls-icon name={this.isExpanded ? 'chevron-up-icon' : 'chevron-down-icon'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
           )}
-          {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click" solid size="1rem" customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
-          {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check" solid size="1rem" customStyle={{ marginRight: '-0.125rem' }} />}
+          {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click-icon" solid size={16} customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
+          {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check-icon" solid size={16} customStyle={{ marginRight: '-0.125rem' }} />}
         </div>
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
           <div class={'ls-dv-field-dropdown'}>

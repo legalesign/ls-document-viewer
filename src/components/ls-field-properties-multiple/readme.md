@@ -29,7 +29,7 @@
 ### Depends on
 
 - [ls-field-properties-container](../ls-field-properties-container)
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-toggle](../ls-toggle)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-size](../ls-field-size)

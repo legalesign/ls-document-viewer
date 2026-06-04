@@ -50,7 +50,7 @@ export class LsFieldTypeDisplay {
               background: color.s10,
             }}
           >
-            <ls-icon name={getFieldIcon(this.fieldType)} size="1.25rem" />
+            <ls-icon name={getFieldIcon(this.fieldType) as any} size={20} />
           </div>
           <p class={'ls-dv-field-type-name'}>{dvI18n.t(fieldTypeKeyMap[this.fieldType] || 'toolbox.text')}</p>
         </div>

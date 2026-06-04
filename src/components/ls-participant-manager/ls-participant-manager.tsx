@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
@@ -29,6 +29,19 @@ export class LsParticipantManager {
    * {number}
    */
   @Prop() activeSigner: number;
+
+  /**
+   * Whether a mutation is currently in progress.
+   * {boolean}
+   */
+  @Prop() busy: boolean = false;
+
+  @State() addingParticipant: boolean = false;
+
+  @Watch('template')
+  templateChanged() {
+    this.addingParticipant = false;
+  }
 
   @Event({
     bubbles: true,
@@ -95,7 +108,6 @@ export class LsParticipantManager {
     observer.observe(this.element.shadowRoot, { childList: true, subtree: true });
   }
 
-
   render() {
     return (
       <Host>
@@ -112,6 +124,7 @@ export class LsParticipantManager {
                   index={index}
                   template={this.template}
                   active={r.signerIndex === this.activeSigner}
+                  busy={this.busy}
                   onOpened={event => {
                     this.handleOpened.bind(this)(event);
                   }}
@@ -120,11 +133,18 @@ export class LsParticipantManager {
               );
             })}
         </div>
-        <div class={'ls-dv-add-participant-button'}>
-          <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
-            <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
-            <p>{dvI18n.t('participants.addparticipant')}</p>
-          </button>
+        <div class="ls-dv-add-participant-button">
+          <ls-add-new-button
+            text={dvI18n.t('participants.addparticipant')}
+            icon="user-add-icon"
+            loading={this.addingParticipant}
+            disabled={this.addingParticipant}
+            onClick={() => {
+              if (this.addingParticipant) return;
+              this.addingParticipant = true;
+              this.addParticipant.emit({ type: 'SIGNER' });
+            }}
+          />
         </div>
         <slot></slot>
       </Host>

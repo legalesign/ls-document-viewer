@@ -96,7 +96,7 @@ export class LsToolbar {
             />
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </div>
     );
@@ -108,7 +108,7 @@ export class LsToolbar {
         <div class="rowbox">
           <ls-field-format dataItem={this.dataItem} />
         </div>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </div>
     );

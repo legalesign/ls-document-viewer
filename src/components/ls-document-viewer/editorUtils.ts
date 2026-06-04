@@ -62,7 +62,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
   }
 
   if (prefix === 'rol') {    
-    syncRoles.bind(this)().then(() => {
+    return syncRoles.bind(this)().then(() => {
       this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
     });
     

@@ -1,7 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-alignment',
@@ -144,7 +143,6 @@ export class LsFieldAlignment {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -157,38 +155,38 @@ export class LsFieldAlignment {
           </div>
           <div class={'ls-dv-multi-button-group-row'}>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip={dvI18n.t('alignment.alignleft')}>
-                <ls-icon name="field-alignment-left"></ls-icon>
+              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')}>
+                <ls-icon name="field-alignment-left-icon"></ls-icon>
               </button>
-              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip={dvI18n.t('alignment.aligncenter')}>
-                <ls-icon name="field-alignment-centre"></ls-icon>
+              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')}>
+                <ls-icon name="field-alignment-centre-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.right();
                 }}
                 aria-label={dvI18n.t('alignment.alignright')}
-                data-tooltip={dvI18n.t('alignment.alignright')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignright')}
               >
-                <ls-icon name="field-alignment-right"></ls-icon>
+                <ls-icon name="field-alignment-right-icon"></ls-icon>
               </button>
             </div>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip={dvI18n.t('alignment.aligntop')}>
-                <ls-icon name="field-alignment-top"></ls-icon>
+              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')}>
+                <ls-icon name="field-alignment-top-icon"></ls-icon>
               </button>
-              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip={dvI18n.t('alignment.alignmiddle')}>
-                <ls-icon name="field-alignment-middle"></ls-icon>
+              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')}>
+                <ls-icon name="field-alignment-middle-icon"></ls-icon>
               </button>
-              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip={dvI18n.t('alignment.alignbottom')}>
-                <ls-icon name="field-alignment-bottom"></ls-icon>
+              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')}>
+                <ls-icon name="field-alignment-bottom-icon"></ls-icon>
               </button>
             </div>
           </div>
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

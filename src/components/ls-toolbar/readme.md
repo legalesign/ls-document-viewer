@@ -35,7 +35,7 @@
 
 - [ls-field-format](../ls-field-format)
 - [ls-participant-select](../ls-participant-select)
-- [ls-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid

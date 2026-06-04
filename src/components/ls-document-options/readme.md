@@ -28,9 +28,9 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-toggle](../ls-toggle)
-- [ls-tooltip](../ls-tooltip)
+- ls-tooltip
 
 ### Graph
 ```mermaid
