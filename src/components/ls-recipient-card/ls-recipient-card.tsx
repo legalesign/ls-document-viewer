@@ -23,8 +23,8 @@ export class LsRecipientCard {
   @Prop() activeRecipient: number;
   @Prop() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
-    formElementType: 'signature-icon',
-    elementType: 'signature-icon',
+    formElementType: 'signature',
+    elementType: 'signature',
     validation: 0,
     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,
     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,
@@ -90,7 +90,7 @@ export class LsRecipientCard {
 
   render() {
     const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
-    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature-icon' || f.elementType === 'auto sign');
+    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
     return (
       <Host>
         <div
