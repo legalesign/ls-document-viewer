@@ -321,10 +321,10 @@ export class LsDocumentViewer {
   @Listen('selectFieldForPlacement')
   selectFieldForPlacement(event: CustomEvent<{ signerIndex: number; fieldType: string }>) {
     const { signerIndex, fieldType } = event.detail;
-    
+
     // Update the active signer
     this.signer = signerIndex;
-    
+
     console.log('Selecting field for placement:', event.detail);
     // Find and select the matching toolbox field
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
@@ -343,7 +343,7 @@ export class LsDocumentViewer {
         };
       }
     });
-    
+
     // Switch to toolbox view if not already there
     if (this.manager !== 'toolbox') {
       this.manager = 'toolbox';
@@ -733,8 +733,7 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
-  componentDidLoad() {
-  }
+  componentDidLoad() {}
 
   handleManagerChange(manager: string) {
     this.manager = manager as any;
@@ -759,7 +758,9 @@ export class LsDocumentViewer {
         <>
           {this.isLoading && (
             <>
-              <ls-page-loader />
+              <div class={'ls-dv-page-loader'}>
+                <ls-loading-logo size={200} colour="var(--primary-60)" />
+              </div>
               <div class={'ls-dv-custom-loader-slot'}>
                 <slot name="custom-loader"></slot>
               </div>

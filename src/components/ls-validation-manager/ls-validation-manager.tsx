@@ -63,7 +63,7 @@ export class LsValidationManager {
                           defaultHeight={27}
                           defaultWidth={120}
                           validation={0}
-                          icon="signature"
+                          icon="signature-icon"
                           tooltip={dvI18n.t('toolbox.signaturetooltip')}
                           signer={field.element.signer}
                         />

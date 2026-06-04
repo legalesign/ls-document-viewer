@@ -336,8 +336,6 @@ export namespace Components {
          */
         "validationErrors": ValidationError[];
     }
-    interface LsPageLoader {
-    }
     interface LsParticipantCard {
         /**
           * @default false
@@ -1022,12 +1020,6 @@ declare global {
         prototype: HTMLLsLeftBarElement;
         new (): HTMLLsLeftBarElement;
     };
-    interface HTMLLsPageLoaderElement extends Components.LsPageLoader, HTMLStencilElement {
-    }
-    var HTMLLsPageLoaderElement: {
-        prototype: HTMLLsPageLoaderElement;
-        new (): HTMLLsPageLoaderElement;
-    };
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "opened": LSApiRole;
@@ -1257,7 +1249,6 @@ declare global {
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
         "ls-left-bar": HTMLLsLeftBarElement;
-        "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
@@ -1598,8 +1589,6 @@ declare namespace LocalJSX {
          */
         "validationErrors"?: ValidationError[];
     }
-    interface LsPageLoader {
-    }
     interface LsParticipantCard {
         /**
           * @default false
@@ -1858,7 +1847,6 @@ declare namespace LocalJSX {
         "ls-input-wrapper": LsInputWrapper;
         "ls-keyboard-shortcuts": LsKeyboardShortcuts;
         "ls-left-bar": LsLeftBar;
-        "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
@@ -1917,7 +1905,6 @@ declare module "@stencil/core" {
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;
             "ls-left-bar": LocalJSX.LsLeftBar & JSXBase.HTMLAttributes<HTMLLsLeftBarElement>;
-            "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;

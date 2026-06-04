@@ -108,7 +108,7 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [ls-page-loader](../ls-page-loader)
+- ls-loading-logo
 - [ls-compose-loader](../ls-compose-loader)
 - ls-icon
 - [ls-validation-tag](../ls-validation-tag)
@@ -122,7 +122,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-viewer --> ls-page-loader
+  ls-document-viewer --> ls-loading-logo
   ls-document-viewer --> ls-compose-loader
   ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-validation-tag

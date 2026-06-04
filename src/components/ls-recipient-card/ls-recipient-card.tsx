@@ -179,7 +179,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={0}
-                  icon="signature"
+                  icon="signature-icon"
                   tooltip={dvI18n.t('toolbox.signaturetooltip')}
                   signer={this.recipient.signerIndex}
                   redDot={recipientSignatures.length === 0}
@@ -194,7 +194,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={3000}
-                  icon="auto-sign"
+                  icon="auto-sign-icon"
                   tooltip={dvI18n.t('toolbox.autosigntooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -207,7 +207,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={100}
                   validation={0}
-                  icon="text"
+                  icon="text-icon"
                   tooltip={dvI18n.t('toolbox.texttooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -221,7 +221,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={32}
-                  icon="auto-date"
+                  icon="auto-date-icon"
                   tooltip={dvI18n.t('toolbox.signingdatetooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -235,7 +235,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={80}
                   validation={4}
-                  icon="calender"
+                  icon="calender-icon"
                   tooltip={dvI18n.t('toolbox.datetooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -248,7 +248,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={1}
-                  icon="at-symbol"
+                  icon="at-symbol-icon"
                   tooltip={dvI18n.t('toolbox.emailtooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -262,7 +262,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={2000}
-                  icon="initials"
+                  icon="initials-icon"
                   tooltip={dvI18n.t('toolbox.initialstooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -276,7 +276,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={80}
                   validation={50}
-                  icon="hashtag"
+                  icon="hashtag-icon"
                   tooltip={dvI18n.t('toolbox.numbertooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -290,7 +290,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={80}
                   validation={20}
-                  icon="dropdown"
+                  icon="dropdown-icon"
                   tooltip={dvI18n.t('toolbox.dropdowntooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -304,7 +304,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={27}
                   validation={25}
-                  icon="check"
+                  icon="check-icon"
                   tooltip={dvI18n.t('toolbox.checkboxtooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -318,7 +318,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={93}
-                  icon="code"
+                  icon="code-icon"
                   tooltip={dvI18n.t('toolbox.regextooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -331,7 +331,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={90}
-                  icon="photograph"
+                  icon="photograph-icon"
                   tooltip={dvI18n.t('toolbox.imagetooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -344,7 +344,7 @@ export class LsRecipientCard {
                   defaultHeight={27}
                   defaultWidth={120}
                   validation={74}
-                  icon="upload"
+                  icon="upload-icon"
                   tooltip={dvI18n.t('toolbox.filetooltip')}
                   signer={this.recipient.signerIndex}
                 />
@@ -357,7 +357,7 @@ export class LsRecipientCard {
                   defaultHeight={120}
                   defaultWidth={120}
                   validation={90}
-                  icon="pencil"
+                  icon="pencil-icon"
                   tooltip={dvI18n.t('toolbox.drawntooltip')}
                   signer={this.recipient.signerIndex}
                 />

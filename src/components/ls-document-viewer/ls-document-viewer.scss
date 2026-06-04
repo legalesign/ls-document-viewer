@@ -122,6 +122,20 @@ slot {
   z-index: 2000;
 }
 
+.ls-dv-page-loader {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(251, 251, 251, 0.3);
+  backdrop-filter: blur(2px);
+  height: 100%;
+  width: 100%;
+  z-index: 4000;
+}
+
 .ls-dv-custom-loader-slot {
   position: absolute;
   top: 0;
