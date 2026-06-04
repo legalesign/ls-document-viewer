@@ -95,7 +95,7 @@ export class LsParticipantCard {
   componentDidLoad() {}
 
   render() {
-    const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
+    const participantFields = this.template.elementConnection.templateElements.filter(f => Number(f.signer) === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
     // Find previous and next non-witness roles for swapping
@@ -161,8 +161,9 @@ export class LsParticipantCard {
               <div class={'ls-dv-button-set ls-dv-hidden'}>
                 {previousRole && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-inner-button"
+                    class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                     onClick={() => {
+                      if (this.busy) return;
                       this.swapHandler(this.signer, previousRole);
                     }}
                     style={{
@@ -177,8 +178,9 @@ export class LsParticipantCard {
                 )}
                 {nextRole && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-inner-button"
+                    class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                     onClick={() => {
+                      if (this.busy) return;
                       this.swapHandler(this.signer, nextRole);
                     }}
                     style={{
@@ -209,8 +211,9 @@ export class LsParticipantCard {
                   />
                 </div>
                 <div
-                  class="ls-dv-inner-button"
+                  class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                   onClick={() => {
+                    if (this.busy) return;
                     this.deleteHandler(this.signer);
                   }}
                   style={{
