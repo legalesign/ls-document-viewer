@@ -40,6 +40,7 @@
 - [ls-props-section](../ls-props-section)
 - [ls-field-type-display](../ls-field-type-display)
 - [ls-toggle](../ls-toggle)
+- [ls-icon](../ls-icon)
 - [ls-input-wrapper](../ls-input-wrapper)
 - [ls-editor-field](../ls-editor-field)
 
@@ -49,6 +50,7 @@ graph TD;
   ls-field-content --> ls-props-section
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon

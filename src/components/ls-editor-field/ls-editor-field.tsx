@@ -1,7 +1,7 @@
 import { Component, Host, h, Element, State, Prop, Watch, Listen, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../components';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { getInputType } from '../ls-document-viewer/editorUtils';
+import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
 
@@ -126,6 +126,14 @@ export class LsEditorField {
       e.stopPropagation();
       return;
     }
+
+    // Date fields use selection to open picker, skip dblclick
+    if (this.isDateField()) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
     this.isEditing = true;
     this.heldEdge = null;
     this.isEdgeDragging = false;
@@ -177,6 +185,16 @@ export class LsEditorField {
     if (_newValue) {
       this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+
+      // Open date picker when field is selected
+      if (this.isDateField() && !this.readonly) {
+        requestAnimationFrame(() => {
+          const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
+          if (editbox) {
+            editbox.showPicker();
+          }
+        });
+      }
     } else {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
@@ -195,7 +213,6 @@ export class LsEditorField {
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
 
           movebox.style.height = entry.contentRect.height + 'px';
-          movebox.style.width = entry.contentRect.width + 'px';
         }
       }
     });
@@ -239,6 +256,54 @@ export class LsEditorField {
     return `rgba(${r},${g},${b},${alpha})`;
   }
 
+  private isDateField(): boolean {
+    return getInputType(this.dataItem?.validation)?.inputType === 'date';
+  }
+
+  private getDateFormat(): string | null {
+    const vType = validationTypes.find(v => v.id === this.dataItem?.validation);
+    if (!vType || vType.inputType !== 'date') return null;
+    return vType.description;
+  }
+
+  private toISODate(value: string): string {
+    if (!value) return '';
+    const format = this.getDateFormat();
+    if (!format) return value;
+
+    const sep = format.match(/[/.-]/)?.[0] || '/';
+    const parts = format.split(/[/.-]/);
+    const valueParts = value.split(sep);
+    if (valueParts.length < 2) return value;
+
+    let y = '', m = '', d = '';
+    parts.forEach((p, i) => {
+      const v = valueParts[i] || '';
+      if (p.startsWith('y')) y = v;
+      else if (p.startsWith('m')) m = v;
+      else if (p.startsWith('d')) d = v;
+    });
+
+    if (y.length === 2) y = '20' + y;
+    if (!d) d = '01';
+
+    return `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  }
+
+  private formatDateFromISO(isoValue: string): string {
+    if (!isoValue) return '';
+    const [y, m, d] = isoValue.split('-');
+    const format = this.getDateFormat();
+    if (!format) return isoValue;
+
+    return format
+      .replace('yyyy', y)
+      .replace('yy', y.slice(-2))
+      .replace('mm', m)
+      .replace('dd', d)
+      .replace('d', String(parseInt(d)));
+  }
+
   render() {
     const hostStyle = this.floatingActive
       ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
@@ -263,21 +328,33 @@ export class LsEditorField {
               class="ls-dv-required-icon"
               customStyle={{
                 position: 'absolute',
-                verticalAlign: 'top',
-                top: `${0.125 * zoomValue}rem`,
+                top: '50%',
                 right: `${0.125 * zoomValue}rem`,
-                lineHeight: `${0.75 * zoomValue}rem`,
+                transform: 'translateY(-50%)',
+                lineHeight: '1',
                 fontSize: `${0.75 * zoomValue}rem`,
               }}
             />
           )}
           <input
             id="editing-input"
-            class={this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field'}
-            type={getInputType(this.dataItem.validation).inputType}
-            value={this.dataItem?.value}
+            class={this.isDateField()
+              ? 'ls-dv-date-field-input'
+              : (this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field')}
+            type={this.isDateField() ? 'date' : 'text'}
+            style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
+            value={this.isDateField() ? this.toISODate(this.dataItem?.value) : this.dataItem?.value}
             checked={this.dataItem?.value ? true : false}
-            onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+            onInput={e => {
+              const val = (e.target as HTMLInputElement).value;
+              this.alter({ value: this.isDateField() ? this.formatDateFromISO(val) : val });
+            }}
+            onChange={e => {
+              if (this.isDateField()) {
+                const val = (e.target as HTMLInputElement).value;
+                this.alter({ value: this.formatDateFromISO(val) });
+              }
+            }}
           />
 
           <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>

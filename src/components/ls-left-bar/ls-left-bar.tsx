@@ -4,6 +4,7 @@ import { LSApiRoleType } from '../../types/LSApiRole';
 import { ValidationError } from '../../types/ValidationError';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { dvI18n } from '../../i18n/i18n';
+import { FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 
 @Component({
   tag: 'ls-left-bar',
@@ -119,8 +120,8 @@ export class LsLeftBar {
               elementType="signature"
               formElementType="signature"
               label={dvI18n.t('toolbox.signature')}
-              defaultHeight={25}
-              defaultWidth={97}
+              defaultHeight={FIELD_DEFAULTS['signature'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['signature'].defaultWidth}
               validation={0}
               icon="signature-icon"
               tooltip={dvI18n.t('toolbox.signaturetooltip')}
@@ -132,8 +133,8 @@ export class LsLeftBar {
               elementType="admin"
               formElementType="auto sign"
               label={dvI18n.t('toolbox.autosign')}
-              defaultHeight={25}
-              defaultWidth={97}
+              defaultHeight={FIELD_DEFAULTS['auto sign'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['auto sign'].defaultWidth}
               validation={3000}
               icon="auto-sign-icon"
               tooltip={dvI18n.t('toolbox.autosigntooltip')}
@@ -145,8 +146,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="text"
               label={dvI18n.t('toolbox.text')}
-              defaultHeight={16}
-              defaultWidth={150}
+              defaultHeight={FIELD_DEFAULTS['text'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['text'].defaultWidth}
               validation={0}
               icon="text-icon"
               tooltip={dvI18n.t('toolbox.texttooltip')}
@@ -158,8 +159,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="signing date"
               label={dvI18n.t('toolbox.signingdate')}
-              defaultHeight={16}
-              defaultWidth={100}
+              defaultHeight={FIELD_DEFAULTS['signing date'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['signing date'].defaultWidth}
               validation={32}
               icon="auto-date-icon"
               tooltip={dvI18n.t('toolbox.signingdatetooltip')}
@@ -171,8 +172,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="date"
               label={dvI18n.t('toolbox.date')}
-              defaultHeight={16}
-              defaultWidth={100}
+              defaultHeight={FIELD_DEFAULTS['date'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['date'].defaultWidth}
               validation={4}
               icon="calender-icon"
               tooltip={dvI18n.t('toolbox.datetooltip')}
@@ -184,8 +185,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="email"
               label={dvI18n.t('toolbox.email')}
-              defaultHeight={16}
-              defaultWidth={150}
+              defaultHeight={FIELD_DEFAULTS['email'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['email'].defaultWidth}
               validation={1}
               icon="at-symbol-icon"
               tooltip={dvI18n.t('toolbox.emailtooltip')}
@@ -197,8 +198,8 @@ export class LsLeftBar {
               elementType="initials"
               formElementType="initials"
               label={dvI18n.t('toolbox.initials')}
-              defaultHeight={25}
-              defaultWidth={70}
+              defaultHeight={FIELD_DEFAULTS['initials'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['initials'].defaultWidth}
               validation={2000}
               icon="initials-icon"
               tooltip={dvI18n.t('toolbox.initialstooltip')}
@@ -210,8 +211,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="number"
               label={dvI18n.t('toolbox.number')}
-              defaultHeight={16}
-              defaultWidth={150}
+              defaultHeight={FIELD_DEFAULTS['number'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['number'].defaultWidth}
               validation={50}
               icon="hashtag-icon"
               tooltip={dvI18n.t('toolbox.numbertooltip')}
@@ -223,8 +224,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="dropdown"
               label={dvI18n.t('toolbox.dropdown')}
-              defaultHeight={16}
-              defaultWidth={100}
+              defaultHeight={FIELD_DEFAULTS['dropdown'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['dropdown'].defaultWidth}
               validation={20}
               icon="dropdown-icon"
               tooltip={dvI18n.t('toolbox.dropdowntooltip')}
@@ -236,8 +237,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="checkbox"
               label={dvI18n.t('toolbox.checkbox')}
-              defaultHeight={16}
-              defaultWidth={16}
+              defaultHeight={FIELD_DEFAULTS['checkbox'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['checkbox'].defaultWidth}
               validation={25}
               icon="check-icon"
               tooltip={dvI18n.t('toolbox.checkboxtooltip')}
@@ -249,8 +250,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="regex"
               label={dvI18n.t('toolbox.regex')}
-              defaultHeight={16}
-              defaultWidth={150}
+              defaultHeight={FIELD_DEFAULTS['regex'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['regex'].defaultWidth}
               validation={93}
               icon="code-icon"
               tooltip={dvI18n.t('toolbox.regextooltip')}
@@ -262,8 +263,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="image"
               label={dvI18n.t('toolbox.image')}
-              defaultHeight={16}
-              defaultWidth={100}
+              defaultHeight={FIELD_DEFAULTS['image'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['image'].defaultWidth}
               validation={90}
               icon="photograph-icon"
               tooltip={dvI18n.t('toolbox.imagetooltip')}
@@ -275,8 +276,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="file"
               label={dvI18n.t('toolbox.file')}
-              defaultHeight={16}
-              defaultWidth={100}
+              defaultHeight={FIELD_DEFAULTS['file'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['file'].defaultWidth}
               validation={74}
               icon="upload-icon"
               tooltip={dvI18n.t('toolbox.filetooltip')}
@@ -288,8 +289,8 @@ export class LsLeftBar {
               elementType="text"
               formElementType="drawn"
               label={dvI18n.t('toolbox.drawn')}
-              defaultHeight={120}
-              defaultWidth={120}
+              defaultHeight={FIELD_DEFAULTS['drawn'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['drawn'].defaultWidth}
               validation={90}
               icon="pencil-icon"
               tooltip={dvI18n.t('toolbox.drawntooltip')}

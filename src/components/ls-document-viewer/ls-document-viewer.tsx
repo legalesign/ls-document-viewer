@@ -6,6 +6,7 @@ import { dvI18n } from '../../i18n/i18n';
 import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
+import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
@@ -132,8 +133,8 @@ export class LsDocumentViewer {
    * creation. They should be overridden by the users most used
    * values from localStorage or profile settings.
    */
-  @State() fontSize: number = 10;
-  @State() fontFamily: string = 'arial';
+  @State() fontSize: number = DEFAULT_FONT_SIZE;
+  @State() fontFamily: string = DEFAULT_FONT_NAME;
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
   @State() isMutating: boolean = false;

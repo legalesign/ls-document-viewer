@@ -2,6 +2,7 @@ import { Component, Host, Prop, h } from '@stencil/core';
 import { ValidationError } from '../../types/ValidationError';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
+import { FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 
 @Component({
   tag: 'ls-validation-manager',
@@ -60,8 +61,8 @@ export class LsValidationManager {
                           elementType="signature"
                           formElementType="signature"
                           label={dvI18n.t('toolbox.signature')}
-                          defaultHeight={27}
-                          defaultWidth={120}
+                          defaultHeight={FIELD_DEFAULTS['signature'].defaultHeight}
+                          defaultWidth={FIELD_DEFAULTS['signature'].defaultWidth}
                           validation={0}
                           icon="signature-icon"
                           tooltip={dvI18n.t('toolbox.signaturetooltip')}
