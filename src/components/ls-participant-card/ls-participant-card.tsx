@@ -194,8 +194,9 @@ export class LsParticipantCard {
                   </div>
                 )}
                 <div
-                  class="ls-dv-inner-button"
+                  class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                   onClick={() => {
+                    if (this.busy) return;
                     this.editable = !this.editable;
                   }}
                   style={{
