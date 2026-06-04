@@ -80,6 +80,8 @@ h6 {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  font-family: var(--font-family, 'IBM Plex Sans', sans-serif);
+  font-size: var(--text-sm);
   margin: 0px;
   padding: 0px;
 }
