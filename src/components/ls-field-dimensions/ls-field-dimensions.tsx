@@ -2,7 +2,6 @@ import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { Element } from '@stencil/core';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-dimensions',
@@ -62,7 +61,6 @@ export class LsFieldDimensions {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -75,12 +73,12 @@ export class LsFieldDimensions {
               <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.heightandwidthdescription')}</p>
             </div>
             <div class={'ls-dv-input-row'}>
-              <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setwidthtooltip')}>
-                <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+              <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
+                <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
-              <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setheighttooltip')}>
-                <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+              <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
+                <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
             </div>
@@ -101,8 +99,8 @@ export class LsFieldDimensions {
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.heightandwidthdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
-                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setwidthtooltip')}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
+                  <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -127,8 +125,8 @@ export class LsFieldDimensions {
                     }}
                   />
                 </div>
-                <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('dimensions.setheighttooltip')}>
-                  <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
+                  <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -160,20 +158,20 @@ export class LsFieldDimensions {
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.scaleandresizedescription')}</p>
               </div>
               <div class={'ls-dv-button-group'}>
-                <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplescale')}>
-                  <ls-icon name="field-scale"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultiplescale')}>
+                  <ls-icon name="field-scale-icon"></ls-icon>
                 </button>
-                <button disabled data-tooltip={dvI18n.t('alignment.selectmultiplewidth')}>
-                  <ls-icon name="field-match-width"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultiplewidth')}>
+                  <ls-icon name="field-match-width-icon"></ls-icon>
                 </button>
-                <button disabled data-tooltip={dvI18n.t('alignment.selectmultipleheight')}>
-                  <ls-icon name="field-match-height"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultipleheight')}>
+                  <ls-icon name="field-match-height-icon"></ls-icon>
                 </button>
               </div>
             </div>
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

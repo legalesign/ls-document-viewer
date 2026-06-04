@@ -37,7 +37,7 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-props-section](../ls-props-section)
 
 ### Graph

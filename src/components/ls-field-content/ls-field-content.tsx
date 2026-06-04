@@ -1,6 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { validationTypes } from '../ls-document-viewer/editorUtils';
+import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
 
@@ -53,6 +53,110 @@ export class LsFieldContent {
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
 
+  isDateField(): boolean {
+    return getInputType(this.dataItem?.validation)?.inputType === 'date';
+  }
+
+  /**
+   * Convert a formatted date value back to ISO (yyyy-mm-dd) for the native date input.
+   */
+  toISODate(value: string): string {
+    if (!value) return '';
+    const format = this.getDateFormat();
+    if (!format) return value;
+
+    const sep = format.match(/[/.-]/)?.[0] || '/';
+    const parts = format.split(/[/.-]/);
+    const valueParts = value.split(sep);
+    if (valueParts.length < 2) return value;
+
+    let y = '', m = '', d = '';
+    parts.forEach((p, i) => {
+      const v = valueParts[i] || '';
+      if (p.startsWith('y')) y = v;
+      else if (p.startsWith('m')) m = v;
+      else if (p.startsWith('d')) d = v;
+    });
+
+    if (y.length === 2) y = '20' + y;
+    if (!d) d = '01';
+
+    return `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  }
+
+  /**
+   * Convert an ISO date (yyyy-mm-dd) to the configured format.
+   */
+  formatDateFromISO(isoValue: string): string {
+    if (!isoValue) return '';
+    const [y, m, d] = isoValue.split('-');
+    const format = this.getDateFormat();
+    if (!format) return isoValue;
+
+    return format
+      .replace('yyyy', y)
+      .replace('yy', y.slice(-2))
+      .replace('mm', m)
+      .replace('dd', d)
+      .replace('d', String(parseInt(d)));
+  }
+
+  private getDateFormat(): string | null {
+    const vType = validationTypes.find(v => v.id === this.dataItem?.validation);
+    if (!vType || vType.inputType !== 'date') return null;
+    return vType.description;
+  }
+
+  private getDateFormatById(validation: number): string | null {
+    const vType = validationTypes.find(v => v.id === validation);
+    if (!vType || vType.inputType !== 'date') return null;
+    return vType.description;
+  }
+
+  private handleFormatChange(newValidation: number) {
+    const currentValue = this.dataItem?.value;
+    if (!currentValue || !this.isDateField()) {
+      this.alter({ validation: newValidation });
+      return;
+    }
+
+    // Parse current value to ISO using the old format
+    const oldFormat = this.getDateFormat();
+    const newFormat = this.getDateFormatById(newValidation);
+    if (!oldFormat || !newFormat) {
+      this.alter({ validation: newValidation });
+      return;
+    }
+
+    const parts = oldFormat.split(/[/.-]/);
+    const sep = oldFormat.match(/[/.-]/)?.[0] || '/';
+    const valueParts = currentValue.split(sep);
+    if (valueParts.length < 2) {
+      this.alter({ validation: newValidation });
+      return;
+    }
+
+    let y = '', m = '', d = '';
+    parts.forEach((p, i) => {
+      const v = valueParts[i] || '';
+      if (p.startsWith('y')) y = v;
+      else if (p.startsWith('m')) m = v;
+      else if (p.startsWith('d')) d = v;
+    });
+
+    if (y.length === 2) y = '20' + y;
+    if (!d) d = '01';
+
+    const newValue = newFormat
+      .replace('yyyy', y.padStart(4, '0'))
+      .replace('yy', y.slice(-2))
+      .replace('mm', m.padStart(2, '0'))
+      .replace('dd', d.padStart(2, '0'))
+      .replace('d', String(parseInt(d)));
+
+    this.alter({ validation: newValidation, value: newValue });
+  }
+
   render() {
     return (
       <Host>
@@ -71,11 +175,39 @@ export class LsFieldContent {
         </ls-props-section>
         {this.supportsValue() && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.value')} sectionDescription={dvI18n.t('fieldproperties.valuedescription')}>
-            <input
-              value={this.dataItem?.value}
-              placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
-              onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
-            />
+            {this.isDateField() ? (
+              <div class="ls-dv-date-input-wrapper">
+                <input
+                  class="ls-dv-date-display"
+                  type="text"
+                  value={this.dataItem?.value}
+                  placeholder={this.getDateFormat()}
+                  readOnly
+                  onClick={() => {
+                    const picker = this.component.shadowRoot.getElementById('ls-date-picker') as HTMLInputElement;
+                    if (picker) picker.showPicker();
+                  }}
+                />
+                {this.dataItem?.value && (
+                  <div class="ls-dv-date-clear" onClick={() => this.alter({ value: '' })}>
+                    <ls-icon name="x-icon" size={20} />
+                  </div>
+                )}
+                <input
+                  id="ls-date-picker"
+                  class="ls-dv-date-picker-hidden"
+                  type="date"
+                  value={this.toISODate(this.dataItem?.value)}
+                  onInput={e => this.alter({ value: this.formatDateFromISO((e.target as HTMLInputElement).value) })}
+                />
+              </div>
+            ) : (
+              <input
+                value={this.dataItem?.value}
+                placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
+                onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+              />
+            )}
           </ls-props-section>
         )}
         {this.dataItem.validation === 20 && (
@@ -91,7 +223,7 @@ export class LsFieldContent {
         {this.showValidationTypes && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
-              <select onChange={ev => this.alter({ validation: parseInt((ev.target as HTMLSelectElement).value) })}>
+              <select onChange={ev => this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
                 {validationTypes
                   .filter(type => type.formType === this.dataItem?.formElementType)
                   .map(type => (

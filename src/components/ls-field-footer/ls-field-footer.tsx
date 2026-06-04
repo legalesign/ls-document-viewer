@@ -53,8 +53,12 @@ export class LsFieldFooter {
   }
 
   deleteField = () => {
-    this.mutate.emit(this.getItems().map(di => { return { action: 'delete', data: di } }));
-  }
+    this.mutate.emit(
+      this.getItems().map(di => {
+        return { action: 'delete', data: di };
+      }),
+    );
+  };
 
   duplicateField = () => {
     this.getItems().forEach(current => {
@@ -65,18 +69,18 @@ export class LsFieldFooter {
       }
       this.mutate.emit([{ action: 'create', data: newItem, select: 'clear' }]);
     });
-  }
+  };
 
   render() {
     return (
       <Host>
         <div class={'ls-dv-button-footer'}>
           <button class={'ls-dv-secondary ls-dv-full-rounded'} onClick={() => this.duplicateField()}>
-            <ls-icon name="field-duplicate" size="1.25rem" />
+            <ls-icon name="field-duplicate-icon" size={20} />
             {dvI18n.t('common.duplicate')}
           </button>
           <button class={'ls-dv-destructive ls-dv-full-rounded'} onClick={() => this.deleteField()}>
-            <ls-icon name="trash" size="1.25rem" color='var(--red-60)' />
+            <ls-icon name="trash-icon" size={20} />
             {dvI18n.t('common.delete')}
           </button>
         </div>

@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.ls-dv-participant-card-active {
+.ls-dv-participant-card-active, .ls-dv-participant-card:hover {
   outline: 2px solid var(--active-outline-colour);
   outline-offset: -2px;
 }
@@ -82,6 +82,11 @@
 
 .ls-dv-inner-button:hover {
   color: var(--hover-button-colour);
+}
+
+.ls-dv-inner-button-disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 .ls-dv-participant-card-top-items {

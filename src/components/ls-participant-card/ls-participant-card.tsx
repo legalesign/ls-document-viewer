@@ -3,7 +3,6 @@ import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { dvI18n } from '../../i18n/i18n';
 
 @Component({
@@ -80,6 +79,8 @@ export class LsParticipantCard {
   })
   addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
+  @Prop() busy: boolean = false;
+
   @State() swapUpBtn: HTMLElement;
   @State() swapDownBtn: HTMLElement;
   @State() editBtn: HTMLElement;
@@ -91,12 +92,10 @@ export class LsParticipantCard {
     this.addingWitness = false;
   }
 
-  componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
-  }
+  componentDidLoad() {}
 
   render() {
-    const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
+    const participantFields = this.template.elementConnection.templateElements.filter(f => Number(f.signer) === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
     // Find previous and next non-witness roles for swapping
@@ -129,11 +128,15 @@ export class LsParticipantCard {
     return (
       <Host>
         <div
-          class={'ls-dv-participant-card' + (this.active ? ' ls-dv-participant-card-active' : '') + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
+          class={
+            'ls-dv-participant-card' +
+            (this.active ? ' ls-dv-participant-card-active' : '') +
+            (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')
+          }
           style={{
-            background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
-            border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
-            marginTop: this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            'background': defaultRolePalette[this.signer?.signerIndex % 100].s10,
+            'border': `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
+            'marginTop': this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
             '--active-outline-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.remove('ls-dv-hidden')}
@@ -152,43 +155,48 @@ export class LsParticipantCard {
                   color: defaultRolePalette[this.signer?.signerIndex % 100].s90,
                 }}
               >
-                <ls-icon name={this.signer?.roleType === 'APPROVER' ? 'check-circle' : this.signer?.roleType === 'SIGNER' ? 'signature' : 'eye'} />
+                <ls-icon name={this.signer?.roleType === 'APPROVER' ? 'check-circle-icon' : this.signer?.roleType === 'SIGNER' ? 'signature-icon' : 'eye-icon'} />
                 {this.signer?.ordinal || ''}
               </div>
               <div class={'ls-dv-button-set ls-dv-hidden'}>
                 {previousRole && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-inner-button"
+                    class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                     onClick={() => {
+                      if (this.busy) return;
                       this.swapHandler(this.signer, previousRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip={dvI18n.t('participants.moveup')}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={dvI18n.t('participants.moveup')}
                   >
-                    <ls-icon name="arrow-up" size="1.125rem" />
+                    <ls-icon name="arrow-up-icon" size={18} />
                   </div>
                 )}
                 {nextRole && this.signer.roleType !== 'WITNESS' && (
                   <div
-                    class="ls-dv-inner-button"
+                    class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                     onClick={() => {
+                      if (this.busy) return;
                       this.swapHandler(this.signer, nextRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                       '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                     }}
-                    data-tooltip={dvI18n.t('participants.movedown')}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={dvI18n.t('participants.movedown')}
                   >
-                    <ls-icon name="arrow-down" size="1.125rem" />
+                    <ls-icon name="arrow-down-icon" size={18} />
                   </div>
                 )}
                 <div
-                  class="ls-dv-inner-button"
+                  class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                   onClick={() => {
+                    if (this.busy) return;
                     this.editable = !this.editable;
                   }}
                   style={{
@@ -196,28 +204,35 @@ export class LsParticipantCard {
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
                 >
-                  <ls-icon name={this.editable ? 'check' : 'pencil-alt'} size="1.125rem" data-tooltip={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')} />
+                  <ls-icon
+                    name={this.editable ? 'check-icon' : 'pencil-alt-icon'}
+                    size={18}
+                    data-tooltip-id="ls-dv-tooltip"
+                    data-tooltip-content={this.editable ? dvI18n.t('participants.savechanges') : dvI18n.t('participants.editparticipant')}
+                  />
                 </div>
                 <div
-                  class="ls-dv-inner-button"
+                  class={`ls-dv-inner-button${this.busy ? ' ls-dv-inner-button-disabled' : ''}`}
                   onClick={() => {
+                    if (this.busy) return;
                     this.deleteHandler(this.signer);
                   }}
                   style={{
                     '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
                     '--hover-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
                   }}
-                  data-tooltip={dvI18n.t('participants.deleteparticipant')}
-                  data-tooltip-placement="top-end"
+                  data-tooltip-id="ls-dv-tooltip"
+                  data-tooltip-content={dvI18n.t('participants.deleteparticipant')}
+                  data-tooltip-place="top-end"
                 >
-                  <ls-icon name="trash" size="1.125rem" />
+                  <ls-icon name="trash-icon" size={18} />
                 </div>
               </div>
             </div>
             {this.editable ? (
               <div class={'ls-dv-participant-card-inner'}>
                 {this.signer?.roleType !== 'WITNESS' ? (
-                  <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle' : 'signature'}>
+                  <ls-input-wrapper select leadingIcon={this.signer?.roleType === 'APPROVER' ? 'check-circle-icon' : 'signature-icon'}>
                     <select
                       name="roleType"
                       id="role-type"
@@ -234,7 +249,7 @@ export class LsParticipantCard {
                     </select>
                   </ls-input-wrapper>
                 ) : (
-                  <ls-input-wrapper leadingIcon="eye">
+                  <ls-input-wrapper leadingIcon="eye-icon">
                     <input name="roleType" id="role-type" class={'ls-dv-has-leading-icon'} disabled value="Witness" />
                   </ls-input-wrapper>
                 )}
@@ -250,30 +265,51 @@ export class LsParticipantCard {
                   }}
                 />
                 {this.signer?.roleType === 'SIGNER' && !child ? (
-                  <button class={'ls-dv-tertiary'} disabled={this.addingWitness} onClick={() => { this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}>
-                    <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
-                    {dvI18n.t('participants.addwitness')}
-                  </button>
-                ) : this.signer?.roleType === 'SIGNER' && child ? (
-                  <button
-                    class={'ls-dv-destructive'}
+                  <ls-button
+                    variant="tertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.addwitness')}
+                    leadingIcon="plus-icon"
+                    loading={this.busy || this.addingWitness}
+                    disabled={this.busy || this.addingWitness}
                     onClick={() => {
+                      if (this.busy || this.addingWitness) return;
+                      this.addingWitness = true;
+                      this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 });
+                    }}
+                  />
+                ) : this.signer?.roleType === 'SIGNER' && child ? (
+                  <ls-button
+                    variant="destructiveTertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.removewitness')}
+                    leadingIcon="minus-sm-icon"
+                    loading={this.busy}
+                    disabled={this.busy}
+                    onClick={() => {
+                      if (this.busy) return;
                       this.deleteHandler(child);
                     }}
-                  >
-                    <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
-                    {dvI18n.t('participants.removewitness')}
-                  </button>
+                  />
                 ) : this.signer?.roleType === 'WITNESS' ? (
-                  <button
-                    class={'ls-dv-destructive'}
+                  <ls-button
+                    variant="destructiveTertiary"
+                    outline
+                    size="sm"
+                    fullWidth
+                    text={dvI18n.t('participants.removewitness')}
+                    leadingIcon="minus-sm-icon"
+                    loading={this.busy}
+                    disabled={this.busy}
                     onClick={() => {
+                      if (this.busy) return;
                       this.deleteHandler(this.signer);
                     }}
-                  >
-                    <ls-icon name="minus-sm" style={{ marginRight: '0.25rem' }} />
-                    {dvI18n.t('participants.removewitness')}
-                  </button>
+                  />
                 ) : null}
               </div>
             ) : (
@@ -303,8 +339,10 @@ export class LsParticipantCard {
                       color: participantFields.length === 0 ? 'white' : defaultRolePalette[this.signer?.signerIndex % 100].s90,
                     }}
                   >
-                    {participantFields.length === 0 && <ls-icon name="exclamation-circle" size="1rem" style={{ marginRight: '0.125rem' }} />}
-                    {participantFields.length === 0 ? dvI18n.t('participants.signaturerequired') : `${participantFields.length} ${participantFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
+                    {participantFields.length === 0 && <ls-icon name="exclamation-circle-icon" size={16} style={{ marginRight: '0.125rem' }} />}
+                    {participantFields.length === 0
+                      ? dvI18n.t('participants.signaturerequired')
+                      : `${participantFields.length} ${participantFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
                   </div>
                 )}
               </div>
@@ -312,7 +350,7 @@ export class LsParticipantCard {
           </div>
         </div>
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

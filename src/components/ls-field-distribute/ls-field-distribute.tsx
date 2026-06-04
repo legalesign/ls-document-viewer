@@ -2,7 +2,6 @@ import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { oob } from '../ls-document-viewer/editorUtils';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { outOfBounds } from '../ls-document-viewer/mouseHandlers';
 
 @Component({
@@ -177,7 +176,6 @@ export class LsFieldDistribute {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -194,18 +192,18 @@ export class LsFieldDistribute {
                 this.distributeVertical();
               }}
               aria-label={dvI18n.t('alignment.distributevertically')}
-              data-tooltip={dvI18n.t('alignment.distributevertically')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.distributevertically')}
             >
-              <ls-icon name="field-distribute-vertically"></ls-icon>
+              <ls-icon name="field-distribute-vertically-icon"></ls-icon>
             </button>
             <button
               onClick={() => {
                 this.distributeHorizontal();
               }}
               aria-label={dvI18n.t('alignment.distributehorizontally')}
-              data-tooltip={dvI18n.t('alignment.distributehorizontally')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.distributehorizontally')}
             >
-              <ls-icon name="field-distribute-horizontally"></ls-icon>
+              <ls-icon name="field-distribute-horizontally-icon"></ls-icon>
             </button>
           </div>
         </div>
@@ -215,8 +213,8 @@ export class LsFieldDistribute {
             <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.gapdescription')}</p>
           </div>
           <div class={'ls-dv-input-row'}>
-            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.setverticalgap')}>
-              <ls-icon id="selectLeadingIcon" name="field-distribute-vertically"></ls-icon>
+            <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('placement.setverticalgap')}>
+              <ls-icon id="selectLeadingIcon" name="field-distribute-vertically-icon"></ls-icon>
               <input
                 type="number"
                 class={'ls-dv-has-leading-icon'}
@@ -230,8 +228,8 @@ export class LsFieldDistribute {
                 size={4}
               />
             </div>
-            <div class={'ls-dv-input-wrapper'} data-tooltip={dvI18n.t('placement.sethorizontalgap')}>
-              <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally"></ls-icon>
+            <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('placement.sethorizontalgap')}>
+              <ls-icon id="selectLeadingIcon" name="field-distribute-horizontally-icon"></ls-icon>
               <input
                 type="number"
                 class={'ls-dv-has-leading-icon'}
@@ -247,7 +245,7 @@ export class LsFieldDistribute {
             </div>
           </div>
         </div>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </Host>
     );

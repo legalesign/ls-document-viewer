@@ -27,8 +27,8 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
-- [ls-tooltip](../ls-tooltip)
+- ls-icon
+- ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph

@@ -120,7 +120,7 @@ export class LsFieldPropertiesMultiple {
                       background: defaultRolePalette[this.allSignersSame().signer % 100].s10,
                     }}
                   >
-                    <ls-icon name={getFieldIcon(this.allElementsSame().elementType)} size="1.25rem" />
+                    <ls-icon name={getFieldIcon(this.allElementsSame().elementType) as any} size={20} />
                   </div>
                   <p class={'ls-dv-field-type-name'}>
                     {this.dataItem.length} {dvI18n.t(fieldTypeKeyMap[this.allElementsSame().elementType] || 'common.fields')} {dvI18n.t('common.fields')}

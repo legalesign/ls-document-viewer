@@ -38,8 +38,8 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
-- [ls-tooltip](../ls-tooltip)
+- ls-icon
+- ls-tooltip
 
 ### Graph
 ```mermaid

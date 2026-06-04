@@ -108,21 +108,21 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [ls-page-loader](../ls-page-loader)
+- ls-loading-logo
 - [ls-compose-loader](../ls-compose-loader)
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
-- [ls-tooltip](../ls-tooltip)
+- ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-viewer --> ls-page-loader
+  ls-document-viewer --> ls-loading-logo
   ls-document-viewer --> ls-compose-loader
   ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-validation-tag
@@ -162,6 +162,7 @@ graph TD;
   ls-field-content --> ls-props-section
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
@@ -241,10 +242,16 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
   ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
+  ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
+  ls-button --> ls-icon
+  ls-button --> ls-loading
+  ls-loading --> ls-loading-icon
+  ls-add-new-button --> ls-icon
+  ls-add-new-button --> ls-loading
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip

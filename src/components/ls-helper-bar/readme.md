@@ -22,8 +22,8 @@
 ### Depends on
 
 - [ls-keyboard-shortcuts](../ls-keyboard-shortcuts)
-- [ls-icon](../ls-icon)
-- [ls-tooltip](../ls-tooltip)
+- ls-icon
+- ls-tooltip
 
 ### Graph
 ```mermaid

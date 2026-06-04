@@ -3,9 +3,9 @@ import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 import { dvI18n } from '../../i18n/i18n';
-import 'pdfjs-dist/web/pdf_viewer';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
+import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
@@ -17,7 +17,6 @@ import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
 import { ValidationError } from '../../types/ValidationError';
 import { validate } from './validator';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { generateRoles } from './generateRoles';
 
@@ -133,10 +132,11 @@ export class LsDocumentViewer {
    * creation. They should be overridden by the users most used
    * values from localStorage or profile settings.
    */
-  @State() fontSize: number = 10;
-  @State() fontFamily: string = 'arial';
+  @State() fontSize: number = DEFAULT_FONT_SIZE;
+  @State() fontFamily: string = DEFAULT_FONT_NAME;
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
+  @State() isMutating: boolean = false;
   @State() selectedDataItems: LSApiElement[] = [];
   @State() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
@@ -250,13 +250,23 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token && this.adapter)
-      event.detail.forEach(me =>
+    if (this.token && this.adapter) {
+      this.isMutating = true;
+      const promises = event.detail.map(me =>
         this.adapter
           .handleEvent(me, this.token)
-          .then(result => matchData.bind(this)(result))
+          .then(result => {
+            if (result === 'invalid') return;
+            matchData.bind(this)(result);
+          })
           .then(() => this.syncChange(me)),
       );
+      Promise.all(promises).finally(() => {
+        requestAnimationFrame(() => {
+          this.isMutating = false;
+        });
+      });
+    }
   }
 
   @Listen('fieldTypeSelected')
@@ -314,10 +324,10 @@ export class LsDocumentViewer {
   @Listen('selectFieldForPlacement')
   selectFieldForPlacement(event: CustomEvent<{ signerIndex: number; fieldType: string }>) {
     const { signerIndex, fieldType } = event.detail;
-    
+
     // Update the active signer
     this.signer = signerIndex;
-    
+
     console.log('Selecting field for placement:', event.detail);
     // Find and select the matching toolbox field
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
@@ -336,7 +346,7 @@ export class LsDocumentViewer {
         };
       }
     });
-    
+
     // Switch to toolbox view if not already there
     if (this.manager !== 'toolbox') {
       this.manager = 'toolbox';
@@ -653,7 +663,9 @@ export class LsDocumentViewer {
       fields.forEach(fi => this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi));
     }
 
-    this._template.elementConnection.templateElements.forEach(te => {
+    const elements = [...this._template.elementConnection.templateElements];
+    this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: [] } };
+    elements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });
   }
@@ -726,9 +738,7 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
-  componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
-  }
+  componentDidLoad() {}
 
   handleManagerChange(manager: string) {
     this.manager = manager as any;
@@ -753,7 +763,9 @@ export class LsDocumentViewer {
         <>
           {this.isLoading && (
             <>
-              <ls-page-loader />
+              <div class={'ls-dv-page-loader'}>
+                <ls-loading-logo size={200} colour="var(--primary-60)" />
+              </div>
               <div class={'ls-dv-custom-loader-slot'}>
                 <slot name="custom-loader"></slot>
               </div>
@@ -763,7 +775,7 @@ export class LsDocumentViewer {
           {this.error && (
             <div class="ls-dv-error-state">
               <div class="ls-dv-error-card">
-                <ls-icon name="exclamation-circle" size="2rem" style={{ color: 'var(--red-60, #dc2626)' }} />
+                <ls-icon name="exclamation-circle-icon" size={32} style={{ color: 'var(--red-60, #dc2626)' }} />
                 <p class="ls-dv-error-title">{dvI18n.t('viewer.autherror')}</p>
                 <p class="ls-dv-error-message">{this.error}</p>
               </div>
@@ -806,6 +818,7 @@ export class LsDocumentViewer {
               fieldTypeSelected={this.fieldTypeSelected}
               displayTable={this.displayTable}
               selectedDataItems={this.selectedDataItems}
+              busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
                 this.selected = [];
@@ -826,7 +839,7 @@ export class LsDocumentViewer {
             </div>
           </form>
         </>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

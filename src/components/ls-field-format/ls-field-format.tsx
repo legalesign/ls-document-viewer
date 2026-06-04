@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Host, Prop, h, Element, Event, Watch } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-format',
@@ -40,7 +39,6 @@ export class LsFieldFormat {
       var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
       if (selFontSize) selFontSize.value = this.allElementsSame()?.fontSize.toString();
     }
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   // Send one or more mutations up the chain
@@ -57,7 +55,6 @@ export class LsFieldFormat {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   allElementsSame = () => {
@@ -74,8 +71,8 @@ export class LsFieldFormat {
       <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
         {this.dataItem && this.dataItem.length > 1 && (
           <div class={'ls-dv-field-format-bar'}>
-            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontfamily')}>
-              <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
+            <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontfamily')}>
+              <ls-icon id="selectLeadingIcon" name="typeface-icon"></ls-icon>
               <select
                 id="ls-toolbar-font-select"
                 onChange={input => {
@@ -92,10 +89,10 @@ export class LsFieldFormat {
                 <option value="helvetica">Helvetica</option>
                 <option value="verdana">Verdana</option>
               </select>
-              <ls-icon id="selectorIcon" name="selector"></ls-icon>
+              <ls-icon id="selectorIcon" name="selector-icon"></ls-icon>
             </div>
-            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontsize')}>
-              <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
+            <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontsize')}>
+              <ls-icon id="selectLeadingIcon" name="text-size-icon"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
                 type='number'
@@ -113,34 +110,34 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextleft')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextleft')}
               >
-                <ls-icon name="menu-alt-2"></ls-icon>
+                <ls-icon name="menu-alt-2-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextcenter')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextcenter')}
               >
-                <ls-icon name="menu-alt-5"></ls-icon>
+                <ls-icon name="menu-alt-5-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextright')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextright')}
               >
-                <ls-icon name="menu-alt-3"></ls-icon>
+                <ls-icon name="menu-alt-3-icon"></ls-icon>
               </button>
             </div>
           </div>
         )}
         {this.dataItem && this.dataItem.length === 1 && (
           <div class={'ls-dv-field-format-bar'}>
-            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontfamily')}>
-              <ls-icon id="selectorIcon" name="selector"></ls-icon>
-              <ls-icon id="selectLeadingIcon" name="typeface"></ls-icon>
+            <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontfamily')}>
+              <ls-icon id="selectorIcon" name="selector-icon"></ls-icon>
+              <ls-icon id="selectLeadingIcon" name="typeface-icon"></ls-icon>
               <select
                 id="ls-toolbar-font-select"
                 onChange={input => {
@@ -155,8 +152,8 @@ export class LsFieldFormat {
                 <option value="verdana">Verdana</option>
               </select>
             </div>
-            <div class="ls-dv-input-wrapper" data-tooltip={dvI18n.t('format.fontsize')}>
-              <ls-icon id="selectLeadingIcon" name="typesize"></ls-icon>
+            <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontsize')}>
+              <ls-icon id="selectLeadingIcon" name="text-size-icon"></ls-icon>
               <input
                 id="ls-toolbar-font-size"
                 type="number"
@@ -175,25 +172,25 @@ export class LsFieldFormat {
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextleft')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextleft')}
               >
-                <ls-icon name="menu-alt-2"></ls-icon>
+                <ls-icon name="menu-alt-2-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextcenter')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextcenter')}
               >
-                <ls-icon name="menu-alt-5"></ls-icon>
+                <ls-icon name="menu-alt-5-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
-                data-tooltip={dvI18n.t('format.aligntextright')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.aligntextright')}
               >
-                <ls-icon name="menu-alt-3"></ls-icon>
+                <ls-icon name="menu-alt-3-icon"></ls-icon>
               </button>
             </div>
 
@@ -208,7 +205,7 @@ export class LsFieldFormat {
             </select> */}
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }
