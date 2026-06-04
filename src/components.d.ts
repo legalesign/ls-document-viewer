@@ -401,7 +401,7 @@ export namespace Components {
     interface LsRecipientCard {
         "activeRecipient": number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected": IToolboxField;
         /**
@@ -1666,7 +1666,7 @@ declare namespace LocalJSX {
     interface LsRecipientCard {
         "activeRecipient"?: number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected"?: IToolboxField;
         /**
