@@ -660,7 +660,9 @@ export class LsDocumentViewer {
       fields.forEach(fi => this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi));
     }
 
-    this._template.elementConnection.templateElements.forEach(te => {
+    const elements = [...this._template.elementConnection.templateElements];
+    this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: [] } };
+    elements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });
   }
