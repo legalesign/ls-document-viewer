@@ -12,6 +12,7 @@ import { attachAllTooltips } from '../../utils/tooltip';
 export class LsFieldDimensions {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
+  @Prop() template: any; // LSApiTemplate
 
   @Event({
     bubbles: true,
@@ -112,10 +113,17 @@ export class LsFieldDimensions {
                     value={this.dataItem?.width}
                     onChange={e => {
                       const di = this.getDataItem();
-                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.width - di.left) {
+                      const newWidth = parseInt((e.target as HTMLInputElement).value);
+                      if (newWidth > di.pageDimensions.width - di.left) {
                         return;
                       }
-                      this.alter({ width: (e.target as HTMLInputElement).value })
+                      // If signature field with fixed scale, auto-adjust height
+                      if (di.formElementType === 'signature' && this.template?.fixSignatureScale) {
+                        const newHeight = Math.round(newWidth / 3.8);
+                        this.alter({ width: newWidth, height: newHeight });
+                      } else {
+                        this.alter({ width: newWidth });
+                      }
                     }}
                   />
                 </div>
@@ -129,11 +137,17 @@ export class LsFieldDimensions {
                     value={this.dataItem?.height}
                     onChange={e => {
                       const di = this.getDataItem();
-                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.height - di.top) {
+                      const newHeight = parseInt((e.target as HTMLInputElement).value);
+                      if (newHeight > di.pageDimensions.height - di.top) {
                         return;
                       }
-
-                      this.alter({ height: (e.target as HTMLInputElement).value })
+                      // If signature field with fixed scale, auto-adjust width
+                      if (di.formElementType === 'signature' && this.template?.fixSignatureScale) {
+                        const newWidth = Math.round(newHeight * 3.8);
+                        this.alter({ height: newHeight, width: newWidth });
+                      } else {
+                        this.alter({ height: newHeight });
+                      }
                     }}
                   />
                 </div>

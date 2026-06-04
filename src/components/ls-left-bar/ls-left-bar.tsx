@@ -100,7 +100,7 @@ export class LsLeftBar {
             <ls-icon name="x" size="1.25rem" />
           </button>
         </div>
-        <ls-field-properties id="my-field-panel" dataItem={this.selectedDataItems}></ls-field-properties>
+        <ls-field-properties id="my-field-panel" dataItem={this.selectedDataItems} template={this.template}></ls-field-properties>
       </div>
     );
   }

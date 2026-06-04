@@ -8,12 +8,13 @@ import { LSApiElement } from '../../types/LSApiElement';
 })
 export class LsFieldProperties {
   @Prop() dataItem: LSApiElement[];
+  @Prop() template: any; // LSApiTemplate
 
   renderFields() {
     if (this.dataItem && this.dataItem?.length === 1) {
       switch (this.dataItem[0].formElementType) {
         case 'signature':
-          return <ls-field-properties-signature dataItem={this.dataItem[0]} />
+          return <ls-field-properties-signature dataItem={this.dataItem[0]} template={this.template} />
         case 'date':
           return <ls-field-properties-date dataItem={this.dataItem[0]} />
         case 'signing date':
