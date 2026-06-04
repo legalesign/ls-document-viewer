@@ -407,12 +407,20 @@ export namespace Components {
         /**
           * @default false
          */
+        "active": boolean;
+        /**
+          * @default false
+         */
         "editable": boolean;
         "index": number;
         "signer": LSApiRole;
         "template": LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner": number;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -432,6 +440,10 @@ export namespace Components {
           * The id of the currently selected role. {string}
          */
         "selected": string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer": number;
     }
     interface LsPropsSection {
         /**
@@ -564,6 +576,7 @@ export namespace Components {
          */
         "groupInfo": object;
         "mode": string;
+        "signer": number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -1192,7 +1205,8 @@ declare global {
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "opened": LSApiRole;
-        "addParticipant": { type: LSApiRoleType; parent?: string | null };
+        "roleChange": number;
+        "addParticipant": { type: LSApiRoleType; parent?: string | null; signerIndex?: number };
     }
     interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1407,6 +1421,7 @@ declare global {
     };
     interface HTMLLsValidationTagElementEventMap {
         "changeSigner": number;
+        "selectFieldForPlacement": { signerIndex: number; fieldType: string };
     }
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1878,15 +1893,24 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
+        "active"?: boolean;
+        /**
+          * @default false
+         */
         "editable"?: boolean;
         "index"?: number;
-        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
+        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) => void;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
+        "onRoleChange"?: (event: LsParticipantCardCustomEvent<number>) => void;
         "signer"?: LSApiRole;
         "template"?: LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner"?: number;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -1911,6 +1935,10 @@ declare namespace LocalJSX {
           * The id of the currently selected role. {string}
          */
         "selected"?: string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer"?: number;
     }
     interface LsPropsSection {
         /**
@@ -2050,6 +2078,7 @@ declare namespace LocalJSX {
         "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "signer"?: number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -2137,6 +2166,7 @@ declare namespace LocalJSX {
          */
         "isExpanded"?: boolean;
         "onChangeSigner"?: (event: LsValidationTagCustomEvent<number>) => void;
+        "onSelectFieldForPlacement"?: (event: LsValidationTagCustomEvent<{ signerIndex: number; fieldType: string }>) => void;
         /**
           * @default true
          */

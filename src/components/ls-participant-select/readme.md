@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                     | Type          | Default     |
-| ---------- | ---------- | ----------------------------------------------- | ------------- | ----------- |
-| `roles`    | --         | The current template roles. {LSApiRole}         | `LSApiRole[]` | `[]`        |
-| `selected` | `selected` | The id of the currently selected role. {string} | `string`      | `undefined` |
+| Property   | Attribute  | Description                                                         | Type          | Default     |
+| ---------- | ---------- | ------------------------------------------------------------------- | ------------- | ----------- |
+| `roles`    | --         | The current template roles. {LSApiRole}                             | `LSApiRole[]` | `[]`        |
+| `selected` | `selected` | The id of the currently selected role. {string}                     | `string`      | `undefined` |
+| `signer`   | `signer`   | The currently active signer index (controlled externally). {number} | `number`      | `undefined` |
 
 
 ## Events

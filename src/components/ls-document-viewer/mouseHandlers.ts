@@ -159,7 +159,7 @@ export function mouseMove(event) {
           width = (this.startMouse.height - movedY) * 3.8;
           this.hitField.style.width = width + 'px';
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, height: this.startMouse.height - movedY, width };
+        this.hitField.dataItem = { ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom, width };
         break;
       case 's':
         if (outOfBounds({ ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom })) break;
@@ -170,7 +170,7 @@ export function mouseMove(event) {
           this.hitField.style.width = width + 'px';
         }
 
-        this.hitField.dataItem = { ...this.hitField.dataItem, height: this.startMouse.height + movedY, width };
+        this.hitField.dataItem = { ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom, width };
         break;
       case 'e':
         if (outOfBounds({ ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom })) break;
@@ -192,7 +192,7 @@ export function mouseMove(event) {
           height = Math.round((this.startMouse.width - movedX) / 3.8);
           this.hitField.style.height = height + 'px';
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX, height };
+        this.hitField.dataItem = { ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom, height };
         break;
       case 'se': {
         const newWidth = (this.startMouse.width + movedX) / this.zoom;
@@ -213,7 +213,7 @@ export function mouseMove(event) {
         this.hitField.style.top = this.startMouse.top + movedY + 'px';
         this.hitField.style.width = this.startMouse.width - movedX + 'px';
         this.hitField.style.height = this.startMouse.height - movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, top: this.startMouse.top + movedY, width: this.startMouse.width - movedX, height: this.startMouse.height - movedY };
+        this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, top: newTop, width: newWidth, height: newHeight };
         break;
       }
       case 'ne': {
@@ -224,7 +224,7 @@ export function mouseMove(event) {
         this.hitField.style.width = this.startMouse.width + movedX + 'px';
         this.hitField.style.top = this.startMouse.top + movedY + 'px';
         this.hitField.style.height = this.startMouse.height - movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, top: this.startMouse.top + movedY, width: newWidth, height: this.startMouse.height - movedY };
+        this.hitField.dataItem = { ...this.hitField.dataItem, top: newTop, width: newWidth, height: newHeight };
         break;
       }
       case 'sw': {
@@ -235,7 +235,7 @@ export function mouseMove(event) {
         this.hitField.style.left = this.startMouse.left + movedX + 'px';
         this.hitField.style.width = this.startMouse.width - movedX + 'px';
         this.hitField.style.height = this.startMouse.height + movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: this.startMouse.left + movedX, width: this.startMouse.width - movedX, height: this.startMouse.height + movedY };
+        this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, width: newWidth, height: newHeight };
         break;
       }
     }

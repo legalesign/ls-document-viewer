@@ -17,6 +17,7 @@ export class LsParticipantCard {
   @Prop() index: number;
   @Prop({ mutable: true }) editable: boolean = false;
   @Prop() template: LSApiTemplate;
+  @Prop() active: boolean = false;
 
   @Event({
     bubbles: true,
@@ -31,6 +32,12 @@ export class LsParticipantCard {
     composed: true,
   })
   opened: EventEmitter<LSApiRole>;
+
+  @Event({
+    bubbles: true,
+    composed: true,
+  })
+  roleChange: EventEmitter<number>;
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
@@ -71,12 +78,18 @@ export class LsParticipantCard {
     bubbles: true,
     composed: true,
   })
-  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null }>;
+  addParticipant: EventEmitter<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
   @State() swapUpBtn: HTMLElement;
   @State() swapDownBtn: HTMLElement;
   @State() editBtn: HTMLElement;
   @State() deleteParticipantBtn: HTMLElement;
+  @State() addingWitness: boolean = false;
+
+  @Watch('template')
+  templateChanged() {
+    this.addingWitness = false;
+  }
 
   componentDidLoad() {
     attachAllTooltips(this.component.shadowRoot);
@@ -86,6 +99,28 @@ export class LsParticipantCard {
     const participantFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.signer.signerIndex) || [];
     const child = this.template.roles.find(r => r.signerParent === this.signer.id);
 
+    // Find previous and next non-witness roles for swapping
+    const getPreviousNonWitness = () => {
+      for (let i = this.index - 1; i >= 0; i--) {
+        if (this.template.roles[i].roleType !== 'WITNESS') {
+          return this.template.roles[i];
+        }
+      }
+      return null;
+    };
+
+    const getNextNonWitness = () => {
+      for (let i = this.index + 1; i < this.template.roles.length; i++) {
+        if (this.template.roles[i].roleType !== 'WITNESS') {
+          return this.template.roles[i];
+        }
+      }
+      return null;
+    };
+
+    const previousRole = getPreviousNonWitness();
+    const nextRole = getNextNonWitness();
+
     const formatRoleName = (signer: LSApiRole) => {
       if (signer.roleType == 'WITNESS') return dvI18n.t('participants.participantwitness', { index: signer.signerIndex % 100 });
       return dvI18n.t('participants.participant', { index: signer.signerIndex });
@@ -94,14 +129,16 @@ export class LsParticipantCard {
     return (
       <Host>
         <div
-          class={'ls-dv-participant-card' + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
+          class={'ls-dv-participant-card' + (this.active ? ' ls-dv-participant-card-active' : '') + (child ? ' ls-dv-top-card' : this.signer?.signerParent ? ' ls-dv-bottom-card' : ' ls-dv-full-card')}
           style={{
             background: defaultRolePalette[this.signer?.signerIndex % 100].s10,
             border: `1px solid ${defaultRolePalette[this.signer?.signerIndex % 100].s60}`,
             marginTop: this.signer.roleType === 'WITNESS' ? '-0.813rem' : '0',
+            '--active-outline-colour': defaultRolePalette[this.signer?.signerIndex % 100].s60,
           }}
           onMouseEnter={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.remove('ls-dv-hidden')}
           onMouseLeave={e => (e.currentTarget as HTMLElement).querySelector('.ls-dv-button-set')?.classList.add('ls-dv-hidden')}
+          onClick={() => this.roleChange.emit(this.signer.signerIndex)}
           onDblClick={() => {
             this.editable = true;
           }}
@@ -119,11 +156,11 @@ export class LsParticipantCard {
                 {this.signer?.ordinal || ''}
               </div>
               <div class={'ls-dv-button-set ls-dv-hidden'}>
-                {this.index > 0 && this.signer.roleType !== 'WITNESS' && (
+                {previousRole && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="ls-dv-inner-button"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index - 1]);
+                      this.swapHandler(this.signer, previousRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
@@ -134,11 +171,11 @@ export class LsParticipantCard {
                     <ls-icon name="arrow-up" size="1.125rem" />
                   </div>
                 )}
-                {this.signer.signerIndex !== this.template.roles.length && this.signer.roleType !== 'WITNESS' && (
+                {nextRole && this.signer.roleType !== 'WITNESS' && (
                   <div
                     class="ls-dv-inner-button"
                     onClick={() => {
-                      this.swapHandler(this.signer, this.template.roles[this.index + 1]);
+                      this.swapHandler(this.signer, nextRole);
                     }}
                     style={{
                       '--default-button-colour': defaultRolePalette[this.signer?.signerIndex % 100].s40,
@@ -213,7 +250,7 @@ export class LsParticipantCard {
                   }}
                 />
                 {this.signer?.roleType === 'SIGNER' && !child ? (
-                  <button class={'ls-dv-tertiary'} onClick={() => this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id })}>
+                  <button class={'ls-dv-tertiary'} disabled={this.addingWitness} onClick={() => { this.addingWitness = true; this.addParticipant.emit({ type: 'WITNESS', parent: this.signer.id, signerIndex: this.signer.signerIndex + 100 }); }}>
                     <ls-icon name="plus" style={{ marginRight: '0.25rem' }} />
                     {dvI18n.t('participants.addwitness')}
                   </button>

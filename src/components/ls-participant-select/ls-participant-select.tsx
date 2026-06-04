@@ -14,12 +14,31 @@ export class LsParticipantSelect {
  * {string}
  */
   @Prop({ mutable: true}) selected: string;
+
+  /**
+   * The currently active signer index (controlled externally).
+   * {number}
+   */
+  @Prop() signer: number;
   
   /**
    * The currently selected role.
    * {number}
    */
   @State() selectedRole: { signerIndex: number; name: string; roleType?: string; default: boolean } = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: true };
+
+  @Watch('signer')
+  handleSignerChange(newSigner: number) {
+    // Only update if the current selection doesn't match the new signer prop
+    if (this.selectedRole.signerIndex !== newSigner) {
+      if (newSigner === 0) {
+        this.selectedRole = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false };
+      } else {
+        const role = this.roles?.find(r => r.signerIndex === newSigner);
+        if (role) this.selectedRole = { ...role, default: false };
+      }
+    }
+  }
 
   @Watch('roles')
   handleRoleLoad() {
