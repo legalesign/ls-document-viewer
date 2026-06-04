@@ -2,9 +2,10 @@ import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from 
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
-import 'pdfjs-dist/web/pdf_viewer';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
+import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
@@ -16,7 +17,6 @@ import { getTemplate } from './adapter/templateActions';
 import { getGroupData } from './adapter/groupActions';
 import { ValidationError } from '../../types/ValidationError';
 import { validate } from './validator';
-import { attachAllTooltips } from '../../utils/tooltip';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { generateRoles } from './generateRoles';
 
@@ -31,7 +31,7 @@ GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.
 
 @Component({
   tag: 'ls-document-viewer',
-  styleUrl: 'ls-document-viewer.css',
+  styleUrl: 'ls-document-viewer.scss',
   shadow: true,
 })
 export class LsDocumentViewer {
@@ -103,6 +103,19 @@ export class LsDocumentViewer {
   @Prop() recipients: string;
   @Prop() _recipients: any[];
 
+  /**
+   * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de').
+   * {string}
+   */
+  @Prop() language: string;
+
+  @Watch('language')
+  languageChanged(newLang: string) {
+    if (newLang) {
+      dvI18n.changeLanguage(newLang);
+    }
+  }
+
   @Prop({ mutable: true }) zoom: number = 1.0; // hardcoded to scale the document to full canvas size
   @Prop({ mutable: true }) pageNum: number = 1;
   @Prop({ mutable: true }) pageCount: number = 1;
@@ -112,16 +125,18 @@ export class LsDocumentViewer {
   @State() _template: LSApiTemplate;
   @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
+  @State() error: string | null = null;
 
   /**
    * The following state properties define the defaults for field
    * creation. They should be overridden by the users most used
    * values from localStorage or profile settings.
    */
-  @State() fontSize: number = 10;
-  @State() fontFamily: string = 'arial';
+  @State() fontSize: number = DEFAULT_FONT_SIZE;
+  @State() fontFamily: string = DEFAULT_FONT_NAME;
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
+  @State() isMutating: boolean = false;
   @State() selectedDataItems: LSApiElement[] = [];
   @State() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
@@ -235,13 +250,23 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    if (this.token && this.adapter)
-      event.detail.forEach(me =>
+    if (this.token && this.adapter) {
+      this.isMutating = true;
+      const promises = event.detail.map(me =>
         this.adapter
           .handleEvent(me, this.token)
-          .then(result => matchData.bind(this)(result))
+          .then(result => {
+            if (result === 'invalid') return;
+            matchData.bind(this)(result);
+          })
           .then(() => this.syncChange(me)),
       );
+      Promise.all(promises).finally(() => {
+        requestAnimationFrame(() => {
+          this.isMutating = false;
+        });
+      });
+    }
   }
 
   @Listen('fieldTypeSelected')
@@ -292,6 +317,39 @@ export class LsDocumentViewer {
   updateSigner(event: CustomEvent<number>) {
     if (event.detail) {
       this.signer = event.detail;
+    }
+  }
+
+  // Handle field selection from validation tag for immediate placement
+  @Listen('selectFieldForPlacement')
+  selectFieldForPlacement(event: CustomEvent<{ signerIndex: number; fieldType: string }>) {
+    const { signerIndex, fieldType } = event.detail;
+
+    // Update the active signer
+    this.signer = signerIndex;
+
+    console.log('Selecting field for placement:', event.detail);
+    // Find and select the matching toolbox field
+    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
+    fields.forEach(element => {
+      const isMatch = element.formElementType === fieldType;
+      element.isSelected = isMatch;
+      if (isMatch) {
+        // Trigger the field selection event
+        this.fieldTypeSelected = {
+          label: element.label,
+          formElementType: element.formElementType,
+          elementType: element.elementType,
+          validation: element.validation,
+          defaultHeight: element.defaultHeight,
+          defaultWidth: element.defaultWidth,
+        };
+      }
+    });
+
+    // Switch to toolbox view if not already there
+    if (this.manager !== 'toolbox') {
+      this.manager = 'toolbox';
     }
   }
 
@@ -605,7 +663,9 @@ export class LsDocumentViewer {
       fields.forEach(fi => this.component.shadowRoot.getElementById('ls-document-frame').removeChild(fi));
     }
 
-    this._template.elementConnection.templateElements.forEach(te => {
+    const elements = [...this._template.elementConnection.templateElements];
+    this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: [] } };
+    elements.forEach(te => {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), this.prepareElement(te));
     });
   }
@@ -666,16 +726,19 @@ export class LsDocumentViewer {
       this.isLoading = false;
     } catch (e) {
       console.error('Your access token is invalid.', e);
+      this.error = 'Unable to load template. Please check your access token is valid and try again.';
+      this.isLoading = false;
     }
   }
 
   componentWillLoad() {
+    if (this.language) {
+      dvI18n.changeLanguage(this.language);
+    }
     if (this.token && !this._template) this.load();
   }
 
-  componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
-  }
+  componentDidLoad() {}
 
   handleManagerChange(manager: string) {
     this.manager = manager as any;
@@ -700,12 +763,23 @@ export class LsDocumentViewer {
         <>
           {this.isLoading && (
             <>
-              <ls-page-loader />
+              <div class={'ls-dv-page-loader'}>
+                <ls-loading-logo size={200} colour="var(--primary-60)" />
+              </div>
               <div class={'ls-dv-custom-loader-slot'}>
                 <slot name="custom-loader"></slot>
               </div>
               {this.mode === 'compose' && <ls-compose-loader />}
             </>
+          )}
+          {this.error && (
+            <div class="ls-dv-error-state">
+              <div class="ls-dv-error-card">
+                <ls-icon name="exclamation-circle-icon" size={32} style={{ color: 'var(--red-60, #dc2626)' }} />
+                <p class="ls-dv-error-title">{dvI18n.t('viewer.autherror')}</p>
+                <p class="ls-dv-error-message">{this.error}</p>
+              </div>
+            </div>
           )}
           <div class="ls-dv-page-header">
             <div class={'ls-dv-left-slot-wrapper'}>
@@ -716,7 +790,7 @@ export class LsDocumentViewer {
             </div>
             {this.mode === 'editor' && (
               <div>
-                <span class="ls-dv-header-text-1">Template Creation</span>
+                <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
                 <div class={'ls-dv-validation-tag-wrapper'}>
@@ -744,6 +818,7 @@ export class LsDocumentViewer {
               fieldTypeSelected={this.fieldTypeSelected}
               displayTable={this.displayTable}
               selectedDataItems={this.selectedDataItems}
+              busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
                 this.selected = [];
@@ -751,7 +826,7 @@ export class LsDocumentViewer {
             >
               <slot name="recipient-panel" slot="recipient-panel" />
             </ls-left-bar>
-            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} />
+            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} />
             <div id="ls-mid-area">
               <div class={'ls-dv-document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
@@ -764,7 +839,7 @@ export class LsDocumentViewer {
             </div>
           </form>
         </>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

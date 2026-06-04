@@ -39,7 +39,7 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 
 ### Graph
 ```mermaid

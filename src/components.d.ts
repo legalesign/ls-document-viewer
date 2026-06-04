@@ -9,22 +9,22 @@ import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement } from "./types/LSApiElement";
 import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
-import { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+import { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
-import { Icon } from "./types/Icon";
 import { ValidationError } from "./types/ValidationError";
 import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { LSApiRecipient } from "./types/LSApiRecipient";
+import { Icon as Icon1 } from "./types/Icon";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
 export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
-export { Icon as Icon1, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
+export { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
-export { Icon } from "./types/Icon";
 export { ValidationError } from "./types/ValidationError";
 export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { LSApiRecipient } from "./types/LSApiRecipient";
+export { Icon as Icon1 } from "./types/Icon";
 export namespace Components {
     interface LsComposeLoader {
     }
@@ -62,6 +62,10 @@ export namespace Components {
          */
         "filtertoolbox"?: string;
         "groupInfo": any;
+        /**
+          * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
+         */
+        "language": string;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -278,37 +282,6 @@ export namespace Components {
          */
         "fieldType": string;
     }
-    interface LsFormfield {
-        "aria"?: string;
-        /**
-          * @default 'text'
-         */
-        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
-        "buttonClick"?: () => void;
-        "buttonIcon"?: Icon;
-        "count": boolean;
-        "countMax"?: number;
-        "descriptionText"?: string;
-        "dirty": boolean;
-        "disabled": boolean;
-        "errorText"?: string;
-        /**
-          * @default 'none'
-         */
-        "extraLabel": 'optional' | 'required' | 'none';
-        "fieldIcon"?: Icon;
-        "fieldId": string;
-        "hoverTooltipText"?: string;
-        "infoTooltipText"?: string;
-        "inputRef"?: string;
-        "label"?: string;
-        "labelIcon"?: Icon;
-        "name": string;
-        "placeholder"?: string;
-        "required": boolean;
-        "valid": boolean;
-        "value"?: string | number;
-    }
     interface LsHelperBar {
         /**
           * @default false
@@ -319,24 +292,8 @@ export namespace Components {
          */
         "showShortcuts": boolean;
     }
-    interface LsIcon {
-        /**
-          * @default "#000000"
-         */
-        "color"?: string;
-        "customStyle"?: { [key: string]: string };
-        "name"?: Icon;
-        /**
-          * @default "1.25rem"
-         */
-        "size"?: string;
-        /**
-          * @default false
-         */
-        "solid"?: boolean;
-    }
     interface LsInputWrapper {
-        "leadingIcon": Icon1;
+        "leadingIcon": Icon;
         /**
           * @default false
          */
@@ -345,6 +302,10 @@ export namespace Components {
     interface LsKeyboardShortcuts {
     }
     interface LsLeftBar {
+        /**
+          * @default false
+         */
+        "busy": boolean;
         /**
           * @default false
          */
@@ -375,31 +336,15 @@ export namespace Components {
          */
         "validationErrors": ValidationError[];
     }
-    interface LsNumberInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax": number;
-        "dirty": boolean;
-        "disabled": boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name": string;
-        "placeholder"?: string;
-        "required": boolean;
-        /**
-          * @default 'ls'
-         */
-        "type": 'basic' | 'ls';
-        "valid": boolean;
-        /**
-          * @default 0
-         */
-        "value": number;
-    }
-    interface LsPageLoader {
-    }
     interface LsParticipantCard {
+        /**
+          * @default false
+         */
+        "active": boolean;
+        /**
+          * @default false
+         */
+        "busy": boolean;
         /**
           * @default false
          */
@@ -409,6 +354,15 @@ export namespace Components {
         "template": LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner": number;
+        /**
+          * Whether a mutation is currently in progress. {boolean}
+          * @default false
+         */
+        "busy": boolean;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -428,6 +382,10 @@ export namespace Components {
           * The id of the currently selected role. {string}
          */
         "selected": string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer": number;
     }
     interface LsPropsSection {
         /**
@@ -437,28 +395,10 @@ export namespace Components {
         "sectionDescription"?: string;
         "sectionTitle": string;
     }
-    interface LsRadioInput {
-        /**
-          * @default false
-         */
-        "checked": boolean;
-        "customStyle"?: { [key: string]: string };
-        /**
-          * @default false
-         */
-        "disabled"?: boolean;
-        "icon"?: Icon;
-        "label": string;
-        /**
-          * @default 'name'
-         */
-        "name"?: string;
-        "radioId": string;
-    }
     interface LsRecipientCard {
         "activeRecipient": number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: 27,     defaultWidth: 120,   }
+          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected": IToolboxField;
         /**
@@ -478,20 +418,6 @@ export namespace Components {
     }
     interface LsRecipientManager {
     }
-    interface LsSelectInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "dirty": boolean;
-        "disabled": boolean;
-        "displayOnly": boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name": string;
-        "required": boolean;
-        "valid": boolean;
-        "value": string;
-    }
     interface LsStatusbar {
         /**
           * The parent editor control. {LsDocumentViewer}
@@ -503,41 +429,6 @@ export namespace Components {
           * The zoom or scale level 100 === 100%. {number}
          */
         "zoom": number;
-    }
-    interface LsTextInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax": number;
-        "dirty": boolean;
-        "disabled": boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name": string;
-        "placeholder"?: string;
-        "required": boolean;
-        /**
-          * @default 'default'
-         */
-        "type": 'default' | 'password' | 'displayonly';
-        "valid": boolean;
-        "value": string;
-    }
-    interface LsTextareaInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax": number;
-        "dirty": boolean;
-        "disabled": boolean;
-        "displayOnly": boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name": string;
-        "placeholder"?: string;
-        "required": boolean;
-        "valid": boolean;
-        "value"?: string;
     }
     interface LsTitleInput {
         "template": LSApiTemplate;
@@ -560,6 +451,7 @@ export namespace Components {
          */
         "groupInfo": object;
         "mode": string;
+        "signer": number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -586,7 +478,7 @@ export namespace Components {
         /**
           * The icon to display for this field type.
          */
-        "icon": Icon;
+        "icon": Icon1;
         /**
           * @default false
          */
@@ -612,20 +504,6 @@ export namespace Components {
           * @default 0
          */
         "validation": number;
-    }
-    interface LsTooltip {
-        "hide": () => Promise<void>;
-        /**
-          * @default 'top'
-         */
-        "placement": 'top' | 'bottom' | 'left' | 'right';
-        "referenceElement": HTMLElement;
-        /**
-          * @default false
-         */
-        "tooltipLocked": boolean;
-        "tooltipText": string;
-        "tooltipTitle": string;
     }
     interface LsValidationManager {
         /**
@@ -712,10 +590,6 @@ export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
 }
-export interface LsFormfieldCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLLsFormfieldElement;
-}
 export interface LsLeftBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsLeftBarElement;
@@ -735,10 +609,6 @@ export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
 export interface LsRecipientCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsRecipientCardElement;
-}
-export interface LsTextInputCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLLsTextInputElement;
 }
 export interface LsTitleInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1114,34 +984,11 @@ declare global {
         prototype: HTMLLsFieldTypeDisplayElement;
         new (): HTMLLsFieldTypeDisplayElement;
     };
-    interface HTMLLsFormfieldElementEventMap {
-        "valueChange": string;
-    }
-    interface HTMLLsFormfieldElement extends Components.LsFormfield, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLLsFormfieldElementEventMap>(type: K, listener: (this: HTMLLsFormfieldElement, ev: LsFormfieldCustomEvent<HTMLLsFormfieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLLsFormfieldElementEventMap>(type: K, listener: (this: HTMLLsFormfieldElement, ev: LsFormfieldCustomEvent<HTMLLsFormfieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLLsFormfieldElement: {
-        prototype: HTMLLsFormfieldElement;
-        new (): HTMLLsFormfieldElement;
-    };
     interface HTMLLsHelperBarElement extends Components.LsHelperBar, HTMLStencilElement {
     }
     var HTMLLsHelperBarElement: {
         prototype: HTMLLsHelperBarElement;
         new (): HTMLLsHelperBarElement;
-    };
-    interface HTMLLsIconElement extends Components.LsIcon, HTMLStencilElement {
-    }
-    var HTMLLsIconElement: {
-        prototype: HTMLLsIconElement;
-        new (): HTMLLsIconElement;
     };
     interface HTMLLsInputWrapperElement extends Components.LsInputWrapper, HTMLStencilElement {
     }
@@ -1173,22 +1020,11 @@ declare global {
         prototype: HTMLLsLeftBarElement;
         new (): HTMLLsLeftBarElement;
     };
-    interface HTMLLsNumberInputElement extends Components.LsNumberInput, HTMLStencilElement {
-    }
-    var HTMLLsNumberInputElement: {
-        prototype: HTMLLsNumberInputElement;
-        new (): HTMLLsNumberInputElement;
-    };
-    interface HTMLLsPageLoaderElement extends Components.LsPageLoader, HTMLStencilElement {
-    }
-    var HTMLLsPageLoaderElement: {
-        prototype: HTMLLsPageLoaderElement;
-        new (): HTMLLsPageLoaderElement;
-    };
     interface HTMLLsParticipantCardElementEventMap {
         "mutate": LSMutateEvent[];
         "opened": LSApiRole;
-        "addParticipant": { type: LSApiRoleType; parent?: string | null };
+        "roleChange": number;
+        "addParticipant": { type: LSApiRoleType; parent?: string | null; signerIndex?: number };
     }
     interface HTMLLsParticipantCardElement extends Components.LsParticipantCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantCardElementEventMap>(type: K, listener: (this: HTMLLsParticipantCardElement, ev: LsParticipantCardCustomEvent<HTMLLsParticipantCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1247,12 +1083,6 @@ declare global {
         prototype: HTMLLsPropsSectionElement;
         new (): HTMLLsPropsSectionElement;
     };
-    interface HTMLLsRadioInputElement extends Components.LsRadioInput, HTMLStencilElement {
-    }
-    var HTMLLsRadioInputElement: {
-        prototype: HTMLLsRadioInputElement;
-        new (): HTMLLsRadioInputElement;
-    };
     interface HTMLLsRecipientCardElementEventMap {
         "changeSigner": number;
         "fieldSelected": IToolboxField;
@@ -1277,40 +1107,11 @@ declare global {
         prototype: HTMLLsRecipientManagerElement;
         new (): HTMLLsRecipientManagerElement;
     };
-    interface HTMLLsSelectInputElement extends Components.LsSelectInput, HTMLStencilElement {
-    }
-    var HTMLLsSelectInputElement: {
-        prototype: HTMLLsSelectInputElement;
-        new (): HTMLLsSelectInputElement;
-    };
     interface HTMLLsStatusbarElement extends Components.LsStatusbar, HTMLStencilElement {
     }
     var HTMLLsStatusbarElement: {
         prototype: HTMLLsStatusbarElement;
         new (): HTMLLsStatusbarElement;
-    };
-    interface HTMLLsTextInputElementEventMap {
-        "valueChange": string;
-    }
-    interface HTMLLsTextInputElement extends Components.LsTextInput, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLLsTextInputElementEventMap>(type: K, listener: (this: HTMLLsTextInputElement, ev: LsTextInputCustomEvent<HTMLLsTextInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLLsTextInputElementEventMap>(type: K, listener: (this: HTMLLsTextInputElement, ev: LsTextInputCustomEvent<HTMLLsTextInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLLsTextInputElement: {
-        prototype: HTMLLsTextInputElement;
-        new (): HTMLLsTextInputElement;
-    };
-    interface HTMLLsTextareaInputElement extends Components.LsTextareaInput, HTMLStencilElement {
-    }
-    var HTMLLsTextareaInputElement: {
-        prototype: HTMLLsTextareaInputElement;
-        new (): HTMLLsTextareaInputElement;
     };
     interface HTMLLsTitleInputElementEventMap {
         "mutate": LSMutateEvent[];
@@ -1389,12 +1190,6 @@ declare global {
         prototype: HTMLLsToolboxFieldElement;
         new (): HTMLLsToolboxFieldElement;
     };
-    interface HTMLLsTooltipElement extends Components.LsTooltip, HTMLStencilElement {
-    }
-    var HTMLLsTooltipElement: {
-        prototype: HTMLLsTooltipElement;
-        new (): HTMLLsTooltipElement;
-    };
     interface HTMLLsValidationManagerElement extends Components.LsValidationManager, HTMLStencilElement {
     }
     var HTMLLsValidationManagerElement: {
@@ -1403,6 +1198,7 @@ declare global {
     };
     interface HTMLLsValidationTagElementEventMap {
         "changeSigner": number;
+        "selectFieldForPlacement": { signerIndex: number; fieldType: string };
     }
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1449,30 +1245,21 @@ declare global {
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
         "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
-        "ls-formfield": HTMLLsFormfieldElement;
         "ls-helper-bar": HTMLLsHelperBarElement;
-        "ls-icon": HTMLLsIconElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
         "ls-left-bar": HTMLLsLeftBarElement;
-        "ls-number-input": HTMLLsNumberInputElement;
-        "ls-page-loader": HTMLLsPageLoaderElement;
         "ls-participant-card": HTMLLsParticipantCardElement;
         "ls-participant-manager": HTMLLsParticipantManagerElement;
         "ls-participant-select": HTMLLsParticipantSelectElement;
         "ls-props-section": HTMLLsPropsSectionElement;
-        "ls-radio-input": HTMLLsRadioInputElement;
         "ls-recipient-card": HTMLLsRecipientCardElement;
         "ls-recipient-manager": HTMLLsRecipientManagerElement;
-        "ls-select-input": HTMLLsSelectInputElement;
         "ls-statusbar": HTMLLsStatusbarElement;
-        "ls-text-input": HTMLLsTextInputElement;
-        "ls-textarea-input": HTMLLsTextareaInputElement;
         "ls-title-input": HTMLLsTitleInputElement;
         "ls-toggle": HTMLLsToggleElement;
         "ls-toolbar": HTMLLsToolbarElement;
         "ls-toolbox-field": HTMLLsToolboxFieldElement;
-        "ls-tooltip": HTMLLsTooltipElement;
         "ls-validation-manager": HTMLLsValidationManagerElement;
         "ls-validation-tag": HTMLLsValidationTagElement;
     }
@@ -1516,6 +1303,10 @@ declare namespace LocalJSX {
          */
         "filtertoolbox"?: string;
         "groupInfo"?: any;
+        /**
+          * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
+         */
+        "language"?: string;
         /**
           * Determines / sets which of the far left 'managers' is active. {'document' | 'toolbox' | 'participant' }
           * @default 'toolbox'
@@ -1742,38 +1533,6 @@ declare namespace LocalJSX {
          */
         "fieldType"?: string;
     }
-    interface LsFormfield {
-        "aria"?: string;
-        /**
-          * @default 'text'
-         */
-        "as"?: 'text' | 'select' | 'radio' | 'textarea' | 'password' | 'number' | 'displayonly';
-        "buttonClick"?: () => void;
-        "buttonIcon"?: Icon;
-        "count"?: boolean;
-        "countMax"?: number;
-        "descriptionText"?: string;
-        "dirty"?: boolean;
-        "disabled"?: boolean;
-        "errorText"?: string;
-        /**
-          * @default 'none'
-         */
-        "extraLabel"?: 'optional' | 'required' | 'none';
-        "fieldIcon"?: Icon;
-        "fieldId"?: string;
-        "hoverTooltipText"?: string;
-        "infoTooltipText"?: string;
-        "inputRef"?: string;
-        "label"?: string;
-        "labelIcon"?: Icon;
-        "name"?: string;
-        "onValueChange"?: (event: LsFormfieldCustomEvent<string>) => void;
-        "placeholder"?: string;
-        "required"?: boolean;
-        "valid"?: boolean;
-        "value"?: string | number;
-    }
     interface LsHelperBar {
         /**
           * @default false
@@ -1784,24 +1543,8 @@ declare namespace LocalJSX {
          */
         "showShortcuts"?: boolean;
     }
-    interface LsIcon {
-        /**
-          * @default "#000000"
-         */
-        "color"?: string;
-        "customStyle"?: { [key: string]: string };
-        "name"?: Icon;
-        /**
-          * @default "1.25rem"
-         */
-        "size"?: string;
-        /**
-          * @default false
-         */
-        "solid"?: boolean;
-    }
     interface LsInputWrapper {
-        "leadingIcon"?: Icon1;
+        "leadingIcon"?: Icon;
         /**
           * @default false
          */
@@ -1810,6 +1553,10 @@ declare namespace LocalJSX {
     interface LsKeyboardShortcuts {
     }
     interface LsLeftBar {
+        /**
+          * @default false
+         */
+        "busy"?: boolean;
         /**
           * @default false
          */
@@ -1842,43 +1589,37 @@ declare namespace LocalJSX {
          */
         "validationErrors"?: ValidationError[];
     }
-    interface LsNumberInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax"?: number;
-        "dirty"?: boolean;
-        "disabled"?: boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name"?: string;
-        "placeholder"?: string;
-        "required"?: boolean;
-        /**
-          * @default 'ls'
-         */
-        "type"?: 'basic' | 'ls';
-        "valid"?: boolean;
-        /**
-          * @default 0
-         */
-        "value"?: number;
-    }
-    interface LsPageLoader {
-    }
     interface LsParticipantCard {
+        /**
+          * @default false
+         */
+        "active"?: boolean;
+        /**
+          * @default false
+         */
+        "busy"?: boolean;
         /**
           * @default false
          */
         "editable"?: boolean;
         "index"?: number;
-        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
+        "onAddParticipant"?: (event: LsParticipantCardCustomEvent<{ type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) => void;
         "onMutate"?: (event: LsParticipantCardCustomEvent<LSMutateEvent[]>) => void;
         "onOpened"?: (event: LsParticipantCardCustomEvent<LSApiRole>) => void;
+        "onRoleChange"?: (event: LsParticipantCardCustomEvent<number>) => void;
         "signer"?: LSApiRole;
         "template"?: LSApiTemplate;
     }
     interface LsParticipantManager {
+        /**
+          * The currently active signer index. {number}
+         */
+        "activeSigner"?: number;
+        /**
+          * Whether a mutation is currently in progress. {boolean}
+          * @default false
+         */
+        "busy"?: boolean;
         /**
           * The base editor. {LSDocumentViewer}
          */
@@ -1903,6 +1644,10 @@ declare namespace LocalJSX {
           * The id of the currently selected role. {string}
          */
         "selected"?: string;
+        /**
+          * The currently active signer index (controlled externally). {number}
+         */
+        "signer"?: number;
     }
     interface LsPropsSection {
         /**
@@ -1912,28 +1657,10 @@ declare namespace LocalJSX {
         "sectionDescription"?: string;
         "sectionTitle"?: string;
     }
-    interface LsRadioInput {
-        /**
-          * @default false
-         */
-        "checked"?: boolean;
-        "customStyle"?: { [key: string]: string };
-        /**
-          * @default false
-         */
-        "disabled"?: boolean;
-        "icon"?: Icon;
-        "label"?: string;
-        /**
-          * @default 'name'
-         */
-        "name"?: string;
-        "radioId"?: string;
-    }
     interface LsRecipientCard {
         "activeRecipient"?: number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: 27,     defaultWidth: 120,   }
+          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected"?: IToolboxField;
         /**
@@ -1955,20 +1682,6 @@ declare namespace LocalJSX {
     }
     interface LsRecipientManager {
     }
-    interface LsSelectInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "dirty"?: boolean;
-        "disabled"?: boolean;
-        "displayOnly"?: boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name"?: string;
-        "required"?: boolean;
-        "valid"?: boolean;
-        "value"?: string;
-    }
     interface LsStatusbar {
         /**
           * The parent editor control. {LsDocumentViewer}
@@ -1980,42 +1693,6 @@ declare namespace LocalJSX {
           * The zoom or scale level 100 === 100%. {number}
          */
         "zoom"?: number;
-    }
-    interface LsTextInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax"?: number;
-        "dirty"?: boolean;
-        "disabled"?: boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name"?: string;
-        "onValueChange"?: (event: LsTextInputCustomEvent<string>) => void;
-        "placeholder"?: string;
-        "required"?: boolean;
-        /**
-          * @default 'default'
-         */
-        "type"?: 'default' | 'password' | 'displayonly';
-        "valid"?: boolean;
-        "value"?: string;
-    }
-    interface LsTextareaInput {
-        "aria"?: string;
-        "buttonClick"?: any;
-        "buttonIcon"?: Icon;
-        "countMax"?: number;
-        "dirty"?: boolean;
-        "disabled"?: boolean;
-        "displayOnly"?: boolean;
-        "fieldIcon"?: Icon;
-        "inputRef"?: string;
-        "name"?: string;
-        "placeholder"?: string;
-        "required"?: boolean;
-        "valid"?: boolean;
-        "value"?: string;
     }
     interface LsTitleInput {
         "onMutate"?: (event: LsTitleInputCustomEvent<LSMutateEvent[]>) => void;
@@ -2042,6 +1719,7 @@ declare namespace LocalJSX {
         "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "signer"?: number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
          */
@@ -2068,7 +1746,7 @@ declare namespace LocalJSX {
         /**
           * The icon to display for this field type.
          */
-        "icon"?: Icon;
+        "icon"?: Icon1;
         /**
           * @default false
          */
@@ -2104,19 +1782,6 @@ declare namespace LocalJSX {
          */
         "validation"?: number;
     }
-    interface LsTooltip {
-        /**
-          * @default 'top'
-         */
-        "placement"?: 'top' | 'bottom' | 'left' | 'right';
-        "referenceElement"?: HTMLElement;
-        /**
-          * @default false
-         */
-        "tooltipLocked"?: boolean;
-        "tooltipText"?: string;
-        "tooltipTitle"?: string;
-    }
     interface LsValidationManager {
         /**
           * The template information (as JSON). {LSApiTemplate}
@@ -2129,6 +1794,7 @@ declare namespace LocalJSX {
          */
         "isExpanded"?: boolean;
         "onChangeSigner"?: (event: LsValidationTagCustomEvent<number>) => void;
+        "onSelectFieldForPlacement"?: (event: LsValidationTagCustomEvent<{ signerIndex: number; fieldType: string }>) => void;
         /**
           * @default true
          */
@@ -2177,30 +1843,21 @@ declare namespace LocalJSX {
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
         "ls-field-type-display": LsFieldTypeDisplay;
-        "ls-formfield": LsFormfield;
         "ls-helper-bar": LsHelperBar;
-        "ls-icon": LsIcon;
         "ls-input-wrapper": LsInputWrapper;
         "ls-keyboard-shortcuts": LsKeyboardShortcuts;
         "ls-left-bar": LsLeftBar;
-        "ls-number-input": LsNumberInput;
-        "ls-page-loader": LsPageLoader;
         "ls-participant-card": LsParticipantCard;
         "ls-participant-manager": LsParticipantManager;
         "ls-participant-select": LsParticipantSelect;
         "ls-props-section": LsPropsSection;
-        "ls-radio-input": LsRadioInput;
         "ls-recipient-card": LsRecipientCard;
         "ls-recipient-manager": LsRecipientManager;
-        "ls-select-input": LsSelectInput;
         "ls-statusbar": LsStatusbar;
-        "ls-text-input": LsTextInput;
-        "ls-textarea-input": LsTextareaInput;
         "ls-title-input": LsTitleInput;
         "ls-toggle": LsToggle;
         "ls-toolbar": LsToolbar;
         "ls-toolbox-field": LsToolboxField;
-        "ls-tooltip": LsTooltip;
         "ls-validation-manager": LsValidationManager;
         "ls-validation-tag": LsValidationTag;
     }
@@ -2244,30 +1901,21 @@ declare module "@stencil/core" {
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
-            "ls-formfield": LocalJSX.LsFormfield & JSXBase.HTMLAttributes<HTMLLsFormfieldElement>;
             "ls-helper-bar": LocalJSX.LsHelperBar & JSXBase.HTMLAttributes<HTMLLsHelperBarElement>;
-            "ls-icon": LocalJSX.LsIcon & JSXBase.HTMLAttributes<HTMLLsIconElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;
             "ls-left-bar": LocalJSX.LsLeftBar & JSXBase.HTMLAttributes<HTMLLsLeftBarElement>;
-            "ls-number-input": LocalJSX.LsNumberInput & JSXBase.HTMLAttributes<HTMLLsNumberInputElement>;
-            "ls-page-loader": LocalJSX.LsPageLoader & JSXBase.HTMLAttributes<HTMLLsPageLoaderElement>;
             "ls-participant-card": LocalJSX.LsParticipantCard & JSXBase.HTMLAttributes<HTMLLsParticipantCardElement>;
             "ls-participant-manager": LocalJSX.LsParticipantManager & JSXBase.HTMLAttributes<HTMLLsParticipantManagerElement>;
             "ls-participant-select": LocalJSX.LsParticipantSelect & JSXBase.HTMLAttributes<HTMLLsParticipantSelectElement>;
             "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
-            "ls-radio-input": LocalJSX.LsRadioInput & JSXBase.HTMLAttributes<HTMLLsRadioInputElement>;
             "ls-recipient-card": LocalJSX.LsRecipientCard & JSXBase.HTMLAttributes<HTMLLsRecipientCardElement>;
             "ls-recipient-manager": LocalJSX.LsRecipientManager & JSXBase.HTMLAttributes<HTMLLsRecipientManagerElement>;
-            "ls-select-input": LocalJSX.LsSelectInput & JSXBase.HTMLAttributes<HTMLLsSelectInputElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
-            "ls-text-input": LocalJSX.LsTextInput & JSXBase.HTMLAttributes<HTMLLsTextInputElement>;
-            "ls-textarea-input": LocalJSX.LsTextareaInput & JSXBase.HTMLAttributes<HTMLLsTextareaInputElement>;
             "ls-title-input": LocalJSX.LsTitleInput & JSXBase.HTMLAttributes<HTMLLsTitleInputElement>;
             "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;
             "ls-toolbar": LocalJSX.LsToolbar & JSXBase.HTMLAttributes<HTMLLsToolbarElement>;
             "ls-toolbox-field": LocalJSX.LsToolboxField & JSXBase.HTMLAttributes<HTMLLsToolboxFieldElement>;
-            "ls-tooltip": LocalJSX.LsTooltip & JSXBase.HTMLAttributes<HTMLLsTooltipElement>;
             "ls-validation-manager": LocalJSX.LsValidationManager & JSXBase.HTMLAttributes<HTMLLsValidationManagerElement>;
             "ls-validation-tag": LocalJSX.LsValidationTag & JSXBase.HTMLAttributes<HTMLLsValidationTagElement>;
         }

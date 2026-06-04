@@ -1,12 +1,13 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-participant-manager',
-  styleUrl: 'ls-participant-manager.css',
+  styleUrl: 'ls-participant-manager.scss',
   shadow: true,
 })
 export class LsParticipantManager {
@@ -22,6 +23,25 @@ export class LsParticipantManager {
    * {LSApiTemplate}
    */
   @Prop() template: LSApiTemplate;
+
+  /**
+   * The currently active signer index.
+   * {number}
+   */
+  @Prop() activeSigner: number;
+
+  /**
+   * Whether a mutation is currently in progress.
+   * {boolean}
+   */
+  @Prop() busy: boolean = false;
+
+  @State() addingParticipant: boolean = false;
+
+  @Watch('template')
+  templateChanged() {
+    this.addingParticipant = false;
+  }
 
   @Event({
     bubbles: true,
@@ -88,13 +108,12 @@ export class LsParticipantManager {
     observer.observe(this.element.shadowRoot, { childList: true, subtree: true });
   }
 
-
   render() {
     return (
       <Host>
         <div class="ls-dv-editor-infobox">
-          <h2 class="ls-dv-toolbox-section-title">Participants</h2>
-          <p class="ls-dv-toolbox-section-description">Select and Click to place Signature fields where you’d like on the Document.</p>
+          <h2 class="ls-dv-toolbox-section-title">{dvI18n.t('participants.title')}</h2>
+          <p class="ls-dv-toolbox-section-description">{dvI18n.t('participants.description')}</p>
         </div>
         <div class="ls-dv-participant-list">
           {this.template &&
@@ -104,6 +123,8 @@ export class LsParticipantManager {
                   signer={r}
                   index={index}
                   template={this.template}
+                  active={r.signerIndex === this.activeSigner}
+                  busy={this.busy}
                   onOpened={event => {
                     this.handleOpened.bind(this)(event);
                   }}
@@ -112,11 +133,18 @@ export class LsParticipantManager {
               );
             })}
         </div>
-        <div class={'ls-dv-add-participant-button'}>
-          <button onClick={() => this.addParticipant.emit({ type: 'SIGNER' })}>
-            <ls-icon name="user-add" size="1.25rem" color="var(--gray-100, #45484D);" />
-            <p>Add Participant</p>
-          </button>
+        <div class="ls-dv-add-participant-button">
+          <ls-add-new-button
+            text={dvI18n.t('participants.addparticipant')}
+            icon="user-add-icon"
+            loading={this.addingParticipant}
+            disabled={this.addingParticipant}
+            onClick={() => {
+              if (this.addingParticipant) return;
+              this.addingParticipant = true;
+              this.addParticipant.emit({ type: 'SIGNER' });
+            }}
+          />
         </div>
         <slot></slot>
       </Host>

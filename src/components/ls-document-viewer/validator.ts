@@ -27,14 +27,16 @@ export function validate(t: LSApiTemplate): ValidationError[] {
   } else {
     // Check for missing signatures
     t.roles.forEach(tr => {
-      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex && tr.roleType !== 'APPROVER').length === 0) {
-        errors.push({
-          id: tr.id,
-          signerIndex: tr.signerIndex,
-          title: 'Missing signature.',
-          description: `${tr.name} is missing a signature.`,
-          role: tr,
-        });
+      if (t.elementConnection.templateElements.filter(e => e.formElementType === 'signature' && e.signer === tr.signerIndex).length === 0) {
+        if (tr?.roleType !== 'APPROVER') {
+          errors.push({
+            id: tr.id,
+            signerIndex: tr.signerIndex,
+            title: 'Missing signature.',
+            description: `${tr.name} is missing a signature.`,
+            role: tr,
+          });
+        }
       }
     });
   }

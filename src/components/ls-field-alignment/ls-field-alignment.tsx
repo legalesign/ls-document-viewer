@@ -1,10 +1,10 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-alignment',
-  styleUrl: 'ls-field-alignment.css',
+  styleUrl: 'ls-field-alignment.scss',
   shadow: true,
 })
 export class LsFieldAlignment {
@@ -37,15 +37,25 @@ export class LsFieldAlignment {
     this.mutate.emit(diffs);
   }
 
-  right() {
-    const rightmost = this.dataItem.reduce((rightmost, current) => {
-      return current.left + current.width < rightmost ? rightmost : current.left + current.width;
-    }, 0);
+  // Get the top-left-most control (anchor for all alignments)
+  getAnchorControl(): LSApiElement {
+    return this.dataItem.reduce((topLeftMost, current) => {
+      // Prioritize top position first, then left if tops are equal
+      if (current.top < topLeftMost.top) {
+        return current;
+      } else if (current.top === topLeftMost.top && current.left < topLeftMost.left) {
+        return current;
+      }
+      return topLeftMost;
+    }, this.dataItem[0]);
+  }
 
-    console.log(rightmost);
+  right() {
+    const anchor = this.getAnchorControl();
+    const alignTo = anchor.left + anchor.width;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newLeft = rightmost - c.width;
+      const newLeft = alignTo - c.width;
 
       return {
         action: 'update',
@@ -63,17 +73,11 @@ export class LsFieldAlignment {
   }
 
   center() {
-    const addcentres = this.dataItem.reduce((total, current) => {
-      console.log(total + (current.left + current.width / 2));
-      return total + (current.left + current.width / 2);
-    }, 0);
-    console.log(addcentres);
-
-    const cp = addcentres / this.dataItem.length;
-    console.log('centerposition', cp);
+    const anchor = this.getAnchorControl();
+    const alignTo = anchor.left + anchor.width / 2;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newLeft = c.left + (cp - (c.left + c.width / 2));
+      const newLeft = alignTo - c.width / 2;
       return {
         action: 'update',
         data: {
@@ -84,37 +88,26 @@ export class LsFieldAlignment {
         } as LSApiElement,
       };
     });
-    console.log(diffs);
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
   }
 
   top() {
-    const topmost = this.dataItem.reduce((most, current) => {
-      return current.top < most ? most : current.top;
-    }, 0);
-
-    this.alter({ top: topmost });
+    const anchor = this.getAnchorControl();
+    this.alter({ top: anchor.top });
   }
 
   left() {
-    const leftmost = this.dataItem.reduce((least, current) => {
-      return current.left < least ? current.left : least;
-    }, this.dataItem[0].left);
-
-    this.alter({ left: leftmost });
+    const anchor = this.getAnchorControl();
+    this.alter({ left: anchor.left });
   }
 
   middle() {
-    const addmiddles = this.dataItem.reduce((total, current) => {
-      console.log(total + (current.top + current.height / 2));
-      return total + (current.top + current.height / 2);
-    }, 0);
-
-    const cp = addmiddles / this.dataItem.length;
+    const anchor = this.getAnchorControl();
+    const alignTo = anchor.top + anchor.height / 2;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newTop = c.top + (cp - (c.top + c.height / 2));
+      const newTop = alignTo - c.height / 2;
       return {
         action: 'update',
         data: {
@@ -130,12 +123,11 @@ export class LsFieldAlignment {
   }
 
   bottom() {
-    const lowest = this.dataItem.reduce((acc, current) => {
-      return acc > current.top + current.height ? acc : current.top + current.height;
-    }, 0);
+    const anchor = this.getAnchorControl();
+    const alignTo = anchor.top + anchor.height;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newTop = lowest - c.height;
+      const newTop = alignTo - c.height;
       return {
         action: 'update',
         data: {
@@ -151,7 +143,6 @@ export class LsFieldAlignment {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -159,43 +150,43 @@ export class LsFieldAlignment {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Alignment</p>
-            <p class={'ls-dv-field-properties-section-description'}>Align your Fields relative to the page or multi-select and align then to each other.</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('placement.alignment')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('placement.alignmentdescription')}</p>
           </div>
           <div class={'ls-dv-multi-button-group-row'}>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.left()} aria-label="Align selected fields vertically about their left edge." data-tooltip="Align Left">
-                <ls-icon name="field-alignment-left"></ls-icon>
+              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')}>
+                <ls-icon name="field-alignment-left-icon"></ls-icon>
               </button>
-              <button onClick={() => this.center()} aria-label="Align selected fields vertically about their centre." data-tooltip="Align Center">
-                <ls-icon name="field-alignment-centre"></ls-icon>
+              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')}>
+                <ls-icon name="field-alignment-centre-icon"></ls-icon>
               </button>
               <button
                 onClick={() => {
                   this.right();
                 }}
-                aria-label="Align selected fields vertically about their right edge."
-                data-tooltip="Align Right"
+                aria-label={dvI18n.t('alignment.alignright')}
+                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignright')}
               >
-                <ls-icon name="field-alignment-right"></ls-icon>
+                <ls-icon name="field-alignment-right-icon"></ls-icon>
               </button>
             </div>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.top()} aria-label="Align selected fields by their top." data-tooltip="Align Top">
-                <ls-icon name="field-alignment-top"></ls-icon>
+              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')}>
+                <ls-icon name="field-alignment-top-icon"></ls-icon>
               </button>
-              <button onClick={() => this.middle()} aria-label="Align selected fields by their middles." data-tooltip="Align Middle">
-                <ls-icon name="field-alignment-middle"></ls-icon>
+              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')}>
+                <ls-icon name="field-alignment-middle-icon"></ls-icon>
               </button>
-              <button onClick={() => this.bottom()} aria-label="Align selected fields by their bottoms." data-tooltip="Align Bottom">
-                <ls-icon name="field-alignment-bottom"></ls-icon>
+              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')}>
+                <ls-icon name="field-alignment-bottom-icon"></ls-icon>
               </button>
             </div>
           </div>
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

@@ -4,7 +4,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-title-input',
-  styleUrl: 'ls-title-input.css',
+  styleUrl: 'ls-title-input.scss',
   shadow: true,
 })
 export class LsTitleInput {
@@ -57,8 +57,8 @@ export class LsTitleInput {
               }}
             />
             <ls-icon
-              name="check"
-              size="1rem"
+              name="check-icon"
+              size={16}
               class='ls-dv-edit-button'
               onClick={() => {
                 this.editTitle = false;

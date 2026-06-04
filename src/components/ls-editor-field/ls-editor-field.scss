@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  position: absolute;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  isolation: isolate;
+  min-height: 16px;
+}
+
+.ls-dv-editor-field-editable {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  overflow: hidden;
+
+  /* no extra spaces */
+  white-space: nowrap;
+  margin: 0;
+  padding: 0px 0px 0px 0px;
+  /* default widths */
+  min-width: 2em;
+  height: 100%;
+  width: calc(100% - 13px);
+}
+
+.ls-dv-editor-field-editable:focus {
+  outline: none;
+}
+
+.ls-dv-editor-field-draggable {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  /* no extra spaces */
+  white-space: nowrap;
+
+  /* default widths */
+  min-width: 2px;
+  height: 98%;
+  width: calc(100% - 13px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* .ls-dv-is-selected {
+    border: 1px dotted rgb(193, 26, 26);
+} */
+
+.ls-dv-hidden-field {
+  display: none;
+}
+
+.ls-dv-date-field-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+input {
+  all: unset;
+  color: inherit;
+}
+
+.ls-dv-draggable-input {
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  height: 95%;
+  width: 95%;
+}
+
+.ls-dv-editing-input {
+  caret-color: rgb(15 23 42);
+  caret-shape: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.ls-dv-required-icon {
+  color: $red-60;
+}
+
+.ls-dv-x-button {
+  all: unset;
+  cursor: pointer;
+  transform: translate(55%, -55%);
+  position: absolute;
+  color: white;
+  background: $gray-80;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+.ls-dv-x-button:hover {
+  background: $gray-90;
+}

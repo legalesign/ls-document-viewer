@@ -21,6 +21,7 @@ Alex Weinle
 | `endpoint`        | `endpoint`        | This will override the default production graphql endpoint. Almost exclusively used for internal development. {string}                                                | `string`                                                                  | `undefined` |
 | `filtertoolbox`   | `filtertoolbox`   | Allows the selection of fields in the toolbox to be limited to a \| (pipe) delimited list. {string}                                                                   | `string`                                                                  | `null`      |
 | `groupInfo`       | `group-info`      |                                                                                                                                                                       | `any`                                                                     | `undefined` |
+| `language`        | `language`        | Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}                                                                               | `string`                                                                  | `undefined` |
 | `manager`         | `manager`         | Determines / sets which of the far left 'managers' is active. {'document' \| 'toolbox' \| 'participant' }                                                             | `"document" \| "participant" \| "recipient" \| "toolbox" \| "validation"` | `'toolbox'` |
 | `mode`            | `mode`            | An ease of use property that will arrange document-viewer appropraitely. {'preview' \| 'editor' \| 'custom'}                                                          | `"compose" \| "editor" \| "preview"`                                      | `'editor'`  |
 | `pageCount`       | `page-count`      |                                                                                                                                                                       | `number`                                                                  | `1`         |
@@ -107,21 +108,23 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [ls-page-loader](../ls-page-loader)
+- ls-loading-logo
 - [ls-compose-loader](../ls-compose-loader)
+- ls-icon
 - [ls-validation-tag](../ls-validation-tag)
 - [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
-- [ls-tooltip](../ls-tooltip)
+- ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
 ### Graph
 ```mermaid
 graph TD;
-  ls-document-viewer --> ls-page-loader
+  ls-document-viewer --> ls-loading-logo
   ls-document-viewer --> ls-compose-loader
+  ls-document-viewer --> ls-icon
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-left-bar
   ls-document-viewer --> ls-toolbar
@@ -159,6 +162,7 @@ graph TD;
   ls-field-content --> ls-props-section
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
@@ -238,10 +242,16 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
   ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
+  ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
+  ls-button --> ls-icon
+  ls-button --> ls-loading
+  ls-loading --> ls-loading-icon
+  ls-add-new-button --> ls-icon
+  ls-add-new-button --> ls-loading
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip

@@ -3,11 +3,12 @@ import { LSApiElement } from '../../components';
 
 @Component({
   tag: 'ls-field-properties-signature',
-  styleUrl: 'ls-field-properties-signature.css',
+  styleUrl: 'ls-field-properties-signature.scss',
   shadow: true,
 })
 export class LsFieldPropertiesSignature {
   @Prop() dataItem: LSApiElement;
+  @Prop() template: any; // LSApiTemplate
 
   render() {
     return (
@@ -18,7 +19,7 @@ export class LsFieldPropertiesSignature {
             <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
-            <ls-field-dimensions dataItem={this.dataItem} />
+            <ls-field-dimensions dataItem={this.dataItem} template={this.template} />
           </div>
           <div class={'ls-dv-field-set'} slot="placement">
             <ls-field-placement dataItem={this.dataItem} />

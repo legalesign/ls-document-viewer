@@ -1,9 +1,10 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-field-properties-container',
-  styleUrl: 'ls-field-properties-container.css',
+  styleUrl: 'ls-field-properties-container.scss',
   shadow: true,
 })
 export class LsFieldPropertiesContainer {
@@ -24,7 +25,7 @@ export class LsFieldPropertiesContainer {
           <div class={'ls-dv-tabs-container'} style={{ gridTemplateColumns: `repeat(${this.tabs.length}, 1fr)` }}>
             {this.tabs.map(tab => (
               <button class={tab === this.selectedTab ? 'ls-dv-tab ls-dv-active' : 'ls-dv-tab'} onClick={() => (this.selectedTab = tab)}>
-                {tab}
+                {dvI18n.t(`tabs.${tab}`, { defaultValue: tab })}
               </button>
             ))}
           </div>

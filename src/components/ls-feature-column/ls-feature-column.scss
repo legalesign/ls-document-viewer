@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.25rem;
+
+}
+
+.ls-dv-active-icon, .ls-dv-default-icon {
+  padding: 0.75rem;
+  border-radius: 1rem;
+  color: $gray-80;
+}
+
+.ls-dv-default-icon:hover {
+  background-color: $primary-10;
+  color: $primary-100;
+  cursor: pointer;
+}
+
+.ls-dv-active-icon {
+  background-color: $primary-60;
+  color: $white;
+}
+
+.ls-dv-hidden {
+  display: none;
+}

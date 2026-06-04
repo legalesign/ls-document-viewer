@@ -1,0 +1,238 @@
+:host {
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.ls-dv-valid-label {
+  display: flex;
+  padding: 0.125rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  width: fit-content;
+}
+
+
+.ls-dv-valid {
+  background-color: $green-30;
+  color: $green-100;
+}
+
+.ls-dv-valid.ls-dv-compose {
+  border: 1px solid $green-50;
+}
+
+.ls-dv-valid.ls-dv-compose:hover {
+  box-shadow: none;
+}
+
+.ls-dv-invalid.ls-dv-default {
+  background: $yellow-20;
+  color: $yellow-90;
+}
+
+.ls-dv-invalid.ls-dv-compose {
+  border: 1px solid $red-40;
+  background: $red-10;
+  color: $red-80;
+}
+
+.ls-dv-field-counter {
+  display: flex;
+  padding: 0.125rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  color: $yellow-20;
+  background: #e17100;
+  min-width: 1rem;
+}
+
+.ls-dv-field-counter.ls-dv-compose {
+  color: $red-10;
+  background: $red-60;
+}
+
+.ls-dv-field-dropdown {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 20rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  max-height: 20rem;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.ls-dv-field-dropdown.ls-dv-compose {
+  width: 14rem;
+  padding: 0.75rem;
+  gap: 0.5rem;
+}
+
+.ls-dv-field-dropdown.ls-dv-compose > * {
+  width: 100%;
+}
+.ls-dv-required-field {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  background: var(--field-background);
+  color: var(--field-text-color);
+  border: 1px solid var(--field-border-color);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.ls-dv-required-field:hover {
+  background: var(--field-background-hover);
+  color: var(--field-text-color-hover);
+  border: 1px solid var(--field-border-color-hover);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.ls-dv-required-field-items-left {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.ls-dv-required-field-items-left p {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.875rem; /* 142.857% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ls-dv-dot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+}
+
+.ls-dv-role-label {
+  display: flex;
+  padding: 0.125rem 0.1875rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem; /* 133.333% */
+  text-transform: capitalize;
+}
+
+.ls-dv-dropdown-header h2 {
+  color: $gray-100;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  margin-bottom: 0.125rem;
+}
+
+.ls-dv-dropdown-header p {
+  color: $gray-80;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem; /* 133.333% */
+}
+
+.ls-dv-validation-tag-container {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ls-dv-validation-tag-header {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #edeff2;
+}
+
+.ls-dv-validation-tag-title {
+  font-family: 'IBM Plex Sans Medium', 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #45484d;
+  line-height: 1.5rem;
+}
+
+.ls-dv-validation-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ls-dv-validation-tag-row:hover {
+  background-color: $gray-10;
+}
+
+.ls-dv-validation-tag-bar {
+  width: 0.25rem;
+  height: 2rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.ls-dv-validation-tag-details {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.ls-dv-validation-tag-name {
+  font-family: 'IBM Plex Sans Medium', 'IBM Plex Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #45484d;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ls-dv-validation-tag-email {
+  font-family: 'IBM Plex Sans Light', 'IBM Plex Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #5e6066;
+  line-height: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

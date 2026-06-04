@@ -1,0 +1,441 @@
+:host {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.ls-dv-participant-card {
+  display: flex;
+  padding: 0.625rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  align-self: stretch;
+  cursor: pointer;
+}
+
+.ls-dv-participant-card-active, .ls-dv-participant-card:hover {
+  outline: 2px solid var(--active-outline-colour);
+  outline-offset: -2px;
+}
+
+.ls-dv-top-card {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.ls-dv-full-card {
+  border-radius: 1rem;
+}
+
+.ls-dv-bottom-card {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.ls-dv-participant-card-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ls-dv-hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.ls-dv-form-button-set {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ls-dv-role-label {
+  display: flex;
+  padding: 0.125rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.ls-dv-role-label.ls-dv-fields {
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+}
+
+.ls-dv-inner-button {
+  margin: 0px;
+  padding: 0px;
+  max-height: 1.25rem !important;
+  max-width: 1.25rem !important;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--default-button-colour);
+}
+
+.ls-dv-inner-button:hover {
+  color: var(--hover-button-colour);
+}
+
+.ls-dv-inner-button-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.ls-dv-participant-card-top-items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ls-dv-button-set {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.ls-dv-participant-text-description {
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.ls-dv-participant-text-type {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.ls-dv-title-button {
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+}
+
+/* Global Styles */
+
+.ls-dv-full-width {
+  width: 100%;
+}
+
+p {
+  color: $gray-80;
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--text-sm-line-height);
+}
+
+a {
+  color: $primary-60;
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--text-sm-line-height);
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $primary-70;
+}
+
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
+  all: unset;
+}
+
+select {
+  appearance: none;
+  height: 2.25rem;
+  width: 100%;
+}
+
+.ls-dv-input-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+#selectorIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $gray-80;
+}
+
+#selectLeadingIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $gray-80;
+}
+
+.ls-dv-has-leading-icon {
+  padding-left: 2.5rem;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid $gray-40;
+  box-shadow: 0 1px 0.125rem rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  border-radius: 0.625rem;
+  color: $gray-100;
+  font-weight: 400;
+}
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: $gray-60;
+}
+
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: $gray-50;
+  background-color: $white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem $primary-40;
+  border-color: $primary-60;
+  background-color: $white;
+}
+
+input:active,
+select:active,
+textarea:active {
+  border-color: $primary-50;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  background-color: $gray-10;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  position: relative;
+  height: 1rem;
+  width: 1rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked,
+input[type='checkbox'].ls-dv-indeterminate {
+  background-color: $primary-60;
+  border: none;
+}
+
+input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg) scale(-1, 1);
+  width: 0.5rem;
+  height: 0.25rem;
+  border-bottom: 0.125rem solid white;
+  border-right: 0.125rem solid white;
+}
+
+input[type='checkbox'].ls-dv-indeterminate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.125rem;
+  background-color: white;
+}
+
+input[type='checkbox']:checked:hover,
+input[type='checkbox'].ls-dv-indeterminate:hover {
+  background-color: $primary-70;
+  border: none;
+}
+
+input[type='checkbox']:hover {
+  border: 1px solid #9ca3af;
+}
+
+input[type='checkbox']:focus,
+input[type='checkbox']:active {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem $primary-20;
+  background-color: #f0f4f8;
+}
+
+input[type='checkbox']:disabled {
+  background-color: #f3f4f6;
+  outline: none;
+  cursor: not-allowed;
+}
+
+input[type='checkbox']:disabled:checked {
+  background-color: #e5e7eb;
+  border: none;
+  outline: none;
+  cursor: not-allowed;
+}
+
+.ls-dv-checkbox-container {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ls-dv-checkbox-label {
+  color: $gray-100;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.ls-dv-form-label {
+  color: $gray-100;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.ls-dv-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.ls-dv-loading-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  color: $primary-60;
+}
+
+button {
+  border: 0;
+  appearance: button;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  background-color: $primary-60;
+  color: white;
+  text-transform: capitalize;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+}
+
+button.ls-dv-tertiary-grey {
+  border: 1px solid $gray-40;
+  background-color: white;
+  color: $gray-80;
+}
+
+button.ls-dv-tertiary-grey:hover {
+  border: 1px solid $gray-50;
+  background: $gray-10;
+}
+
+button.ls-dv-tertiary {
+  border: 1px solid $primary-60;
+  background: transparent;
+  color: $primary-70;
+}
+
+button.ls-dv-tertiary:hover {
+  border: 1px solid $primary-70;
+  border: 1px solid $primary-80;
+}
+
+button.ls-dv-destructive {
+  border: 1px solid $red-60;
+  background: transparent;
+  color: $red-60;
+}
+
+button.ls-dv-destructive:hover {
+  border: 1px solid $red-70;
+  background: $red-10;
+  background-color: $red-10;
+}
+
+button.ls-dv-secondary {
+  border: 1px solid $gray-50;
+  background: $white;
+  color: $gray-90;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+button.ls-dv-secondary:hover {
+  border: 1px solid $gray-50;
+  background: $gray-10;
+}
+
+.ls-dv-button-group {
+  display: flex;
+  border-radius: 0.625rem;
+  border: 1px solid $gray-30;
+  background: $white;
+  overflow: clip;
+}
+
+.ls-dv-button-group button {
+  display: flex;
+  background: transparent;
+  border-radius: unset;
+  padding: 0.25rem 0.75rem;
+  min-width: 2.156rem;
+  min-height: unset;
+  color: $gray-80;
+}
+
+.ls-dv-button-group button:hover {
+  background: $gray-10;
+}
+
+.ls-dv-button-group > :first-child {
+  border-radius: 0.625rem 0 0 0.625rem;
+}
+
+.ls-dv-button-group > :last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.ls-dv-button-group > :not(:first-child) {
+  border-left: 1px solid $gray-30;
+}

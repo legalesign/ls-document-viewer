@@ -2,7 +2,7 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'ls-compose-loader',
-  styleUrl: 'ls-compose-loader.css',
+  styleUrl: 'ls-compose-loader.scss',
   shadow: true,
 })
 export class LsComposeLoader {
@@ -97,7 +97,7 @@ export class LsComposeLoader {
               <div class="ls-dv-compose-loader__preview-box"></div>
             </div>
             <div class="ls-dv-compose-loader__button">
-              <button class="ls-dv-compose-loader__action-btn">
+              <button class="ls-dv-compose-loader__action-btn" aria-hidden="true" tabindex={-1}>
                 <div class="ls-dv-compose-loader__skeleton ls-dv-skeleton-btn"></div>
                 <div class="ls-dv-compose-loader__skeleton ls-dv-skeleton-btn-icon"></div>
               </button>

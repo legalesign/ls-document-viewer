@@ -1,10 +1,10 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-size',
-  styleUrl: 'ls-field-size.css',
+  styleUrl: 'ls-field-size.scss',
   shadow: true,
 })
 export class LsFieldSize {
@@ -30,7 +30,6 @@ export class LsFieldSize {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -38,36 +37,36 @@ export class LsFieldSize {
       <Host>
         <div class={'ls-dv-field-properties-section'}>
           <div class={'ls-dv-field-properties-section-text'}>
-            <p class={'ls-dv-field-properties-section-title'}>Scale and Resize</p>
-            <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+            <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('dimensions.scaleandresize')}</p>
+            <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.scaleandresizedescription')}</p>
           </div>
           <div class={'ls-dv-button-group'}>
             <button
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
-              aria-label="Make selected fields the same height and width as the first selected field."
-              data-tooltip="Make selected fields the same height and width as the first selected field"
+              aria-label={dvI18n.t('alignment.matchsize')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchsize')}
             >
-              <ls-icon name="field-scale"></ls-icon>
+              <ls-icon name="field-scale-icon"></ls-icon>
             </button>
             <button
-              aria-label="Make selected fields the same width as the first selected field"
+              aria-label={dvI18n.t('alignment.matchwidth')}
               onClick={() => this.alter({ width: this.dataItem[0].width })}
-              data-tooltip="Make selected fields the same width as the first selected field"
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchwidth')}
             >
-              <ls-icon name="field-match-width"></ls-icon>
+              <ls-icon name="field-match-width-icon"></ls-icon>
             </button>
             <button
               onClick={() => this.alter({ height: this.dataItem[0].height })}
-              aria-label="Make selected fields the same height as the first selected field."
-              data-tooltip="Make selected fields the same height as the first selected field"
+              aria-label={dvI18n.t('alignment.matchheight')}
+              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchheight')}
             >
-              <ls-icon name="field-match-height"></ls-icon>
+              <ls-icon name="field-match-height-icon"></ls-icon>
             </button>
           </div>
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master"></ls-tooltip>
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

@@ -40,7 +40,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
   node.style.left = Math.floor(data.left * this.zoom) + 'px';
   node.style.height = Math.floor(data.height * this.zoom) + 'px';
   node.style.width = Math.floor(data.width * this.zoom) + 'px';
-  node.style.fontSize = Math.floor(data.fontSize * this.zoom) + 'pt';
+  node.style.fontSize = Math.round(data.fontSize * this.zoom) + 'px';
   node.style.alignContent = data.align;
   node.style.fontFamily = data.fontName;
   node.dataItem = data;
@@ -55,7 +55,7 @@ export function moveField(item: HTMLLsEditorFieldElement, data) {
   item.style.left = Math.floor(data.left * this.zoom) + 'px';
   item.style.height = Math.floor(data.height * this.zoom) + 'px';
   item.style.width = Math.floor(data.width * this.zoom) + 'px';
-  item.style.fontSize = Math.floor(data.fontSize * this.zoom) + 'pt';
+  item.style.fontSize = Math.round(data.fontSize * this.zoom) + 'px';
   item.style.fontFamily = data.fontName;
   item.style.textAlign = data.align;
   item.dataItem = recalculateCoordinates(data);

@@ -41,15 +41,19 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "translate": "node scripts/sync-translations.cjs",
+    "translate:check": "node scripts/sync-translations.cjs --check"
   },
   "devDependencies": {
     "@stencil/core": "^4.39.0",
     "@stencil/react-output-target": "^1.2.0",
+    "@stencil/sass": "^3.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.2",
     "puppeteer": "^24.33.0",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "rollup-plugin-node-polyfills": "^0.2.1",
+    "typescript": "^6.0.3"
   },
   "license": "MIT",
   "dependencies": {
@@ -57,6 +61,9 @@
     "@jest/transform": "^30.2.0",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
+    "i18next": "^26.3.0",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "legalesign-ui": "^0.0.43",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.4.449"
   }

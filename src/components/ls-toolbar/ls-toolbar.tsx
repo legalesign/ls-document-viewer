@@ -3,7 +3,7 @@ import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '..
 
 @Component({
   tag: 'ls-toolbar',
-  styleUrl: 'ls-toolbar.css',
+  styleUrl: 'ls-toolbar.scss',
   shadow: true,
 })
 export class LsToolbar {
@@ -40,6 +40,8 @@ export class LsToolbar {
   editor: LsDocumentViewer;
 
   @Prop() mode: string;
+
+  @Prop() signer: number;
 
   @Event({
     bubbles: true,
@@ -89,11 +91,12 @@ export class LsToolbar {
             <ls-participant-select
               id="ls-participant-select"
               roles={this.template?.roles}
+              signer={this.signer}
               style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }}
             />
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </div>
     );
@@ -105,7 +108,7 @@ export class LsToolbar {
         <div class="rowbox">
           <ls-field-format dataItem={this.dataItem} />
         </div>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
         <slot></slot>
       </div>
     );

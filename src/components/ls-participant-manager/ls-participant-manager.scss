@@ -1,0 +1,336 @@
+.ls-dv-label-span {
+  position: absolute;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ls-dv-participant-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.ls-dv-editor-infobox {
+  padding: 0.125rem 0.5rem 0.125rem 0.5rem;
+}
+
+.ls-dv-toolbox-section-title {
+  color: $gray-100;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.75rem; /* 155.556% */
+}
+
+.ls-dv-toolbox-section-description {
+  color: $gray-80;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.ls-dv-add-participant-button {
+  position: sticky;
+  display: flex;
+  padding: 0.75rem 0;
+  margin-bottom: -0.75rem;
+  margin-top: -0.75rem;
+  bottom: -0.75rem;
+  background-image: linear-gradient(to top, $gray-10 0%, $gray-10 80%, transparent 100%);
+}
+
+.ls-dv-add-participant-button ls-add-new-button {
+  width: 100%;
+}
+
+/* Global Styles */
+
+p {
+  color: $gray-80;
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--text-sm-line-height);
+}
+
+a {
+  color: $primary-60;
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--text-sm-line-height);
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $primary-70;
+}
+
+.ls-dv-button-link,
+.ls-dv-button-link:hover {
+  all: unset;
+}
+
+select {
+  appearance: none;
+  height: 2.25rem;
+}
+
+.ls-dv-input-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+#selectorIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $gray-80;
+}
+
+#selectLeadingIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.675rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: $gray-80;
+}
+
+.ls-dv-has-leading-icon {
+  padding-left: 2.5rem;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid $gray-40;
+  box-shadow: 0 1px 0.125rem rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  border-radius: 0.625rem;
+  color: $gray-100;
+  font-weight: 400;
+}
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: $gray-60;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: $gray-50;
+  background-color: $white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem $primary-40;
+  border-color: $primary-60;
+  background-color: $white;
+}
+
+input:active,
+select:active,
+textarea:active {
+  border-color: $primary-50;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  background-color: $gray-10;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  position: relative;
+  height: 1rem;
+  width: 1rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked,
+input[type='checkbox'].ls-dv-indeterminate {
+  background-color: $primary-60;
+  border: none;
+}
+
+input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg) scale(-1, 1);
+  width: 0.5rem;
+  height: 0.25rem;
+  border-bottom: 0.125rem solid white;
+  border-right: 0.125rem solid white;
+}
+
+input[type='checkbox'].ls-dv-indeterminate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.125rem;
+  background-color: white;
+}
+
+input[type='checkbox']:checked:hover,
+input[type='checkbox'].ls-dv-indeterminate:hover {
+  background-color: $primary-70;
+  border: none;
+}
+
+input[type='checkbox']:hover {
+  border: 1px solid #9ca3af;
+}
+
+input[type='checkbox']:focus,
+input[type='checkbox']:active {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem $primary-20;
+  background-color: #f0f4f8;
+}
+
+input[type='checkbox']:disabled {
+  background-color: #f3f4f6;
+  outline: none;
+  cursor: not-allowed;
+}
+
+input[type='checkbox']:disabled:checked {
+  background-color: #e5e7eb;
+  border: none;
+  outline: none;
+  cursor: not-allowed;
+}
+
+.ls-dv-checkbox-container {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ls-dv-checkbox-label {
+  color: $gray-100;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.ls-dv-form-label {
+  color: $gray-100;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.ls-dv-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.ls-dv-loading-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  color: $primary-60;
+}
+
+button {
+  border: 0;
+  appearance: button;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  background-color: $primary-60;
+  color: white;
+  text-transform: capitalize;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+}
+
+button.ls-dv-tertiary-grey {
+  border: 1px solid $gray-40;
+  background-color: white;
+  color: $gray-80;
+}
+
+button.ls-dv-tertiary-grey:hover {
+  border: 1px solid $gray-50;
+  background: $gray-10;
+}
+
+.ls-dv-button-group {
+  display: flex;
+  border-radius: 0.625rem;
+  border: 1px solid $gray-30;
+  background: $white;
+  overflow: clip;
+}
+
+.ls-dv-button-group button {
+  display: flex;
+  background: transparent;
+  border-radius: unset;
+  padding: 0.25rem 0.75rem;
+  min-width: 2.156rem;
+  min-height: unset;
+  color: $gray-80;
+}
+
+.ls-dv-button-group button:hover {
+  background: $gray-10;
+}
+
+.ls-dv-button-group > :first-child {
+  border-radius: 0.625rem 0 0 0.625rem;
+}
+
+.ls-dv-button-group > :last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.ls-dv-button-group > :not(:first-child) {
+  border-left: 1px solid $gray-30;
+}

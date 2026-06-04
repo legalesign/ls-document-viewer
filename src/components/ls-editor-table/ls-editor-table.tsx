@@ -3,7 +3,7 @@ import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 
 @Component({
   tag: 'ls-editor-table',
-  styleUrl: 'ls-editor-table.css',
+  styleUrl: 'ls-editor-table.scss',
   shadow: true,
 })
 export class LsEditorTable {

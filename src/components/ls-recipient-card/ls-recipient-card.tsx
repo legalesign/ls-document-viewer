@@ -4,10 +4,12 @@ import { LSApiRecipient } from '../../types/LSApiRecipient';
 import { LSApiTemplate } from '../../components';
 import { ValidationError } from '../../types/ValidationError';
 import { IToolboxField } from '../interfaces/IToolboxField';
+import { dvI18n } from '../../i18n/i18n';
+import { FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 
 @Component({
   tag: 'ls-recipient-card',
-  styleUrl: 'ls-recipient-card.css',
+  styleUrl: 'ls-recipient-card.scss',
   shadow: true,
 })
 export class LsRecipientCard {
@@ -21,11 +23,11 @@ export class LsRecipientCard {
   @Prop() activeRecipient: number;
   @Prop() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
-    formElementType: 'signature',
-    elementType: 'signature',
+    formElementType: 'signature-icon',
+    elementType: 'signature-icon',
     validation: 0,
-    defaultHeight: 27,
-    defaultWidth: 120,
+    defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,
+    defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,
   };
   @Prop() template: LSApiTemplate;
   @State() isHovered: boolean = false;
@@ -88,7 +90,7 @@ export class LsRecipientCard {
 
   render() {
     const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
-    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
+    const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature-icon' || f.elementType === 'auto sign');
     return (
       <Host>
         <div
@@ -120,12 +122,12 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s90,
                 }}
               >
-                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle' : this.recipient?.roleType === 'WITNESS' ? 'eye' : 'signature'} size='1rem' />
-                {(this.recipient?.roleType || 'SIGNER').toLowerCase()}
+                <ls-icon name={this.recipient?.roleType === 'APPROVER' ? 'check-circle-icon' : this.recipient?.roleType === 'WITNESS' ? 'eye-icon' : 'signature-icon'} size={16} />
+                {dvI18n.t(`participants.${(this.recipient?.roleType || 'SIGNER').toLowerCase()}`)}
               </div>
               <ls-icon
-                name="cursor-click"
-                size="1rem"
+                name="cursor-click-icon"
+                size={16}
                 customStyle={{ color: defaultRolePalette[this.recipient?.signerIndex % 100].s70 }}
                 solid
                 style={{ display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? 'block' : 'none' }}
@@ -143,7 +145,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s100,
                 }}
               >
-                {this.recipient?.previousRecipientDecides ? 'To Be Decided' : this.recipient?.firstName + ' ' + this.recipient?.lastName}
+                {this.recipient?.previousRecipientDecides ? dvI18n.t('common.tobedecided') : this.recipient?.firstName + ' ' + this.recipient?.lastName}
               </p>
               <p
                 class="ls-dv-participant-text-type"
@@ -151,7 +153,7 @@ export class LsRecipientCard {
                   color: defaultRolePalette[this.recipient?.signerIndex % 100].s80,
                 }}
               >
-                {this.recipient?.previousRecipientDecides ? 'Previous Recipient Decides Details' : this.recipient.email}
+                {this.recipient?.previousRecipientDecides ? dvI18n.t('common.previousrecipientdecidesdetails') : this.recipient.email}
               </p>
               {/* {this.recipient?.roleType !== 'APPROVER' && (
                 <div
@@ -163,23 +165,23 @@ export class LsRecipientCard {
                     // display: this.isHovered && this.recipient.signerIndex !== this.activeRecipient ? '' : 'none',
                   }}
                 >
-                  {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle" size="16" style={{ marginRight: '0.125rem' }} />}
+                  {recipientSignatures.length === 0 && <ls-icon name="exclamation-circle-icon" size={16} style={{ marginRight: '0.125rem' }} />}
                   {recipientSignatures.length === 0 ? 'Signature Required' : `${recipientFields.length} ${recipientFields.length === 1 ? 'Field' : 'Fields'}`}
                 </div>
               )} */}
             </div>
 
             <div class="ls-dv-fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
-              {this.recipient.signerIndex > 0 && this.showTool('signature') && this.recipient?.roleType !== 'APPROVER' && (
+              {this.recipient.signerIndex > 0 && this.showTool('signature-icon') && this.recipient?.roleType !== 'APPROVER' && (
                 <ls-toolbox-field
                   elementType="signature"
                   formElementType="signature"
-                  label="Signature"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.signature')}
+                  defaultHeight={FIELD_DEFAULTS['signature'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['signature'].defaultWidth}
                   validation={0}
-                  icon="signature"
-                  tooltip="Use this field to collect Signatures from Participants"
+                  icon="signature-icon"
+                  tooltip={dvI18n.t('toolbox.signaturetooltip')}
                   signer={this.recipient.signerIndex}
                   redDot={recipientSignatures.length === 0}
                 />
@@ -189,12 +191,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="admin"
                   formElementType="auto sign"
-                  label="Auto Sign"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.autosign')}
+                  defaultHeight={FIELD_DEFAULTS['auto sign'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['auto sign'].defaultWidth}
                   validation={3000}
-                  icon="auto-sign"
-                  tooltip="Auto-Sign lets Senders add a Signature to the Document that will be automatically applied upon Sending"
+                  icon="auto-sign-icon"
+                  tooltip={dvI18n.t('toolbox.autosigntooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -202,12 +204,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="text"
-                  label="Text"
-                  defaultHeight={27}
-                  defaultWidth={100}
+                  label={dvI18n.t('toolbox.text')}
+                  defaultHeight={FIELD_DEFAULTS['text'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['text'].defaultWidth}
                   validation={0}
-                  icon="text"
-                  tooltip="A field for collecting any plain text values such as: names, addresses or descriptions"
+                  icon="text-icon"
+                  tooltip={dvI18n.t('toolbox.texttooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -216,12 +218,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="signing date"
-                  label="Signing Date"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.signingdate')}
+                  defaultHeight={FIELD_DEFAULTS['signing date'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['signing date'].defaultWidth}
                   validation={32}
-                  icon="auto-date"
-                  tooltip="Automatically inserts the date upon completion by the assigned Participant"
+                  icon="auto-date-icon"
+                  tooltip={dvI18n.t('toolbox.signingdatetooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -230,12 +232,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="date"
-                  label="Date"
-                  defaultHeight={27}
-                  defaultWidth={80}
+                  label={dvI18n.t('toolbox.date')}
+                  defaultHeight={FIELD_DEFAULTS['date'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['date'].defaultWidth}
                   validation={4}
-                  icon="calender"
-                  tooltip="A field for collecting dates with built-in date formatting options"
+                  icon="calender-icon"
+                  tooltip={dvI18n.t('toolbox.datetooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -243,12 +245,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="email"
-                  label="Email"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.email')}
+                  defaultHeight={FIELD_DEFAULTS['email'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['email'].defaultWidth}
                   validation={1}
-                  icon="at-symbol"
-                  tooltip="A Field to only accept entries formatted as an email address (e.g., example@example.com)"
+                  icon="at-symbol-icon"
+                  tooltip={dvI18n.t('toolbox.emailtooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -257,12 +259,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="initials"
                   formElementType="initials"
-                  label="Initials"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.initials')}
+                  defaultHeight={FIELD_DEFAULTS['initials'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['initials'].defaultWidth}
                   validation={2000}
-                  icon="initials"
-                  tooltip="Use this field anywhere Participants are required to Initial your document"
+                  icon="initials-icon"
+                  tooltip={dvI18n.t('toolbox.initialstooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -271,12 +273,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="number"
-                  label="Number"
-                  defaultHeight={27}
-                  defaultWidth={80}
+                  label={dvI18n.t('toolbox.number')}
+                  defaultHeight={FIELD_DEFAULTS['number'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['number'].defaultWidth}
                   validation={50}
-                  icon="hashtag"
-                  tooltip="A Field to only accept entries in numerical format. Additional validations include character limit (1 to 12 digits), and currency format (2 decimal places)"
+                  icon="hashtag-icon"
+                  tooltip={dvI18n.t('toolbox.numbertooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -285,12 +287,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="dropdown"
-                  label="Dropdown"
-                  defaultHeight={27}
-                  defaultWidth={80}
+                  label={dvI18n.t('toolbox.dropdown')}
+                  defaultHeight={FIELD_DEFAULTS['dropdown'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['dropdown'].defaultWidth}
                   validation={20}
-                  icon="dropdown"
-                  tooltip="Use this field to create custom dropdown menus in your document, or place one of our handy presets for countries or prefixes"
+                  icon="dropdown-icon"
+                  tooltip={dvI18n.t('toolbox.dropdowntooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -299,12 +301,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="checkbox"
-                  label="Checkbox"
-                  defaultHeight={27}
-                  defaultWidth={27}
+                  label={dvI18n.t('toolbox.checkbox')}
+                  defaultHeight={FIELD_DEFAULTS['checkbox'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['checkbox'].defaultWidth}
                   validation={25}
-                  icon="check"
-                  tooltip="Places a checkbox on your document. Handy for T&Cs or  ✔/✗ sections"
+                  icon="check-icon"
+                  tooltip={dvI18n.t('toolbox.checkboxtooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -313,12 +315,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="regex"
-                  label="Regex"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.regex')}
+                  defaultHeight={FIELD_DEFAULTS['regex'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['regex'].defaultWidth}
                   validation={93}
-                  icon="code"
-                  tooltip="Need a specific validation? Use this field to enter a custom RegEx and have Participants enter exactly what you need"
+                  icon="code-icon"
+                  tooltip={dvI18n.t('toolbox.regextooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -326,12 +328,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="image"
-                  label="Image"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.image')}
+                  defaultHeight={FIELD_DEFAULTS['image'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['image'].defaultWidth}
                   validation={90}
-                  icon="photograph"
-                  tooltip="Use when you need Participants to upload their own images during the signing process"
+                  icon="photograph-icon"
+                  tooltip={dvI18n.t('toolbox.imagetooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -339,12 +341,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="file"
-                  label="File"
-                  defaultHeight={27}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.file')}
+                  defaultHeight={FIELD_DEFAULTS['file'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['file'].defaultWidth}
                   validation={74}
-                  icon="upload"
-                  tooltip="Use when you need Participants to upload their own documents during the signing process"
+                  icon="upload-icon"
+                  tooltip={dvI18n.t('toolbox.filetooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -352,12 +354,12 @@ export class LsRecipientCard {
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="drawn"
-                  label="Drawn"
-                  defaultHeight={120}
-                  defaultWidth={120}
+                  label={dvI18n.t('toolbox.drawn')}
+                  defaultHeight={FIELD_DEFAULTS['drawn'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['drawn'].defaultWidth}
                   validation={90}
-                  icon="pencil"
-                  tooltip="Allow users to draw on the document using their mouse or touchscreen"
+                  icon="pencil-icon"
+                  tooltip={dvI18n.t('toolbox.drawntooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
@@ -365,7 +367,7 @@ export class LsRecipientCard {
           </div>
         </div>
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

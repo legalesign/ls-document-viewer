@@ -1,16 +1,17 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { dvI18n } from '../../i18n/i18n';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { Element } from '@stencil/core';
-import { attachAllTooltips } from '../../utils/tooltip';
 
 @Component({
   tag: 'ls-field-dimensions',
-  styleUrl: 'ls-field-dimensions.css',
+  styleUrl: 'ls-field-dimensions.scss',
   shadow: true,
 })
 export class LsFieldDimensions {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
+  @Prop() template: any; // LSApiTemplate
 
   @Event({
     bubbles: true,
@@ -60,7 +61,6 @@ export class LsFieldDimensions {
   }
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -69,16 +69,16 @@ export class LsFieldDimensions {
         {this.isMultiple(this.dataItem) && (
           <div class={'ls-dv-field-properties-section'}>
             <div class={'ls-dv-field-properties-section-text'}>
-              <p class={'ls-dv-field-properties-section-title'}>Height and Width</p>
-              <p class={'ls-dv-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
+              <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('dimensions.heightandwidth')}</p>
+              <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.heightandwidthdescription')}</p>
             </div>
             <div class={'ls-dv-input-row'}>
-              <div class={'ls-dv-input-wrapper'} data-tooltip="Set field width in pixels">
-                <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+              <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
+                <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
               </div>
-              <div class={'ls-dv-input-wrapper'} data-tooltip="Set field height in pixels">
-                <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+              <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
+                <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                 <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
               </div>
             </div>
@@ -95,12 +95,12 @@ export class LsFieldDimensions {
           <div class={'ls-dv-field-set'}>
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Height and Width</p>
-                <p class={'ls-dv-field-properties-section-description'}>Define the height and width of one or multiple fields</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('dimensions.heightandwidth')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.heightandwidthdescription')}</p>
               </div>
               <div class={'ls-dv-input-row'}>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Set field width in pixels">
-                  <ls-icon id="selectLeadingIcon" name="field-match-width"></ls-icon>
+                <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
+                  <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -111,15 +111,22 @@ export class LsFieldDimensions {
                     value={this.dataItem?.width}
                     onChange={e => {
                       const di = this.getDataItem();
-                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.width - di.left) {
+                      const newWidth = parseInt((e.target as HTMLInputElement).value);
+                      if (newWidth > di.pageDimensions.width - di.left) {
                         return;
                       }
-                      this.alter({ width: (e.target as HTMLInputElement).value })
+                      // If signature field with fixed scale, auto-adjust height
+                      if (di.formElementType === 'signature' && this.template?.fixSignatureScale) {
+                        const newHeight = Math.round(newWidth / 3.8);
+                        this.alter({ width: newWidth, height: newHeight });
+                      } else {
+                        this.alter({ width: newWidth });
+                      }
                     }}
                   />
                 </div>
-                <div class={'ls-dv-input-wrapper'} data-tooltip="Set field height in pixels">
-                  <ls-icon id="selectLeadingIcon" name="field-match-height"></ls-icon>
+                <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
+                  <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
                   <input
                     type="number"
                     class={'ls-dv-has-leading-icon'}
@@ -128,11 +135,17 @@ export class LsFieldDimensions {
                     value={this.dataItem?.height}
                     onChange={e => {
                       const di = this.getDataItem();
-                      if (parseInt((e.target as HTMLInputElement).value) > di.pageDimensions.height - di.top) {
+                      const newHeight = parseInt((e.target as HTMLInputElement).value);
+                      if (newHeight > di.pageDimensions.height - di.top) {
                         return;
                       }
-
-                      this.alter({ height: (e.target as HTMLInputElement).value })
+                      // If signature field with fixed scale, auto-adjust width
+                      if (di.formElementType === 'signature' && this.template?.fixSignatureScale) {
+                        const newWidth = Math.round(newHeight * 3.8);
+                        this.alter({ height: newHeight, width: newWidth });
+                      } else {
+                        this.alter({ height: newHeight });
+                      }
                     }}
                   />
                 </div>
@@ -141,24 +154,24 @@ export class LsFieldDimensions {
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
-                <p class={'ls-dv-field-properties-section-title'}>Scale and Resize</p>
-                <p class={'ls-dv-field-properties-section-description'}>Multi-select fields and match their dimensions</p>
+                <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('dimensions.scaleandresize')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('dimensions.scaleandresizedescription')}</p>
               </div>
               <div class={'ls-dv-button-group'}>
-                <button disabled data-tooltip="Select multiple Fields to to access scale controls">
-                  <ls-icon name="field-scale"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultiplescale')}>
+                  <ls-icon name="field-scale-icon"></ls-icon>
                 </button>
-                <button disabled data-tooltip="Select multiple Fields to to access match width controls">
-                  <ls-icon name="field-match-width"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultiplewidth')}>
+                  <ls-icon name="field-match-width-icon"></ls-icon>
                 </button>
-                <button disabled data-tooltip="Select multiple Fields to to access match height controls">
-                  <ls-icon name="field-match-height"></ls-icon>
+                <button disabled data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.selectmultipleheight')}>
+                  <ls-icon name="field-match-height-icon"></ls-icon>
                 </button>
               </div>
             </div>
           </div>
         )}
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

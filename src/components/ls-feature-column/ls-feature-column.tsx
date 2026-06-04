@@ -1,9 +1,9 @@
 import { Component, Host, Prop, h, EventEmitter, Event, Element } from '@stencil/core';
-import { attachAllTooltips } from '../../utils/tooltip';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-feature-column',
-  styleUrl: 'ls-feature-column.css',
+  styleUrl: 'ls-feature-column.scss',
   shadow: true,
 })
 export class LsFeatureColoumn {
@@ -25,7 +25,6 @@ export class LsFeatureColoumn {
   @Event() manage: EventEmitter<'document' | 'toolbox' | 'participant' | 'recipient' | 'validation'>;
 
   componentDidLoad() {
-    attachAllTooltips(this.component.shadowRoot);
   }
 
   render() {
@@ -37,11 +36,11 @@ export class LsFeatureColoumn {
             this.manage.emit('document');
             this.manager = 'document';
           }}
-          data-tooltip-title="Template Details"
-          data-tooltip="View and edit Template properties"
-          data-tooltip-placement="right"
+          data-tooltip-id="ls-dv-tooltip"
+          data-tooltip-html={`<strong>${dvI18n.t('featurecolumn.templatedetails')}</strong><br/>${dvI18n.t('featurecolumn.templatedetailstooltip')}`}
+          data-tooltip-place="right"
         >
-          <ls-icon name="document" size="1.5rem" />
+          <ls-icon name="document-icon" size={24} />
         </div>
         <div
           class={this.manager === 'toolbox' ? 'ls-dv-active-icon' : 'ls-dv-default-icon'}
@@ -49,11 +48,11 @@ export class LsFeatureColoumn {
             this.manage.emit('toolbox');
             this.manager = 'toolbox';
           }}
-          data-tooltip-title="Field Types"
-          data-tooltip="Select and place Form Field Elements"
-          data-tooltip-placement="right"
+          data-tooltip-id="ls-dv-tooltip"
+          data-tooltip-html={`<strong>${dvI18n.t('featurecolumn.fieldtypes')}</strong><br/>${dvI18n.t('featurecolumn.fieldtypestooltip')}`}
+          data-tooltip-place="right"
         >
-          <ls-icon name="typing-input" size="1.5rem" />
+          <ls-icon name="typing-input-icon" size={24} />
         </div>
         
         <div
@@ -62,11 +61,11 @@ export class LsFeatureColoumn {
             this.manage.emit('participant');
             this.manager = 'participant';
           }}
-          data-tooltip-title="Participants"
-          data-tooltip="Manage Signers, Witnesses and Approvers"
-          data-tooltip-placement="right"
+          data-tooltip-id="ls-dv-tooltip"
+          data-tooltip-html={`<strong>${dvI18n.t('featurecolumn.participants')}</strong><br/>${dvI18n.t('featurecolumn.participantstooltip')}`}
+          data-tooltip-place="right"
         >
-          <ls-icon name="user-group" size="1.5rem" />
+          <ls-icon name="user-group-icon" size={24} />
         </div>
 
         <div
@@ -75,11 +74,11 @@ export class LsFeatureColoumn {
             this.manage.emit('recipient');
             this.manager = 'recipient';
           }}
-          data-tooltip-title="Recipients"
-          data-tooltip="View the list of Recipients for this document"
-          data-tooltip-placement="right"
+          data-tooltip-id="ls-dv-tooltip"
+          data-tooltip-html={`<strong>${dvI18n.t('featurecolumn.recipients')}</strong><br/>${dvI18n.t('featurecolumn.recipientstooltip')}`}
+          data-tooltip-place="right"
         >
-          <ls-icon name="user-group" size="1.5rem" />
+          <ls-icon name="user-group-icon" size={24} />
         </div>
 
         <div
@@ -88,15 +87,15 @@ export class LsFeatureColoumn {
             this.manage.emit('validation');
             this.manager = 'validation';
           }}
-          data-tooltip-title="Validation"
-          data-tooltip="View the list of Recipients for this document"
-          data-tooltip-placement="right"
+          data-tooltip-id="ls-dv-tooltip"
+          data-tooltip-html={`<strong>${dvI18n.t('featurecolumn.validation')}</strong><br/>${dvI18n.t('featurecolumn.validationtooltip')}`}
+          data-tooltip-place="right"
         >
-          <ls-icon name="adjustments" size="1.5rem" />
+          <ls-icon name="adjustments-icon" size={24} />
         </div>
 
         <slot></slot>
-        <ls-tooltip id="ls-tooltip-master" />
+        <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>
     );
   }

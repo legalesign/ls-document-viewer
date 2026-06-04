@@ -9,6 +9,7 @@
 
 | Property            | Attribute       | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Default     |
 | ------------------- | --------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `busy`              | `busy`          |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
 | `displayTable`      | `display-table` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `false`     |
 | `fieldTypeSelected` | --              |             | `IToolboxField`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | `undefined` |
 | `filtertoolbox`     | `filtertoolbox` |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `null`      |
@@ -38,7 +39,7 @@
 
 ### Depends on
 
-- [ls-icon](../ls-icon)
+- ls-icon
 - [ls-field-properties](../ls-field-properties)
 - [ls-toolbox-field](../ls-toolbox-field)
 - [ls-feature-column](../ls-feature-column)
@@ -81,6 +82,7 @@ graph TD;
   ls-field-content --> ls-props-section
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-field-type-display --> ls-icon
@@ -160,10 +162,16 @@ graph TD;
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
   ls-participant-manager --> ls-participant-card
-  ls-participant-manager --> ls-icon
+  ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
+  ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
+  ls-button --> ls-icon
+  ls-button --> ls-loading
+  ls-loading --> ls-loading-icon
+  ls-add-new-button --> ls-icon
+  ls-add-new-button --> ls-loading
   ls-document-options --> ls-icon
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip
