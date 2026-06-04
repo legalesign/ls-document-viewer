@@ -250,7 +250,7 @@ export class LsParticipantCard {
                   </ls-input-wrapper>
                 ) : (
                   <ls-input-wrapper leadingIcon="eye-icon">
-                    <input name="roleType" id="role-type" class={'ls-dv-has-leading-icon'} disabled value="Witness" />
+                    <input name="roleType" id="role-type" class={'ls-dv-has-leading-icon'} disabled value="Witness" style={{ wdith: '100%' }} />
                   </ls-input-wrapper>
                 )}
                 <input
