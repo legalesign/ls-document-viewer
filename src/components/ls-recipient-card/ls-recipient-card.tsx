@@ -172,7 +172,7 @@ export class LsRecipientCard {
             </div>
 
             <div class="ls-dv-fields-box" style={{ display: this.recipient.signerIndex === this.activeRecipient ? 'flex' : 'hidden' }}>
-              {this.recipient.signerIndex > 0 && this.showTool('signature-icon') && this.recipient?.roleType !== 'APPROVER' && (
+              {this.recipient.signerIndex > 0 && this.showTool('signature') && this.recipient?.roleType !== 'APPROVER' && (
                 <ls-toolbox-field
                   elementType="signature"
                   formElementType="signature"
