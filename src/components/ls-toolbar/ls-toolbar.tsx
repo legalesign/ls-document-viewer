@@ -94,9 +94,10 @@ export class LsToolbar {
               signer={this.signer}
               style={{ display: this.dataItem && this.dataItem.length === 1 ? 'none' : 'block' }}
             />
+            <ls-tooltip tooltipId="ls-dv-tooltip" />
           </div>
         )}
-        <ls-tooltip tooltipId="ls-dv-tooltip" />
+        
         <slot></slot>
       </div>
     );
@@ -107,16 +108,15 @@ export class LsToolbar {
       <div class={this.dataItem && this.dataItem.length > 0 ? 'ls-dv-toolbar' : ''}>
         <div class="rowbox">
           <ls-field-format dataItem={this.dataItem} />
+          <ls-tooltip tooltipId="ls-dv-tooltip" />
         </div>
-        <ls-tooltip tooltipId="ls-dv-tooltip" />
+
         <slot></slot>
       </div>
     );
   }
 
   render() {
-    return this.mode === 'editor' ? this.renderEditor()
-      : this.mode === 'compose' ? this.renderCompose()
-      : null;
+    return this.mode === 'editor' ? this.renderEditor() : this.mode === 'compose' ? this.renderCompose() : null;
   }
 }
