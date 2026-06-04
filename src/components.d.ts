@@ -205,6 +205,7 @@ export namespace Components {
     }
     interface LsFieldDimensions {
         "dataItem": LSApiElement1 | LSApiElement1[];
+        "template": any;
     }
     interface LsFieldDistribute {
         "dataItem": LSApiElement1[];
@@ -223,6 +224,7 @@ export namespace Components {
     }
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
+        "template": any;
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem": LSApiElement | LSApiElement[];
@@ -268,6 +270,7 @@ export namespace Components {
     }
     interface LsFieldPropertiesSignature {
         "dataItem": LSApiElement1;
+        "template": any;
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
@@ -1446,6 +1449,7 @@ declare namespace LocalJSX {
         "dataItem"?: LSApiElement1 | LSApiElement1[];
         "onMutate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
+        "template"?: any;
     }
     interface LsFieldDistribute {
         "dataItem"?: LSApiElement1[];
@@ -1470,6 +1474,7 @@ declare namespace LocalJSX {
     }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
+        "template"?: any;
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem"?: LSApiElement | LSApiElement[];
@@ -1518,6 +1523,7 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesSignature {
         "dataItem"?: LSApiElement1;
+        "template"?: any;
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
