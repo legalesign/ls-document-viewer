@@ -190,7 +190,7 @@ export class LsFieldContent {
                 />
                 {this.dataItem?.value && (
                   <div class="ls-dv-date-clear" onClick={() => this.alter({ value: '' })}>
-                    <ls-icon name="x" size="1.25rem" />
+                    <ls-icon name="x-icon" size={20} />
                   </div>
                 )}
                 <input
