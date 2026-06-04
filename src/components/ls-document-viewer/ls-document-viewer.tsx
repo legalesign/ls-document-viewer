@@ -255,7 +255,10 @@ export class LsDocumentViewer {
       const promises = event.detail.map(me =>
         this.adapter
           .handleEvent(me, this.token)
-          .then(result => matchData.bind(this)(result))
+          .then(result => {
+            if (result === 'invalid') return;
+            matchData.bind(this)(result);
+          })
           .then(() => this.syncChange(me)),
       );
       Promise.all(promises).finally(() => {
