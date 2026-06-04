@@ -4,12 +4,15 @@
   margin: 0px;
   padding: 0px 0px 0px 0px;
   isolation: isolate;
+  min-height: 16px;
 }
 
 .ls-dv-editor-field-editable {
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
   overflow: hidden;
 
   /* no extra spaces */
@@ -19,7 +22,7 @@
   /* default widths */
   min-width: 2em;
   height: 100%;
-  width: 100%;
+  width: calc(100% - 13px);
 }
 
 .ls-dv-editor-field-editable:focus {
@@ -27,10 +30,14 @@
 }
 
 .ls-dv-editor-field-draggable {
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: inherit;
   font-size: inherit;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   /* no extra spaces */
   white-space: nowrap;
@@ -38,7 +45,11 @@
   /* default widths */
   min-width: 2px;
   height: 98%;
-  width: 98%;
+  width: calc(100% - 13px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* .ls-dv-is-selected {
@@ -49,8 +60,19 @@
   display: none;
 }
 
+.ls-dv-date-field-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 input {
   all: unset;
+  color: inherit;
 }
 
 .ls-dv-draggable-input {
