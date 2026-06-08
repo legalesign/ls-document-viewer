@@ -45,24 +45,34 @@ export class LsValidationTag {
   render() {
     return (
       <Host ref={el => (this.el = el as HTMLElement)}>
-        <div
-          class={`ls-dv-valid-label ${this.validationErrors.length === 0 ? 'ls-dv-valid' : 'ls-dv-invalid'} ${this.type === 'compose' ? 'ls-dv-compose' : 'ls-dv-default'}`}
-          onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
-        >
-          {this.validationErrors.length > 0 && <div class={`ls-dv-field-counter ${this.type === 'compose' ? 'ls-dv-compose' : 'ls-dv-default'}`}>{this.validationErrors.length}</div>}
-          {this.type === 'compose' ? (this.validationErrors.length === 0 ? dvI18n.t('common.ready') : dvI18n.t('common.required')) : this.validationErrors.length === 0 ? dvI18n.t('common.readytosend') : dvI18n.t('common.requiresfields')}
-          {this.validationErrors.length > 0 && this.showDropDown && this.type !== 'compose' && (
-            <ls-icon name={this.isExpanded ? 'chevron-up-icon' : 'chevron-down-icon'} style={{ cursor: 'pointer', scale: '0.60', margin: '0 -0.25rem' }} />
-          )}
-          {this.validationErrors.length > 0 && this.type === 'compose' && <ls-icon name="cursor-click-icon" solid size={16} customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
-          {this.validationErrors.length === 0 && this.type === 'compose' && <ls-icon name="check-icon" solid size={16} customStyle={{ marginRight: '-0.125rem' }} />}
-        </div>
+        {this.type === 'compose' ? (
+          <div
+            class={`ls-dv-valid-label ls-dv-compose ${this.validationErrors.length === 0 ? 'ls-dv-valid' : 'ls-dv-invalid'}`}
+            onClick={this.validationErrors.length && (() => (this.isExpanded = !this.isExpanded))}
+          >
+            {this.validationErrors.length > 0 && <div class="ls-dv-field-counter ls-dv-compose">{this.validationErrors.length}</div>}
+            {this.validationErrors.length === 0 ? dvI18n.t('common.ready') : dvI18n.t('common.required')}
+            {this.validationErrors.length > 0 && <ls-icon name="cursor-click-icon" solid size={16} customStyle={{ color: 'var(--red-70, #DC2721);' }} />}
+            {this.validationErrors.length === 0 && <ls-icon name="check-icon" solid size={16} customStyle={{ marginRight: '-0.125rem' }} />}
+          </div>
+        ) : (
+          <div class={`ls-dv-valid-label-wrapper`} onClick={() => (this.isExpanded = !this.isExpanded)}>
+            <div class={`ls-dv-valid-label-icon-only ls-dv-default ${this.validationErrors.length === 0 ? 'ls-dv-valid' : 'ls-dv-invalid'}`}>
+              <ls-icon name={this.validationErrors.length > 0 ? 'clipboard-list-icon' : 'check-icon'} size={20} />
+            </div>
+            {this.validationErrors.length > 0 && <div class="ls-dv-field-counter ls-field-counter-floating ls-dv-default">{this.validationErrors.length}</div>}
+            {this.validationErrors.length > 0 && this.showDropDown && (
+              <ls-icon name={this.isExpanded ? 'chevron-up-icon' : 'chevron-down-icon'} customStyle={{ color: 'var(--gray-70, #4B5563)' }} />
+            )}
+          </div>
+        )}
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
-          <div class={'ls-dv-field-dropdown'}>
+          <div class={'ls-dv-field-dropdown'} style={{ top: '3.5rem' }}>
             <div class={'ls-dv-dropdown-header'}>
               <h2>{dvI18n.t('common.fieldsrequired')}</h2>
               <p>
-                {this.validationErrors.length} {this.validationErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')}
+                {this.validationErrors.length}{' '}
+                {this.validationErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')}
               </p>
             </div>
             {this.validationErrors.map((field, idx) => {
@@ -81,7 +91,7 @@ export class LsValidationTag {
                     '--field-text-color-hover': pallette.s80,
                     '--field-border-color-hover': pallette.s60,
                   }}
-                  onMouseDown={(e) => {
+                  onMouseDown={e => {
                     e.preventDefault();
                     e.stopPropagation();
                     if (field?.role) {
@@ -121,6 +131,19 @@ export class LsValidationTag {
             })}
           </div>
         )}
+        {this.isExpanded && this.validationErrors.length === 0 && this.type !== 'compose' && this.showDropDown && (
+          <div class={'ls-dv-field-dropdown ls-dv-field-dropdown-success'} style={{ top: '3.5rem' }}>
+            <div class="ls-dv-dropdown-success-icon-outer">
+              <div class="ls-dv-dropdown-success-icon-inner">
+                <ls-icon name="check-icon" solid size={28} />
+              </div>
+            </div>
+            <div class={'ls-dv-dropdown-header'}>
+              <h2>{dvI18n.t('common.templatereadytosend')}</h2>
+              <p>{dvI18n.t('common.allfieldsplaced')}</p>
+            </div>
+          </div>
+        )}
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type === 'compose' && (
           <div class={'ls-dv-field-dropdown ls-dv-compose'}>
             <div class="ls-dv-validation-tag-header">
@@ -140,7 +163,9 @@ export class LsValidationTag {
                 >
                   <div class="ls-dv-validation-tag-bar" style={{ background: pallette.s60 }}></div>
                   <div class="ls-dv-validation-tag-details">
-                    <p class="ls-dv-validation-tag-name">{field?.role?.previousRecipientDecides ? `Recipient ${field?.role?.signerIndex + 1}` : `${field?.role?.firstName} ${field?.role?.lastName}`}</p>
+                    <p class="ls-dv-validation-tag-name">
+                      {field?.role?.previousRecipientDecides ? `Recipient ${field?.role?.signerIndex + 1}` : `${field?.role?.firstName} ${field?.role?.lastName}`}
+                    </p>
                     <p class="ls-dv-validation-tag-email">{field?.role?.previousRecipientDecides ? dvI18n.t('common.detailstobedecided') : field?.role?.email}</p>
                   </div>
                 </div>

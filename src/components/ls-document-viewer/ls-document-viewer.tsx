@@ -793,9 +793,6 @@ export class LsDocumentViewer {
                 <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
-                <div class={'ls-dv-validation-tag-wrapper'}>
-                  <ls-validation-tag validationErrors={this.validationErrors} />
-                </div>
               </div>
             )}
             {this.mode === 'compose' && (
@@ -836,6 +833,12 @@ export class LsDocumentViewer {
                 </div>
               </div>
               <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />
+              {this.mode === 'editor' && (
+                <div class={'ls-dv-validation-tag-wrapper'}>
+                  <ls-validation-tag validationErrors={this.validationErrors} />
+                  <slot name="next-button"></slot>
+                </div>
+              )}
             </div>
           </form>
         </>
