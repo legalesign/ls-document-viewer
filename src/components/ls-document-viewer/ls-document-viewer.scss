@@ -205,8 +205,8 @@ slot {
 #ls-box-selector {
   position: absolute;
   visibility: hidden;
-  background-color: transparent;
-  border: 1px rgba(71, 71, 71, 0.716) dashed;
+  background-color: color-mix(in srgb, $primary-20 20%, transparent);
+  border: 1px dashed $primary-50;
 }
 
 #ls-editor-form {
