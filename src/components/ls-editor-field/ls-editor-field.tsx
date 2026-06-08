@@ -306,8 +306,8 @@ export class LsEditorField {
 
   render() {
     const hostStyle = this.floatingActive
-      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }
-      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}` };
+      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 }
+      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 };
 
     const zoomValue = parseFloat(this.zoom) || 1;
     const topOffest = (this.dataItem.height ?? 1) + 4;
@@ -329,7 +329,7 @@ export class LsEditorField {
               customStyle={{
                 position: 'absolute',
                 top: '50%',
-                right: `${0.125 * zoomValue}rem`,
+                right: `${0.25 * zoomValue}rem`,
                 transform: 'translateY(-50%)',
                 lineHeight: '1',
                 fontSize: `${0.75 * zoomValue}rem`,
@@ -393,6 +393,13 @@ export class LsEditorField {
             >
               {dvI18n.t('fieldproperties.assignedto')} {this.assignee}
             </p>
+          )}
+          {this.selected && (
+            <div class="resize-handles">
+              <div class="resize-handle handle-e" />
+              <div class="resize-handle handle-s" />
+              <div class="resize-handle handle-se" />
+            </div>
           )}
           {this.floatingActive && (
             <button
