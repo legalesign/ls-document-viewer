@@ -11,7 +11,6 @@ export function updateSelectionBox() {
     return;
   }
 
-  var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
   let minLeft = Infinity, minTop = Infinity, maxRight = -Infinity, maxBottom = -Infinity;
 
   this.selected.forEach(f => {
