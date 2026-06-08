@@ -4,6 +4,33 @@ import { findDimensions, findIn, recalculateCoordinates } from './editorCalculat
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 
+export function updateSelectionBox() {
+  var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
+  if (!this.selected || this.selected.length < 2) {
+    box.style.visibility = 'hidden';
+    return;
+  }
+
+  let minLeft = Infinity, minTop = Infinity, maxRight = -Infinity, maxBottom = -Infinity;
+
+  this.selected.forEach(f => {
+    const left = f.offsetLeft;
+    const top = f.offsetTop;
+    const right = left + f.offsetWidth;
+    const bottom = top + f.offsetHeight;
+    if (left < minLeft) minLeft = left;
+    if (top < minTop) minTop = top;
+    if (right > maxRight) maxRight = right;
+    if (bottom > maxBottom) maxBottom = bottom;
+  });
+
+  box.style.left = minLeft + 'px';
+  box.style.top = minTop + 'px';
+  box.style.width = (maxRight - minLeft) + 'px';
+  box.style.height = (maxBottom - minTop) + 'px';
+  box.style.visibility = 'visible';
+}
+
 let mousetimer = null;
 
 export function debounce(data, delay) {
@@ -126,6 +153,7 @@ export function mouseDown(e) {
     this.selectFields.emit([]);
     this.selected = [];
     this.component.style.cursor = 'crosshair';
+    updateSelectionBox.bind(this)();
   }
 }
 
@@ -280,6 +308,7 @@ export function mouseMove(event) {
           this.selected[i].style.top = Math.round(this.startLocations[i].top + movedY) + 'px';
         }
       }
+      updateSelectionBox.bind(this)();
     }
   }
 }
@@ -300,6 +329,7 @@ export function mouseUp(event) {
     const found = findIn(fields, box, true, event.shiftKey);
     this.selected = Array.from(found);
     this.selectFields.emit(found.map(fx => fx.dataItem));
+    updateSelectionBox.bind(this)();
   }
 }
 
@@ -329,6 +359,7 @@ export function mouseClick(e) {
         }),
     );
     this.selectFields.emit(selected.map(fx => fx.dataItem));
+    updateSelectionBox.bind(this)();
   } else {
     // reset the selection box location
     this.selectionBox = { x: e.clientX, y: e.clientY };
@@ -347,6 +378,7 @@ export function mouseClick(e) {
 
     this.selected = Array.from(fields).filter(fx => fx.selected);
     this.selectFields.emit(this.selected.map(fx => fx.dataItem));
+    updateSelectionBox.bind(this)();
   }
 }
 
