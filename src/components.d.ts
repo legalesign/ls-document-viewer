@@ -166,6 +166,10 @@ export namespace Components {
           * @default false
          */
         "floatingActive": boolean;
+        /**
+          * @default false
+         */
+        "multiSelected": boolean;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -1178,6 +1182,7 @@ declare global {
     validation: number;
     fixedAspect: number | null;
   };
+        "toolboxDragStart": IToolboxField;
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1401,6 +1406,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "floatingActive"?: boolean;
+        /**
+          * @default false
+         */
+        "multiSelected"?: boolean;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
@@ -1770,6 +1779,7 @@ declare namespace LocalJSX {
     validation: number;
     fixedAspect: number | null;
   }>) => void;
+        "onToolboxDragStart"?: (event: LsToolboxFieldCustomEvent<IToolboxField>) => void;
         /**
           * @default false
          */
