@@ -202,3 +202,14 @@ $burnt-100: var(--burnt-100, #7a3d14);
 $shadow-base: var(--shadow-base, 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 1px 3px rgba(0, 0, 0, 0.1));
 $shadow-lg: var(--shadow-lg, 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05));
 $active: var(--active, 0px 1px 3px rgba(0, 15, 153, 0.25), 0px 1px 2px rgba(0, 15, 153, 0.06), 0px 0px 0px 4px #9dc3fc);
+
+// Border Radius
+$rounded-none: var(--rounded-none, 0px);
+$rounded-sm: var(--rounded-sm, 0.125rem);
+$rounded: var(--rounded, 0.25rem);
+$rounded-md: var(--rounded-md, 0.375rem);
+$rounded-lg: var(--rounded-lg, 0.5rem);
+$rounded-xl: var(--rounded-xl, 0.75rem);
+$rounded-2xl: var(--rounded-2xl, 1rem);
+$rounded-3xl: var(--rounded-3xl, 1.5rem);
+$rounded-full: var(--rounded-full, 9999px);
