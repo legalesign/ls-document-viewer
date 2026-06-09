@@ -1,6 +1,7 @@
 import { LsEditorField } from '../ls-editor-field/ls-editor-field';
 import { alter, oob } from './editorUtils';
 import { moveField } from './editorCalculator';
+import { updateSelectionBox } from './mouseHandlers';
 
 // Buffer for batching rapid key presses
 let mutationBuffer = null;
@@ -102,6 +103,9 @@ function bufferedAlter(diffFnFactory) {
     // Update the visual position using moveField
     moveField.bind(this)(field, updatedItem);
   });
+
+  // Update the selection box to match the new field positions
+  updateSelectionBox.bind(this)();
 
   // Store the latest state for batched mutation
   mutationBuffer = this.selected.map(c => c.dataItem);
