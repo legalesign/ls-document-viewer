@@ -502,6 +502,25 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.innerHTML = fieldData.formElementType;
   this.component.shadowRoot.appendChild(ghost);
 
+  // Info chip at bottom of screen
+  const chip = document.createElement('div');
+  chip.id = 'ls-esc-chip';
+  chip.style.position = 'fixed';
+  chip.style.bottom = '1.5rem';
+  chip.style.left = '50%';
+  chip.style.transform = 'translateX(-50%)';
+  chip.style.padding = '0.375rem 0.75rem';
+  chip.style.borderRadius = '0.625rem';
+  chip.style.background = 'var(--gray-100, #1f2937)';
+  chip.style.color = 'white';
+  chip.style.fontSize = '0.75rem';
+  chip.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
+  chip.style.pointerEvents = 'none';
+  chip.style.zIndex = '10000';
+  chip.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+  chip.textContent = 'Press Esc to cancel field placement';
+  this.component.shadowRoot.appendChild(chip);
+
   const onMouseMove = (e: MouseEvent) => {
     e.preventDefault();
     const dragWidth = fieldData.defaultWidth * zoom;
@@ -535,6 +554,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     document.removeEventListener('mouseup', onMouseUp);
     document.removeEventListener('keydown', onKeyDown);
     ghost.remove();
+    chip.remove();
     clearSnapGuides.bind(this)();
     document.body.style.userSelect = '';
     this._isToolboxDragging = false;
