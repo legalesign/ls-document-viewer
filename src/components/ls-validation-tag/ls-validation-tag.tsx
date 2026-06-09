@@ -37,6 +37,7 @@ export class LsValidationTag {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
+
   render() {
     return (
       <Host ref={el => (this.el = el as HTMLElement)}>
