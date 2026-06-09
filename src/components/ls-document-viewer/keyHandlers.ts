@@ -9,6 +9,11 @@ let mutationTimer = null;
 const BUFFER_DELAY = 300; // milliseconds
 
 export function keyDown(ev: KeyboardEvent) {
+  // Disable keyboard controls in preview mode
+  if (this.mode === 'preview') {
+    return;
+  }
+  
   if (this.selected && this.selected?.length > 0) {
     // utils need binding to the context
     const altbound = alter.bind(this);

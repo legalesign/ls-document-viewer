@@ -46,6 +46,10 @@ export function debounce(data, delay) {
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
   if (this._isToolboxDragging) return;
+  // Disable mouse interactions in preview mode
+  if (this.mode === 'preview') {
+    return;
+  }
   // Ignore events originating from outside the document frame
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
   if (!frame || !e.composedPath().includes(frame)) return;
@@ -175,6 +179,10 @@ export function outOfBounds(futureField) {
 export function mouseMove(event) {
   event.preventDefault();
   if (this._isToolboxDragging) return;
+  // Disable mouse move interactions in preview mode
+  if (this.mode === 'preview') {
+    return;
+  }
 
   // We have the mouse held down on a field edge to resize it.
   if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
@@ -369,6 +377,11 @@ export function mouseUp(event) {
 }
 
 export function mouseClick(e) {
+  // Disable click interactions in preview mode
+  if (this.mode === 'preview') {
+    return;
+  }
+  
   // check we're not moving fields
   if (this.isMoving) {
     // End dragging fields
@@ -645,6 +658,11 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 }
 
 export function mouseDoubleClick(event) {
+  // Disable double-click field creation in preview mode
+  if (this.mode === 'preview') {
+    return;
+  }
+  
   console.log('double click', this.fieldTypeSelected, this.signer);
   try {
     let data: IToolboxField = this.fieldTypeSelected as IToolboxField;

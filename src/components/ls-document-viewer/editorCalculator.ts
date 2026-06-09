@@ -32,6 +32,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
         : assignee?.name || `Participant ${data.signer}`,
   );
   node.setAttribute('zoom', String(this.zoom));
+  node.setAttribute('readonly', String(this.mode === 'preview'));
   // node.setAttribute('selected', 'selected');
   node.style.zIndex = '100';
   node.style.position = 'absolute';

@@ -170,6 +170,14 @@ export class LsDocumentViewer {
       this.showstatusbar = true;
       this.readonly = false;
     }
+    
+    // Update readonly attribute on all existing fields
+    const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
+    if (fields) {
+      fields.forEach(field => {
+        field.setAttribute('readonly', String(_newMode === 'preview'));
+      });
+    }
   }
 
   @Watch('zoom')
