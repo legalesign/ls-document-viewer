@@ -1,5 +1,5 @@
 import { LsEditorField } from '../ls-editor-field/ls-editor-field';
-import { alter, oob } from './editorUtils';
+import { oob } from './editorUtils';
 import { moveField } from './editorCalculator';
 import { updateSelectionBox } from './mouseHandlers';
 
