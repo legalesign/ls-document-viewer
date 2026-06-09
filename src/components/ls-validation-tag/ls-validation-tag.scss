@@ -21,6 +21,34 @@
   width: fit-content;
 }
 
+.ls-dv-valid-label-wrapper {
+  display: flex;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid $gray-20;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.825rem;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  width: fit-content;
+  gap: 0.25rem;
+
+  &:hover {
+    background: $gray-10;
+    border: 1px solid $gray-30;
+  }
+}
+
+.ls-dv-valid-label-icon-only {
+  display: flex;
+  padding: 0.25rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.625rem;
+}
 
 .ls-dv-valid {
   background-color: $green-30;
@@ -61,6 +89,12 @@
   min-width: 1rem;
 }
 
+.ls-field-counter-floating {
+  position: absolute;
+  top: -0.125rem;
+  right: -0.125rem;
+}
+
 .ls-dv-field-counter.ls-dv-compose {
   color: $red-10;
   background: $red-60;
@@ -79,12 +113,46 @@
   border-radius: 1rem;
   border: 1px solid #e5e7eb;
   background: #fff;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
   max-height: 20rem;
   overflow-y: auto;
   flex-direction: column;
   align-items: flex-start;
   z-index: 1000;
+}
+
+.ls-dv-field-dropdown.ls-dv-field-dropdown-success {
+  background: linear-gradient($green-10 0%, rgba(255, 255, 255, 1) 100%);
+  width: fit-content;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+
+  * {
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.ls-dv-dropdown-success-icon-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  background: $green-20;
+  padding: 0.5rem;
+}
+
+.ls-dv-dropdown-success-icon-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9999px;
+  background: $green-40;
+  padding: 0.75rem;
+  color: $green-100;
 }
 
 .ls-dv-field-dropdown.ls-dv-compose {
@@ -116,7 +184,9 @@
   background: var(--field-background-hover);
   color: var(--field-text-color-hover);
   border: 1px solid var(--field-border-color-hover);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .ls-dv-required-field-items-left {
