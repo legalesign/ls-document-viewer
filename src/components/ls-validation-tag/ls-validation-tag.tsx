@@ -57,7 +57,7 @@ export class LsValidationTag {
             </div>
             {this.validationErrors.length > 0 && <div class="ls-dv-field-counter ls-field-counter-floating ls-dv-default">{this.validationErrors.length}</div>}
             {this.validationErrors.length > 0 && this.showDropDown && (
-              <ls-icon name={this.isExpanded ? 'chevron-up-icon' : 'chevron-down-icon'} customStyle={{ color: 'var(--gray-70, #4B5563)' }} />
+              <ls-icon name={this.isExpanded ? 'chevron-up-icon' : 'chevron-down-icon'} customStyle={{ color: 'var(--gray-70, #4B5563)', marginRight: '0.25rem' }} />
             )}
           </div>
         )}
