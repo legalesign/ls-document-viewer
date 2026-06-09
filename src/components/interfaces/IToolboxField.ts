@@ -5,4 +5,5 @@ export interface IToolboxField {
     defaultWidth: number
     formElementType: string
     validation: number
+    fixedAspect?: number | null
 }

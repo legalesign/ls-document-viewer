@@ -111,11 +111,11 @@ Type: `Promise<void>`
 - ls-loading-logo
 - [ls-compose-loader](../ls-compose-loader)
 - ls-icon
-- [ls-validation-tag](../ls-validation-tag)
 - [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
 - [ls-statusbar](../ls-statusbar)
+- [ls-validation-tag](../ls-validation-tag)
 - ls-tooltip
 - [ls-editor-field](../ls-editor-field)
 
@@ -125,14 +125,13 @@ graph TD;
   ls-document-viewer --> ls-loading-logo
   ls-document-viewer --> ls-compose-loader
   ls-document-viewer --> ls-icon
-  ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-left-bar
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
   ls-document-viewer --> ls-statusbar
+  ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-tooltip
   ls-document-viewer --> ls-editor-field
-  ls-validation-tag --> ls-icon
   ls-left-bar --> ls-icon
   ls-left-bar --> ls-field-properties
   ls-left-bar --> ls-toolbox-field
@@ -256,6 +255,7 @@ graph TD;
   ls-document-options --> ls-toggle
   ls-document-options --> ls-tooltip
   ls-validation-manager --> ls-toolbox-field
+  ls-validation-tag --> ls-icon
   ls-recipient-card --> ls-icon
   ls-recipient-card --> ls-toolbox-field
   ls-recipient-card --> ls-tooltip

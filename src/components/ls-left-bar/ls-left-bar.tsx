@@ -126,6 +126,7 @@ export class LsLeftBar {
               icon="signature-icon"
               tooltip={dvI18n.t('toolbox.signaturetooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'signature'}
             />
           )}
           {this.signer === 0 && this.showTool('auto sign') && (
@@ -139,6 +140,7 @@ export class LsLeftBar {
               icon="auto-sign-icon"
               tooltip={dvI18n.t('toolbox.autosigntooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'auto sign'}
             />
           )}
           {this.showTool('text') && (
@@ -152,6 +154,7 @@ export class LsLeftBar {
               icon="text-icon"
               tooltip={dvI18n.t('toolbox.texttooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'text'}
             />
           )}
           {this.signer > 0 && this.showTool('signing date') && (
@@ -165,6 +168,7 @@ export class LsLeftBar {
               icon="auto-date-icon"
               tooltip={dvI18n.t('toolbox.signingdatetooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'signing date'}
             />
           )}
           {this.showTool('date') && (
@@ -178,6 +182,7 @@ export class LsLeftBar {
               icon="calender-icon"
               tooltip={dvI18n.t('toolbox.datetooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'date'}
             />
           )}
           {this.showTool('email') && (
@@ -191,6 +196,7 @@ export class LsLeftBar {
               icon="at-symbol-icon"
               tooltip={dvI18n.t('toolbox.emailtooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'email'}
             />
           )}
           {this.showTool('initials') && (
@@ -204,6 +210,7 @@ export class LsLeftBar {
               icon="initials-icon"
               tooltip={dvI18n.t('toolbox.initialstooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'initials'}
             />
           )}
           {this.showTool('number') && (
@@ -217,6 +224,7 @@ export class LsLeftBar {
               icon="hashtag-icon"
               tooltip={dvI18n.t('toolbox.numbertooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'number'}
             />
           )}
           {this.showTool('dropdown') && (
@@ -230,6 +238,7 @@ export class LsLeftBar {
               icon="dropdown-icon"
               tooltip={dvI18n.t('toolbox.dropdowntooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'dropdown'}
             />
           )}
           {this.showTool('checkbox') && (
@@ -243,6 +252,7 @@ export class LsLeftBar {
               icon="check-icon"
               tooltip={dvI18n.t('toolbox.checkboxtooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'checkbox'}
             />
           )}
           {this.signer > 0 && this.showTool('regex') && (
@@ -256,6 +266,7 @@ export class LsLeftBar {
               icon="code-icon"
               tooltip={dvI18n.t('toolbox.regextooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'regex'}
             />
           )}
           {this.signer > 0 && this.showTool('image') && (
@@ -269,6 +280,7 @@ export class LsLeftBar {
               icon="photograph-icon"
               tooltip={dvI18n.t('toolbox.imagetooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'image'}
             />
           )}
           {this.signer > 0 && this.showTool('file') && (
@@ -282,6 +294,7 @@ export class LsLeftBar {
               icon="upload-icon"
               tooltip={dvI18n.t('toolbox.filetooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'file'}
             />
           )}
           {this.signer > 0 && this.showTool('drawn') && (
@@ -295,6 +308,7 @@ export class LsLeftBar {
               icon="pencil-icon"
               tooltip={dvI18n.t('toolbox.drawntooltip')}
               signer={this.signer}
+              isSelected={this.fieldTypeSelected?.formElementType === 'drawn'}
             />
           )}
         </div>

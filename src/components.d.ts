@@ -166,6 +166,10 @@ export namespace Components {
           * @default false
          */
         "floatingActive": boolean;
+        /**
+          * @default false
+         */
+        "multiSelected": boolean;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -401,7 +405,7 @@ export namespace Components {
     interface LsRecipientCard {
         "activeRecipient": number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected": IToolboxField;
         /**
@@ -1178,6 +1182,7 @@ declare global {
     validation: number;
     fixedAspect: number | null;
   };
+        "toolboxDragStart": IToolboxField;
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1401,6 +1406,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "floatingActive"?: boolean;
+        /**
+          * @default false
+         */
+        "multiSelected"?: boolean;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
@@ -1666,7 +1675,7 @@ declare namespace LocalJSX {
     interface LsRecipientCard {
         "activeRecipient"?: number;
         /**
-          * @default {     label: 'Signature',     formElementType: 'signature-icon',     elementType: 'signature-icon',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
+          * @default {     label: 'Signature',     formElementType: 'signature',     elementType: 'signature',     validation: 0,     defaultHeight: FIELD_DEFAULTS['signature'].defaultHeight,     defaultWidth: FIELD_DEFAULTS['signature'].defaultWidth,   }
          */
         "fieldTypeSelected"?: IToolboxField;
         /**
@@ -1770,6 +1779,7 @@ declare namespace LocalJSX {
     validation: number;
     fixedAspect: number | null;
   }>) => void;
+        "onToolboxDragStart"?: (event: LsToolboxFieldCustomEvent<IToolboxField>) => void;
         /**
           * @default false
          */

@@ -5,11 +5,12 @@ import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerO
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
-import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
+import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
-import { getApiType, matchData } from './editorUtils';
+import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
+import { getApiType, getInputType, matchData } from './editorUtils';
+import { updateSelectionBox } from './mouseHandlers';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
@@ -57,6 +58,10 @@ export class LsDocumentViewer {
   private startLocations: { left: number; top: number; height: number; width: number }[];
   // @ts-ignore
   private startMouse: { left: number; top: number; height: number; width: number; x: number; y: number };
+  // @ts-ignore
+  private _isToolboxDragging: boolean = false;
+  // @ts-ignore
+  private _cancelToolboxDrag: (() => void) | null = null;
 
   //
   // --- Properties / Inputs --- //
@@ -164,6 +169,14 @@ export class LsDocumentViewer {
     } else if (_newMode === 'compose') {
       this.showstatusbar = true;
       this.readonly = false;
+    }
+    
+    // Update readonly attribute on all existing fields
+    const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
+    if (fields) {
+      fields.forEach(field => {
+        field.setAttribute('readonly', String(_newMode === 'preview'));
+      });
     }
   }
 
@@ -280,6 +293,11 @@ export class LsDocumentViewer {
     this.fieldTypeSelected = event.detail;
   }
 
+  @Listen('toolboxDragStart')
+  handleToolboxDragStart(event) {
+    toolboxDragStart.bind(this)(event.detail);
+  }
+
   // generate a new role on the template
   @Listen('addParticipant')
   addParticpantHandler(event: CustomEvent<{ name: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>) {
@@ -328,29 +346,27 @@ export class LsDocumentViewer {
     // Update the active signer
     this.signer = signerIndex;
 
-    console.log('Selecting field for placement:', event.detail);
-    // Find and select the matching toolbox field
-    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
-    fields.forEach(element => {
-      const isMatch = element.formElementType === fieldType;
-      element.isSelected = isMatch;
-      if (isMatch) {
-        // Trigger the field selection event
-        this.fieldTypeSelected = {
-          label: element.label,
-          formElementType: element.formElementType,
-          elementType: element.elementType,
-          validation: element.validation,
-          defaultHeight: element.defaultHeight,
-          defaultWidth: element.defaultWidth,
-        };
-      }
-    });
+    // Build the field data directly from defaults
+    const defaults = FIELD_DEFAULTS[fieldType] || FIELD_DEFAULTS['signature'];
+    this.fieldTypeSelected = {
+      label: fieldType,
+      formElementType: fieldType,
+      elementType: fieldType === 'signature' || fieldType === 'initials' ? fieldType : fieldType === 'auto sign' ? 'admin' : 'text',
+      validation: 0,
+      defaultHeight: defaults.defaultHeight,
+      defaultWidth: defaults.defaultWidth,
+    };
 
     // Switch to toolbox view if not already there
     if (this.manager !== 'toolbox') {
       this.manager = 'toolbox';
     }
+
+    // Initiate dragging for the selected field type on next tick
+    // (current mousedown/mouseup cycle needs to complete first)
+    requestAnimationFrame(() => {
+      toolboxDragStart.bind(this)(this.fieldTypeSelected);
+    });
   }
 
   // Send selection changes to bars and panels if in use.
@@ -375,14 +391,31 @@ export class LsDocumentViewer {
     }
 
     // change style of selected fields
+    const isMulti = event.detail.length > 1;
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
       fu.selected = true;
+      fu.multiSelected = isMulti;
     });
 
-    // this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
-    this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
+    this.selected.forEach(s => {
+      const isSelected = event.detail.map(d => d.id).includes(s.dataItem.id);
+      s.selected = isSelected;
+      s.multiSelected = isSelected ? isMulti : false;
+    });
 
+    // Open date picker only when exactly one date field is selected
+    if (event.detail.length === 1) {
+      const field = this.component.shadowRoot.getElementById('ls-field-' + event.detail[0].id) as HTMLLsEditorFieldElement;
+      if (field && getInputType(event.detail[0].validation)?.inputType === 'date' && this.mode !== 'preview') {
+        requestAnimationFrame(() => {
+          const editbox = field.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
+          if (editbox) editbox.showPicker();
+        });
+      }
+    }
+
+    updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
   }
 
@@ -645,13 +678,6 @@ export class LsDocumentViewer {
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
-      dropTarget.addEventListener('dragenter', event => {
-        event.preventDefault();
-      });
-      dropTarget.addEventListener('dragover', event => {
-        event.preventDefault();
-      });
-      dropTarget.addEventListener('drop', mouseDrop.bind(this));
     }
     this.generateFields();
   }
@@ -793,9 +819,6 @@ export class LsDocumentViewer {
                 <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
                 <span>/</span>
                 <span class="ls-dv-header-text-2">{this._template?.title}</span>
-                <div class={'ls-dv-validation-tag-wrapper'}>
-                  <ls-validation-tag validationErrors={this.validationErrors} />
-                </div>
               </div>
             )}
             {this.mode === 'compose' && (
@@ -836,6 +859,12 @@ export class LsDocumentViewer {
                 </div>
               </div>
               <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />
+              {this.mode === 'editor' && (
+                <div class={'ls-dv-validation-tag-wrapper'}>
+                  <ls-validation-tag validationErrors={this.validationErrors} />
+                  <slot name="next-button"></slot>
+                </div>
+              )}
             </div>
           </form>
         </>
