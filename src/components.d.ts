@@ -166,6 +166,10 @@ export namespace Components {
           * @default false
          */
         "floatingActive": boolean;
+        /**
+          * @default false
+         */
+        "multiSelected": boolean;
         "page": { height: number; width: number };
         "readonly": boolean;
         /**
@@ -1402,6 +1406,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "floatingActive"?: boolean;
+        /**
+          * @default false
+         */
+        "multiSelected"?: boolean;
         "onMutate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "onUpdate"?: (event: LsEditorFieldCustomEvent<LSMutateEvent[]>) => void;
         "page"?: { height: number; width: number };
