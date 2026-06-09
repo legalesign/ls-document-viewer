@@ -33,18 +33,14 @@ export class LsStatusbar {
   }
 
   fitWidth() {
-    const leftBox = this.editor.component.shadowRoot.getElementById('ls-left-box');
-    const midBox = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
-    const space = midBox.clientWidth - leftBox.clientWidth - 60; // 60 for padding/margin
-
-    console.log('Space width:', space, 'Page width:', this.editor.pageDimensions[0].width);
-    const scale: number = space / this.editor.pageDimensions[0].width;
+    const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
+    const scale = (wrapper.clientWidth - 396) / this.editor.pageDimensions[this.editor.pageNum - 1].width;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
   fitHeight() {
-    const space = window.screen.height - 40; // 40 for padding/margin
-    const scale: number = space / this.editor.pageDimensions[0].height;
+    const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
+    const scale = (wrapper.clientHeight - 94) / this.editor.pageDimensions[this.editor.pageNum - 1].height;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
