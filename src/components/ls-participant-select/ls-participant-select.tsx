@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+import { Component, Element, Host, Listen, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
@@ -9,6 +9,8 @@ import { dvI18n } from '../../i18n/i18n';
   shadow: true,
 })
 export class LsParticipantSelect {
+  @Element() el: HTMLElement;
+
   /**
  * The id of the currently selected role.
  * {string}
@@ -64,6 +66,12 @@ export class LsParticipantSelect {
 
   @State() isOpen: boolean = false;
 
+  @Listen('click', { target: 'window' })
+  handleWindowClick(event: MouseEvent) {
+    if (this.isOpen && !this.el.shadowRoot.contains(event.composedPath()[0] as Node)) {
+      this.isOpen = false;
+    }
+  }
 
   toggleDropdown = () => {
     this.isOpen = !this.isOpen;
