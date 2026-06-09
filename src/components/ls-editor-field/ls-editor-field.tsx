@@ -34,6 +34,7 @@ export class LsEditorField {
   @Prop() assignee: string;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
+  @Prop() multiSelected: boolean = false;
   @Prop() readonly: boolean;
   @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
@@ -384,7 +385,7 @@ export class LsEditorField {
               {dvI18n.t('fieldproperties.assignedto')} {this.assignee}
             </p>
           )}
-          {this.selected && (
+          {this.selected && !this.multiSelected && (
             <div class="resize-handles">
               <div class="resize-handle handle-e" />
               <div class="resize-handle handle-s" />
