@@ -392,7 +392,7 @@ export class LsEditorField {
               <div class="resize-handle handle-se" />
             </div>
           )}
-          {this.floatingActive && (
+          {this.floatingActive && !this.readonly && (
             <button
               class={'ls-dv-x-button'}
               style={{
