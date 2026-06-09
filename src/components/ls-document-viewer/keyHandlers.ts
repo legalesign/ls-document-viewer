@@ -15,9 +15,6 @@ export function keyDown(ev: KeyboardEvent) {
   }
   
   if (this.selected && this.selected?.length > 0) {
-    // utils need binding to the context
-    const altbound = alter.bind(this);
-
     if (ev.key === 'ArrowDown') {
       ev.preventDefault();
       bufferedAlter.bind(this)(() => original => {
