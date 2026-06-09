@@ -28,6 +28,7 @@
 | Event               | Description | Type                                                                                                                                                                  |
 | ------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fieldTypeSelected` |             | `CustomEvent<{ label: string; elementType: string; defaultHeight: number; defaultWidth: number; formElementType: string; validation: number; fixedAspect: number; }>` |
+| `toolboxDragStart`  |             | `CustomEvent<IToolboxField>`                                                                                                                                          |
 
 
 ## Dependencies

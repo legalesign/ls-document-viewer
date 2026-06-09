@@ -8,7 +8,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
+import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
 // import { RoleColor } from '../../types/RoleColor';
@@ -58,6 +58,8 @@ export class LsDocumentViewer {
   private startLocations: { left: number; top: number; height: number; width: number }[];
   // @ts-ignore
   private startMouse: { left: number; top: number; height: number; width: number; x: number; y: number };
+  // @ts-ignore
+  private _isToolboxDragging: boolean = false;
 
   //
   // --- Properties / Inputs --- //
@@ -279,6 +281,11 @@ export class LsDocumentViewer {
     });
 
     this.fieldTypeSelected = event.detail;
+  }
+
+  @Listen('toolboxDragStart')
+  handleToolboxDragStart(event) {
+    toolboxDragStart.bind(this)(event.detail);
   }
 
   // generate a new role on the template
@@ -658,13 +665,6 @@ export class LsDocumentViewer {
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
-      dropTarget.addEventListener('dragenter', event => {
-        event.preventDefault();
-      });
-      dropTarget.addEventListener('dragover', event => {
-        event.preventDefault();
-      });
-      dropTarget.addEventListener('drop', mouseDrop.bind(this));
     }
     this.generateFields();
   }

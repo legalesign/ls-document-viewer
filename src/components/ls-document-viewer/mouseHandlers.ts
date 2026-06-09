@@ -3,6 +3,8 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
+import { calculateSnap } from './snapHelper';
+import { defaultRolePalette } from './defaultPalette';
 
 export function updateSelectionBox() {
   var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -43,6 +45,10 @@ export function debounce(data, delay) {
 
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
+  if (this._isToolboxDragging) return;
+  // Ignore events originating from outside the document frame
+  const frame = this.component.shadowRoot.getElementById('ls-document-frame');
+  if (!frame || !e.composedPath().includes(frame)) return;
   // console.log('mousedown', e);
 
   // Find if this was
@@ -168,6 +174,7 @@ export function outOfBounds(futureField) {
 }
 export function mouseMove(event) {
   event.preventDefault();
+  if (this._isToolboxDragging) return;
 
   // We have the mouse held down on a field edge to resize it.
   if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
@@ -305,17 +312,35 @@ export function mouseMove(event) {
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
     if (this.selected?.length) {
+      // Calculate snap based on the primary (first) selected field
+      const primaryLeft = this.startLocations[0].left + movedX;
+      const primaryTop = this.startLocations[0].top + movedY;
+      const primaryWidth = this.startLocations[0].width;
+      const primaryHeight = this.startLocations[0].height;
+
+      const allFields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')) as HTMLLsEditorFieldElement[];
+      const excludeIds = this.selected.map(s => s.dataItem.id);
+      const snap = calculateSnap(primaryLeft, primaryTop, primaryWidth, primaryHeight, allFields, this.pageNum, excludeIds);
+
+      // Apply snap offset to all selected fields
+      const snapOffsetX = snap.x !== null ? snap.x - primaryLeft : 0;
+      const snapOffsetY = snap.y !== null ? snap.y - primaryTop : 0;
+
       for (let i = 0; i < this.selected.length; i++) {
+        const newLeft = this.startLocations[i].left + movedX + snapOffsetX;
+        const newTop = this.startLocations[i].top + movedY + snapOffsetY;
         if (
-          this.startLocations[i].left + movedX >= 0 &&
-          this.startLocations[i].top + movedY >= 0 &&
-          this.startLocations[i].left + movedX <= (this.pageDimensions[this.pageNum - 1].width - this.selected[i].dataItem.width) * this.zoom &&
-          this.startLocations[i].top + movedY <= (this.pageDimensions[this.pageNum - 1].height - this.selected[i].dataItem.height) * this.zoom
+          newLeft >= 0 &&
+          newTop >= 0 &&
+          newLeft <= (this.pageDimensions[this.pageNum - 1].width - this.selected[i].dataItem.width) * this.zoom &&
+          newTop <= (this.pageDimensions[this.pageNum - 1].height - this.selected[i].dataItem.height) * this.zoom
         ) {
-          this.selected[i].style.left = Math.round(this.startLocations[i].left + movedX) + 'px';
-          this.selected[i].style.top = Math.round(this.startLocations[i].top + movedY) + 'px';
+          this.selected[i].style.left = Math.round(newLeft) + 'px';
+          this.selected[i].style.top = Math.round(newTop) + 'px';
         }
       }
+
+      showSnapGuides.bind(this)(snap.guides);
       updateSelectionBox.bind(this)();
     }
   }
@@ -325,8 +350,8 @@ export function mouseUp(event) {
   this.edgeSide = null;
   this.startMouse = null;
   this.component.style.cursor = 'auto';
+  clearSnapGuides.bind(this)();
 
-  // console.log('mouse up');
   // find what was inside the selection box emit the select event and change their style
   if (this.selectionBox && this.isBoxing) {
     this.isBoxing = false;
@@ -390,60 +415,187 @@ export function mouseClick(e) {
   }
 }
 
-export function mouseDrop(event) {
-  event.preventDefault();
-  try {
-    const data: IToolboxField = JSON.parse(event.dataTransfer.getData('application/json')) as any as IToolboxField;
-    // Unselect all current selected items
-    this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
-    var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
-    // Make a new API compatible id for a template element (prefix 'ele')
-    const id = btoa('ele' + crypto.randomUUID());
-    const top = event.offsetY / this.zoom + frame.scrollTop;
-    const left = event.offsetX / this.zoom + frame.scrollLeft;
-
-    // TODO: Put these defaults somewhere sensible
-    const newData: LSMutateEvent = {
-      action: 'create',
-      data: {
-        id,
-        value: '',
-        formElementType: data.formElementType,
-        elementType: data.elementType,
-        validation: data.validation,
-        substantive: false,
-        top,
-        left,
-        hideBorder: false,
-        height: data.defaultHeight,
-        width: data.defaultWidth,
-        pageDimensions: this.pageDimensions[this.pageNum - 1],
-        fontName: this.fontFamily,
-        fontSize: this.fontSize,
-        align: 'left',
-        signer: this.signer,
-        page: this.pageNum,
-        mapTo: null,
-        label: '',
-        helpText: null,
-        logicGroup: null,
-        optional: false,
-        options: null,
-        logicAction: null,
-        labelExtra: null,
-        fieldOrder: null,
-        ax: left > 0 ? left / this.pageDimensions[this.pageNum - 1].width : 0,
-        ay: top > 0 ? top / this.pageDimensions[this.pageNum - 1].height : 0,
-        bx: (left + data.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
-        by: (top + data.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
-        templateId: this._template.id,
-      } as LSApiElement,
-    };
-
-    this.mutate.emit([newData]);
-  } catch (e) {
-    console.error(e);
+export function showSnapGuides(guides: { orientation: 'h' | 'v'; position: number }[]) {
+  const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+  let container = this.component.shadowRoot.getElementById('ls-snap-guides');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'ls-snap-guides';
+    container.style.position = 'absolute';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '9999';
+    frame.appendChild(container);
   }
+
+  container.innerHTML = '';
+  for (const guide of guides) {
+    const line = document.createElement('div');
+    line.style.position = 'absolute';
+    line.style.backgroundColor = 'transparent';
+    if (guide.orientation === 'v') {
+      line.style.left = guide.position + 'px';
+      line.style.top = '0';
+      line.style.width = '0';
+      line.style.height = '100%';
+      line.style.borderLeft = '1px dotted var(--gray-40, #9ea0a5)';
+    } else {
+      line.style.top = guide.position + 'px';
+      line.style.left = '0';
+      line.style.width = '100%';
+      line.style.height = '0';
+      line.style.borderTop = '1px dotted var(--gray-40, #9ea0a5)';
+    }
+    container.appendChild(line);
+  }
+}
+
+export function clearSnapGuides() {
+  const container = this.component.shadowRoot.getElementById('ls-snap-guides');
+  if (container) container.innerHTML = '';
+}
+
+export function toolboxDragStart(fieldData: IToolboxField) {
+  const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
+  const zoom = this.zoom;
+  this._isToolboxDragging = true;
+
+  // Prevent text selection during drag
+  document.body.style.userSelect = 'none';
+
+  // Create ghost preview element matching the original drag image style
+  const ghost = document.createElement('div');
+  ghost.id = 'ls-toolbox-ghost';
+  ghost.style.position = 'absolute';
+  ghost.style.width = fieldData.defaultWidth * zoom + 'px';
+  ghost.style.height = fieldData.defaultHeight * zoom + 'px';
+  ghost.style.border = `2px dashed ${defaultRolePalette[this.signer % 100].s60}`;
+  const s20 = defaultRolePalette[this.signer % 100].s20.replace('#', '');
+  const r = parseInt(s20.substring(0, 2), 16);
+  const g = parseInt(s20.substring(2, 4), 16);
+  const b = parseInt(s20.substring(4, 6), 16);
+  ghost.style.background = `rgba(${r},${g},${b},0.5)`;
+  ghost.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+  ghost.style.pointerEvents = 'none';
+  ghost.style.zIndex = '10000';
+  ghost.style.visibility = 'hidden';
+  ghost.style.boxSizing = 'border-box';
+  ghost.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
+  ghost.style.fontSize = Math.round(DEFAULT_FONT_SIZE * zoom) + 'px';
+  ghost.style.color = defaultRolePalette[this.signer % 100].s100;
+  ghost.style.overflow = 'hidden';
+  ghost.style.whiteSpace = 'nowrap';
+  ghost.style.display = 'flex';
+  ghost.style.alignItems = 'center';
+  ghost.style.textTransform = 'capitalize';
+  ghost.innerHTML = fieldData.formElementType;
+  frame.appendChild(ghost);
+
+  const onMouseMove = (e: MouseEvent) => {
+    e.preventDefault();
+    const frameRect = frame.getBoundingClientRect();
+    const dragWidth = fieldData.defaultWidth * zoom;
+    const dragHeight = fieldData.defaultHeight * zoom;
+    const x = e.clientX - frameRect.left + frame.scrollLeft;
+    const y = e.clientY - frameRect.top + frame.scrollTop;
+    let left = x - dragWidth / 2;
+    let top = y - dragHeight / 2;
+
+    // Only show ghost when over the document frame
+    if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
+        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
+      ghost.style.visibility = 'visible';
+
+      const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')) as HTMLLsEditorFieldElement[];
+      const snap = calculateSnap(left, top, dragWidth, dragHeight, fields, this.pageNum);
+      if (snap.x !== null) left = snap.x;
+      if (snap.y !== null) top = snap.y;
+
+      ghost.style.left = left + 'px';
+      ghost.style.top = top + 'px';
+      showSnapGuides.bind(this)(snap.guides);
+    } else {
+      ghost.style.visibility = 'hidden';
+      clearSnapGuides.bind(this)();
+    }
+  };
+
+  const onMouseUp = (e: MouseEvent) => {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+    ghost.remove();
+    clearSnapGuides.bind(this)();
+    document.body.style.userSelect = '';
+    this._isToolboxDragging = false;
+
+    const frameRect = frame.getBoundingClientRect();
+    if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
+        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
+
+      const dragWidth = fieldData.defaultWidth * zoom;
+      const dragHeight = fieldData.defaultHeight * zoom;
+      const x = e.clientX - frameRect.left + frame.scrollLeft;
+      const y = e.clientY - frameRect.top + frame.scrollTop;
+      let left = x - dragWidth / 2;
+      let top = y - dragHeight / 2;
+
+      const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')) as HTMLLsEditorFieldElement[];
+      const snap = calculateSnap(left, top, dragWidth, dragHeight, fields, this.pageNum);
+      if (snap.x !== null) left = snap.x;
+      if (snap.y !== null) top = snap.y;
+
+      const finalTop = top / zoom;
+      const finalLeft = left / zoom;
+
+      this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
+
+      const id = btoa('ele' + crypto.randomUUID());
+      const newData: LSMutateEvent = {
+        action: 'create',
+        data: {
+          id,
+          value: '',
+          formElementType: fieldData.formElementType,
+          elementType: fieldData.elementType,
+          validation: fieldData.validation,
+          substantive: false,
+          top: finalTop,
+          left: finalLeft,
+          hideBorder: false,
+          height: fieldData.defaultHeight,
+          width: fieldData.defaultWidth,
+          pageDimensions: this.pageDimensions[this.pageNum - 1],
+          fontName: this.fontFamily,
+          fontSize: this.fontSize,
+          align: 'left',
+          signer: this.signer,
+          page: this.pageNum,
+          mapTo: null,
+          label: '',
+          helpText: null,
+          logicGroup: null,
+          optional: false,
+          options: null,
+          logicAction: null,
+          labelExtra: null,
+          fieldOrder: null,
+          ax: finalLeft > 0 ? finalLeft / this.pageDimensions[this.pageNum - 1].width : 0,
+          ay: finalTop > 0 ? finalTop / this.pageDimensions[this.pageNum - 1].height : 0,
+          bx: (finalLeft + fieldData.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
+          by: (finalTop + fieldData.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
+          templateId: this._template.id,
+        } as LSApiElement,
+      };
+
+      this.mutate.emit([newData]);
+    }
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 }
 
 export function mouseDoubleClick(event) {

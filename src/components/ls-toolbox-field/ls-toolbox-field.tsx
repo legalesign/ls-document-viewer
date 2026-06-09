@@ -1,6 +1,7 @@
 import { Component, Event, Host, Listen, Prop, Element, h, EventEmitter } from '@stencil/core';
 import { Icon } from '../../types/Icon';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
+import { IToolboxField } from '../interfaces/IToolboxField';
 
 @Component({
   tag: 'ls-toolbox-field',
@@ -63,43 +64,28 @@ export class LsToolboxField {
     fixedAspect: number | null;
   }>;
 
-  @Listen('dragstart')
-  handleDragStart(event) {
+  @Event({
+    bubbles: true,
+    cancelable: true,
+    composed: true,
+  })
+  toolboxDragStart: EventEmitter<IToolboxField>;
 
-    var canvas = document.createElement('div');
-    canvas.style.position = 'absolute';
-    canvas.style.left = '-100%';
-    canvas.style.zIndex = '-100';
-    canvas.style.height = this.defaultHeight +'px';
-    canvas.style.width = this.defaultWidth +'px';
-    canvas.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-    canvas.style.border = `1px dashed ${defaultRolePalette[this.signer % 100].s60}`;
-    canvas.innerHTML = this.formElementType;
-    document.body.appendChild(canvas); 
+  @Listen('mousedown')
+  handleMouseDown(event: MouseEvent) {
+    // Only initiate drag on primary button, ignore clicks on interactive elements
+    if (event.button !== 0) return;
+    event.preventDefault();
 
-    event.dataTransfer.setDragImage(canvas, -50, -20);
-    console.log('drag start', {
-        formElementType: this.formElementType,
-        elementType: this.elementType,
-        validation: this.validation,
-        defaultHeight: this.defaultHeight,
-        defaultWidth: this.defaultWidth,
-        fixedAspect: this.fixedAspect,
-      });
-
-    // Add the target element's id to the data transfer object
-    event.dataTransfer.setData(
-      'application/json',
-      JSON.stringify({
-        formElementType: this.formElementType,
-        elementType: this.elementType,
-        validation: this.validation,
-        defaultHeight: this.defaultHeight,
-        defaultWidth: this.defaultWidth,
-        fixedAspect: this.fixedAspect,
-      }),
-    );
-    event.dataTransfer.dropEffect = 'copy';
+    this.toolboxDragStart.emit({
+      label: this.label,
+      formElementType: this.formElementType,
+      elementType: this.elementType,
+      validation: this.validation,
+      defaultHeight: this.defaultHeight,
+      defaultWidth: this.defaultWidth,
+      fixedAspect: this.fixedAspect,
+    });
   }
 
   @Listen('keydown')
@@ -114,7 +100,7 @@ export class LsToolboxField {
 
   render() {
     return (
-      <Host draggable="true">
+      <Host>
         <div
           class={'ls-dv-toolbox-field'}
           style={

@@ -1178,6 +1178,7 @@ declare global {
     validation: number;
     fixedAspect: number | null;
   };
+        "toolboxDragStart": IToolboxField;
     }
     interface HTMLLsToolboxFieldElement extends Components.LsToolboxField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsToolboxFieldElementEventMap>(type: K, listener: (this: HTMLLsToolboxFieldElement, ev: LsToolboxFieldCustomEvent<HTMLLsToolboxFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1770,6 +1771,7 @@ declare namespace LocalJSX {
     validation: number;
     fixedAspect: number | null;
   }>) => void;
+        "onToolboxDragStart"?: (event: LsToolboxFieldCustomEvent<IToolboxField>) => void;
         /**
           * @default false
          */
