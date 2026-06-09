@@ -19,14 +19,9 @@ export class LsValidationTag {
   @Event() selectFieldForPlacement: EventEmitter<{ signerIndex: number; fieldType: string }>;
 
   private handleClickOutside = (event: MouseEvent) => {
-    const dropdowns = this.el.shadowRoot.querySelectorAll('.ls-dv-field-dropdown');
-    let clickedInside = false;
-    dropdowns.forEach(dropdown => {
-      if (dropdown.contains(event.target as Node)) {
-        clickedInside = true;
-      }
-    });
-    if (!clickedInside && this.isExpanded) {
+    const path = event.composedPath();
+    if (path.includes(this.el)) return;
+    if (this.isExpanded) {
       this.isExpanded = false;
     }
   };
