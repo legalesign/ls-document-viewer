@@ -1,5 +1,11 @@
 import { LsEditorField } from '../ls-editor-field/ls-editor-field';
 import { alter, oob } from './editorUtils';
+import { moveField } from './editorCalculator';
+
+// Buffer for batching rapid key presses
+let mutationBuffer = null;
+let mutationTimer = null;
+const BUFFER_DELAY = 300; // milliseconds
 
 export function keyDown(ev: KeyboardEvent) {
   if (this.selected && this.selected?.length > 0) {
@@ -7,7 +13,8 @@ export function keyDown(ev: KeyboardEvent) {
     const altbound = alter.bind(this);
 
     if (ev.key === 'ArrowDown') {
-      altbound(original => {
+      ev.preventDefault();
+      bufferedAlter.bind(this)(() => original => {
         const alterElement = {
           ...original,
           top: original.top + 1,
@@ -18,7 +25,8 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowUp') {
-      altbound(original => {
+      ev.preventDefault();
+      bufferedAlter.bind(this)(() => original => {
         const alterElement = {
           ...original,
           top: original.top - 1,
@@ -29,7 +37,8 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowRight') {
-      altbound(original => {
+      ev.preventDefault();
+      bufferedAlter.bind(this)(() => original => {
         const alterElement = {
           ...original,
           left: original.left + 1,
@@ -40,7 +49,8 @@ export function keyDown(ev: KeyboardEvent) {
         return oob(alterElement) ? original : alterElement;
       });
     } else if (ev.key === 'ArrowLeft') {
-      altbound(original => {
+      ev.preventDefault();
+      bufferedAlter.bind(this)(() => original => {
         const alterElement = {
           ...original,
           left: original.left - 1,
@@ -74,4 +84,38 @@ export function keyDown(ev: KeyboardEvent) {
       this.selectFields.emit([]);
     }
   }
+}
+
+// Buffered version of alter that batches rapid key presses
+function bufferedAlter(diffFnFactory) {
+  // Clear existing timer
+  if (mutationTimer) {
+    clearTimeout(mutationTimer);
+  }
+
+  // Apply the transformation immediately to the UI
+  const diffFn = diffFnFactory();
+  this.selected.forEach(field => {
+    const updatedItem = diffFn(field.dataItem);
+    // Update the dataItem in place
+    Object.assign(field.dataItem, updatedItem);
+    // Update the visual position using moveField
+    moveField.bind(this)(field, updatedItem);
+  });
+
+  // Store the latest state for batched mutation
+  mutationBuffer = this.selected.map(c => c.dataItem);
+
+  // Set timer to emit mutation after delay
+  mutationTimer = setTimeout(() => {
+    if (mutationBuffer) {
+      const diffs = mutationBuffer.map(item => ({
+        action: 'update',
+        data: item,
+      }));
+      this.mutate.emit(diffs);
+      mutationBuffer = null;
+    }
+    mutationTimer = null;
+  }, BUFFER_DELAY);
 }
