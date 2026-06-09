@@ -109,3 +109,36 @@ input {
 .ls-dv-x-button:hover {
   background: $gray-90;
 }
+
+.resize-handles {
+  pointer-events: none;
+}
+
+.resize-handle {
+  position: absolute;
+  background: var(--field-border-color);
+  border-radius: 1px;
+}
+
+.handle-e {
+  width: 4px;
+  height: 16px;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.handle-s {
+  width: 16px;
+  height: 4px;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.handle-se {
+  width: 6px;
+  height: 6px;
+  right: 0px;
+  bottom: 0px;
+}

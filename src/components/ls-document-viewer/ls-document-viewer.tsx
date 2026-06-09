@@ -10,6 +10,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
 import { getApiType, matchData } from './editorUtils';
+import { updateSelectionBox } from './mouseHandlers';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
 import { LsDocumentAdapter } from './adapter/LsDocumentAdapter';
@@ -383,6 +384,7 @@ export class LsDocumentViewer {
     // this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
     this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
 
+    updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
   }
 
