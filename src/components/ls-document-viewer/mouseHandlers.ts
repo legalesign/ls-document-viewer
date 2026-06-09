@@ -297,6 +297,7 @@ export function mouseMove(event) {
     // Move one or more selected items
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
     this.isMoving = true;
+    document.body.style.userSelect = 'none';
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
 
@@ -350,6 +351,7 @@ export function mouseUp(event) {
   this.edgeSide = null;
   this.startMouse = null;
   this.component.style.cursor = 'auto';
+  document.body.style.userSelect = '';
   clearSnapGuides.bind(this)();
 
   // find what was inside the selection box emit the select event and change their style
@@ -441,13 +443,13 @@ export function showSnapGuides(guides: { orientation: 'h' | 'v'; position: numbe
       line.style.top = '0';
       line.style.width = '0';
       line.style.height = '100%';
-      line.style.borderLeft = '1px dotted var(--gray-40, #9ea0a5)';
+      line.style.borderLeft = '1px dashed var(--gray-50, #c8c9cc)';
     } else {
       line.style.top = guide.position + 'px';
       line.style.left = '0';
       line.style.width = '100%';
       line.style.height = '0';
-      line.style.borderTop = '1px dotted var(--gray-40, #9ea0a5)';
+      line.style.borderTop = '1px dashed var(--gray-50, #c8c9cc)';
     }
     container.appendChild(line);
   }
@@ -459,9 +461,15 @@ export function clearSnapGuides() {
 }
 
 export function toolboxDragStart(fieldData: IToolboxField) {
+  // Cancel any existing toolbox drag
+  if (this._cancelToolboxDrag) {
+    this._cancelToolboxDrag();
+  }
+
   const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
   const zoom = this.zoom;
   this._isToolboxDragging = true;
+  const startTime = Date.now();
 
   // Prevent text selection during drag
   document.body.style.userSelect = 'none';
@@ -469,7 +477,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   // Create ghost preview element matching the original drag image style
   const ghost = document.createElement('div');
   ghost.id = 'ls-toolbox-ghost';
-  ghost.style.position = 'absolute';
+  ghost.style.position = 'fixed';
   ghost.style.width = fieldData.defaultWidth * zoom + 'px';
   ghost.style.height = fieldData.defaultHeight * zoom + 'px';
   ghost.style.border = `2px dashed ${defaultRolePalette[this.signer % 100].s60}`;
@@ -480,7 +488,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.background = `rgba(${r},${g},${b},0.5)`;
   ghost.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
   ghost.style.pointerEvents = 'none';
-  ghost.style.zIndex = '10000';
+  ghost.style.zIndex = '0';
   ghost.style.visibility = 'hidden';
   ghost.style.boxSizing = 'border-box';
   ghost.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
@@ -492,30 +500,29 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.alignItems = 'center';
   ghost.style.textTransform = 'capitalize';
   ghost.innerHTML = fieldData.formElementType;
-  frame.appendChild(ghost);
+  this.component.shadowRoot.appendChild(ghost);
 
   const onMouseMove = (e: MouseEvent) => {
     e.preventDefault();
-    const frameRect = frame.getBoundingClientRect();
     const dragWidth = fieldData.defaultWidth * zoom;
     const dragHeight = fieldData.defaultHeight * zoom;
-    const x = e.clientX - frameRect.left + frame.scrollLeft;
-    const y = e.clientY - frameRect.top + frame.scrollTop;
-    let left = x - dragWidth / 2;
-    let top = y - dragHeight / 2;
-
-    // Only show ghost when over the document frame
+    // Only show ghost when cursor is over the document page
+    const frameRect = frame.getBoundingClientRect();
     if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
         e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
       ghost.style.visibility = 'visible';
 
+      const frameRect = frame.getBoundingClientRect();
+      const x = e.clientX - frameRect.left + frame.scrollLeft;
+      const y = e.clientY - frameRect.top + frame.scrollTop;
+      let left = x - dragWidth / 2;
+      let top = y - dragHeight / 2;
+
       const fields = Array.from(this.component.shadowRoot.querySelectorAll('ls-editor-field')) as HTMLLsEditorFieldElement[];
       const snap = calculateSnap(left, top, dragWidth, dragHeight, fields, this.pageNum);
-      if (snap.x !== null) left = snap.x;
-      if (snap.y !== null) top = snap.y;
+      ghost.style.left = (snap.x !== null ? snap.x + frameRect.left - frame.scrollLeft : e.clientX - dragWidth / 2) + 'px';
+      ghost.style.top = (snap.y !== null ? snap.y + frameRect.top - frame.scrollTop : e.clientY - dragHeight / 2) + 'px';
 
-      ghost.style.left = left + 'px';
-      ghost.style.top = top + 'px';
       showSnapGuides.bind(this)(snap.guides);
     } else {
       ghost.style.visibility = 'hidden';
@@ -523,17 +530,28 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     }
   };
 
-  const onMouseUp = (e: MouseEvent) => {
+  const cleanup = () => {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('keydown', onKeyDown);
     ghost.remove();
     clearSnapGuides.bind(this)();
     document.body.style.userSelect = '';
     this._isToolboxDragging = false;
+    this._cancelToolboxDrag = null;
+  };
+
+  const onMouseUp = (e: MouseEvent) => {
+    // Ignore mouseup if it's from the same click that started the drag
+    if (Date.now() - startTime < 100) return;
 
     const frameRect = frame.getBoundingClientRect();
-    if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
-        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
+    const shouldPlace = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
+        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom;
+
+    cleanup();
+
+    if (shouldPlace) {
 
       const dragWidth = fieldData.defaultWidth * zoom;
       const dragHeight = fieldData.defaultHeight * zoom;
@@ -594,8 +612,16 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     }
   };
 
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      cleanup();
+    }
+  };
+
+  this._cancelToolboxDrag = cleanup;
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('keydown', onKeyDown);
 }
 
 export function mouseDoubleClick(event) {

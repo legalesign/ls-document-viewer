@@ -73,10 +73,21 @@ export class LsToolboxField {
 
   @Listen('mousedown')
   handleMouseDown(event: MouseEvent) {
-    // Only initiate drag on primary button, ignore clicks on interactive elements
     if (event.button !== 0) return;
     event.preventDefault();
 
+    // Always select this field type
+    this.fieldTypeSelected.emit({
+      label: this.label,
+      formElementType: this.formElementType,
+      elementType: this.elementType,
+      validation: this.validation,
+      defaultHeight: this.defaultHeight,
+      defaultWidth: this.defaultWidth,
+      fixedAspect: this.fixedAspect,
+    });
+
+    // Also start dragging
     this.toolboxDragStart.emit({
       label: this.label,
       formElementType: this.formElementType,
@@ -111,17 +122,6 @@ export class LsToolboxField {
               boxShadow: `0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);`,
             }
           }
-          onClick={() => {
-            this.fieldTypeSelected.emit({
-              label: this.label,
-              formElementType: this.formElementType,
-              elementType: this.elementType,
-              validation: this.validation,
-              defaultHeight: this.defaultHeight,
-              defaultWidth: this.defaultWidth,
-              fixedAspect: this.fixedAspect,
-            });
-          }}
         >
           <div
             class="ls-dv-toolbox-field-icon"
@@ -146,7 +146,7 @@ export class LsToolboxField {
               <ls-icon name="exclamation-circle-icon" size={18} solid />
             </div>
           )}
-          <ls-icon name="drag-vertical-icon" size={16} customStyle={{ color: '#787a80' }} />
+          <ls-icon name="drag-vertical-icon" size={16} customStyle={{ color: this.isSelected ? defaultRolePalette[this.signer % 100].s60 : '#787a80' }} />
         </div>
         <ls-tooltip tooltipId="ls-dv-tooltip" />
       </Host>

@@ -5,7 +5,7 @@ import { PDFDocumentProxy, PDFPageProxy, PageViewport, RenderTask, GlobalWorkerO
 import { dvI18n } from '../../i18n/i18n';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { addField, moveField } from './editorCalculator';
-import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
+import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
@@ -60,6 +60,8 @@ export class LsDocumentViewer {
   private startMouse: { left: number; top: number; height: number; width: number; x: number; y: number };
   // @ts-ignore
   private _isToolboxDragging: boolean = false;
+  // @ts-ignore
+  private _cancelToolboxDrag: (() => void) | null = null;
 
   //
   // --- Properties / Inputs --- //
@@ -336,29 +338,27 @@ export class LsDocumentViewer {
     // Update the active signer
     this.signer = signerIndex;
 
-    console.log('Selecting field for placement:', event.detail);
-    // Find and select the matching toolbox field
-    const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
-    fields.forEach(element => {
-      const isMatch = element.formElementType === fieldType;
-      element.isSelected = isMatch;
-      if (isMatch) {
-        // Trigger the field selection event
-        this.fieldTypeSelected = {
-          label: element.label,
-          formElementType: element.formElementType,
-          elementType: element.elementType,
-          validation: element.validation,
-          defaultHeight: element.defaultHeight,
-          defaultWidth: element.defaultWidth,
-        };
-      }
-    });
+    // Build the field data directly from defaults
+    const defaults = FIELD_DEFAULTS[fieldType] || FIELD_DEFAULTS['signature'];
+    this.fieldTypeSelected = {
+      label: fieldType,
+      formElementType: fieldType,
+      elementType: fieldType === 'signature' || fieldType === 'initials' ? fieldType : fieldType === 'auto sign' ? 'admin' : 'text',
+      validation: 0,
+      defaultHeight: defaults.defaultHeight,
+      defaultWidth: defaults.defaultWidth,
+    };
 
     // Switch to toolbox view if not already there
     if (this.manager !== 'toolbox') {
       this.manager = 'toolbox';
     }
+
+    // Initiate dragging for the selected field type on next tick
+    // (current mousedown/mouseup cycle needs to complete first)
+    requestAnimationFrame(() => {
+      toolboxDragStart.bind(this)(this.fieldTypeSelected);
+    });
   }
 
   // Send selection changes to bars and panels if in use.
