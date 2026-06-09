@@ -185,16 +185,6 @@ export class LsEditorField {
     if (_newValue) {
       this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
       this.component.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-
-      // Open date picker when field is selected
-      if (this.isDateField() && !this.readonly) {
-        requestAnimationFrame(() => {
-          const editbox = this.component.shadowRoot.getElementById('editing-input') as HTMLInputElement;
-          if (editbox) {
-            editbox.showPicker();
-          }
-        });
-      }
     } else {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';

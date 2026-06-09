@@ -293,6 +293,14 @@ export function mouseMove(event) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
 
+    // Dismiss any open date picker when moving fields
+    if (this.selected?.length) {
+      this.selected.forEach(f => {
+        const input = f.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
+        if (input) input.blur();
+      });
+    }
+
     // Move one or more selected items
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;

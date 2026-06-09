@@ -9,7 +9,7 @@ import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefau
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseDrop, mouseMove, mouseUp } from './mouseHandlers';
-import { getApiType, matchData } from './editorUtils';
+import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
 // import { RoleColor } from '../../types/RoleColor';
 import { LSApiRole, LSApiRoleType } from '../../types/LSApiRole';
@@ -383,6 +383,17 @@ export class LsDocumentViewer {
 
     // this.selected = fields.filter(fx => fx.selected) as HTMLLsEditorFieldElement[];
     this.selected.forEach(s => (s.selected = event.detail.map(d => d.id).includes(s.dataItem.id)));
+
+    // Open date picker only when exactly one date field is selected
+    if (event.detail.length === 1) {
+      const field = this.component.shadowRoot.getElementById('ls-field-' + event.detail[0].id) as HTMLLsEditorFieldElement;
+      if (field && getInputType(event.detail[0].validation)?.inputType === 'date' && this.mode !== 'preview') {
+        requestAnimationFrame(() => {
+          const editbox = field.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
+          if (editbox) editbox.showPicker();
+        });
+      }
+    }
 
     updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
