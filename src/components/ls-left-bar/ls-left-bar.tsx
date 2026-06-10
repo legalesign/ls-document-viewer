@@ -16,7 +16,7 @@ export class LsLeftBar {
 
   @Prop() mode: 'editor' | 'compose' | 'preview' = 'editor';
   @Prop() selected: HTMLLsEditorFieldElement[] = [];
-  @Prop() manager: string;
+  @Prop() manager: 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
   @Prop() signer: number;
   @Prop() filtertoolbox: string = null;
   @Prop() template: LSApiTemplate;
@@ -27,11 +27,11 @@ export class LsLeftBar {
   @Prop() busy: boolean = false;
   @Prop() selectedDataItems: any[] = [];
 
-  @Event() managerChange: EventEmitter<string>;
+  @Event() managerChange: EventEmitter<'document' | 'toolbox' | 'participant' | 'recipient' | 'validation'>;
   @Event() clearSelected: EventEmitter<void>;
 
   @Watch('manager')
-  managerWatchHandler(newManager: string) {
+  managerWatchHandler(newManager: 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation') {
     if (newManager === 'document') {
       const dm = this.el.shadowRoot.getElementById('ls-document-options') as HTMLLsDocumentOptionsElement;
       if (dm) dm.template = this.template;
@@ -320,7 +320,7 @@ export class LsLeftBar {
     return (
       <div id="ls-left-box" class="ls-dv-left-box">
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
-          <ls-feature-column mode={this.mode} onManage={manager => this.managerChange.emit(manager.detail)} />
+          <ls-feature-column mode={this.mode} manager={this.manager} onManage={manager => this.managerChange.emit(manager.detail)} />
           {this.renderToolbox()}
           <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} activeSigner={this.signer} template={this.template} busy={this.busy} />
           <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
