@@ -322,7 +322,7 @@ export namespace Components {
           * @default null
          */
         "filtertoolbox": string;
-        "manager": string;
+        "manager": 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
         /**
           * @default 'editor'
          */
@@ -1010,7 +1010,7 @@ declare global {
         new (): HTMLLsKeyboardShortcutsElement;
     };
     interface HTMLLsLeftBarElementEventMap {
-        "managerChange": string;
+        "managerChange": 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
         "clearSelected": void;
     }
     interface HTMLLsLeftBarElement extends Components.LsLeftBar, HTMLStencilElement {
@@ -1581,13 +1581,13 @@ declare namespace LocalJSX {
           * @default null
          */
         "filtertoolbox"?: string;
-        "manager"?: string;
+        "manager"?: 'document' | 'toolbox' | 'participant' | 'recipient' | 'validation';
         /**
           * @default 'editor'
          */
         "mode"?: 'editor' | 'compose' | 'preview';
         "onClearSelected"?: (event: LsLeftBarCustomEvent<void>) => void;
-        "onManagerChange"?: (event: LsLeftBarCustomEvent<string>) => void;
+        "onManagerChange"?: (event: LsLeftBarCustomEvent<'document' | 'toolbox' | 'participant' | 'recipient' | 'validation'>) => void;
         "recipients"?: any[];
         /**
           * @default []

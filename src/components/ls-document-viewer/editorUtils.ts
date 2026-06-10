@@ -83,6 +83,7 @@ export async function syncRoles() {
   this.parseTemplate(JSON.stringify(tresult.template));
   if (participantManager) participantManager.template = this._template;
   this.generateFields();
+  this.showPageFields(this.pageNum);
   this.validationErrors = validate.bind(this)(this._template);
 }
 

@@ -501,7 +501,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.background = `rgba(${r},${g},${b},0.5)`;
   ghost.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
   ghost.style.pointerEvents = 'none';
-  ghost.style.zIndex = '0';
+  ghost.style.zIndex = '10000';
   ghost.style.visibility = 'hidden';
   ghost.style.boxSizing = 'border-box';
   ghost.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
@@ -538,13 +538,14 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     e.preventDefault();
     const dragWidth = fieldData.defaultWidth * zoom;
     const dragHeight = fieldData.defaultHeight * zoom;
-    // Only show ghost when cursor is over the document page
-    const frameRect = frame.getBoundingClientRect();
-    if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
-        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
-      ghost.style.visibility = 'visible';
+    ghost.style.visibility = 'visible';
 
-      const frameRect = frame.getBoundingClientRect();
+    const frameRect = frame.getBoundingClientRect();
+    const isOverFrame = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
+        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom;
+
+    if (isOverFrame) {
+      ghost.style.opacity = '1';
       const x = e.clientX - frameRect.left + frame.scrollLeft;
       const y = e.clientY - frameRect.top + frame.scrollTop;
       let left = x - dragWidth / 2;
@@ -557,7 +558,9 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 
       showSnapGuides.bind(this)(snap.guides);
     } else {
-      ghost.style.visibility = 'hidden';
+      ghost.style.opacity = '0.5';
+      ghost.style.left = (e.clientX - dragWidth / 2) + 'px';
+      ghost.style.top = (e.clientY - dragHeight / 2) + 'px';
       clearSnapGuides.bind(this)();
     }
   };
@@ -601,6 +604,12 @@ export function toolboxDragStart(fieldData: IToolboxField) {
       const finalTop = top / zoom;
       const finalLeft = left / zoom;
 
+      // Check if field fits on page - constrain to page boundaries
+      const pageWidth = this.pageDimensions[this.pageNum - 1].width;
+      const pageHeight = this.pageDimensions[this.pageNum - 1].height;
+      const constrainedLeft = Math.max(0, Math.min(finalLeft, pageWidth - fieldData.defaultWidth));
+      const constrainedTop = Math.max(0, Math.min(finalTop, pageHeight - fieldData.defaultHeight));
+
       this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
 
       const id = btoa('ele' + crypto.randomUUID());
@@ -613,8 +622,8 @@ export function toolboxDragStart(fieldData: IToolboxField) {
           elementType: fieldData.elementType,
           validation: fieldData.validation,
           substantive: false,
-          top: finalTop,
-          left: finalLeft,
+          top: constrainedTop,
+          left: constrainedLeft,
           hideBorder: false,
           height: fieldData.defaultHeight,
           width: fieldData.defaultWidth,
@@ -633,10 +642,10 @@ export function toolboxDragStart(fieldData: IToolboxField) {
           logicAction: null,
           labelExtra: null,
           fieldOrder: null,
-          ax: finalLeft > 0 ? finalLeft / this.pageDimensions[this.pageNum - 1].width : 0,
-          ay: finalTop > 0 ? finalTop / this.pageDimensions[this.pageNum - 1].height : 0,
-          bx: (finalLeft + fieldData.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
-          by: (finalTop + fieldData.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
+          ax: constrainedLeft > 0 ? constrainedLeft / this.pageDimensions[this.pageNum - 1].width : 0,
+          ay: constrainedTop > 0 ? constrainedTop / this.pageDimensions[this.pageNum - 1].height : 0,
+          bx: (constrainedLeft + fieldData.defaultWidth) / this.pageDimensions[this.pageNum - 1].width,
+          by: (constrainedTop + fieldData.defaultHeight) / this.pageDimensions[this.pageNum - 1].height,
           templateId: this._template.id,
         } as LSApiElement,
       };

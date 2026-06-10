@@ -54,7 +54,7 @@ function App() {
       templateid="YOUR_TEMPLATE_ID"
       token="YOUR_AUTH_TOKEN"
       endpoint="YOUR_GRAPHQL_ENDPOINT"
-      mode="compose"
+      mode="editor"
     />
   );
 }
@@ -65,7 +65,7 @@ function App() {
 ### token
 Your security token for authentication. This verifies your identity and access to the template. See more
 documentation about how to securely get a token without exposing your credentials, see the examples
-here [https://apidocs.legalesign.com/docs/graphql/oauth2/setup/]
+here [https://docs.legalesign.com/components/widgets/authorization]
 
 ```html
 token="eyJraWQiOiJBTkJIeT..."
