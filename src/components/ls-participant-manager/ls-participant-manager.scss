@@ -17,6 +17,75 @@
   gap: 0.75rem;
 }
 
+.ls-dv-sender-card {
+  display: flex;
+  padding: 0.625rem;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  cursor: pointer;
+  border-radius: 1rem;
+  background: #f7f8fa;
+  border: 1px solid #afb0b2;
+}
+
+.ls-dv-sender-card-active, .ls-dv-sender-card:hover {
+  outline: 2px solid #afb0b2;
+  outline-offset: -2px;
+}
+
+.ls-dv-sender-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.ls-dv-sender-card-top-items {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ls-dv-role-label {
+  display: flex;
+  padding: 0.125rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.ls-dv-role-label.ls-dv-fields {
+  border-radius: 1rem;
+}
+
+.ls-dv-sender-card-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ls-dv-sender-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #45484d;
+}
+
+.ls-dv-sender-type {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+  color: #6f7176;
+  text-transform: capitalize;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
