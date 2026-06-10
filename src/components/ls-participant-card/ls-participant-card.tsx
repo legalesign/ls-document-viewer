@@ -320,7 +320,13 @@ export class LsParticipantCard {
                     color: defaultRolePalette[this.signer?.signerIndex % 100].s100,
                   }}
                   data-tooltip-id="ls-dv-tooltip"
-                  data-tooltip-content={this.signer.name || formatRoleName(this.signer)}
+                  data-tooltip-html={`<span style="white-space:normal;word-break:break-word">${this.signer.name || formatRoleName(this.signer)}</span>`}
+                  onMouseEnter={(e: MouseEvent) => {
+                    const el = e.currentTarget as HTMLElement;
+                    if (el.scrollWidth <= el.clientWidth) {
+                      el.removeAttribute('data-tooltip-html');
+                    }
+                  }}
                 >
                   {this.signer.name || formatRoleName(this.signer)}
                 </p>
