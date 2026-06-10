@@ -140,8 +140,10 @@ export class LsParticipantSelect {
                         : 'signature-icon'
                 }
               />
-              {this.selectedRole.name ||
-                (this.selectedRole.roleType === 'WITNESS' ? dvI18n.t('participants.witness') : dvI18n.t('participants.participant', { index: this.selectedRole.signerIndex }))}
+              <span class="ls-dv-selected-role-text">
+                {this.selectedRole.name ||
+                  (this.selectedRole.roleType === 'WITNESS' ? dvI18n.t('participants.witness') : dvI18n.t('participants.participant', { index: this.selectedRole.signerIndex }))}
+              </span>
             </div>
             <button class={'ls-dv-tertiary-grey ls-dv-expand-button'} aria-haspopup="listbox" aria-expanded={this.isOpen}>
               <ls-icon name="chevron-down-icon"></ls-icon>
@@ -222,6 +224,14 @@ export class LsParticipantSelect {
                       style={{
                         '--role-name-selected': defaultRolePalette[r?.signerIndex % 100].s100,
                       }}
+                      data-tooltip-id="ls-dv-select-tooltip"
+                      data-tooltip-html={`<span style="white-space:normal;word-break:break-word">${r.name || (r.signerIndex > 100 ? dvI18n.t('participants.participantwitness', { index: r.signerIndex - 100 }) : dvI18n.t('participants.participant', { index: r.signerIndex }))}</span>`}
+                      onMouseEnter={(e: MouseEvent) => {
+                        const el = e.currentTarget as HTMLElement;
+                        if (el.scrollWidth <= el.clientWidth) {
+                          el.removeAttribute('data-tooltip-html');
+                        }
+                      }}
                     >
                       {r.name || (r.signerIndex > 100 ? dvI18n.t('participants.participantwitness', { index: r.signerIndex - 100 }) : dvI18n.t('participants.participant', { index: r.signerIndex }))}
                     </p>
@@ -263,6 +273,7 @@ export class LsParticipantSelect {
             </div>
           )}
         </div>
+        <ls-tooltip tooltipId="ls-dv-select-tooltip" />
         <slot></slot>
       </Host>
     );
