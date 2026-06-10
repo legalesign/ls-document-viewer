@@ -348,10 +348,23 @@ export class LsDocumentViewer {
 
     // Build the field data directly from defaults
     const defaults = FIELD_DEFAULTS[fieldType] || FIELD_DEFAULTS['signature'];
+    
+    // Map formElementType to elementType correctly
+    let elementType: 'text' | 'signature' | 'initials' | 'admin';
+    if (fieldType === 'signature') {
+      elementType = 'signature';
+    } else if (fieldType === 'initials') {
+      elementType = 'initials';
+    } else if (fieldType === 'auto sign') {
+      elementType = 'admin';
+    } else {
+      elementType = 'text';
+    }
+    
     this.fieldTypeSelected = {
       label: fieldType,
       formElementType: fieldType,
-      elementType: fieldType === 'signature' || fieldType === 'initials' ? fieldType : fieldType === 'auto sign' ? 'admin' : 'text',
+      elementType: elementType,
       validation: 0,
       defaultHeight: defaults.defaultHeight,
       defaultWidth: defaults.defaultWidth,
