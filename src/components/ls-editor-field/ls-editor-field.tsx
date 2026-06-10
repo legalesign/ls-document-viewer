@@ -81,9 +81,10 @@ export class LsEditorField {
 
   @Listen('keydown')
   handleInput(e: KeyboardEvent) {
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter' && !e.ctrlKey && !e.metaKey) {
       this.isEditing = false;
       this.sizeObserver.observe(this.component.shadowRoot.getElementById('field-info'));
+      e.preventDefault();
     }
 
     e.stopPropagation();
@@ -203,7 +204,7 @@ export class LsEditorField {
         if (entry.contentRect) {
           const movebox = this.component.shadowRoot.getElementById('field-info') as HTMLElement;
 
-          movebox.style.height = entry.contentRect.height + 'px';
+          movebox.style.height = '100%';
         }
       }
     });
@@ -328,26 +329,46 @@ export class LsEditorField {
               }}
             />
           )}
-          <input
-            id="editing-input"
-            class={this.isDateField()
-              ? 'ls-dv-date-field-input'
-              : (this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field')}
-            type={this.isDateField() ? 'date' : 'text'}
-            style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
-            value={this.isDateField() ? this.toISODate(this.dataItem?.value) : this.dataItem?.value}
-            checked={this.dataItem?.value ? true : false}
-            onInput={e => {
-              const val = (e.target as HTMLInputElement).value;
-              this.alter({ value: this.isDateField() ? this.formatDateFromISO(val) : val });
-            }}
-            onChange={e => {
-              if (this.isDateField()) {
+          {this.isDateField() ? (
+            <input
+              id="editing-input"
+              class="ls-dv-date-field-input"
+              type="date"
+              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
+              value={this.toISODate(this.dataItem?.value)}
+              checked={this.dataItem?.value ? true : false}
+              onInput={e => {
                 const val = (e.target as HTMLInputElement).value;
                 this.alter({ value: this.formatDateFromISO(val) });
-              }
-            }}
-          />
+              }}
+              onChange={e => {
+                const val = (e.target as HTMLInputElement).value;
+                this.alter({ value: this.formatDateFromISO(val) });
+              }}
+            />
+          ) : (
+            <textarea
+              id="editing-input"
+              class={this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field'}
+              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
+              value={this.dataItem?.value}
+              rows={1}
+              onInput={e => {
+                const el = e.target as HTMLTextAreaElement;
+                el.style.height = 'auto';
+                el.style.height = el.scrollHeight + 'px';
+                this.alter({ value: el.value });
+              }}
+              ref={el => {
+                if (el && this.isEditing) {
+                  requestAnimationFrame(() => {
+                    el.style.height = 'auto';
+                    el.style.height = el.scrollHeight + 'px';
+                  });
+                }
+              }}
+            />
+          )}
 
           <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
             {(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
