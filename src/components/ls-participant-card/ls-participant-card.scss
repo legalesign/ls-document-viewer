@@ -36,6 +36,7 @@
 
 .ls-dv-participant-card-inner {
   width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -106,6 +107,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 142.857% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ls-dv-participant-text-type {
