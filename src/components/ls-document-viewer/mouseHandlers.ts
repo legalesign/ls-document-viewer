@@ -501,7 +501,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.background = `rgba(${r},${g},${b},0.5)`;
   ghost.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
   ghost.style.pointerEvents = 'none';
-  ghost.style.zIndex = '0';
+  ghost.style.zIndex = '10000';
   ghost.style.visibility = 'hidden';
   ghost.style.boxSizing = 'border-box';
   ghost.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
@@ -538,13 +538,14 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     e.preventDefault();
     const dragWidth = fieldData.defaultWidth * zoom;
     const dragHeight = fieldData.defaultHeight * zoom;
-    // Only show ghost when cursor is over the document page
-    const frameRect = frame.getBoundingClientRect();
-    if (e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
-        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom) {
-      ghost.style.visibility = 'visible';
+    ghost.style.visibility = 'visible';
 
-      const frameRect = frame.getBoundingClientRect();
+    const frameRect = frame.getBoundingClientRect();
+    const isOverFrame = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
+        e.clientY >= frameRect.top && e.clientY <= frameRect.bottom;
+
+    if (isOverFrame) {
+      ghost.style.opacity = '1';
       const x = e.clientX - frameRect.left + frame.scrollLeft;
       const y = e.clientY - frameRect.top + frame.scrollTop;
       let left = x - dragWidth / 2;
@@ -557,7 +558,9 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 
       showSnapGuides.bind(this)(snap.guides);
     } else {
-      ghost.style.visibility = 'hidden';
+      ghost.style.opacity = '0.5';
+      ghost.style.left = (e.clientX - dragWidth / 2) + 'px';
+      ghost.style.top = (e.clientY - dragHeight / 2) + 'px';
       clearSnapGuides.bind(this)();
     }
   };
