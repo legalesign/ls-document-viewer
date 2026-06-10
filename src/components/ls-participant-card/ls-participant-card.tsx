@@ -319,6 +319,8 @@ export class LsParticipantCard {
                   style={{
                     color: defaultRolePalette[this.signer?.signerIndex % 100].s100,
                   }}
+                  data-tooltip-id="ls-dv-tooltip"
+                  data-tooltip-content={this.signer.name || formatRoleName(this.signer)}
                 >
                   {this.signer.name || formatRoleName(this.signer)}
                 </p>
