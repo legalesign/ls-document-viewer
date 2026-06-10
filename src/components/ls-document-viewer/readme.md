@@ -240,14 +240,15 @@ graph TD;
   ls-toolbox-field --> ls-tooltip
   ls-feature-column --> ls-icon
   ls-feature-column --> ls-tooltip
+  ls-participant-manager --> ls-icon
   ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
   ls-participant-card --> ls-input-wrapper
   ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
-  ls-button --> ls-icon
   ls-button --> ls-loading
+  ls-button --> ls-icon
   ls-loading --> ls-loading-icon
   ls-add-new-button --> ls-icon
   ls-add-new-button --> ls-loading
@@ -265,6 +266,7 @@ graph TD;
   ls-field-format --> ls-icon
   ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
+  ls-participant-select --> ls-tooltip
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
   ls-statusbar --> ls-tooltip

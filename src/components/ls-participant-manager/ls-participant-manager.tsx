@@ -108,6 +108,12 @@ export class LsParticipantManager {
     observer.observe(this.element.shadowRoot, { childList: true, subtree: true });
   }
 
+  @Event({
+    bubbles: true,
+    composed: true,
+  })
+  roleChange: EventEmitter<number>;
+
   render() {
     return (
       <Host>
@@ -116,6 +122,28 @@ export class LsParticipantManager {
           <p class="ls-dv-toolbox-section-description">{dvI18n.t('participants.description')}</p>
         </div>
         <div class="ls-dv-participant-list">
+          <div class={'ls-dv-sender-card' + (this.activeSigner === 0 ? ' ls-dv-sender-card-active' : '')} onClick={() => this.roleChange.emit(0)}>
+            <div class="ls-dv-sender-card-inner">
+              <div class="ls-dv-sender-card-top-items">
+                <div class="ls-dv-role-label" style={{ background: '#edeff2', color: '#5e6066' }}>
+                  <ls-icon name="user-icon" />
+                </div>
+              </div>
+              <div class="ls-dv-sender-card-text">
+                <p class="ls-dv-sender-name">{dvI18n.t('toolbar.sender')}</p>
+                <p class="ls-dv-sender-type">{dvI18n.t('toolbar.you')}</p>
+              </div>
+              {this.template &&
+                (() => {
+                  const senderFields = this.template.elementConnection.templateElements.filter(f => Number(f.signer) === 0) || [];
+                  return senderFields.length > 0 ? (
+                    <div class="ls-dv-role-label ls-dv-fields" style={{ background: '#edeff2', color: '#5e6066' }}>
+                      {`${senderFields.length} ${senderFields.length === 1 ? dvI18n.t('common.field') : dvI18n.t('common.fields')}`}
+                    </div>
+                  ) : null;
+                })()}
+            </div>
+          </div>
           {this.template &&
             this.template?.roles.map((r, index) => {
               return (
