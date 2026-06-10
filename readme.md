@@ -54,7 +54,7 @@ function App() {
       templateid="YOUR_TEMPLATE_ID"
       token="YOUR_AUTH_TOKEN"
       endpoint="YOUR_GRAPHQL_ENDPOINT"
-      mode="compose"
+      mode="editor"
     />
   );
 }
