@@ -482,10 +482,17 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   const frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
   const zoom = this.zoom;
   this._isToolboxDragging = true;
-  const startTime = Date.now();
+  let hasMoved = false;
 
-  // Prevent text selection during drag
+  // Prevent text selection during drag and set grabbing cursor
   document.body.style.userSelect = 'none';
+  const cursorStyle = document.createElement('style');
+  cursorStyle.id = 'ls-drag-cursor';
+  cursorStyle.textContent = '* { cursor: grabbing !important; }';
+  document.head.appendChild(cursorStyle);
+
+  // Add dragging class to toolbox fields (shadow DOM cursor override)
+  this.component.shadowRoot.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.add('ls-dv-dragging'));
 
   // Create ghost preview element matching the original drag image style
   const ghost = document.createElement('div');
@@ -536,6 +543,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 
   const onMouseMove = (e: MouseEvent) => {
     e.preventDefault();
+    hasMoved = true;
     const dragWidth = fieldData.defaultWidth * zoom;
     const dragHeight = fieldData.defaultHeight * zoom;
     ghost.style.visibility = 'visible';
@@ -573,13 +581,16 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     chip.remove();
     clearSnapGuides.bind(this)();
     document.body.style.userSelect = '';
+    const cursorStyle = document.getElementById('ls-drag-cursor');
+    if (cursorStyle) cursorStyle.remove();
+    this.component.shadowRoot.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.remove('ls-dv-dragging'));
     this._isToolboxDragging = false;
     this._cancelToolboxDrag = null;
   };
 
   const onMouseUp = (e: MouseEvent) => {
-    // Ignore mouseup if it's from the same click that started the drag
-    if (Date.now() - startTime < 100) return;
+    // Ignore mouseup if it's from the same click that started the drag (no movement yet)
+    if (!hasMoved) return;
 
     const frameRect = frame.getBoundingClientRect();
     const shouldPlace = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&

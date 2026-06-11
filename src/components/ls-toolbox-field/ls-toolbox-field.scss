@@ -11,6 +11,10 @@
   cursor: grab;
 }
 
+:host(.ls-dv-dragging) .ls-dv-toolbox-field {
+  cursor: grabbing;
+}
+
 .ls-dv-toolbox-field:active {
   cursor: grabbing;
 }
