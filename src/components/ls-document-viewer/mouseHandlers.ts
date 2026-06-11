@@ -552,13 +552,16 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     hasMoved = true;
     const dragWidth = fieldData.defaultWidth * zoom;
     const dragHeight = fieldData.defaultHeight * zoom;
-    ghost.style.visibility = 'visible';
 
     const frameRect = frame.getBoundingClientRect();
     const isOverFrame = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
         e.clientY >= frameRect.top && e.clientY <= frameRect.bottom;
+    const isDragging = e.buttons === 1;
 
+    // When dragging (mouse held): show ghost over wrapper area
+    // When click-to-place (mouse not held): only show over document frame
     if (isOverFrame) {
+      ghost.style.visibility = 'visible';
       ghost.style.opacity = '1';
       const x = e.clientX - frameRect.left + frame.scrollLeft;
       const y = e.clientY - frameRect.top + frame.scrollTop;
@@ -571,10 +574,14 @@ export function toolboxDragStart(fieldData: IToolboxField) {
       ghost.style.top = (snap.y !== null ? snap.y + frameRect.top - frame.scrollTop : e.clientY - dragHeight / 2) + 'px';
 
       showSnapGuides.bind(this)(snap.guides);
-    } else {
+    } else if (isDragging) {
+      ghost.style.visibility = 'visible';
       ghost.style.opacity = '0.5';
       ghost.style.left = (e.clientX - dragWidth / 2) + 'px';
       ghost.style.top = (e.clientY - dragHeight / 2) + 'px';
+      clearSnapGuides.bind(this)();
+    } else {
+      ghost.style.visibility = 'hidden';
       clearSnapGuides.bind(this)();
     }
   };
