@@ -675,6 +675,8 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
       cleanup();
     }
   };
