@@ -10,6 +10,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
 export class LsFieldAlignment {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement[];
+  @Prop() readonly: boolean = false;
   @Event({
     bubbles: true,
     cancelable: true,
@@ -155,10 +156,10 @@ export class LsFieldAlignment {
           </div>
           <div class={'ls-dv-multi-button-group-row'}>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')}>
+              <button onClick={() => this.left()} aria-label={dvI18n.t('alignment.alignleft')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')} disabled={this.readonly}>
                 <ls-icon name="field-alignment-left-icon"></ls-icon>
               </button>
-              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')}>
+              <button onClick={() => this.center()} aria-label={dvI18n.t('alignment.aligncenter')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')} disabled={this.readonly}>
                 <ls-icon name="field-alignment-centre-icon"></ls-icon>
               </button>
               <button
@@ -167,18 +168,19 @@ export class LsFieldAlignment {
                 }}
                 aria-label={dvI18n.t('alignment.alignright')}
                 data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignright')}
+                disabled={this.readonly}
               >
                 <ls-icon name="field-alignment-right-icon"></ls-icon>
               </button>
             </div>
             <div class={'ls-dv-button-group'}>
-              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')}>
+              <button onClick={() => this.top()} aria-label={dvI18n.t('alignment.aligntop')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')} disabled={this.readonly}>
                 <ls-icon name="field-alignment-top-icon"></ls-icon>
               </button>
-              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')}>
+              <button onClick={() => this.middle()} aria-label={dvI18n.t('alignment.alignmiddle')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')} disabled={this.readonly}>
                 <ls-icon name="field-alignment-middle-icon"></ls-icon>
               </button>
-              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')}>
+              <button onClick={() => this.bottom()} aria-label={dvI18n.t('alignment.alignbottom')} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')} disabled={this.readonly}>
                 <ls-icon name="field-alignment-bottom-icon"></ls-icon>
               </button>
             </div>

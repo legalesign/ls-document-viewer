@@ -8,16 +8,17 @@ import { LSApiElement } from '../../components';
 })
 export class LsFieldPropertiesAutosign {
   @Prop() dataItem: LSApiElement;
+  @Prop() readonly: boolean = false;
  
    render() {
      return (
        <Host>
          <div class={"ls-dv-field-properties-section"}>Self Sign Field</div>
          <div>Label: <input value={this.dataItem?.label} width="30"/></div>
-         <ls-field-dimensions dataItem={this.dataItem} />
-         <ls-field-properties-advanced dataItem={this.dataItem} />
+         <ls-field-dimensions dataItem={this.dataItem} readonly={this.readonly} />
+         <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
 
-          <ls-field-footer dataItem={this.dataItem} />
+          <ls-field-footer dataItem={this.dataItem} readonly={this.readonly} />
          <slot></slot>
        </Host>
      );

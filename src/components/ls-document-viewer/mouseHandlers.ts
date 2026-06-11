@@ -46,8 +46,8 @@ export function debounce(data, delay) {
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
   if (this._isToolboxDragging) return;
-  // Disable mouse interactions in preview mode
-  if (this.mode === 'preview') {
+  // Disable mouse interactions in preview mode or when template is locked
+  if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
   // Ignore events originating from outside the document frame
@@ -179,8 +179,8 @@ export function outOfBounds(futureField) {
 export function mouseMove(event) {
   event.preventDefault();
   if (this._isToolboxDragging) return;
-  // Disable mouse move interactions in preview mode
-  if (this.mode === 'preview') {
+  // Disable mouse move interactions in preview mode or when template is locked
+  if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
 
@@ -377,8 +377,8 @@ export function mouseUp(event) {
 }
 
 export function mouseClick(e) {
-  // Disable click interactions in preview mode
-  if (this.mode === 'preview') {
+  // Disable click interactions in preview mode or when template is locked
+  if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
   
@@ -474,6 +474,10 @@ export function clearSnapGuides() {
 }
 
 export function toolboxDragStart(fieldData: IToolboxField) {
+  // Disable toolbox dragging when template is locked
+  if (this._template?.locked) {
+    return;
+  }
   // Cancel any existing toolbox drag
   if (this._cancelToolboxDrag) {
     this._cancelToolboxDrag();
@@ -667,8 +671,8 @@ export function toolboxDragStart(fieldData: IToolboxField) {
 }
 
 export function mouseDoubleClick(event) {
-  // Disable double-click field creation in preview mode
-  if (this.mode === 'preview') {
+  // Disable double-click field creation in preview mode or when template is locked
+  if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
   

@@ -11,6 +11,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 export class LsFieldPlacement {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -88,7 +89,7 @@ export class LsFieldPlacement {
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="x-letter-icon"></ls-icon>
-                <input type="number" class={'ls-dv-has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} />
+                <input type="number" class={'ls-dv-has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
               </div>
               <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="y-icon"></ls-icon>
@@ -98,6 +99,7 @@ export class LsFieldPlacement {
                   aria="left-location"
                   id="left-location"
                   onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
+                  disabled={this.readonly}
                 />
               </div>
             </div>
@@ -114,24 +116,24 @@ export class LsFieldPlacement {
               </div>
               <div class={'ls-dv-multi-button-group-row'}>
                 <div class={'ls-dv-button-group'}>
-                  <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')}>
+                  <button onClick={() => { this.alter({ left: 0 }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignleft')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-left-icon"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')}>
+                  <button onClick={() => { this.alter({ left: this.center() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligncenter')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-centre-icon"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignright')}>
+                  <button onClick={() => { this.alter({ left: this.right() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignright')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-right-icon"></ls-icon>
                   </button>
                 </div>
                 <div class={'ls-dv-button-group'}>
-                  <button onClick={() => this.alter({ top: 0 })} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')}>
+                  <button onClick={() => this.alter({ top: 0 })} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.aligntop')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-top-icon"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')}>
+                  <button onClick={() => { this.alter({ top: this.middle() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignmiddle')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-middle-icon"></ls-icon>
                   </button>
-                  <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')}>
+                  <button onClick={() => { this.alter({ top: this.bottom() }) }} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.alignbottom')} disabled={this.readonly}>
                     <ls-icon name="field-alignment-bottom-icon"></ls-icon>
                   </button>
                 </div>
@@ -153,6 +155,7 @@ export class LsFieldPlacement {
                     id="top-location"
                     value={this.dataItem?.left}
                     onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                    disabled={this.readonly}
                   />
                 </div>
                 <div class={'ls-dv-input-wrapper'}>
@@ -165,6 +168,7 @@ export class LsFieldPlacement {
                     value={this.dataItem?.top}
                     onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
                     width="30"
+                    disabled={this.readonly}
                   />
                 </div>
               </div>

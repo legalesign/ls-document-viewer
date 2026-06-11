@@ -21,6 +21,7 @@
 | ---------------- | ----------- | -------------------------------------------------------- |
 | `addParticipant` |             | `CustomEvent<{ type: LSApiRoleType; parent?: string; }>` |
 | `mutate`         |             | `CustomEvent<LSMutateEvent[]>`                           |
+| `roleChange`     |             | `CustomEvent<number>`                                    |
 | `update`         |             | `CustomEvent<LSMutateEvent[]>`                           |
 
 
@@ -32,12 +33,14 @@
 
 ### Depends on
 
+- ls-icon
 - [ls-participant-card](../ls-participant-card)
 - ls-add-new-button
 
 ### Graph
 ```mermaid
 graph TD;
+  ls-participant-manager --> ls-icon
   ls-participant-manager --> ls-participant-card
   ls-participant-manager --> ls-add-new-button
   ls-participant-card --> ls-icon
@@ -45,8 +48,8 @@ graph TD;
   ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
   ls-input-wrapper --> ls-icon
-  ls-button --> ls-icon
   ls-button --> ls-loading
+  ls-button --> ls-icon
   ls-loading --> ls-loading-icon
   ls-add-new-button --> ls-icon
   ls-add-new-button --> ls-loading

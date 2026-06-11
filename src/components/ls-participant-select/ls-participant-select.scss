@@ -34,7 +34,6 @@
 .ls-dv-selected-role-label {
   display: flex;
   padding: 0.125rem 0.375rem;
-  justify-content: center;
   align-items: center;
   gap: 0.25rem;
   border-radius: 0.25rem;
@@ -42,6 +41,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.25rem; /* 142.857% */
+  max-width: 10rem;
+}
+
+.ls-dv-selected-role-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ls-dv-dropdown-list {
@@ -120,6 +126,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
 }
 
 .ls-dv-dropdown-item .ls-dv-check-icon {
@@ -136,6 +143,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1rem; /* 133.333% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ls-dv-role-type {

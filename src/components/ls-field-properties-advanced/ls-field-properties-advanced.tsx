@@ -11,6 +11,7 @@ import { dvI18n } from '../../i18n/i18n';
 export class LsFieldPropertiesAdvanced {
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
   @Prop({ mutable: true }) expanded: boolean = false;
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -89,15 +90,16 @@ export class LsFieldPropertiesAdvanced {
                 this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
               }} 
               onChange={() => { console.log('onchange')}}
+              disabled={this.readonly}
               />
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.refname')}>
-              <input value={this.getValue('link')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} />
+              <input value={this.getValue('link')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} disabled={this.readonly} />
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
-              <select onChange={e => this.alter({ linkType: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field">
+              <select onChange={e => this.alter({ linkType: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
                 <option value="0" selected={this.getValue('linkType') === '0'}>
                   {dvI18n.t('fieldproperties.linktypenoption')}
                 </option>
@@ -119,6 +121,7 @@ export class LsFieldPropertiesAdvanced {
                 width="30"
                 placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')}
                 onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })}
+                disabled={this.readonly}
               />
             </ls-props-section>
           </div>

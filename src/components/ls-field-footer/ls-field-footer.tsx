@@ -16,6 +16,7 @@ export class LsFieldFooter {
     mutable: true,
   })
   dataItem: LSApiElement | LSApiElement[];
+  @Prop() readonly: boolean = false;
   @Event({
     bubbles: true,
     cancelable: true,
@@ -75,11 +76,11 @@ export class LsFieldFooter {
     return (
       <Host>
         <div class={'ls-dv-button-footer'}>
-          <button class={'ls-dv-secondary ls-dv-full-rounded'} onClick={() => this.duplicateField()}>
+          <button class={'ls-dv-secondary ls-dv-full-rounded'} onClick={() => this.duplicateField()} disabled={this.readonly}>
             <ls-icon name="field-duplicate-icon" size={20} />
             {dvI18n.t('common.duplicate')}
           </button>
-          <button class={'ls-dv-destructive ls-dv-full-rounded'} onClick={() => this.deleteField()}>
+          <button class={'ls-dv-destructive ls-dv-full-rounded'} onClick={() => this.deleteField()} disabled={this.readonly}>
             <ls-icon name="trash-icon" size={20} />
             {dvI18n.t('common.delete')}
           </button>

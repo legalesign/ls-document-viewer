@@ -12,6 +12,7 @@ export class LsFieldDimensions {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
   @Prop() template: any; // LSApiTemplate
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -75,11 +76,11 @@ export class LsFieldDimensions {
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
                 <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
-                <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} />
+                <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
               </div>
               <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
                 <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
-                <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} />
+                <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
               </div>
             </div>
 
@@ -123,6 +124,7 @@ export class LsFieldDimensions {
                         this.alter({ width: newWidth });
                       }
                     }}
+                    disabled={this.readonly}
                   />
                 </div>
                 <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
@@ -147,6 +149,7 @@ export class LsFieldDimensions {
                         this.alter({ height: newHeight });
                       }
                     }}
+                    disabled={this.readonly}
                   />
                 </div>
               </div>
