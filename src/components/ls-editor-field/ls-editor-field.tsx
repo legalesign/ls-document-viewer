@@ -400,7 +400,9 @@ export class LsEditorField {
                 fontSize: `${0.625 * zoomValue}rem`,
                 left: '0',
                 whiteSpace: 'nowrap',
-                width: 'fit-content',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: `${10 * zoomValue}rem`,
                 fontFamily: 'sans-serif',
               }}
             >
