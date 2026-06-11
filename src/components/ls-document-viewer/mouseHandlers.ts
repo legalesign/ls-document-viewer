@@ -492,7 +492,9 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   document.head.appendChild(cursorStyle);
 
   // Add dragging class to toolbox fields (shadow DOM cursor override)
-  this.component.shadowRoot.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.add('ls-dv-dragging'));
+  this.component.shadowRoot.querySelectorAll('ls-left-bar, ls-compose-loader').forEach(bar => {
+    bar.shadowRoot?.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.add('ls-dv-dragging'));
+  });
 
   // Create ghost preview element matching the original drag image style
   const ghost = document.createElement('div');
@@ -583,7 +585,9 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     document.body.style.userSelect = '';
     const cursorStyle = document.getElementById('ls-drag-cursor');
     if (cursorStyle) cursorStyle.remove();
-    this.component.shadowRoot.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.remove('ls-dv-dragging'));
+    this.component.shadowRoot.querySelectorAll('ls-left-bar, ls-compose-loader').forEach(bar => {
+      bar.shadowRoot?.querySelectorAll('ls-toolbox-field').forEach(el => el.classList.remove('ls-dv-dragging'));
+    });
     this._isToolboxDragging = false;
     this._cancelToolboxDrag = null;
   };
