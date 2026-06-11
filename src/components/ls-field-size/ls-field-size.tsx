@@ -10,6 +10,7 @@ import { LSApiElement, LSMutateEvent } from '../../components';
 export class LsFieldSize {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement[];
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -45,6 +46,7 @@ export class LsFieldSize {
               onClick={() => this.alter({ width: this.dataItem[0].width, height: this.dataItem[0].height })}
               aria-label={dvI18n.t('alignment.matchsize')}
               data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchsize')}
+              disabled={this.readonly}
             >
               <ls-icon name="field-scale-icon"></ls-icon>
             </button>
@@ -52,6 +54,7 @@ export class LsFieldSize {
               aria-label={dvI18n.t('alignment.matchwidth')}
               onClick={() => this.alter({ width: this.dataItem[0].width })}
               data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchwidth')}
+              disabled={this.readonly}
             >
               <ls-icon name="field-match-width-icon"></ls-icon>
             </button>
@@ -59,6 +62,7 @@ export class LsFieldSize {
               onClick={() => this.alter({ height: this.dataItem[0].height })}
               aria-label={dvI18n.t('alignment.matchheight')}
               data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.matchheight')}
+              disabled={this.readonly}
             >
               <ls-icon name="field-match-height-icon"></ls-icon>
             </button>

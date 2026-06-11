@@ -199,9 +199,17 @@ export namespace Components {
     }
     interface LsFieldAlignment {
         "dataItem": LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldContent {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
         /**
           * @default true
          */
@@ -209,25 +217,45 @@ export namespace Components {
     }
     interface LsFieldDimensions {
         "dataItem": LSApiElement1 | LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
         "template": any;
     }
     interface LsFieldDistribute {
         "dataItem": LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldFooter {
         /**
           * The selected items information (as JSON). {LSApiElement[]}
          */
         "dataItem": LSApiElement1 | LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldFormat {
         "dataItem": LSApiElement1[];
     }
     interface LsFieldPlacement {
         "dataItem": LSApiElement | LSApiElement[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
         "template": any;
     }
     interface LsFieldPropertiesAdvanced {
@@ -236,9 +264,17 @@ export namespace Components {
           * @default false
          */
         "expanded": boolean;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesAutosign {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesContainer {
         "dataItem": LSApiElement1;
@@ -250,37 +286,77 @@ export namespace Components {
     }
     interface LsFieldPropertiesDate {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesDropdown {
         "dataItem": LSApiElement1;
     }
     interface LsFieldPropertiesEmail {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesFile {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesGeneral {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesImage {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesNumber {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldPropertiesSignature {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
         "template": any;
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
+        /**
+          * @default false
+         */
+        "readonly": boolean;
     }
     interface LsFieldTypeDisplay {
         "assignee": number;
@@ -1444,11 +1520,19 @@ declare namespace LocalJSX {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldAlignmentCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldContent {
         "dataItem"?: LSApiElement1;
         "onMutate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
         /**
           * @default true
          */
@@ -1458,11 +1542,19 @@ declare namespace LocalJSX {
         "dataItem"?: LSApiElement1 | LSApiElement1[];
         "onMutate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldDimensionsCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
         "template"?: any;
     }
     interface LsFieldDistribute {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldDistributeCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldFooter {
         /**
@@ -1472,6 +1564,10 @@ declare namespace LocalJSX {
         "onMutate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
         "onSelectFields"?: (event: LsFieldFooterCustomEvent<LSApiElement1[]>) => void;
         "onUpdate"?: (event: LsFieldFooterCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldFormat {
         "dataItem"?: LSApiElement1[];
@@ -1480,9 +1576,17 @@ declare namespace LocalJSX {
     interface LsFieldPlacement {
         "dataItem"?: LSApiElement | LSApiElement[];
         "onMutate"?: (event: LsFieldPlacementCustomEvent<LSMutateEvent[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
         "template"?: any;
     }
     interface LsFieldPropertiesAdvanced {
@@ -1492,9 +1596,17 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesAutosign {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesContainer {
         "dataItem"?: LSApiElement1;
@@ -1506,40 +1618,80 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesDate {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesDropdown {
         "dataItem"?: LSApiElement1;
     }
     interface LsFieldPropertiesEmail {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesFile {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesGeneral {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesImage {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldPropertiesSignature {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
         "template"?: any;
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldSize {
         "dataItem"?: LSApiElement1[];
         "onMutate"?: (event: LsFieldSizeCustomEvent<LSMutateEvent1[]>) => void;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
     }
     interface LsFieldTypeDisplay {
         "assignee"?: number;

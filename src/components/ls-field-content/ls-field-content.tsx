@@ -13,6 +13,7 @@ export class LsFieldContent {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() showValidationTypes: boolean = true;
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -164,13 +165,14 @@ export class LsFieldContent {
           <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
-          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => this.alter({ optional: !ev.detail })} />
+          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alter({ optional: !ev.detail })} />
         </ls-props-section>
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldlabel')} sectionDescription={dvI18n.t('fieldproperties.fieldlabeldescription')}>
           <input
             value={this.dataItem?.label}
             placeholder={getFieldTitleSuggestion(this.dataItem?.formElementType)}
             onInput={e => this.alter({ label: (e.target as HTMLInputElement).value })}
+            disabled={this.readonly}
           />
         </ls-props-section>
         {this.supportsValue() && (
@@ -184,11 +186,12 @@ export class LsFieldContent {
                   placeholder={this.getDateFormat()}
                   readOnly
                   onClick={() => {
+                    if (this.readonly) return;
                     const picker = this.component.shadowRoot.getElementById('ls-date-picker') as HTMLInputElement;
                     if (picker) picker.showPicker();
                   }}
                 />
-                {this.dataItem?.value && (
+                {this.dataItem?.value && !this.readonly && (
                   <div class="ls-dv-date-clear" onClick={() => this.alter({ value: '' })}>
                     <ls-icon name="x-icon" size={20} />
                   </div>
@@ -199,6 +202,7 @@ export class LsFieldContent {
                   type="date"
                   value={this.toISODate(this.dataItem?.value)}
                   onInput={e => this.alter({ value: this.formatDateFromISO((e.target as HTMLInputElement).value) })}
+                  disabled={this.readonly}
                 />
               </div>
             ) : (
@@ -206,6 +210,7 @@ export class LsFieldContent {
                 value={this.dataItem?.value}
                 placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
                 onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+                disabled={this.readonly}
               />
             )}
           </ls-props-section>
@@ -216,6 +221,7 @@ export class LsFieldContent {
               value={this.dataItem?.options}
               placeholder="Option 1&#10;Option 2&#10;Option 3"
               onInput={e => this.alter({ options: (e.target as HTMLTextAreaElement).value })}
+              disabled={this.readonly}
             />
           </ls-props-section>
         )}
@@ -223,7 +229,7 @@ export class LsFieldContent {
         {this.showValidationTypes && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
-              <select onChange={ev => this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
+              <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
                 {validationTypes
                   .filter(type => type.formType === this.dataItem?.formElementType)
                   .map(type => (

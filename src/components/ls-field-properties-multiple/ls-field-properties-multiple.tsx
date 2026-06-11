@@ -30,7 +30,8 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   shadow: true,
 })
 export class LsFieldPropertiesMultiple {
-  @Prop({ mutable: true }) dataItem: LSApiElement[]; 
+  @Prop({ mutable: true }) dataItem: LSApiElement[];
+  @Prop() readonly: boolean = false; 
 
   @Event({
     bubbles: true,
@@ -132,7 +133,7 @@ export class LsFieldPropertiesMultiple {
               <div class={'ls-dv-field-properties-section-text'}>
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.requiredfield')}</p>
               </div>
-              <ls-toggle onValueChange={(ev) => this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
+              <ls-toggle onValueChange={(ev) => !this.readonly && this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
             <div class={'ls-dv-field-properties-section'}>
@@ -140,20 +141,20 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={dvI18n.t('fieldproperties.placeholdersignhere')} />
+              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={dvI18n.t('fieldproperties.placeholdersignhere')} disabled={this.readonly} />
             </div>
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
-            <ls-field-dimensions dataItem={this.dataItem} />
-            <ls-field-size dataItem={this.dataItem} />
+            <ls-field-dimensions dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-size dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="placement">
-            <ls-field-alignment dataItem={this.dataItem} />
-            <ls-field-placement dataItem={this.dataItem} />
-            <ls-field-distribute dataItem={this.dataItem} />
+            <ls-field-alignment dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-placement dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-distribute dataItem={this.dataItem} readonly={this.readonly} />
           </div>
         </ls-field-properties-container>
-        <ls-field-footer dataItem={this.dataItem}/>
+        <ls-field-footer dataItem={this.dataItem} readonly={this.readonly} />
         <slot></slot>
       </Host>
     );

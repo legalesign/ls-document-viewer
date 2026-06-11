@@ -14,6 +14,7 @@ export class LsFieldDistribute {
     mutable: true,
   })
   dataItem: LSApiElement[];
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -193,6 +194,7 @@ export class LsFieldDistribute {
               }}
               aria-label={dvI18n.t('alignment.distributevertically')}
               data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.distributevertically')}
+              disabled={this.readonly}
             >
               <ls-icon name="field-distribute-vertically-icon"></ls-icon>
             </button>
@@ -202,6 +204,7 @@ export class LsFieldDistribute {
               }}
               aria-label={dvI18n.t('alignment.distributehorizontally')}
               data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('alignment.distributehorizontally')}
+              disabled={this.readonly}
             >
               <ls-icon name="field-distribute-horizontally-icon"></ls-icon>
             </button>
@@ -226,6 +229,7 @@ export class LsFieldDistribute {
                 max={9999}
                 value={''}
                 size={4}
+                disabled={this.readonly}
               />
             </div>
             <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('placement.sethorizontalgap')}>
@@ -241,6 +245,7 @@ export class LsFieldDistribute {
                 max={9999}
                 value={''}
                 size={4}
+                disabled={this.readonly}
               />
             </div>
           </div>
