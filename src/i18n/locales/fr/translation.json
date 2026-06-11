@@ -8,7 +8,9 @@
     "readytosend": "Prêt à envoyer",
     "requiresfields": "Champs requis",
     "fieldsrequired": "Champs obligatoires",
+    "templatereadytosend": "Modèle prêt à être envoyé",
     "actionrequired": "Action requise",
+    "allfieldsplaced": "Tous les champs obligatoires sont placés",
     "recipientsmissingsignature": "Signature manquante des destinataires",
     "detailstobedecided": "Détails à déterminer",
     "tobedecided": "À décider",
@@ -110,6 +112,8 @@
     "templatecreation": "Création de modèles",
     "autherror": "Erreur d'authentification",
     "autherrormessage": "Impossible de charger le modèle. Vérifiez que votre jeton d'accès est valide et réessayez.",
+    "loaderror": "Erreur de chargement",
+    "loaderrormessage": "Impossible de charger le modèle. Veuillez réessayer.",
     "closepropertiespanel": "Fermer le panneau des propriétés",
     "fieldproperties": "Propriétés du champ"
   },

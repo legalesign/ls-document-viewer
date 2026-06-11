@@ -8,7 +8,9 @@
     "readytosend": "Готови за изпращане",
     "requiresfields": "Изисква полета",
     "fieldsrequired": "Задължителни полета",
+    "templatereadytosend": "Шаблон готов за изпращане",
     "actionrequired": "Изисква се действие",
+    "allfieldsplaced": "Всички задължителни полета са поставени",
     "recipientsmissingsignature": "Липсва подпис на получателите",
     "detailstobedecided": "Подробности, които трябва да бъдат решени",
     "tobedecided": "Да бъде решен",
@@ -110,6 +112,8 @@
     "templatecreation": "Създаване на шаблон",
     "autherror": "Грешка при удостоверение",
     "autherrormessage": "Не може да се зареди шаблон. Моля, проверете дали вашият токен за достъп е валиден и опитайте отново.",
+    "loaderror": "Грешка при зареждане",
+    "loaderrormessage": "Не може да се зареди шаблон. Моля, опитайте отново.",
     "closepropertiespanel": "Затворете панела със свойства",
     "fieldproperties": "Свойства на полето"
   },

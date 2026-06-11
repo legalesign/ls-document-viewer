@@ -8,7 +8,9 @@
     "readytosend": "Tilbúinn til að senda",
     "requiresfields": "Krefst sviða",
     "fieldsrequired": "Reitir Nauðsynlegir",
+    "templatereadytosend": "Sniðmát tilbúið til að senda",
     "actionrequired": "Aðgerð krafist",
+    "allfieldsplaced": "Allir nauðsynlegir reitir eru settir",
     "recipientsmissingsignature": "Viðtakendur vantar undirskrift",
     "detailstobedecided": "Upplýsingar sem þarf að ákveða",
     "tobedecided": "Að ákveða",
@@ -110,6 +112,8 @@
     "templatecreation": "Sniðmátasköpun",
     "autherror": "Staðfestingarvilla",
     "autherrormessage": "Ekki hægt að hlaða sniðmát. Vinsamlegast athugaðu að aðgangstáknið þitt sé gilt og reyndu aftur.",
+    "loaderror": "Hleðsluvilla",
+    "loaderrormessage": "Ekki hægt að hlaða sniðmát. Vinsamlegast reyndu aftur.",
     "closepropertiespanel": "Lokaðu Eiginleikaspjaldið",
     "fieldproperties": "Eiginleikar sviðs"
   },
