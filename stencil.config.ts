@@ -7,7 +7,7 @@ export const config: Config = {
   globalStyle: 'src/global/global.scss',
   plugins: [
     sass({
-      injectGlobalPaths: ['src/global/_tokens.scss'],
+      injectGlobalPaths: ['src/global/_tokens.scss', 'src/global/_scrollbar.scss'],
     }),
   ],
   outputTargets: [
