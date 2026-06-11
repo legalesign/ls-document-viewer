@@ -1,4 +1,4 @@
-// Construct all mutations for a template element.
+// Construct all mutations for a template element. ADMIN is for sender fields
 const createElement = element => {
   return `
   mutation AddField {
