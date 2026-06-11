@@ -1127,6 +1127,7 @@ declare global {
         "mutate": LSMutateEvent[];
         "update": LSMutateEvent[];
         "addParticipant": { type: LSApiRoleType; parent?: string | null };
+        "roleChange": number;
     }
     interface HTMLLsParticipantManagerElement extends Components.LsParticipantManager, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsParticipantManagerElementEventMap>(type: K, listener: (this: HTMLLsParticipantManagerElement, ev: LsParticipantManagerCustomEvent<HTMLLsParticipantManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1793,6 +1794,7 @@ declare namespace LocalJSX {
         "editor"?: LsDocumentViewer;
         "onAddParticipant"?: (event: LsParticipantManagerCustomEvent<{ type: LSApiRoleType; parent?: string | null }>) => void;
         "onMutate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
+        "onRoleChange"?: (event: LsParticipantManagerCustomEvent<number>) => void;
         "onUpdate"?: (event: LsParticipantManagerCustomEvent<LSMutateEvent[]>) => void;
         /**
           * The base template information (as JSON). {LSApiTemplate}
