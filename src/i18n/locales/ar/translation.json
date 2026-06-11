@@ -8,7 +8,9 @@
     "readytosend": "جاهز للإرسال",
     "requiresfields": "يتطلب حقول",
     "fieldsrequired": "الحقول مطلوبة",
+    "templatereadytosend": "قالب جاهز للإرسال",
     "actionrequired": "الإجراء مطلوب",
+    "allfieldsplaced": "يتم وضع جميع الحقول المطلوبة",
     "recipientsmissingsignature": "التوقيع المفقود للمستلمين",
     "detailstobedecided": "التفاصيل التي سيتم تحديدها",
     "tobedecided": "سيتم اتخاذ قرار بشأنه",
@@ -110,6 +112,8 @@
     "templatecreation": "إنشاء قالب",
     "autherror": "خطأ المصادقة",
     "autherrormessage": "غير قادر على تحميل القالب. يرجى التحقق من صحة رمز الوصول الخاص بك والمحاولة مرة أخرى.",
+    "loaderror": "خطأ في التحميل",
+    "loaderrormessage": "غير قادر على تحميل القالب. يرجى المحاولة مرة أخرى.",
     "closepropertiespanel": "إغلاق لوحة الخصائص",
     "fieldproperties": "خصائص الحقل"
   },

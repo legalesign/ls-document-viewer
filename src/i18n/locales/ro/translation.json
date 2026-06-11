@@ -8,7 +8,9 @@
     "readytosend": "Gata pentru trimitere",
     "requiresfields": "Necesită câmpuri",
     "fieldsrequired": "Câmpuri obligatorii",
+    "templatereadytosend": "Șablon gata de expediere",
     "actionrequired": "Acțiune necesară",
+    "allfieldsplaced": "Toate câmpurile obligatorii sunt plasate",
     "recipientsmissingsignature": "Destinatarii lipsesc semnătura",
     "detailstobedecided": "Detalii care urmează să fie decise",
     "tobedecided": "Urmează să fie decis",
@@ -110,6 +112,8 @@
     "templatecreation": "Crearea șablonului",
     "autherror": "Eroare de autentificare",
     "autherrormessage": "Imposibil de încărcat șablonul. Vă rugăm să verificați dacă tokenul dvs. de acces este valid și încercați din nou.",
+    "loaderror": "Eroare de încărcare",
+    "loaderrormessage": "Imposibil de încărcat șablonul. Vă rugăm să încercați din nou.",
     "closepropertiespanel": "Închideți panoul Proprietăți",
     "fieldproperties": "Proprietăți de câmp"
   },

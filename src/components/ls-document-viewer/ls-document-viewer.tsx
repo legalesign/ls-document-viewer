@@ -1,3 +1,14 @@
+// Polyfill URL.parse for older browsers (used by pdfjs-dist)
+if (typeof URL.parse !== 'function') {
+  (URL as any).parse = function (url: string, base?: string | URL): URL | null {
+    try {
+      return base ? new URL(url, base) : new URL(url);
+    } catch {
+      return null;
+    }
+  };
+}
+
 import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
@@ -131,6 +142,7 @@ export class LsDocumentViewer {
   @State() validationErrors: ValidationError[] = [];
   @State() status: 'Valid' | 'Invalid' | 'Logged Out';
   @State() error: string | null = null;
+  @State() errorTitle: string | null = null;
 
   /**
    * The following state properties define the defaults for field
@@ -763,10 +775,18 @@ export class LsDocumentViewer {
       this.selected = [];
       this.setZoom(1.0);
       this.isLoading = false;
-    } catch (e) {
-      console.error('Your access token is invalid.', e);
-      this.error = 'Unable to load template. Please check your access token is valid and try again.';
+    } catch (e: any) {
       this.isLoading = false;
+      const isAuthError = e?.message?.includes('401') || e?.message?.includes('403') || e?.message?.includes('Unauthorized') || e?.status === 401 || e?.status === 403;
+      if (isAuthError) {
+        console.error('Authentication failed.', e);
+        this.errorTitle = dvI18n.t('viewer.autherror');
+        this.error = dvI18n.t('viewer.autherrormessage');
+      } else {
+        console.error('Failed to load template.', e);
+        this.errorTitle = dvI18n.t('viewer.loaderror');
+        this.error = dvI18n.t('viewer.loaderrormessage');
+      }
     }
   }
 
@@ -815,7 +835,7 @@ export class LsDocumentViewer {
             <div class="ls-dv-error-state">
               <div class="ls-dv-error-card">
                 <ls-icon name="exclamation-circle-icon" size={32} style={{ color: 'var(--red-60, #dc2626)' }} />
-                <p class="ls-dv-error-title">{dvI18n.t('viewer.autherror')}</p>
+                <p class="ls-dv-error-title">{this.errorTitle}</p>
                 <p class="ls-dv-error-message">{this.error}</p>
               </div>
             </div>

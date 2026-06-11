@@ -8,7 +8,9 @@
     "readytosend": "Klaar om te verzenden",
     "requiresfields": "Velden zijn vereist",
     "fieldsrequired": "Vereiste velden",
+    "templatereadytosend": "Sjabloon klaar om te verzenden",
     "actionrequired": "Actie vereist",
+    "allfieldsplaced": "Alle verplichte velden zijn geplaatst",
     "recipientsmissingsignature": "Handtekening van ontvangers ontbreekt",
     "detailstobedecided": "Details moeten nog worden bepaald",
     "tobedecided": "Te beslissen",
@@ -110,6 +112,8 @@
     "templatecreation": "Creatie van sjablonen",
     "autherror": "Authenticatiefout",
     "autherrormessage": "Kan de sjabloon niet laden. Controleer of je toegangstoken geldig is en probeer het opnieuw.",
+    "loaderror": "Fout bij het laden",
+    "loaderrormessage": "Kan de sjabloon niet laden. Probeer het opnieuw.",
     "closepropertiespanel": "Eigenschappenvenster sluiten",
     "fieldproperties": "Eigenschappen van het veld"
   },

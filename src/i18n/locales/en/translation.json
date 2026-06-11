@@ -112,6 +112,8 @@
     "templatecreation": "Template Creation",
     "autherror": "Authentication Error",
     "autherrormessage": "Unable to load template. Please check your access token is valid and try again.",
+    "loaderror": "Loading Error",
+    "loaderrormessage": "Unable to load template. Please try again.",
     "closepropertiespanel": "Close Properties Panel",
     "fieldproperties": "Field Properties"
   },

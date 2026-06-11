@@ -8,7 +8,9 @@
     "readytosend": "Έτοιμος για αποστολή",
     "requiresfields": "Απαιτούνται πεδία",
     "fieldsrequired": "Απαιτούμενα πεδία",
+    "templatereadytosend": "Πρότυπο έτοιμο για αποστολή",
     "actionrequired": "Απαιτείται ενέργεια",
+    "allfieldsplaced": "Όλα τα απαιτούμενα πεδία τοποθετούνται",
     "recipientsmissingsignature": "Λείπει η υπογραφή παραλήπτη",
     "detailstobedecided": "Λεπτομέρειες που θα αποφασιστούν",
     "tobedecided": "Θα αποφασισθεί",
@@ -110,6 +112,8 @@
     "templatecreation": "Δημιουργία προτύπου",
     "autherror": "Σφάλμα ελέγχου ταυτότητας",
     "autherrormessage": "Δεν είναι δυνατή η φόρτωση προτύπου. Ελέγξτε ότι το διακριτικό πρόσβασής σας είναι έγκυρο και δοκιμάστε ξανά.",
+    "loaderror": "Σφάλμα φόρτωσης",
+    "loaderrormessage": "Δεν είναι δυνατή η φόρτωση προτύπου. Παρακαλώ προσπαθήστε ξανά.",
     "closepropertiespanel": "Κλείσιμο πίνακα ιδιοτήτων",
     "fieldproperties": "Ιδιότητες πεδίου"
   },
