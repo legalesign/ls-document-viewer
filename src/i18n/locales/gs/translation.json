@@ -8,7 +8,9 @@
     "readytosend": "Deiseil airson cur",
     "requiresfields": "Feumach air raointean",
     "fieldsrequired": "Raointean riatanach",
+    "templatereadytosend": "[NEEDS TRANSLATION] Template Ready to Send",
     "actionrequired": "Gnìomh riatanach",
+    "allfieldsplaced": "[NEEDS TRANSLATION] All required Fields are placed",
     "recipientsmissingsignature": "Tha ainm-sgrìobhte a dhìth air faightearan",
     "detailstobedecided": "Fiosrachadh ri cho-dhùnadh",
     "tobedecided": "Ri cho-dhùnadh",
@@ -110,6 +112,8 @@
     "templatecreation": "Cruthachadh teamplaid",
     "autherror": "Mearachd dearbhaidh",
     "autherrormessage": "Cha ghabh an teamplaid a luchdachadh. Thoir sùil gu bheil an tòcan ruigsinneachd agad dligheach agus feuch ris a-rithist.",
+    "loaderror": "[NEEDS TRANSLATION] Loading Error",
+    "loaderrormessage": "[NEEDS TRANSLATION] Unable to load template. Please try again.",
     "closepropertiespanel": "Dùin panail nam feartan",
     "fieldproperties": "Feartan an raoin"
   },

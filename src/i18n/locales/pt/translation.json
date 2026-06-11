@@ -8,7 +8,9 @@
     "readytosend": "Pronto para enviar",
     "requiresfields": "Campos obrigatórios",
     "fieldsrequired": "Campos obrigatórios",
+    "templatereadytosend": "Modelo pronto para enviar",
     "actionrequired": "Ação necessária",
+    "allfieldsplaced": "Todos os campos obrigatórios são colocados",
     "recipientsmissingsignature": "Assinatura ausente do destinatário",
     "detailstobedecided": "Detalhes a serem decididos",
     "tobedecided": "A ser decidido",
@@ -110,6 +112,8 @@
     "templatecreation": "Criação de modelo",
     "autherror": "Erro de autenticação",
     "autherrormessage": "Não é possível carregar o modelo. Verifique se seu token de acesso é válido e tente novamente.",
+    "loaderror": "Erro de carregamento",
+    "loaderrormessage": "Não é possível carregar o modelo. Por favor, tente novamente.",
     "closepropertiespanel": "Fechar painel de propriedades",
     "fieldproperties": "Propriedades do campo"
   },

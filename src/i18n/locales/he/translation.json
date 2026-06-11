@@ -8,7 +8,9 @@
     "readytosend": "מוכן למשלוח",
     "requiresfields": "דרוש שדות",
     "fieldsrequired": "שדות חובה",
+    "templatereadytosend": "תבנית מוכנה לשליחה",
     "actionrequired": "פעולה נדרשת",
+    "allfieldsplaced": "כל השדות הנדרשים ממוקמים",
     "recipientsmissingsignature": "חתימה חסרה לנמענים",
     "detailstobedecided": "פרטים שייקבעו",
     "tobedecided": "יוחלט",
@@ -110,6 +112,8 @@
     "templatecreation": "יצירת תבנית",
     "autherror": "שגיאת אימות",
     "autherrormessage": "לא ניתן לטעון תבנית. בדוק אם אסימון הגישה שלך תקף ונסה שוב.",
+    "loaderror": "שגיאת טעינה",
+    "loaderrormessage": "לא ניתן לטעון תבנית. נא לנסות שוב.",
     "closepropertiespanel": "סגירת החלונית מאפיינים",
     "fieldproperties": "מאפייני שדה"
   },
