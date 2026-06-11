@@ -27,34 +27,33 @@ export class LsParticipantSelect {
    * The currently selected role.
    * {number}
    */
-  @State() selectedRole: { signerIndex: number; name: string; roleType?: string; default: boolean } = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: true };
+  @State() selectedRole: { signerIndex: number; name: string; roleType?: string; default: boolean } = { signerIndex: 1, name: '', roleType: 'SIGNER', default: true };
 
   @Watch('signer')
-  handleSignerChange(newSigner: number) {
-    // Only update if the current selection doesn't match the new signer prop
-    if (this.selectedRole.signerIndex !== newSigner) {
-      if (newSigner === 0) {
-        this.selectedRole = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false };
-      } else {
-        const role = this.roles?.find(r => r.signerIndex === newSigner);
-        if (role) this.selectedRole = { ...role, default: false };
-      }
-    }
+  handleSignerChange(newSigner: number, oldSigner: number) {
+    // Don't auto-update dropdown based on signer prop changes
+    // The dropdown is only updated when:
+    // 1. User manually selects from dropdown (selectRole method)
+    // 2. User clicks on participant card (roleChange event, which we listen to below)
+    return;
   }
 
   @Watch('roles')
   handleRoleLoad() {
-    if(this.selectedRole.default) {
-      if(this.roles.length > 0) {
-        const initialRole = this.roles.find(r => r.signerIndex === 1);
-        if(initialRole) {
-          this.selectedRole = { ...initialRole, default: false };
-        }
+    // Only set initial role if we're still in default state
+    if(this.selectedRole.default && this.roles.length > 0) {
+      const initialRole = this.roles.find(r => r.signerIndex === 1);
+      if(initialRole) {
+        this.selectedRole = { ...initialRole, default: false };
       }
-    } else {
+    } else if (!this.selectedRole.default) {
+      // Update role details if they exist, but never change the selected signerIndex
       const updatedRole = this.roles.find(r => r.signerIndex === this.selectedRole.signerIndex);
       if(updatedRole) {
         this.selectedRole = { ...updatedRole, default: false };
+      } else if (this.selectedRole.signerIndex === 0) {
+        // Sender is not in roles array, use hardcoded sender info
+        this.selectedRole = { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false };
       }
     }
   }
@@ -70,6 +69,19 @@ export class LsParticipantSelect {
   handleWindowClick(event: MouseEvent) {
     if (this.isOpen && !this.el.shadowRoot.contains(event.composedPath()[0] as Node)) {
       this.isOpen = false;
+    }
+  }
+
+  @Listen('roleChange', { target: 'document' })
+  handleRoleChangeFromParticipants(event: CustomEvent<number>) {
+    // When a role is clicked in the participants panel, update the dropdown
+    const signerIndex = event.detail;
+    const role = signerIndex === 0 
+      ? { signerIndex: 0, name: 'Sender', roleType: 'SENDER', default: false }
+      : this.roles.find(r => r.signerIndex === signerIndex);
+    
+    if (role) {
+      this.selectedRole = { ...role, default: false };
     }
   }
 

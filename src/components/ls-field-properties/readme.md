@@ -10,6 +10,7 @@
 | Property   | Attribute  | Description | Type             | Default     |
 | ---------- | ---------- | ----------- | ---------------- | ----------- |
 | `dataItem` | --         |             | `LSApiElement[]` | `undefined` |
+| `readonly` | `readonly` |             | `boolean`        | `false`     |
 | `template` | `template` |             | `any`            | `undefined` |
 
 
