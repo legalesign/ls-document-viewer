@@ -488,12 +488,8 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   this._isToolboxDragging = true;
   let hasMoved = false;
 
-  // Prevent text selection during drag and set grabbing cursor
+  // Prevent text selection during drag
   document.body.style.userSelect = 'none';
-  const cursorStyle = document.createElement('style');
-  cursorStyle.id = 'ls-drag-cursor';
-  cursorStyle.textContent = '* { cursor: grabbing !important; }';
-  document.head.appendChild(cursorStyle);
 
   // Add dragging class to toolbox fields (shadow DOM cursor override)
   this.component.shadowRoot.querySelectorAll('ls-left-bar, ls-compose-loader').forEach(bar => {
@@ -557,6 +553,17 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     const isOverFrame = e.clientX >= frameRect.left && e.clientX <= frameRect.right &&
         e.clientY >= frameRect.top && e.clientY <= frameRect.bottom;
     const isDragging = e.buttons === 1;
+
+    // Only show grabbing cursor when ghost is visible
+    let cursorStyle = document.getElementById('ls-drag-cursor') as HTMLStyleElement;
+    if ((isOverFrame || isDragging) && !cursorStyle) {
+      cursorStyle = document.createElement('style');
+      cursorStyle.id = 'ls-drag-cursor';
+      cursorStyle.textContent = '* { cursor: grabbing !important; }';
+      document.head.appendChild(cursorStyle);
+    } else if (!isOverFrame && !isDragging && cursorStyle) {
+      cursorStyle.remove();
+    }
 
     // When dragging (mouse held): show ghost over wrapper area
     // When click-to-place (mouse not held): only show over document frame
