@@ -877,7 +877,9 @@ export class LsDocumentViewer {
               busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
-                this.selected = [];
+                this.unselect();
+                const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+                if (toolbar) toolbar.dataItem = [];
               }}
             >
               <slot name="recipient-panel" slot="recipient-panel" />
