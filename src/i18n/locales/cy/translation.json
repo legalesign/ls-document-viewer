@@ -8,7 +8,9 @@
     "readytosend": "Yn barod i'w Anfon",
     "requiresfields": "Gofynnol Meysydd",
     "fieldsrequired": "Meysydd Angenrheidiol",
+    "templatereadytosend": "Templed yn Barod i'w Anfon",
     "actionrequired": "Camau Angenrheidiol",
+    "allfieldsplaced": "Mae'r holl feysydd gofynnol yn cael eu gosod",
     "recipientsmissingsignature": "Llofnod Coll y derbynwyr",
     "detailstobedecided": "Manylion i'w Penderfynu",
     "tobedecided": "I'w Penderfynu",
@@ -110,6 +112,8 @@
     "templatecreation": "Creu Templed",
     "autherror": "Gwall Dilysu",
     "autherrormessage": "Methu llwytho templed. Gwiriwch fod eich tocyn mynediad yn ddilys a cheisiwch eto.",
+    "loaderror": "Gwall Llwytho",
+    "loaderrormessage": "Methu llwytho templed. Rhowch gynnig eto os gwelwch yn dda.",
     "closepropertiespanel": "Cau Panel Eiddo",
     "fieldproperties": "Eiddo Maes"
   },

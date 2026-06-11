@@ -8,7 +8,9 @@
     "readytosend": "Bereit zum Senden",
     "requiresfields": "Benötigt Felder",
     "fieldsrequired": "Erforderliche Felder",
+    "templatereadytosend": "Vorlage bereit zum Senden",
     "actionrequired": "Aktion erforderlich",
+    "allfieldsplaced": "Alle Pflichtfelder sind platziert",
     "recipientsmissingsignature": "Empfänger mit fehlender Signatur",
     "detailstobedecided": "Einzelheiten müssen noch festgelegt werden",
     "tobedecided": "Noch zu entscheiden",
@@ -110,6 +112,8 @@
     "templatecreation": "Erstellung von Vorlagen",
     "autherror": "Fehler bei der Authentifizierung",
     "autherrormessage": "Die Vorlage konnte nicht geladen werden. Bitte überprüfen Sie, ob Ihr Zugriffstoken gültig ist, und versuchen Sie es erneut.",
+    "loaderror": "Fehler beim Laden",
+    "loaderrormessage": "Die Vorlage konnte nicht geladen werden. Bitte versuchen Sie es erneut.",
     "closepropertiespanel": "Eigenschaftenfenster schließen",
     "fieldproperties": "Eigenschaften von Feldern"
   },

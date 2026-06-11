@@ -8,7 +8,9 @@
     "readytosend": "Redo att skicka",
     "requiresfields": "Kräver fält",
     "fieldsrequired": "Fält Obligatoriska",
+    "templatereadytosend": "Mall Redo att skicka",
     "actionrequired": "Åtgärd krävs",
+    "allfieldsplaced": "Alla obligatoriska fält är placerade",
     "recipientsmissingsignature": "Mottagare saknar signatur",
     "detailstobedecided": "Detaljer som ska beslutas",
     "tobedecided": "Beslutas",
@@ -110,6 +112,8 @@
     "templatecreation": "Skapa mall",
     "autherror": "Autentiseringsfel",
     "autherrormessage": "Det gick inte att ladda mallen. Kontrollera att din åtkomsttoken är giltig och försök igen.",
+    "loaderror": "Laddningsfel",
+    "loaderrormessage": "Det gick inte att ladda mallen. Vänligen försök igen.",
     "closepropertiespanel": "Stäng egenskapspanelen",
     "fieldproperties": "Fältegenskaper"
   },

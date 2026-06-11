@@ -8,7 +8,9 @@
     "readytosend": "Listo para enviar",
     "requiresfields": "Campos obligatorios",
     "fieldsrequired": "Campos obligatorios",
+    "templatereadytosend": "Plantilla lista para enviar",
     "actionrequired": "Acción requerida",
+    "allfieldsplaced": "Se colocan todos los campos obligatorios",
     "recipientsmissingsignature": "A los destinatarios les falta la firma",
     "detailstobedecided": "Detalles por decidir",
     "tobedecided": "Por decidir",
@@ -110,6 +112,8 @@
     "templatecreation": "Creación de plantillas",
     "autherror": "Error de autenticación",
     "autherrormessage": "No se puede cargar la plantilla. Comprueba que tu token de acceso es válido e inténtalo de nuevo.",
+    "loaderror": "Error de carga",
+    "loaderrormessage": "No se puede cargar la plantilla. Por favor, inténtelo de nuevo.",
     "closepropertiespanel": "Cerrar el panel de propiedades",
     "fieldproperties": "Propiedades del campo"
   },

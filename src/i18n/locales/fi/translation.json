@@ -8,7 +8,9 @@
     "readytosend": "Valmiina lähetettäväksi",
     "requiresfields": "Vaatii kentät",
     "fieldsrequired": "Kentät Pakolliset",
+    "templatereadytosend": "Malli valmiina lähetettäväksi",
     "actionrequired": "Vaadittava toimenpide",
+    "allfieldsplaced": "Kaikki pakolliset kentät on sijoitettu",
     "recipientsmissingsignature": "Vastaanottajan allekirjoitus puuttuu",
     "detailstobedecided": "Yksityiskohdat päätettävät",
     "tobedecided": "Päätettävä",
@@ -110,6 +112,8 @@
     "templatecreation": "Mallin luominen",
     "autherror": "Todennusvirhe",
     "autherrormessage": "Mallin lataaminen ei onnistu. Tarkista, että käyttöoikeustunnuksesi on kelvollinen, ja yritä uudelleen.",
+    "loaderror": "Latausvirhe",
+    "loaderrormessage": "Mallia ei voi ladata. Yritä uudelleen.",
     "closepropertiespanel": "Sulje ominaisuudet-paneeli",
     "fieldproperties": "Kentän ominaisuudet"
   },
