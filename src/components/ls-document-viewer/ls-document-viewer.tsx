@@ -1,14 +1,13 @@
 // Polyfill URL.parse for older browsers (used by pdfjs-dist)
-// if (typeof URL.parse !== 'function') {
-//   (URL as any).parse = function (url: string, base?: string | URL): URL | null {
-//     try {
-//       return base ? new URL(url, base) : new URL(url);
-//     } catch {
-//       return null;
-//     }
-//   };
-// }
-(URL as any).parse = undefined;
+if (typeof URL.parse !== 'function') {
+  (URL as any).parse = function (url: string, base?: string | URL): URL | null {
+    try {
+      return base ? new URL(url, base) : new URL(url);
+    } catch {
+      return null;
+    }
+  };
+}
 
 import { Component, Host, Prop, h, Element, Method, State, Listen, Watch } from '@stencil/core';
 import { Event, EventEmitter } from '@stencil/core';
