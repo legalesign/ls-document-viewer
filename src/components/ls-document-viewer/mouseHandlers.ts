@@ -189,97 +189,163 @@ export function mouseMove(event) {
     document.body.style.userSelect = 'none';
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
-    var width = this.hitField.dataItem.width;
-    var height = this.hitField.dataItem.height;
     var scale = this.hitField.dataItem.formElementType === 'signature' && this._template.fixSignatureScale;
 
     switch (this.edgeSide) {
       case 'n':
-        if (outOfBounds({ ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom })) break;
-        this.hitField.style.top = this.startMouse.top + movedY + 'px';
-        this.hitField.style.height = this.startMouse.height - movedY + 'px';
-
         if (scale) {
-          width = (this.startMouse.height - movedY) * 3.8;
-          this.hitField.style.width = width + 'px';
+          const newHeight = this.startMouse.height - movedY;
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = newHeight * aspectRatio;
+          if (outOfBounds({ ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: newHeight / this.zoom, width: newWidth / this.zoom })) break;
+          this.hitField.style.top = this.startMouse.top + movedY + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: newHeight / this.zoom, width: newWidth / this.zoom };
+        } else {
+          if (outOfBounds({ ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom })) break;
+          this.hitField.style.top = this.startMouse.top + movedY + 'px';
+          this.hitField.style.height = this.startMouse.height - movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom };
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, top: (this.startMouse.top + movedY) / this.zoom, height: (this.startMouse.height - movedY) / this.zoom, width };
         break;
       case 's':
-        if (outOfBounds({ ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom })) break;
-
-        this.hitField.style.height = this.startMouse.height + movedY + 'px';
         if (scale) {
-          width = (this.startMouse.height + movedY) * 3.8;
-          this.hitField.style.width = width + 'px';
+          const newHeight = this.startMouse.height + movedY;
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = newHeight * aspectRatio;
+          if (outOfBounds({ ...this.hitField.dataItem, height: newHeight / this.zoom, width: newWidth / this.zoom })) break;
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, height: newHeight / this.zoom, width: newWidth / this.zoom };
+        } else {
+          if (outOfBounds({ ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom })) break;
+          this.hitField.style.height = this.startMouse.height + movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom };
         }
-
-        this.hitField.dataItem = { ...this.hitField.dataItem, height: (this.startMouse.height + movedY) / this.zoom, width };
         break;
       case 'e':
-        if (outOfBounds({ ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom })) break;
-
-        this.hitField.style.width = this.startMouse.width + movedX + 'px';
         if (scale) {
-          height = Math.round((this.startMouse.width + movedX) / 3.8);
-          this.hitField.style.height = height + 'px';
+          const newWidth = this.startMouse.width + movedX;
+          const aspectRatio = this.startMouse.height / this.startMouse.width;
+          const newHeight = newWidth * aspectRatio;
+          if (outOfBounds({ ...this.hitField.dataItem, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          if (outOfBounds({ ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom })) break;
+          this.hitField.style.width = this.startMouse.width + movedX + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom };
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, width: (this.startMouse.width + movedX) / this.zoom, height };
-
         break;
       case 'w':
-        if (outOfBounds({ ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom })) break;
-        this.hitField.style.left = this.startMouse.left + movedX + 'px';
-        this.hitField.style.width = this.startMouse.width - movedX + 'px';
-
         if (scale) {
-          height = Math.round((this.startMouse.width - movedX) / 3.8);
-          this.hitField.style.height = height + 'px';
+          const newWidth = this.startMouse.width - movedX;
+          const aspectRatio = this.startMouse.height / this.startMouse.width;
+          const newHeight = newWidth * aspectRatio;
+          if (outOfBounds({ ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.left = this.startMouse.left + movedX + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          if (outOfBounds({ ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom })) break;
+          this.hitField.style.left = this.startMouse.left + movedX + 'px';
+          this.hitField.style.width = this.startMouse.width - movedX + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom };
         }
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: (this.startMouse.left + movedX) / this.zoom, width: (this.startMouse.width - movedX) / this.zoom, height };
         break;
       case 'se': {
-        const newWidth = (this.startMouse.width + movedX) / this.zoom;
-        const newHeight = (this.startMouse.height + movedY) / this.zoom;
-        if (outOfBounds({ ...this.hitField.dataItem, width: newWidth, height: newHeight })) break;
-        this.hitField.style.width = this.startMouse.width + movedX + 'px';
-        this.hitField.style.height = this.startMouse.height + movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, width: newWidth, height: newHeight };
+        if (scale) {
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = this.startMouse.width + movedX;
+          const newHeight = newWidth / aspectRatio;
+          if (outOfBounds({ ...this.hitField.dataItem, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          const newWidth = (this.startMouse.width + movedX) / this.zoom;
+          const newHeight = (this.startMouse.height + movedY) / this.zoom;
+          if (outOfBounds({ ...this.hitField.dataItem, width: newWidth, height: newHeight })) break;
+          this.hitField.style.width = this.startMouse.width + movedX + 'px';
+          this.hitField.style.height = this.startMouse.height + movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, width: newWidth, height: newHeight };
+        }
         break;
       }
       case 'nw': {
-        const newLeft = (this.startMouse.left + movedX) / this.zoom;
-        const newTop = (this.startMouse.top + movedY) / this.zoom;
-        const newWidth = (this.startMouse.width - movedX) / this.zoom;
-        const newHeight = (this.startMouse.height - movedY) / this.zoom;
-        if (outOfBounds({ ...this.hitField.dataItem, left: newLeft, top: newTop, width: newWidth, height: newHeight })) break;
-        this.hitField.style.left = this.startMouse.left + movedX + 'px';
-        this.hitField.style.top = this.startMouse.top + movedY + 'px';
-        this.hitField.style.width = this.startMouse.width - movedX + 'px';
-        this.hitField.style.height = this.startMouse.height - movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, top: newTop, width: newWidth, height: newHeight };
+        if (scale) {
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = this.startMouse.width - movedX;
+          const newHeight = newWidth / aspectRatio;
+          const newLeft = this.startMouse.left + movedX;
+          const newTop = this.startMouse.top + (this.startMouse.height - newHeight);
+          if (outOfBounds({ ...this.hitField.dataItem, left: newLeft / this.zoom, top: newTop / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.left = newLeft + 'px';
+          this.hitField.style.top = newTop + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft / this.zoom, top: newTop / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          const newLeft = (this.startMouse.left + movedX) / this.zoom;
+          const newTop = (this.startMouse.top + movedY) / this.zoom;
+          const newWidth = (this.startMouse.width - movedX) / this.zoom;
+          const newHeight = (this.startMouse.height - movedY) / this.zoom;
+          if (outOfBounds({ ...this.hitField.dataItem, left: newLeft, top: newTop, width: newWidth, height: newHeight })) break;
+          this.hitField.style.left = this.startMouse.left + movedX + 'px';
+          this.hitField.style.top = this.startMouse.top + movedY + 'px';
+          this.hitField.style.width = this.startMouse.width - movedX + 'px';
+          this.hitField.style.height = this.startMouse.height - movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, top: newTop, width: newWidth, height: newHeight };
+        }
         break;
       }
       case 'ne': {
-        const newWidth = (this.startMouse.width + movedX) / this.zoom;
-        const newTop = (this.startMouse.top + movedY) / this.zoom;
-        const newHeight = (this.startMouse.height - movedY) / this.zoom;
-        if (outOfBounds({ ...this.hitField.dataItem, top: newTop, width: newWidth, height: newHeight })) break;
-        this.hitField.style.width = this.startMouse.width + movedX + 'px';
-        this.hitField.style.top = this.startMouse.top + movedY + 'px';
-        this.hitField.style.height = this.startMouse.height - movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, top: newTop, width: newWidth, height: newHeight };
+        if (scale) {
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = this.startMouse.width + movedX;
+          const newHeight = newWidth / aspectRatio;
+          const newTop = this.startMouse.top + (this.startMouse.height - newHeight);
+          if (outOfBounds({ ...this.hitField.dataItem, top: newTop / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.top = newTop + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, top: newTop / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          const newWidth = (this.startMouse.width + movedX) / this.zoom;
+          const newTop = (this.startMouse.top + movedY) / this.zoom;
+          const newHeight = (this.startMouse.height - movedY) / this.zoom;
+          if (outOfBounds({ ...this.hitField.dataItem, top: newTop, width: newWidth, height: newHeight })) break;
+          this.hitField.style.width = this.startMouse.width + movedX + 'px';
+          this.hitField.style.top = this.startMouse.top + movedY + 'px';
+          this.hitField.style.height = this.startMouse.height - movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, top: newTop, width: newWidth, height: newHeight };
+        }
         break;
       }
       case 'sw': {
-        const newLeft = (this.startMouse.left + movedX) / this.zoom;
-        const newWidth = (this.startMouse.width - movedX) / this.zoom;
-        const newHeight = (this.startMouse.height + movedY) / this.zoom;
-        if (outOfBounds({ ...this.hitField.dataItem, left: newLeft, width: newWidth, height: newHeight })) break;
-        this.hitField.style.left = this.startMouse.left + movedX + 'px';
-        this.hitField.style.width = this.startMouse.width - movedX + 'px';
-        this.hitField.style.height = this.startMouse.height + movedY + 'px';
-        this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, width: newWidth, height: newHeight };
+        if (scale) {
+          const aspectRatio = this.startMouse.width / this.startMouse.height;
+          const newWidth = this.startMouse.width - movedX;
+          const newHeight = newWidth / aspectRatio;
+          const newLeft = this.startMouse.left + movedX;
+          if (outOfBounds({ ...this.hitField.dataItem, left: newLeft / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom })) break;
+          this.hitField.style.left = newLeft + 'px';
+          this.hitField.style.width = newWidth + 'px';
+          this.hitField.style.height = newHeight + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft / this.zoom, width: newWidth / this.zoom, height: newHeight / this.zoom };
+        } else {
+          const newLeft = (this.startMouse.left + movedX) / this.zoom;
+          const newWidth = (this.startMouse.width - movedX) / this.zoom;
+          const newHeight = (this.startMouse.height + movedY) / this.zoom;
+          if (outOfBounds({ ...this.hitField.dataItem, left: newLeft, width: newWidth, height: newHeight })) break;
+          this.hitField.style.left = this.startMouse.left + movedX + 'px';
+          this.hitField.style.width = this.startMouse.width - movedX + 'px';
+          this.hitField.style.height = this.startMouse.height + movedY + 'px';
+          this.hitField.dataItem = { ...this.hitField.dataItem, left: newLeft, width: newWidth, height: newHeight };
+        }
         break;
       }
     }

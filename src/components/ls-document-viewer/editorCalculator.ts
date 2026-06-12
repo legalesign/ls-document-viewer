@@ -29,7 +29,7 @@ export function addField(frame: HTMLElement, data): HTMLLsEditorFieldElement {
       ? 'To Be Decided'
       : this.mode === 'compose'
         ? `${assignee?.firstName} ${assignee?.lastName}`
-        : assignee?.name || `Participant ${data.signer}`,
+        : assignee?.name || (data.signer === 0 ? 'Sender' : `Participant ${data.signer}`),
   );
   node.setAttribute('zoom', String(this.zoom));
   node.setAttribute('readonly', String(this.mode === 'preview' || this._template?.locked));
