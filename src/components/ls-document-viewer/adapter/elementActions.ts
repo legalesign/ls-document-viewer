@@ -1,4 +1,4 @@
-// Construct all mutations for a template element.
+// Construct all mutations for a template element. ADMIN is for sender fields
 const createElement = element => {
   return `
   mutation AddField {
@@ -8,7 +8,7 @@ const createElement = element => {
       ay: ${element.ay}, 
       bx: ${element.bx}, 
       by: ${element.by}, 
-      elementType: ${element?.signer !== 0 ? JSON.stringify(element.elementType) : 'admin'}, 
+      elementType: ${element?.signer !== 0 ? JSON.stringify(element.elementType) : JSON.stringify('admin')}, 
       role: "1",
       label: ${JSON.stringify(element.label)}, 
       page: ${element.page}, 
@@ -40,7 +40,7 @@ const updateElement = element => {
     ay: ${element.ay}, 
     bx: ${element.bx}, 
     by: ${element.by}, 
-    elementType: ${element?.signer !== 0 ? JSON.stringify(element.elementType) : 'admin'}, 
+    elementType: ${element?.signer !== 0 ? JSON.stringify(element.elementType) : JSON.stringify('admin')}, 
     label: ${JSON.stringify(element.label)}, 
     page: ${element.page}, 
     fieldOrder: ${element.fieldOrder ? element.fieldOrder : null}, 
