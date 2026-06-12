@@ -129,7 +129,8 @@ export class LsValidationTag {
                       </p>
                     </div>
                     {elementErrors.map((field, idx) => {
-                      const pallette = defaultRolePalette[field?.element?.signer || 0];
+                      const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
+                      const pallette = defaultRolePalette[signerIndex];
                       return (
                         <div
                           key={`el-${idx}`}
@@ -222,7 +223,8 @@ export class LsValidationTag {
                       <p class="ls-dv-validation-tag-title">{dvI18n.t('validation.optionsrequired')}</p>
                     </div>
                     {elementErrors.map((field, idx) => {
-                      const pallette = defaultRolePalette[field?.element?.signer || 0];
+                      const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
+                      const pallette = defaultRolePalette[signerIndex];
                       return (
                         <div
                           class="ls-dv-validation-tag-row"
