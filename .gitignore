@@ -4,6 +4,7 @@ loader/
 old/
 
 index.html
+src/index.html
 *~
 *.sw[mnpcod]
 *.log

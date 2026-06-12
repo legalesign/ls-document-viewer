@@ -1,0 +1,60 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Legalesign Editor Tester</title>
+    <link rel="stylesheet" href="/build/ls-document-viewer.css" />
+
+    <script type="module" src="/build/ls-document-viewer.esm.js"></script>
+    <script nomodule src="/build/ls-document-viewer.js"></script>
+  </head>
+  <body style="padding: 0px; margin: 0px">
+    <ls-document-viewer
+      id="my-editor"
+      templateid="your-template-id"
+      token="your-token"
+      endpoint="https://k2howlr3ynfy3lbx7oxz4qyrlq.appsync-api.eu-west-2.amazonaws.com/graphql"
+      filtertoolbox="text|signature|dropdown"
+      mode="editor"
+      recipients='[{"email": "euan.rob@smashcorp.com", "firstName": "Bob", "lastName": "Second", "signerIndex": 2}, {"email": "euan.rob@smashcorp.com", "firstName": "Juan", "lastName": "First", "signerIndex": 1, "roleType": "APPROVER"}, {"email": "", "firstName": "", "lastName": "", "previousRecipientDecides": true, "signerIndex": 3},{"email": "jodie@test.com", "firstName": "Fitness", "lastName": "Witness", "signerIndex": 104, "roleType": "WITNESS"},{"email": "euan.rob@smashcorp.com", "firstName": "Freddy", "lastName": "Four", "signerIndex": 4, "roleType": "SIGNER"}, {"email": "jodie@smashcorp.com", "firstName": "Jodie", "lastName": "Witness", "signerIndex": 102, "roleType": "WITNESS"}]'
+
+      >
+      <style>
+        .ls-top-button {
+          all: unset;
+          display: flex;
+          gap: 0.5rem;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.25rem;
+          font-size: 0.75rem;
+          font-style: normal;
+          font-weight: 500;
+          padding: 0.125rem 0.5rem;
+          color: var(--gray-90);
+        }
+        .ls-top-button:hover {
+          color: var(--gray-100);
+          background: var(--gray-10);
+        }
+        .ls-top-button:disabled {
+          color: var(--gray-40);
+          background: var(--gray-10);
+        }
+      </style>
+      <button slot="left-button" class="ls-top-button"><ls-icon name="arrow-left" size="1rem"></ls-icon>Exit</button>
+      <button slot="right-button">Send<ls-icon name="arrow-right" size="1rem"></ls-icon></button>
+      <button slot="recipient-panel" class="ls-top-button"><ls-icon name="arrow-left" size="1rem"></ls-icon>Back to Recipients</button>
+      <div slot="top-bar" style="font-size: 1.25rem; font-weight: 600; color: var(--gray-90)">Compose</div>
+    </ls-document-viewer>
+    <script>
+      const componentInstance = document.currentScript.previousElementSibling;
+      const editor = document.querySelector('ls-document-viewer');
+
+      componentInstance.addEventListener('update', customEvent => {
+        console.log(customEvent, 'editor change');
+      });
+    </script>
+  </body>
+</html>
