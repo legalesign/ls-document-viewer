@@ -7,6 +7,20 @@ import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
 
+const preventSelect = (e: Event) => e.preventDefault();
+
+function disableSelection() {
+  document.body.style.userSelect = 'none';
+  document.body.style.webkitUserSelect = 'none';
+  document.addEventListener('selectstart', preventSelect);
+}
+
+function enableSelection() {
+  document.body.style.userSelect = '';
+  document.body.style.webkitUserSelect = '';
+  document.removeEventListener('selectstart', preventSelect);
+}
+
 export function updateSelectionBox() {
   var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
   if (!this.selected || this.selected.length < 2) {
@@ -187,7 +201,7 @@ export function mouseMove(event) {
 
   // We have the mouse held down on a field edge to resize it.
   if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
-    document.body.style.userSelect = 'none';
+    disableSelection();
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
     var scale = this.hitField.dataItem.formElementType === 'signature' && this._template.fixSignatureScale;
@@ -373,7 +387,7 @@ export function mouseMove(event) {
     // Move one or more selected items
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
     this.isMoving = true;
-    document.body.style.userSelect = 'none';
+    disableSelection();
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
 
@@ -427,7 +441,7 @@ export function mouseUp(event) {
   this.edgeSide = null;
   this.startMouse = null;
   this.component.style.cursor = 'auto';
-  document.body.style.userSelect = '';
+  enableSelection();
   clearSnapGuides.bind(this)();
 
   // find what was inside the selection box emit the select event and change their style
@@ -557,7 +571,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   let hasMoved = false;
 
   // Prevent text selection during drag
-  document.body.style.userSelect = 'none';
+  disableSelection();
 
   // Add dragging class to toolbox fields (shadow DOM cursor override)
   this.component.shadowRoot.querySelectorAll('ls-left-bar, ls-compose-loader').forEach(bar => {
@@ -694,7 +708,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
     ghost.remove();
     chip.remove();
     clearSnapGuides.bind(this)();
-    document.body.style.userSelect = '';
+    enableSelection();
     const cursorStyle = document.getElementById('ls-drag-cursor');
     if (cursorStyle) cursorStyle.remove();
     this.component.shadowRoot.querySelectorAll('ls-left-bar, ls-compose-loader').forEach(bar => {
