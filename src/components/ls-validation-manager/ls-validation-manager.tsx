@@ -1,5 +1,6 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { ValidationError } from '../../types/ValidationError';
+import { LSApiElement } from '../../types/LSApiElement';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
 import { FIELD_DEFAULTS } from '../../constants/fieldDefaults';
@@ -17,6 +18,8 @@ export class LsValidationManager {
    * {LSApiTemplate}
    */
   @Prop() validationErrors: ValidationError[];
+
+  @Event({ bubbles: true, composed: true }) selectFields: EventEmitter<LSApiElement[]>;
 
   render() {
     return (
@@ -43,6 +46,12 @@ export class LsValidationManager {
                   '--field-text-color': pallette.s70,
                   '--field-text-color-hover': pallette.s80,
                   '--field-border-color-hover': pallette.s60,
+                  cursor: field?.element ? 'pointer' : 'default',
+                }}
+                onClick={() => {
+                  if (field?.element) {
+                    this.selectFields.emit([field.element]);
+                  }
                 }}
               >
                 <div class={'ls-dv-required-field-items-left'}>

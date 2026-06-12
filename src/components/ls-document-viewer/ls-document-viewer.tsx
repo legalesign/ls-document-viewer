@@ -417,17 +417,16 @@ export class LsDocumentViewer {
 
     // change style of selected fields
     const isMulti = event.detail.length > 1;
+    fields.forEach(f => (f as HTMLLsEditorFieldElement).selected = false);
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
-      fu.selected = true;
-      fu.multiSelected = isMulti;
+      if (fu) {
+        fu.selected = true;
+        fu.multiSelected = isMulti;
+      }
     });
 
-    this.selected.forEach(s => {
-      const isSelected = event.detail.map(d => d.id).includes(s.dataItem.id);
-      s.selected = isSelected;
-      s.multiSelected = isSelected ? isMulti : false;
-    });
+    this.selected = (fields as HTMLLsEditorFieldElement[]).filter(fx => fx.selected);
 
     // Open date picker only when exactly one date field is selected
     if (event.detail.length === 1) {
