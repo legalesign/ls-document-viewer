@@ -39,9 +39,10 @@ export class LsFieldDistribute {
   }
 
   distributeHorizontal() {
+    if (!this.dataItem || this.dataItem.length < 3) return;
+    
     var spacing = this.component.shadowRoot.getElementById('ls-fix-horizontal-space') as HTMLInputElement;
     const sorted = this.dataItem.sort((a, b) => a.left - b.left);
-    if (sorted.length < 3) return;
 
 
     var avgspace = 0;
@@ -80,6 +81,8 @@ export class LsFieldDistribute {
   }
 
   gapVertical(spacing: number) {
+    if (!this.dataItem || this.dataItem.length === 0) return;
+    
     const sorted = this.dataItem.sort((a, b) => a.top - b.top);
 
     var buffer = sorted[0].top;
@@ -108,6 +111,8 @@ export class LsFieldDistribute {
   }
 
   gapHorizontal(spacing: number) {
+    if (!this.dataItem || this.dataItem.length === 0) return;
+    
     const sorted = this.dataItem.sort((a, b) => a.top - b.top);
 
     var buffer = sorted[0].left;
@@ -138,36 +143,30 @@ export class LsFieldDistribute {
   }
 
   distributeVertical() {
-    var spacing = this.component.shadowRoot.getElementById('ls-fix-vertical-space') as HTMLInputElement;
-    var avgspace = 0;
+    if (!this.dataItem || this.dataItem.length < 3) return;
+    
     const sorted = this.dataItem.sort((a, b) => a.top - b.top);
-
-    const topmost = sorted[0].top + sorted[0].height / 2;
-    const bottommost = sorted.reduce((acc, cur) => {
-      return cur.top + (cur.height / 2) > acc ? cur.top + (cur.height / 2) : acc;
-    }, topmost);
-    // find total width between centre first and centre last
-    const totalHeight: number = bottommost - topmost;
-
-    if (spacing.value !== '') {
-      avgspace = parseInt(spacing.value);
-    } else {
-      avgspace = Math.floor(totalHeight / (sorted.length - 1));
-    }
-
-    const filtered = sorted.filter((c, index) => {
-      return outOfBounds({ ...c, left: Math.floor(topmost - (c.height / 2) + avgspace * index) }) === false
-        && index !== 0
-        && index !== sorted.length - 1
-    });
-
-    const diffs: LSMutateEvent[] = filtered.map((c, index) => {
-
+    
+    const firstBottom = sorted[0].top + sorted[0].height;
+    const lastTop = sorted[sorted.length - 1].top;
+    const availableSpace = lastTop - firstBottom;
+    
+    const middleFieldsHeight = sorted.slice(1, -1).reduce((sum, field) => sum + field.height, 0);
+    
+    const numGaps = sorted.length - 1;
+    const gap = Math.max(0, (availableSpace - middleFieldsHeight) / numGaps);
+    
+    let currentTop = sorted[0].top + sorted[0].height + gap;
+    
+    const diffs: LSMutateEvent[] = sorted.slice(1, -1).map((c) => {
+      const newTop = Math.floor(currentTop);
+      currentTop += c.height + gap;
+      
       return {
         action: 'update',
         data: {
           ...c,
-          top: Math.floor(topmost - (c.height / 2) + (avgspace * (index + 1))),
+          top: newTop,
         } as LSApiElement,
       };
     });

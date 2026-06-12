@@ -91,6 +91,7 @@ export class LsRecipientCard {
   render() {
     const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
     const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
+    const dropdownsMissingOptions = recipientFields.filter(f => f.validation === 20 && (!f.options || f.options.length === 0));
     return (
       <Host>
         <div
@@ -294,6 +295,7 @@ export class LsRecipientCard {
                   icon="dropdown-icon"
                   tooltip={dvI18n.t('toolbox.dropdowntooltip')}
                   signer={this.recipient.signerIndex}
+                  redDot={dropdownsMissingOptions.length > 0}
                 />
               )}
 
