@@ -48,8 +48,9 @@ export function validate(t: LSApiTemplate): ValidationError[] {
       const role = roles?.find(r => r.signerIndex === element.signer);
       errors.push({
         id: element.id,
+        signerIndex: element.signer,
         title: element.label || 'Dropdown',
-        description: role?.name || role?.roleType || `Signer ${(element.signer || 0) + 1}`,
+        description: role?.firstName ? `${role.firstName} ${role.lastName}` : role?.name || `Signer ${(element.signer || 0) + 1}`,
         element: element,
         role: role,
       });
