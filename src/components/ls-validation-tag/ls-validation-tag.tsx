@@ -197,7 +197,10 @@ export class LsValidationTag {
                           class="ls-dv-validation-tag-row"
                           key={`sig-${idx}`}
                           onClick={() => {
-                            this.changeSigner.emit(field?.role?.signerIndex);
+                            this.selectFieldForPlacement.emit({
+                              signerIndex: field.role.signerIndex,
+                              fieldType: 'signature',
+                            });
                             this.isExpanded = false;
                           }}
                         >
