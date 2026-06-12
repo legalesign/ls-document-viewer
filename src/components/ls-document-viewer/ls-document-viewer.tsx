@@ -196,6 +196,8 @@ export class LsDocumentViewer {
   zoomChanged(newZoom: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     fields.forEach(f => f.setAttribute('zoom', String(newZoom)));
+    const statusbar = this.component.shadowRoot.querySelector('ls-statusbar') as any;
+    if (statusbar) statusbar.zoom = newZoom;
   }
 
   /**
@@ -318,6 +320,14 @@ export class LsDocumentViewer {
     const newSignerIndex =
       event.detail.type === 'WITNESS' ? parent.signerIndex + 100 : Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
 
+    const resolvedSignerIndex = event.detail.signerIndex
+      ? event.detail.signerIndex
+      : event.detail.type === 'WITNESS'
+        ? 100 + parent?.signerIndex
+        : this._template.roles.length === 0
+          ? 1
+          : newSignerIndex;
+
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -325,13 +335,7 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.signerIndex
-            ? event.detail.signerIndex
-            : event.detail.type === 'WITNESS'
-              ? 100 + parent?.signerIndex
-              : this._template.roles.length === 0
-                ? 1
-                : newSignerIndex,
+          signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
@@ -340,6 +344,9 @@ export class LsDocumentViewer {
       },
     ];
     this.mutate.emit(data);
+
+    // Auto-select the newly created participant
+    this.signer = resolvedSignerIndex;
   }
 
   // change the signer selected
@@ -417,17 +424,16 @@ export class LsDocumentViewer {
 
     // change style of selected fields
     const isMulti = event.detail.length > 1;
+    fields.forEach(f => (f as HTMLLsEditorFieldElement).selected = false);
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
-      fu.selected = true;
-      fu.multiSelected = isMulti;
+      if (fu) {
+        fu.selected = true;
+        fu.multiSelected = isMulti;
+      }
     });
 
-    this.selected.forEach(s => {
-      const isSelected = event.detail.map(d => d.id).includes(s.dataItem.id);
-      s.selected = isSelected;
-      s.multiSelected = isSelected ? isMulti : false;
-    });
+    this.selected = (fields as HTMLLsEditorFieldElement[]).filter(fx => fx.selected);
 
     // Open date picker only when exactly one date field is selected
     if (event.detail.length === 1) {
@@ -525,6 +531,7 @@ export class LsDocumentViewer {
 
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+    updateSelectionBox.bind(this)();
   }
 
   /**
@@ -564,7 +571,11 @@ export class LsDocumentViewer {
       return { ...ro, templateId: newTemplate.id };
     });
 
-    this.signer = preparedRoles.length > 0 ? 1 : 0;
+    // Only set signer on initial load or if current signer no longer exists
+    const signerExistsInRoles = preparedRoles.some(r => r.signerIndex === this.signer);
+    if (!signerExistsInRoles) {
+      this.signer = preparedRoles.length > 0 ? 1 : 0;
+    }
 
     this._template = {
       ...newTemplate,
@@ -659,11 +670,6 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
-          // const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-
-          // fu.dataItem = update.data as LSApiElement;
-          // Refresh the selected array
-          this.selectFields.emit(this.selected.map(sf => sf.dataItem));
           this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls
@@ -704,6 +710,28 @@ export class LsDocumentViewer {
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
     }
+
+    // Pinch-to-zoom (trackpad) and Ctrl/Cmd+scroll zoom
+    const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
+    wrapper.addEventListener('wheel', (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const factor = e.deltaY > 0 ? 0.95 : 1.05;
+      const newZoom = Math.min(Math.max(this.zoom * factor, 0.25), 5);
+      const scale = newZoom / this.zoom;
+
+      // Cursor position relative to wrapper viewport
+      const rect = wrapper.getBoundingClientRect();
+      const cursorX = e.clientX - rect.left;
+      const cursorY = e.clientY - rect.top;
+
+      // Adjust scroll so the point under cursor stays fixed
+      wrapper.scrollLeft = (wrapper.scrollLeft + cursorX) * scale - cursorX;
+      wrapper.scrollTop = (wrapper.scrollTop + cursorY) * scale - cursorY;
+
+      this.setZoom(Math.round(newZoom * 1e2) / 1e2);
+    }, { passive: false });
+
     this.generateFields();
   }
 
@@ -752,6 +780,9 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
+        if (!this.recipients) {
+          throw new Error('Compose mode requires a "recipients" attribute. See documentation for the expected JSON format.');
+        }
         this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort((a, b) => {
           // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
           const aBase = a.signerIndex % 100 || 100;
@@ -783,7 +814,7 @@ export class LsDocumentViewer {
         this.errorTitle = dvI18n.t('viewer.autherror');
         this.error = dvI18n.t('viewer.autherrormessage');
       } else {
-        console.error('Failed to load template.', e);
+        console.error('Failed to load template.', e?.message || e);
         this.errorTitle = dvI18n.t('viewer.loaderror');
         this.error = dvI18n.t('viewer.loaderrormessage');
       }
@@ -877,7 +908,9 @@ export class LsDocumentViewer {
               busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
-                this.selected = [];
+                this.unselect();
+                const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+                if (toolbar) toolbar.dataItem = [];
               }}
             >
               <slot name="recipient-panel" slot="recipient-panel" />
