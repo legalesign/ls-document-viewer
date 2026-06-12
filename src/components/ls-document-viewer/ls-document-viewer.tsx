@@ -196,6 +196,8 @@ export class LsDocumentViewer {
   zoomChanged(newZoom: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     fields.forEach(f => f.setAttribute('zoom', String(newZoom)));
+    const statusbar = this.component.shadowRoot.querySelector('ls-statusbar') as any;
+    if (statusbar) statusbar.zoom = newZoom;
   }
 
   /**
@@ -525,6 +527,7 @@ export class LsDocumentViewer {
 
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+    updateSelectionBox.bind(this)();
   }
 
   /**
@@ -704,6 +707,28 @@ export class LsDocumentViewer {
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
     }
+
+    // Pinch-to-zoom (trackpad) and Ctrl/Cmd+scroll zoom
+    const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
+    wrapper.addEventListener('wheel', (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const factor = e.deltaY > 0 ? 0.95 : 1.05;
+      const newZoom = Math.min(Math.max(this.zoom * factor, 0.25), 5);
+      const scale = newZoom / this.zoom;
+
+      // Cursor position relative to wrapper viewport
+      const rect = wrapper.getBoundingClientRect();
+      const cursorX = e.clientX - rect.left;
+      const cursorY = e.clientY - rect.top;
+
+      // Adjust scroll so the point under cursor stays fixed
+      wrapper.scrollLeft = (wrapper.scrollLeft + cursorX) * scale - cursorX;
+      wrapper.scrollTop = (wrapper.scrollTop + cursorY) * scale - cursorY;
+
+      this.setZoom(Math.round(newZoom * 1e2) / 1e2);
+    }, { passive: false });
+
     this.generateFields();
   }
 
@@ -877,7 +902,9 @@ export class LsDocumentViewer {
               busy={this.isMutating}
               onManagerChange={e => this.handleManagerChange(e.detail)}
               onClearSelected={() => {
-                this.selected = [];
+                this.unselect();
+                const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+                if (toolbar) toolbar.dataItem = [];
               }}
             >
               <slot name="recipient-panel" slot="recipient-panel" />
