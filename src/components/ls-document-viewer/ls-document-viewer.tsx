@@ -751,6 +751,9 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
+        if (!this.recipients) {
+          throw new Error('Compose mode requires a "recipients" attribute. See documentation for the expected JSON format.');
+        }
         this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort((a, b) => {
           // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
           const aBase = a.signerIndex % 100 || 100;
@@ -782,7 +785,7 @@ export class LsDocumentViewer {
         this.errorTitle = dvI18n.t('viewer.autherror');
         this.error = dvI18n.t('viewer.autherrormessage');
       } else {
-        console.error('Failed to load template.', e);
+        console.error('Failed to load template.', e?.message || e);
         this.errorTitle = dvI18n.t('viewer.loaderror');
         this.error = dvI18n.t('viewer.loaderrormessage');
       }

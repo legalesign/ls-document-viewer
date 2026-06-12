@@ -39,7 +39,6 @@ export class LsValidationTag {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-
   render() {
     return (
       <Host ref={el => (this.el = el as HTMLElement)}>
@@ -75,8 +74,7 @@ export class LsValidationTag {
                     <div class={'ls-dv-dropdown-header'}>
                       <h2>{dvI18n.t('common.fieldsrequired')}</h2>
                       <p>
-                        {signatureErrors.length}{' '}
-                        {signatureErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')}
+                        {signatureErrors.length} {signatureErrors.length === 1 ? dvI18n.t('validation.recipientneedsignature') : dvI18n.t('validation.recipientsneedsignatures')}
                       </p>
                     </div>
                     {signatureErrors.map((field, idx) => {
@@ -109,9 +107,12 @@ export class LsValidationTag {
                             <div class={'ls-dv-dot'} style={{ background: pallette.s60 }} />
                             <div class={'ls-dv-required-field-items-left'}>
                               <p style={{ color: pallette.s80 }}>{field.role?.name || `Signer ${field?.role?.signerIndex + 1}`}</p>
-                              <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
-                                {field.role?.roleType ? dvI18n.t(`participants.${field.role.roleType.toLowerCase()}`) : `Signer ${field.role?.signerIndex + 1}`}
-                              </div>
+                              <ls-label
+                                text={field.role?.roleType ? dvI18n.t(`participants.${field.role.roleType.toLowerCase()}`) : `Signer ${field.role?.signerIndex + 1}`}
+                                colour={pallette.description as any}
+                                type="low"
+                                size="sm"
+                              />
                             </div>
                           </div>
                         </div>
@@ -124,8 +125,7 @@ export class LsValidationTag {
                     <div class={'ls-dv-dropdown-header'}>
                       <h2>{dvI18n.t('validation.optionsrequired')}</h2>
                       <p>
-                        {elementErrors.length}{' '}
-                        {elementErrors.length === 1 ? dvI18n.t('validation.fieldneedsoptions') : dvI18n.t('validation.fieldsneedoptions')}
+                        {elementErrors.length} {elementErrors.length === 1 ? dvI18n.t('validation.fieldneedsoptions') : dvI18n.t('validation.fieldsneedoptions')}
                       </p>
                     </div>
                     {elementErrors.map((field, idx) => {
@@ -153,9 +153,7 @@ export class LsValidationTag {
                             <div class={'ls-dv-dot'} style={{ background: pallette.s60 }} />
                             <div class={'ls-dv-required-field-items-left'}>
                               <p style={{ color: pallette.s80 }}>{field.title}</p>
-                              <div class={'ls-dv-role-label'} style={{ background: pallette.s30, color: pallette.s70 }}>
-                                {field.description}
-                              </div>
+                              <ls-label text={field.description} colour={pallette.description as any} type="low" size="sm" />
                             </div>
                           </div>
                         </div>

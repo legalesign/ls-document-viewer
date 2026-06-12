@@ -7,7 +7,7 @@
     "required": "Required",
     "readytosend": "Ready to Send",
     "requiresfields": "Requires Fields",
-    "fieldsrequired": "Fields Required",
+    "fieldsrequired": "Signature Fields Required",
     "templatereadytosend": "Template Ready to Send",
     "actionrequired": "Action Required",
     "allfieldsplaced": "All required Fields are placed",
@@ -107,7 +107,7 @@
     "description": "This document needs fields added or corrected before it can be sent.",
     "recipientneedsignature": "Recipient needs a Signature Field placed for them",
     "recipientsneedsignatures": "Recipients need Signature Fields placed for them",
-    "optionsrequired": "Options Required",
+    "optionsrequired": "Dropdown Options Required",
     "fieldneedsoptions": "Dropdown field needs options added",
     "fieldsneedoptions": "Dropdown fields need options added"
   },
