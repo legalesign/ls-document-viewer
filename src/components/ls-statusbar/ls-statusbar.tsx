@@ -81,8 +81,6 @@ export class LsStatusbar {
         canvas.height = viewport.height;
         canvas.className = i === this.page ? 'ls-dv-thumbnail active' : 'ls-dv-thumbnail';
         canvas.addEventListener('click', () => this.goToPage(i));
-        const ctx = canvas.getContext('2d');
-        page.render({ canvasContext: ctx, viewport });
 
         const wrapper = document.createElement('div');
         wrapper.className = 'ls-dv-thumbnail-wrapper';
@@ -104,6 +102,15 @@ export class LsStatusbar {
         wrapper.appendChild(dots);
         wrapper.appendChild(label);
         container.appendChild(wrapper);
+
+        // Render after appending to DOM — Safari requires the canvas to be
+        // in the visible tree before getContext/render produces output.
+        const ctx = canvas.getContext('2d');
+        page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+          // Force Safari to composit the canvas by toggling a style property
+          canvas.style.opacity = '0.99';
+          requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+        });
       });
     }
   }
@@ -173,8 +180,12 @@ export class LsStatusbar {
               onClick={() => {
                 this.showThumbnails = !this.showThumbnails;
                 if (this.showThumbnails) {
-                  setTimeout(() => this.renderThumbnails(), 0);
-                  setTimeout(() => document.addEventListener('click', this.outsideClickHandler), 0);
+                  requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                      this.renderThumbnails();
+                      document.addEventListener('click', this.outsideClickHandler);
+                    });
+                  });
                 } else {
                   document.removeEventListener('click', this.outsideClickHandler);
                 }

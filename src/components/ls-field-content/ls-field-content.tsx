@@ -71,7 +71,9 @@ export class LsFieldContent {
     const valueParts = value.split(sep);
     if (valueParts.length < 2) return value;
 
-    let y = '', m = '', d = '';
+    let y = '',
+      m = '',
+      d = '';
     parts.forEach((p, i) => {
       const v = valueParts[i] || '';
       if (p.startsWith('y')) y = v;
@@ -137,7 +139,9 @@ export class LsFieldContent {
       return;
     }
 
-    let y = '', m = '', d = '';
+    let y = '',
+      m = '',
+      d = '';
     parts.forEach((p, i) => {
       const v = valueParts[i] || '';
       if (p.startsWith('y')) y = v;
@@ -164,9 +168,11 @@ export class LsFieldContent {
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldtype')} sectionDescription={dvI18n.t('fieldproperties.fieldtypedescription')}>
           <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
         </ls-props-section>
-        <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
-          <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alter({ optional: !ev.detail })} />
-        </ls-props-section>
+        {this.dataItem?.formElementType !== 'signature' && (
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
+            <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alter({ optional: !ev.detail })} />
+          </ls-props-section>
+        )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldlabel')} sectionDescription={dvI18n.t('fieldproperties.fieldlabeldescription')}>
           <input
             value={this.dataItem?.label}

@@ -67,7 +67,14 @@
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   max-height: 40vh;
+}
+
+.ls-dv-dropdown-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .ls-dv-dropdown-item {
@@ -90,6 +97,7 @@
 
 .ls-dv-add-participant-row {
   all: unset;
+  flex-shrink: 0;
   display: flex;
   padding: 0.5rem 0.875rem 0.5rem 0.5rem;
   align-items: center;
