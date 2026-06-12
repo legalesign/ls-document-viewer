@@ -169,6 +169,7 @@ export class LsFieldFormat {
             </div>
             <div class={'ls-dv-button-group'}>
               <button
+                class={{ 'ls-dv-active': this.dataItem[0].align === 'left' || !this.dataItem[0].align }}
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
@@ -177,6 +178,7 @@ export class LsFieldFormat {
                 <ls-icon name="menu-alt-2-icon"></ls-icon>
               </button>
               <button
+                class={{ 'ls-dv-active': this.dataItem[0].align === 'center' }}
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
@@ -185,6 +187,7 @@ export class LsFieldFormat {
                 <ls-icon name="menu-alt-5-icon"></ls-icon>
               </button>
               <button
+                class={{ 'ls-dv-active': this.dataItem[0].align === 'right' }}
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}

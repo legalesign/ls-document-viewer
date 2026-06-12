@@ -320,6 +320,14 @@ export class LsDocumentViewer {
     const newSignerIndex =
       event.detail.type === 'WITNESS' ? parent.signerIndex + 100 : Math.max(...this._template.roles.filter(r => r.roleType !== 'WITNESS').map(r => r.signerIndex)) + 1;
 
+    const resolvedSignerIndex = event.detail.signerIndex
+      ? event.detail.signerIndex
+      : event.detail.type === 'WITNESS'
+        ? 100 + parent?.signerIndex
+        : this._template.roles.length === 0
+          ? 1
+          : newSignerIndex;
+
     const data: LSMutateEvent[] = [
       {
         action: 'create',
@@ -327,13 +335,7 @@ export class LsDocumentViewer {
           id: btoa('rol' + crypto.randomUUID()),
           name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
-          signerIndex: event.detail.signerIndex
-            ? event.detail.signerIndex
-            : event.detail.type === 'WITNESS'
-              ? 100 + parent?.signerIndex
-              : this._template.roles.length === 0
-                ? 1
-                : newSignerIndex,
+          signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
           signerParent: event.detail.parent,
           experience: defaultExperience.id,
@@ -342,6 +344,9 @@ export class LsDocumentViewer {
       },
     ];
     this.mutate.emit(data);
+
+    // Auto-select the newly created participant
+    this.signer = resolvedSignerIndex;
   }
 
   // change the signer selected
@@ -566,7 +571,11 @@ export class LsDocumentViewer {
       return { ...ro, templateId: newTemplate.id };
     });
 
-    this.signer = preparedRoles.length > 0 ? 1 : 0;
+    // Only set signer on initial load or if current signer no longer exists
+    const signerExistsInRoles = preparedRoles.some(r => r.signerIndex === this.signer);
+    if (!signerExistsInRoles) {
+      this.signer = preparedRoles.length > 0 ? 1 : 0;
+    }
 
     this._template = {
       ...newTemplate,
@@ -661,11 +670,6 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
-          // const fu = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-
-          // fu.dataItem = update.data as LSApiElement;
-          // Refresh the selected array
-          this.selectFields.emit(this.selected.map(sf => sf.dataItem));
           this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls

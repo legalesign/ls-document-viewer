@@ -334,7 +334,7 @@ export class LsEditorField {
               id="editing-input"
               class="ls-dv-date-field-input"
               type="date"
-              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
+              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, textAlign: 'inherit' }}
               value={this.toISODate(this.dataItem?.value)}
               checked={this.dataItem?.value ? true : false}
               onInput={e => {
@@ -350,7 +350,7 @@ export class LsEditorField {
             <textarea
               id="editing-input"
               class={this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field'}
-              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}
+              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, textAlign: 'inherit' }}
               value={this.dataItem?.value}
               rows={1}
               onInput={e => {
@@ -370,8 +370,8 @@ export class LsEditorField {
             />
           )}
 
-          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'} style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
-            {(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
+          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
+            <span style={{ width: '100%', display: 'block', textAlign: 'inherit' }}>{(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}</span>
           </div>
           {(this.floatingActive || this.selected) && this.dataItem?.label && (
             <div

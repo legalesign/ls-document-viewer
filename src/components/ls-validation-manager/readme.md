@@ -12,6 +12,13 @@
 | `validationErrors` | --        | The template information (as JSON). {LSApiTemplate} | `ValidationError[]` | `undefined` |
 
 
+## Events
+
+| Event          | Description | Type                          |
+| -------------- | ----------- | ----------------------------- |
+| `selectFields` |             | `CustomEvent<LSApiElement[]>` |
+
+
 ## Dependencies
 
 ### Used by
