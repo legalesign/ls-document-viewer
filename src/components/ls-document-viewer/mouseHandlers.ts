@@ -5,6 +5,7 @@ import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
+import { dvI18n } from '../../i18n/i18n';
 
 export function updateSelectionBox() {
   var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -569,7 +570,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.position = 'fixed';
   ghost.style.width = fieldData.defaultWidth * zoom + 'px';
   ghost.style.height = fieldData.defaultHeight * zoom + 'px';
-  ghost.style.border = `2px dashed ${defaultRolePalette[this.signer % 100].s60}`;
+  ghost.style.border = `1px dashed ${defaultRolePalette[this.signer % 100].s60}`;
   const s20 = defaultRolePalette[this.signer % 100].s20.replace('#', '');
   const r = parseInt(s20.substring(0, 2), 16);
   const g = parseInt(s20.substring(2, 4), 16);
@@ -579,16 +580,42 @@ export function toolboxDragStart(fieldData: IToolboxField) {
   ghost.style.pointerEvents = 'none';
   ghost.style.zIndex = '10000';
   ghost.style.visibility = 'hidden';
-  ghost.style.boxSizing = 'border-box';
+  ghost.style.boxSizing = 'content-box';
   ghost.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
   ghost.style.fontSize = Math.round(DEFAULT_FONT_SIZE * zoom) + 'px';
   ghost.style.color = defaultRolePalette[this.signer % 100].s100;
-  ghost.style.overflow = 'hidden';
+  ghost.style.overflow = 'visible';
   ghost.style.whiteSpace = 'nowrap';
   ghost.style.display = 'flex';
   ghost.style.alignItems = 'center';
   ghost.style.textTransform = 'capitalize';
   ghost.innerHTML = fieldData.formElementType;
+
+  // Assignee label below ghost
+  const assignee = this.mode === 'compose'
+    ? this._recipients?.find(r => r.signerIndex === this.signer)
+    : this._template.roles.find(r => r.signerIndex === this.signer);
+  const assigneeName = this.mode === 'compose' && assignee?.previousRecipientDecides
+    ? 'To Be Decided'
+    : this.mode === 'compose'
+      ? `${assignee?.firstName} ${assignee?.lastName}`
+      : assignee?.name || (this.signer === 0 ? 'Sender' : `Participant ${this.signer}`);
+  const assigneeLabel = document.createElement('p');
+  assigneeLabel.style.position = 'absolute';
+  assigneeLabel.style.color = 'var(--gray-80, #3a3a3a)';
+  assigneeLabel.style.bottom = `-${1 * zoom}rem`;
+  assigneeLabel.style.left = '0';
+  assigneeLabel.style.margin = '0';
+  assigneeLabel.style.padding = '0';
+  assigneeLabel.style.lineHeight = '1';
+  assigneeLabel.style.fontSize = `${0.625 * zoom}rem`;
+  assigneeLabel.style.whiteSpace = 'nowrap';
+  assigneeLabel.style.fontFamily = 'sans-serif';
+  assigneeLabel.style.textTransform = 'none';
+  assigneeLabel.style.pointerEvents = 'none';
+  assigneeLabel.textContent = `${dvI18n.t('fieldproperties.assignedto')} ${assigneeName}`;
+  ghost.appendChild(assigneeLabel);
+
   this.component.shadowRoot.appendChild(ghost);
 
   // Info chip at bottom of screen
