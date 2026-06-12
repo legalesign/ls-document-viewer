@@ -527,6 +527,7 @@ export class LsDocumentViewer {
 
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
+    updateSelectionBox.bind(this)();
   }
 
   /**
