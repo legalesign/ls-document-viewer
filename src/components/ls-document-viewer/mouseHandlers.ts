@@ -186,6 +186,7 @@ export function mouseMove(event) {
 
   // We have the mouse held down on a field edge to resize it.
   if (this.hitField && this.edgeSide && this.startMouse && event.buttons === 1) {
+    document.body.style.userSelect = 'none';
     const movedX = event.screenX - this.startMouse.x;
     const movedY = event.screenY - this.startMouse.y;
     var width = this.hitField.dataItem.width;

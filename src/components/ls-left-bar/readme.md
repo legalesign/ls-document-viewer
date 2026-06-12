@@ -168,8 +168,8 @@ graph TD;
   ls-participant-card --> ls-input-wrapper
   ls-participant-card --> ls-button
   ls-participant-card --> ls-tooltip
-  ls-button --> ls-icon
   ls-button --> ls-loading
+  ls-button --> ls-icon
   ls-loading --> ls-loading-icon
   ls-add-new-button --> ls-icon
   ls-add-new-button --> ls-loading
@@ -178,6 +178,8 @@ graph TD;
   ls-document-options --> ls-tooltip
   ls-validation-manager --> ls-toolbox-field
   ls-validation-tag --> ls-icon
+  ls-validation-tag --> ls-label
+  ls-label --> ls-icon
   ls-recipient-card --> ls-icon
   ls-recipient-card --> ls-toolbox-field
   ls-recipient-card --> ls-tooltip
