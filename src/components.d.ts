@@ -709,6 +709,10 @@ export interface LsToolboxFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsToolboxFieldElement;
 }
+export interface LsValidationManagerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsValidationManagerElement;
+}
 export interface LsValidationTagCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsValidationTagElement;
@@ -1275,7 +1279,18 @@ declare global {
         prototype: HTMLLsToolboxFieldElement;
         new (): HTMLLsToolboxFieldElement;
     };
+    interface HTMLLsValidationManagerElementEventMap {
+        "selectFields": LSApiElement[];
+    }
     interface HTMLLsValidationManagerElement extends Components.LsValidationManager, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsValidationManagerElementEventMap>(type: K, listener: (this: HTMLLsValidationManagerElement, ev: LsValidationManagerCustomEvent<HTMLLsValidationManagerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsValidationManagerElementEventMap>(type: K, listener: (this: HTMLLsValidationManagerElement, ev: LsValidationManagerCustomEvent<HTMLLsValidationManagerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLLsValidationManagerElement: {
         prototype: HTMLLsValidationManagerElement;
@@ -1284,6 +1299,7 @@ declare global {
     interface HTMLLsValidationTagElementEventMap {
         "changeSigner": number;
         "selectFieldForPlacement": { signerIndex: number; fieldType: string };
+        "selectFields": LSApiElement[];
     }
     interface HTMLLsValidationTagElement extends Components.LsValidationTag, HTMLStencilElement {
         addEventListener<K extends keyof HTMLLsValidationTagElementEventMap>(type: K, listener: (this: HTMLLsValidationTagElement, ev: LsValidationTagCustomEvent<HTMLLsValidationTagElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1953,6 +1969,7 @@ declare namespace LocalJSX {
         "validation"?: number;
     }
     interface LsValidationManager {
+        "onSelectFields"?: (event: LsValidationManagerCustomEvent<LSApiElement[]>) => void;
         /**
           * The template information (as JSON). {LSApiTemplate}
          */
@@ -1965,6 +1982,7 @@ declare namespace LocalJSX {
         "isExpanded"?: boolean;
         "onChangeSigner"?: (event: LsValidationTagCustomEvent<number>) => void;
         "onSelectFieldForPlacement"?: (event: LsValidationTagCustomEvent<{ signerIndex: number; fieldType: string }>) => void;
+        "onSelectFields"?: (event: LsValidationTagCustomEvent<LSApiElement[]>) => void;
         /**
           * @default true
          */

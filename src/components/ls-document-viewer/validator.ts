@@ -44,11 +44,15 @@ export function validate(t: LSApiTemplate): ValidationError[] {
   // Check for missing multi-select options
   t.elementConnection.templateElements.forEach(element => {
     if (element.validation === 20 && (!element.options || element.options.length === 0)) {
+      const roles = this._recipients || t.roles;
+      const role = roles?.find(r => r.signerIndex === element.signer);
       errors.push({
         id: element.id,
-        title: 'Missing options',
-        description: `Drop down field "${element.label}" is missing options.`,
+        signerIndex: element.signer,
+        title: element.label || 'Dropdown',
+        description: role?.firstName ? `${role.firstName} ${role.lastName}` : role?.name || `Signer ${(element.signer || 0) + 1}`,
         element: element,
+        role: role,
       });
     }
   });

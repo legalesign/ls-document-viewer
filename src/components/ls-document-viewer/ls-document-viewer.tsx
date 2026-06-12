@@ -419,17 +419,16 @@ export class LsDocumentViewer {
 
     // change style of selected fields
     const isMulti = event.detail.length > 1;
+    fields.forEach(f => (f as HTMLLsEditorFieldElement).selected = false);
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
-      fu.selected = true;
-      fu.multiSelected = isMulti;
+      if (fu) {
+        fu.selected = true;
+        fu.multiSelected = isMulti;
+      }
     });
 
-    this.selected.forEach(s => {
-      const isSelected = event.detail.map(d => d.id).includes(s.dataItem.id);
-      s.selected = isSelected;
-      s.multiSelected = isSelected ? isMulti : false;
-    });
+    this.selected = (fields as HTMLLsEditorFieldElement[]).filter(fx => fx.selected);
 
     // Open date picker only when exactly one date field is selected
     if (event.detail.length === 1) {
@@ -777,6 +776,9 @@ export class LsDocumentViewer {
 
       if (this.mode === 'compose') {
         this.manager = 'recipient';
+        if (!this.recipients) {
+          throw new Error('Compose mode requires a "recipients" attribute. See documentation for the expected JSON format.');
+        }
         this._recipients = JSON.parse(this.recipients.replace('\u0022', '"')).sort((a, b) => {
           // Signers (signerIndex < 100) come before witnesses (signerIndex >= 100) for the same base index
           const aBase = a.signerIndex % 100 || 100;
@@ -808,7 +810,7 @@ export class LsDocumentViewer {
         this.errorTitle = dvI18n.t('viewer.autherror');
         this.error = dvI18n.t('viewer.autherrormessage');
       } else {
-        console.error('Failed to load template.', e);
+        console.error('Failed to load template.', e?.message || e);
         this.errorTitle = dvI18n.t('viewer.loaderror');
         this.error = dvI18n.t('viewer.loaderrormessage');
       }
