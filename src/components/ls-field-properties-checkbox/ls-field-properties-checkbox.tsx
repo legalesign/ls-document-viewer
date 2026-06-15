@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Listen, Element } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
@@ -9,6 +10,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 })
 export class LsFieldPropertiesCheckbox {
   @Prop({ mutable: true }) dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
 
   @Listen('mutate')
@@ -26,7 +28,7 @@ export class LsFieldPropertiesCheckbox {
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-field-content dataItem={this.dataItem} showValidationTypes={true} readonly={this.readonly} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} showValidationTypes={true} readonly={this.readonly} />
             <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

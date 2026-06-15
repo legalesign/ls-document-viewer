@@ -55,6 +55,7 @@ graph TD;
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
   ls-assignee-select --> ls-icon
+  ls-assignee-select --> ls-tooltip
   ls-field-dimensions --> ls-icon
   ls-field-dimensions --> ls-tooltip
   ls-field-size --> ls-icon

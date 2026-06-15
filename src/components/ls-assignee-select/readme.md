@@ -34,11 +34,13 @@
 ### Depends on
 
 - ls-icon
+- ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-assignee-select --> ls-icon
+  ls-assignee-select --> ls-tooltip
   ls-field-content --> ls-assignee-select
   ls-field-properties-multiple --> ls-assignee-select
   style ls-assignee-select fill:#f9f,stroke:#333,stroke-width:4px

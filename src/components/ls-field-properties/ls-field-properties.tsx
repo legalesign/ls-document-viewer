@@ -34,9 +34,9 @@ export class LsFieldProperties {
         case 'file':
           return <ls-field-properties-file dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} />
         case 'dropdown':
-          return <ls-field-properties-file dataItem={this.dataItem[0]} readonly={this.readonly} />
+          return <ls-field-properties-file dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} />
         case 'checkbox':
-          return <ls-field-properties-checkbox dataItem={this.dataItem[0]} readonly={this.readonly} />
+          return <ls-field-properties-checkbox dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} />
         default:
           return <ls-field-properties-general dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} />
 

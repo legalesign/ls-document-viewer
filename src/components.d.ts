@@ -312,6 +312,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesContainer {
         "dataItem": LSApiElement1;
@@ -1768,6 +1772,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesContainer {
         "dataItem"?: LSApiElement1;
