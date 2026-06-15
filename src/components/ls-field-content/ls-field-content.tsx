@@ -144,7 +144,16 @@ export class LsFieldContent {
       return;
     }
 
-    this.alter({ signer: newSigner });
+    // Any field reassigned to Sender → elementType becomes 'admin'
+    // Any field reassigned away from Sender → elementType reverts to its formElementType category
+    if (newSigner === 0) {
+      this.alter({ signer: newSigner, elementType: 'admin' });
+    } else if (this.dataItem?.signer === 0) {
+      const elType = (fieldType === 'initials') ? 'initials' : 'text';
+      this.alter({ signer: newSigner, elementType: elType });
+    } else {
+      this.alter({ signer: newSigner });
+    }
   }
 
   private handleFormatChange(newValidation: number) {
@@ -202,7 +211,7 @@ export class LsFieldContent {
               signer={this.dataItem?.signer}
               roles={this.roles}
               disabled={this.readonly}
-              hideSender={this.dataItem?.formElementType === 'signing date'}
+              hideSender={['signing date', 'regex', 'image', 'file', 'drawn', 'drawn field'].includes(this.dataItem?.formElementType)}
               hideApprovers={this.isSignatureType()}
               onAssigneeChange={ev => this.handleReassign(ev.detail)}
             />

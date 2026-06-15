@@ -100,8 +100,9 @@ export class LsFieldPropertiesMultiple {
     return this.dataItem?.some(item => item.formElementType === 'signature' || (item.formElementType as string) === 'auto sign');
   }
 
-  private hasSigningDate(): boolean {
-    return this.dataItem?.some(item => item.formElementType === 'signing date');
+  private hasSignerOnlyField(): boolean {
+    const signerOnly = ['signing date', 'regex', 'image', 'file', 'drawn', 'drawn field'];
+    return this.dataItem?.some(item => signerOnly.includes(item.formElementType as string));
   }
 
   private handleReassign(newSigner: number) {
@@ -114,6 +115,15 @@ export class LsFieldPropertiesMultiple {
       // Signature reassigned to Sender → becomes Auto Sign
       if (fieldType === 'signature' && newSigner === 0) {
         return { ...item, signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 };
+      }
+      // Any field reassigned to Sender → elementType becomes 'admin'
+      if (newSigner === 0) {
+        return { ...item, signer: newSigner, elementType: 'admin' };
+      }
+      // Any field reassigned away from Sender → revert elementType
+      if (item.signer === 0) {
+        const elType = (fieldType === 'initials') ? 'initials' : 'text';
+        return { ...item, signer: newSigner, elementType: elType };
       }
       return { ...item, signer: newSigner };
     });
@@ -141,7 +151,7 @@ export class LsFieldPropertiesMultiple {
                   signer={this.allSignersSame().signer}
                   roles={this.roles}
                   disabled={this.readonly}
-                  hideSender={this.hasSigningDate()}
+                  hideSender={this.hasSignerOnlyField()}
                   hideApprovers={this.hasSignatureType()}
                   mixed={!this.allSignersSame().isSame}
                   onAssigneeChange={ev => this.handleReassign(ev.detail)}
