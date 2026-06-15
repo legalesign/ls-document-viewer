@@ -17,7 +17,6 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',
-  'drawn': 'toolbox.drawn',
   'regular expression': 'toolbox.regex',
   'regex': 'toolbox.regex',
 };

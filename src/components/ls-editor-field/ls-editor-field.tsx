@@ -19,9 +19,14 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',
-  'drawn': 'toolbox.drawn',
   'regular expression': 'toolbox.regex',
   'regex': 'toolbox.regex',
+};
+
+const checkboxSymbols: { [key: number]: [string, string] } = {
+  24: ['✔', '✗'],
+  25: ['✔', ''],
+  26: ['✗', ''],
 };
 
 @Component({
@@ -41,6 +46,12 @@ export class LsEditorField {
 
   private getFieldTypeKey(): string {
     return fieldTypeKeyMap[this.dataItem?.formElementType] || 'toolbox.text';
+  }
+
+  private getCheckboxSymbol(): string {
+    const symbols = checkboxSymbols[this.dataItem?.validation];
+    if (!symbols) return '';
+    return this.dataItem?.value === 'true' ? symbols[0] : symbols[1];
   }
   @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
@@ -123,7 +134,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date') {
+    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox' || this.dataItem.formElementType === 'dropdown' || this.dataItem.formElementType === 'drawn field' || this.dataItem.formElementType === 'file' || this.dataItem.formElementType === 'image') {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -321,7 +332,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && (
+          {!this.dataItem?.optional && this.dataItem?.formElementType !== 'checkbox' && (
             <ls-icon
               name="required-icon"
               size={Math.round(12 * zoomValue)}
@@ -333,6 +344,20 @@ export class LsEditorField {
                 transform: 'translateY(-50%)',
                 lineHeight: '1',
                 fontSize: `${0.75 * zoomValue}rem`,
+              }}
+            />
+          )}
+          {!this.dataItem?.optional && this.dataItem?.formElementType === 'checkbox' && (
+            <ls-icon
+              name="required-icon"
+              size={Math.round(8 * zoomValue)}
+              class="ls-dv-required-icon"
+              customStyle={{
+                position: 'absolute',
+                top: `-${3 * zoomValue}px`,
+                right: `-${3 * zoomValue}px`,
+                lineHeight: '1',
+                fontSize: `${0.5 * zoomValue}rem`,
               }}
             />
           )}
@@ -377,8 +402,12 @@ export class LsEditorField {
             />
           )}
 
-          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
-            <span style={{ width: '100%', display: 'block', textAlign: 'inherit' }}>{(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}</span>
+          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, ...(this.dataItem?.formElementType === 'checkbox' ? { width: '100%', overflow: 'visible', justifyContent: 'center', alignItems: 'center' } : {}) }}>
+            <span style={{ width: '100%', display: 'block', textAlign: this.dataItem?.formElementType === 'checkbox' ? 'center' : 'inherit' }}>
+              {this.dataItem?.formElementType === 'checkbox'
+                ? this.getCheckboxSymbol()
+                : (this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
+            </span>
           </div>
           {(this.floatingActive || this.selected) && !this.multiSelected && this.dataItem?.label && (
             <div
@@ -434,6 +463,7 @@ export class LsEditorField {
                 height: `${0.875 * zoomValue}rem`,
                 lineHeight: `${0.75 * zoomValue}rem`,
                 fontSize: `${0.75 * zoomValue}rem`,
+                ...(this.dataItem?.formElementType === 'checkbox' ? { transform: `translate(75%, -75%)` } : {}),
               }}
               onClick={() => this.deleteField()}
             >

@@ -306,6 +306,13 @@ export namespace Components {
          */
         "readonly": boolean;
     }
+    interface LsFieldPropertiesCheckbox {
+        "dataItem": LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
+    }
     interface LsFieldPropertiesContainer {
         "dataItem": LSApiElement1;
         "selectedTab": string;
@@ -1061,6 +1068,12 @@ declare global {
         prototype: HTMLLsFieldPropertiesAutosignElement;
         new (): HTMLLsFieldPropertiesAutosignElement;
     };
+    interface HTMLLsFieldPropertiesCheckboxElement extends Components.LsFieldPropertiesCheckbox, HTMLStencilElement {
+    }
+    var HTMLLsFieldPropertiesCheckboxElement: {
+        prototype: HTMLLsFieldPropertiesCheckboxElement;
+        new (): HTMLLsFieldPropertiesCheckboxElement;
+    };
     interface HTMLLsFieldPropertiesContainerElement extends Components.LsFieldPropertiesContainer, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesContainerElement: {
@@ -1425,6 +1438,7 @@ declare global {
         "ls-field-properties": HTMLLsFieldPropertiesElement;
         "ls-field-properties-advanced": HTMLLsFieldPropertiesAdvancedElement;
         "ls-field-properties-autosign": HTMLLsFieldPropertiesAutosignElement;
+        "ls-field-properties-checkbox": HTMLLsFieldPropertiesCheckboxElement;
         "ls-field-properties-container": HTMLLsFieldPropertiesContainerElement;
         "ls-field-properties-date": HTMLLsFieldPropertiesDateElement;
         "ls-field-properties-dropdown": HTMLLsFieldPropertiesDropdownElement;
@@ -1742,6 +1756,13 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
     }
     interface LsFieldPropertiesAutosign {
+        "dataItem"?: LSApiElement1;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
+    }
+    interface LsFieldPropertiesCheckbox {
         "dataItem"?: LSApiElement1;
         /**
           * @default false
@@ -2182,6 +2203,7 @@ declare namespace LocalJSX {
         "ls-field-properties": LsFieldProperties;
         "ls-field-properties-advanced": LsFieldPropertiesAdvanced;
         "ls-field-properties-autosign": LsFieldPropertiesAutosign;
+        "ls-field-properties-checkbox": LsFieldPropertiesCheckbox;
         "ls-field-properties-container": LsFieldPropertiesContainer;
         "ls-field-properties-date": LsFieldPropertiesDate;
         "ls-field-properties-dropdown": LsFieldPropertiesDropdown;
@@ -2241,6 +2263,7 @@ declare module "@stencil/core" {
             "ls-field-properties": LocalJSX.LsFieldProperties & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesElement>;
             "ls-field-properties-advanced": LocalJSX.LsFieldPropertiesAdvanced & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAdvancedElement>;
             "ls-field-properties-autosign": LocalJSX.LsFieldPropertiesAutosign & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesAutosignElement>;
+            "ls-field-properties-checkbox": LocalJSX.LsFieldPropertiesCheckbox & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesCheckboxElement>;
             "ls-field-properties-container": LocalJSX.LsFieldPropertiesContainer & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesContainerElement>;
             "ls-field-properties-date": LocalJSX.LsFieldPropertiesDate & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDateElement>;
             "ls-field-properties-dropdown": LocalJSX.LsFieldPropertiesDropdown & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesDropdownElement>;

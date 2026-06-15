@@ -300,15 +300,15 @@ export class LsLeftBar {
           {this.signer > 0 && this.showTool('drawn') && (
             <ls-toolbox-field
               elementType="text"
-              formElementType="drawn"
+              formElementType="drawn field"
               label={dvI18n.t('toolbox.drawn')}
-              defaultHeight={FIELD_DEFAULTS['drawn'].defaultHeight}
-              defaultWidth={FIELD_DEFAULTS['drawn'].defaultWidth}
+              defaultHeight={FIELD_DEFAULTS['drawn field'].defaultHeight}
+              defaultWidth={FIELD_DEFAULTS['drawn field'].defaultWidth}
               validation={90}
               icon="pencil-icon"
               tooltip={dvI18n.t('toolbox.drawntooltip')}
               signer={this.signer}
-              isSelected={this.fieldTypeSelected?.formElementType === 'drawn'}
+              isSelected={this.fieldTypeSelected?.formElementType === 'drawn field'}
             />
           )}
         </div>
