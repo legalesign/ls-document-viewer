@@ -128,6 +128,8 @@
     "advancedproperties": "Advanced Properties",
     "fieldorder": "Field Order",
     "fieldorderdescription": "Determines what order fields will be filled in by the user",
+    "displaystate": "Display State",
+    "displaystatedescription": "Choose the default display state for this checkbox",
     "refname": "Ref. Name",
     "linktype": "Link Type",
     "linktypedescription": "Determines in what way this field is linked to other fields",
