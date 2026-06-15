@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { LSApiElement } from '../../components';
 })
 export class LsFieldPropertiesEmail {
   @Prop() dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
   
     render() {
@@ -16,7 +18,7 @@ export class LsFieldPropertiesEmail {
         <Host>
           <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
             <div class={'ls-dv-field-set'} slot="content">
-              <ls-field-content dataItem={this.dataItem} readonly={this.readonly} />
+              <ls-field-content dataItem={this.dataItem} roles={this.roles} readonly={this.readonly} />
               <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
             </div>
             <div class={'ls-dv-field-set'} slot="dimensions">

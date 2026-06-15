@@ -145,6 +145,11 @@
     "linktypeaddtotal": "Add to a total",
     "linktypeconditional": "Make this conditional upon...",
     "assignedto": "Assigned to:",
+    "assignee": "Assignee",
+    "assigneedescription": "The participant this field is assigned to.",
+    "reassign": "Re-assign",
+    "sender": "Sender",
+    "mixed": "(mixed)",
     "placeholdereg1": "eg. 1",
     "placeholdercheckboxgroup": "eg. checkbox group",
     "placeholdersignhere": "eg. Sign Here"

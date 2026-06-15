@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
@@ -12,6 +13,7 @@ import { dvI18n } from '../../i18n/i18n';
 export class LsFieldContent {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
   @Prop() showValidationTypes: boolean = true;
   @Prop() readonly: boolean = false;
 
@@ -116,6 +118,29 @@ export class LsFieldContent {
     return vType.description;
   }
 
+  private isSignatureType(): boolean {
+    const fieldType = this.dataItem?.formElementType as string;
+    return fieldType === 'signature' || fieldType === 'auto sign';
+  }
+
+  private handleReassign(newSigner: number) {
+    const fieldType = this.dataItem?.formElementType as string;
+
+    // Auto Sign reassigned away from Sender → becomes Signature
+    if (fieldType === 'auto sign' && newSigner !== 0) {
+      this.alter({ signer: newSigner, formElementType: 'signature', elementType: 'signature', validation: 0 });
+      return;
+    }
+
+    // Signature reassigned to Sender → becomes Auto Sign
+    if (fieldType === 'signature' && newSigner === 0) {
+      this.alter({ signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 });
+      return;
+    }
+
+    this.alter({ signer: newSigner });
+  }
+
   private handleFormatChange(newValidation: number) {
     const currentValue = this.dataItem?.value;
     if (!currentValue || !this.isDateField()) {
@@ -165,6 +190,18 @@ export class LsFieldContent {
   render() {
     return (
       <Host>
+        {this.roles?.length > 0 && (
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.assignee')} sectionDescription={dvI18n.t('fieldproperties.assigneedescription')}>
+            <ls-assignee-select
+              signer={this.dataItem?.signer}
+              roles={this.roles}
+              disabled={this.readonly}
+              hideSender={this.dataItem?.formElementType === 'signing date'}
+              hideApprovers={this.isSignatureType()}
+              onAssigneeChange={ev => this.handleReassign(ev.detail)}
+            />
+          </ls-props-section>
+        )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldtype')} sectionDescription={dvI18n.t('fieldproperties.fieldtypedescription')}>
           <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
         </ls-props-section>

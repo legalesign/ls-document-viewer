@@ -159,11 +159,13 @@ graph TD;
   ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-footer
   ls-field-content --> ls-props-section
+  ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
+  ls-assignee-select --> ls-icon
   ls-field-type-display --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-editor-field --> ls-icon
@@ -221,6 +223,7 @@ graph TD;
   ls-field-properties-general --> ls-field-placement
   ls-field-properties-general --> ls-field-footer
   ls-field-properties-multiple --> ls-field-properties-container
+  ls-field-properties-multiple --> ls-assignee-select
   ls-field-properties-multiple --> ls-icon
   ls-field-properties-multiple --> ls-toggle
   ls-field-properties-multiple --> ls-field-dimensions

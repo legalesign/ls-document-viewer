@@ -31,7 +31,7 @@ const fieldTypeKeyMap: { [key: string]: string } = {
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
-  @Prop() assignee: string;
+  @Prop({ mutable: true }) assignee: string;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
   @Prop() multiSelected: boolean = false;
@@ -190,6 +190,13 @@ export class LsEditorField {
     } else {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
+    }
+  }
+
+  @Watch('dataItem')
+  watchDataItemHandler() {
+    if (this.selected) {
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
     }
   }
 
