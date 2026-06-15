@@ -373,7 +373,7 @@ export class LsEditorField {
           <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
             <span style={{ width: '100%', display: 'block', textAlign: 'inherit' }}>{(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}</span>
           </div>
-          {(this.floatingActive || this.selected) && this.dataItem?.label && (
+          {(this.floatingActive || this.selected) && !this.multiSelected && this.dataItem?.label && (
             <div
               style={{
                 position: 'absolute',
@@ -391,7 +391,7 @@ export class LsEditorField {
               {this.dataItem?.label}
             </div>
           )}
-          {(this.floatingActive || this.selected) && (
+          {(this.floatingActive || this.selected) && !this.multiSelected && (
             <p
               style={{
                 position: 'absolute',

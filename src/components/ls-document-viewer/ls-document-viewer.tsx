@@ -675,6 +675,11 @@ export class LsDocumentViewer {
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         this.selected = Array.from(fields).filter(fx => fx.selected);
+        // Update template elements so validation runs against current data
+        this._template = {
+          ...this._template,
+          elementConnection: { ...this._template.elementConnection, templateElements: Array.from(fields).map(ef => ef.dataItem) },
+        };
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (!fi) return;
