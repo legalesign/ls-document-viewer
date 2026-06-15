@@ -19,7 +19,6 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',
-  'drawn': 'toolbox.drawn',
   'regular expression': 'toolbox.regex',
   'regex': 'toolbox.regex',
 };
@@ -135,7 +134,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox') {
+    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox' || this.dataItem.formElementType === 'dropdown' || this.dataItem.formElementType === 'drawn field' || this.dataItem.formElementType === 'file' || this.dataItem.formElementType === 'image') {
       e.preventDefault();
       e.stopPropagation();
       return;
