@@ -124,8 +124,8 @@ export const findDimensions = (
   const frmDims = frameContainer.getBoundingClientRect();
   // dimensions relative to viewport
   const { height, width } = sourceField.getBoundingClientRect();
-  const top = Math.floor((sourceField.getBoundingClientRect().top - frmDims.top) / zoom);
-  const left = Math.floor((sourceField.getBoundingClientRect().left - frmDims.left) / zoom);
+  const top = Math.round((sourceField.getBoundingClientRect().top - frmDims.top) / zoom);
+  const left = Math.round((sourceField.getBoundingClientRect().left - frmDims.left) / zoom);
 
   // Returns X, Y coordinates
   const ax = left > 0 ? left / pageWidth : 0;
