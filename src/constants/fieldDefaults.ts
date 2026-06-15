@@ -17,5 +17,5 @@ export const FIELD_DEFAULTS: Record<string, Pick<IToolboxField, 'defaultWidth' |
   regex: { defaultWidth: 150, defaultHeight: 16 },
   image: { defaultWidth: 100, defaultHeight: 16 },
   file: { defaultWidth: 100, defaultHeight: 16 },
-  drawn: { defaultWidth: 120, defaultHeight: 120 },
+  'drawn field': { defaultWidth: 120, defaultHeight: 120 },
 };

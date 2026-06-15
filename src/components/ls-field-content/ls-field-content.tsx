@@ -54,6 +54,12 @@ export class LsFieldContent {
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
 
+  private getCheckboxStates(): string[] {
+    const vType = validationTypes.find(v => v.id === this.dataItem?.validation);
+    if (!vType) return [];
+    return vType.description.split('/').reverse();
+  }
+
   isDateField(): boolean {
     return getInputType(this.dataItem?.validation)?.inputType === 'date';
   }
@@ -245,6 +251,22 @@ export class LsFieldContent {
                   ))}
               </select>
             </ls-input-wrapper>
+          </ls-props-section>
+        )}
+        {this.dataItem?.formElementType === 'checkbox' && this.getCheckboxStates().length === 2 && (
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.displaystate')} sectionDescription={dvI18n.t('fieldproperties.displaystatedescription')}>
+            <div class="ls-dv-checkbox-toggle">
+              {this.getCheckboxStates().map((state, idx) => (
+                <button
+                  key={idx}
+                  class={{ 'ls-dv-checkbox-toggle-btn': true, 'ls-dv-active': idx === 0 ? this.dataItem?.value?.toString() !== 'true' : this.dataItem?.value?.toString() === 'true' }}
+                  onClick={() => !this.readonly && this.alter({ value: idx === 0 ? 'false' : 'true' })}
+                  disabled={this.readonly}
+                >
+                  {state}
+                </button>
+              ))}
+            </div>
           </ls-props-section>
         )}
         <slot></slot>
