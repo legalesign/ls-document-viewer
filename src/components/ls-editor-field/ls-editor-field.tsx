@@ -4,6 +4,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
 
 const fieldTypeKeyMap: { [key: string]: string } = {
   'signature': 'toolbox.signature',
@@ -47,6 +48,7 @@ export class LsEditorField {
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
+  @State() valueError: string | null = null;
   @Prop() zoom: string;
 
   private sizeObserver: ResizeObserver;
@@ -182,6 +184,16 @@ export class LsEditorField {
     event.dataTransfer.dropEffect = 'move';
   }
 
+  @Watch('dataItem')
+  watchDataItemHandler() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+  }
+
   @Watch('selected')
   watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
     if (_newValue) {
@@ -199,6 +211,13 @@ export class LsEditorField {
   };
 
   componentDidLoad() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect) {
@@ -226,6 +245,7 @@ export class LsEditorField {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 900);
   }
 
@@ -297,9 +317,13 @@ export class LsEditorField {
   }
 
   render() {
+    const borderColor = this.valueError
+      ? 'var(--red-50, #FF5C56)'
+      : defaultRolePalette[this.dataItem?.signer % 100].s60;
+
     const hostStyle = this.floatingActive
-      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 }
-      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 };
+      ? { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': borderColor }
+      : { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': borderColor };
 
     const zoomValue = parseFloat(this.zoom) || 1;
     // const topOffset = (this.dataItem.height ?? 1) + 4;
@@ -357,6 +381,12 @@ export class LsEditorField {
                 const el = e.target as HTMLTextAreaElement;
                 el.style.height = 'auto';
                 el.style.height = el.scrollHeight + 'px';
+                this.valueError = validateFieldValue(
+                  this.dataItem?.formElementType,
+                  this.dataItem?.validation,
+                  el.value,
+                  this.dataItem?.options,
+                );
                 this.alter({ value: el.value });
               }}
               ref={el => {
