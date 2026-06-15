@@ -203,6 +203,9 @@ export class LsEditorField {
       this.dataItem?.value,
       this.dataItem?.options,
     );
+    if (this.selected) {
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
+    }
   }
 
   @Watch('selected')
@@ -213,13 +216,6 @@ export class LsEditorField {
     } else {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
-    }
-  }
-
-  @Watch('dataItem')
-  watchDataItemHandler() {
-    if (this.selected) {
-      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
     }
   }
 
