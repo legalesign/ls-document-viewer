@@ -1,8 +1,9 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
 
 @Component({
   tag: 'ls-field-content',
@@ -14,6 +15,32 @@ export class LsFieldContent {
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() showValidationTypes: boolean = true;
   @Prop() readonly: boolean = false;
+
+  @State() valueError: string | null = null;
+  @State() isDirty: boolean = false;
+
+  @Watch('dataItem')
+  watchDataItemHandler() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+    this.isDirty = !!this.dataItem?.value && this.dataItem.value.length > 0;
+  }
+
+  componentWillLoad() {
+    if (this.dataItem?.value) {
+      this.isDirty = true;
+      this.valueError = validateFieldValue(
+        this.dataItem?.formElementType,
+        this.dataItem?.validation,
+        this.dataItem?.value,
+        this.dataItem?.options,
+      );
+    }
+  }
 
   @Event({
     bubbles: true,
@@ -34,7 +61,19 @@ export class LsFieldContent {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 500);
+  }
+
+  handleValueChange(value: string) {
+    this.isDirty = value.length > 0;
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      value,
+      this.dataItem?.options,
+    );
+    this.alter({ value });
   }
 
   private labeltimer;
@@ -218,11 +257,16 @@ export class LsFieldContent {
                 />
               </div>
             ) : (
-              <input
+              <ls-formfield
+                as="text"
+                name="field-value"
                 value={this.dataItem?.value}
                 placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
-                onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+                valid={!this.valueError}
+                dirty={this.isDirty}
+                errorText={this.valueError}
                 disabled={this.readonly}
+                onTextChange={e => this.handleValueChange(e.detail.value)}
               />
             )}
           </ls-props-section>
