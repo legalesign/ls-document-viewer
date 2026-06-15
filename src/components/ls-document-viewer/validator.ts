@@ -6,6 +6,8 @@
 
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { ValidationError } from '../../types/ValidationError';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { dvI18n } from '../../i18n/i18n';
 
 export function validate(t: LSApiTemplate): ValidationError[] {
   var errors = [];
@@ -17,9 +19,10 @@ export function validate(t: LSApiTemplate): ValidationError[] {
           errors.push({
             id: tr.id,
             signerIndex: tr.signerIndex,
-            title: 'Missing signature.',
-            description: `${tr.name} is missing a signature.`,
+            title: dvI18n.t('validation.missingsignature'),
+            description: dvI18n.t('validation.recipientmissingsignature', { name: tr.name }),
             role: tr,
+            type: 'signature',
           });
         }
       }
@@ -32,9 +35,10 @@ export function validate(t: LSApiTemplate): ValidationError[] {
           errors.push({
             id: tr.id,
             signerIndex: tr.signerIndex,
-            title: 'Missing signature.',
-            description: `${tr.name} is missing a signature.`,
+            title: dvI18n.t('validation.missingsignature'),
+            description: dvI18n.t('validation.recipientmissingsignature', { name: tr.name }),
             role: tr,
+            type: 'signature',
           });
         }
       }
@@ -49,12 +53,34 @@ export function validate(t: LSApiTemplate): ValidationError[] {
       errors.push({
         id: element.id,
         signerIndex: element.signer,
-        title: element.label || 'Dropdown',
-        description: role?.firstName ? `${role.firstName} ${role.lastName}` : role?.name || `Signer ${(element.signer || 0) + 1}`,
+        title: element.label || dvI18n.t('toolbox.dropdown'),
+        description: role?.firstName ? `${role.firstName} ${role.lastName}` : role?.name || dvI18n.t('participants.participant', { index: (element.signer || 0) + 1 }),
         element: element,
         role: role,
+        type: 'options',
       });
     }
   });
+
+  // Check for invalid pre-filled values
+  t.elementConnection.templateElements.forEach(element => {
+    if (element.value) {
+      const error = validateFieldValue(element.formElementType, element.validation, element.value, element.options);
+      if (error) {
+        const roles = this._recipients || t.roles;
+        const role = roles?.find(r => r.signerIndex === element.signer);
+        errors.push({
+          id: element.id,
+          signerIndex: element.signer,
+          title: element.label || element.formElementType,
+          description: error,
+          element: element,
+          role: role,
+          type: 'value',
+        });
+      }
+    }
+  });
+
   return errors;
 }

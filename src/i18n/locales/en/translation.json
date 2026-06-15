@@ -104,11 +104,16 @@
   },
   "validation": {
     "description": "This document needs fields added or corrected before it can be sent.",
+    "missingsignature": "Missing signature",
+    "recipientmissingsignature": "{{name}} is missing a signature",
     "recipientneedsignature": "Recipient needs a Signature Field placed for them",
     "recipientsneedsignatures": "Recipients need Signature Fields placed for them",
     "optionsrequired": "Dropdown Options Required",
     "fieldneedsoptions": "Dropdown field needs options added",
-    "fieldsneedoptions": "Dropdown fields need options added"
+    "fieldsneedoptions": "Dropdown fields need options added",
+    "invalidvalues": "Invalid Values",
+    "fieldhasinvalidvalue": "field has an invalid value",
+    "fieldshaveinvalidvalues": "fields have invalid values"
   },
   "viewer": {
     "templatecreation": "Template Creation",
@@ -227,5 +232,17 @@
     "sender": "Sender",
     "you": "You",
     "addnewsigner": "Add a new Signer"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Must be exactly {{count}} character(s)",
+    "titlecase": "Must be in title case",
+    "uppercase": "Must be uppercase",
+    "lowercase": "Must be lowercase",
+    "wholenumber": "Must be a whole number",
+    "number": "Must be a number",
+    "currency": "Must be a currency value (e.g. 10.00)",
+    "exactdigits": "Must be exactly {{count}} digit(s)",
+    "email": "Must be a valid email address",
+    "dropdownoption": "Must be one of the available options"
   }
 }

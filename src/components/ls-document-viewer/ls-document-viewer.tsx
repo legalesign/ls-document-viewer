@@ -296,6 +296,29 @@ export class LsDocumentViewer {
     }
   }
 
+  @Listen('update')
+  updateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    const detail = event.detail?.[0];
+    if (detail?.action === 'update' && detail?.data?.id) {
+      const updatedData = detail.data as LSApiElement;
+      const source = event.target as HTMLElement;
+      const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
+
+      // Sync selectedDataItems so sidebar reflects the latest value
+      this.selectedDataItems = this.selectedDataItems.map(item =>
+        item.id === updatedData.id ? { ...updatedData } : item,
+      );
+
+      // Only sync editor field if the change came from the sidebar
+      if (!isFromEditorField) {
+        const editorField = this.component.shadowRoot?.getElementById('ls-field-' + updatedData.id) as HTMLLsEditorFieldElement;
+        if (editorField) {
+          editorField.dataItem = { ...updatedData };
+        }
+      }
+    }
+  }
+
   @Listen('fieldTypeSelected')
   handleFieldTypeSelected(event) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
@@ -448,6 +471,35 @@ export class LsDocumentViewer {
 
     updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
+
+    // Focus value input when a single field is selected
+    if (event.detail.length === 1) {
+      const selectedElement = event.detail[0];
+      const hasOptionsError = this.validationErrors.find(e => e.type === 'options' && e.element?.id === selectedElement.id);
+
+      setTimeout(() => {
+        try {
+          const leftBar = this.component.shadowRoot?.querySelector('ls-left-bar');
+          const fieldPanel = leftBar?.shadowRoot?.getElementById('my-field-panel');
+          const specificPanel = fieldPanel?.shadowRoot?.querySelector(
+            'ls-field-properties-text, ls-field-properties-number, ls-field-properties-email, ls-field-properties-general, ls-field-properties-file'
+          );
+          const fieldContent = specificPanel?.shadowRoot?.querySelector('ls-field-content');
+
+          if (hasOptionsError && fieldContent) {
+            // Focus the options textarea for dropdown fields missing options
+            const textarea = fieldContent.shadowRoot?.querySelector('textarea');
+            if (textarea) textarea.focus();
+          } else if (fieldContent) {
+            // Focus the value input for other fields
+            const formfield = fieldContent?.shadowRoot?.querySelector('ls-formfield');
+            const textInput = formfield?.shadowRoot?.querySelector('ls-text-input');
+            const input = textInput?.shadowRoot?.querySelector('input');
+            if (input) input.focus();
+          }
+        } catch (_) { /* silent fail */ }
+      }, 100);
+    }
   }
 
   // Send role selection changes to bars and panels
