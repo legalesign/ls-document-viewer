@@ -53,6 +53,7 @@ const getValidFieldTypes = (roleTypes: string[]): string[] => {
         excluded.add('file');
         excluded.add('signing date');
         excluded.add('drawn field');
+        excluded.add('regular expression');
         break;
       case 'APPROVER':
         excluded.add('signature');

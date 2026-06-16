@@ -116,7 +116,7 @@ export class LsFieldPropertiesMultiple {
       } else {
         elementType = 'text';
       }
-      return { ...item, formElementType: newType as any, elementType, validation: defaultValidation, value: '', options: '' };
+      return { ...item, formElementType: newType as any, elementType, validation: defaultValidation };
     });
 
     // Emit immediately — field type change is a discrete action, not continuous input

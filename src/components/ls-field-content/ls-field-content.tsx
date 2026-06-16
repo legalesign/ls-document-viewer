@@ -195,8 +195,6 @@ export class LsFieldContent {
       formElementType: newType as LSApiElement['formElementType'],
       elementType,
       validation: defaultValidation,
-      value: '',
-      options: '',
     };
     this.dataItem = { ...this.dataItem, ...diff };
     // Emit mutate immediately — changing field type re-renders a different
@@ -212,7 +210,6 @@ export class LsFieldContent {
     if (signerOnlyTypes.includes(fieldType)) {
       const nameMap = {
         'signing date': dvI18n.t('toolbox.signingdate'),
-        'regex': dvI18n.t('toolbox.regex'),
         'regular expression': dvI18n.t('toolbox.regex'),
         'image': dvI18n.t('toolbox.image'),
         'file': dvI18n.t('toolbox.file'),
