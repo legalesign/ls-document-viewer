@@ -20,6 +20,7 @@ export class LsStatusbar {
   @Prop({ mutable: true }) pageCount: number;
 
   @State() showThumbnails: boolean = false;
+  @State() showZoomMenu: boolean = false;
 
   /**
    * The parent editor control.
@@ -119,7 +120,18 @@ export class LsStatusbar {
     const path = e.composedPath();
     if (!path.includes(this.component)) {
       this.showThumbnails = false;
+      this.showZoomMenu = false;
       document.removeEventListener('click', this.outsideClickHandler);
+    }
+  };
+
+  private zoomMenuClickHandler = (e: MouseEvent) => {
+    const path = e.composedPath();
+    const menu = this.component.shadowRoot.getElementById('ls-zoom-menu');
+    const btn = this.component.shadowRoot.getElementById('zoom-level-btn');
+    if (!path.includes(menu) && !path.includes(btn)) {
+      this.showZoomMenu = false;
+      document.removeEventListener('click', this.zoomMenuClickHandler, true);
     }
   };
 
@@ -137,7 +149,33 @@ export class LsStatusbar {
             <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomout')}>
               <ls-icon name="zoom-out-icon" />
             </button>
-            <span>{Math.round(this.zoom * 100)}%</span>
+            <button
+              id="zoom-level-btn"
+              class="ls-dv-zoom-level-btn"
+              onClick={() => {
+                this.showZoomMenu = !this.showZoomMenu;
+                if (this.showZoomMenu) {
+                  requestAnimationFrame(() => document.addEventListener('click', this.zoomMenuClickHandler, true));
+                } else {
+                  document.removeEventListener('click', this.zoomMenuClickHandler, true);
+                }
+              }}
+            >
+              {Math.round(this.zoom * 100)}%
+            </button>
+            {this.showZoomMenu && (
+              <div id="ls-zoom-menu" class="ls-dv-zoom-menu">
+                {[2, 1.75, 1.5, 1.25, 1, 0.75, 0.5, 0.25].map(level => (
+                  <button
+                    class={{ 'ls-dv-zoom-menu-item': true, 'active': Math.round(this.zoom * 100) === Math.round(level * 100) }}
+                    onClick={() => { this.setZoom(level); this.showZoomMenu = false; document.removeEventListener('click', this.zoomMenuClickHandler, true); }}
+                  >
+                    {Math.round(level * 100)}%
+                    {Math.round(this.zoom * 100) === Math.round(level * 100) && <ls-icon name="check-icon" size={14} />}
+                  </button>
+                ))}
+              </div>
+            )}
             <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomin')}>
               <ls-icon name="zoom-in-icon" />
             </button>

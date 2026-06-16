@@ -220,6 +220,59 @@ button.ls-dv-tertiary-grey:hover {
 }
 
 
+.ls-dv-zoom-level-btn {
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: $gray-80;
+  padding: 0.25rem 0.375rem;
+  border-radius: 0.25rem;
+
+  &:hover {
+    background: $gray-10;
+  }
+}
+
+.ls-dv-zoom-menu {
+  position: absolute;
+  width: 6rem;
+  bottom: 3rem;
+  left: 1.5rem;
+  background: white;
+  border: 1px solid $gray-30;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 0.25rem;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+}
+
+.ls-dv-zoom-menu-item {
+  position: relative;
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: $gray-80;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.825rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    background: $gray-10;
+  }
+
+  &.active {
+    font-weight: 500;
+    color: $primary-70;
+    background: $primary-10;
+  }
+}
+
 .ls-dv-thumbnail-popover {
   position: absolute;
   bottom: 3rem;
