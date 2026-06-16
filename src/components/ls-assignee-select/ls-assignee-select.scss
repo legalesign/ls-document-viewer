@@ -150,5 +150,13 @@
 }
 
 .ls-dv-assignee-item.ls-dv-selected .ls-dv-check-icon {
-  color: $primary-60;
+  color: var(--check-icon-selected);
+}
+
+.ls-dv-assignee-item.ls-dv-selected .ls-dv-role-name {
+  color: var(--role-name-selected);
+}
+
+.ls-dv-assignee-item.ls-dv-selected .ls-dv-role-type {
+  color: var(--role-type-selected);
 }

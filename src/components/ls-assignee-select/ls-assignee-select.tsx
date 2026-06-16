@@ -106,6 +106,9 @@ export class LsAssigneeSelect {
                 class={`ls-dv-assignee-item ${this.signer === 0 && !this.mixed ? 'ls-dv-selected' : ''} ${senderDisabled ? 'ls-dv-item-disabled' : ''}`}
                 style={{
                   '--background-selected': defaultRolePalette[0].s10,
+                  '--role-name-selected': defaultRolePalette[0].s80,
+                  '--role-type-selected': defaultRolePalette[0].s80,
+                  '--check-icon-selected': defaultRolePalette[0].s50,
                 }}
                 onClick={() => !senderDisabled && this.selectRole(0)}
                 data-tooltip-id={senderDisabled ? 'ls-dv-assignee-tooltip' : undefined}
@@ -138,6 +141,9 @@ export class LsAssigneeSelect {
                     class={`ls-dv-assignee-item ${r.signerIndex === this.signer && !this.mixed ? 'ls-dv-selected' : ''} ${isApproverDisabled ? 'ls-dv-item-disabled' : ''}`}
                     style={{
                       '--background-selected': defaultRolePalette[r.signerIndex % 100].s10,
+                      '--role-name-selected': defaultRolePalette[r.signerIndex % 100].s100,
+                      '--role-type-selected': defaultRolePalette[r.signerIndex % 100].s80,
+                      '--check-icon-selected': defaultRolePalette[r.signerIndex % 100].s50,
                     }}
                     onClick={() => !isApproverDisabled && this.selectRole(r.signerIndex)}
                     data-tooltip-id={isApproverDisabled ? 'ls-dv-assignee-tooltip' : undefined}
