@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property              | Attribute               | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Default     |
-| --------------------- | ----------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `dataItem`            | --                      |             | `{ id: string; align: string; ax?: number; ay?: number; bx?: number; by?: number; left?: number; top?: number; height?: number; width?: number; elementType: string; fieldOrder?: number; fontName: string; fontSize: number; hideBorder?: boolean; label?: string; labelExtra?: string; helpText?: string; optional?: boolean; options?: string; page?: number; role?: LSApiRole; substantive?: boolean; validation?: number; value?: string; logicGroup?: string; logicAction?: number; mapTo?: string; signer: number; link?: string; formElementType?: "number" \| "text" \| "signature" \| "date" \| "regex" \| "file" \| "signing date" \| "autosign" \| "initials" \| "email" \| "checkbox" \| "image" \| "dropdown"; roleObject?: LSApiRole; cstyle?: any; divStyle?: any; objectHeight?: string; pageDimensions?: { height: number; width: number; }; templateId?: string; }` | `undefined` |
-| `readonly`            | `readonly`              |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | `false`     |
-| `showValidationTypes` | `show-validation-types` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | `true`      |
+| Property              | Attribute               | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Default     |
+| --------------------- | ----------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `dataItem`            | --                      |             | `{ id: string; align: string; ax?: number; ay?: number; bx?: number; by?: number; left?: number; top?: number; height?: number; width?: number; elementType: string; fieldOrder?: number; fontName: string; fontSize: number; hideBorder?: boolean; label?: string; labelExtra?: string; helpText?: string; optional?: boolean; options?: string; page?: number; role?: LSApiRole; substantive?: boolean; validation?: number; value?: string; logicGroup?: string; logicAction?: number; mapTo?: string; signer: number; link?: string; formElementType?: "number" \| "text" \| "signature" \| "date" \| "regex" \| "file" \| "signing date" \| "autosign" \| "initials" \| "email" \| "checkbox" \| "image" \| "dropdown" \| "drawn field"; roleObject?: LSApiRole; cstyle?: any; divStyle?: any; objectHeight?: string; pageDimensions?: { height: number; width: number; }; templateId?: string; }` | `undefined` |
+| `readonly`            | `readonly`              |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `false`     |
+| `roles`               | --                      |             | `LSApiRole[]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `[]`        |
+| `showValidationTypes` | `show-validation-types` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `true`      |
 
 
 ## Events
@@ -26,6 +27,7 @@
 
 ### Used by
 
+ - [ls-field-properties-checkbox](../ls-field-properties-checkbox)
  - [ls-field-properties-date](../ls-field-properties-date)
  - [ls-field-properties-dropdown](../ls-field-properties-dropdown)
  - [ls-field-properties-email](../ls-field-properties-email)
@@ -39,9 +41,11 @@
 ### Depends on
 
 - [ls-props-section](../ls-props-section)
+- [ls-assignee-select](../ls-assignee-select)
 - [ls-field-type-display](../ls-field-type-display)
 - [ls-toggle](../ls-toggle)
 - ls-icon
+- ls-formfield
 - [ls-input-wrapper](../ls-input-wrapper)
 - [ls-editor-field](../ls-editor-field)
 
@@ -49,15 +53,37 @@
 ```mermaid
 graph TD;
   ls-field-content --> ls-props-section
+  ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-icon
+  ls-field-content --> ls-formfield
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
+  ls-assignee-select --> ls-icon
+  ls-assignee-select --> ls-tooltip
   ls-field-type-display --> ls-icon
+  ls-formfield --> ls-icon
+  ls-formfield --> ls-label
+  ls-formfield --> ls-text-input
+  ls-formfield --> ls-select-input
+  ls-formfield --> ls-radio-input
+  ls-formfield --> ls-textarea-input
+  ls-formfield --> ls-checkbox-input
+  ls-formfield --> ls-number-input
+  ls-formfield --> ls-tooltip
+  ls-label --> ls-icon
+  ls-text-input --> ls-icon
+  ls-text-input --> ls-icon-button
+  ls-icon-button --> ls-icon
+  ls-select-input --> ls-icon
+  ls-radio-input --> ls-icon
+  ls-textarea-input --> ls-icon
+  ls-number-input --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-editor-field --> ls-icon
   ls-editor-field --> ls-editor-field
+  ls-field-properties-checkbox --> ls-field-content
   ls-field-properties-date --> ls-field-content
   ls-field-properties-dropdown --> ls-field-content
   ls-field-properties-email --> ls-field-content

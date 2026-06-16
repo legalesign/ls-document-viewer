@@ -1,4 +1,4 @@
-# ls-field-properties-general
+# ls-field-properties-checkbox
 
 
 
@@ -32,12 +32,12 @@
 ### Graph
 ```mermaid
 graph TD;
-  ls-field-properties-general --> ls-field-properties-container
-  ls-field-properties-general --> ls-field-content
-  ls-field-properties-general --> ls-field-properties-advanced
-  ls-field-properties-general --> ls-field-dimensions
-  ls-field-properties-general --> ls-field-placement
-  ls-field-properties-general --> ls-field-footer
+  ls-field-properties-checkbox --> ls-field-properties-container
+  ls-field-properties-checkbox --> ls-field-content
+  ls-field-properties-checkbox --> ls-field-properties-advanced
+  ls-field-properties-checkbox --> ls-field-dimensions
+  ls-field-properties-checkbox --> ls-field-placement
+  ls-field-properties-checkbox --> ls-field-footer
   ls-field-content --> ls-props-section
   ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-display
@@ -76,8 +76,8 @@ graph TD;
   ls-field-placement --> ls-icon
   ls-field-placement --> ls-tooltip
   ls-field-footer --> ls-icon
-  ls-field-properties --> ls-field-properties-general
-  style ls-field-properties-general fill:#f9f,stroke:#333,stroke-width:4px
+  ls-field-properties --> ls-field-properties-checkbox
+  style ls-field-properties-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

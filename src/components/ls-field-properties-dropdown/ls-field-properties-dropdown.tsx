@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
 
 @Component({
   tag: 'ls-field-properties-dropdown',
@@ -8,13 +9,14 @@ import { LSApiElement } from '../../components';
 })
 export class LsFieldPropertiesDropdown {
   @Prop() dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
 
   render() {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-field-content dataItem={this.dataItem} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} />
             <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

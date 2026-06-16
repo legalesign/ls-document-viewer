@@ -36,7 +36,7 @@ const checkboxSymbols: { [key: number]: [string, string] } = {
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
-  @Prop() assignee: string;
+  @Prop({ mutable: true }) assignee: string;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
   @Prop() multiSelected: boolean = false;
@@ -202,6 +202,9 @@ export class LsEditorField {
       this.dataItem?.value,
       this.dataItem?.options,
     );
+    if (this.selected) {
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
+    }
   }
 
   @Watch('selected')

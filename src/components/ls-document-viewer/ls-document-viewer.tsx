@@ -722,6 +722,21 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
+          // Update assignee label when signer changes
+          const signer = (update.data as any).signer;
+          const assignee = this.mode === 'compose'
+            ? this._recipients?.find(r => r.signerIndex === signer)
+            : this._template.roles.find(r => r.signerIndex === signer);
+          fi.setAttribute(
+            'assignee',
+            signer === 0
+              ? 'Sender'
+              : this.mode === 'compose' && assignee?.previousRecipientDecides === true
+                ? 'To Be Decided'
+                : this.mode === 'compose'
+                  ? `${assignee?.firstName} ${assignee?.lastName}`
+                  : assignee?.name || `Participant ${signer}`,
+          );
           this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls

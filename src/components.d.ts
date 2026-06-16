@@ -5,20 +5,20 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement } from "./types/LSApiElement";
-import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 import { ValidationError } from "./types/ValidationError";
 import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { LSApiRecipient } from "./types/LSApiRecipient";
 import { Icon as Icon1 } from "./types/Icon";
+export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
-export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
 export { ValidationError } from "./types/ValidationError";
@@ -26,6 +26,32 @@ export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { LSApiRecipient } from "./types/LSApiRecipient";
 export { Icon as Icon1 } from "./types/Icon";
 export namespace Components {
+    interface LsAssigneeSelect {
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Tooltip reason why Approvers are disabled. Empty string = enabled.
+          * @default ''
+         */
+        "disabledApproverReason": string;
+        /**
+          * Tooltip reason why Sender is disabled. Empty string = enabled.
+          * @default ''
+         */
+        "disabledSenderReason": string;
+        /**
+          * Show mixed state (for multi-select when signers differ)
+          * @default false
+         */
+        "mixed": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
+        "signer": number;
+    }
     interface LsComposeLoader {
     }
     interface LsComposeManager {
@@ -211,6 +237,10 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
+          * @default []
+         */
+        "roles": LSApiRole[];
+        /**
           * @default true
          */
         "showValidationTypes": boolean;
@@ -282,6 +312,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesContainer {
         "dataItem": LSApiElement1;
@@ -297,9 +331,17 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesDropdown {
         "dataItem": LSApiElement1;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesEmail {
         "dataItem": LSApiElement1;
@@ -307,6 +349,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesFile {
         "dataItem": LSApiElement1;
@@ -314,6 +360,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesGeneral {
         "dataItem": LSApiElement1;
@@ -321,6 +371,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
@@ -328,6 +382,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesNumber {
         "dataItem": LSApiElement1;
@@ -335,6 +393,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldPropertiesSignature {
         "dataItem": LSApiElement1;
@@ -342,6 +404,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
         "template": any;
     }
     interface LsFieldPropertiesText {
@@ -350,6 +416,10 @@ export namespace Components {
           * @default false
          */
         "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsFieldSize {
         "dataItem": LSApiElement1[];
@@ -617,6 +687,10 @@ export namespace Components {
         "validationErrors": ValidationError[];
     }
 }
+export interface LsAssigneeSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsAssigneeSelectElement;
+}
 export interface LsDocumentOptionsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsDocumentOptionsElement;
@@ -718,6 +792,23 @@ export interface LsValidationTagCustomEvent<T> extends CustomEvent<T> {
     target: HTMLLsValidationTagElement;
 }
 declare global {
+    interface HTMLLsAssigneeSelectElementEventMap {
+        "assigneeChange": number;
+    }
+    interface HTMLLsAssigneeSelectElement extends Components.LsAssigneeSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsAssigneeSelectElementEventMap>(type: K, listener: (this: HTMLLsAssigneeSelectElement, ev: LsAssigneeSelectCustomEvent<HTMLLsAssigneeSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsAssigneeSelectElementEventMap>(type: K, listener: (this: HTMLLsAssigneeSelectElement, ev: LsAssigneeSelectCustomEvent<HTMLLsAssigneeSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsAssigneeSelectElement: {
+        prototype: HTMLLsAssigneeSelectElement;
+        new (): HTMLLsAssigneeSelectElement;
+    };
     interface HTMLLsComposeLoaderElement extends Components.LsComposeLoader, HTMLStencilElement {
     }
     var HTMLLsComposeLoaderElement: {
@@ -1316,6 +1407,7 @@ declare global {
         new (): HTMLLsValidationTagElement;
     };
     interface HTMLElementTagNameMap {
+        "ls-assignee-select": HTMLLsAssigneeSelectElement;
         "ls-compose-loader": HTMLLsComposeLoaderElement;
         "ls-compose-manager": HTMLLsComposeManagerElement;
         "ls-document-options": HTMLLsDocumentOptionsElement;
@@ -1366,6 +1458,33 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface LsAssigneeSelect {
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Tooltip reason why Approvers are disabled. Empty string = enabled.
+          * @default ''
+         */
+        "disabledApproverReason"?: string;
+        /**
+          * Tooltip reason why Sender is disabled. Empty string = enabled.
+          * @default ''
+         */
+        "disabledSenderReason"?: string;
+        /**
+          * Show mixed state (for multi-select when signers differ)
+          * @default false
+         */
+        "mixed"?: boolean;
+        "onAssigneeChange"?: (event: LsAssigneeSelectCustomEvent<number>) => void;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        "signer"?: number;
+    }
     interface LsComposeLoader {
     }
     interface LsComposeManager {
@@ -1551,6 +1670,10 @@ declare namespace LocalJSX {
          */
         "readonly"?: boolean;
         /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+        /**
           * @default true
          */
         "showValidationTypes"?: boolean;
@@ -1631,6 +1754,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesContainer {
         "dataItem"?: LSApiElement1;
@@ -1646,9 +1773,17 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesDropdown {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesEmail {
         "dataItem"?: LSApiElement1;
@@ -1656,6 +1791,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesFile {
         "dataItem"?: LSApiElement1;
@@ -1663,6 +1802,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesGeneral {
         "dataItem"?: LSApiElement1;
@@ -1670,6 +1813,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
@@ -1679,6 +1826,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
@@ -1686,6 +1837,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesSignature {
         "dataItem"?: LSApiElement1;
@@ -1693,6 +1848,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
         "template"?: any;
     }
     interface LsFieldPropertiesText {
@@ -1701,6 +1860,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsFieldSize {
         "dataItem"?: LSApiElement1[];
@@ -2001,6 +2164,7 @@ declare namespace LocalJSX {
         "validationErrors"?: ValidationError[];
     }
     interface IntrinsicElements {
+        "ls-assignee-select": LsAssigneeSelect;
         "ls-compose-loader": LsComposeLoader;
         "ls-compose-manager": LsComposeManager;
         "ls-document-options": LsDocumentOptions;
@@ -2054,6 +2218,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ls-assignee-select": LocalJSX.LsAssigneeSelect & JSXBase.HTMLAttributes<HTMLLsAssigneeSelectElement>;
             "ls-compose-loader": LocalJSX.LsComposeLoader & JSXBase.HTMLAttributes<HTMLLsComposeLoaderElement>;
             "ls-compose-manager": LocalJSX.LsComposeManager & JSXBase.HTMLAttributes<HTMLLsComposeManagerElement>;
             "ls-document-options": LocalJSX.LsDocumentOptions & JSXBase.HTMLAttributes<HTMLLsDocumentOptionsElement>;

@@ -829,6 +829,17 @@ export function mouseDoubleClick(event) {
         defaultWidth: FIELD_DEFAULTS['text'].defaultWidth,
       };
     }
+
+    if (this.signer === 0 && data.elementType === 'signature') {
+      data = {
+        label: 'Auto Sign',
+        formElementType: 'auto sign',
+        elementType: 'admin',
+        validation: 3000,
+        defaultHeight: FIELD_DEFAULTS['auto sign'].defaultHeight,
+        defaultWidth: FIELD_DEFAULTS['auto sign'].defaultWidth,
+      };
+    }
     // Unselect all current selected items
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;

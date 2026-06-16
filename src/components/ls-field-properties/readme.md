@@ -30,6 +30,7 @@
 - [ls-field-properties-email](../ls-field-properties-email)
 - [ls-field-properties-image](../ls-field-properties-image)
 - [ls-field-properties-file](../ls-field-properties-file)
+- [ls-field-properties-checkbox](../ls-field-properties-checkbox)
 - [ls-field-properties-general](../ls-field-properties-general)
 - [ls-field-properties-multiple](../ls-field-properties-multiple)
 
@@ -44,6 +45,7 @@ graph TD;
   ls-field-properties --> ls-field-properties-email
   ls-field-properties --> ls-field-properties-image
   ls-field-properties --> ls-field-properties-file
+  ls-field-properties --> ls-field-properties-checkbox
   ls-field-properties --> ls-field-properties-general
   ls-field-properties --> ls-field-properties-multiple
   ls-field-properties-signature --> ls-field-properties-container
@@ -53,12 +55,33 @@ graph TD;
   ls-field-properties-signature --> ls-field-placement
   ls-field-properties-signature --> ls-field-footer
   ls-field-content --> ls-props-section
+  ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-display
   ls-field-content --> ls-toggle
   ls-field-content --> ls-icon
+  ls-field-content --> ls-formfield
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
+  ls-assignee-select --> ls-icon
+  ls-assignee-select --> ls-tooltip
   ls-field-type-display --> ls-icon
+  ls-formfield --> ls-icon
+  ls-formfield --> ls-label
+  ls-formfield --> ls-text-input
+  ls-formfield --> ls-select-input
+  ls-formfield --> ls-radio-input
+  ls-formfield --> ls-textarea-input
+  ls-formfield --> ls-checkbox-input
+  ls-formfield --> ls-number-input
+  ls-formfield --> ls-tooltip
+  ls-label --> ls-icon
+  ls-text-input --> ls-icon
+  ls-text-input --> ls-icon-button
+  ls-icon-button --> ls-icon
+  ls-select-input --> ls-icon
+  ls-radio-input --> ls-icon
+  ls-textarea-input --> ls-icon
+  ls-number-input --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-editor-field --> ls-icon
   ls-editor-field --> ls-editor-field
@@ -108,6 +131,12 @@ graph TD;
   ls-field-properties-file --> ls-field-dimensions
   ls-field-properties-file --> ls-field-placement
   ls-field-properties-file --> ls-field-footer
+  ls-field-properties-checkbox --> ls-field-properties-container
+  ls-field-properties-checkbox --> ls-field-content
+  ls-field-properties-checkbox --> ls-field-properties-advanced
+  ls-field-properties-checkbox --> ls-field-dimensions
+  ls-field-properties-checkbox --> ls-field-placement
+  ls-field-properties-checkbox --> ls-field-footer
   ls-field-properties-general --> ls-field-properties-container
   ls-field-properties-general --> ls-field-content
   ls-field-properties-general --> ls-field-properties-advanced
@@ -115,6 +144,7 @@ graph TD;
   ls-field-properties-general --> ls-field-placement
   ls-field-properties-general --> ls-field-footer
   ls-field-properties-multiple --> ls-field-properties-container
+  ls-field-properties-multiple --> ls-assignee-select
   ls-field-properties-multiple --> ls-icon
   ls-field-properties-multiple --> ls-toggle
   ls-field-properties-multiple --> ls-field-dimensions
