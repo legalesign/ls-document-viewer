@@ -15,7 +15,6 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'checkbox': 'toolbox.checkbox',
   'email': 'toolbox.email',
   'number': 'toolbox.number',
-  'image': 'toolbox.image',
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',

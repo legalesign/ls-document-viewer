@@ -16,7 +16,6 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'checkbox': 'toolbox.checkbox',
   'email': 'toolbox.email',
   'number': 'toolbox.number',
-  'image': 'toolbox.image',
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',
@@ -136,7 +135,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox' || this.dataItem.formElementType === 'dropdown' || this.dataItem.formElementType === 'drawn field' || this.dataItem.formElementType === 'file' || this.dataItem.formElementType === 'image') {
+    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox' || this.dataItem.formElementType === 'dropdown' || this.dataItem.formElementType === 'drawn field' || this.dataItem.formElementType === 'file') {
       e.preventDefault();
       e.stopPropagation();
       return;
