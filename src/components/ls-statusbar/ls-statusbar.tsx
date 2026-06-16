@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, h, Element } from '@stencil/core';
+import { Component, Host, Prop, State, Watch, h, Element } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
@@ -167,6 +167,30 @@ export class LsStatusbar {
 
   componentDidLoad() {
     this.zoom = this.editor.zoom;
+  }
+
+  @Watch('page')
+  onPageChange() {
+    if (this.showThumbnails) {
+      this.renderThumbnails();
+      requestAnimationFrame(() => {
+        const container = this.component.shadowRoot.getElementById('ls-thumbnail-container');
+        const wrapper = container?.querySelector('.ls-dv-thumbnail.active')?.closest('.ls-dv-thumbnail-wrapper') as HTMLElement;
+        if (wrapper && container) {
+          const gap = 12; // 0.75rem
+          const wrapperTop = wrapper.offsetTop - container.offsetTop;
+          const wrapperBottom = wrapperTop + wrapper.offsetHeight;
+          const scrollTop = container.scrollTop;
+          const viewHeight = container.clientHeight;
+
+          if (wrapperTop - gap < scrollTop) {
+            container.scrollTo({ top: wrapperTop - gap, behavior: 'smooth' });
+          } else if (wrapperBottom + gap > scrollTop + viewHeight) {
+            container.scrollTo({ top: wrapperBottom + gap - viewHeight, behavior: 'smooth' });
+          }
+        }
+      });
+    }
   }
 
   render() {
