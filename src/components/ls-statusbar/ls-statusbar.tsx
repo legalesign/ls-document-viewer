@@ -21,6 +21,7 @@ export class LsStatusbar {
 
   @State() showThumbnails: boolean = false;
   @State() showZoomMenu: boolean = false;
+  @State() showPageMenu: boolean = false;
 
   /**
    * The parent editor control.
@@ -121,6 +122,7 @@ export class LsStatusbar {
     if (!path.includes(this.component)) {
       this.showThumbnails = false;
       this.showZoomMenu = false;
+      this.showPageMenu = false;
       document.removeEventListener('click', this.outsideClickHandler);
     }
   };
@@ -132,6 +134,16 @@ export class LsStatusbar {
     if (!path.includes(menu) && !path.includes(btn)) {
       this.showZoomMenu = false;
       document.removeEventListener('click', this.zoomMenuClickHandler, true);
+    }
+  };
+
+  private pageMenuClickHandler = (e: MouseEvent) => {
+    const path = e.composedPath();
+    const menu = this.component.shadowRoot.getElementById('ls-page-menu');
+    const btn = this.component.shadowRoot.getElementById('page-level-btn');
+    if (!path.includes(menu) && !path.includes(btn)) {
+      this.showPageMenu = false;
+      document.removeEventListener('click', this.pageMenuClickHandler, true);
     }
   };
 
@@ -199,9 +211,33 @@ export class LsStatusbar {
             >
               <ls-icon name="chevron-left-icon" />
             </button>
-            <p>
+            <button
+              id="page-level-btn"
+              class="ls-dv-zoom-level-btn"
+              onClick={() => {
+                this.showPageMenu = !this.showPageMenu;
+                if (this.showPageMenu) {
+                  requestAnimationFrame(() => document.addEventListener('click', this.pageMenuClickHandler, true));
+                } else {
+                  document.removeEventListener('click', this.pageMenuClickHandler, true);
+                }
+              }}
+            >
               {this.page} / {this.pageCount}
-            </p>
+            </button>
+            {this.showPageMenu && (
+              <div id="ls-page-menu" class="ls-dv-zoom-menu ls-dv-page-menu">
+                {Array.from({ length: this.pageCount }, (_, i) => i + 1).map(p => (
+                  <button
+                    class={{ 'ls-dv-zoom-menu-item': true, 'active': this.page === p }}
+                    onClick={() => { this.goToPage(p); this.showPageMenu = false; document.removeEventListener('click', this.pageMenuClickHandler, true); }}
+                  >
+                    {p}
+                    {this.page === p && <ls-icon name="check-icon" size={14} />}
+                  </button>
+                ))}
+              </div>
+            )}
             <button
               onClick={() => {
                 this.editor.pageNext();
