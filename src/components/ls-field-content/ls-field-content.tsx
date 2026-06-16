@@ -168,6 +168,24 @@ export class LsFieldContent {
     return fieldType === 'signature' || fieldType === 'auto sign';
   }
 
+  private getSenderDisabledReason(): string {
+    const signerOnlyTypes = ['signing date', 'regex', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const fieldType = this.dataItem?.formElementType as string;
+    if (signerOnlyTypes.includes(fieldType)) {
+      const nameMap = {
+        'signing date': dvI18n.t('toolbox.signingdate'),
+        'regex': dvI18n.t('toolbox.regex'),
+        'regular expression': dvI18n.t('toolbox.regex'),
+        'image': dvI18n.t('toolbox.image'),
+        'file': dvI18n.t('toolbox.file'),
+        'drawn': dvI18n.t('toolbox.drawn'),
+        'drawn field': dvI18n.t('toolbox.drawn'),
+      };
+      return dvI18n.t('fieldproperties.cannotreassignsendersingle', { fieldTypes: nameMap[fieldType] || fieldType });
+    }
+    return '';
+  }
+
   private handleReassign(newSigner: number) {
     const fieldType = this.dataItem?.formElementType as string;
 
@@ -250,8 +268,8 @@ export class LsFieldContent {
               signer={this.dataItem?.signer}
               roles={this.roles}
               disabled={this.readonly}
-              hideSender={['signing date', 'regex', 'image', 'file', 'drawn', 'drawn field'].includes(this.dataItem?.formElementType)}
-              hideApprovers={this.isSignatureType()}
+              disabledSenderReason={this.getSenderDisabledReason()}
+              disabledApproverReason={this.isSignatureType() ? dvI18n.t('fieldproperties.signaturecannotapproversingle') : ''}
               onAssigneeChange={ev => this.handleReassign(ev.detail)}
             />
           </ls-props-section>

@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property        | Attribute        | Description                                             | Type          | Default     |
-| --------------- | ---------------- | ------------------------------------------------------- | ------------- | ----------- |
-| `disabled`      | `disabled`       |                                                         | `boolean`     | `false`     |
-| `hideApprovers` | `hide-approvers` | Hide approver roles (e.g. for signature-type fields)    | `boolean`     | `false`     |
-| `hideSender`    | `hide-sender`    | Hide Sender option (e.g. for signing date fields)       | `boolean`     | `false`     |
-| `mixed`         | `mixed`          | Show mixed state (for multi-select when signers differ) | `boolean`     | `false`     |
-| `roles`         | --               |                                                         | `LSApiRole[]` | `[]`        |
-| `signer`        | `signer`         |                                                         | `number`      | `undefined` |
+| Property                 | Attribute                  | Description                                                        | Type          | Default     |
+| ------------------------ | -------------------------- | ------------------------------------------------------------------ | ------------- | ----------- |
+| `disabled`               | `disabled`                 |                                                                    | `boolean`     | `false`     |
+| `disabledApproverReason` | `disabled-approver-reason` | Tooltip reason why Approvers are disabled. Empty string = enabled. | `string`      | `''`        |
+| `disabledSenderReason`   | `disabled-sender-reason`   | Tooltip reason why Sender is disabled. Empty string = enabled.     | `string`      | `''`        |
+| `mixed`                  | `mixed`                    | Show mixed state (for multi-select when signers differ)            | `boolean`     | `false`     |
+| `roles`                  | --                         |                                                                    | `LSApiRole[]` | `[]`        |
+| `signer`                 | `signer`                   |                                                                    | `number`      | `undefined` |
 
 
 ## Events

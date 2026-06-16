@@ -32,15 +32,15 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * Hide approver roles (e.g. for signature-type fields)
-          * @default false
+          * Tooltip reason why Approvers are disabled. Empty string = enabled.
+          * @default ''
          */
-        "hideApprovers": boolean;
+        "disabledApproverReason": string;
         /**
-          * Hide Sender option (e.g. for signing date fields)
-          * @default false
+          * Tooltip reason why Sender is disabled. Empty string = enabled.
+          * @default ''
          */
-        "hideSender": boolean;
+        "disabledSenderReason": string;
         /**
           * Show mixed state (for multi-select when signers differ)
           * @default false
@@ -1482,15 +1482,15 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * Hide approver roles (e.g. for signature-type fields)
-          * @default false
+          * Tooltip reason why Approvers are disabled. Empty string = enabled.
+          * @default ''
          */
-        "hideApprovers"?: boolean;
+        "disabledApproverReason"?: string;
         /**
-          * Hide Sender option (e.g. for signing date fields)
-          * @default false
+          * Tooltip reason why Sender is disabled. Empty string = enabled.
+          * @default ''
          */
-        "hideSender"?: boolean;
+        "disabledSenderReason"?: string;
         /**
           * Show mixed state (for multi-select when signers differ)
           * @default false

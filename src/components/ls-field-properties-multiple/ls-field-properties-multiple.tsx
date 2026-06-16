@@ -100,9 +100,27 @@ export class LsFieldPropertiesMultiple {
     return this.dataItem?.some(item => item.formElementType === 'signature' || (item.formElementType as string) === 'auto sign');
   }
 
-  private hasSignerOnlyField(): boolean {
-    const signerOnly = ['signing date', 'regex', 'image', 'file', 'drawn', 'drawn field'];
-    return this.dataItem?.some(item => signerOnly.includes(item.formElementType as string));
+  private getSenderDisabledReason(): string {
+    const signerOnly = ['signing date', 'regex', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const nameMap = {
+      'signing date': dvI18n.t('toolbox.signingdate'),
+      'regex': dvI18n.t('toolbox.regex'),
+      'regular expression': dvI18n.t('toolbox.regex'),
+      'image': dvI18n.t('toolbox.image'),
+      'file': dvI18n.t('toolbox.file'),
+      'drawn': dvI18n.t('toolbox.drawn'),
+      'drawn field': dvI18n.t('toolbox.drawn'),
+    };
+    const disallowedTypes = [...new Set(
+      this.dataItem
+        ?.filter(item => signerOnly.includes(item.formElementType as string))
+        .map(item => nameMap[item.formElementType as string] || item.formElementType)
+    )];
+    if (disallowedTypes.length === 0) return '';
+    const fieldTypes = disallowedTypes.length === 1
+      ? disallowedTypes[0]
+      : disallowedTypes.slice(0, -1).join(', ') + ' and ' + disallowedTypes[disallowedTypes.length - 1];
+    return dvI18n.t('fieldproperties.cannotreassignsender', { fieldTypes });
   }
 
   private handleReassign(newSigner: number) {
@@ -151,8 +169,8 @@ export class LsFieldPropertiesMultiple {
                   signer={this.allSignersSame().signer}
                   roles={this.roles}
                   disabled={this.readonly}
-                  hideSender={this.hasSignerOnlyField()}
-                  hideApprovers={this.hasSignatureType()}
+                  disabledSenderReason={this.getSenderDisabledReason()}
+                  disabledApproverReason={this.hasSignatureType() ? dvI18n.t('fieldproperties.signaturecannotapprover') : ''}
                   mixed={!this.allSignersSame().isSame}
                   onAssigneeChange={ev => this.handleReassign(ev.detail)}
                 />
