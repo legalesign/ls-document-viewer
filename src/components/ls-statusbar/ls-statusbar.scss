@@ -357,6 +357,13 @@ button.ls-dv-tertiary-grey:hover {
   display: inline-block;
   border: 2px solid var(--dot-color-60);
   background-color: var(--dot-color-40);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+
+  &:hover {
+    background-color: var(--dot-color-60);
+    border-color: var(--dot-color-70);
+  }
 }
 
 .ls-dv-version {

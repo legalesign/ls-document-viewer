@@ -57,15 +57,30 @@ export class LsStatusbar {
     this.renderThumbnails();
   }
 
-  getPageFieldColors(pageNum: number): { s40: string; s60: string }[] {
+  getPageFieldColors(pageNum: number): { s40: string; s60: string; s70: string; name: string; count: number }[] {
     const template = (this.editor as any)._template;
     if (!template?.elementConnection?.templateElements) return [];
-    const signers = new Set<number>();
-    template.elementConnection.templateElements.filter(el => el.page === pageNum).forEach(el => signers.add(el.signer));
-    return Array.from(signers).map(s => ({
-      s40: defaultRolePalette[s]?.s40 || defaultRolePalette[0].s40,
-      s60: defaultRolePalette[s]?.s60 || defaultRolePalette[0].s60,
-    }));
+    const fields = template.elementConnection.templateElements.filter(el => el.page === pageNum);
+    const signerCounts = new Map<number, number>();
+    fields.forEach(el => signerCounts.set(el.signer, (signerCounts.get(el.signer) || 0) + 1));
+    return Array.from(signerCounts.entries())
+      .sort(([a], [b]) => {
+        const baseA = a % 100;
+        const baseB = b % 100;
+        if (baseA !== baseB) return baseA - baseB;
+        return a - b;
+      })
+      .map(([s, count]) => {
+        const role = template.roles?.find(r => r.signerIndex === s);
+        const colorIndex = s % 100;
+        return {
+          s40: defaultRolePalette[colorIndex]?.s40 || defaultRolePalette[0].s40,
+          s60: defaultRolePalette[colorIndex]?.s60 || defaultRolePalette[0].s60,
+          s70: defaultRolePalette[colorIndex]?.s70 || defaultRolePalette[0].s70,
+          name: role?.name || `Participant ${s}`,
+          count,
+        };
+      });
   }
 
   renderThumbnails() {
@@ -93,8 +108,11 @@ export class LsStatusbar {
         this.getPageFieldColors(i).forEach(color => {
           const dot = document.createElement('span');
           dot.className = 'ls-dv-thumbnail-dot';
+          dot.setAttribute('data-tooltip-id', 'ls-dv-tooltip');
+          dot.setAttribute('data-tooltip-content', `${color.name}, ${color.count} Field${color.count !== 1 ? 's' : ''}`);
           dot.style.setProperty('--dot-color-40', color.s40);
           dot.style.setProperty('--dot-color-60', color.s60);
+          dot.style.setProperty('--dot-color-70', color.s70);
           dots.appendChild(dot);
         });
 
