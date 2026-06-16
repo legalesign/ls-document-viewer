@@ -103,8 +103,12 @@ export class LsFieldPropertiesMultiple {
 
   private handleFieldTypeChange(newType: string) {
     const defaultValidation = getDefaultValidationForType(newType);
+    const noValueTypes = ['signature', 'initials', 'file', 'signing date', 'auto sign', 'date', 'dropdown', 'checkbox', 'drawn field'];
+    const dateTypes = ['date', 'signing date'];
 
     this.dataItem = this.dataItem.map(item => {
+      const currentType = item.formElementType as string;
+      const shouldClearValue = noValueTypes.includes(newType) || dateTypes.includes(currentType);
       const isSender = item.signer === 0;
       let elementType: string;
       if (isSender) {
@@ -116,7 +120,7 @@ export class LsFieldPropertiesMultiple {
       } else {
         elementType = 'text';
       }
-      return { ...item, formElementType: newType as any, elementType, validation: defaultValidation };
+      return { ...item, formElementType: newType as any, elementType, validation: defaultValidation, ...(shouldClearValue ? { value: '' } : {}) };
     });
 
     // Emit immediately — field type change is a discrete action, not continuous input

@@ -91,7 +91,7 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'regular expression', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
@@ -191,15 +191,23 @@ export class LsFieldContent {
       elementType = 'text';
     }
 
-    const diff = {
+    // Field types that don't support a user-editable value
+    const noValueTypes = ['signature', 'initials', 'file', 'signing date', 'auto sign', 'date', 'dropdown', 'checkbox', 'drawn field'];
+    // Also clear value when leaving a date field (formatted date values aren't valid for other types)
+    const currentType = this.dataItem?.formElementType as string;
+    const dateTypes = ['date', 'signing date'];
+    const shouldClearValue = noValueTypes.includes(newType) || dateTypes.includes(currentType);
+
+    const diff: any = {
       formElementType: newType as LSApiElement['formElementType'],
       elementType,
       validation: defaultValidation,
     };
+    if (shouldClearValue) {
+      diff.value = '';
+    }
+
     this.dataItem = { ...this.dataItem, ...diff };
-    // Emit mutate immediately — changing field type re-renders a different
-    // properties panel which destroys this component, so the debounce would
-    // never fire.
     this.mutate.emit([{ action: 'update', data: this.dataItem }]);
     this.update.emit([{ action: 'update', data: this.dataItem }]);
   }
