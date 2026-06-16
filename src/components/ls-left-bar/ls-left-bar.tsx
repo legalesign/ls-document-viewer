@@ -269,20 +269,7 @@ export class LsLeftBar {
               isSelected={this.fieldTypeSelected?.formElementType === 'regex'}
             />
           )}
-          {this.signer > 0 && this.showTool('image') && (
-            <ls-toolbox-field
-              elementType="text"
-              formElementType="image"
-              label={dvI18n.t('toolbox.image')}
-              defaultHeight={FIELD_DEFAULTS['image'].defaultHeight}
-              defaultWidth={FIELD_DEFAULTS['image'].defaultWidth}
-              validation={90}
-              icon="photograph-icon"
-              tooltip={dvI18n.t('toolbox.imagetooltip')}
-              signer={this.signer}
-              isSelected={this.fieldTypeSelected?.formElementType === 'image'}
-            />
-          )}
+
           {this.signer > 0 && this.showTool('file') && (
             <ls-toolbox-field
               elementType="text"
