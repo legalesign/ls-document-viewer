@@ -268,7 +268,7 @@ export class LsStatusbar {
               {this.page} / {this.pageCount}
             </button>
             {this.showPageMenu && (
-              <div id="ls-page-menu" class="ls-dv-zoom-menu ls-dv-page-menu">
+              <div id="ls-page-menu" class="ls-dv-zoom-menu ls-dv-page-menu" style={{ right: `${this.showThumbnails ? 11.5 : 7}rem` }}>
                 {Array.from({ length: this.pageCount }, (_, i) => i + 1).map(p => (
                   <button
                     class={{ 'ls-dv-zoom-menu-item': true, 'active': this.page === p }}
