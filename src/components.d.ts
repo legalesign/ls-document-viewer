@@ -202,7 +202,7 @@ export namespace Components {
           * @default false
          */
         "selected": boolean;
-        "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+        "type": 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
         "zoom": string;
     }
     interface LsEditorTable {
@@ -1684,7 +1684,7 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
-        "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+        "type"?: 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
         "zoom"?: string;
     }
     interface LsEditorTable {

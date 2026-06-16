@@ -127,7 +127,7 @@ export class LsFieldPropertiesMultiple {
   }
 
   private getSenderDisabledReason(): string {
-    const signerOnly = ['signing date', 'regex', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const signerOnly = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
     const nameMap = {
       'signing date': dvI18n.t('toolbox.signingdate'),
       'regex': dvI18n.t('toolbox.regex'),

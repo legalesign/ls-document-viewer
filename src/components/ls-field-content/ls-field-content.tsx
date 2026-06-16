@@ -91,7 +91,7 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'regular expression', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
@@ -207,7 +207,7 @@ export class LsFieldContent {
   }
 
   private getSenderDisabledReason(): string {
-    const signerOnlyTypes = ['signing date', 'regex', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const signerOnlyTypes = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
     const fieldType = this.dataItem?.formElementType as string;
     if (signerOnlyTypes.includes(fieldType)) {
       const nameMap = {
@@ -391,7 +391,7 @@ export class LsFieldContent {
           </ls-props-section>
         )}
 
-        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && (
+        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && this.dataItem?.formElementType !== 'regular expression' && this.dataItem?.formElementType !== 'initials' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
               <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>

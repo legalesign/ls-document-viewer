@@ -316,10 +316,10 @@ export class LsRecipientCard {
               {this.recipient.signerIndex > 0 && this.showTool('regex') && (
                 <ls-toolbox-field
                   elementType="text"
-                  formElementType="regex"
+                  formElementType="regular expression"
                   label={dvI18n.t('toolbox.regex')}
-                  defaultHeight={FIELD_DEFAULTS['regex'].defaultHeight}
-                  defaultWidth={FIELD_DEFAULTS['regex'].defaultWidth}
+                  defaultHeight={FIELD_DEFAULTS['regular expression'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['regular expression'].defaultWidth}
                   validation={93}
                   icon="code-icon"
                   tooltip={dvI18n.t('toolbox.regextooltip')}

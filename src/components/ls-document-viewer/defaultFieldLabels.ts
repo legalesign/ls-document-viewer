@@ -19,7 +19,7 @@ export function getFieldLabel(key: string): string | undefined {
 }
 
 export const defaultFieldTitles: { [key: string]: string } = {
-  'signature': 'eg. Sign Here',
+  'signature': 'eg. Tenant',
   'auto sign': 'eg. Date of Signing',
   'text': 'eg. Full Name, Address, Company Name',
   'signing date': 'eg. Date of Signing',

@@ -41,7 +41,7 @@ export class LsEditorField {
   @Prop() selected: boolean = false;
   @Prop() multiSelected: boolean = false;
   @Prop() readonly: boolean;
-  @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+  @Prop() type: 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
 
   private getFieldTypeKey(): string {
