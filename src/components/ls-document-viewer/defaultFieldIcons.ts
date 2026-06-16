@@ -10,7 +10,6 @@ export const defaultFieldIcons: { [key: string]: Icon } = {
   'checkbox': 'check-icon',
   'email': 'at-symbol-icon',
   'number': 'hashtag-icon',
-  'image': 'photograph-icon',
   'dropdown': 'document-text-icon',
   'file': 'upload-icon',
   'drawn field': 'pencil-icon',

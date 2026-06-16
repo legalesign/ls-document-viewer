@@ -28,8 +28,6 @@ export class LsFieldProperties {
           return <ls-field-properties-autosign dataItem={this.dataItem[0]} readonly={this.readonly} />
         case 'email':
           return <ls-field-properties-email dataItem={this.dataItem[0]} readonly={this.readonly} />
-        case 'image':
-          return <ls-field-properties-image dataItem={this.dataItem[0]} readonly={this.readonly} />
         case 'file':
           return <ls-field-properties-file dataItem={this.dataItem[0]} readonly={this.readonly} />
         case 'dropdown':

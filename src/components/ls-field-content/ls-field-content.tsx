@@ -88,7 +88,7 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'image', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
@@ -282,7 +282,7 @@ export class LsFieldContent {
           </ls-props-section>
         )}
 
-        {this.showValidationTypes && (
+        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
               <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>

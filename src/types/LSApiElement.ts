@@ -31,7 +31,7 @@ export type LSApiElement = {
   mapTo?: string;
   signer: number;
   link?: string;
-  formElementType?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date' | 'autosign' | 'initials' | 'email' | 'checkbox' | 'image' | 'dropdown' | 'drawn field';
+  formElementType?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date' | 'autosign' | 'initials' | 'email' | 'checkbox' | 'dropdown' | 'drawn field';
   roleObject?: LSApiRole;
   cstyle?: any;
   divStyle?: any;
