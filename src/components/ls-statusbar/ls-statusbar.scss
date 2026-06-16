@@ -31,7 +31,8 @@
   flex-direction: row;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0 0.75rem;
+  height: 2.25rem;
 }
 
 .ls-dv-controls-bar > :not(:nth-child(1)) {
