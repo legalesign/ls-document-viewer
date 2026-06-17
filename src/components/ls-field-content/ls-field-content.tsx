@@ -5,6 +5,7 @@ import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
 import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 
 @Component({
   tag: 'ls-field-content',
@@ -90,7 +91,7 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
@@ -168,13 +169,55 @@ export class LsFieldContent {
     return fieldType === 'signature' || fieldType === 'auto sign';
   }
 
+  private getRoleType(): string {
+    if (this.dataItem?.signer === 0) return 'SENDER';
+    const role = this.roles?.find(r => r.signerIndex === this.dataItem?.signer);
+    return role?.roleType || 'SIGNER';
+  }
+
+  private handleFieldTypeChange(newType: string) {
+    const defaultValidation = getDefaultValidationForType(newType);
+    const isSender = this.dataItem?.signer === 0;
+
+    // Determine elementType based on formElementType
+    let elementType: string;
+    if (isSender) {
+      elementType = 'admin';
+    } else if (newType === 'signature') {
+      elementType = 'signature';
+    } else if (newType === 'initials') {
+      elementType = 'initials';
+    } else {
+      elementType = 'text';
+    }
+
+    // Field types that don't support a user-editable value
+    const noValueTypes = ['signature', 'initials', 'file', 'signing date', 'auto sign', 'date', 'dropdown', 'checkbox', 'drawn field'];
+    // Also clear value when leaving a date field (formatted date values aren't valid for other types)
+    const currentType = this.dataItem?.formElementType as string;
+    const dateTypes = ['date', 'signing date'];
+    const shouldClearValue = noValueTypes.includes(newType) || dateTypes.includes(currentType);
+
+    const diff: any = {
+      formElementType: newType as LSApiElement['formElementType'],
+      elementType,
+      validation: defaultValidation,
+    };
+    if (shouldClearValue) {
+      diff.value = '';
+    }
+
+    this.dataItem = { ...this.dataItem, ...diff };
+    this.mutate.emit([{ action: 'update', data: this.dataItem }]);
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
+  }
+
   private getSenderDisabledReason(): string {
-    const signerOnlyTypes = ['signing date', 'regex', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const signerOnlyTypes = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
     const fieldType = this.dataItem?.formElementType as string;
     if (signerOnlyTypes.includes(fieldType)) {
       const nameMap = {
         'signing date': dvI18n.t('toolbox.signingdate'),
-        'regex': dvI18n.t('toolbox.regex'),
         'regular expression': dvI18n.t('toolbox.regex'),
         'image': dvI18n.t('toolbox.image'),
         'file': dvI18n.t('toolbox.file'),
@@ -275,7 +318,14 @@ export class LsFieldContent {
           </ls-props-section>
         )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldtype')} sectionDescription={dvI18n.t('fieldproperties.fieldtypedescription')}>
-          <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
+          <ls-field-type-select
+            fieldType={this.dataItem?.formElementType}
+            assignee={this.dataItem?.signer}
+            roles={this.roles}
+            roleTypes={[this.getRoleType()]}
+            disabled={this.readonly}
+            onFieldTypeChange={ev => this.handleFieldTypeChange(ev.detail)}
+          />
         </ls-props-section>
         {this.dataItem?.formElementType !== 'signature' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
@@ -346,7 +396,7 @@ export class LsFieldContent {
           </ls-props-section>
         )}
 
-        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && (
+        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && this.dataItem?.formElementType !== 'regular expression' && this.dataItem?.formElementType !== 'initials' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
               <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>

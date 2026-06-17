@@ -298,22 +298,27 @@ export class LsDocumentViewer {
 
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    const detail = event.detail?.[0];
-    if (detail?.action === 'update' && detail?.data?.id) {
-      const updatedData = detail.data as LSApiElement;
-      const source = event.target as HTMLElement;
-      const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
+    const details = event.detail;
+    if (!details || details.length === 0) return;
 
-      // Sync selectedDataItems so sidebar reflects the latest value
-      this.selectedDataItems = this.selectedDataItems.map(item =>
-        item.id === updatedData.id ? { ...updatedData } : item,
-      );
+    const source = event.target as HTMLElement;
+    const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
 
-      // Only sync editor field if the change came from the sidebar
-      if (!isFromEditorField) {
-        const editorField = this.component.shadowRoot?.getElementById('ls-field-' + updatedData.id) as HTMLLsEditorFieldElement;
-        if (editorField) {
-          editorField.dataItem = { ...updatedData };
+    for (const detail of details) {
+      if (detail?.action === 'update' && detail?.data?.id) {
+        const updatedData = detail.data as LSApiElement;
+
+        // Sync selectedDataItems so sidebar reflects the latest value
+        this.selectedDataItems = this.selectedDataItems.map(item =>
+          item.id === updatedData.id ? { ...updatedData } : item,
+        );
+
+        // Only sync editor field if the change came from the sidebar
+        if (!isFromEditorField) {
+          const editorField = this.component.shadowRoot?.getElementById('ls-field-' + updatedData.id) as HTMLLsEditorFieldElement;
+          if (editorField) {
+            editorField.dataItem = { ...updatedData };
+          }
         }
       }
     }
