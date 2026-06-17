@@ -477,34 +477,7 @@ export class LsDocumentViewer {
     updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
 
-    // Focus value input when a single field is selected
-    if (event.detail.length === 1) {
-      const selectedElement = event.detail[0];
-      const hasOptionsError = this.validationErrors.find(e => e.type === 'options' && e.element?.id === selectedElement.id);
 
-      setTimeout(() => {
-        try {
-          const leftBar = this.component.shadowRoot?.querySelector('ls-left-bar');
-          const fieldPanel = leftBar?.shadowRoot?.getElementById('my-field-panel');
-          const specificPanel = fieldPanel?.shadowRoot?.querySelector(
-            'ls-field-properties-text, ls-field-properties-number, ls-field-properties-email, ls-field-properties-general, ls-field-properties-file'
-          );
-          const fieldContent = specificPanel?.shadowRoot?.querySelector('ls-field-content');
-
-          if (hasOptionsError && fieldContent) {
-            // Focus the options textarea for dropdown fields missing options
-            const textarea = fieldContent.shadowRoot?.querySelector('textarea');
-            if (textarea) textarea.focus();
-          } else if (fieldContent) {
-            // Focus the value input for other fields
-            const formfield = fieldContent?.shadowRoot?.querySelector('ls-formfield');
-            const textInput = formfield?.shadowRoot?.querySelector('ls-text-input');
-            const input = textInput?.shadowRoot?.querySelector('input');
-            if (input) input.focus();
-          }
-        } catch (_) { /* silent fail */ }
-      }, 100);
-    }
   }
 
   // Send role selection changes to bars and panels

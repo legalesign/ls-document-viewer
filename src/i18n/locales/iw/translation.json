@@ -11,7 +11,6 @@
     "templatereadytosend": "תבנית מוכנה לשליחה",
     "actionrequired": "פעולה נדרשת",
     "allfieldsplaced": "כל השדות הנדרשים ממוקמים",
-    "recipientsmissingsignature": "חתימה חסרה לנמענים",
     "detailstobedecided": "פרטים שייקבעו",
     "tobedecided": "יוחלט",
     "previousrecipientdecidesdetails": "הנמען הקודם מחליט פרטים",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "מסמך זה צריך להוסיף או לתקן שדות לפני שניתן יהיה לשלוח אותו.",
+    "missingsignature": "חתימה חסרה",
+    "recipientmissingsignature": "{{name}}חסרה חתימה",
     "recipientneedsignature": "הנמען זקוק לשדה חתימה שיוצב עבורו",
-    "recipientsneedsignatures": "הנמענים צריכים להציב עבורם שדות חתימה"
+    "recipientsneedsignatures": "הנמענים צריכים להציב עבורם שדות חתימה",
+    "optionsrequired": "נדרשות אפשרויות נפתחת",
+    "fieldneedsoptions": "השדה הנפתח זקוק לאפשרויות נוספות",
+    "fieldsneedoptions": "שדות נפתחים זקוקים לאפשרויות נוספות",
+    "invalidvalues": "ערכים לא חוקיים",
+    "fieldhasinvalidvalue": "לשדה יש ערך לא חוקי",
+    "fieldshaveinvalidvalues": "בשדות יש ערכים לא חוקיים"
   },
   "viewer": {
     "templatecreation": "יצירת תבנית",
@@ -121,6 +128,8 @@
     "advancedproperties": "מאפיינים מתקדמים",
     "fieldorder": "סדר שדה",
     "fieldorderdescription": "קובע אילו שדות הזמנה ימלאו על ידי המשתמש",
+    "displaystate": "מצב תצוגה",
+    "displaystatedescription": "בחר את מצב התצוגה המוגדר כברירת מחדל עבור תיבת סימון זו",
     "refname": "אסמכתה שם",
     "linktype": "סוג קישור",
     "linktypedescription": "קובע באיזו דרך שדה זה מקושר לשדות אחרים",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "הוסף לסך הכל",
     "linktypeconditional": "הפוך את זה מותנה ב...",
     "assignedto": "מוקצה ל:",
+    "assignee": "הנמען",
+    "assigneedescription": "המשתתף אליו מוקצה שדה זה.",
+    "reassign": "להקצות מחדש",
+    "cannotreassignsender": "{{fieldTypes}}לא ניתן להקצות מחדש שדות לשולח. בטל את הבחירה בשדות אלה כדי להמשיך.",
+    "cannotreassignsendersingle": "{{fieldTypes}}לא ניתן להקצות מחדש שדות לשולח.",
+    "signaturecannotapprover": "לא ניתן להקצות מחדש שדות חתימה למאשרים. בטל את הבחירה בשדות אלה כדי להמשיך.",
+    "signaturecannotapproversingle": "לא ניתן להקצות מחדש שדות חתימה למאשרים.",
+    "sender": "שולח",
+    "mixed": "(מעורב)",
     "placeholdereg1": "למשל. 1",
     "placeholdercheckboxgroup": "למשל. קבוצת תיבות סימון",
-    "placeholdersignhere": "למשל. לחתום כאן"
+    "placeholdersignhere": "למשל. לחתום כאן",
+    "changefieldtype": "שינוי סוג שדה"
   },
   "alignment": {
     "alignleft": "יישור שמאלה",
@@ -218,5 +237,29 @@
     "sender": "שולח",
     "you": "אתה",
     "addnewsigner": "הוספת חותם חדש"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "חייב להיות {{count}}תווים בדיוק",
+    "titlecase": "חייב להיות בכותרת",
+    "uppercase": "חייב להיות באותיות רישיות",
+    "lowercase": "חייב להיות באותיות קטנות",
+    "wholenumber": "חייב להיות מספר שלם",
+    "number": "חייב להיות מספר",
+    "currency": "חייב להיות ערך מטבע (למשל 10.00)",
+    "exactdigits": "חייב להיות בדיוק {{count}}ספרה (ות)",
+    "email": "חייבת להיות כתובת דוא\"ל חוקית",
+    "dropdownoption": "חייבת להיות אחת האפשרויות הזמינות"
+  },
+  "shortcuts": {
+    "title": "קיצורי מקשים",
+    "copy": "העתק",
+    "paste": "הדבק",
+    "cut": "גזור",
+    "selectall": "בחר הכל",
+    "duplicate": "שכפול",
+    "delete": "מחק",
+    "move": "לזוז",
+    "zoom": "זום",
+    "deselect": "בטל את הבחירה"
   }
 }

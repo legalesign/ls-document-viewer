@@ -3,6 +3,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
+import { setLastClickPosition, clearLastClickPosition } from './clipboard';
 import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
@@ -494,6 +495,7 @@ export function mouseClick(e) {
     // reset the selection box location
     this.selectionBox = { x: e.clientX, y: e.clientY };
 
+    let hitAny = false;
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     fields.forEach(f => {
       const { left, top, bottom, right } = f.getBoundingClientRect();
@@ -503,8 +505,16 @@ export function mouseClick(e) {
         // check if this is a shift click to add to the current selection
         if (!e.shiftKey) fields.forEach(ft => (ft.selected = false));
         f.selected = true;
+        hitAny = true;
       }
     });
+
+    // Track click position for paste targeting
+    if (hitAny) {
+      clearLastClickPosition();
+    } else {
+      setLastClickPosition(e.clientX, e.clientY);
+    }
 
     this.selected = Array.from(fields).filter(fx => fx.selected);
     this.selectFields.emit(this.selected.map(fx => fx.dataItem));

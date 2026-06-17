@@ -11,7 +11,6 @@
     "templatereadytosend": "قالب جاهز للإرسال",
     "actionrequired": "الإجراء مطلوب",
     "allfieldsplaced": "يتم وضع جميع الحقول المطلوبة",
-    "recipientsmissingsignature": "التوقيع المفقود للمستلمين",
     "detailstobedecided": "التفاصيل التي سيتم تحديدها",
     "tobedecided": "سيتم اتخاذ قرار بشأنه",
     "previousrecipientdecidesdetails": "المستلم السابق يقرر التفاصيل",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "تحتاج هذه الوثيقة إلى إضافة حقول أو تصحيحها قبل إرسالها.",
+    "missingsignature": "توقيع مفقود",
+    "recipientmissingsignature": "{{name}}يفتقد التوقيع",
     "recipientneedsignature": "يحتاج المستلم إلى حقل توقيع تم وضعه له",
-    "recipientsneedsignatures": "يحتاج المستلمون إلى حقول التوقيع الموضوعة لهم"
+    "recipientsneedsignatures": "يحتاج المستلمون إلى حقول التوقيع الموضوعة لهم",
+    "optionsrequired": "خيارات القائمة المنسدلة مطلوبة",
+    "fieldneedsoptions": "يحتاج حقل القائمة المنسدلة إلى إضافة خيارات",
+    "fieldsneedoptions": "تحتاج الحقول المنسدلة إلى إضافة خيارات",
+    "invalidvalues": "قيم غير صالحة",
+    "fieldhasinvalidvalue": "يحتوي الحقل على قيمة غير صالحة",
+    "fieldshaveinvalidvalues": "تحتوي الحقول على قيم غير صالحة"
   },
   "viewer": {
     "templatecreation": "إنشاء قالب",
@@ -121,6 +128,8 @@
     "advancedproperties": "خصائص متقدمة",
     "fieldorder": "الترتيب الميداني",
     "fieldorderdescription": "يحدد حقول الطلبات التي سيتم ملؤها من قبل المستخدم",
+    "displaystate": "حالة العرض",
+    "displaystatedescription": "اختر حالة العرض الافتراضية لمربع الاختيار هذا",
     "refname": "المرجع. الاسم",
     "linktype": "نوع الارتباط",
     "linktypedescription": "يحدد الطريقة التي يرتبط بها هذا الحقل بالحقول الأخرى",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "إضافة إلى المجموع",
     "linktypeconditional": "اجعل هذا مشروطًا بـ...",
     "assignedto": "تم تعيينه لـ:",
+    "assignee": "المحال إليه",
+    "assigneedescription": "المشارك الذي تم تعيين هذا الحقل له.",
+    "reassign": "إعادة التعيين",
+    "cannotreassignsender": "{{fieldTypes}}لا يمكن إعادة تعيين الحقول إلى المرسل. قم بإلغاء تحديد هذه الحقول للمتابعة.",
+    "cannotreassignsendersingle": "{{fieldTypes}}لا يمكن إعادة تعيين الحقول إلى المرسل.",
+    "signaturecannotapprover": "لا يمكن إعادة تعيين حقول التوقيع إلى المعتمدين. قم بإلغاء تحديد هذه الحقول للمتابعة.",
+    "signaturecannotapproversingle": "لا يمكن إعادة تعيين حقول التوقيع إلى المعتمدين.",
+    "sender": "المُرسِل",
+    "mixed": "(مختلط)",
     "placeholdereg1": "على سبيل المثال. 1",
     "placeholdercheckboxgroup": "على سبيل المثال. مجموعة مربعات الاختيار",
-    "placeholdersignhere": "على سبيل المثال. قم بالتوقيع هنا"
+    "placeholdersignhere": "على سبيل المثال. قم بالتوقيع هنا",
+    "changefieldtype": "تغيير نوع الحقل"
   },
   "alignment": {
     "alignleft": "محاذاة إلى اليسار",
@@ -218,5 +237,29 @@
     "sender": "المُرسِل",
     "you": "أنت",
     "addnewsigner": "إضافة موقّع جديد"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "يجب أن تكون بالضبط {{count}}الشخصية (الشخصيات)",
+    "titlecase": "يجب أن تكون في علبة العنوان",
+    "uppercase": "يجب أن تكون الأحرف الكبيرة",
+    "lowercase": "يجب أن تكون صغيرة",
+    "wholenumber": "يجب أن يكون رقمًا صحيحًا",
+    "number": "يجب أن يكون رقمًا",
+    "currency": "يجب أن تكون قيمة العملة (على سبيل المثال 10.00)",
+    "exactdigits": "يجب أن يكون {{count}}الرقم (الأرقام) بالضبط",
+    "email": "يجب أن يكون عنوان بريد إلكتروني صالح",
+    "dropdownoption": "يجب أن يكون أحد الخيارات المتاحة"
+  },
+  "shortcuts": {
+    "title": "اختصارات لوحة المفاتيح",
+    "copy": "نسخة",
+    "paste": "معجون",
+    "cut": "قص",
+    "selectall": "حدد الكل",
+    "duplicate": "مكرر",
+    "delete": "حذف",
+    "move": "تحرك",
+    "zoom": "تكبير",
+    "deselect": "قم بإلغاء"
   }
 }

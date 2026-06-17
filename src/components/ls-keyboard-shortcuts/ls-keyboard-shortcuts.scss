@@ -22,7 +22,7 @@
   line-height: 1rem;
   padding: 1rem;
   width: fit-content;
-  white-space: wrap;
+  white-space: nowrap;
   z-index: 1000;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 -1px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
 }
@@ -31,9 +31,30 @@
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
+.ls-dv-shortcuts-table {
+  border-spacing: 0;
+
+  tr {
+    td {
+      padding: 0.2rem 0;
+    }
+  }
+}
+
+.ls-dv-shortcut-keys {
+  font-weight: 500;
+  padding-right: 1rem;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: $gray-30;
+}
+
+.ls-dv-shortcut-label {
+  color: $white;
+}
 
 #arrow {
   position: absolute;

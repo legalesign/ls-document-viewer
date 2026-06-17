@@ -11,7 +11,6 @@
     "templatereadytosend": "Modelo pronto para enviar",
     "actionrequired": "Ação necessária",
     "allfieldsplaced": "Todos os campos obrigatórios são colocados",
-    "recipientsmissingsignature": "Assinatura ausente do destinatário",
     "detailstobedecided": "Detalhes a serem decididos",
     "tobedecided": "A ser decidido",
     "previousrecipientdecidesdetails": "O destinatário anterior decide os detalhes",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Este documento precisa de campos adicionados ou corrigidos antes de ser enviado.",
+    "missingsignature": "Assinatura ausente",
+    "recipientmissingsignature": "{{name}}está faltando uma assinatura",
     "recipientneedsignature": "O destinatário precisa de um campo de assinatura colocado para ele",
-    "recipientsneedsignatures": "Os destinatários precisam colocar campos de assinatura para eles"
+    "recipientsneedsignatures": "Os destinatários precisam colocar campos de assinatura para eles",
+    "optionsrequired": "Opções suspensas obrigatórias",
+    "fieldneedsoptions": "O campo suspenso precisa de opções adicionadas",
+    "fieldsneedoptions": "Os campos suspensos precisam de opções adicionadas",
+    "invalidvalues": "Valores inválidos",
+    "fieldhasinvalidvalue": "o campo tem um valor inválido",
+    "fieldshaveinvalidvalues": "os campos têm valores inválidos"
   },
   "viewer": {
     "templatecreation": "Criação de modelo",
@@ -121,6 +128,8 @@
     "advancedproperties": "Propriedades avançadas",
     "fieldorder": "Ordem de campo",
     "fieldorderdescription": "Determina quais campos do pedido serão preenchidos pelo usuário",
+    "displaystate": "Estado de exibição",
+    "displaystatedescription": "Escolha o estado de exibição padrão para essa caixa de seleção",
     "refname": "Árbitro. Nome",
     "linktype": "Tipo de link",
     "linktypedescription": "Determina de que forma esse campo está vinculado a outros campos",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Adicionar a um total",
     "linktypeconditional": "Faça com que isso dependa de...",
     "assignedto": "Atribuído a:",
+    "assignee": "Destinatário",
+    "assigneedescription": "O participante ao qual esse campo está atribuído.",
+    "reassign": "Reatribuir",
+    "cannotreassignsender": "{{fieldTypes}}os campos não podem ser reatribuídos ao remetente. Desmarque esses campos para continuar.",
+    "cannotreassignsendersingle": "{{fieldTypes}}os campos não podem ser reatribuídos ao remetente.",
+    "signaturecannotapprover": "Os campos de assinatura não podem ser reatribuídos aos aprovadores. Desmarque esses campos para continuar.",
+    "signaturecannotapproversingle": "Os campos de assinatura não podem ser reatribuídos aos aprovadores.",
+    "sender": "Remetente",
+    "mixed": "(misto)",
     "placeholdereg1": "por exemplo, 1",
     "placeholdercheckboxgroup": "por exemplo, grupo de caixas de seleção",
-    "placeholdersignhere": "por exemplo. Assine aqui"
+    "placeholdersignhere": "por exemplo. Assine aqui",
+    "changefieldtype": "Alterar tipo de campo"
   },
   "alignment": {
     "alignleft": "Alinhar à esquerda",
@@ -218,5 +237,29 @@
     "sender": "Remetente",
     "you": "Você",
     "addnewsigner": "Adicionar um novo signatário"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Deve ser exatamente {{count}}caractere (s)",
+    "titlecase": "Deve estar em caixa de título",
+    "uppercase": "Deve estar em maiúsculas",
+    "lowercase": "Deve estar em minúsculas",
+    "wholenumber": "Deve ser um número inteiro",
+    "number": "Deve ser um número",
+    "currency": "Deve ser um valor monetário (por exemplo, 10,00)",
+    "exactdigits": "Deve ser exatamente o (s) {{count}}dígito (s)",
+    "email": "Deve ser um endereço de e-mail válido",
+    "dropdownoption": "Deve ser uma das opções disponíveis"
+  },
+  "shortcuts": {
+    "title": "Atalhos de teclado",
+    "copy": "Copiar",
+    "paste": "Pasta",
+    "cut": "Cortar",
+    "selectall": "Selecionar tudo",
+    "duplicate": "Duplicado",
+    "delete": "Excluir",
+    "move": "Mova-se",
+    "zoom": "Zoom",
+    "deselect": "Desmarcar"
   }
 }
