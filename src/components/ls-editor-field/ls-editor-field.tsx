@@ -41,7 +41,7 @@ export class LsEditorField {
   @Prop() selected: boolean = false;
   @Prop() multiSelected: boolean = false;
   @Prop() readonly: boolean;
-  @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+  @Prop() type: 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
 
   private getFieldTypeKey(): string {
@@ -55,6 +55,15 @@ export class LsEditorField {
   }
   @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
+
+  private static readonly NO_EDIT_TYPES = ['signature', 'initials', 'signing date', 'checkbox', 'dropdown', 'drawn field', 'file'];
+
+  @Watch('dataItem')
+  dataItemChanged() {
+    if (this.isEditing && LsEditorField.NO_EDIT_TYPES.includes(this.dataItem?.formElementType as string)) {
+      this.isEditing = false;
+    }
+  }
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
@@ -135,7 +144,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date' || this.dataItem.formElementType === 'checkbox' || this.dataItem.formElementType === 'dropdown' || this.dataItem.formElementType === 'drawn field' || this.dataItem.formElementType === 'file') {
+    if (this.readonly || LsEditorField.NO_EDIT_TYPES.includes(this.dataItem.formElementType as string)) {
       e.preventDefault();
       e.stopPropagation();
       return;

@@ -202,7 +202,7 @@ export namespace Components {
           * @default false
          */
         "selected": boolean;
-        "type": 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+        "type": 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
         "zoom": string;
     }
     interface LsEditorTable {
@@ -434,6 +434,38 @@ export namespace Components {
           * @default 'signature'
          */
         "fieldType": string;
+    }
+    interface LsFieldTypeSelect {
+        /**
+          * Signer index for colour
+          * @default 1
+         */
+        "assignee": number;
+        /**
+          * Whether the select is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Current field type (e.g. 'text', 'signature')
+          * @default 'text'
+         */
+        "fieldType": string;
+        /**
+          * Show mixed state when multi-select has different field types
+          * @default false
+         */
+        "mixed": boolean;
+        /**
+          * Role types of the selected field(s) — used to filter valid types
+          * @default ['SIGNER']
+         */
+        "roleTypes": string[];
+        /**
+          * Roles from the template for determining valid types
+          * @default []
+         */
+        "roles": LSApiRole[];
     }
     interface LsHelperBar {
         /**
@@ -746,6 +778,10 @@ export interface LsFieldPropertiesMultipleCustomEvent<T> extends CustomEvent<T> 
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
+}
+export interface LsFieldTypeSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldTypeSelectElement;
 }
 export interface LsLeftBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1162,6 +1198,23 @@ declare global {
         prototype: HTMLLsFieldTypeDisplayElement;
         new (): HTMLLsFieldTypeDisplayElement;
     };
+    interface HTMLLsFieldTypeSelectElementEventMap {
+        "fieldTypeChange": string;
+    }
+    interface HTMLLsFieldTypeSelectElement extends Components.LsFieldTypeSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldTypeSelectElementEventMap>(type: K, listener: (this: HTMLLsFieldTypeSelectElement, ev: LsFieldTypeSelectCustomEvent<HTMLLsFieldTypeSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldTypeSelectElementEventMap>(type: K, listener: (this: HTMLLsFieldTypeSelectElement, ev: LsFieldTypeSelectCustomEvent<HTMLLsFieldTypeSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldTypeSelectElement: {
+        prototype: HTMLLsFieldTypeSelectElement;
+        new (): HTMLLsFieldTypeSelectElement;
+    };
     interface HTMLLsHelperBarElement extends Components.LsHelperBar, HTMLStencilElement {
     }
     var HTMLLsHelperBarElement: {
@@ -1438,6 +1491,7 @@ declare global {
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
         "ls-field-type-display": HTMLLsFieldTypeDisplayElement;
+        "ls-field-type-select": HTMLLsFieldTypeSelectElement;
         "ls-helper-bar": HTMLLsHelperBarElement;
         "ls-input-wrapper": HTMLLsInputWrapperElement;
         "ls-keyboard-shortcuts": HTMLLsKeyboardShortcutsElement;
@@ -1630,7 +1684,7 @@ declare namespace LocalJSX {
           * @default false
          */
         "selected"?: boolean;
-        "type"?: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+        "type"?: 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
         "zoom"?: string;
     }
     interface LsEditorTable {
@@ -1879,6 +1933,39 @@ declare namespace LocalJSX {
           * @default 'signature'
          */
         "fieldType"?: string;
+    }
+    interface LsFieldTypeSelect {
+        /**
+          * Signer index for colour
+          * @default 1
+         */
+        "assignee"?: number;
+        /**
+          * Whether the select is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Current field type (e.g. 'text', 'signature')
+          * @default 'text'
+         */
+        "fieldType"?: string;
+        /**
+          * Show mixed state when multi-select has different field types
+          * @default false
+         */
+        "mixed"?: boolean;
+        "onFieldTypeChange"?: (event: LsFieldTypeSelectCustomEvent<string>) => void;
+        /**
+          * Role types of the selected field(s) — used to filter valid types
+          * @default ['SIGNER']
+         */
+        "roleTypes"?: string[];
+        /**
+          * Roles from the template for determining valid types
+          * @default []
+         */
+        "roles"?: LSApiRole[];
     }
     interface LsHelperBar {
         /**
@@ -2195,6 +2282,7 @@ declare namespace LocalJSX {
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
         "ls-field-type-display": LsFieldTypeDisplay;
+        "ls-field-type-select": LsFieldTypeSelect;
         "ls-helper-bar": LsHelperBar;
         "ls-input-wrapper": LsInputWrapper;
         "ls-keyboard-shortcuts": LsKeyboardShortcuts;
@@ -2254,6 +2342,7 @@ declare module "@stencil/core" {
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;
             "ls-field-type-display": LocalJSX.LsFieldTypeDisplay & JSXBase.HTMLAttributes<HTMLLsFieldTypeDisplayElement>;
+            "ls-field-type-select": LocalJSX.LsFieldTypeSelect & JSXBase.HTMLAttributes<HTMLLsFieldTypeSelectElement>;
             "ls-helper-bar": LocalJSX.LsHelperBar & JSXBase.HTMLAttributes<HTMLLsHelperBarElement>;
             "ls-input-wrapper": LocalJSX.LsInputWrapper & JSXBase.HTMLAttributes<HTMLLsInputWrapperElement>;
             "ls-keyboard-shortcuts": LocalJSX.LsKeyboardShortcuts & JSXBase.HTMLAttributes<HTMLLsKeyboardShortcutsElement>;

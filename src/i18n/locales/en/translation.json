@@ -163,7 +163,8 @@
     "mixed": "(mixed)",
     "placeholdereg1": "eg. 1",
     "placeholdercheckboxgroup": "eg. checkbox group",
-    "placeholdersignhere": "eg. Sign Here"
+    "placeholdersignhere": "eg. Sign Here",
+    "changefieldtype": "Change Field Type"
   },
   "alignment": {
     "alignleft": "Align Left",
