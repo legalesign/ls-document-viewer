@@ -75,7 +75,40 @@ export function pasteClipboard() {
     return newItem;
   });
 
+  const pasteCount = createdItems.length;
   this.mutate.emit(createdItems.map(data => ({ action: 'create', data })));
+
+  // Select pasted fields after mutations complete
+  // Fields get new IDs from the API, so we select the last N fields added
+  const waitForPaste = () => {
+    const fields = Array.from(
+      this.component.shadowRoot.querySelectorAll('ls-editor-field'),
+    ) as HTMLLsEditorFieldElement[];
+
+    const currentPage = fields.filter(f => f.dataItem?.page === this.pageNum);
+    // Get the most recently added fields (they're appended to the DOM)
+    const pastedFields = currentPage.slice(-pasteCount);
+
+    if (pastedFields.length === pasteCount) {
+      fields.forEach(f => { f.selected = false; f.multiSelected = false; });
+      pastedFields.forEach(f => {
+        f.selected = true;
+        f.multiSelected = pastedFields.length > 1;
+      });
+      this.selected = pastedFields;
+      this.selectFields.emit(pastedFields.map(f => f.dataItem));
+    }
+  };
+
+  // Wait for isMutating to flip back to false
+  const poll = () => {
+    if (!this.isMutating) {
+      requestAnimationFrame(waitForPaste);
+    } else {
+      requestAnimationFrame(poll);
+    }
+  };
+  requestAnimationFrame(poll);
 
   // Update clipboard to new items so subsequent pastes keep offsetting
   clipboard = createdItems;
