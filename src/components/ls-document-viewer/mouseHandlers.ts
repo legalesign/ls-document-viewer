@@ -121,7 +121,7 @@ export function mouseDown(e) {
     }
   });
 
-  if (this.hitField && e.shiftKey === false) {
+  if (this.hitField && e.shiftKey === false && e.altKey === false) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
 
@@ -145,37 +145,56 @@ export function mouseDown(e) {
       return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
     });
     this.selectionBox = null;
+  } else if (this.hitField && e.altKey === true) {
+    // Alt+click: remove field from selection
+    if (this.hitField.selected === true) {
+      this.hitField.selected = false;
+      this.selected = this.selected.filter(f => f !== this.hitField);
+      this.selectFields.emit(this.selected.map(si => si.dataItem));
+    }
+    this.hitField = null;
+    this.startMouse = null;
+    this.startLocations = null;
+    this.selectionBox = null;
+    updateSelectionBox.bind(this)();
   } else if (this.hitField && e.shiftKey === true) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
 
-    // mouse down on a field, select it and note the start location
-    if (this.hitField.selected === false) {
-      // unselect all other fields
-      fields.forEach(fu => {
-        fu.selected = false;
-      });
+    if (this.hitField.selected === true) {
+      // Toggle off: remove from selection
+      this.hitField.selected = false;
+      this.selected = this.selected.filter(f => f !== this.hitField);
+      this.selectFields.emit(this.selected.map(si => si.dataItem));
+      this.hitField = null;
+      this.startMouse = null;
+      this.startLocations = null;
+      this.selectionBox = null;
+      updateSelectionBox.bind(this)();
+    } else {
+      // Add to selection
+      this.hitField.selected = true;
       this.selected = [...this.selected, this.hitField];
-      this.selectFields.emit([...this.selected.map(si => si.dataItem), this.hitField.dataItem]);
+      this.selectFields.emit(this.selected.map(si => si.dataItem));
+
+      const { height, width } = this.hitField.getBoundingClientRect();
+      const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
+      this.startMouse = fdims;
+
+      this.startLocations = this.selected.map(f => {
+        const { height, width } = f.getBoundingClientRect();
+        const beHtml = f as HTMLElement;
+        return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
+      });
+      this.selectionBox = null;
     }
-
-    const { height, width } = this.hitField.getBoundingClientRect();
-    const fdims = { left: this.hitField.offsetLeft, top: this.hitField.offsetTop, height, width, x: e.screenX, y: e.screenY };
-    this.startMouse = fdims;
-
-    this.startLocations = this.selected.map(f => {
-      const { height, width } = f.getBoundingClientRect();
-      const beHtml = f as HTMLElement;
-      return { top: beHtml.offsetTop, left: beHtml.offsetLeft, height, width };
-    });
-    this.selectionBox = null;
   } else {
     // move down on empty space, start a selection box
     this.startLocations = null;
     this.startMouse = null;
     this.selectionBox = { x: e.clientX, y: e.clientY };
 
-    if (!e.shiftKey) {
+    if (!e.shiftKey && !e.altKey) {
       this.unselect();
       this.selectFields.emit([]);
       this.selected = [];
@@ -454,11 +473,16 @@ export function mouseUp(event) {
     var dragBox = this.component.shadowRoot.getElementById('ls-drag-selector') as HTMLElement;
     var fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
     const isShift = event.shiftKey;
+    const isAlt = event.altKey;
     this.selectionBox = null;
-    const found = findIn(fields, dragBox, true, isShift);
+    const found = findIn(fields, dragBox, !isAlt, isShift || isAlt);
     dragBox.style.visibility = 'hidden';
 
-    if (isShift) {
+    if (isAlt) {
+      const removeIds = new Set(found.map(f => f.dataItem?.id));
+      found.forEach(f => { f.selected = false; });
+      this.selected = this.selected.filter(f => !removeIds.has(f.dataItem?.id));
+    } else if (isShift) {
       const existingIds = new Set(this.selected.map(f => f.dataItem?.id));
       const newFields = found.filter(f => !existingIds.has(f.dataItem?.id));
       this.selected = [...this.selected, ...newFields];
@@ -514,9 +538,11 @@ export function mouseClick(e) {
       if (e.clientY <= bottom && e.clientY >= top && e.clientX >= left && e.clientX <= right) {
         this.edgeSide = null;
         this.hitField = f;
-        // check if this is a shift click to add to the current selection
-        if (!e.shiftKey) fields.forEach(ft => (ft.selected = false));
-        f.selected = true;
+        if (!e.shiftKey && !e.altKey) {
+          fields.forEach(ft => (ft.selected = false));
+          f.selected = true;
+        }
+        // shift/alt+click: mouseDown already toggled selected state, preserve it
         hitAny = true;
       }
     });
