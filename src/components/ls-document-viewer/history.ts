@@ -56,10 +56,14 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
     undoStack.shift();
   }
 
-  // Clear snapshots for fields that were just recorded
+  // Update snapshots to the new state (so next undo captures from this point)
   mutations.forEach(m => {
     const data = m.data as LSApiElement;
-    if (data?.id) fieldSnapshots.delete(data.id);
+    if (data?.id && m.action === 'update') {
+      fieldSnapshots.set(data.id, { ...data });
+    } else if (data?.id) {
+      fieldSnapshots.delete(data.id);
+    }
   });
 
   // New action clears redo
