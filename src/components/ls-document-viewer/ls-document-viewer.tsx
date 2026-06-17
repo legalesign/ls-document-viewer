@@ -984,6 +984,15 @@ export class LsDocumentViewer {
                       editor={this}
                     />
                   )}
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && (
+                    <ls-select-menu
+                      class="ls-dv-select-menu-floating"
+                      selected={this.selected}
+                      pageNum={this.pageNum}
+                      editor={this}
+                      floating={true}
+                    />
+                  )}
                 </div>
               </div>
               <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />

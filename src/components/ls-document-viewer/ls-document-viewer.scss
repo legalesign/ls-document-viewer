@@ -204,6 +204,11 @@ slot {
   z-index: 999;
 }
 
+.ls-dv-select-menu-floating {
+  z-index: 999;
+  pointer-events: auto;
+}
+
 #ls-document-frame {
   /* background-image: repeating-linear-gradient(rgba(175, 176, 178, 0.4) 0px, rgba(175, 176, 178, 0.4) 1px, transparent 1px, transparent 100%),
     repeating-linear-gradient(90deg, rgba(175, 176, 178, 0.4) 0px, rgba(175, 176, 178, 0.4) 1px, transparent 1px, transparent 100%);

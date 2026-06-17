@@ -605,6 +605,10 @@ export namespace Components {
     }
     interface LsSelectMenu {
         "editor": any;
+        /**
+          * @default false
+         */
+        "floating": boolean;
         "pageNum": number;
         /**
           * @default []
@@ -2151,6 +2155,10 @@ declare namespace LocalJSX {
     }
     interface LsSelectMenu {
         "editor"?: any;
+        /**
+          * @default false
+         */
+        "floating"?: boolean;
         "onSelectFields"?: (event: LsSelectMenuCustomEvent<any[]>) => void;
         "pageNum"?: number;
         /**

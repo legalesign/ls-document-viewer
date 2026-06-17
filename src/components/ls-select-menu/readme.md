@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type     | Default     |
-| ---------- | ---------- | ----------- | -------- | ----------- |
-| `editor`   | `editor`   |             | `any`    | `undefined` |
-| `pageNum`  | `page-num` |             | `number` | `undefined` |
-| `selected` | --         |             | `any[]`  | `[]`        |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `editor`   | `editor`   |             | `any`     | `undefined` |
+| `floating` | `floating` |             | `boolean` | `false`     |
+| `pageNum`  | `page-num` |             | `number`  | `undefined` |
+| `selected` | --         |             | `any[]`   | `[]`        |
 
 
 ## Events

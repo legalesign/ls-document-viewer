@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State, Event, EventEmitter, Listen, h } from '@stencil/core';
+import { Component, Element, Prop, State, Event, EventEmitter, Listen, Watch, h } from '@stencil/core';
 import { dvI18n } from '../../i18n/i18n';
 
 @Component({
@@ -12,8 +12,19 @@ export class LsSelectMenu {
   @Prop() selected: any[] = [];
   @Prop() pageNum: number;
   @Prop() editor: any;
+  @Prop() floating: boolean = false;
 
   @State() isOpen: boolean = false;
+  @State() isVisible: boolean = false;
+  @State() isHeldDown: boolean = false;
+  @State() floatingTop: number = 0;
+  @State() floatingLeft: number = 0;
+
+  private scrollHandler: () => void;
+  private frameMouseDownHandler: () => void;
+  private frameMouseUpHandler: () => void;
+  private frameKeyDownHandler: (e: KeyboardEvent) => void;
+  private frameKeyUpHandler: (e: KeyboardEvent) => void;
 
   @Event({ bubbles: true, composed: true }) selectFields: EventEmitter<any[]>;
 
@@ -23,6 +34,110 @@ export class LsSelectMenu {
         e.stopPropagation();
       });
     });
+
+    if (this.floating) {
+      this.scrollHandler = () => this.updateFloatingVisibility();
+      const wrapper = this.editor?.component?.shadowRoot?.getElementById('document-frame-wrapper');
+      if (wrapper) wrapper.addEventListener('scroll', this.scrollHandler);
+
+      const frame = this.editor?.component?.shadowRoot?.getElementById('ls-document-frame');
+      if (frame) {
+        this.frameMouseDownHandler = () => { this.isHeldDown = true; };
+        this.frameMouseUpHandler = () => { this.isHeldDown = false; this.updateFloatingVisibility(); };
+        frame.addEventListener('mousedown', this.frameMouseDownHandler);
+        frame.addEventListener('mouseup', this.frameMouseUpHandler);
+      }
+
+      const arrowKeys = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
+      this.frameKeyDownHandler = (e: KeyboardEvent) => {
+        if (arrowKeys.has(e.key)) this.isHeldDown = true;
+      };
+      this.frameKeyUpHandler = (e: KeyboardEvent) => {
+        if (arrowKeys.has(e.key)) { this.isHeldDown = false; this.updateFloatingVisibility(); }
+      };
+      document.addEventListener('keydown', this.frameKeyDownHandler);
+      document.addEventListener('keyup', this.frameKeyUpHandler);
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.floating) {
+      const wrapper = this.editor?.component?.shadowRoot?.getElementById('document-frame-wrapper');
+      if (wrapper && this.scrollHandler) wrapper.removeEventListener('scroll', this.scrollHandler);
+      const frame = this.editor?.component?.shadowRoot?.getElementById('ls-document-frame');
+      if (frame) {
+        if (this.frameMouseDownHandler) frame.removeEventListener('mousedown', this.frameMouseDownHandler);
+        if (this.frameMouseUpHandler) frame.removeEventListener('mouseup', this.frameMouseUpHandler);
+      }
+      if (this.frameKeyDownHandler) document.removeEventListener('keydown', this.frameKeyDownHandler);
+      if (this.frameKeyUpHandler) document.removeEventListener('keyup', this.frameKeyUpHandler);
+    }
+  }
+
+  @Watch('selected')
+  @Watch('pageNum')
+  onSelectionChange() {
+    if (this.floating) {
+      this.updateFloatingVisibility();
+    }
+  }
+
+  private updateFloatingVisibility() {
+    if (!this.floating || !this.editor) {
+      this.isVisible = false;
+      return;
+    }
+
+    const pageSelected = this.selected?.filter(f => f.dataItem?.page === this.pageNum);
+    if (!pageSelected || pageSelected.length === 0) {
+      this.isVisible = false;
+      return;
+    }
+
+    // Check if main select menu button is out of view
+    const mainMenu = this.editor.component?.shadowRoot?.querySelector('.ls-dv-select-menu-position') as HTMLElement;
+    if (!mainMenu) {
+      this.isVisible = false;
+      return;
+    }
+
+    const wrapper = this.editor.component?.shadowRoot?.getElementById('document-frame-wrapper');
+    if (!wrapper) {
+      this.isVisible = false;
+      return;
+    }
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const mainRect = mainMenu.getBoundingClientRect();
+    const mainInView = mainRect.top >= wrapperRect.top && mainRect.bottom <= wrapperRect.bottom &&
+                       mainRect.left >= wrapperRect.left && mainRect.right <= wrapperRect.right;
+
+    if (mainInView) {
+      this.isVisible = false;
+      return;
+    }
+
+    // Calculate position: top-right of selection bounds using getBoundingClientRect for accuracy
+    const frame = this.editor.component?.shadowRoot?.getElementById('ls-document-frame');
+    if (!frame) {
+      this.isVisible = false;
+      return;
+    }
+    const frameRect = frame.getBoundingClientRect();
+
+    let maxRight = -Infinity;
+    let minTop = Infinity;
+    pageSelected.forEach(f => {
+      const rect = f.getBoundingClientRect();
+      const right = rect.right - frameRect.left;
+      const top = rect.top - frameRect.top;
+      if (right > maxRight) maxRight = right;
+      if (top < minTop) minTop = top;
+    });
+
+    this.floatingTop = minTop + frame.scrollTop;
+    this.floatingLeft = maxRight + frame.scrollLeft + 8;
+    this.isVisible = true;
   }
 
   @Listen('click', { target: 'window' })
@@ -77,14 +192,22 @@ export class LsSelectMenu {
   }
 
   render() {
+    if (this.floating && (!this.isVisible || this.isHeldDown)) return null;
+
     const disabledTooltip = dvI18n.t('selectmenu.disabledtooltip');
+
+    if (this.floating) {
+      this.el.style.position = 'absolute';
+      this.el.style.top = this.floatingTop + 'px';
+      this.el.style.left = this.floatingLeft + 'px';
+    }
 
     return (
       <div class="ls-select-menu">
         <button class={{ 'ls-select-menu-trigger': true, 'ls-select-menu-trigger-expanded': this.isOpen }} onClick={() => (this.isOpen = !this.isOpen)}
         >
           <ls-icon name="cursor-click-icon" />
-          <span class="ls-select-menu-trigger-text">{dvI18n.t('selectmenu.title')}</span>
+          <span class="ls-select-menu-trigger-text">{this.floating ? dvI18n.t('selectmenu.titlefloating') : dvI18n.t('selectmenu.title')}</span>
         </button>
         {this.isOpen && (
           <div class="ls-select-menu-dropdown">

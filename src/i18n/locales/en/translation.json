@@ -244,6 +244,7 @@
   },
   "selectmenu": {
     "title": "Select Fields",
+    "titlefloating": "Select More Fields",
     "selectall": "All",
     "selectallonpage": "Current Page",
     "sameparticipant": "Same Participant",
