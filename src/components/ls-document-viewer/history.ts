@@ -23,9 +23,10 @@ export function canRedo(): boolean {
 /**
  * Snapshot a field's state before any edits occur.
  * Called when fields are selected or before an edit begins.
+ * Always overwrites to capture the latest committed state at selection time.
  */
 export function snapshotField(field: LSApiElement) {
-  if (!fieldSnapshots.has(field.id)) {
+  if (field?.id) {
     fieldSnapshots.set(field.id, { ...field });
   }
 }
@@ -132,5 +133,13 @@ export function updateCreatedId(clientId: string, serverId: string) {
   // Check the most recent undo entry (where the create was just recorded)
   if (undoStack.length > 0) {
     updateEntry(undoStack[undoStack.length - 1]);
+  }
+
+  // Update snapshot key to use server ID
+  if (fieldSnapshots.has(clientId)) {
+    const snapshot = fieldSnapshots.get(clientId);
+    fieldSnapshots.delete(clientId);
+    snapshot.id = serverId;
+    fieldSnapshots.set(serverId, snapshot);
   }
 }
