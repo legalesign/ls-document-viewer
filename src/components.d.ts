@@ -636,6 +636,8 @@ export namespace Components {
          */
         "groupInfo": object;
         "mode": string;
+        "pageNum": number;
+        "selected": any[];
         "signer": number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -2154,6 +2156,8 @@ declare namespace LocalJSX {
         "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "pageNum"?: number;
+        "selected"?: any[];
         "signer"?: number;
         /**
           * The base template information (as JSON). {LSApiTemplate}

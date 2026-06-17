@@ -286,6 +286,7 @@ graph TD;
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
   ls-toolbar --> ls-tooltip
+  ls-toolbar --> ls-icon
   ls-field-format --> ls-icon
   ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon

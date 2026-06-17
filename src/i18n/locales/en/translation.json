@@ -236,7 +236,9 @@
     "placingfieldsfor": "Placing Fields for",
     "sender": "Sender",
     "you": "You",
-    "addnewsigner": "Add a new Signer"
+    "addnewsigner": "Add a new Signer",
+    "fieldsselected": "{{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "Deselect All"
   },
   "fieldvalidation": {
     "exactcharacters": "Must be exactly {{count}} character(s)",

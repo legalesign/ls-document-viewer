@@ -227,6 +227,13 @@ slot {
   border: 1px dashed $primary-50;
 }
 
+#ls-drag-selector {
+  position: absolute;
+  visibility: hidden;
+  background-color: color-mix(in srgb, $primary-20 20%, transparent);
+  border: 1px dashed $primary-50;
+}
+
 #ls-editor-form {
   display: flex;
   width: 100vw;
