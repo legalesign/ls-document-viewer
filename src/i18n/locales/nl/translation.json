@@ -260,6 +260,8 @@
     "delete": "Verwijderen",
     "move": "Verplaatsen",
     "zoom": "inzoomen",
-    "deselect": "Deselecteren"
+    "deselect": "Deselecteren",
+    "undo": "Ongedaan maken",
+    "redo": "Opnieuw doen"
   }
 }
