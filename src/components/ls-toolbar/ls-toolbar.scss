@@ -17,6 +17,54 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.ls-dv-selection-banner {
+  position: absolute;
+  top: 4.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.25rem 0.375rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid $primary-30;
+  background: $primary-10;
+  color: $primary-70;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm);
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.ls-dv-selection-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: $primary-50;
+  margin-right: 0.25rem;
+}
+
+.ls-dv-selection-banner-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: $primary-60;
+  padding: 0.125rem;
+  min-height: unset;
+  min-width: unset;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  margin-right: -0.125rem;
+}
+
+.ls-dv-selection-banner-close:hover {
+  background: $primary-20;
+  color: $primary-70;
+}
+
 .ls-dv-invisible {
   display: none;
 }
@@ -221,7 +269,7 @@ input[type='checkbox']:disabled:checked {
   color: $gray-100;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5rem;
 }
 

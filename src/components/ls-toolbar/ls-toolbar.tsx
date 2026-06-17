@@ -1,5 +1,6 @@
 import { Component, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
 import { LSApiElement, LSApiTemplate, LsDocumentViewer, LSMutateEvent } from '../../components';
+import { dvI18n } from '../../i18n/i18n';
 
 @Component({
   tag: 'ls-toolbar',
@@ -42,6 +43,10 @@ export class LsToolbar {
   @Prop() mode: string;
 
   @Prop() signer: number;
+
+  @Prop() selected: any[];
+
+  @Prop() pageNum: number;
 
   @Event({
     bubbles: true,
@@ -116,7 +121,37 @@ export class LsToolbar {
     );
   }
 
+  private renderSelectionBanner() {
+    if (!this.selected || this.selected.length === 0) return null;
+
+    const pageNum = this.pageNum;
+    const onThisPage = this.selected.filter(f => f.dataItem?.page === pageNum).length;
+    const onOtherPages = this.selected.length - onThisPage;
+
+    if (onOtherPages === 0) return null;
+
+    return (
+      <div class="ls-dv-selection-banner">
+        <div class='ls-dv-selection-dot'></div>
+        <span><span style={{ fontWeight: '500' }}>{dvI18n.t('toolbar.fieldsselectedcount', { total: this.selected.length })}</span> {dvI18n.t('toolbar.fieldsselecteddetail', { thispage: onThisPage, otherpages: onOtherPages })}</span>
+        <button
+          class="ls-dv-selection-banner-close"
+          onClick={() => this.editor.unselect()}
+          data-tooltip-id="ls-dv-selection-tooltip"
+          data-tooltip-content={dvI18n.t('toolbar.deselectall')}
+          data-tooltip-place="bottom"
+        >
+          <ls-icon name="x-icon" size={16} />
+        </button>
+        <ls-tooltip tooltipId="ls-dv-selection-tooltip" />
+      </div>
+    );
+  }
+
   render() {
-    return this.mode === 'editor' ? this.renderEditor() : this.mode === 'compose' ? this.renderCompose() : null;
+    return [
+      this.mode === 'editor' ? this.renderEditor() : this.mode === 'compose' ? this.renderCompose() : null,
+      this.renderSelectionBanner(),
+    ];
   }
 }

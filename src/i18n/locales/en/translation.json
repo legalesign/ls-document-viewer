@@ -238,6 +238,8 @@
     "you": "You",
     "addnewsigner": "Add a new Signer",
     "fieldsselected": "{{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "{{total}} Fields Selected:",
+    "fieldsselecteddetail": "{{thispage}} on this page, {{otherpages}} on other pages",
     "deselectall": "Deselect All"
   },
   "fieldvalidation": {
