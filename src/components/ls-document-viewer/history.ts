@@ -67,6 +67,7 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
 
   console.log('[History] Recorded:', mutations.map(m => `${m.action} ${(m.data as any).id}`));
   console.log('[History] Undo stack size:', undoStack.length);
+  console.log('[History] Undo stack:', undoStack.map((entry, i) => `${i}: ${entry.mutations.map(m => `${m.action} ${(m.data as any).id?.slice(0,8)}...`).join(', ')}`));
 }
 
 export function undo() {

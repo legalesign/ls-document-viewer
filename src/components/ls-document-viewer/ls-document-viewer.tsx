@@ -338,6 +338,14 @@ export class LsDocumentViewer {
           item.id === updatedData.id ? { ...updatedData } : item,
         );
 
+        // Sync toolbar dataItem so format/alignment changes use current values
+        const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+        if (toolbar?.dataItem) {
+          toolbar.dataItem = toolbar.dataItem.map(item =>
+            item.id === updatedData.id ? { ...updatedData } : item,
+          );
+        }
+
         // Only sync editor field if the change came from the sidebar
         if (!isFromEditorField) {
           const editorField = this.component.shadowRoot?.getElementById('ls-field-' + updatedData.id) as HTMLLsEditorFieldElement;
