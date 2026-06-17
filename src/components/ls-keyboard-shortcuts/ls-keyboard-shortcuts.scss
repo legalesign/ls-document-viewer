@@ -57,10 +57,5 @@
 }
 
 #arrow {
-  position: absolute;
-  background: $gray-100;
-  width: 0.625rem;
-  height: 0.625rem;
-  transform: rotate(45deg);
-  border-radius: 0.125rem;
+  display: none;
 }
