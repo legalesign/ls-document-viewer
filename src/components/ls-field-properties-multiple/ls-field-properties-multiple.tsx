@@ -1,28 +1,9 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
-import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
-import { getFieldIcon } from '../ls-document-viewer/defaultFieldIcons';
+import { LSApiRole } from '../../types/LSApiRole';
 import { dvI18n } from '../../i18n/i18n';
+import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 
-const fieldTypeKeyMap: { [key: string]: string } = {
-  'signature': 'toolbox.signature',
-  'auto sign': 'toolbox.autosign',
-  'text': 'toolbox.text',
-  'signing date': 'toolbox.signingdate',
-  'date': 'toolbox.date',
-  'initials': 'toolbox.initials',
-  'checkbox': 'toolbox.checkbox',
-  'email': 'toolbox.email',
-  'number': 'toolbox.number',
-  'image': 'toolbox.image',
-  'dropdown': 'toolbox.dropdown',
-  'file': 'toolbox.file',
-  'drawn field': 'toolbox.drawn',
-  'drawn': 'toolbox.drawn',
-  'regular expression': 'toolbox.regex',
-  'regex': 'toolbox.regex',
-  'mixed': 'common.fields',
-};
 
 @Component({
   tag: 'ls-field-properties-multiple',
@@ -31,7 +12,8 @@ const fieldTypeKeyMap: { [key: string]: string } = {
 })
 export class LsFieldPropertiesMultiple {
   @Prop({ mutable: true }) dataItem: LSApiElement[];
-  @Prop() readonly: boolean = false; 
+  @Prop() roles: LSApiRole[] = [];
+  @Prop() readonly: boolean = false;
 
   @Event({
     bubbles: true,
@@ -88,6 +70,13 @@ export class LsFieldPropertiesMultiple {
     return { isSame: allSame, elementType: allSame ? firstElementType : 'mixed' };
   };
 
+  allFieldTypesSame = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, fieldType: 'text' };
+    const firstType = this.dataItem[0].formElementType;
+    const allSame = this.dataItem.every(item => item.formElementType === firstType);
+    return { isSame: allSame, fieldType: allSame ? firstType : 'mixed' };
+  };
+
   allFieldsOptional = () => {
     if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, optional: false };
     const firstElementOptional = this.dataItem[0].optional;
@@ -95,39 +84,142 @@ export class LsFieldPropertiesMultiple {
     return { isSame: allSame, optional: allSame ? firstElementOptional : false };
   };
 
+  private hasSignatureType(): boolean {
+    return this.dataItem?.some(item => item.formElementType === 'signature' || (item.formElementType as string) === 'auto sign');
+  }
+
+  private getAllRoleTypes(): string[] {
+    const types = new Set<string>();
+    for (const item of this.dataItem || []) {
+      if (item.signer === 0) {
+        types.add('SENDER');
+      } else {
+        const role = this.roles?.find(r => r.signerIndex === item.signer);
+        types.add(role?.roleType || 'SIGNER');
+      }
+    }
+    return [...types];
+  }
+
+  private handleFieldTypeChange(newType: string) {
+    const defaultValidation = getDefaultValidationForType(newType);
+    const noValueTypes = ['signature', 'initials', 'file', 'signing date', 'auto sign', 'date', 'dropdown', 'checkbox', 'drawn field'];
+    const dateTypes = ['date', 'signing date'];
+
+    this.dataItem = this.dataItem.map(item => {
+      const currentType = item.formElementType as string;
+      const shouldClearValue = noValueTypes.includes(newType) || dateTypes.includes(currentType);
+      const isSender = item.signer === 0;
+      let elementType: string;
+      if (isSender) {
+        elementType = 'admin';
+      } else if (newType === 'signature') {
+        elementType = 'signature';
+      } else if (newType === 'initials') {
+        elementType = 'initials';
+      } else {
+        elementType = 'text';
+      }
+      return { ...item, formElementType: newType as any, elementType, validation: defaultValidation, ...(shouldClearValue ? { value: '' } : {}) };
+    });
+
+    // Emit immediately — field type change is a discrete action, not continuous input
+    if (this.labeltimer) clearTimeout(this.labeltimer);
+    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+    this.mutate.emit(evs);
+    this.update.emit(evs);
+  }
+
+  private getSenderDisabledReason(): string {
+    const signerOnly = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const nameMap = {
+      'signing date': dvI18n.t('toolbox.signingdate'),
+      'regex': dvI18n.t('toolbox.regex'),
+      'regular expression': dvI18n.t('toolbox.regex'),
+      'image': dvI18n.t('toolbox.image'),
+      'file': dvI18n.t('toolbox.file'),
+      'drawn': dvI18n.t('toolbox.drawn'),
+      'drawn field': dvI18n.t('toolbox.drawn'),
+    };
+    const disallowedTypes = [...new Set(
+      this.dataItem
+        ?.filter(item => signerOnly.includes(item.formElementType as string))
+        .map(item => nameMap[item.formElementType as string] || item.formElementType)
+    )];
+    if (disallowedTypes.length === 0) return '';
+    const fieldTypes = disallowedTypes.length === 1
+      ? disallowedTypes[0]
+      : disallowedTypes.slice(0, -1).join(', ') + ' and ' + disallowedTypes[disallowedTypes.length - 1];
+    return dvI18n.t('fieldproperties.cannotreassignsender', { fieldTypes });
+  }
+
+  private handleReassign(newSigner: number) {
+    this.dataItem = this.dataItem.map(item => {
+      const fieldType = item.formElementType as string;
+      // Auto Sign reassigned away from Sender → becomes Signature
+      if (fieldType === 'auto sign' && newSigner !== 0) {
+        return { ...item, signer: newSigner, formElementType: 'signature' as const, elementType: 'signature', validation: 0 };
+      }
+      // Signature reassigned to Sender → becomes Auto Sign
+      if (fieldType === 'signature' && newSigner === 0) {
+        return { ...item, signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 };
+      }
+      // Any field reassigned to Sender → elementType becomes 'admin'
+      if (newSigner === 0) {
+        return { ...item, signer: newSigner, elementType: 'admin' };
+      }
+      // Any field reassigned away from Sender → revert elementType
+      if (item.signer === 0) {
+        const elType = (fieldType === 'initials') ? 'initials' : 'text';
+        return { ...item, signer: newSigner, elementType: elType };
+      }
+      return { ...item, signer: newSigner };
+    });
+
+    if (this.labeltimer) clearTimeout(this.labeltimer);
+    this.labeltimer = setTimeout(() => {
+      const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+      this.mutate.emit(evs);
+      this.update.emit(evs);
+    }, 500);
+  }
+
   render() {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
+            {this.roles?.length > 0 && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.assignee')}</p>
+                  <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.assigneedescription')}</p>
+                </div>
+                <ls-assignee-select
+                  signer={this.allSignersSame().signer}
+                  roles={this.roles}
+                  disabled={this.readonly}
+                  disabledSenderReason={this.getSenderDisabledReason()}
+                  disabledApproverReason={this.hasSignatureType() ? dvI18n.t('fieldproperties.signaturecannotapprover') : ''}
+                  mixed={!this.allSignersSame().isSame}
+                  onAssigneeChange={ev => this.handleReassign(ev.detail)}
+                />
+              </div>
+            )}
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldtype')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldtypedescriptionmultiple')}</p>
               </div>
-              <div
-                class={'ls-dv-field-type-wrapper'}
-                style={{
-                  border: `1px dashed ${defaultRolePalette[this.allSignersSame().signer % 100].s30}`,
-                  background: defaultRolePalette[this.allSignersSame().signer % 100].s10,
-                }}
-              >
-                <div class={'ls-dv-field-type-inner'}>
-                  <div
-                    class={'ls-dv-field-type-icon'}
-                    style={{
-                      border: `1px solid ${defaultRolePalette[this.allSignersSame().signer % 100].s60}`,
-                      color: defaultRolePalette[this.allSignersSame().signer % 100].s60,
-                      background: defaultRolePalette[this.allSignersSame().signer % 100].s10,
-                    }}
-                  >
-                    <ls-icon name={getFieldIcon(this.allElementsSame().elementType) as any} size={20} />
-                  </div>
-                  <p class={'ls-dv-field-type-name'}>
-                    {this.dataItem.length} {dvI18n.t(fieldTypeKeyMap[this.allElementsSame().elementType] || 'common.fields')} {dvI18n.t('common.fields')}
-                  </p>
-                </div>
-              </div>
+              <ls-field-type-select
+                fieldType={this.allFieldTypesSame().fieldType}
+                assignee={this.allSignersSame().signer}
+                roles={this.roles}
+                roleTypes={this.getAllRoleTypes()}
+                disabled={this.readonly}
+                mixed={!this.allFieldTypesSame().isSame}
+                onFieldTypeChange={ev => this.handleFieldTypeChange(ev.detail)}
+              />
             </div>
             <div class={'ls-dv-field-properties-section ls-dv-row'}>
               <div class={'ls-dv-field-properties-section-text'}>
@@ -135,6 +227,7 @@ export class LsFieldPropertiesMultiple {
               </div>
               <ls-toggle onValueChange={(ev) => !this.readonly && this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
+
 
             <div class={'ls-dv-field-properties-section'}>
               <div class={'ls-dv-field-properties-section-text'}>

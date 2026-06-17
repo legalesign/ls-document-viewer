@@ -11,7 +11,6 @@
     "templatereadytosend": "Plantilla lista para enviar",
     "actionrequired": "Acción requerida",
     "allfieldsplaced": "Se colocan todos los campos obligatorios",
-    "recipientsmissingsignature": "A los destinatarios les falta la firma",
     "detailstobedecided": "Detalles por decidir",
     "tobedecided": "Por decidir",
     "previousrecipientdecidesdetails": "El destinatario anterior decide los detalles",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Este documento necesita que se agreguen o corrijan campos antes de poder enviarlo.",
+    "missingsignature": "Falta la firma",
+    "recipientmissingsignature": "{{name}}le falta una firma",
     "recipientneedsignature": "El destinatario necesita que se le coloque un campo de firma",
-    "recipientsneedsignatures": "Los destinatarios necesitan que se les coloquen campos de firma"
+    "recipientsneedsignatures": "Los destinatarios necesitan que se les coloquen campos de firma",
+    "optionsrequired": "Se requieren opciones desplegables",
+    "fieldneedsoptions": "El campo desplegable necesita opciones agregadas",
+    "fieldsneedoptions": "Los campos desplegables necesitan opciones añadidas",
+    "invalidvalues": "Valores no válidos",
+    "fieldhasinvalidvalue": "el campo tiene un valor no válido",
+    "fieldshaveinvalidvalues": "los campos tienen valores no válidos"
   },
   "viewer": {
     "templatecreation": "Creación de plantillas",
@@ -121,6 +128,8 @@
     "advancedproperties": "Propiedades avanzadas",
     "fieldorder": "Orden de campo",
     "fieldorderdescription": "Determina qué campos de pedido rellenará el usuario",
+    "displaystate": "Estado de visualización",
+    "displaystatedescription": "Seleccione el estado de visualización predeterminado para esta casilla",
     "refname": "Árbitro. Nombre",
     "linktype": "Tipo de enlace",
     "linktypedescription": "Determina de qué manera este campo está vinculado a otros campos",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Añadir a un total",
     "linktypeconditional": "Condiciona esto a...",
     "assignedto": "Asignado a:",
+    "assignee": "Cesionario",
+    "assigneedescription": "El participante al que está asignado este campo.",
+    "reassign": "Reasignar",
+    "cannotreassignsender": "{{fieldTypes}}los campos no se pueden reasignar al remitente. Deseleccione estos campos para continuar.",
+    "cannotreassignsendersingle": "{{fieldTypes}}los campos no se pueden reasignar al remitente.",
+    "signaturecannotapprover": "Los campos de firma no se pueden reasignar a los aprobadores. Deseleccione estos campos para continuar.",
+    "signaturecannotapproversingle": "Los campos de firma no se pueden reasignar a los aprobadores.",
+    "sender": "Remitente",
+    "mixed": "(mixto)",
     "placeholdereg1": "por ejemplo, 1",
     "placeholdercheckboxgroup": "p. ej., grupo de casillas de verificación",
-    "placeholdersignhere": "por ejemplo. Firma aquí"
+    "placeholdersignhere": "por ejemplo. Firma aquí",
+    "changefieldtype": "Cambiar tipo de campo"
   },
   "alignment": {
     "alignleft": "Alinear a la izquierda",
@@ -218,5 +237,29 @@
     "sender": "Remitente",
     "you": "Tú",
     "addnewsigner": "Añadir un nuevo firmante"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Debe ser exactamente el {{count}}carácter (es)",
+    "titlecase": "Debe estar en la caja del título",
+    "uppercase": "Debe estar en mayúsculas",
+    "lowercase": "Debe estar en minúscula",
+    "wholenumber": "Debe ser un número entero",
+    "number": "Debe ser un número",
+    "currency": "Debe ser un valor monetario (por ejemplo, 10,00)",
+    "exactdigits": "Debe ser exactamente un {{count}}dígito (s)",
+    "email": "Debe ser una dirección de correo electrónico válida",
+    "dropdownoption": "Debe ser una de las opciones disponibles"
+  },
+  "shortcuts": {
+    "title": "Métodos abreviados de teclado",
+    "copy": "Copiar",
+    "paste": "Pasta",
+    "cut": "Cortar",
+    "selectall": "Seleccione todo",
+    "duplicate": "Duplicado",
+    "delete": "Borrar",
+    "move": "Muévete",
+    "zoom": "Zoom",
+    "deselect": "Deseleccionar"
   }
 }

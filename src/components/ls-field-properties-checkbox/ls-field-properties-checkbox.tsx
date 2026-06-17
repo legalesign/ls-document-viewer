@@ -1,21 +1,34 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h, Listen, Element } from '@stencil/core';
 import { LSApiElement } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
-  tag: 'ls-field-properties-image',
-  styleUrl: 'ls-field-properties-image.scss',
+  tag: 'ls-field-properties-checkbox',
+  styleUrl: 'ls-field-properties-checkbox.scss',
   shadow: true,
 })
-export class LsFieldPropertiesImage {
-  @Prop() dataItem: LSApiElement;
+export class LsFieldPropertiesCheckbox {
+  @Prop({ mutable: true }) dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
+
+  @Listen('mutate')
+  handleChildMutate(event: CustomEvent<LSMutateEvent[]>) {
+    const update = event.detail?.[0];
+    if (update?.action === 'update' && update.data) {
+      this.dataItem = update.data as LSApiElement;
+    }
+  }
+
+  @Element() el: HTMLElement;
 
   render() {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-field-content dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} showValidationTypes={true} readonly={this.readonly} />
             <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

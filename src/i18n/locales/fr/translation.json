@@ -11,7 +11,6 @@
     "templatereadytosend": "Modèle prêt à être envoyé",
     "actionrequired": "Action requise",
     "allfieldsplaced": "Tous les champs obligatoires sont placés",
-    "recipientsmissingsignature": "Signature manquante des destinataires",
     "detailstobedecided": "Détails à déterminer",
     "tobedecided": "À décider",
     "previousrecipientdecidesdetails": "Le bénéficiaire précédent décide des détails",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Ce document nécessite l'ajout ou la correction de champs avant de pouvoir être envoyé.",
+    "missingsignature": "Signature manquante",
+    "recipientmissingsignature": "{{name}}il manque une signature",
     "recipientneedsignature": "Le destinataire a besoin qu'un champ de signature soit placé pour lui",
-    "recipientsneedsignatures": "Les destinataires ont besoin de champs de signature placés pour eux"
+    "recipientsneedsignatures": "Les destinataires ont besoin de champs de signature placés pour eux",
+    "optionsrequired": "Options de liste déroulante requises",
+    "fieldneedsoptions": "Le champ déroulant nécessite l'ajout d'options",
+    "fieldsneedoptions": "Les champs déroulants nécessitent l'ajout d'options",
+    "invalidvalues": "Valeurs non valides",
+    "fieldhasinvalidvalue": "le champ a une valeur non valide",
+    "fieldshaveinvalidvalues": "les champs ont des valeurs non valides"
   },
   "viewer": {
     "templatecreation": "Création de modèles",
@@ -121,6 +128,8 @@
     "advancedproperties": "Propriétés avancées",
     "fieldorder": "Ordre des champs",
     "fieldorderdescription": "Détermine les champs de commande qui seront remplis par l'utilisateur",
+    "displaystate": "État d'affichage",
+    "displaystatedescription": "Choisissez l'état d'affichage par défaut pour cette case à cocher",
     "refname": "Réf. Nom",
     "linktype": "Type de lien",
     "linktypedescription": "Détermine de quelle manière ce champ est lié à d'autres champs",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Ajouter à un total",
     "linktypeconditional": "Faites en sorte que cela soit conditionnel à...",
     "assignedto": "Assigné à :",
+    "assignee": "Cessionnaire",
+    "assigneedescription": "Le participant auquel ce champ est attribué.",
+    "reassign": "Réattribuer",
+    "cannotreassignsender": "{{fieldTypes}}les champs ne peuvent pas être réaffectés à l'expéditeur. Désélectionnez ces champs pour continuer.",
+    "cannotreassignsendersingle": "{{fieldTypes}}les champs ne peuvent pas être réaffectés à l'expéditeur.",
+    "signaturecannotapprover": "Les champs de signature ne peuvent pas être réaffectés aux approbateurs. Désélectionnez ces champs pour continuer.",
+    "signaturecannotapproversingle": "Les champs de signature ne peuvent pas être réaffectés aux approbateurs.",
+    "sender": "Expéditeur",
+    "mixed": "(mixte)",
     "placeholdereg1": "par exemple 1",
     "placeholdercheckboxgroup": "par exemple, groupe de cases à cocher",
-    "placeholdersignhere": "par exemple. Signez ici"
+    "placeholdersignhere": "par exemple. Signez ici",
+    "changefieldtype": "Modifier le type de champ"
   },
   "alignment": {
     "alignleft": "Aligner à gauche",
@@ -218,5 +237,29 @@
     "sender": "Expéditeur",
     "you": "Vous",
     "addnewsigner": "Ajouter un nouveau signataire"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Doit être exactement le (s) {{count}}caractère (s)",
+    "titlecase": "Doit être dans la case du titre",
+    "uppercase": "Doit être en majuscule",
+    "lowercase": "Doit être en minuscules",
+    "wholenumber": "Doit être un nombre entier",
+    "number": "Doit être un chiffre",
+    "currency": "Doit être une valeur monétaire (par exemple 10,00)",
+    "exactdigits": "Doit être exactement {{count}}un ou plusieurs chiffres",
+    "email": "Doit être une adresse e-mail valide",
+    "dropdownoption": "Doit être l'une des options disponibles"
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "copy": "Copier",
+    "paste": "Coller",
+    "cut": "Couper",
+    "selectall": "Tout sélectionner",
+    "duplicate": "Dupliquer",
+    "delete": "Supprimer",
+    "move": "Déplacer",
+    "zoom": "Zoom",
+    "deselect": "Désélectionnez"
   }
 }

@@ -316,29 +316,17 @@ export class LsRecipientCard {
               {this.recipient.signerIndex > 0 && this.showTool('regex') && (
                 <ls-toolbox-field
                   elementType="text"
-                  formElementType="regex"
+                  formElementType="regular expression"
                   label={dvI18n.t('toolbox.regex')}
-                  defaultHeight={FIELD_DEFAULTS['regex'].defaultHeight}
-                  defaultWidth={FIELD_DEFAULTS['regex'].defaultWidth}
+                  defaultHeight={FIELD_DEFAULTS['regular expression'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['regular expression'].defaultWidth}
                   validation={93}
                   icon="code-icon"
                   tooltip={dvI18n.t('toolbox.regextooltip')}
                   signer={this.recipient.signerIndex}
                 />
               )}
-              {this.recipient.signerIndex > 0 && this.showTool('image') && (
-                <ls-toolbox-field
-                  elementType="text"
-                  formElementType="image"
-                  label={dvI18n.t('toolbox.image')}
-                  defaultHeight={FIELD_DEFAULTS['image'].defaultHeight}
-                  defaultWidth={FIELD_DEFAULTS['image'].defaultWidth}
-                  validation={90}
-                  icon="photograph-icon"
-                  tooltip={dvI18n.t('toolbox.imagetooltip')}
-                  signer={this.recipient.signerIndex}
-                />
-              )}
+
               {this.recipient.signerIndex > 0 && this.showTool('file') && (
                 <ls-toolbox-field
                   elementType="text"
@@ -355,10 +343,10 @@ export class LsRecipientCard {
               {this.recipient.signerIndex > 0 && this.showTool('drawn') && (
                 <ls-toolbox-field
                   elementType="text"
-                  formElementType="drawn"
+                  formElementType="drawn field"
                   label={dvI18n.t('toolbox.drawn')}
-                  defaultHeight={FIELD_DEFAULTS['drawn'].defaultHeight}
-                  defaultWidth={FIELD_DEFAULTS['drawn'].defaultWidth}
+                  defaultHeight={FIELD_DEFAULTS['drawn field'].defaultHeight}
+                  defaultWidth={FIELD_DEFAULTS['drawn field'].defaultWidth}
                   validation={90}
                   icon="pencil-icon"
                   tooltip={dvI18n.t('toolbox.drawntooltip')}

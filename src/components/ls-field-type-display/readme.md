@@ -15,10 +15,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ls-field-content](../ls-field-content)
-
 ### Depends on
 
 - ls-icon
@@ -27,7 +23,6 @@
 ```mermaid
 graph TD;
   ls-field-type-display --> ls-icon
-  ls-field-content --> ls-field-type-display
   style ls-field-type-display fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

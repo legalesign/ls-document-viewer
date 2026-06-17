@@ -11,7 +11,6 @@
     "templatereadytosend": "Mall Redo att skicka",
     "actionrequired": "Åtgärd krävs",
     "allfieldsplaced": "Alla obligatoriska fält är placerade",
-    "recipientsmissingsignature": "Mottagare saknar signatur",
     "detailstobedecided": "Detaljer som ska beslutas",
     "tobedecided": "Beslutas",
     "previousrecipientdecidesdetails": "Tidigare mottagare bestämmer detaljer",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Detta dokument behöver fält läggas till eller korrigeras innan det kan skickas.",
+    "missingsignature": "Saknad signatur",
+    "recipientmissingsignature": "{{name}}Saknar en signatur",
     "recipientneedsignature": "Mottagaren behöver ett signaturfält placerat för dem",
-    "recipientsneedsignatures": "Mottagare behöver signaturfält placerade för dem"
+    "recipientsneedsignatures": "Mottagare behöver signaturfält placerade för dem",
+    "optionsrequired": "Rullgardinsalternativ krävs",
+    "fieldneedsoptions": "Rullgardinsfältet behöver alternativ läggas till",
+    "fieldsneedoptions": "Rullgardinsfält behöver alternativ tillagda",
+    "invalidvalues": "Ogiltiga värden",
+    "fieldhasinvalidvalue": "fältet har ett ogiltigt värde",
+    "fieldshaveinvalidvalues": "fält har ogiltiga värden"
   },
   "viewer": {
     "templatecreation": "Skapa mall",
@@ -121,6 +128,8 @@
     "advancedproperties": "Avancerade egenskaper",
     "fieldorder": "Fältordning",
     "fieldorderdescription": "Bestämmer vilka orderfält som ska fyllas i av användaren",
+    "displaystate": "Visningstillstånd",
+    "displaystatedescription": "Välj standardvisningsläge för den här kryssrutan",
     "refname": "Ref. Namn",
     "linktype": "Länktyp",
     "linktypedescription": "Bestämmer på vilket sätt fältet är länkat till andra fält",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Lägg till i en total",
     "linktypeconditional": "Gör detta villkorat av...",
     "assignedto": "Tilldelad till:",
+    "assignee": "Förvärvare",
+    "assigneedescription": "Deltagaren som det här fältet är tilldelat.",
+    "reassign": "Omtilldela",
+    "cannotreassignsender": "{{fieldTypes}}fält kan inte tilldelas avsändaren på nytt. Avmarkera dessa fält för att fortsätta.",
+    "cannotreassignsendersingle": "{{fieldTypes}}fält kan inte tilldelas avsändaren på nytt.",
+    "signaturecannotapprover": "Signaturfält kan inte tilldelas godkännare igen. Avmarkera dessa fält för att fortsätta.",
+    "signaturecannotapproversingle": "Signaturfält kan inte tilldelas godkännare igen.",
+    "sender": "Avsändare",
+    "mixed": "(blandad)",
     "placeholdereg1": "t.ex. 1",
     "placeholdercheckboxgroup": "t.ex. kryssrutegrupp",
-    "placeholdersignhere": "t.ex. Signera här"
+    "placeholdersignhere": "t.ex. Signera här",
+    "changefieldtype": "Ändra fälttyp"
   },
   "alignment": {
     "alignleft": "Justera vänster",
@@ -218,5 +237,29 @@
     "sender": "Avsändare",
     "you": "Du",
     "addnewsigner": "Lägg till en ny signerare"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Måste vara exakt {{count}}tecken (er)",
+    "titlecase": "Måste vara i titelfall",
+    "uppercase": "Måste vara versaler",
+    "lowercase": "Måste vara gemener",
+    "wholenumber": "Måste vara ett heltal",
+    "number": "Måste vara ett nummer",
+    "currency": "Måste vara ett valutavärde (t.ex. 10.00)",
+    "exactdigits": "Måste vara {{count}}exakt siffra",
+    "email": "Måste vara en giltig e-postadress",
+    "dropdownoption": "Måste vara ett av de tillgängliga alternativen"
+  },
+  "shortcuts": {
+    "title": "Kortkommandon",
+    "copy": "Kopiera",
+    "paste": "Klistra in",
+    "cut": "Klipp ut",
+    "selectall": "Välj alla",
+    "duplicate": "Duplicera",
+    "delete": "Ta bort",
+    "move": "Flytta",
+    "zoom": "Zoom",
+    "deselect": "Avmarkera"
   }
 }

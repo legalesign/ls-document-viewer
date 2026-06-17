@@ -104,11 +104,16 @@
   },
   "validation": {
     "description": "This document needs fields added or corrected before it can be sent.",
+    "missingsignature": "Missing signature",
+    "recipientmissingsignature": "{{name}} is missing a signature",
     "recipientneedsignature": "Recipient needs a Signature Field placed for them",
     "recipientsneedsignatures": "Recipients need Signature Fields placed for them",
     "optionsrequired": "Dropdown Options Required",
     "fieldneedsoptions": "Dropdown field needs options added",
-    "fieldsneedoptions": "Dropdown fields need options added"
+    "fieldsneedoptions": "Dropdown fields need options added",
+    "invalidvalues": "Invalid Values",
+    "fieldhasinvalidvalue": "field has an invalid value",
+    "fieldshaveinvalidvalues": "fields have invalid values"
   },
   "viewer": {
     "templatecreation": "Template Creation",
@@ -123,6 +128,8 @@
     "advancedproperties": "Advanced Properties",
     "fieldorder": "Field Order",
     "fieldorderdescription": "Determines what order fields will be filled in by the user",
+    "displaystate": "Display State",
+    "displaystatedescription": "Choose the default display state for this checkbox",
     "refname": "Ref. Name",
     "linktype": "Link Type",
     "linktypedescription": "Determines in what way this field is linked to other fields",
@@ -145,9 +152,19 @@
     "linktypeaddtotal": "Add to a total",
     "linktypeconditional": "Make this conditional upon...",
     "assignedto": "Assigned to:",
+    "assignee": "Assignee",
+    "assigneedescription": "The participant this field is assigned to.",
+    "reassign": "Re-assign",
+    "cannotreassignsender": "{{fieldTypes}} fields cannot be re-assigned to Sender. Deselect these fields to continue.",
+    "cannotreassignsendersingle": "{{fieldTypes}} fields cannot be re-assigned to Sender.",
+    "signaturecannotapprover": "Signature fields cannot be re-assigned to Approvers. Deselect these fields to continue.",
+    "signaturecannotapproversingle": "Signature fields cannot be re-assigned to Approvers.",
+    "sender": "Sender",
+    "mixed": "(mixed)",
     "placeholdereg1": "eg. 1",
     "placeholdercheckboxgroup": "eg. checkbox group",
-    "placeholdersignhere": "eg. Sign Here"
+    "placeholdersignhere": "eg. Sign Here",
+    "changefieldtype": "Change Field Type"
   },
   "alignment": {
     "alignleft": "Align Left",
@@ -220,5 +237,29 @@
     "sender": "Sender",
     "you": "You",
     "addnewsigner": "Add a new Signer"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Must be exactly {{count}} character(s)",
+    "titlecase": "Must be in title case",
+    "uppercase": "Must be uppercase",
+    "lowercase": "Must be lowercase",
+    "wholenumber": "Must be a whole number",
+    "number": "Must be a number",
+    "currency": "Must be a currency value (e.g. 10.00)",
+    "exactdigits": "Must be exactly {{count}} digit(s)",
+    "email": "Must be a valid email address",
+    "dropdownoption": "Must be one of the available options"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "copy": "Copy",
+    "paste": "Paste",
+    "cut": "Cut",
+    "selectall": "Select All",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "move": "Move",
+    "zoom": "Zoom",
+    "deselect": "Deselect"
   }
 }

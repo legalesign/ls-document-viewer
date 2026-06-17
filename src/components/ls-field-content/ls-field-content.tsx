@@ -1,8 +1,11 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
+import { LSApiRole } from '../../types/LSApiRole';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 
 @Component({
   tag: 'ls-field-content',
@@ -12,8 +15,35 @@ import { dvI18n } from '../../i18n/i18n';
 export class LsFieldContent {
   @Element() component: HTMLElement;
   @Prop({ mutable: true }) dataItem: LSApiElement;
+  @Prop() roles: LSApiRole[] = [];
   @Prop() showValidationTypes: boolean = true;
   @Prop() readonly: boolean = false;
+
+  @State() valueError: string | null = null;
+  @State() isDirty: boolean = false;
+
+  @Watch('dataItem')
+  watchDataItemHandler() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+    this.isDirty = !!this.dataItem?.value && this.dataItem.value.length > 0;
+  }
+
+  componentWillLoad() {
+    if (this.dataItem?.value) {
+      this.isDirty = true;
+      this.valueError = validateFieldValue(
+        this.dataItem?.formElementType,
+        this.dataItem?.validation,
+        this.dataItem?.value,
+        this.dataItem?.options,
+      );
+    }
+  }
 
   @Event({
     bubbles: true,
@@ -34,7 +64,19 @@ export class LsFieldContent {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 500);
+  }
+
+  handleValueChange(value: string) {
+    this.isDirty = value.length > 0;
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      value,
+      this.dataItem?.options,
+    );
+    this.alter({ value });
   }
 
   private labeltimer;
@@ -49,9 +91,15 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'image', 'file', 'signing', 'autosign', 'regex', 'signing date', 'auto sign', 'dropdown', 'checkbox'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
+  }
+
+  private getCheckboxStates(): string[] {
+    const vType = validationTypes.find(v => v.id === this.dataItem?.validation);
+    if (!vType) return [];
+    return vType.description.split('/').reverse();
   }
 
   isDateField(): boolean {
@@ -116,6 +164,98 @@ export class LsFieldContent {
     return vType.description;
   }
 
+  private isSignatureType(): boolean {
+    const fieldType = this.dataItem?.formElementType as string;
+    return fieldType === 'signature' || fieldType === 'auto sign';
+  }
+
+  private getRoleType(): string {
+    if (this.dataItem?.signer === 0) return 'SENDER';
+    const role = this.roles?.find(r => r.signerIndex === this.dataItem?.signer);
+    return role?.roleType || 'SIGNER';
+  }
+
+  private handleFieldTypeChange(newType: string) {
+    const defaultValidation = getDefaultValidationForType(newType);
+    const isSender = this.dataItem?.signer === 0;
+
+    // Determine elementType based on formElementType
+    let elementType: string;
+    if (isSender) {
+      elementType = 'admin';
+    } else if (newType === 'signature') {
+      elementType = 'signature';
+    } else if (newType === 'initials') {
+      elementType = 'initials';
+    } else {
+      elementType = 'text';
+    }
+
+    // Field types that don't support a user-editable value
+    const noValueTypes = ['signature', 'initials', 'file', 'signing date', 'auto sign', 'date', 'dropdown', 'checkbox', 'drawn field'];
+    // Also clear value when leaving a date field (formatted date values aren't valid for other types)
+    const currentType = this.dataItem?.formElementType as string;
+    const dateTypes = ['date', 'signing date'];
+    const shouldClearValue = noValueTypes.includes(newType) || dateTypes.includes(currentType);
+
+    const diff: any = {
+      formElementType: newType as LSApiElement['formElementType'],
+      elementType,
+      validation: defaultValidation,
+    };
+    if (shouldClearValue) {
+      diff.value = '';
+    }
+
+    this.dataItem = { ...this.dataItem, ...diff };
+    this.mutate.emit([{ action: 'update', data: this.dataItem }]);
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
+  }
+
+  private getSenderDisabledReason(): string {
+    const signerOnlyTypes = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const fieldType = this.dataItem?.formElementType as string;
+    if (signerOnlyTypes.includes(fieldType)) {
+      const nameMap = {
+        'signing date': dvI18n.t('toolbox.signingdate'),
+        'regular expression': dvI18n.t('toolbox.regex'),
+        'image': dvI18n.t('toolbox.image'),
+        'file': dvI18n.t('toolbox.file'),
+        'drawn': dvI18n.t('toolbox.drawn'),
+        'drawn field': dvI18n.t('toolbox.drawn'),
+      };
+      return dvI18n.t('fieldproperties.cannotreassignsendersingle', { fieldTypes: nameMap[fieldType] || fieldType });
+    }
+    return '';
+  }
+
+  private handleReassign(newSigner: number) {
+    const fieldType = this.dataItem?.formElementType as string;
+
+    // Auto Sign reassigned away from Sender → becomes Signature
+    if (fieldType === 'auto sign' && newSigner !== 0) {
+      this.alter({ signer: newSigner, formElementType: 'signature', elementType: 'signature', validation: 0 });
+      return;
+    }
+
+    // Signature reassigned to Sender → becomes Auto Sign
+    if (fieldType === 'signature' && newSigner === 0) {
+      this.alter({ signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 });
+      return;
+    }
+
+    // Any field reassigned to Sender → elementType becomes 'admin'
+    // Any field reassigned away from Sender → elementType reverts to its formElementType category
+    if (newSigner === 0) {
+      this.alter({ signer: newSigner, elementType: 'admin' });
+    } else if (this.dataItem?.signer === 0) {
+      const elType = (fieldType === 'initials') ? 'initials' : 'text';
+      this.alter({ signer: newSigner, elementType: elType });
+    } else {
+      this.alter({ signer: newSigner });
+    }
+  }
+
   private handleFormatChange(newValidation: number) {
     const currentValue = this.dataItem?.value;
     if (!currentValue || !this.isDateField()) {
@@ -165,8 +305,27 @@ export class LsFieldContent {
   render() {
     return (
       <Host>
+        {this.roles?.length > 0 && (
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.assignee')} sectionDescription={dvI18n.t('fieldproperties.assigneedescription')}>
+            <ls-assignee-select
+              signer={this.dataItem?.signer}
+              roles={this.roles}
+              disabled={this.readonly}
+              disabledSenderReason={this.getSenderDisabledReason()}
+              disabledApproverReason={this.isSignatureType() ? dvI18n.t('fieldproperties.signaturecannotapproversingle') : ''}
+              onAssigneeChange={ev => this.handleReassign(ev.detail)}
+            />
+          </ls-props-section>
+        )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldtype')} sectionDescription={dvI18n.t('fieldproperties.fieldtypedescription')}>
-          <ls-field-type-display fieldType={this.dataItem?.formElementType} assignee={this.dataItem?.signer} />
+          <ls-field-type-select
+            fieldType={this.dataItem?.formElementType}
+            assignee={this.dataItem?.signer}
+            roles={this.roles}
+            roleTypes={[this.getRoleType()]}
+            disabled={this.readonly}
+            onFieldTypeChange={ev => this.handleFieldTypeChange(ev.detail)}
+          />
         </ls-props-section>
         {this.dataItem?.formElementType !== 'signature' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
@@ -212,11 +371,16 @@ export class LsFieldContent {
                 />
               </div>
             ) : (
-              <input
+              <ls-formfield
+                as="text"
+                name="field-value"
                 value={this.dataItem?.value}
                 placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
-                onInput={e => this.alter({ value: (e.target as HTMLInputElement).value })}
+                valid={!this.valueError}
+                dirty={this.isDirty}
+                errorText={this.valueError}
                 disabled={this.readonly}
+                onTextChange={e => this.handleValueChange(e.detail.value)}
               />
             )}
           </ls-props-section>
@@ -232,7 +396,7 @@ export class LsFieldContent {
           </ls-props-section>
         )}
 
-        {this.showValidationTypes && (
+        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && this.dataItem?.formElementType !== 'regular expression' && this.dataItem?.formElementType !== 'initials' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
             <ls-input-wrapper select>
               <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
@@ -245,6 +409,22 @@ export class LsFieldContent {
                   ))}
               </select>
             </ls-input-wrapper>
+          </ls-props-section>
+        )}
+        {this.dataItem?.formElementType === 'checkbox' && this.getCheckboxStates().length === 2 && (
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.displaystate')} sectionDescription={dvI18n.t('fieldproperties.displaystatedescription')}>
+            <div class="ls-dv-checkbox-toggle">
+              {this.getCheckboxStates().map((state, idx) => (
+                <button
+                  key={idx}
+                  class={{ 'ls-dv-checkbox-toggle-btn': true, 'ls-dv-active': idx === 0 ? this.dataItem?.value?.toString() !== 'true' : this.dataItem?.value?.toString() === 'true' }}
+                  onClick={() => !this.readonly && this.alter({ value: idx === 0 ? 'false' : 'true' })}
+                  disabled={this.readonly}
+                >
+                  {state}
+                </button>
+              ))}
+            </div>
           </ls-props-section>
         )}
         <slot></slot>

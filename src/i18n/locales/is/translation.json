@@ -11,7 +11,6 @@
     "templatereadytosend": "Sniðmát tilbúið til að senda",
     "actionrequired": "Aðgerð krafist",
     "allfieldsplaced": "Allir nauðsynlegir reitir eru settir",
-    "recipientsmissingsignature": "Viðtakendur vantar undirskrift",
     "detailstobedecided": "Upplýsingar sem þarf að ákveða",
     "tobedecided": "Að ákveða",
     "previousrecipientdecidesdetails": "Fyrri viðtakandi ákveður upplýsingar",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Þetta skjal þarf reitum bætt við eða leiðrétta áður en hægt er að senda það.",
+    "missingsignature": "Vantar undirskrift",
+    "recipientmissingsignature": "{{name}}vantar undirskrift",
     "recipientneedsignature": "Viðtakandi þarf undirskriftarreit fyrir þá",
-    "recipientsneedsignatures": "Viðtakendur þurfa undirskriftarreitina sett fyrir þá"
+    "recipientsneedsignatures": "Viðtakendur þurfa undirskriftarreitina sett fyrir þá",
+    "optionsrequired": "Fellivalkostir krafist",
+    "fieldneedsoptions": "Fellireitur þarf valkostum bætt við",
+    "fieldsneedoptions": "Fellireitum þarf að bæta við valkostum",
+    "invalidvalues": "Ógild gildi",
+    "fieldhasinvalidvalue": "reitur hefur ógilt gildi",
+    "fieldshaveinvalidvalues": "reitir hafa ógild gildi"
   },
   "viewer": {
     "templatecreation": "Sniðmátasköpun",
@@ -121,6 +128,8 @@
     "advancedproperties": "Ítarlegri eiginleikar",
     "fieldorder": "Vettvangspöntun",
     "fieldorderdescription": "Ákvarðar hvaða pöntunarreiti notandinn fyllir út",
+    "displaystate": "Sýna ástand",
+    "displaystatedescription": "Veldu sjálfgefið skjáástand fyrir þennan gátreit",
     "refname": "Ref. Nafn",
     "linktype": "Tegund tengla",
     "linktypedescription": "Ákvarðar á hvaða hátt þessi reitur er tengdur öðrum sviðum",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Bæta við samtals",
     "linktypeconditional": "Gerðu þetta skilyrt við...",
     "assignedto": "Úthlutað til:",
+    "assignee": "Framsalshafi",
+    "assigneedescription": "Þátttakandinn sem þessum reit er úthlutað.",
+    "reassign": "Úthluta aftur",
+    "cannotreassignsender": "{{fieldTypes}}Ekki er hægt að úthluta reitum aftur til sendanda. Afvelja þessa reiti til að halda áfram.",
+    "cannotreassignsendersingle": "{{fieldTypes}}Ekki er hægt að úthluta reitum aftur til sendanda.",
+    "signaturecannotapprover": "Ekki er hægt að úthluta undirskriftarreitum aftur til Samþykjenda. Afvelja þessa reiti til að halda áfram.",
+    "signaturecannotapproversingle": "Ekki er hægt að úthluta undirskriftarreitum aftur til Samþykjenda.",
+    "sender": "Sendandi",
+    "mixed": "(blandað)",
     "placeholdereg1": "td. 1",
     "placeholdercheckboxgroup": "td gátreitahópur",
-    "placeholdersignhere": "td. Skráðu þig hér"
+    "placeholdersignhere": "td. Skráðu þig hér",
+    "changefieldtype": "Breyta tegund sviðs"
   },
   "alignment": {
     "alignleft": "Stilltu til vinstri",
@@ -218,5 +237,29 @@
     "sender": "Sendandi",
     "you": "Þú",
     "addnewsigner": "Bæta við nýjum undirritara"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Verður að vera nákvæmlega {{count}}persóna (s)",
+    "titlecase": "Verður að vera í titilmáli",
+    "uppercase": "Verður að vera hástafir",
+    "lowercase": "Verður að vera lágstafir",
+    "wholenumber": "Verður að vera heil tala",
+    "number": "Verður að vera númer",
+    "currency": "Verður að vera gjaldmiðilsgildi (t.d. 10.00)",
+    "exactdigits": "Verður að vera nákvæm {{count}}lega stafur (ir)",
+    "email": "Verður að vera gilt netfang",
+    "dropdownoption": "Verður að vera einn af tiltækum valkostum"
+  },
+  "shortcuts": {
+    "title": "Flýtilyklar",
+    "copy": "Afrita",
+    "paste": "Líma",
+    "cut": "Skera",
+    "selectall": "Veldu allt",
+    "duplicate": "Afrit",
+    "delete": "Eyða",
+    "move": "Færa",
+    "zoom": "Aðdráttur",
+    "deselect": "Afvelja"
   }
 }

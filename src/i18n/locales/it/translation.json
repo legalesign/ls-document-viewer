@@ -11,7 +11,6 @@
     "templatereadytosend": "Modello pronto per l'invio",
     "actionrequired": "Azione richiesta",
     "allfieldsplaced": "Tutti i campi obbligatori sono inseriti",
-    "recipientsmissingsignature": "Firma mancante dei destinatari",
     "detailstobedecided": "Dettagli da decidere",
     "tobedecided": "Da decidere",
     "previousrecipientdecidesdetails": "Il destinatario precedente decide i dettagli",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Questo documento richiede l'aggiunta o la correzione dei campi prima di poter essere inviato.",
+    "missingsignature": "Firma mancante",
+    "recipientmissingsignature": "{{name}}manca una firma",
     "recipientneedsignature": "Il destinatario deve inserire un campo firma per lui",
-    "recipientsneedsignatures": "I destinatari devono inserire campi di firma per loro"
+    "recipientsneedsignatures": "I destinatari devono inserire campi di firma per loro",
+    "optionsrequired": "Opzioni a discesa obbligatorie",
+    "fieldneedsoptions": "Il campo a discesa richiede l'aggiunta di opzioni",
+    "fieldsneedoptions": "I campi a discesa richiedono l'aggiunta di opzioni",
+    "invalidvalues": "Valori non validi",
+    "fieldhasinvalidvalue": "il campo ha un valore non valido",
+    "fieldshaveinvalidvalues": "i campi hanno valori non validi"
   },
   "viewer": {
     "templatecreation": "Creazione di modelli",
@@ -121,6 +128,8 @@
     "advancedproperties": "Proprietà avanzate",
     "fieldorder": "Ordine sul campo",
     "fieldorderdescription": "Determina quali campi dell'ordine verranno compilati dall'utente",
+    "displaystate": "Stato di visualizzazione",
+    "displaystatedescription": "Scegli lo stato di visualizzazione predefinito per questa casella di controllo",
     "refname": "Rif. Nome",
     "linktype": "Tipo di link",
     "linktypedescription": "Determina in che modo questo campo è collegato ad altri campi",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Aggiungi a un totale",
     "linktypeconditional": "Condizionalo a...",
     "assignedto": "Assegnato a:",
+    "assignee": "Assegnatario",
+    "assigneedescription": "Il partecipante a cui è assegnato questo campo.",
+    "reassign": "Riassegna",
+    "cannotreassignsender": "{{fieldTypes}}i campi non possono essere riassegnati al mittente. Deseleziona questi campi per continuare.",
+    "cannotreassignsendersingle": "{{fieldTypes}}i campi non possono essere riassegnati al mittente.",
+    "signaturecannotapprover": "I campi della firma non possono essere riassegnati agli approvatori. Deseleziona questi campi per continuare.",
+    "signaturecannotapproversingle": "I campi della firma non possono essere riassegnati agli approvatori.",
+    "sender": "Mittente",
+    "mixed": "(misto)",
     "placeholdereg1": "ad esempio 1",
     "placeholdercheckboxgroup": "ad es. gruppo di caselle di controllo",
-    "placeholdersignhere": "ad esempio. Firma qui"
+    "placeholdersignhere": "ad esempio. Firma qui",
+    "changefieldtype": "Cambia tipo di campo"
   },
   "alignment": {
     "alignleft": "Allinea a sinistra",
@@ -218,5 +237,29 @@
     "sender": "Mittente",
     "you": "Tu",
     "addnewsigner": "Aggiungi un nuovo firmatario"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Deve essere esattamente uno {{count}}o più caratteri",
+    "titlecase": "Deve essere scritto in maiuscolo",
+    "uppercase": "Deve essere in maiuscolo",
+    "lowercase": "Deve essere in minuscolo",
+    "wholenumber": "Deve essere un numero intero",
+    "number": "Deve essere un numero",
+    "currency": "Deve essere un valore in valuta (ad esempio 10,00)",
+    "exactdigits": "Deve essere una o più {{count}}cifre esatte",
+    "email": "Deve essere un indirizzo email valido",
+    "dropdownoption": "Deve essere una delle opzioni disponibili"
+  },
+  "shortcuts": {
+    "title": "Scelte rapide da tastiera",
+    "copy": "Copia",
+    "paste": "Incolla",
+    "cut": "Taglia",
+    "selectall": "Seleziona tutto",
+    "duplicate": "Duplicato",
+    "delete": "Elimina",
+    "move": "Sposta",
+    "zoom": "Zoom",
+    "deselect": "Deseleziona"
   }
 }
