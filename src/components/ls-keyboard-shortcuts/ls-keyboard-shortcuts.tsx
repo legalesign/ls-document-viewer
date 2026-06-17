@@ -20,6 +20,8 @@ export class LsKeyboardShortcuts {
       { keys: `${this.mod} + V`, label: dvI18n.t('shortcuts.paste') },
       { keys: `${this.mod} + X`, label: dvI18n.t('shortcuts.cut') },
       { keys: `${this.mod} + A`, label: dvI18n.t('shortcuts.selectall') },
+      { keys: `${this.mod} + Z`, label: dvI18n.t('shortcuts.undo') },
+      { keys: this.isMac ? '⌘ + ⇧ + Z' : 'Ctrl + Y', label: dvI18n.t('shortcuts.redo') },
       { keys: 'D', label: dvI18n.t('shortcuts.duplicate') },
       { keys: '⌫', label: dvI18n.t('shortcuts.delete') },
       { keys: '↑ ↓ ← →', label: dvI18n.t('shortcuts.move') },
