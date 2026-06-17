@@ -4,6 +4,7 @@ import { findDimensions, findIn, recalculateCoordinates } from './editorCalculat
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { setLastClickPosition, clearLastClickPosition } from './clipboard';
+import { snapshotField } from './history';
 import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
@@ -123,6 +124,9 @@ export function mouseDown(e) {
   if (this.hitField && e.shiftKey === false) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
+
+    // Snapshot field state before any resize/move begins
+    snapshotField(this.hitField.dataItem);
 
     // mouse down on a field, select it and note the start location
     if (this.hitField.selected === false) {

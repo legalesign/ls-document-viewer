@@ -22,11 +22,11 @@ export function canRedo(): boolean {
 
 /**
  * Snapshot a field's state before any edits occur.
- * Called when fields are selected or before an edit begins.
- * Always overwrites to capture the latest committed state at selection time.
+ * Only stores if no snapshot exists yet for this field.
+ * Called at mouseDown before resize/move can mutate dataItem.
  */
 export function snapshotField(field: LSApiElement) {
-  if (field?.id) {
+  if (field?.id && !fieldSnapshots.has(field.id)) {
     fieldSnapshots.set(field.id, { ...field });
   }
 }
@@ -36,21 +36,23 @@ export function snapshotField(field: LSApiElement) {
  * Call this with the mutations and the before-state of affected elements.
  */
 export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<string, LSApiElement>) {
-  const inverse: LSMutateEvent[] = mutations.map(m => {
-    const data = m.data as LSApiElement;
-    switch (m.action) {
-      case 'create':
-        return { action: 'delete', data };
-      case 'delete':
-        return { action: 'create', data: beforeStates.get(data.id) || { ...data } };
-      case 'update':
-        // Use snapshot (captured at selection time) or beforeState from DOM
-        const before = fieldSnapshots.get(data.id) || beforeStates.get(data.id);
-        return { action: 'update', data: before ? { ...before } : { ...data } };
-      default:
-        return null;
-    }
-  }).filter(Boolean) as LSMutateEvent[];
+  const inverse: LSMutateEvent[] = mutations
+    .map(m => {
+      const data = m.data as LSApiElement;
+      switch (m.action) {
+        case 'create':
+          return { action: 'delete', data };
+        case 'delete':
+          return { action: 'create', data: beforeStates.get(data.id) || { ...data } };
+        case 'update':
+          // Use snapshot (captured at selection time) or beforeState from DOM
+          const before = fieldSnapshots.get(data.id) || beforeStates.get(data.id);
+          return { action: 'update', data: before ? { ...before } : { ...data } };
+        default:
+          return null;
+      }
+    })
+    .filter(Boolean) as LSMutateEvent[];
 
   undoStack.push({ mutations, inverse });
   if (undoStack.length > MAX_HISTORY) {
@@ -60,19 +62,27 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
   // Update snapshots to the new state (so next undo captures from this point)
   mutations.forEach(m => {
     const data = m.data as LSApiElement;
-    if (data?.id && m.action === 'update') {
-      fieldSnapshots.set(data.id, { ...data });
-    } else if (data?.id) {
-      fieldSnapshots.delete(data.id);
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
     }
   });
 
   // New action clears redo
   redoStack = [];
 
-  console.log('[History] Recorded:', mutations.map(m => `${m.action} ${(m.data as any).id}`));
+  console.log(
+    '[History] Recorded:',
+    mutations.map(m => `${m.action} ${(m.data as any).id}`),
+  );
   console.log('[History] Undo stack size:', undoStack.length);
-  console.log('[History] Undo stack:', undoStack.map((entry, i) => `${i}: ${entry.mutations.map(m => `${m.action} ${(m.data as any).id?.slice(0,8)}...`).join(', ')}`));
+  console.log(
+    '[History] Undo stack:',
+    undoStack.map((entry, i) => `${i}: ${entry.mutations.map(m => `${m.action} ${(m.data as any).id?.slice(0, 8)}...`).join(', ')}`),
+  );
 }
 
 export function undo() {
@@ -87,7 +97,22 @@ export function undo() {
     redoStack.shift();
   }
 
-  console.log('[History] Undo:', entry.inverse.map(m => `${m.action} ${(m.data as any).id}`));
+  console.log(
+    '[History] Undo:',
+    entry.inverse.map(m => `${m.action} ${(m.data as any).id}`),
+  );
+  console.log(
+    '[History] Undo data:',
+    entry.inverse.map(m => ({
+      action: m.action,
+      w: (m.data as any).width,
+      h: (m.data as any).height,
+      t: (m.data as any).top,
+      l: (m.data as any).left,
+      value: (m.data as any).value,
+      data: m.data as any,
+    })),
+  );
   return entry.inverse;
 }
 
@@ -103,7 +128,10 @@ export function redo() {
     undoStack.shift();
   }
 
-  console.log('[History] Redo:', entry.mutations.map(m => `${m.action} ${(m.data as any).id}`));
+  console.log(
+    '[History] Redo:',
+    entry.mutations.map(m => `${m.action} ${(m.data as any).id}`),
+  );
   return entry.mutations;
 }
 
@@ -130,10 +158,9 @@ export function updateCreatedId(clientId: string, serverId: string) {
     });
   };
 
-  // Check the most recent undo entry (where the create was just recorded)
-  if (undoStack.length > 0) {
-    updateEntry(undoStack[undoStack.length - 1]);
-  }
+  // Update all entries in both stacks that reference the old ID
+  undoStack.forEach(updateEntry);
+  redoStack.forEach(updateEntry);
 
   // Update snapshot key to use server ID
   if (fieldSnapshots.has(clientId)) {

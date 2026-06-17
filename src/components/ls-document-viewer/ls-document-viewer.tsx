@@ -19,7 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { recordMutations, snapshotField } from './history';
+import { recordMutations } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -471,9 +471,6 @@ export class LsDocumentViewer {
       ...this._template,
       elementConnection: { ...this._template.elementConnection, templateElements: fields.map(ef => ef.dataItem) },
     };
-
-    // Snapshot selected fields for undo history
-    event.detail.forEach(item => snapshotField(item));
 
     var toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
     if (toolbar) {
