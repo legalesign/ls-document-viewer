@@ -242,6 +242,15 @@
     "fieldsselecteddetail": "{{thispage}} on this page, {{otherpages}} on other pages",
     "deselectall": "Deselect All"
   },
+  "selectmenu": {
+    "title": "Select Fields",
+    "selectall": "All",
+    "selectallonpage": "Current Page",
+    "sameparticipant": "Same Participant",
+    "sametype": "Same Type",
+    "sameparticipantandtype": "Same Participant and Type",
+    "disabledtooltip": "Select a field first to match by its properties"
+  },
   "fieldvalidation": {
     "exactcharacters": "Must be exactly {{count}} character(s)",
     "titlecase": "Must be in title case",

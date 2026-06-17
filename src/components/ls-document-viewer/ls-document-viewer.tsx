@@ -533,6 +533,7 @@ export class LsDocumentViewer {
       fu.selected = false;
     });
     this.selected = [];
+    updateSelectionBox.bind(this)();
   }
 
   pageResize() {
@@ -975,6 +976,14 @@ export class LsDocumentViewer {
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
                   <div id="ls-box-selector"></div>
                   <div id="ls-drag-selector"></div>
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && (
+                    <ls-select-menu
+                      class="ls-dv-select-menu-position"
+                      selected={this.selected}
+                      pageNum={this.pageNum}
+                      editor={this}
+                    />
+                  )}
                 </div>
               </div>
               <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />

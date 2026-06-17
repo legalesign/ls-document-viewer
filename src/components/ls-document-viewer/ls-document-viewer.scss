@@ -194,6 +194,14 @@ slot {
   width: 100vw;
   overflow: scroll;
   padding: 5rem 23.75rem 2rem 23.75rem;
+  position: relative;
+}
+
+.ls-dv-select-menu-position {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 0.5rem);
+  z-index: 999;
 }
 
 #ls-document-frame {
