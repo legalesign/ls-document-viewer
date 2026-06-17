@@ -296,6 +296,34 @@ export class LsDocumentViewer {
     }
   }
 
+  @Listen('update')
+  updateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    const details = event.detail;
+    if (!details || details.length === 0) return;
+
+    const source = event.target as HTMLElement;
+    const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
+
+    for (const detail of details) {
+      if (detail?.action === 'update' && detail?.data?.id) {
+        const updatedData = detail.data as LSApiElement;
+
+        // Sync selectedDataItems so sidebar reflects the latest value
+        this.selectedDataItems = this.selectedDataItems.map(item =>
+          item.id === updatedData.id ? { ...updatedData } : item,
+        );
+
+        // Only sync editor field if the change came from the sidebar
+        if (!isFromEditorField) {
+          const editorField = this.component.shadowRoot?.getElementById('ls-field-' + updatedData.id) as HTMLLsEditorFieldElement;
+          if (editorField) {
+            editorField.dataItem = { ...updatedData };
+          }
+        }
+      }
+    }
+  }
+
   @Listen('fieldTypeSelected')
   handleFieldTypeSelected(event) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-toolbox-field');
@@ -448,6 +476,8 @@ export class LsDocumentViewer {
 
     updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
+
+
   }
 
   // Send role selection changes to bars and panels
@@ -670,6 +700,21 @@ export class LsDocumentViewer {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (fi) {
           moveField.bind(this)(fi, update.data);
+          // Update assignee label when signer changes
+          const signer = (update.data as any).signer;
+          const assignee = this.mode === 'compose'
+            ? this._recipients?.find(r => r.signerIndex === signer)
+            : this._template.roles.find(r => r.signerIndex === signer);
+          fi.setAttribute(
+            'assignee',
+            signer === 0
+              ? 'Sender'
+              : this.mode === 'compose' && assignee?.previousRecipientDecides === true
+                ? 'To Be Decided'
+                : this.mode === 'compose'
+                  ? `${assignee?.firstName} ${assignee?.lastName}`
+                  : assignee?.name || `Participant ${signer}`,
+          );
           this.selected = this.selected.map(s => (s.dataItem.id === update.data.id ? fi : s));
         }
         // Reselect the fields - this updates the dataItem value passed to child controls

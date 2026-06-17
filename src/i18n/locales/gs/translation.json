@@ -11,7 +11,6 @@
     "templatereadytosend": "[NEEDS TRANSLATION] Template Ready to Send",
     "actionrequired": "Gnìomh riatanach",
     "allfieldsplaced": "[NEEDS TRANSLATION] All required Fields are placed",
-    "recipientsmissingsignature": "Tha ainm-sgrìobhte a dhìth air faightearan",
     "detailstobedecided": "Fiosrachadh ri cho-dhùnadh",
     "tobedecided": "Ri cho-dhùnadh",
     "previousrecipientdecidesdetails": "Bidh am faightear roimhe a' co-dhùnadh am fiosrachadh",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Feumaidh raointean a bhith air an cur ris no air an ceartachadh mus tèid an sgrìobhainn seo a chur.",
+    "missingsignature": "[NEEDS TRANSLATION] Missing signature",
+    "recipientmissingsignature": "[NEEDS TRANSLATION] {{name}} is missing a signature",
     "recipientneedsignature": "Tha feum aig an fhaightear air raon ainm-sgrìobhte air a chur dhaibh",
-    "recipientsneedsignatures": "Tha feum aig faightearan air raointean ainm-sgrìobhte air an cur dhaibh"
+    "recipientsneedsignatures": "Tha feum aig faightearan air raointean ainm-sgrìobhte air an cur dhaibh",
+    "optionsrequired": "[NEEDS TRANSLATION] Dropdown Options Required",
+    "fieldneedsoptions": "[NEEDS TRANSLATION] Dropdown field needs options added",
+    "fieldsneedoptions": "[NEEDS TRANSLATION] Dropdown fields need options added",
+    "invalidvalues": "[NEEDS TRANSLATION] Invalid Values",
+    "fieldhasinvalidvalue": "[NEEDS TRANSLATION] field has an invalid value",
+    "fieldshaveinvalidvalues": "[NEEDS TRANSLATION] fields have invalid values"
   },
   "viewer": {
     "templatecreation": "Cruthachadh teamplaid",
@@ -121,6 +128,8 @@
     "advancedproperties": "Feartan adhartach",
     "fieldorder": "Òrdugh raoin",
     "fieldorderdescription": "Suidhichidh seo an t-òrdugh anns an lìon an cleachdaiche na raointean",
+    "displaystate": "[NEEDS TRANSLATION] Display State",
+    "displaystatedescription": "[NEEDS TRANSLATION] Choose the default display state for this checkbox",
     "refname": "Ainm iomraidh",
     "linktype": "Seòrsa ceangail",
     "linktypedescription": "Suidhichidh seo an dòigh anns a bheil an raon seo ceangailte ri raointean eile",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Cuir ri iomlan",
     "linktypeconditional": "Dèan seo an urra ri...",
     "assignedto": "Air ainmeachadh do:",
+    "assignee": "[NEEDS TRANSLATION] Assignee",
+    "assigneedescription": "[NEEDS TRANSLATION] The participant this field is assigned to.",
+    "reassign": "[NEEDS TRANSLATION] Re-assign",
+    "cannotreassignsender": "[NEEDS TRANSLATION] {{fieldTypes}} fields cannot be re-assigned to Sender. Deselect these fields to continue.",
+    "cannotreassignsendersingle": "[NEEDS TRANSLATION] {{fieldTypes}} fields cannot be re-assigned to Sender.",
+    "signaturecannotapprover": "[NEEDS TRANSLATION] Signature fields cannot be re-assigned to Approvers. Deselect these fields to continue.",
+    "signaturecannotapproversingle": "[NEEDS TRANSLATION] Signature fields cannot be re-assigned to Approvers.",
+    "sender": "[NEEDS TRANSLATION] Sender",
+    "mixed": "[NEEDS TRANSLATION] (mixed)",
     "placeholdereg1": "m.e. 1",
     "placeholdercheckboxgroup": "m.e. buidheann bhogsa-tice",
-    "placeholdersignhere": "m.e. Soidhnig an seo"
+    "placeholdersignhere": "m.e. Soidhnig an seo",
+    "changefieldtype": "[NEEDS TRANSLATION] Change Field Type"
   },
   "alignment": {
     "alignleft": "Co-thaobhaich clì",
@@ -218,5 +237,29 @@
     "sender": "Neach-cuir",
     "you": "Thu fhèin",
     "addnewsigner": "Cuir Neach-soidhnigidh ùr ris"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "[NEEDS TRANSLATION] Must be exactly {{count}} character(s)",
+    "titlecase": "[NEEDS TRANSLATION] Must be in title case",
+    "uppercase": "[NEEDS TRANSLATION] Must be uppercase",
+    "lowercase": "[NEEDS TRANSLATION] Must be lowercase",
+    "wholenumber": "[NEEDS TRANSLATION] Must be a whole number",
+    "number": "[NEEDS TRANSLATION] Must be a number",
+    "currency": "[NEEDS TRANSLATION] Must be a currency value (e.g. 10.00)",
+    "exactdigits": "[NEEDS TRANSLATION] Must be exactly {{count}} digit(s)",
+    "email": "[NEEDS TRANSLATION] Must be a valid email address",
+    "dropdownoption": "[NEEDS TRANSLATION] Must be one of the available options"
+  },
+  "shortcuts": {
+    "title": "[NEEDS TRANSLATION] Keyboard Shortcuts",
+    "copy": "[NEEDS TRANSLATION] Copy",
+    "paste": "[NEEDS TRANSLATION] Paste",
+    "cut": "[NEEDS TRANSLATION] Cut",
+    "selectall": "[NEEDS TRANSLATION] Select All",
+    "duplicate": "[NEEDS TRANSLATION] Duplicate",
+    "delete": "[NEEDS TRANSLATION] Delete",
+    "move": "[NEEDS TRANSLATION] Move",
+    "zoom": "[NEEDS TRANSLATION] Zoom",
+    "deselect": "[NEEDS TRANSLATION] Deselect"
   }
 }

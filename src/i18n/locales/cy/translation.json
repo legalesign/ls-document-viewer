@@ -11,7 +11,6 @@
     "templatereadytosend": "Templed yn Barod i'w Anfon",
     "actionrequired": "Camau Angenrheidiol",
     "allfieldsplaced": "Mae'r holl feysydd gofynnol yn cael eu gosod",
-    "recipientsmissingsignature": "Llofnod Coll y derbynwyr",
     "detailstobedecided": "Manylion i'w Penderfynu",
     "tobedecided": "I'w Penderfynu",
     "previousrecipientdecidesdetails": "Blaenorol Derbynydd Penderfynu Manylion",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Mae angen ychwanegu neu gywiro meysydd ar y ddogfen hon cyn y gellir ei hanfon.",
+    "missingsignature": "Llofnod ar goll",
+    "recipientmissingsignature": "{{name}}ar goll llofnod",
     "recipientneedsignature": "Mae angen Maes Llofnod wedi'i osod ar ei gyfer y derbynnydd",
-    "recipientsneedsignatures": "Mae angen i dderbynwyr osod Meysydd Llofnod ar eu cyfer"
+    "recipientsneedsignatures": "Mae angen i dderbynwyr osod Meysydd Llofnod ar eu cyfer",
+    "optionsrequired": "Opsiynau gwymplen sy'n ofynnol",
+    "fieldneedsoptions": "Maes gwymplen angen ychwanegu opsiynau",
+    "fieldsneedoptions": "Mae angen ychwanegu opsiynau ar feysydd gwymplen",
+    "invalidvalues": "Gwerthoedd Annilys",
+    "fieldhasinvalidvalue": "mae gan y maes werth annilys",
+    "fieldshaveinvalidvalues": "mae gan feysydd werthoedd annilys"
   },
   "viewer": {
     "templatecreation": "Creu Templed",
@@ -121,6 +128,8 @@
     "advancedproperties": "Eiddo Uwch",
     "fieldorder": "Gorchymyn Maes",
     "fieldorderdescription": "Yn penderfynu pa feysydd archeb fydd yn cael eu llenwi gan y defnyddiwr",
+    "displaystate": "Cyflwr Arddangos",
+    "displaystatedescription": "Dewiswch y cyflwr arddangos diofyn ar gyfer y blwch gwirio hwn",
     "refname": "Cyf. Enw",
     "linktype": "Math Cyswllt",
     "linktypedescription": "Yn penderfynu ym mha ffordd y mae'r maes hwn wedi'i gysylltu â meysydd eraill",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Ychwanegu at gyfanswm",
     "linktypeconditional": "Gwnewch hyn yn amodol ar...",
     "assignedto": "Wedi'i neilltuo i:",
+    "assignee": "Asewyddwr",
+    "assigneedescription": "Mae'r cyfranogwr y maes hwn wedi'i neilltuo iddo.",
+    "reassign": "Ail-aseinio",
+    "cannotreassignsender": "{{fieldTypes}}Ni ellir ail-neilltuo meysydd i Anfonwr. Dadddewis y meysydd hyn i barhau.",
+    "cannotreassignsendersingle": "{{fieldTypes}}Ni ellir ail-neilltuo meysydd i Anfonwr.",
+    "signaturecannotapprover": "Ni ellir ail-neilltuo meysydd llofnod i Gymeradwywyr. Dadddewis y meysydd hyn i barhau.",
+    "signaturecannotapproversingle": "Ni ellir ail-neilltuo meysydd llofnod i Gymeradwywyr.",
+    "sender": "Trosglwyddydd",
+    "mixed": "(cymysg)",
     "placeholdereg1": "e.e. 1",
     "placeholdercheckboxgroup": "e.e. grŵp blwch gwirio",
-    "placeholdersignhere": "ee. Llofnodi Yma"
+    "placeholdersignhere": "ee. Llofnodi Yma",
+    "changefieldtype": "Newid Math o Faes"
   },
   "alignment": {
     "alignleft": "Alinio Chwith",
@@ -218,5 +237,29 @@
     "sender": "Trosglwyddydd",
     "you": "Chi",
     "addnewsigner": "Ychwanegu Llofnodwr newydd"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Rhaid bod yn union {{count}}gymeriad (au)",
+    "titlecase": "Rhaid bod yn achos teitl",
+    "uppercase": "Rhaid bod yn brif lythrennau",
+    "lowercase": "Rhaid bod yn llythrennau bach",
+    "wholenumber": "Rhaid bod yn rhif cyfan",
+    "number": "Rhaid bod yn rhif",
+    "currency": "Rhaid iddo fod yn werth arian cyfred (e.e. 10.00)",
+    "exactdigits": "Rhaid bod yn union {{count}}ddigid (au)",
+    "email": "Rhaid bod yn gyfeiriad e-bost dilys",
+    "dropdownoption": "Rhaid bod yn un o'r opsiynau sydd ar gael"
+  },
+  "shortcuts": {
+    "title": "Llwybrau Byrddau",
+    "copy": "Copi",
+    "paste": "Gludo",
+    "cut": "Torri",
+    "selectall": "Dewiswch Bawb",
+    "duplicate": "Dyblyg",
+    "delete": "Dileu",
+    "move": "Symud",
+    "zoom": "Chwyddo",
+    "deselect": "Dadddewis"
   }
 }

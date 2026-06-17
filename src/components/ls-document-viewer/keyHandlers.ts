@@ -2,6 +2,7 @@ import { LsEditorField } from '../ls-editor-field/ls-editor-field';
 import { oob } from './editorUtils';
 import { moveField } from './editorCalculator';
 import { updateSelectionBox } from './mouseHandlers';
+import { copySelected, cutSelected, pasteClipboard } from './clipboard';
 
 // Buffer for batching rapid key presses
 let mutationBuffer = null;
@@ -13,7 +14,33 @@ export function keyDown(ev: KeyboardEvent) {
   if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
-  
+
+  const isMod = ev.ctrlKey || ev.metaKey;
+
+  // Modifier shortcuts (Ctrl/Cmd + key)
+  if (isMod) {
+    if (ev.key === 'a' || ev.key === 'A') {
+      ev.preventDefault();
+      selectAll.bind(this)();
+      return;
+    }
+    if (ev.key === 'c' || ev.key === 'C') {
+      ev.preventDefault();
+      copySelected.bind(this)();
+      return;
+    }
+    if (ev.key === 'x' || ev.key === 'X') {
+      ev.preventDefault();
+      cutSelected.bind(this)();
+      return;
+    }
+    if (ev.key === 'v' || ev.key === 'V') {
+      ev.preventDefault();
+      pasteClipboard.bind(this)();
+      return;
+    }
+  }
+
   if (this.selected && this.selected?.length > 0) {
     if (ev.key === 'ArrowDown') {
       ev.preventDefault();
@@ -69,7 +96,7 @@ export function keyDown(ev: KeyboardEvent) {
           return { action: 'delete', data: s.dataItem };
         }),
       );
-    } else if (ev.key === 'd' || ev.key === 'D' || ev.key === 'keyD') {
+    } else if (!isMod && (ev.key === 'd' || ev.key === 'D' || ev.key === 'keyD')) {
       const arr = Array.from(this.selected) as LsEditorField[];
       const createdItems = arr.map(s => {
         const newItem = { ...s.dataItem, id: btoa('ele' + crypto.randomUUID()) };
@@ -87,6 +114,23 @@ export function keyDown(ev: KeyboardEvent) {
       this.selectFields.emit([]);
     }
   }
+}
+
+function selectAll() {
+  const fields = Array.from(
+    this.component.shadowRoot.querySelectorAll('ls-editor-field'),
+  ) as HTMLLsEditorFieldElement[];
+
+  if (fields.length === 0) return;
+
+  fields.forEach(f => {
+    f.selected = true;
+    f.multiSelected = fields.length > 1;
+  });
+
+  this.selected = fields;
+  this.selectFields.emit(fields.map(f => f.dataItem));
+  updateSelectionBox.bind(this)();
 }
 
 // Buffered version of alter that batches rapid key presses

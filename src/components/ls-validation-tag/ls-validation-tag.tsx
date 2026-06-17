@@ -66,8 +66,9 @@ export class LsValidationTag {
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type !== 'compose' && (
           <div class={'ls-dv-field-dropdown'} style={{ top: '3.5rem' }}>
             {(() => {
-              const signatureErrors = this.validationErrors.filter(f => f?.role && !f?.element);
-              const elementErrors = this.validationErrors.filter(f => f?.element);
+              const signatureErrors = this.validationErrors.filter(f => f?.type === 'signature' || (f?.role && !f?.element && !f?.type));
+              const elementErrors = this.validationErrors.filter(f => f?.type === 'options' || (f?.element && !f?.type));
+              const valueErrors = this.validationErrors.filter(f => f?.type === 'value');
               return [
                 signatureErrors.length > 0 && (
                   <div class="ls-dv-validation-section">
@@ -162,6 +163,48 @@ export class LsValidationTag {
                     })}
                   </div>
                 ),
+                valueErrors.length > 0 && (
+                  <div class="ls-dv-validation-section">
+                    <div class={'ls-dv-dropdown-header'}>
+                      <h2>{dvI18n.t('validation.invalidvalues')}</h2>
+                      <p>
+                        {valueErrors.length} {valueErrors.length === 1 ? dvI18n.t('validation.fieldhasinvalidvalue') : dvI18n.t('validation.fieldshaveinvalidvalues')}
+                      </p>
+                    </div>
+                    {valueErrors.map((field, idx) => {
+                      const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
+                      const pallette = defaultRolePalette[signerIndex];
+                      return (
+                        <div
+                          key={`val-${idx}`}
+                          class={'ls-dv-required-field'}
+                          style={{
+                            '--field-background': pallette.s10,
+                            '--field-border-color': pallette.s10,
+                            '--field-background-hover': pallette.s20,
+                            '--field-text-color': pallette.s70,
+                            '--field-text-color-hover': pallette.s80,
+                            '--field-border-color-hover': pallette.s60,
+                          }}
+                          onMouseDown={e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.selectFields.emit([field.element]);
+                            this.isExpanded = false;
+                          }}
+                        >
+                          <div class={'ls-dv-required-field-items-left'}>
+                            <div class={'ls-dv-dot'} style={{ background: pallette.s60 }} />
+                            <div class={'ls-dv-required-field-items-left'}>
+                              <p style={{ color: pallette.s80 }}>{field.title}</p>
+                              <ls-label text={field.description} colour={pallette.description as any} type="low" size="sm" />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ),
               ];
             })()}
           </div>
@@ -182,8 +225,9 @@ export class LsValidationTag {
         {this.isExpanded && this.validationErrors.length !== 0 && this.showDropDown && this.type === 'compose' && (
           <div class={'ls-dv-field-dropdown ls-dv-compose'}>
             {(() => {
-              const signatureErrors = this.validationErrors.filter(f => f?.role && !f?.element);
-              const elementErrors = this.validationErrors.filter(f => f?.element);
+              const signatureErrors = this.validationErrors.filter(f => f?.type === 'signature' || (f?.role && !f?.element && !f?.type));
+              const elementErrors = this.validationErrors.filter(f => f?.type === 'options' || (f?.element && !f?.type));
+              const valueErrors = this.validationErrors.filter(f => f?.type === 'value');
               return [
                 signatureErrors.length > 0 && (
                   <div class="ls-dv-validation-section">
@@ -229,6 +273,33 @@ export class LsValidationTag {
                         <div
                           class="ls-dv-validation-tag-row"
                           key={`el-${idx}`}
+                          onClick={() => {
+                            this.selectFields.emit([field.element]);
+                            this.isExpanded = false;
+                          }}
+                        >
+                          <div class="ls-dv-validation-tag-bar" style={{ background: pallette.s60 }}></div>
+                          <div class="ls-dv-validation-tag-details">
+                            <p class="ls-dv-validation-tag-name">{field.title}</p>
+                            <p class="ls-dv-validation-tag-email">{field.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ),
+                valueErrors.length > 0 && (
+                  <div class="ls-dv-validation-section">
+                    <div class="ls-dv-validation-tag-header">
+                      <p class="ls-dv-validation-tag-title">{dvI18n.t('validation.invalidvalues')}</p>
+                    </div>
+                    {valueErrors.map((field, idx) => {
+                      const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
+                      const pallette = defaultRolePalette[signerIndex];
+                      return (
+                        <div
+                          class="ls-dv-validation-tag-row"
+                          key={`val-${idx}`}
                           onClick={() => {
                             this.selectFields.emit([field.element]);
                             this.isExpanded = false;

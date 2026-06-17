@@ -11,7 +11,6 @@
     "templatereadytosend": "Vorlage bereit zum Senden",
     "actionrequired": "Aktion erforderlich",
     "allfieldsplaced": "Alle Pflichtfelder sind platziert",
-    "recipientsmissingsignature": "Empfänger mit fehlender Signatur",
     "detailstobedecided": "Einzelheiten müssen noch festgelegt werden",
     "tobedecided": "Noch zu entscheiden",
     "previousrecipientdecidesdetails": "Der vorherige Empfänger entscheidet über die Details",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Für dieses Dokument müssen Felder hinzugefügt oder korrigiert werden, bevor es gesendet werden kann.",
+    "missingsignature": "Fehlende Signatur",
+    "recipientmissingsignature": "{{name}}fehlt eine Signatur",
     "recipientneedsignature": "Der Empfänger muss ein Unterschriftsfeld für ihn eingerichtet haben",
-    "recipientsneedsignatures": "Empfänger müssen Unterschriftsfelder für sie platziert haben"
+    "recipientsneedsignatures": "Empfänger müssen Unterschriftsfelder für sie platziert haben",
+    "optionsrequired": "Drop-down-Optionen erforderlich",
+    "fieldneedsoptions": "Für das Dropdownfeld müssen Optionen hinzugefügt werden",
+    "fieldsneedoptions": "Für Dropdownfelder müssen Optionen hinzugefügt werden",
+    "invalidvalues": "Ungültige Werte",
+    "fieldhasinvalidvalue": "Feld hat einen ungültigen Wert",
+    "fieldshaveinvalidvalues": "Felder haben ungültige Werte"
   },
   "viewer": {
     "templatecreation": "Erstellung von Vorlagen",
@@ -121,6 +128,8 @@
     "advancedproperties": "Erweiterte Eigenschaften",
     "fieldorder": "Reihenfolge der Felder",
     "fieldorderdescription": "Legt fest, welche Felder in welcher Reihenfolge vom Benutzer ausgefüllt werden",
+    "displaystate": "Status anzeigen",
+    "displaystatedescription": "Wählen Sie den Standardanzeigestatus für dieses Kontrollkästchen",
     "refname": "Ref. Name",
     "linktype": "Link-Typ",
     "linktypedescription": "Legt fest, auf welche Weise dieses Feld mit anderen Feldern verknüpft ist",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Zu einer Gesamtsumme hinzufügen",
     "linktypeconditional": "Machen Sie das abhängig von...",
     "assignedto": "Zugewiesen an:",
+    "assignee": "Abtretungsempfänger",
+    "assigneedescription": "Der Teilnehmer, dem dieses Feld zugewiesen ist.",
+    "reassign": "Neu zuweisen",
+    "cannotreassignsender": "{{fieldTypes}}Felder können dem Absender nicht erneut zugewiesen werden. Deaktivieren Sie diese Felder, um fortzufahren.",
+    "cannotreassignsendersingle": "{{fieldTypes}}Felder können dem Absender nicht erneut zugewiesen werden.",
+    "signaturecannotapprover": "Signaturfelder können Genehmigern nicht erneut zugewiesen werden. Deaktivieren Sie diese Felder, um fortzufahren.",
+    "signaturecannotapproversingle": "Signaturfelder können Genehmigern nicht erneut zugewiesen werden.",
+    "sender": "Absender",
+    "mixed": "(gemischt)",
     "placeholdereg1": "z. B. 1",
     "placeholdercheckboxgroup": "z.B. Checkbox-Gruppe",
-    "placeholdersignhere": "z. B. Unterschreiben Sie hier"
+    "placeholdersignhere": "z. B. Unterschreiben Sie hier",
+    "changefieldtype": "Feldtyp ändern"
   },
   "alignment": {
     "alignleft": "Links ausrichten",
@@ -218,5 +237,29 @@
     "sender": "Absender",
     "you": "Du",
     "addnewsigner": "Neuen Unterzeichner hinzufügen"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Muss genau aus {{count}}Zeichen bestehen",
+    "titlecase": "Muss in der Groß-/Kleinschreibung angegeben sein",
+    "uppercase": "Muss in Großbuchstaben geschrieben werden",
+    "lowercase": "Muss in Kleinbuchstaben geschrieben sein",
+    "wholenumber": "Muss eine ganze Zahl sein",
+    "number": "Muss eine Zahl sein",
+    "currency": "Muss ein Währungswert sein (z. B. 10,00)",
+    "exactdigits": "Muss genau eine {{count}}Ziffer (n) sein",
+    "email": "Muss eine gültige E-Mail-Adresse sein",
+    "dropdownoption": "Muss eine der verfügbaren Optionen sein"
+  },
+  "shortcuts": {
+    "title": "Tastenkürzel",
+    "copy": "Kopieren",
+    "paste": "Paste",
+    "cut": "Schneiden",
+    "selectall": "Alles auswählen",
+    "duplicate": "Duplikat",
+    "delete": "Löschen",
+    "move": "Bewegen",
+    "zoom": "Zoomen",
+    "deselect": "Abwählen"
   }
 }

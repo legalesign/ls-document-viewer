@@ -11,7 +11,6 @@
     "templatereadytosend": "Malli valmiina lähetettäväksi",
     "actionrequired": "Vaadittava toimenpide",
     "allfieldsplaced": "Kaikki pakolliset kentät on sijoitettu",
-    "recipientsmissingsignature": "Vastaanottajan allekirjoitus puuttuu",
     "detailstobedecided": "Yksityiskohdat päätettävät",
     "tobedecided": "Päätettävä",
     "previousrecipientdecidesdetails": "Edellinen vastaanottaja päättää yksityiskohdista",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Tämän asiakirjan kentät on lisättävä tai korjattava ennen sen lähettämistä.",
+    "missingsignature": "Puuttuva allekirjoitus",
+    "recipientmissingsignature": "{{name}}puuttuu allekirjoitus",
     "recipientneedsignature": "Vastaanottaja tarvitsee allekirjoituskentän.",
-    "recipientsneedsignatures": "Vastaanottajat tarvitsevat allekirjoituskentät"
+    "recipientsneedsignatures": "Vastaanottajat tarvitsevat allekirjoituskentät",
+    "optionsrequired": "Tarvittavat pudotusvalikkovaihtoehdot",
+    "fieldneedsoptions": "Avattava kenttä tarvitsee lisätyt vaihtoehdot",
+    "fieldsneedoptions": "Avattavat kentät tarvitsevat lisävaihtoehtoja",
+    "invalidvalues": "Virheelliset arvot",
+    "fieldhasinvalidvalue": "kentällä on virheellinen arvo",
+    "fieldshaveinvalidvalues": "kentissä on virheellisiä arvoja"
   },
   "viewer": {
     "templatecreation": "Mallin luominen",
@@ -121,6 +128,8 @@
     "advancedproperties": "Edistyneet ominaisuudet",
     "fieldorder": "Kenttäjärjestys",
     "fieldorderdescription": "Määrittää, mitkä tilauskentät käyttäjä täyttää",
+    "displaystate": "Näytön tila",
+    "displaystatedescription": "Valitse tämän valintaruudun oletusnäyttötila",
     "refname": "Viite. Nimi",
     "linktype": "Linkkityyppi",
     "linktypedescription": "Määrittää, millä tavalla tämä kenttä linkitetään muihin kenttiin",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Lisää kokonaismäärään",
     "linktypeconditional": "Tee tämä ehdolliseksi...",
     "assignedto": "Määritetty:",
+    "assignee": "Vastaanottaja",
+    "assigneedescription": "Osallistuja, jolle tämä kenttä on määritetty.",
+    "reassign": "Määritä uudelleen",
+    "cannotreassignsender": "{{fieldTypes}}kenttiä ei voi määrittää uudelleen lähettäjälle. Poista näiden kenttien valinta jatkaaksesi.",
+    "cannotreassignsendersingle": "{{fieldTypes}}kenttiä ei voi määrittää uudelleen lähettäjälle.",
+    "signaturecannotapprover": "Allekirjoituskenttiä ei voi määrittää uudelleen Hyväksyjille. Poista näiden kenttien valinta jatkaaksesi.",
+    "signaturecannotapproversingle": "Allekirjoituskenttiä ei voi määrittää uudelleen Hyväksyjille.",
+    "sender": "Lähettäjä",
+    "mixed": "(sekoitettu)",
     "placeholdereg1": "esim. 1",
     "placeholdercheckboxgroup": "esim. valintaruuturyhmä",
-    "placeholdersignhere": "esim. Allekirjoita tästä"
+    "placeholdersignhere": "esim. Allekirjoita tästä",
+    "changefieldtype": "Muuta kenttätyyppiä"
   },
   "alignment": {
     "alignleft": "Kohdista vasemmalle",
@@ -218,5 +237,29 @@
     "sender": "Lähettäjä",
     "you": "Sinä",
     "addnewsigner": "Lisää uusi allekirjoittaja"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Täytyy olla täsmälleen {{count}}merkki (t)",
+    "titlecase": "Täytyy olla otsikkokirjaimessa",
+    "uppercase": "Täytyy olla isoja kirjaimia",
+    "lowercase": "Täytyy olla pieniä kirjaimia",
+    "wholenumber": "Täytyy olla kokonaisluku",
+    "number": "Täytyy olla numero",
+    "currency": "On oltava valuutta-arvo (esim. 10.00)",
+    "exactdigits": "Täsmälleen numeron {{count}}(t) on oltava",
+    "email": "Täytyy olla kelvollinen sähköpostiosoite",
+    "dropdownoption": "Täytyy olla yksi käytettävissä olevista vaihtoehdoista"
+  },
+  "shortcuts": {
+    "title": "Pikanäppäimet",
+    "copy": "Kopioi",
+    "paste": "Liitä",
+    "cut": "Leikata",
+    "selectall": "Valitse kaikki",
+    "duplicate": "Kaksoiskappale",
+    "delete": "Poistaa",
+    "move": "Siirrä",
+    "zoom": "Zoomaus",
+    "deselect": "Poista valinta"
   }
 }

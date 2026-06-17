@@ -11,7 +11,6 @@
     "templatereadytosend": "Шаблон готов за изпращане",
     "actionrequired": "Изисква се действие",
     "allfieldsplaced": "Всички задължителни полета са поставени",
-    "recipientsmissingsignature": "Липсва подпис на получателите",
     "detailstobedecided": "Подробности, които трябва да бъдат решени",
     "tobedecided": "Да бъде решен",
     "previousrecipientdecidesdetails": "Предишен получател решава подробности",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Този документ се нуждае от добавени или коригирани полета, преди да може да бъде изпратен.",
+    "missingsignature": "Липсва подпис",
+    "recipientmissingsignature": "{{name}}липсва подпис",
     "recipientneedsignature": "Получателят се нуждае от поставено поле за подпис за него",
-    "recipientsneedsignatures": "Получателите трябва да бъдат поставени за тях полета за подпис"
+    "recipientsneedsignatures": "Получателите трябва да бъдат поставени за тях полета за подпис",
+    "optionsrequired": "Изискват се падащи опции",
+    "fieldneedsoptions": "Падащото поле изисква добавяне на опции",
+    "fieldsneedoptions": "Падащите полета се нуждаят от добавяне на опции",
+    "invalidvalues": "Невалидни стойности",
+    "fieldhasinvalidvalue": "полето има невалидна стойност",
+    "fieldshaveinvalidvalues": "полетата имат невалидни стойности"
   },
   "viewer": {
     "templatecreation": "Създаване на шаблон",
@@ -121,6 +128,8 @@
     "advancedproperties": "Разширени свойства",
     "fieldorder": "Полев ред",
     "fieldorderdescription": "Определя какви полета за поръчка ще бъдат попълнени от потребителя",
+    "displaystate": "Състояние на показване",
+    "displaystatedescription": "Изберете състоянието на показване по подразбиране за това квадратче",
     "refname": "Реф. Име",
     "linktype": "Тип връзка",
     "linktypedescription": "Определя по какъв начин това поле е свързано с други полета",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Добавяне към обща сума",
     "linktypeconditional": "Направете това условно от...",
     "assignedto": "Присвоен на:",
+    "assignee": "Възложител",
+    "assigneedescription": "Участникът, на когото е възложено това поле.",
+    "reassign": "Повторно възлагане",
+    "cannotreassignsender": "{{fieldTypes}}Полетата не могат да бъдат превъзложени на Изпращача. Премахнете отметката на тези полета, за да продължите.",
+    "cannotreassignsendersingle": "{{fieldTypes}}Полетата не могат да бъдат превъзложени на Изпращача.",
+    "signaturecannotapprover": "Полетата за подпис не могат да бъдат превъзложени на одобрителите. Премахнете отметката на тези полета, за да продължите.",
+    "signaturecannotapproversingle": "Полетата за подпис не могат да бъдат превъзложени на одобрителите.",
+    "sender": "Изпращач",
+    "mixed": "(смесен)",
     "placeholdereg1": "напр. 1",
     "placeholdercheckboxgroup": "напр. група квадратчета за отметка",
-    "placeholdersignhere": "напр. Подпишете тук"
+    "placeholdersignhere": "напр. Подпишете тук",
+    "changefieldtype": "Промяна на типа на полето"
   },
   "alignment": {
     "alignleft": "Подравнете наляво",
@@ -218,5 +237,29 @@
     "sender": "Изпращач",
     "you": "Ти",
     "addnewsigner": "Добавяне на нов подписващ"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Трябва да е точно {{count}}знак (и)",
+    "titlecase": "Трябва да е в случай на заглавие",
+    "uppercase": "Трябва да е с главни букви",
+    "lowercase": "Трябва да е с малки букви",
+    "wholenumber": "Трябва да е цяло число",
+    "number": "Трябва да е число",
+    "currency": "Трябва да е стойност на валутата (напр. 10.00)",
+    "exactdigits": "Трябва да е точно {{count}}цифра (и)",
+    "email": "Трябва да е валиден имейл адрес",
+    "dropdownoption": "Трябва да е една от наличните опции"
+  },
+  "shortcuts": {
+    "title": "Клавишни комбинации",
+    "copy": "Копиране",
+    "paste": "Пастете",
+    "cut": "Изрежете",
+    "selectall": "Избери всички",
+    "duplicate": "Дублиране",
+    "delete": "Изтриване",
+    "move": "Преместване",
+    "zoom": "Увеличаване",
+    "deselect": "Премахване на отметката"
   }
 }

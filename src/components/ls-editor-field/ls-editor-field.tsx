@@ -4,6 +4,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
 
 const fieldTypeKeyMap: { [key: string]: string } = {
   'signature': 'toolbox.signature',
@@ -15,13 +16,17 @@ const fieldTypeKeyMap: { [key: string]: string } = {
   'checkbox': 'toolbox.checkbox',
   'email': 'toolbox.email',
   'number': 'toolbox.number',
-  'image': 'toolbox.image',
   'dropdown': 'toolbox.dropdown',
   'file': 'toolbox.file',
   'drawn field': 'toolbox.drawn',
-  'drawn': 'toolbox.drawn',
   'regular expression': 'toolbox.regex',
   'regex': 'toolbox.regex',
+};
+
+const checkboxSymbols: { [key: number]: [string, string] } = {
+  24: ['✔', '✗'],
+  25: ['✔', ''],
+  26: ['✗', ''],
 };
 
 @Component({
@@ -31,22 +36,38 @@ const fieldTypeKeyMap: { [key: string]: string } = {
 })
 export class LsEditorField {
   @Element() component: HTMLElement;
-  @Prop() assignee: string;
+  @Prop({ mutable: true }) assignee: string;
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() selected: boolean = false;
   @Prop() multiSelected: boolean = false;
   @Prop() readonly: boolean;
-  @Prop() type: 'text' | 'signature' | 'date' | 'regex' | 'file' | 'number' | 'signing date';
+  @Prop() type: 'text' | 'signature' | 'date' | 'regular expression' | 'file' | 'number' | 'signing date';
   @Prop() page: { height: number; width: number };
 
   private getFieldTypeKey(): string {
     return fieldTypeKeyMap[this.dataItem?.formElementType] || 'toolbox.text';
   }
+
+  private getCheckboxSymbol(): string {
+    const symbols = checkboxSymbols[this.dataItem?.validation];
+    if (!symbols) return '';
+    return this.dataItem?.value === 'true' ? symbols[0] : symbols[1];
+  }
   @Prop() fixedAspect: number | null = null;
   @State() isEditing: boolean = false;
+
+  private static readonly NO_EDIT_TYPES = ['signature', 'initials', 'signing date', 'checkbox', 'dropdown', 'drawn field', 'file'];
+
+  @Watch('dataItem')
+  dataItemChanged() {
+    if (this.isEditing && LsEditorField.NO_EDIT_TYPES.includes(this.dataItem?.formElementType as string)) {
+      this.isEditing = false;
+    }
+  }
   @State() heldEdge: string = null;
   @State() isEdgeDragging: boolean = false;
   @State() innerValue: string;
+  @State() valueError: string | null = null;
   @Prop() zoom: string;
 
   private sizeObserver: ResizeObserver;
@@ -123,7 +144,7 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || this.dataItem.formElementType === 'signature' || this.dataItem.formElementType === 'initials' || this.dataItem.formElementType === 'signing date') {
+    if (this.readonly || LsEditorField.NO_EDIT_TYPES.includes(this.dataItem.formElementType as string)) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -182,6 +203,19 @@ export class LsEditorField {
     event.dataTransfer.dropEffect = 'move';
   }
 
+  @Watch('dataItem')
+  watchDataItemHandler() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+    if (this.selected) {
+      this.component.style.background = this.hexToRgba(defaultRolePalette[this.dataItem?.signer % 100].s20, 0.5);
+    }
+  }
+
   @Watch('selected')
   watchSelectedHandler(_newValue: boolean, _oldValue: boolean) {
     if (_newValue) {
@@ -199,6 +233,13 @@ export class LsEditorField {
   };
 
   componentDidLoad() {
+    this.valueError = validateFieldValue(
+      this.dataItem?.formElementType,
+      this.dataItem?.validation,
+      this.dataItem?.value,
+      this.dataItem?.options,
+    );
+
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect) {
@@ -226,6 +267,7 @@ export class LsEditorField {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 900);
   }
 
@@ -297,9 +339,13 @@ export class LsEditorField {
   }
 
   render() {
+    const borderColor = this.valueError
+      ? 'var(--red-50, #FF5C56)'
+      : defaultRolePalette[this.dataItem?.signer % 100].s60;
+
     const hostStyle = this.floatingActive
-      ? { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 }
-      : { border: `2px ${defaultRolePalette[this.dataItem?.signer % 100].s60} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': defaultRolePalette[this.dataItem?.signer % 100].s60 };
+      ? { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': borderColor }
+      : { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': borderColor };
 
     const zoomValue = parseFloat(this.zoom) || 1;
     // const topOffset = (this.dataItem.height ?? 1) + 4;
@@ -314,7 +360,7 @@ export class LsEditorField {
             'is-selected': this.selected,
           }}
         >
-          {!this.dataItem?.optional && (
+          {!this.dataItem?.optional && this.dataItem?.formElementType !== 'checkbox' && (
             <ls-icon
               name="required-icon"
               size={Math.round(12 * zoomValue)}
@@ -326,6 +372,20 @@ export class LsEditorField {
                 transform: 'translateY(-50%)',
                 lineHeight: '1',
                 fontSize: `${0.75 * zoomValue}rem`,
+              }}
+            />
+          )}
+          {!this.dataItem?.optional && this.dataItem?.formElementType === 'checkbox' && (
+            <ls-icon
+              name="required-icon"
+              size={Math.round(8 * zoomValue)}
+              class="ls-dv-required-icon"
+              customStyle={{
+                position: 'absolute',
+                top: `-${3 * zoomValue}px`,
+                right: `-${3 * zoomValue}px`,
+                lineHeight: '1',
+                fontSize: `${0.5 * zoomValue}rem`,
               }}
             />
           )}
@@ -357,6 +417,12 @@ export class LsEditorField {
                 const el = e.target as HTMLTextAreaElement;
                 el.style.height = 'auto';
                 el.style.height = el.scrollHeight + 'px';
+                this.valueError = validateFieldValue(
+                  this.dataItem?.formElementType,
+                  this.dataItem?.validation,
+                  el.value,
+                  this.dataItem?.options,
+                );
                 this.alter({ value: el.value });
               }}
               ref={el => {
@@ -370,8 +436,12 @@ export class LsEditorField {
             />
           )}
 
-          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}` }}>
-            <span style={{ width: '100%', display: 'block', textAlign: 'inherit' }}>{(this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}</span>
+          <div id="field-info" class={this.isEditing ? 'ls-dv-hidden-field' : 'ls-dv-editor-field-draggable'}  style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, ...(this.dataItem?.formElementType === 'checkbox' ? { width: '100%', overflow: 'visible', justifyContent: 'center', alignItems: 'center' } : {}) }}>
+            <span style={{ width: '100%', display: 'block', textAlign: this.dataItem?.formElementType === 'checkbox' ? 'center' : 'inherit' }}>
+              {this.dataItem?.formElementType === 'checkbox'
+                ? this.getCheckboxSymbol()
+                : (this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
+            </span>
           </div>
           {(this.floatingActive || this.selected) && !this.multiSelected && this.dataItem?.label && (
             <div
@@ -427,6 +497,7 @@ export class LsEditorField {
                 height: `${0.875 * zoomValue}rem`,
                 lineHeight: `${0.75 * zoomValue}rem`,
                 fontSize: `${0.75 * zoomValue}rem`,
+                ...(this.dataItem?.formElementType === 'checkbox' ? { transform: `translate(75%, -75%)` } : {}),
               }}
               onClick={() => this.deleteField()}
             >

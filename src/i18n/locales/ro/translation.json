@@ -11,7 +11,6 @@
     "templatereadytosend": "Șablon gata de expediere",
     "actionrequired": "Acțiune necesară",
     "allfieldsplaced": "Toate câmpurile obligatorii sunt plasate",
-    "recipientsmissingsignature": "Destinatarii lipsesc semnătura",
     "detailstobedecided": "Detalii care urmează să fie decise",
     "tobedecided": "Urmează să fie decis",
     "previousrecipientdecidesdetails": "Destinatarul anterior decide detaliile",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Acest document are nevoie de câmpuri adăugate sau corectate înainte de a putea fi trimis.",
+    "missingsignature": "Semnătura lipsă",
+    "recipientmissingsignature": "{{name}}Lipseşte o semnătură",
     "recipientneedsignature": "Destinatarul are nevoie de un câmp de semnătură plasat pentru ei",
-    "recipientsneedsignatures": "Destinatarii au nevoie de câmpuri de semnătură plasate pentru ei"
+    "recipientsneedsignatures": "Destinatarii au nevoie de câmpuri de semnătură plasate pentru ei",
+    "optionsrequired": "Opțiuni derulante necesare",
+    "fieldneedsoptions": "Câmpul derulant necesită opțiuni adăugate",
+    "fieldsneedoptions": "Câmpurile derulante necesită opțiuni adăugate",
+    "invalidvalues": "Valori nevalide",
+    "fieldhasinvalidvalue": "câmpul are o valoare nevalidă",
+    "fieldshaveinvalidvalues": "câmpurile au valori nevalide"
   },
   "viewer": {
     "templatecreation": "Crearea șablonului",
@@ -121,6 +128,8 @@
     "advancedproperties": "Proprietăți avansate",
     "fieldorder": "Ordinea câmpului",
     "fieldorderdescription": "Determină ce câmpuri de ordine vor fi completate de utilizator",
+    "displaystate": "Stare de afișare",
+    "displaystatedescription": "Alegeți starea de afișare implicită pentru această casetă de selectare",
     "refname": "Ref. Nume",
     "linktype": "Tipul legăturii",
     "linktypedescription": "Determină modul în care acest câmp este legat de alte câmpuri",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Adaugă la un total",
     "linktypeconditional": "Faceți acest lucru condiționat de...",
     "assignedto": "Atribuit la:",
+    "assignee": "Cesionar",
+    "assigneedescription": "Participantul căruia i se atribuie acest câmp.",
+    "reassign": "Re-atribuiți",
+    "cannotreassignsender": "{{fieldTypes}}câmpurile nu pot fi reatribuite expeditorului. Deselectați aceste câmpuri pentru a continua.",
+    "cannotreassignsendersingle": "{{fieldTypes}}câmpurile nu pot fi reatribuite expeditorului.",
+    "signaturecannotapprover": "Câmpurile de semnătură nu pot fi reatribuite aprobatorilor. Deselectați aceste câmpuri pentru a continua.",
+    "signaturecannotapproversingle": "Câmpurile de semnătură nu pot fi reatribuite aprobatorilor.",
+    "sender": "Expeditorul",
+    "mixed": "(mixt)",
     "placeholdereg1": "ex. 1",
     "placeholdercheckboxgroup": "de ex. grup de casete de selectare",
-    "placeholdersignhere": "de ex. Semnează aici"
+    "placeholdersignhere": "de ex. Semnează aici",
+    "changefieldtype": "Schimbați tipul câmpului"
   },
   "alignment": {
     "alignleft": "Aliniați la stânga",
@@ -218,5 +237,29 @@
     "sender": "Expeditorul",
     "you": "Tu",
     "addnewsigner": "Adăugarea unui semnatar nou"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Trebuie să fie exact {{count}}caracterul (caracterele)",
+    "titlecase": "Trebuie să fie în cazul titlului",
+    "uppercase": "Trebuie să fie majuscule",
+    "lowercase": "Trebuie să fie minuscule",
+    "wholenumber": "Trebuie să fie un număr întreg",
+    "number": "Trebuie să fie un număr",
+    "currency": "Trebuie să fie o valoare valutară (de exemplu, 10.00)",
+    "exactdigits": "Trebuie să fie exact {{count}}cifră (cifre)",
+    "email": "Trebuie să fie o adresă de e-mail validă",
+    "dropdownoption": "Trebuie să fie una dintre opțiunile disponibile"
+  },
+  "shortcuts": {
+    "title": "Comenzi rapide de la tastatură",
+    "copy": "Copiază",
+    "paste": "Pastă",
+    "cut": "Tăiați",
+    "selectall": "Selectați toate",
+    "duplicate": "Duplicare",
+    "delete": "Șterge",
+    "move": "Mutare",
+    "zoom": "Zoom",
+    "deselect": "Deselectați"
   }
 }

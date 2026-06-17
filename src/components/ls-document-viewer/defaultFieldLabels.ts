@@ -8,7 +8,6 @@ export const defaultFieldLabels: { [key: string]: string } = {
   'checkbox': 'Checkbox',
   'email': 'Email',
   'number': 'Number',
-  'image': 'Image',
   'dropdown': 'Dropdown',
   'file': 'File',
   'drawn field': 'Draw',
@@ -20,7 +19,7 @@ export function getFieldLabel(key: string): string | undefined {
 }
 
 export const defaultFieldTitles: { [key: string]: string } = {
-  'signature': 'eg. Sign Here',
+  'signature': 'eg. Tenant',
   'auto sign': 'eg. Date of Signing',
   'text': 'eg. Full Name, Address, Company Name',
   'signing date': 'eg. Date of Signing',
@@ -29,7 +28,6 @@ export const defaultFieldTitles: { [key: string]: string } = {
   'checkbox': 'eg. Agree to Terms',
   'email': 'eg. Personal Email, Emergency Contact Email',
   'number': 'eg. Phone Number, Account Number',
-  'image': 'eg. ID Image, Headshot',
   'dropdown': 'eg. Select an Option',
   'file': 'eg. Upload Document',
   'drawn field': 'eg. Draw Here',
@@ -50,7 +48,6 @@ export const defaultFieldPlaceholders: { [key: string]: string } = {
   'checkbox': 'Checkbox',
   'email': 'eg. john.doe@example.com',
   'number': 'eg. 12345',
-  'image': 'Image',
   'dropdown': 'Dropdown',
   'file': 'File',
   'drawn field': 'Draw',

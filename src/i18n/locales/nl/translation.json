@@ -11,7 +11,6 @@
     "templatereadytosend": "Sjabloon klaar om te verzenden",
     "actionrequired": "Actie vereist",
     "allfieldsplaced": "Alle verplichte velden zijn geplaatst",
-    "recipientsmissingsignature": "Handtekening van ontvangers ontbreekt",
     "detailstobedecided": "Details moeten nog worden bepaald",
     "tobedecided": "Te beslissen",
     "previousrecipientdecidesdetails": "De vorige ontvanger beslist over de details",
@@ -105,8 +104,16 @@
   },
   "validation": {
     "description": "Dit document moet worden toegevoegd of gecorrigeerd voordat het kan worden verzonden.",
+    "missingsignature": "Handtekening ontbreekt",
+    "recipientmissingsignature": "{{name}}mist een handtekening",
     "recipientneedsignature": "De ontvanger moet een handtekeningveld hebben dat voor hem of haar is geplaatst",
-    "recipientsneedsignatures": "Ontvangers hebben handtekeningvelden nodig die voor hen zijn geplaatst"
+    "recipientsneedsignatures": "Ontvangers hebben handtekeningvelden nodig die voor hen zijn geplaatst",
+    "optionsrequired": "Vervolgkeuzevakken vereist",
+    "fieldneedsoptions": "In het dropdown-veld zijn opties toegevoegd",
+    "fieldsneedoptions": "Voor dropdown-velden moeten opties worden toegevoegd",
+    "invalidvalues": "Ongeldige waarden",
+    "fieldhasinvalidvalue": "veld heeft een ongeldige waarde",
+    "fieldshaveinvalidvalues": "velden hebben ongeldige waarden"
   },
   "viewer": {
     "templatecreation": "Creatie van sjablonen",
@@ -121,6 +128,8 @@
     "advancedproperties": "Geavanceerde eigenschappen",
     "fieldorder": "Bestelling in het veld",
     "fieldorderdescription": "Bepaalt welke bestelvelden door de gebruiker worden ingevuld",
+    "displaystate": "Status van het scherm",
+    "displaystatedescription": "Kies de standaard weergavestatus voor dit selectievakje",
     "refname": "Ref. Naam",
     "linktype": "Soort link",
     "linktypedescription": "Bepaalt op welke manier dit veld is gekoppeld aan andere velden",
@@ -143,9 +152,19 @@
     "linktypeaddtotal": "Aan een totaal toevoegen",
     "linktypeconditional": "Maak dit afhankelijk van...",
     "assignedto": "Toegewezen aan:",
+    "assignee": "Geadresseerde",
+    "assigneedescription": "De deelnemer waaraan dit veld is toegewezen.",
+    "reassign": "Opnieuw toewijzen",
+    "cannotreassignsender": "{{fieldTypes}}velden kunnen niet opnieuw worden toegewezen aan de afzender. Vink deze velden uit om door te gaan.",
+    "cannotreassignsendersingle": "{{fieldTypes}}velden kunnen niet opnieuw worden toegewezen aan de afzender.",
+    "signaturecannotapprover": "Handtekeningvelden kunnen niet opnieuw worden toegewezen aan goedkeurders. Vink deze velden uit om door te gaan.",
+    "signaturecannotapproversingle": "Handtekeningvelden kunnen niet opnieuw worden toegewezen aan goedkeurders.",
+    "sender": "Afzender",
+    "mixed": "(gemengd)",
     "placeholdereg1": "bijv. 1",
     "placeholdercheckboxgroup": "bijv. checkbox-groep",
-    "placeholdersignhere": "bijv. Hier aanmelden"
+    "placeholdersignhere": "bijv. Hier aanmelden",
+    "changefieldtype": "Veldtype wijzigen"
   },
   "alignment": {
     "alignleft": "Links uitlijnen",
@@ -218,5 +237,29 @@
     "sender": "Afzender",
     "you": "Jij",
     "addnewsigner": "Een nieuwe ondertekenaar toevoegen"
+  },
+  "fieldvalidation": {
+    "exactcharacters": "Moet exact het {{count}}teken (s) zijn",
+    "titlecase": "Moet in hoofdletters staan",
+    "uppercase": "Moet in hoofdletters zijn",
+    "lowercase": "Moet in kleine letters zijn",
+    "wholenumber": "Moet een heel getal zijn",
+    "number": "Moet een nummer zijn",
+    "currency": "Moet een valutawaarde zijn (bijvoorbeeld 10.00)",
+    "exactdigits": "Moet exact {{count}}cijfer (s) zijn",
+    "email": "Moet een geldig e-mailadres zijn",
+    "dropdownoption": "Moet een van de beschikbare opties zijn"
+  },
+  "shortcuts": {
+    "title": "Sneltoetsen",
+    "copy": "Kopiëren",
+    "paste": "Pasta",
+    "cut": "Snij",
+    "selectall": "Alles selecteren",
+    "duplicate": "Duplicaat",
+    "delete": "Verwijderen",
+    "move": "Verplaatsen",
+    "zoom": "inzoomen",
+    "deselect": "Deselecteren"
   }
 }

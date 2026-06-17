@@ -11,6 +11,7 @@
 | ---------- | ---------- | ----------- | ---------------- | ----------- |
 | `dataItem` | --         |             | `LSApiElement[]` | `undefined` |
 | `readonly` | `readonly` |             | `boolean`        | `false`     |
+| `roles`    | --         |             | `LSApiRole[]`    | `[]`        |
 
 
 ## Events
@@ -30,7 +31,8 @@
 ### Depends on
 
 - [ls-field-properties-container](../ls-field-properties-container)
-- ls-icon
+- [ls-assignee-select](../ls-assignee-select)
+- [ls-field-type-select](../ls-field-type-select)
 - [ls-toggle](../ls-toggle)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-size](../ls-field-size)
@@ -43,7 +45,8 @@
 ```mermaid
 graph TD;
   ls-field-properties-multiple --> ls-field-properties-container
-  ls-field-properties-multiple --> ls-icon
+  ls-field-properties-multiple --> ls-assignee-select
+  ls-field-properties-multiple --> ls-field-type-select
   ls-field-properties-multiple --> ls-toggle
   ls-field-properties-multiple --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-size
@@ -51,6 +54,9 @@ graph TD;
   ls-field-properties-multiple --> ls-field-placement
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
+  ls-assignee-select --> ls-icon
+  ls-assignee-select --> ls-tooltip
+  ls-field-type-select --> ls-icon
   ls-field-dimensions --> ls-icon
   ls-field-dimensions --> ls-tooltip
   ls-field-size --> ls-icon

@@ -3,6 +3,7 @@ import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { findDimensions, findIn, recalculateCoordinates } from './editorCalculator';
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
+import { setLastClickPosition, clearLastClickPosition } from './clipboard';
 import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
@@ -494,6 +495,7 @@ export function mouseClick(e) {
     // reset the selection box location
     this.selectionBox = { x: e.clientX, y: e.clientY };
 
+    let hitAny = false;
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];
     fields.forEach(f => {
       const { left, top, bottom, right } = f.getBoundingClientRect();
@@ -503,8 +505,16 @@ export function mouseClick(e) {
         // check if this is a shift click to add to the current selection
         if (!e.shiftKey) fields.forEach(ft => (ft.selected = false));
         f.selected = true;
+        hitAny = true;
       }
     });
+
+    // Track click position for paste targeting
+    if (hitAny) {
+      clearLastClickPosition();
+    } else {
+      setLastClickPosition(e.clientX, e.clientY);
+    }
 
     this.selected = Array.from(fields).filter(fx => fx.selected);
     this.selectFields.emit(this.selected.map(fx => fx.dataItem));
@@ -758,7 +768,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
         action: 'create',
         data: {
           id,
-          value: '',
+          value: fieldData.formElementType === 'checkbox' ? 'false' : '',
           formElementType: fieldData.formElementType,
           elementType: fieldData.elementType,
           validation: fieldData.validation,
@@ -778,7 +788,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
           label: '',
           helpText: null,
           logicGroup: null,
-          optional: false,
+          optional: fieldData.formElementType === 'checkbox',
           options: null,
           logicAction: null,
           labelExtra: null,
@@ -829,6 +839,17 @@ export function mouseDoubleClick(event) {
         defaultWidth: FIELD_DEFAULTS['text'].defaultWidth,
       };
     }
+
+    if (this.signer === 0 && data.elementType === 'signature') {
+      data = {
+        label: 'Auto Sign',
+        formElementType: 'auto sign',
+        elementType: 'admin',
+        validation: 3000,
+        defaultHeight: FIELD_DEFAULTS['auto sign'].defaultHeight,
+        defaultWidth: FIELD_DEFAULTS['auto sign'].defaultWidth,
+      };
+    }
     // Unselect all current selected items
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
@@ -842,7 +863,7 @@ export function mouseDoubleClick(event) {
       action: 'create',
       data: {
         id,
-        value: '',
+        value: data.formElementType === 'checkbox' ? 'false' : '',
         formElementType: data.formElementType,
         elementType: data.elementType,
         validation: data.validation,
@@ -862,7 +883,7 @@ export function mouseDoubleClick(event) {
         label: '',
         helpText: null,
         logicGroup: null,
-        optional: false,
+        optional: data.formElementType === 'checkbox',
         options: null,
         logicAction: null,
         labelExtra: null,
