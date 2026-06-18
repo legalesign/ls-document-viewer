@@ -68,7 +68,7 @@ async function  checkWitness(defaultExperience) {
         const newRole: LSApiRole = {
             id: btoa('rol' + crypto.randomUUID()),
             signerIndex: wit?.signerIndex,
-            name: (parent?.name || 'Participant ' + parent?.signerIndex) + ' Witness',
+            name: 'Participant ' + (parent.ordinal + 1),
             roleType: 'WITNESS',
             ordinal: parent.ordinal + 1,
             signerParent: parent.id,
