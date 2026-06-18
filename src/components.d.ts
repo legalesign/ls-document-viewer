@@ -603,6 +603,18 @@ export namespace Components {
     }
     interface LsRecipientManager {
     }
+    interface LsSelectMenu {
+        "editor": any;
+        /**
+          * @default false
+         */
+        "floating": boolean;
+        "pageNum": number;
+        /**
+          * @default []
+         */
+        "selected": any[];
+    }
     interface LsStatusbar {
         /**
           * The parent editor control. {LsDocumentViewer}
@@ -636,6 +648,8 @@ export namespace Components {
          */
         "groupInfo": object;
         "mode": string;
+        "pageNum": number;
+        "selected": any[];
         "signer": number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -802,6 +816,10 @@ export interface LsParticipantSelectCustomEvent<T> extends CustomEvent<T> {
 export interface LsRecipientCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsRecipientCardElement;
+}
+export interface LsSelectMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsSelectMenuElement;
 }
 export interface LsTitleInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1339,6 +1357,23 @@ declare global {
         prototype: HTMLLsRecipientManagerElement;
         new (): HTMLLsRecipientManagerElement;
     };
+    interface HTMLLsSelectMenuElementEventMap {
+        "selectFields": any[];
+    }
+    interface HTMLLsSelectMenuElement extends Components.LsSelectMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsSelectMenuElementEventMap>(type: K, listener: (this: HTMLLsSelectMenuElement, ev: LsSelectMenuCustomEvent<HTMLLsSelectMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsSelectMenuElementEventMap>(type: K, listener: (this: HTMLLsSelectMenuElement, ev: LsSelectMenuCustomEvent<HTMLLsSelectMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsSelectMenuElement: {
+        prototype: HTMLLsSelectMenuElement;
+        new (): HTMLLsSelectMenuElement;
+    };
     interface HTMLLsStatusbarElement extends Components.LsStatusbar, HTMLStencilElement {
     }
     var HTMLLsStatusbarElement: {
@@ -1502,6 +1537,7 @@ declare global {
         "ls-props-section": HTMLLsPropsSectionElement;
         "ls-recipient-card": HTMLLsRecipientCardElement;
         "ls-recipient-manager": HTMLLsRecipientManagerElement;
+        "ls-select-menu": HTMLLsSelectMenuElement;
         "ls-statusbar": HTMLLsStatusbarElement;
         "ls-title-input": HTMLLsTitleInputElement;
         "ls-toggle": HTMLLsToggleElement;
@@ -2117,6 +2153,19 @@ declare namespace LocalJSX {
     }
     interface LsRecipientManager {
     }
+    interface LsSelectMenu {
+        "editor"?: any;
+        /**
+          * @default false
+         */
+        "floating"?: boolean;
+        "onSelectFields"?: (event: LsSelectMenuCustomEvent<any[]>) => void;
+        "pageNum"?: number;
+        /**
+          * @default []
+         */
+        "selected"?: any[];
+    }
     interface LsStatusbar {
         /**
           * The parent editor control. {LsDocumentViewer}
@@ -2154,6 +2203,8 @@ declare namespace LocalJSX {
         "mode"?: string;
         "onMutate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsToolbarCustomEvent<LSMutateEvent1[]>) => void;
+        "pageNum"?: number;
+        "selected"?: any[];
         "signer"?: number;
         /**
           * The base template information (as JSON). {LSApiTemplate}
@@ -2293,6 +2344,7 @@ declare namespace LocalJSX {
         "ls-props-section": LsPropsSection;
         "ls-recipient-card": LsRecipientCard;
         "ls-recipient-manager": LsRecipientManager;
+        "ls-select-menu": LsSelectMenu;
         "ls-statusbar": LsStatusbar;
         "ls-title-input": LsTitleInput;
         "ls-toggle": LsToggle;
@@ -2353,6 +2405,7 @@ declare module "@stencil/core" {
             "ls-props-section": LocalJSX.LsPropsSection & JSXBase.HTMLAttributes<HTMLLsPropsSectionElement>;
             "ls-recipient-card": LocalJSX.LsRecipientCard & JSXBase.HTMLAttributes<HTMLLsRecipientCardElement>;
             "ls-recipient-manager": LocalJSX.LsRecipientManager & JSXBase.HTMLAttributes<HTMLLsRecipientManagerElement>;
+            "ls-select-menu": LocalJSX.LsSelectMenu & JSXBase.HTMLAttributes<HTMLLsSelectMenuElement>;
             "ls-statusbar": LocalJSX.LsStatusbar & JSXBase.HTMLAttributes<HTMLLsStatusbarElement>;
             "ls-title-input": LocalJSX.LsTitleInput & JSXBase.HTMLAttributes<HTMLLsTitleInputElement>;
             "ls-toggle": LocalJSX.LsToggle & JSXBase.HTMLAttributes<HTMLLsToggleElement>;

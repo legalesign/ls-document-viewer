@@ -36,6 +36,12 @@ export class LsFieldDimensions {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
 
+  getMultiValue(key: string): number | undefined {
+    if (!this.isMultiple(this.dataItem)) return undefined;
+    const first = this.dataItem[0][key];
+    return this.dataItem.every(item => item[key] === first) ? first : undefined;
+  }
+
   getDataItem(): LSApiElement {
     if (this.isSingle(this.dataItem)) {
       return this.dataItem;
@@ -76,11 +82,29 @@ export class LsFieldDimensions {
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setwidthtooltip')}>
                 <ls-icon id="selectLeadingIcon" name="field-match-width-icon"></ls-icon>
-                <input class={'ls-dv-has-leading-icon'} aria="field-width" id="field-width" onChange={e => this.alter({ width: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
+                <input
+                  type="number"
+                  class={'ls-dv-has-leading-icon'}
+                  aria="field-width"
+                  id="field-width"
+                  value={this.getMultiValue('width')}
+                  placeholder={this.getMultiValue('width') === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
+                  onChange={e => this.alter({ width: parseInt((e.target as HTMLInputElement).value) })}
+                  disabled={this.readonly}
+                />
               </div>
               <div class={'ls-dv-input-wrapper'} data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('dimensions.setheighttooltip')}>
                 <ls-icon id="selectLeadingIcon" name="field-match-height-icon"></ls-icon>
-                <input class={'ls-dv-has-leading-icon'} aria="field-height" id="field-height" onChange={e => this.alter({ height: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
+                <input
+                  type="number"
+                  class={'ls-dv-has-leading-icon'}
+                  aria="field-height"
+                  id="field-height"
+                  value={this.getMultiValue('height')}
+                  placeholder={this.getMultiValue('height') === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
+                  onChange={e => this.alter({ height: parseInt((e.target as HTMLInputElement).value) })}
+                  disabled={this.readonly}
+                />
               </div>
             </div>
 

@@ -114,6 +114,7 @@ Type: `Promise<void>`
 - [ls-left-bar](../ls-left-bar)
 - [ls-toolbar](../ls-toolbar)
 - [ls-editor-table](../ls-editor-table)
+- [ls-select-menu](../ls-select-menu)
 - [ls-statusbar](../ls-statusbar)
 - [ls-validation-tag](../ls-validation-tag)
 - ls-tooltip
@@ -128,6 +129,7 @@ graph TD;
   ls-document-viewer --> ls-left-bar
   ls-document-viewer --> ls-toolbar
   ls-document-viewer --> ls-editor-table
+  ls-document-viewer --> ls-select-menu
   ls-document-viewer --> ls-statusbar
   ls-document-viewer --> ls-validation-tag
   ls-document-viewer --> ls-tooltip
@@ -286,10 +288,13 @@ graph TD;
   ls-toolbar --> ls-field-format
   ls-toolbar --> ls-participant-select
   ls-toolbar --> ls-tooltip
+  ls-toolbar --> ls-icon
   ls-field-format --> ls-icon
   ls-field-format --> ls-tooltip
   ls-participant-select --> ls-icon
   ls-participant-select --> ls-tooltip
+  ls-select-menu --> ls-icon
+  ls-select-menu --> ls-tooltip
   ls-statusbar --> ls-icon
   ls-statusbar --> ls-helper-bar
   ls-statusbar --> ls-tooltip
