@@ -132,7 +132,7 @@ export class LsToolbar {
 
     return (
       <div class="ls-dv-selection-banner">
-        <div class='ls-dv-selection-dot'></div>
+        <ls-icon style={{ marginRight: '0.125rem'}} name="target-icon" size={16} />
         <span><span style={{ fontWeight: '500' }}>{dvI18n.t('toolbar.fieldsselectedcount', { total: this.selected.length })}</span> {dvI18n.t('toolbar.fieldsselecteddetail', { thispage: onThisPage, otherpages: onOtherPages })}</span>
         <button
           class="ls-dv-selection-banner-close"
