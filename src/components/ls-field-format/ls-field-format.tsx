@@ -22,13 +22,7 @@ export class LsFieldFormat {
 
   @Element() component: HTMLElement;
 
-  private handleKeyDown = (event: KeyboardEvent) => {
-    event.stopPropagation();
-  };
-
-  private handleKeyUp = (event: KeyboardEvent) => {
-    event.stopPropagation();
-  };
+  private readonly fontSizes = [6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 64, 72, 124];
 
   // Send selection changes to bars and panels if in use.
   @Watch('dataItem')
@@ -36,8 +30,8 @@ export class LsFieldFormat {
     if (this.dataItem.length > 0) {
       var selFont = this.component.shadowRoot.getElementById('ls-toolbar-font-select') as HTMLSelectElement;
       if (selFont) selFont.value = this.allElementsSame()?.fontName;
-      var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLInputElement;
-      if (selFontSize) selFontSize.value = this.allElementsSame()?.fontSize.toString();
+      var selFontSize = this.component.shadowRoot.getElementById('ls-toolbar-font-size') as HTMLSelectElement;
+      if (selFontSize) selFontSize.value = this.allElementsSame()?.fontSize?.toString();
     }
   }
 
@@ -68,7 +62,7 @@ export class LsFieldFormat {
 
   render() {
     return (
-      <Host onKeyDown={this.handleKeyDown} onKeyUp={this.handleKeyUp}>
+      <Host>
         {this.dataItem && this.dataItem.length > 1 && (
           <div class={'ls-dv-field-format-bar'}>
             <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontfamily')}>
@@ -78,7 +72,7 @@ export class LsFieldFormat {
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
-                class={'ls-dv-has-leading-icon'}
+                class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
               >
                 <option disabled selected={this.allElementsSame()?.fontName === 'mixed'} value={'mixed'}>
                   Mixed
@@ -93,17 +87,19 @@ export class LsFieldFormat {
             </div>
             <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontsize')}>
               <ls-icon id="selectLeadingIcon" name="text-size-icon"></ls-icon>
-              <input
+              <select
                 id="ls-toolbar-font-size"
-                type='number'
-                min="4"
-                value={this.allElementsSame()?.fontSize}
                 onChange={input => {
-                  if ((input.target as HTMLInputElement).value === '') return;
-                  this.alter({ fontSize: (input.target as HTMLInputElement).value });
+                  this.alter({ fontSize: parseInt((input.target as HTMLSelectElement).value) });
+                  (input.target as HTMLElement).blur();
                 }}
-                class={'ls-dv-has-leading-icon'}
-              />
+                class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
+              >
+                {this.fontSizes.map(size => (
+                  <option value={size} selected={this.allElementsSame()?.fontSize === size}>{size}</option>
+                ))}
+              </select>
+              <ls-icon id="selectorIcon" name="selector-icon"></ls-icon>
             </div>
             <div class={'ls-dv-button-group'}>
               <button
@@ -143,7 +139,7 @@ export class LsFieldFormat {
                 onChange={input => {
                   this.alter({ fontName: (input.target as HTMLSelectElement).value });
                 }}
-                class={'ls-dv-has-leading-icon'}
+                class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
               >
                 <option value="arial">Arial</option>
                 <option value="liberation sans">Liberation Sans</option>
@@ -154,18 +150,19 @@ export class LsFieldFormat {
             </div>
             <div class="ls-dv-input-wrapper" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('format.fontsize')}>
               <ls-icon id="selectLeadingIcon" name="text-size-icon"></ls-icon>
-              <input
+              <select
                 id="ls-toolbar-font-size"
-                type="number"
-                min="4"
-                size={4}
-                value={this.dataItem[0].fontSize}
                 onChange={input => {
-                  if ((input.target as HTMLInputElement).value === '') return;
-                  this.alter({ fontSize: (input.target as HTMLInputElement).value });
+                  this.alter({ fontSize: parseInt((input.target as HTMLSelectElement).value) });
+                  (input.target as HTMLElement).blur();
                 }}
-                class={'ls-dv-has-leading-icon'}
-              />
+                class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
+              >
+                {this.fontSizes.map(size => (
+                  <option value={size} selected={this.dataItem[0].fontSize === size}>{size}</option>
+                ))}
+              </select>
+              <ls-icon id="selectorIcon" name="selector-icon"></ls-icon>
             </div>
             <div class={'ls-dv-button-group'}>
               <button
