@@ -86,17 +86,19 @@ export function mouseDown(e) {
     // Scale edge threshold for small fields
     const edgeX = Math.min(8, width * 0.25);
     const edgeY = Math.min(8, height * 0.25);
+    const cornerX = Math.min(16, width * 0.35);
+    const cornerY = Math.min(16, height * 0.35);
     // corners (check before edges)
-    if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
+    if (Math.abs(e.clientX - right) < cornerX && Math.abs(e.clientY - bottom) < cornerY) {
       this.edgeSide = 'se';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - top) < edgeY) {
+    } else if (Math.abs(e.clientX - left) < cornerX && Math.abs(e.clientY - top) < cornerY) {
       this.edgeSide = 'nw';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - top) < edgeY) {
+    } else if (Math.abs(e.clientX - right) < cornerX && Math.abs(e.clientY - top) < cornerY) {
       this.edgeSide = 'ne';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
+    } else if (Math.abs(e.clientX - left) < cornerX && Math.abs(e.clientY - bottom) < cornerY) {
       this.edgeSide = 'sw';
       this.hitField = f;
       // west edge

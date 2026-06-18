@@ -119,19 +119,28 @@ export class LsEditorField {
     // While dragging (button held), keep current cursor
     if (e.buttons === 1) return;
 
-    // Scale edge threshold so short/narrow fields still have a usable move zone
-    const edgeX = Math.min(8, this.component.clientWidth * 0.25);
-    const edgeY = Math.min(8, this.component.clientHeight * 0.25);
+    // Use getBoundingClientRect + clientX/clientY so cursor detection matches
+    // the mouseDown hit-test in mouseHandlers.ts exactly
+    const { left, top, right, bottom, width, height } = this.component.getBoundingClientRect();
+    const edgeX = Math.min(8, width * 0.25);
+    const edgeY = Math.min(8, height * 0.25);
+    const cornerX = Math.min(16, width * 0.35);
+    const cornerY = Math.min(16, height * 0.35);
 
-    const nearLeft = e.offsetX < edgeX;
-    const nearRight = (this.component.clientWidth - e.offsetX) < edgeX;
-    const nearTop = e.offsetY < edgeY;
-    const nearBottom = (this.component.clientHeight - e.offsetY) < edgeY;
+    const nearLeft = Math.abs(e.clientX - left) < edgeX;
+    const nearRight = Math.abs(e.clientX - right) < edgeX;
+    const nearTop = Math.abs(e.clientY - top) < edgeY;
+    const nearBottom = Math.abs(e.clientY - bottom) < edgeY;
 
-    // Corners first
-    if ((nearRight && nearBottom) || (nearLeft && nearTop)) {
+    const cornerLeft = Math.abs(e.clientX - left) < cornerX;
+    const cornerRight = Math.abs(e.clientX - right) < cornerX;
+    const cornerTop = Math.abs(e.clientY - top) < cornerY;
+    const cornerBottom = Math.abs(e.clientY - bottom) < cornerY;
+
+    // Corners first (larger zone)
+    if ((cornerRight && cornerBottom) || (cornerLeft && cornerTop)) {
       this.component.style.cursor = 'nwse-resize';
-    } else if ((nearLeft && nearBottom) || (nearRight && nearTop)) {
+    } else if ((cornerLeft && cornerBottom) || (cornerRight && cornerTop)) {
       this.component.style.cursor = 'nesw-resize';
     } else if (nearLeft || nearRight) {
       this.component.style.cursor = 'ew-resize';
