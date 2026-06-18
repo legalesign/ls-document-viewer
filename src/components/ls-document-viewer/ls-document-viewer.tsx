@@ -976,7 +976,7 @@ export class LsDocumentViewer {
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
                   <div id="ls-box-selector"></div>
                   <div id="ls-drag-selector"></div>
-                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && (
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
                     <ls-select-menu
                       class="ls-dv-select-menu-position"
                       selected={this.selected}
@@ -984,7 +984,7 @@ export class LsDocumentViewer {
                       editor={this}
                     />
                   )}
-                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && (
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
                     <ls-select-menu
                       class="ls-dv-select-menu-floating"
                       selected={this.selected}
