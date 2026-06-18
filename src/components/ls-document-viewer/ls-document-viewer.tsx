@@ -758,6 +758,10 @@ export class LsDocumentViewer {
           ...this._template,
           elementConnection: { ...this._template.elementConnection, templateElements: Array.from(fields).map(ef => ef.dataItem) },
         };
+        // Sync sidebar and toolbar with updated data
+        this.selectedDataItems = this.selected.map(s => s.dataItem);
+        const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+        if (toolbar) toolbar.dataItem = this.selectedDataItems;
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (!fi) return;
