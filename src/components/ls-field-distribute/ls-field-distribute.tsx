@@ -240,7 +240,6 @@ export class LsFieldDistribute {
                 onChange={e => {
                   this.gapVertical(parseInt((e.target as HTMLInputElement).value));
                 }}
-                min={0}
                 max={9999}
                 value={this.getVerticalGap()}
                 placeholder={this.getVerticalGap() === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
@@ -257,7 +256,6 @@ export class LsFieldDistribute {
                 onChange={e => {
                   this.gapHorizontal(parseInt((e.target as HTMLInputElement).value));
                 }}
-                min={0}
                 max={9999}
                 value={this.getHorizontalGap()}
                 placeholder={this.getHorizontalGap() === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
