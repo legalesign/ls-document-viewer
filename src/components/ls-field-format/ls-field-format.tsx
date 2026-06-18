@@ -75,7 +75,7 @@ export class LsFieldFormat {
                 class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
               >
                 <option disabled selected={this.allElementsSame()?.fontName === 'mixed'} value={'mixed'}>
-                  Mixed
+                  {dvI18n.t('fieldproperties.mixed')}
                 </option>
                 <option value="arial">Arial</option>
                 <option value="liberation sans">Liberation Sans</option>
@@ -95,6 +95,9 @@ export class LsFieldFormat {
                 }}
                 class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
               >
+                <option disabled selected={this.allElementsSame()?.fontSize === 'mixed'} value={'mixed'}>
+                  {dvI18n.t('fieldproperties.mixed')}
+                </option>
                 {this.fontSizes.map(size => (
                   <option value={size} selected={this.allElementsSame()?.fontSize === size}>{size}</option>
                 ))}
