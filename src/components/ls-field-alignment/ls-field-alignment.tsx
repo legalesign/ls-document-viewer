@@ -39,54 +39,35 @@ export class LsFieldAlignment {
   }
 
   // Get the top-left-most control (anchor for all alignments)
-  getAnchorControl(): LSApiElement {
-    return this.dataItem.reduce((topLeftMost, current) => {
-      // Prioritize top position first, then left if tops are equal
-      if (current.top < topLeftMost.top) {
-        return current;
-      } else if (current.top === topLeftMost.top && current.left < topLeftMost.left) {
-        return current;
-      }
-      return topLeftMost;
-    }, this.dataItem[0]);
+  left() {
+    const alignTo = Math.min(...this.dataItem.map(c => c.left));
+    this.alter({ left: alignTo });
   }
 
-  right() {
-    const anchor = this.getAnchorControl();
-    const alignTo = anchor.left + anchor.width;
+  center() {
+    const minLeft = Math.min(...this.dataItem.map(c => c.left));
+    const maxRight = Math.max(...this.dataItem.map(c => c.left + c.width));
+    const centerX = (minLeft + maxRight) / 2;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newLeft = alignTo - c.width;
-
+      const newLeft = Math.round(centerX - c.width / 2);
       return {
         action: 'update',
-        data: {
-          ...c,
-          left: newLeft,
-          ax: newLeft,
-          bx: newLeft + c.width,
-        } as LSApiElement,
+        data: { ...c, left: newLeft } as LSApiElement,
       };
     });
-
     this.dataItem = diffs.map(d => d.data as LSApiElement);
     this.mutate.emit(diffs);
   }
 
-  center() {
-    const anchor = this.getAnchorControl();
-    const alignTo = anchor.left + anchor.width / 2;
+  right() {
+    const alignTo = Math.max(...this.dataItem.map(c => c.left + c.width));
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newLeft = alignTo - c.width / 2;
+      const newLeft = alignTo - c.width;
       return {
         action: 'update',
-        data: {
-          ...c,
-          left: newLeft,
-          ax: newLeft,
-          bx: newLeft + c.width,
-        } as LSApiElement,
+        data: { ...c, left: newLeft } as LSApiElement,
       };
     });
     this.dataItem = diffs.map(d => d.data as LSApiElement);
@@ -94,29 +75,20 @@ export class LsFieldAlignment {
   }
 
   top() {
-    const anchor = this.getAnchorControl();
-    this.alter({ top: anchor.top });
-  }
-
-  left() {
-    const anchor = this.getAnchorControl();
-    this.alter({ left: anchor.left });
+    const alignTo = Math.min(...this.dataItem.map(c => c.top));
+    this.alter({ top: alignTo });
   }
 
   middle() {
-    const anchor = this.getAnchorControl();
-    const alignTo = anchor.top + anchor.height / 2;
+    const minTop = Math.min(...this.dataItem.map(c => c.top));
+    const maxBottom = Math.max(...this.dataItem.map(c => c.top + c.height));
+    const centerY = (minTop + maxBottom) / 2;
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
-      const newTop = alignTo - c.height / 2;
+      const newTop = Math.round(centerY - c.height / 2);
       return {
         action: 'update',
-        data: {
-          ...c,
-          top: newTop,
-          ay: newTop,
-          by: newTop + c.height,
-        } as LSApiElement,
+        data: { ...c, top: newTop } as LSApiElement,
       };
     });
     this.dataItem = diffs.map(d => d.data as LSApiElement);
@@ -124,19 +96,13 @@ export class LsFieldAlignment {
   }
 
   bottom() {
-    const anchor = this.getAnchorControl();
-    const alignTo = anchor.top + anchor.height;
+    const alignTo = Math.max(...this.dataItem.map(c => c.top + c.height));
 
     const diffs: LSMutateEvent[] = this.dataItem.map(c => {
       const newTop = alignTo - c.height;
       return {
         action: 'update',
-        data: {
-          ...c,
-          top: newTop,
-          ay: newTop,
-          by: newTop + c.height,
-        } as LSApiElement,
+        data: { ...c, top: newTop } as LSApiElement,
       };
     });
     this.dataItem = diffs.map(d => d.data as LSApiElement);

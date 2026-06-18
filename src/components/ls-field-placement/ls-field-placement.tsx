@@ -28,13 +28,10 @@ export class LsFieldPlacement {
     return typeof (dt as LSApiElement[]).length === 'number';
   }
 
-  getValue(key) {
-    if (this.isMultiple(this.dataItem)) {
-      return "";
-    } else if (this.isSingle(this.dataItem)) {
-      return this.dataItem[key]
-    }
-    return ''
+  getMultiValue(key: string): number | undefined {
+    if (!this.isMultiple(this.dataItem)) return undefined;
+    const first = this.dataItem[0][key];
+    return this.dataItem.every(item => item[key] === first) ? first : undefined;
   }
 
   // Send one or more mutations up the chain
@@ -89,7 +86,16 @@ export class LsFieldPlacement {
             <div class={'ls-dv-input-row'}>
               <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="x-letter-icon"></ls-icon>
-                <input type="number" class={'ls-dv-has-leading-icon'} aria="top-location" id="top-location" onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })} disabled={this.readonly} />
+                <input
+                  type="number"
+                  class={'ls-dv-has-leading-icon'}
+                  aria="top-location"
+                  id="top-location"
+                  value={this.getMultiValue('left')}
+                  placeholder={this.getMultiValue('left') === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
+                  onChange={e => this.alter({ left: parseInt((e.target as HTMLInputElement).value) })}
+                  disabled={this.readonly}
+                />
               </div>
               <div class={'ls-dv-input-wrapper'}>
                 <ls-icon id="selectLeadingIcon" name="y-icon"></ls-icon>
@@ -98,7 +104,9 @@ export class LsFieldPlacement {
                   class={'ls-dv-has-leading-icon'}
                   aria="left-location"
                   id="left-location"
-                  onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
+                  value={this.getMultiValue('top')}
+                  placeholder={this.getMultiValue('top') === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
+                  onChange={e => this.alter({ top: parseInt((e.target as HTMLInputElement).value) })}
                   disabled={this.readonly}
                 />
               </div>
@@ -154,7 +162,7 @@ export class LsFieldPlacement {
                     aria="top-location"
                     id="top-location"
                     value={this.dataItem?.left}
-                    onChange={e => this.alter({ left: (e.target as HTMLInputElement).value })}
+                    onChange={e => this.alter({ left: parseInt((e.target as HTMLInputElement).value) })}
                     disabled={this.readonly}
                   />
                 </div>
@@ -166,7 +174,7 @@ export class LsFieldPlacement {
                     aria="left-location"
                     id="left-location"
                     value={this.dataItem?.top}
-                    onChange={e => this.alter({ top: (e.target as HTMLInputElement).value })}
+                    onChange={e => this.alter({ top: parseInt((e.target as HTMLInputElement).value) })}
                     width="30"
                     disabled={this.readonly}
                   />
