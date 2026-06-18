@@ -25,6 +25,22 @@ export class LsFieldDistribute {
 
   @Element() component: HTMLElement;
 
+  getVerticalGap(): number | undefined {
+    if (!this.dataItem || this.dataItem.length < 2) return undefined;
+    const sorted = [...this.dataItem].sort((a, b) => a.top - b.top);
+    const gaps = sorted.slice(1).map((item, i) => item.top - (sorted[i].top + sorted[i].height));
+    const first = Math.round(gaps[0]);
+    return gaps.every(g => Math.round(g) === first) ? first : undefined;
+  }
+
+  getHorizontalGap(): number | undefined {
+    if (!this.dataItem || this.dataItem.length < 2) return undefined;
+    const sorted = [...this.dataItem].sort((a, b) => a.left - b.left);
+    const gaps = sorted.slice(1).map((item, i) => item.left - (sorted[i].left + sorted[i].width));
+    const first = Math.round(gaps[0]);
+    return gaps.every(g => Math.round(g) === first) ? first : undefined;
+  }
+
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
   alter(diff: object) {
@@ -226,7 +242,8 @@ export class LsFieldDistribute {
                 }}
                 min={0}
                 max={9999}
-                value={''}
+                value={this.getVerticalGap()}
+                placeholder={this.getVerticalGap() === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
                 size={4}
                 disabled={this.readonly}
               />
@@ -242,7 +259,8 @@ export class LsFieldDistribute {
                 }}
                 min={0}
                 max={9999}
-                value={''}
+                value={this.getHorizontalGap()}
+                placeholder={this.getHorizontalGap() === undefined ? dvI18n.t('fieldproperties.mixed') : undefined}
                 size={4}
                 disabled={this.readonly}
               />
