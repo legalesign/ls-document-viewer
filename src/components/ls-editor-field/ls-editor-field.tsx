@@ -224,6 +224,7 @@ export class LsEditorField {
     } else {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
+      this.isEditing = false;
     }
   }
 
@@ -412,6 +413,7 @@ export class LsEditorField {
               class={this.isEditing ? 'ls-dv-editor-field-editable' : 'ls-dv-hidden-field'}
               style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, textAlign: 'inherit' }}
               value={this.dataItem?.value}
+              placeholder={dvI18n.t(this.getFieldTypeKey())}
               rows={1}
               onInput={e => {
                 const el = e.target as HTMLTextAreaElement;
@@ -440,7 +442,7 @@ export class LsEditorField {
             <span style={{ width: '100%', display: 'block', textAlign: this.dataItem?.formElementType === 'checkbox' ? 'center' : 'inherit' }}>
               {this.dataItem?.formElementType === 'checkbox'
                 ? this.getCheckboxSymbol()
-                : (this.dataItem.value.length && this.dataItem.value) || dvI18n.t(this.getFieldTypeKey())}
+                : this.dataItem?.value || dvI18n.t(this.getFieldTypeKey())}
             </span>
           </div>
           {(this.floatingActive || this.selected) && !this.multiSelected && this.dataItem?.label && (

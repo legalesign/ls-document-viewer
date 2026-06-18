@@ -83,6 +83,11 @@ textarea {
   white-space: pre-wrap;
 }
 
+textarea::placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+
 .ls-dv-draggable-input {
   font-family: inherit;
   font-size: inherit;
