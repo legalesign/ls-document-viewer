@@ -194,6 +194,19 @@ slot {
   width: 100vw;
   overflow: scroll;
   padding: 5rem 23.75rem 2rem 23.75rem;
+  position: relative;
+}
+
+.ls-dv-select-menu-position {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 0.5rem);
+  z-index: 999;
+}
+
+.ls-dv-select-menu-floating {
+  z-index: 999;
+  pointer-events: auto;
 }
 
 #ls-document-frame {
@@ -221,6 +234,13 @@ slot {
 }
 
 #ls-box-selector {
+  position: absolute;
+  visibility: hidden;
+  background-color: color-mix(in srgb, $primary-20 20%, transparent);
+  border: 1px dashed $primary-50;
+}
+
+#ls-drag-selector {
   position: absolute;
   visibility: hidden;
   background-color: color-mix(in srgb, $primary-20 20%, transparent);
