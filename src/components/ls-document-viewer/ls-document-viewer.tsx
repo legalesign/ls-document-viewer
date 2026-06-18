@@ -284,6 +284,21 @@ export class LsDocumentViewer {
           .handleEvent(me, this.token)
           .then(result => {
             if (result === 'invalid') return;
+            // Cascade name change to witness if it still matches the default pattern
+            // Must check before matchData/syncRoles overwrites this._template.roles
+            if (me.action === 'update' && (me.data as LSApiRole).roleType !== 'WITNESS') {
+              const role = me.data as LSApiRole;
+              const oldRole = this._template.roles.find(r => r.id === role.id);
+              if (oldRole && oldRole.name !== role.name) {
+                const witness = this._template.roles.find(r => r.signerParent === role.id && r.roleType === 'WITNESS');
+                if (witness && witness.name === oldRole.name + ' Witness') {
+                  const updatedWitness = { ...witness, name: role.name + ' Witness' };
+                  this.adapter.handleEvent({ action: 'update', data: updatedWitness }, this.token).then(wr => {
+                    if (wr !== 'invalid') matchData.bind(this)(wr);
+                  });
+                }
+              }
+            }
             matchData.bind(this)(result);
           })
           .then(() => this.syncChange(me)),
@@ -361,7 +376,7 @@ export class LsDocumentViewer {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
+          name: event.detail.name ? event.detail.name : event.detail.type === 'WITNESS' ? (parent?.name || 'Participant ' + parent?.signerIndex) + ' Witness' : 'Participant ' + (this._template.roles.filter(r => r.roleType !== 'WITNESS').length + 1),
           roleType: event.detail.type,
           signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
