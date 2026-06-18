@@ -108,6 +108,28 @@ export class LsEditorField {
       e.preventDefault();
     }
 
+    // Let undo/redo pass through to document handler
+    const isMod = e.ctrlKey || e.metaKey;
+    if (isMod && (e.key === 'z' || e.key === 'Z' || e.key === 'y' || e.key === 'Y')) {
+      e.preventDefault();
+      // If there's a pending debounce, just cancel it and revert locally
+      if (this.labeltimer) {
+        clearTimeout(this.labeltimer);
+        this.labeltimer = null;
+        // Revert to the last committed value by re-reading from the DOM
+        // The textarea will update on next render via dataItem binding
+        return;
+      }
+      // No pending debounce — dispatch to document for history undo/redo
+      document.dispatchEvent(new KeyboardEvent('keydown', {
+        key: e.key,
+        ctrlKey: e.ctrlKey,
+        metaKey: e.metaKey,
+        shiftKey: e.shiftKey,
+      }));
+      return;
+    }
+
     e.stopPropagation();
   }
 

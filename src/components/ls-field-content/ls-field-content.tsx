@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch, Listen } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
@@ -66,6 +66,27 @@ export class LsFieldContent {
     this.dataItem = { ...this.dataItem, ...diff };
     this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 500);
+  }
+
+  @Listen('keydown')
+  handleKeyDown(e: KeyboardEvent) {
+    const isMod = e.ctrlKey || e.metaKey;
+    if (isMod && (e.key === 'z' || e.key === 'Z' || e.key === 'y' || e.key === 'Y')) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Cancel any pending debounce (discard uncommitted changes)
+      if (this.labeltimer) {
+        clearTimeout(this.labeltimer);
+        this.labeltimer = null;
+      }
+      // Dispatch to document so our undo/redo handler picks it up
+      document.dispatchEvent(new KeyboardEvent('keydown', {
+        key: e.key,
+        ctrlKey: e.ctrlKey,
+        metaKey: e.metaKey,
+        shiftKey: e.shiftKey,
+      }));
+    }
   }
 
   handleValueChange(value: string) {
