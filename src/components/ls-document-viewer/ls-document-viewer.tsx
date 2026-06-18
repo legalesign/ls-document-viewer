@@ -723,8 +723,10 @@ export class LsDocumentViewer {
         // Reselect the fields - this updates the dataItem value passed to child controls
         const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
         this.selected = Array.from(fields).filter(fx => fx.selected);
-        // Sync selectedDataItems so the sidebar reflects updated positions/sizes
+        // Sync selectedDataItems so the sidebar and toolbar reflect updated positions/sizes
         this.selectedDataItems = this.selected.map(f => f.dataItem);
+        const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+        if (toolbar) toolbar.dataItem = this.selectedDataItems;
         // Update template elements so validation runs against current data
         this._template = {
           ...this._template,
