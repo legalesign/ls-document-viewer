@@ -57,7 +57,9 @@ export class LsFieldFormat {
     const allFontsSame = this.dataItem.every(item => item.fontName === firstFontName);
     const firstFontSize = this.dataItem[0].fontSize;
     const allFontSizesSame = this.dataItem.every(item => item.fontSize === firstFontSize);
-    return { isSame: allFontsSame && allFontSizesSame, fontName: allFontsSame ? firstFontName : 'mixed', fontSize: allFontSizesSame ? firstFontSize : 'mixed' };
+    const firstAlign = this.dataItem[0].align || 'left';
+    const allAlignSame = this.dataItem.every(item => (item.align || 'left') === firstAlign);
+    return { isSame: allFontsSame && allFontSizesSame, fontName: allFontsSame ? firstFontName : 'mixed', fontSize: allFontSizesSame ? firstFontSize : 'mixed', align: allAlignSame ? firstAlign : 'mixed' };
   };
 
   render() {
@@ -106,6 +108,7 @@ export class LsFieldFormat {
             </div>
             <div class={'ls-dv-button-group'}>
               <button
+                class={{ 'ls-dv-active': this.allElementsSame()?.align === 'left' }}
                 onClick={() => {
                   this.alter({ align: 'left' });
                 }}
@@ -114,6 +117,7 @@ export class LsFieldFormat {
                 <ls-icon name="menu-alt-2-icon"></ls-icon>
               </button>
               <button
+                class={{ 'ls-dv-active': this.allElementsSame()?.align === 'center' }}
                 onClick={() => {
                   this.alter({ align: 'center' });
                 }}
@@ -122,6 +126,7 @@ export class LsFieldFormat {
                 <ls-icon name="menu-alt-5-icon"></ls-icon>
               </button>
               <button
+                class={{ 'ls-dv-active': this.allElementsSame()?.align === 'right' }}
                 onClick={() => {
                   this.alter({ align: 'right' });
                 }}
