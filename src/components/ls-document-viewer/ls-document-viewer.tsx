@@ -536,6 +536,7 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
+    updateSelectionBox.bind(this)();
   }
 
   /**
@@ -552,6 +553,7 @@ export class LsDocumentViewer {
     this.queueRenderPage(this.pageNum);
     this.showPageFields(this.pageNum);
     this.pageResize();
+    updateSelectionBox.bind(this)();
   }
 
   /**
@@ -564,6 +566,7 @@ export class LsDocumentViewer {
       fu.selected = false;
     });
     this.selected = [];
+    updateSelectionBox.bind(this)();
   }
 
   pageResize() {
@@ -1002,13 +1005,31 @@ export class LsDocumentViewer {
             >
               <slot name="recipient-panel" slot="recipient-panel" />
             </ls-left-bar>
-            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} />
+            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} selected={this.selected} pageNum={this.pageNum} />
             <div id="ls-mid-area">
               <div class={'ls-dv-document-frame-wrapper'} id="document-frame-wrapper">
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'ls-dv-hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
                   <div id="ls-box-selector"></div>
+                  <div id="ls-drag-selector"></div>
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
+                    <ls-select-menu
+                      class="ls-dv-select-menu-position"
+                      selected={this.selected}
+                      pageNum={this.pageNum}
+                      editor={this}
+                    />
+                  )}
+                  {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
+                    <ls-select-menu
+                      class="ls-dv-select-menu-floating"
+                      selected={this.selected}
+                      pageNum={this.pageNum}
+                      editor={this}
+                      floating={true}
+                    />
+                  )}
                 </div>
               </div>
               <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />
