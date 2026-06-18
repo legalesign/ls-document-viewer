@@ -453,6 +453,7 @@ export class LsEditorField {
                 padding: `${0.125 * zoomValue}rem ${0.25 * zoomValue}rem`,
                 top: `-${topOffset * zoomValue}px`,
                 fontWeight: '500',
+                fontSize: `${0.75 * zoomValue}rem`,    
                 left: `-${2 * zoomValue}px`,
                 whiteSpace: 'nowrap',
                 width: 'fit-content',
