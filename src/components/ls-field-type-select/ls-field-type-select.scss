@@ -13,12 +13,12 @@
 }
 
 .ls-dv-fieldtype-header {
-  border-radius: 0.875rem;
+  border-radius: 1rem;
   padding: 0.25rem;
 }
 
 .ls-dv-fieldtype-inner {
-  border-radius: 0.625rem;
+  border-radius: 0.75rem;
   background: $white;
   display: flex;
   padding: 0.25rem 0.25rem 0.25rem 0.25rem;
@@ -29,7 +29,7 @@
 
 .ls-dv-fieldtype-icon {
   display: flex;
-  padding: 0.5rem;
+  padding: 0.25rem;
   align-items: center;
   border-radius: 0.625rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.1);

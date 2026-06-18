@@ -328,7 +328,7 @@ export class LsFieldContent {
           />
         </ls-props-section>
         {this.dataItem?.formElementType !== 'signature' && (
-          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true}>
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true} sectionDescription={dvI18n.t('fieldproperties.requiredfielddescription')}>
             <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alter({ optional: !ev.detail })} />
           </ls-props-section>
         )}

@@ -224,6 +224,7 @@ export class LsFieldPropertiesMultiple {
             <div class={'ls-dv-field-properties-section ls-dv-row'}>
               <div class={'ls-dv-field-properties-section-text'}>
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.requiredfield')}</p>
+                <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.requiredfielddescription')}</p>
               </div>
               <ls-toggle onValueChange={(ev) => !this.readonly && this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
