@@ -61,11 +61,22 @@ export class LsFieldContent {
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
-  // NOTE this alter is debounced to account for typing
+  // Debounced alter for text inputs (value, label, options)
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
     this.update.emit([{ action: 'update', data: this.dataItem }]);
     this.debounce(this.dataItem, 1500);
+  }
+
+  // Immediate alter for instant actions (toggles, selects, dropdowns)
+  alterImmediate(diff: object) {
+    this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+    this.mutate.emit([{ action: 'update', data: this.dataItem }]);
   }
 
   @Listen('keydown')
