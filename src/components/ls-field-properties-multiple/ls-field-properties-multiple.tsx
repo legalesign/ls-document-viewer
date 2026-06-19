@@ -89,6 +89,19 @@ export class LsFieldPropertiesMultiple {
     return { isSame: allSame, fieldType: allSame ? firstType : 'mixed' };
   };
 
+  allValuesSame = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, value: '' };
+    const firstValue = this.dataItem[0].value || '';
+    const allSame = this.dataItem.every(item => (item.value || '') === firstValue);
+    return { isSame: allSame, value: allSame ? firstValue : '' };
+  };
+
+  supportsValue = () => {
+    const typesWithoutValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
+    const fieldType = this.allFieldTypesSame().fieldType;
+    return !typesWithoutValue.includes(fieldType);
+  };
+
   allFieldsOptional = () => {
     if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, optional: false };
     const firstElementOptional = this.dataItem[0].optional;
@@ -247,8 +260,17 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={dvI18n.t('fieldproperties.placeholdersignhere')} disabled={this.readonly} />
+              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')} disabled={this.readonly} />
             </div>
+
+            {this.allFieldTypesSame().isSame && this.supportsValue() && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.value')}</p>
+                </div>
+                <input value={this.allValuesSame().value} onInput={(e) => this.alter({ value: (e.target as HTMLInputElement).value })} placeholder={this.allValuesSame().isSame ? '' : dvI18n.t('fieldproperties.mixed')} disabled={this.readonly} />
+              </div>
+            )}
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} readonly={this.readonly} />
