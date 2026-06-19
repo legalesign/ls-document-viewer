@@ -114,7 +114,7 @@ export class LsEditorField {
   @Listen('mousemove', { capture: true })
   handleMouseMove(e) {
     if (this.readonly) {
-      this.component.style.cursor = 'default';
+      this.component.style.cursor = 'not-allowed';
       return;
     }
     if (!e.clientX) return;
@@ -346,7 +346,7 @@ export class LsEditorField {
       ? 'var(--red-50, #FF5C56)'
       : defaultRolePalette[this.dataItem?.signer % 100].s60;
 
-    const hostStyle = this.floatingActive
+    const hostStyle = this.floatingActive && !this.readonly
       ? { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': borderColor }
       : { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': borderColor };
 
