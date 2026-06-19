@@ -768,6 +768,8 @@ export class LsDocumentViewer {
         // Sync sidebar and toolbar with updated data
         this.selectedDataItems = this.selected.map(s => s.dataItem);
         if (toolbar) toolbar.dataItem = this.selectedDataItems;
+        // Update selection box to match new field positions (e.g. after undo/redo)
+        updateSelectionBox.bind(this)();
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (!fi) return;
