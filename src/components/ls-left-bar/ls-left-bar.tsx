@@ -306,9 +306,9 @@ export class LsLeftBar {
   private renderEditor() {
     return (
       <div id="ls-left-box" class="ls-dv-left-box">
-        {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-feature-column mode={this.mode} manager={this.manager} onManage={manager => this.managerChange.emit(manager.detail)} />
+          {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
           {this.renderToolbox()}
           <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} activeSigner={this.signer} template={this.template} busy={this.busy} />
           <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} template={this.template} />
@@ -322,8 +322,8 @@ export class LsLeftBar {
   private renderCompose() {
     return (
       <div id="ls-left-box" class="ls-dv-left-box">
-        {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
+          {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
           <ls-recipient-manager id="ls-recipient-manager" class="ls-dv-compose-toolbox">
             <div class="ls-dv-scroll-gradient-top" />
             <div class="ls-dv-scroll-gradient-bottom" />
