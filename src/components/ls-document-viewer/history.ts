@@ -97,6 +97,18 @@ export function undo() {
     redoStack.shift();
   }
 
+  // Update snapshots to the restored state so the next action records correctly
+  entry.inverse.forEach(m => {
+    const data = m.data as LSApiElement;
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
+    }
+  });
+
   console.log(
     '[History] Undo:',
     entry.inverse.map(m => `${m.action} ${(m.data as any).id}`),
@@ -127,6 +139,18 @@ export function redo() {
   if (undoStack.length > MAX_HISTORY) {
     undoStack.shift();
   }
+
+  // Update snapshots to the re-applied state so the next action records correctly
+  entry.mutations.forEach(m => {
+    const data = m.data as LSApiElement;
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
+    }
+  });
 
   console.log(
     '[History] Redo:',
