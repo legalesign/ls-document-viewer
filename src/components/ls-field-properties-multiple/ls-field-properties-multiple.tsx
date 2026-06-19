@@ -34,7 +34,19 @@ export class LsFieldPropertiesMultiple {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
-    this.debounce(diff, 500);
+    this.debounce(diff, 1500);
+  }
+
+  // Immediate alter for non-typing actions (toggles, selects)
+  alterImmediate(diff: object) {
+    this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+    this.mutate.emit(evs);
+    this.update.emit(evs);
   }
 
   private labeltimer;
@@ -226,7 +238,7 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.requiredfield')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.requiredfielddescription')}</p>
               </div>
-              <ls-toggle onValueChange={(ev) => !this.readonly && this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
+              <ls-toggle onValueChange={(ev) => !this.readonly && this.alterImmediate({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
 
