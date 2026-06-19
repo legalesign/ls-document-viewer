@@ -241,7 +241,10 @@
     "fieldsselected": "{{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
     "fieldsselectedcount": "{{total}} Fields Selected:",
     "fieldsselecteddetail": "{{thispage}} on this page, {{otherpages}} on other pages",
-    "deselectall": "Deselect All"
+    "deselectall": "Deselect All",
+    "templatelocked": "Template locked",
+    "editingdisabled": "Editing is disabled",
+    "unlock": "Unlock"
   },
   "selectmenu": {
     "title": "Select Fields",
@@ -275,6 +278,8 @@
     "delete": "Delete",
     "move": "Move",
     "zoom": "Zoom",
-    "deselect": "Deselect"
+    "deselect": "Deselect",
+    "undo": "Undo",
+    "redo": "Redo"
   }
 }

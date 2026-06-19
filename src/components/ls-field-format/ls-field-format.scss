@@ -42,6 +42,7 @@ a:hover {
 select {
   appearance: none;
   height: 2.25rem;
+  min-width: fit-content;
 }
 
 .ls-dv-input-wrapper {
@@ -69,6 +70,10 @@ select {
 
 .ls-dv-has-leading-icon {
   padding-left: 2.5rem;
+}
+
+.ls-dv-has-trailing-icon {
+  padding-right: 2rem;
 }
 
 input,
@@ -122,7 +127,6 @@ textarea:disabled {
 input[type='number'] {
   width: max-content;
   max-width: 3rem;
-
 }
 
 input[type='checkbox'] {
@@ -300,5 +304,3 @@ button.ls-dv-tertiary-grey:hover {
 .ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid $gray-30;
 }
-
-

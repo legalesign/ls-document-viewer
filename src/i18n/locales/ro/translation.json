@@ -260,6 +260,8 @@
     "delete": "Șterge",
     "move": "Mutare",
     "zoom": "Zoom",
-    "deselect": "Deselectați"
+    "deselect": "Deselectați",
+    "undo": "Anulează",
+    "redo": "Refaceți"
   }
 }

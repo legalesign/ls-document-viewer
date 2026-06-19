@@ -260,6 +260,8 @@
     "delete": "Eyða",
     "move": "Færa",
     "zoom": "Aðdráttur",
-    "deselect": "Afvelja"
+    "deselect": "Afvelja",
+    "undo": "Afturkalla",
+    "redo": "Endurgera"
   }
 }

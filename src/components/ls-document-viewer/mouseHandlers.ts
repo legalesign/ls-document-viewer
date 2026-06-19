@@ -4,6 +4,7 @@ import { findDimensions, findIn, recalculateCoordinates } from './editorCalculat
 import { IToolboxField } from '../interfaces/IToolboxField';
 import { FIELD_DEFAULTS, DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME } from '../../constants/fieldDefaults';
 import { setLastClickPosition, clearLastClickPosition } from './clipboard';
+import { snapshotField } from './history';
 import { calculateSnap } from './snapHelper';
 import { defaultRolePalette } from './defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
@@ -86,17 +87,19 @@ export function mouseDown(e) {
     // Scale edge threshold for small fields
     const edgeX = Math.min(8, width * 0.25);
     const edgeY = Math.min(8, height * 0.25);
+    const cornerX = Math.min(16, width * 0.35);
+    const cornerY = Math.min(16, height * 0.35);
     // corners (check before edges)
-    if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
+    if (Math.abs(e.clientX - right) < cornerX && Math.abs(e.clientY - bottom) < cornerY) {
       this.edgeSide = 'se';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - top) < edgeY) {
+    } else if (Math.abs(e.clientX - left) < cornerX && Math.abs(e.clientY - top) < cornerY) {
       this.edgeSide = 'nw';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - right) < edgeX && Math.abs(e.clientY - top) < edgeY) {
+    } else if (Math.abs(e.clientX - right) < cornerX && Math.abs(e.clientY - top) < cornerY) {
       this.edgeSide = 'ne';
       this.hitField = f;
-    } else if (Math.abs(e.clientX - left) < edgeX && Math.abs(e.clientY - bottom) < edgeY) {
+    } else if (Math.abs(e.clientX - left) < cornerX && Math.abs(e.clientY - bottom) < cornerY) {
       this.edgeSide = 'sw';
       this.hitField = f;
       // west edge
@@ -124,6 +127,9 @@ export function mouseDown(e) {
   if (this.hitField && e.shiftKey === false && e.altKey === false) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
     box.style.visibility = 'hidden';
+
+    // Snapshot field state before any resize/move begins
+    snapshotField(this.hitField.dataItem);
 
     // mouse down on a field, select it and note the start location
     if (this.hitField.selected === false) {

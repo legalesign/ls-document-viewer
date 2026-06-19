@@ -260,6 +260,8 @@
     "delete": "Poistaa",
     "move": "Siirrä",
     "zoom": "Zoomaus",
-    "deselect": "Poista valinta"
+    "deselect": "Poista valinta",
+    "undo": "Kumoa",
+    "redo": "Tee uudelleen"
   }
 }
