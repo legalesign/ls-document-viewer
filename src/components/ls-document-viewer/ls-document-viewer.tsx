@@ -192,6 +192,16 @@ export class LsDocumentViewer {
     }
   }
 
+  @Watch('_template')
+  templateLockedHandler() {
+    const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
+    if (fields) {
+      fields.forEach(field => {
+        field.setAttribute('readonly', String(this.mode === 'preview' || this._template?.locked));
+      });
+    }
+  }
+
   @Watch('zoom')
   zoomChanged(newZoom: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');

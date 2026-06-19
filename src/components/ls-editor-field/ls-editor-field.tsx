@@ -113,7 +113,10 @@ export class LsEditorField {
 
   @Listen('mousemove', { capture: true })
   handleMouseMove(e) {
-    if (this.readonly) return;
+    if (this.readonly) {
+      this.component.style.cursor = 'default';
+      return;
+    }
     if (!e.clientX) return;
 
     // While dragging (button held), keep current cursor
