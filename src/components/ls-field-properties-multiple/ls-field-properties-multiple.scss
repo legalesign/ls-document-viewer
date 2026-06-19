@@ -457,3 +457,18 @@ button.ls-dv-destructive:hover {
 .ls-dv-button-group > :not(:first-child) {
   border-left: 1px solid $gray-30;
 }
+
+.ls-dv-input-error {
+  border-color: $red-60;
+}
+
+.ls-dv-input-error:focus {
+  box-shadow: 0 0 0 0.25rem $red-20;
+  border-color: $red-60;
+}
+
+.ls-dv-error-text {
+  color: $red-60;
+  font-size: var(--text-xs);
+  margin-top: 0.25rem;
+}

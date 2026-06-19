@@ -37,6 +37,7 @@
  - [ls-editor-field](.)
  - [ls-field-content](../ls-field-content)
  - [ls-field-distribute](../ls-field-distribute)
+ - [ls-field-properties-multiple](../ls-field-properties-multiple)
 
 ### Depends on
 
@@ -50,6 +51,7 @@ graph TD;
   ls-document-viewer --> ls-editor-field
   ls-field-content --> ls-editor-field
   ls-field-distribute --> ls-editor-field
+  ls-field-properties-multiple --> ls-editor-field
   style ls-editor-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
