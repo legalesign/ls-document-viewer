@@ -17,7 +17,7 @@ export async function generateRoles() {
         const newRole: LSApiRole = {
           id: btoa('rol' + crypto.randomUUID()),
           signerIndex: rec?.signerIndex,
-          name: rec?.lastName || roleType + (index + 1),
+          name: rec?.lastName || 'Participant ' + (index + 1),
           roleType,
           ordinal: index + 1,
           signerParent: null,
@@ -68,7 +68,7 @@ async function  checkWitness(defaultExperience) {
         const newRole: LSApiRole = {
             id: btoa('rol' + crypto.randomUUID()),
             signerIndex: wit?.signerIndex,
-            name: wit?.roleType + wit?.signerIndex,
+            name: parent.name === 'Participant ' + parent.ordinal ? 'Participant ' + (parent.ordinal + 1) : parent.name + ' Witness',
             roleType: 'WITNESS',
             ordinal: parent.ordinal + 1,
             signerParent: parent.id,

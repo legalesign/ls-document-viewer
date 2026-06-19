@@ -236,3 +236,15 @@ button.ls-dv-tertiary-grey:hover {
   border: 1px solid $gray-50;
   background: $gray-10;
 }
+
+.ls-dv-locked-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 5rem);
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1.25rem;
+  z-index: 1001;
+  pointer-events: all;
+}
