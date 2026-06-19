@@ -417,7 +417,11 @@ export class LsDocumentViewer {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: event.detail.name ? event.detail.name : 'Participant ' + (event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1),
+          name: event.detail.name
+            ? event.detail.name
+            : event.detail.type === 'WITNESS'
+              ? (parent?.name === 'Participant ' + parent?.ordinal ? 'Participant ' + (parent?.ordinal + 1) : parent?.name + ' Witness')
+              : 'Participant ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
           signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
