@@ -215,11 +215,11 @@ export class LsStatusbar {
       <Host>
         <div class={'ls-dv-controls-bar'}>
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')}>
-              <ls-icon name="undo-icon" />
+            <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')} >
+              <ls-icon name="undo-icon" size={18} />
             </button>
-            <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')}>
-              <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} />
+            <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')} >
+              <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} size={18} />
             </button>
           </div>
         </div>
@@ -350,7 +350,7 @@ export class LsStatusbar {
                 data-tooltip-id="ls-dv-tooltip"
                 data-tooltip-content={dvI18n.t('statusbar.pagethumbnails')}
               >
-                <ls-icon name={!this.showThumbnails ? 'side-panel-open-right-icon' : 'side-panel-close-right-icon'} />
+                <ls-icon name={!this.showThumbnails ? 'side-panel-open-right-icon' : 'side-panel-close-right-icon'} size={18} />
               </button>
             </div>
             {this.showThumbnails && (
