@@ -300,7 +300,7 @@ export class LsEditorField {
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
     this.update.emit([{ action: 'update', data: this.dataItem }]);
-    this.debounce(this.dataItem, 900);
+    this.debounce(this.dataItem, 1500);
   }
 
   private labeltimer;
