@@ -308,9 +308,10 @@ export class LsLeftBar {
       <div id="ls-left-box" class="ls-dv-left-box">
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
           <ls-feature-column mode={this.mode} manager={this.manager} onManage={manager => this.managerChange.emit(manager.detail)} />
+          {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
           {this.renderToolbox()}
           <ls-participant-manager id="ls-participant-manager" class={this.manager === 'participant' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} activeSigner={this.signer} template={this.template} busy={this.busy} />
-          <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
+          <ls-document-options id="ls-document-options" class={this.manager === 'document' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} template={this.template} />
           <ls-validation-manager id="ls-validation-manager" class={this.manager === 'validation' ? 'ls-dv-toolbox' : 'ls-dv-hidden'} />
         </div>
         {this.renderFieldProperties()}
@@ -322,6 +323,7 @@ export class LsLeftBar {
     return (
       <div id="ls-left-box" class="ls-dv-left-box">
         <div class={!this.selected || this.selected.length === 0 ? 'ls-dv-left-box-inner' : 'ls-dv-hidden'}>
+          {this.template?.locked && <div class="ls-dv-locked-overlay"></div>}
           <ls-recipient-manager id="ls-recipient-manager" class="ls-dv-compose-toolbox">
             <div class="ls-dv-scroll-gradient-top" />
             <div class="ls-dv-scroll-gradient-bottom" />

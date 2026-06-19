@@ -102,7 +102,7 @@ export class LsToolbar {
             <ls-tooltip tooltipId="ls-dv-tooltip" />
           </div>
         )}
-        
+
         <slot></slot>
       </div>
     );
@@ -132,8 +132,11 @@ export class LsToolbar {
 
     return (
       <div class="ls-dv-selection-banner">
-        <ls-icon style={{ marginRight: '0.125rem'}} name="target-icon" size={16} />
-        <span><span style={{ fontWeight: '500' }}>{dvI18n.t('toolbar.fieldsselectedcount', { total: this.selected.length })}</span> {dvI18n.t('toolbar.fieldsselecteddetail', { thispage: onThisPage, otherpages: onOtherPages })}</span>
+        <ls-icon style={{ marginRight: '0.125rem' }} name="target-icon" size={16} />
+        <span>
+          <span style={{ fontWeight: '500' }}>{dvI18n.t('toolbar.fieldsselectedcount', { total: this.selected.length })}</span>{' '}
+          {dvI18n.t('toolbar.fieldsselecteddetail', { thispage: onThisPage, otherpages: onOtherPages })}
+        </span>
         <button
           class="ls-dv-selection-banner-close"
           onClick={() => this.editor.unselect()}
@@ -148,10 +151,27 @@ export class LsToolbar {
     );
   }
 
+  private renderLockedBanner() {
+    return (
+      <div class="ls-dv-locked-banner">
+        <div class="ls-dv-locked-banner-icon">
+          <ls-icon name="lock-closed-icon" size={20} />
+        </div>
+        <div class="ls-dv-locked-banner-text">
+          <span class="ls-dv-locked-banner-title">{dvI18n.t('toolbar.templatelocked')}</span>
+          <span class="ls-dv-locked-banner-subtitle">{dvI18n.t('toolbar.editingdisabled')}</span>
+        </div>
+        <button class="ls-dv-locked-banner-unlock" onClick={() => this.mutate.emit([{ action: 'update', data: { ...this.template, locked: false } }])}>
+          {dvI18n.t('toolbar.unlock')}
+        </button>
+      </div>
+    );
+  }
+
   render() {
-    return [
-      this.mode === 'editor' ? this.renderEditor() : this.mode === 'compose' ? this.renderCompose() : null,
-      this.renderSelectionBanner(),
-    ];
+    if (this.template?.locked) {
+      return this.renderLockedBanner();
+    }
+    return [this.mode === 'editor' ? this.renderEditor() : this.mode === 'compose' ? this.renderCompose() : null, this.renderSelectionBanner()];
   }
 }

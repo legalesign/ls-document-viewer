@@ -193,6 +193,16 @@ export class LsDocumentViewer {
     }
   }
 
+  @Watch('_template')
+  templateLockedHandler() {
+    const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
+    if (fields) {
+      fields.forEach(field => {
+        field.setAttribute('readonly', String(this.mode === 'preview' || this._template?.locked));
+      });
+    }
+  }
+
   @Watch('zoom')
   zoomChanged(newZoom: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
@@ -309,6 +319,62 @@ export class LsDocumentViewer {
           .handleEvent(me, this.token)
           .then(result => {
             if (result === 'invalid') return;
+            // Cascade name change to witness if it still matches a default pattern
+            // Must check before matchData/syncRoles overwrites this._template.roles
+            if (me.action === 'update' && (me.data as LSApiRole).roleType !== 'WITNESS') {
+              const role = me.data as LSApiRole;
+              const oldRole = this._template.roles.find(r => r.id === role.id);
+              if (oldRole && oldRole.name !== role.name) {
+                const witness = this._template.roles.find(r => r.signerParent === role.id && r.roleType === 'WITNESS');
+                if (witness) {
+                  const hasDefaultName = witness.name === 'Participant ' + witness.ordinal;
+                  const hasParentWitnessName = witness.name === oldRole.name + ' Witness';
+                  if (hasDefaultName || hasParentWitnessName) {
+                    const updatedWitness = { ...witness, name: role.name + ' Witness' };
+                    this.adapter.handleEvent({ action: 'update', data: updatedWitness }, this.token).then(wr => {
+                      if (wr !== 'invalid') matchData.bind(this)(wr);
+                    });
+                  }
+                }
+              }
+            }
+            // Swap/delete: after structural changes, sync default names to new ordinals
+            if (me.action === 'swap' || me.action === 'delete') {
+              // For swap, capture which roles had default names before the sync
+              const preSwapDefaults = me.action === 'swap' ? [
+                { id: (me.data as LSApiRole).id, hadDefault: (me.data as LSApiRole).name === 'Participant ' + (me.data as LSApiRole).ordinal },
+                { id: (me.data2 as LSApiRole).id, hadDefault: (me.data2 as LSApiRole).name === 'Participant ' + (me.data2 as LSApiRole).ordinal },
+              ] : null;
+              // For delete, snapshot all roles with default names before ordinals shift
+              const preDeleteDefaults = me.action === 'delete'
+                ? this._template.roles.filter(r => r.name === 'Participant ' + r.ordinal).map(r => r.id)
+                : null;
+              return Promise.resolve(matchData.bind(this)(result)).then(() => {
+                const updates: Promise<any>[] = [];
+                if (preSwapDefaults) {
+                  for (const { id, hadDefault } of preSwapDefaults) {
+                    if (!hadDefault) continue;
+                    const fresh = this._template.roles.find(r => r.id === id);
+                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
+                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                        if (r !== 'invalid') matchData.bind(this)(r);
+                      }));
+                    }
+                  }
+                }
+                if (preDeleteDefaults) {
+                  for (const id of preDeleteDefaults) {
+                    const fresh = this._template.roles.find(r => r.id === id);
+                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
+                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                        if (r !== 'invalid') matchData.bind(this)(r);
+                      }));
+                    }
+                  }
+                }
+                return Promise.all(updates);
+              });
+            }
             matchData.bind(this)(result);
           })
           .then(() => this.syncChange(me)),
@@ -394,7 +460,11 @@ export class LsDocumentViewer {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
+          name: event.detail.name
+            ? event.detail.name
+            : event.detail.type === 'WITNESS'
+              ? (parent?.name === 'Participant ' + parent?.ordinal ? 'Participant ' + (parent?.ordinal + 1) : parent?.name + ' Witness')
+              : 'Participant ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
           signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
