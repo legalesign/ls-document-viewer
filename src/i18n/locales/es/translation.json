@@ -260,6 +260,8 @@
     "delete": "Borrar",
     "move": "Muévete",
     "zoom": "Zoom",
-    "deselect": "Deseleccionar"
+    "deselect": "Deseleccionar",
+    "undo": "Deshacer",
+    "redo": "Rehacer"
   }
 }

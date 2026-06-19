@@ -19,7 +19,8 @@ export class LsToggle {
       <Host>
         <label class="ls-dv-switch">
           <input type="checkbox" checked={this.checked}  onChange={(e) => {
-            this.changeHandler((e.target as any).checked)
+            this.changeHandler((e.target as any).checked);
+            (e.target as HTMLElement).blur();
             }
             }/>
           <span class={`${this.indeterminate ? 'ls-dv-indeterminate' : 'ls-dv-slider'} ls-dv-round`}></span>

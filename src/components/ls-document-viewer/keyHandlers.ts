@@ -3,6 +3,7 @@ import { oob } from './editorUtils';
 import { moveField } from './editorCalculator';
 import { updateSelectionBox } from './mouseHandlers';
 import { copySelected, cutSelected, pasteClipboard } from './clipboard';
+import { undo, redo } from './history';
 
 // Buffer for batching rapid key presses
 let mutationBuffer = null;
@@ -37,6 +38,20 @@ export function keyDown(ev: KeyboardEvent) {
     if (ev.key === 'v' || ev.key === 'V') {
       ev.preventDefault();
       pasteClipboard.bind(this)();
+      return;
+    }
+    if (ev.key === 'z' || ev.key === 'Z') {
+      ev.preventDefault();
+      if (ev.shiftKey) {
+        applyRedo.bind(this)();
+      } else {
+        applyUndo.bind(this)();
+      }
+      return;
+    }
+    if (ev.key === 'y' || ev.key === 'Y') {
+      ev.preventDefault();
+      applyRedo.bind(this)();
       return;
     }
   }
@@ -131,6 +146,21 @@ function selectAll() {
   this.selected = fields;
   this.selectFields.emit(fields.map(f => f.dataItem));
   updateSelectionBox.bind(this)();
+}
+
+function applyUndo() {
+  const mutations = undo();
+  if (!mutations) return;
+  // Emit with _skipHistory flag so mutateHandler doesn't record it
+  this._skipHistory = true;
+  this.mutate.emit(mutations);
+}
+
+function applyRedo() {
+  const mutations = redo();
+  if (!mutations) return;
+  this._skipHistory = true;
+  this.mutate.emit(mutations);
 }
 
 // Buffered version of alter that batches rapid key presses

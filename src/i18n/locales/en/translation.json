@@ -278,6 +278,8 @@
     "delete": "Delete",
     "move": "Move",
     "zoom": "Zoom",
-    "deselect": "Deselect"
+    "deselect": "Deselect",
+    "undo": "Undo",
+    "redo": "Redo"
   }
 }
