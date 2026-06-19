@@ -3,6 +3,7 @@ import { dvI18n } from '../../i18n/i18n';
 import { LsDocumentViewer } from '../ls-document-viewer/ls-document-viewer';
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { version } from '../../../package.json';
+import { undo, redo } from '../ls-document-viewer/history';
 
 @Component({
   tag: 'ls-statusbar',
@@ -129,7 +130,9 @@ export class LsStatusbar {
         page.render({ canvasContext: ctx, viewport }).promise.then(() => {
           // Force Safari to composit the canvas by toggling a style property
           canvas.style.opacity = '0.99';
-          requestAnimationFrame(() => { canvas.style.opacity = '1'; });
+          requestAnimationFrame(() => {
+            canvas.style.opacity = '1';
+          });
         });
       });
     }
@@ -165,6 +168,20 @@ export class LsStatusbar {
     }
   };
 
+  private applyUndo() {
+    const mutations = undo();
+    if (!mutations) return;
+    this.editor._skipHistory = true;
+    this.editor.mutate.emit(mutations);
+  }
+
+  private applyRedo() {
+    const mutations = redo();
+    if (!mutations) return;
+    this.editor._skipHistory = true;
+    this.editor.mutate.emit(mutations);
+  }
+
   componentDidLoad() {
     this.zoom = this.editor.zoom;
   }
@@ -197,51 +214,16 @@ export class LsStatusbar {
     return (
       <Host>
         <div class={'ls-dv-controls-bar'}>
-          {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table-icon" /></button>
-        <button onClick={() => this.editor.displayTable = false}><ls-icon name="template-icon" /></button> */}
           <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomout')}>
-              <ls-icon name="zoom-out-icon" />
+            <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')}>
+              <ls-icon name="undo-icon" />
             </button>
-            <button
-              id="zoom-level-btn"
-              class="ls-dv-zoom-level-btn"
-              onClick={() => {
-                this.showZoomMenu = !this.showZoomMenu;
-                if (this.showZoomMenu) {
-                  requestAnimationFrame(() => document.addEventListener('click', this.zoomMenuClickHandler, true));
-                } else {
-                  document.removeEventListener('click', this.zoomMenuClickHandler, true);
-                }
-              }}
-            >
-              {Math.round(this.zoom * 100)}%
-            </button>
-            {this.showZoomMenu && (
-              <div id="ls-zoom-menu" class="ls-dv-zoom-menu">
-                {[2, 1.75, 1.5, 1.25, 1, 0.75, 0.5, 0.25].map(level => (
-                  <button
-                    class={{ 'ls-dv-zoom-menu-item': true, 'active': Math.round(this.zoom * 100) === Math.round(level * 100) }}
-                    onClick={() => { this.setZoom(level); this.showZoomMenu = false; document.removeEventListener('click', this.zoomMenuClickHandler, true); }}
-                  >
-                    {Math.round(level * 100)}%
-                    {Math.round(this.zoom * 100) === Math.round(level * 100) && <ls-icon name="check-icon" size={14} />}
-                  </button>
-                ))}
-              </div>
-            )}
-            <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomin')}>
-              <ls-icon name="zoom-in-icon" />
+            <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')}>
+              <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} />
             </button>
           </div>
-          <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitwidth')}>
-              <ls-icon name="fit-width-icon" />
-            </button>
-            <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitheight')}>
-              <ls-icon name="fit-height-icon" />
-            </button>
-          </div>
+        </div>
+        <div class={'ls-dv-controls-bar'} style={{ marginLeft: '-6rem', position: 'relative' }}>
           <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
             <button
               onClick={() => {
@@ -249,7 +231,8 @@ export class LsStatusbar {
               }}
               disabled={this.page === 1}
               id="prev-page-btn"
-              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.page === 1 ? dvI18n.t('statusbar.nopreviouspage') : dvI18n.t('statusbar.previouspage')}
+              data-tooltip-id="ls-dv-tooltip"
+              data-tooltip-content={this.page === 1 ? dvI18n.t('statusbar.nopreviouspage') : dvI18n.t('statusbar.previouspage')}
             >
               <ls-icon name="chevron-left-icon" />
             </button>
@@ -268,11 +251,15 @@ export class LsStatusbar {
               {this.page} / {this.pageCount}
             </button>
             {this.showPageMenu && (
-              <div id="ls-page-menu" class="ls-dv-zoom-menu ls-dv-page-menu" style={{ right: `${this.showThumbnails ? 11.5 : 7}rem` }}>
+              <div id="ls-page-menu" class="ls-dv-zoom-menu ls-dv-page-menu" >
                 {Array.from({ length: this.pageCount }, (_, i) => i + 1).map(p => (
                   <button
                     class={{ 'ls-dv-zoom-menu-item': true, 'active': this.page === p }}
-                    onClick={() => { this.goToPage(p); this.showPageMenu = false; document.removeEventListener('click', this.pageMenuClickHandler, true); }}
+                    onClick={() => {
+                      this.goToPage(p);
+                      this.showPageMenu = false;
+                      document.removeEventListener('click', this.pageMenuClickHandler, true);
+                    }}
                   >
                     {p}
                     {this.page === p && <ls-icon name="check-icon" size={14} />}
@@ -286,42 +273,97 @@ export class LsStatusbar {
               }}
               disabled={this.page === this.pageCount}
               id="next-page-btn"
-              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.page === this.pageCount ? dvI18n.t('statusbar.nonextpage') : dvI18n.t('statusbar.nextpage')}
+              data-tooltip-id="ls-dv-tooltip"
+              data-tooltip-content={this.page === this.pageCount ? dvI18n.t('statusbar.nonextpage') : dvI18n.t('statusbar.nextpage')}
             >
               <ls-icon name="chevron-right-icon" />
             </button>
           </div>
-          <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 ? { display: 'none' } : {}}>
-            <button
-              onClick={() => {
-                this.showThumbnails = !this.showThumbnails;
-                if (this.showThumbnails) {
-                  requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                      this.renderThumbnails();
-                      document.addEventListener('click', this.outsideClickHandler);
-                    });
-                  });
-                } else {
-                  document.removeEventListener('click', this.outsideClickHandler);
-                }
-              }}
-              id="page-thumbnails-btn"
-              data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.pagethumbnails')}
-            >
-              <ls-icon name={!this.showThumbnails ? 'side-panel-open-right-icon' : 'side-panel-close-right-icon'} />
-            </button>
-          </div>
-          {this.showThumbnails && (
-            <div class="ls-dv-thumbnail-popover">
-              <div id="ls-thumbnail-container" class="ls-dv-thumbnail-grid"></div>
-            </div>
-          )}
         </div>
-        <ls-helper-bar />
-        <span class="ls-dv-version">v{version}</span>
-        <ls-tooltip tooltipId="ls-dv-tooltip" />
-        <slot></slot>
+        <div class={'ls-dv-status-bar-group'}>
+          <div class={'ls-dv-controls-bar'} style={{position: 'relative'}}>
+            {/* <button onClick={() => this.editor.displayTable = true}><ls-icon name="table-icon" /></button>
+        <button onClick={() => this.editor.displayTable = false}><ls-icon name="template-icon" /></button> */}
+            <div class={'ls-dv-status-bar-section'}>
+              <button onClick={() => this.setZoom(this.editor.zoom * 0.8)} id="zoom-out-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomout')}>
+                <ls-icon name="zoom-out-icon" />
+              </button>
+              <button
+                id="zoom-level-btn"
+                class="ls-dv-zoom-level-btn"
+                onClick={() => {
+                  this.showZoomMenu = !this.showZoomMenu;
+                  if (this.showZoomMenu) {
+                    requestAnimationFrame(() => document.addEventListener('click', this.zoomMenuClickHandler, true));
+                  } else {
+                    document.removeEventListener('click', this.zoomMenuClickHandler, true);
+                  }
+                }}
+              >
+                {Math.round(this.zoom * 100)}%
+              </button>
+              {this.showZoomMenu && (
+                <div id="ls-zoom-menu" class="ls-dv-zoom-menu">
+                  {[2, 1.75, 1.5, 1.25, 1, 0.75, 0.5, 0.25].map(level => (
+                    <button
+                      class={{ 'ls-dv-zoom-menu-item': true, 'active': Math.round(this.zoom * 100) === Math.round(level * 100) }}
+                      onClick={() => {
+                        this.setZoom(level);
+                        this.showZoomMenu = false;
+                        document.removeEventListener('click', this.zoomMenuClickHandler, true);
+                      }}
+                    >
+                      {Math.round(level * 100)}%{Math.round(this.zoom * 100) === Math.round(level * 100) && <ls-icon name="check-icon" size={14} />}
+                    </button>
+                  ))}
+                </div>
+              )}
+              <button onClick={() => this.setZoom(this.editor.zoom / 0.8)} id="zoom-in-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.zoomin')}>
+                <ls-icon name="zoom-in-icon" />
+              </button>
+            </div>
+            <div class={'ls-dv-status-bar-section'}>
+              <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitwidth')}>
+                <ls-icon name="fit-width-icon" />
+              </button>
+              <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitheight')}>
+                <ls-icon name="fit-height-icon" />
+              </button>
+            </div>
+
+            <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 ? { display: 'none' } : {}}>
+              <button
+                onClick={() => {
+                  this.showThumbnails = !this.showThumbnails;
+                  if (this.showThumbnails) {
+                    requestAnimationFrame(() => {
+                      requestAnimationFrame(() => {
+                        this.renderThumbnails();
+                        document.addEventListener('click', this.outsideClickHandler);
+                      });
+                    });
+                  } else {
+                    document.removeEventListener('click', this.outsideClickHandler);
+                  }
+                }}
+                id="page-thumbnails-btn"
+                data-tooltip-id="ls-dv-tooltip"
+                data-tooltip-content={dvI18n.t('statusbar.pagethumbnails')}
+              >
+                <ls-icon name={!this.showThumbnails ? 'side-panel-open-right-icon' : 'side-panel-close-right-icon'} />
+              </button>
+            </div>
+            {this.showThumbnails && (
+              <div class="ls-dv-thumbnail-popover">
+                <div id="ls-thumbnail-container" class="ls-dv-thumbnail-grid"></div>
+              </div>
+            )}
+          </div>
+          <ls-helper-bar />
+          <span class="ls-dv-version">v{version}</span>
+          <ls-tooltip tooltipId="ls-dv-tooltip" />
+          <slot></slot>
+        </div>
       </Host>
     );
   }

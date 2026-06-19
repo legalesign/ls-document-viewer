@@ -219,6 +219,8 @@
     "format": "Format"
   },
   "statusbar": {
+    "undo": "Undo",
+    "redo": "Redo",
     "pagethumbnails": "Page Thumbnails",
     "zoomin": "Zoom In",
     "zoomout": "Zoom Out",
