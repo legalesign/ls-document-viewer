@@ -260,6 +260,8 @@
     "delete": "Dileu",
     "move": "Symud",
     "zoom": "Chwyddo",
-    "deselect": "Dadddewis"
+    "deselect": "Dadddewis",
+    "undo": "Dadwneud",
+    "redo": "Ailwneud"
   }
 }

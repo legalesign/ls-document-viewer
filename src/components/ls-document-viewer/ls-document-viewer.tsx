@@ -19,6 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
+import { recordMutations } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -273,13 +274,37 @@ export class LsDocumentViewer {
   addParticipant: EventEmitter<{ name?: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
   private adapter: LsDocumentAdapter;
+  public _skipHistory: boolean = false;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (this.token && this.adapter) {
+      const mutations = Array.isArray(event.detail) ? event.detail : [event.detail];
+
+      // Record history for undo/redo (skip if this mutation came from undo/redo itself)
+      if (!this._skipHistory) {
+        const beforeStates = new Map<string, any>();
+        mutations.forEach(me => {
+          const data = me.data as any;
+          if (me.action === 'update' && data?.id) {
+            const existing = this.component.shadowRoot?.getElementById('ls-field-' + data.id) as HTMLLsEditorFieldElement;
+            if (existing?.dataItem) {
+              beforeStates.set(data.id, { ...existing.dataItem });
+            }
+          } else if (me.action === 'delete' && data?.id) {
+            const existing = this.component.shadowRoot?.getElementById('ls-field-' + data.id) as HTMLLsEditorFieldElement;
+            if (existing?.dataItem) {
+              beforeStates.set(data.id, { ...existing.dataItem });
+            }
+          }
+        });
+        recordMutations(mutations, beforeStates);
+      }
+      this._skipHistory = false;
+
       this.isMutating = true;
-      const promises = event.detail.map(me =>
+      const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
@@ -299,7 +324,7 @@ export class LsDocumentViewer {
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     const details = event.detail;
-    if (!details || details.length === 0) return;
+    if (!details || !Array.isArray(details) || details.length === 0) return;
 
     const source = event.target as HTMLElement;
     const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
@@ -312,6 +337,14 @@ export class LsDocumentViewer {
         this.selectedDataItems = this.selectedDataItems.map(item =>
           item.id === updatedData.id ? { ...updatedData } : item,
         );
+
+        // Sync toolbar dataItem so format/alignment changes use current values
+        const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+        if (toolbar?.dataItem) {
+          toolbar.dataItem = toolbar.dataItem.map(item =>
+            item.id === updatedData.id ? { ...updatedData } : item,
+          );
+        }
 
         // Only sync editor field if the change came from the sidebar
         if (!isFromEditorField) {
@@ -732,7 +765,9 @@ export class LsDocumentViewer {
           ...this._template,
           elementConnection: { ...this._template.elementConnection, templateElements: Array.from(fields).map(ef => ef.dataItem) },
         };
-        updateSelectionBox.bind(this)();
+        // Sync sidebar and toolbar with updated data
+        this.selectedDataItems = this.selected.map(s => s.dataItem);
+        if (toolbar) toolbar.dataItem = this.selectedDataItems;
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
         if (!fi) return;
