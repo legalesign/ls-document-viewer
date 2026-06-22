@@ -282,6 +282,7 @@ export class LsParticipantSelect {
                   '--background-selected': defaultRolePalette[1].s10,
                   '--check-icon-selected': defaultRolePalette[1].s50,
                 }}
+                disabled={this.isAddingParticipant}
               >
                 <div
                   class={'ls-dv-add-participant-icon'}
