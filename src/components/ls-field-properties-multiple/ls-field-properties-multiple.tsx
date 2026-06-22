@@ -406,7 +406,14 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')} disabled={this.readonly} />
+              <ls-formfield
+                as="text"
+                name="field-label"
+                value={this.allLabelsSame().label}
+                placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')}
+                disabled={this.readonly}
+                onTextChange={e => this.alter({ label: e.detail.value })}
+              />
             </div>
 
             {this.allFieldTypesSame().isSame && this.supportsValue() && (
@@ -415,10 +422,17 @@ export class LsFieldPropertiesMultiple {
                   <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.value')}</p>
                   <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.valuedescription')}</p>
                 </div>
-                <input
+                <ls-formfield
+                  as="text"
+                  name="field-value"
                   value={this.allValuesSame().value}
-                  onInput={(e) => {
-                    const val = (e.target as HTMLInputElement).value;
+                  placeholder={this.allValuesSame().isSame ? getFieldPlaceholder(this.allFieldTypesSame().fieldType) : dvI18n.t('fieldproperties.mixed')}
+                  valid={!this.valueError}
+                  dirty={!!this.allValuesSame().value}
+                  errorText={this.valueError}
+                  disabled={this.readonly}
+                  onTextChange={e => {
+                    const val = e.detail.value;
                     this.valueError = validateFieldValue(
                       this.allFieldTypesSame().fieldType,
                       this.allValidationsSame().validation,
@@ -427,9 +441,6 @@ export class LsFieldPropertiesMultiple {
                     );
                     this.alter({ value: val });
                   }}
-                  placeholder={this.allValuesSame().isSame ? getFieldPlaceholder(this.allFieldTypesSame().fieldType) : dvI18n.t('fieldproperties.mixed')}
-                  disabled={this.readonly}
-                  class={{ 'ls-dv-input-error': !!this.valueError }}
                 />
                 {this.valueError && <p class={'ls-dv-error-text'}>{this.valueError}</p>}
               </div>
