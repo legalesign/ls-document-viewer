@@ -472,3 +472,48 @@ button.ls-dv-destructive:hover {
   font-size: var(--text-xs);
   margin-top: 0.25rem;
 }
+
+.ls-dv-checkbox-toggle {
+  display: flex;
+  gap: 0.5rem;
+  background: $gray-10;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+}
+
+.ls-dv-checkbox-toggle-btn {
+  flex: 1;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: $gray-80;
+  text-transform: capitalize;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background 0.15s, box-shadow 0.15s;
+
+  &:focus-visible {
+    outline: 2px solid $gray-40;
+    outline-offset: 2px;
+  }
+
+  &.ls-dv-active {
+    background: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+.ls-dv-mixed-hint {
+  color: $gray-60;
+  font-size: var(--text-xs);
+  font-style: italic;
+}
