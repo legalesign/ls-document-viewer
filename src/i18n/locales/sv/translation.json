@@ -260,6 +260,8 @@
     "delete": "Ta bort",
     "move": "Flytta",
     "zoom": "Zoom",
-    "deselect": "Avmarkera"
+    "deselect": "Avmarkera",
+    "undo": "Ångra",
+    "redo": "Gör om"
   }
 }

@@ -12,6 +12,7 @@ import { ValidationType } from '../../types/ValidationType';
 import { getTemplate } from './adapter/templateActions';
 import { addField } from './editorCalculator';
 import { validate } from './validator';
+import { updateCreatedId } from './history';
 
 /**
  * Determines if an element will be plotted out of bounds, i.e. off
@@ -55,6 +56,7 @@ export function matchData(data: { result: any; obj: any; event: LSMutateEvent })
   if (data.event.action === 'create') {
     if (prefix === 'ele') {
       addField.bind(this)(this.component.shadowRoot.getElementById('ls-document-frame'), { ...data.obj, id });
+      updateCreatedId(data.obj.id, id);
 
       this.update.emit({ event: { ...data.event, result: data.result }, template: this._template });
       this.validationErrors = validate.bind(this)(this._template);

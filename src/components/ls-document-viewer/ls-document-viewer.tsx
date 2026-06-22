@@ -19,6 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
+import { recordMutations } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -192,6 +193,16 @@ export class LsDocumentViewer {
     }
   }
 
+  @Watch('_template')
+  templateLockedHandler() {
+    const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
+    if (fields) {
+      fields.forEach(field => {
+        field.setAttribute('readonly', String(this.mode === 'preview' || this._template?.locked));
+      });
+    }
+  }
+
   @Watch('zoom')
   zoomChanged(newZoom: number) {
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
@@ -273,17 +284,97 @@ export class LsDocumentViewer {
   addParticipant: EventEmitter<{ name?: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number }>;
 
   private adapter: LsDocumentAdapter;
+  public _skipHistory: boolean = false;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
     if (this.token && this.adapter) {
+      const mutations = Array.isArray(event.detail) ? event.detail : [event.detail];
+
+      // Record history for undo/redo (skip if this mutation came from undo/redo itself)
+      if (!this._skipHistory) {
+        const beforeStates = new Map<string, any>();
+        mutations.forEach(me => {
+          const data = me.data as any;
+          if (me.action === 'update' && data?.id) {
+            const existing = this.component.shadowRoot?.getElementById('ls-field-' + data.id) as HTMLLsEditorFieldElement;
+            if (existing?.dataItem) {
+              beforeStates.set(data.id, { ...existing.dataItem });
+            }
+          } else if (me.action === 'delete' && data?.id) {
+            const existing = this.component.shadowRoot?.getElementById('ls-field-' + data.id) as HTMLLsEditorFieldElement;
+            if (existing?.dataItem) {
+              beforeStates.set(data.id, { ...existing.dataItem });
+            }
+          }
+        });
+        recordMutations(mutations, beforeStates);
+      }
+      this._skipHistory = false;
+
       this.isMutating = true;
-      const promises = event.detail.map(me =>
+      const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
             if (result === 'invalid') return;
+            // Cascade name change to witness if it still matches a default pattern
+            // Must check before matchData/syncRoles overwrites this._template.roles
+            if (me.action === 'update' && (me.data as LSApiRole).roleType !== 'WITNESS') {
+              const role = me.data as LSApiRole;
+              const oldRole = this._template.roles.find(r => r.id === role.id);
+              if (oldRole && oldRole.name !== role.name) {
+                const witness = this._template.roles.find(r => r.signerParent === role.id && r.roleType === 'WITNESS');
+                if (witness) {
+                  const hasDefaultName = witness.name === 'Participant ' + witness.ordinal;
+                  const hasParentWitnessName = witness.name === oldRole.name + ' Witness';
+                  if (hasDefaultName || hasParentWitnessName) {
+                    const updatedWitness = { ...witness, name: role.name + ' Witness' };
+                    this.adapter.handleEvent({ action: 'update', data: updatedWitness }, this.token).then(wr => {
+                      if (wr !== 'invalid') matchData.bind(this)(wr);
+                    });
+                  }
+                }
+              }
+            }
+            // Swap/delete: after structural changes, sync default names to new ordinals
+            if (me.action === 'swap' || me.action === 'delete') {
+              // For swap, capture which roles had default names before the sync
+              const preSwapDefaults = me.action === 'swap' ? [
+                { id: (me.data as LSApiRole).id, hadDefault: (me.data as LSApiRole).name === 'Participant ' + (me.data as LSApiRole).ordinal },
+                { id: (me.data2 as LSApiRole).id, hadDefault: (me.data2 as LSApiRole).name === 'Participant ' + (me.data2 as LSApiRole).ordinal },
+              ] : null;
+              // For delete, snapshot all roles with default names before ordinals shift
+              const preDeleteDefaults = me.action === 'delete'
+                ? this._template.roles.filter(r => r.name === 'Participant ' + r.ordinal).map(r => r.id)
+                : null;
+              return Promise.resolve(matchData.bind(this)(result)).then(() => {
+                const updates: Promise<any>[] = [];
+                if (preSwapDefaults) {
+                  for (const { id, hadDefault } of preSwapDefaults) {
+                    if (!hadDefault) continue;
+                    const fresh = this._template.roles.find(r => r.id === id);
+                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
+                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                        if (r !== 'invalid') matchData.bind(this)(r);
+                      }));
+                    }
+                  }
+                }
+                if (preDeleteDefaults) {
+                  for (const id of preDeleteDefaults) {
+                    const fresh = this._template.roles.find(r => r.id === id);
+                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
+                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                        if (r !== 'invalid') matchData.bind(this)(r);
+                      }));
+                    }
+                  }
+                }
+                return Promise.all(updates);
+              });
+            }
             matchData.bind(this)(result);
           })
           .then(() => this.syncChange(me)),
@@ -299,7 +390,7 @@ export class LsDocumentViewer {
   @Listen('update')
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     const details = event.detail;
-    if (!details || details.length === 0) return;
+    if (!details || !Array.isArray(details) || details.length === 0) return;
 
     const source = event.target as HTMLElement;
     const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';
@@ -312,6 +403,14 @@ export class LsDocumentViewer {
         this.selectedDataItems = this.selectedDataItems.map(item =>
           item.id === updatedData.id ? { ...updatedData } : item,
         );
+
+        // Sync toolbar dataItem so format/alignment changes use current values
+        const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
+        if (toolbar?.dataItem) {
+          toolbar.dataItem = toolbar.dataItem.map(item =>
+            item.id === updatedData.id ? { ...updatedData } : item,
+          );
+        }
 
         // Only sync editor field if the change came from the sidebar
         if (!isFromEditorField) {
@@ -361,7 +460,11 @@ export class LsDocumentViewer {
         action: 'create',
         data: {
           id: btoa('rol' + crypto.randomUUID()),
-          name: event.detail.name ? event.detail.name : 'Signer ' + (this._template.roles.length + 1),
+          name: event.detail.name
+            ? event.detail.name
+            : event.detail.type === 'WITNESS'
+              ? (parent?.name === 'Participant ' + parent?.ordinal ? 'Participant ' + (parent?.ordinal + 1) : parent?.name + ' Witness')
+              : 'Participant ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
           signerIndex: resolvedSignerIndex,
           ordinal: event.detail.type === 'WITNESS' ? parent?.ordinal + 1 : this._template.roles.length + 1,
@@ -452,7 +555,10 @@ export class LsDocumentViewer {
 
     // change style of selected fields
     const isMulti = event.detail.length > 1;
-    fields.forEach(f => (f as HTMLLsEditorFieldElement).selected = false);
+    fields.forEach(f => {
+      (f as HTMLLsEditorFieldElement).selected = false;
+      (f as HTMLLsEditorFieldElement).multiSelected = false;
+    });
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
       if (fu) {
@@ -732,6 +838,10 @@ export class LsDocumentViewer {
           ...this._template,
           elementConnection: { ...this._template.elementConnection, templateElements: Array.from(fields).map(ef => ef.dataItem) },
         };
+        // Sync sidebar and toolbar with updated data
+        this.selectedDataItems = this.selected.map(s => s.dataItem);
+        if (toolbar) toolbar.dataItem = this.selectedDataItems;
+        // Update selection box to match new field positions (e.g. after undo/redo)
         updateSelectionBox.bind(this)();
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;

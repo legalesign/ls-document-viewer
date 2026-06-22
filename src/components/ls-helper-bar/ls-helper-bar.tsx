@@ -11,6 +11,8 @@ export class LsHelperBar {
   @Prop({ mutable: true }) expanded: boolean = false;
   @Prop({ mutable: true }) showShortcuts: boolean = false;
 
+  private isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   componentDidLoad() {
   }
 
@@ -30,10 +32,10 @@ export class LsHelperBar {
           {/* <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} data-pendo="launch-new-edit-tour">
             <ls-icon name="map-icon" data-tooltip-id="ls-dv-tooltip" data-tooltip-content="Take a Guided Tour" data-tooltip-place="left" />
           </button> */}
-          <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://docs.legalesign.com/web-app/how-to/useedit', '_blank')} data-tooltip-id="ls-dv-tooltip" data-tooltip-html={`<span style="white-space:nowrap">${dvI18n.t('helperbar.viewdocumentation')}</span>`} data-tooltip-place="left">
+          <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://docs.legalesign.com/web-app/how-to/useedit', '_blank')} data-tooltip-id="ls-dv-tooltip" data-tooltip-html={`<span style="white-space:nowrap">${dvI18n.t('helperbar.viewdocumentation')}</span>`} data-tooltip-place={this.isSafari ? 'top' : 'left'}>
             <ls-icon name="book-open-icon" />
           </button>
-          <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')} data-tooltip-id="ls-dv-tooltip" data-tooltip-html={`<span style="white-space:nowrap">${dvI18n.t('helperbar.contactsupport')}</span>`} data-tooltip-place="left">
+          <button style={!this.expanded ? { display: 'none' } : { display: 'block' }} onClick={() => window.open('https://support.legalesign.io/tickets', '_blank')} data-tooltip-id="ls-dv-tooltip" data-tooltip-html={`<span style="white-space:nowrap">${dvI18n.t('helperbar.contactsupport')}</span>`} data-tooltip-place={this.isSafari ? 'top' : 'left'}>
             <ls-icon name="support-icon" />
           </button>
           <div class="ls-dv-divider" style={!this.expanded ? { display: 'none' } : { display: 'block' }} />

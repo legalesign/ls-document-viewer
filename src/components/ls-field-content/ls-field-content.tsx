@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Element, State, Watch, Listen } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
@@ -61,11 +61,43 @@ export class LsFieldContent {
 
   // Send one or more mutations up the chain
   // The source of the chain fires the mutation
-  // NOTE this alter is debounced to account for typing
+  // Debounced alter for text inputs (value, label, options)
   alter(diff: object) {
     this.dataItem = { ...this.dataItem, ...diff };
     this.update.emit([{ action: 'update', data: this.dataItem }]);
-    this.debounce(this.dataItem, 500);
+    this.debounce(this.dataItem, 1500);
+  }
+
+  // Immediate alter for instant actions (toggles, selects, dropdowns)
+  alterImmediate(diff: object) {
+    this.dataItem = { ...this.dataItem, ...diff };
+    this.update.emit([{ action: 'update', data: this.dataItem }]);
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+    this.mutate.emit([{ action: 'update', data: this.dataItem }]);
+  }
+
+  @Listen('keydown')
+  handleKeyDown(e: KeyboardEvent) {
+    const isMod = e.ctrlKey || e.metaKey;
+    if (isMod && (e.key === 'z' || e.key === 'Z' || e.key === 'y' || e.key === 'Y')) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Cancel any pending debounce (discard uncommitted changes)
+      if (this.labeltimer) {
+        clearTimeout(this.labeltimer);
+        this.labeltimer = null;
+      }
+      // Dispatch to document so our undo/redo handler picks it up
+      document.dispatchEvent(new KeyboardEvent('keydown', {
+        key: e.key,
+        ctrlKey: e.ctrlKey,
+        metaKey: e.metaKey,
+        shiftKey: e.shiftKey,
+      }));
+    }
   }
 
   handleValueChange(value: string) {
@@ -234,32 +266,32 @@ export class LsFieldContent {
 
     // Auto Sign reassigned away from Sender → becomes Signature
     if (fieldType === 'auto sign' && newSigner !== 0) {
-      this.alter({ signer: newSigner, formElementType: 'signature', elementType: 'signature', validation: 0 });
+      this.alterImmediate({ signer: newSigner, formElementType: 'signature', elementType: 'signature', validation: 0 });
       return;
     }
 
     // Signature reassigned to Sender → becomes Auto Sign
     if (fieldType === 'signature' && newSigner === 0) {
-      this.alter({ signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 });
+      this.alterImmediate({ signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 });
       return;
     }
 
     // Any field reassigned to Sender → elementType becomes 'admin'
     // Any field reassigned away from Sender → elementType reverts to its formElementType category
     if (newSigner === 0) {
-      this.alter({ signer: newSigner, elementType: 'admin' });
+      this.alterImmediate({ signer: newSigner, elementType: 'admin' });
     } else if (this.dataItem?.signer === 0) {
       const elType = (fieldType === 'initials') ? 'initials' : 'text';
-      this.alter({ signer: newSigner, elementType: elType });
+      this.alterImmediate({ signer: newSigner, elementType: elType });
     } else {
-      this.alter({ signer: newSigner });
+      this.alterImmediate({ signer: newSigner });
     }
   }
 
   private handleFormatChange(newValidation: number) {
     const currentValue = this.dataItem?.value;
     if (!currentValue || !this.isDateField()) {
-      this.alter({ validation: newValidation });
+      this.alterImmediate({ validation: newValidation });
       return;
     }
 
@@ -267,7 +299,7 @@ export class LsFieldContent {
     const oldFormat = this.getDateFormat();
     const newFormat = this.getDateFormatById(newValidation);
     if (!oldFormat || !newFormat) {
-      this.alter({ validation: newValidation });
+      this.alterImmediate({ validation: newValidation });
       return;
     }
 
@@ -275,7 +307,7 @@ export class LsFieldContent {
     const sep = oldFormat.match(/[/.-]/)?.[0] || '/';
     const valueParts = currentValue.split(sep);
     if (valueParts.length < 2) {
-      this.alter({ validation: newValidation });
+      this.alterImmediate({ validation: newValidation });
       return;
     }
 
@@ -299,7 +331,7 @@ export class LsFieldContent {
       .replace('dd', d.padStart(2, '0'))
       .replace('d', String(parseInt(d)));
 
-    this.alter({ validation: newValidation, value: newValue });
+    this.alterImmediate({ validation: newValidation, value: newValue });
   }
 
   render() {
@@ -329,7 +361,7 @@ export class LsFieldContent {
         </ls-props-section>
         {this.dataItem?.formElementType !== 'signature' && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.requiredfield')} row={true} sectionDescription={dvI18n.t('fieldproperties.requiredfielddescription')}>
-            <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alter({ optional: !ev.detail })} />
+            <ls-toggle id="toggle-required" checked={!this.dataItem?.optional} onValueChange={ev => !this.readonly && this.alterImmediate({ optional: !ev.detail })} />
           </ls-props-section>
         )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldlabel')} sectionDescription={dvI18n.t('fieldproperties.fieldlabeldescription')}>
@@ -357,7 +389,7 @@ export class LsFieldContent {
                   }}
                 />
                 {this.dataItem?.value && !this.readonly && (
-                  <div class="ls-dv-date-clear" onClick={() => this.alter({ value: '' })}>
+                  <div class="ls-dv-date-clear" onClick={() => this.alterImmediate({ value: '' })}>
                     <ls-icon name="x-icon" size={20} />
                   </div>
                 )}
@@ -418,7 +450,7 @@ export class LsFieldContent {
                 <button
                   key={idx}
                   class={{ 'ls-dv-checkbox-toggle-btn': true, 'ls-dv-active': idx === 0 ? this.dataItem?.value?.toString() !== 'true' : this.dataItem?.value?.toString() === 'true' }}
-                  onClick={() => !this.readonly && this.alter({ value: idx === 0 ? 'false' : 'true' })}
+                  onClick={() => !this.readonly && this.alterImmediate({ value: idx === 0 ? 'false' : 'true' })}
                   disabled={this.readonly}
                 >
                   {state}

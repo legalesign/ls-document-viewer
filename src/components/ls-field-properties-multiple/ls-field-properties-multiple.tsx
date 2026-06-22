@@ -1,8 +1,11 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, State, Watch } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
 import { dvI18n } from '../../i18n/i18n';
 import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
+import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
+import { validationTypes } from '../ls-document-viewer/editorUtils';
+import { validateFieldValue } from '../../utils/fieldValueValidator';
 
 
 @Component({
@@ -14,6 +17,25 @@ export class LsFieldPropertiesMultiple {
   @Prop({ mutable: true }) dataItem: LSApiElement[];
   @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
+  @State() valueError: string | null = null;
+
+  @Watch('dataItem')
+  validateOnChange() {
+    if (this.allFieldTypesSame().isSame && this.supportsValue() && this.allValuesSame().isSame) {
+      this.valueError = validateFieldValue(
+        this.allFieldTypesSame().fieldType,
+        this.allValidationsSame().validation,
+        this.allValuesSame().value,
+        this.dataItem[0]?.options,
+      );
+    } else {
+      this.valueError = null;
+    }
+  }
+
+  componentWillLoad() {
+    this.validateOnChange();
+  }
 
   @Event({
     bubbles: true,
@@ -34,7 +56,21 @@ export class LsFieldPropertiesMultiple {
   // NOTE this alter is debounced to account for typing
   alter(diff: object) {
     this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
-    this.debounce(diff, 500);
+    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+    this.update.emit(evs);
+    this.debounce(diff, 1500);
+  }
+
+  // Immediate alter for non-typing actions (toggles, selects)
+  alterImmediate(diff: object) {
+    this.dataItem = this.dataItem.map(item => ({ ...item, ...diff }));
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+    this.mutate.emit(evs);
+    this.update.emit(evs);
   }
 
   private labeltimer;
@@ -76,6 +112,130 @@ export class LsFieldPropertiesMultiple {
     const allSame = this.dataItem.every(item => item.formElementType === firstType);
     return { isSame: allSame, fieldType: allSame ? firstType : 'mixed' };
   };
+
+  allValuesSame = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, value: '' };
+    const firstValue = this.dataItem[0].value || '';
+    const allSame = this.dataItem.every(item => (item.value || '') === firstValue);
+    return { isSame: allSame, value: allSame ? firstValue : '' };
+  };
+
+  supportsValue = () => {
+    const typesWithoutValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field', 'date'];
+    const fieldType = this.allFieldTypesSame().fieldType;
+    return !typesWithoutValue.includes(fieldType);
+  };
+
+  isDateType = () => {
+    return this.allFieldTypesSame().fieldType === 'date';
+  };
+
+  allValidationsSame = () => {
+    if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, validation: 0 };
+    const firstValidation = this.dataItem[0].validation;
+    const allSame = this.dataItem.every(item => item.validation === firstValidation);
+    return { isSame: allSame, validation: allSame ? firstValidation : null };
+  };
+
+  showContentFormat = () => {
+    const fieldType = this.allFieldTypesSame().fieldType;
+    const excluded = ['drawn field', 'regular expression', 'initials', 'signature', 'mixed'];
+    return this.allFieldTypesSame().isSame && !excluded.includes(fieldType);
+  };
+
+  private getDateFormatById(validation: number): string | null {
+    const vType = validationTypes.find(v => v.id === validation);
+    if (!vType || vType.inputType !== 'date') return null;
+    return vType.description;
+  }
+
+  private convertDateValue(currentValue: string, oldValidation: number, newValidation: number): string {
+    if (!currentValue) return '';
+    const oldFormat = this.getDateFormatById(oldValidation);
+    const newFormat = this.getDateFormatById(newValidation);
+    if (!oldFormat || !newFormat) return currentValue;
+
+    const sep = oldFormat.match(/[/.-]/)?.[0] || '/';
+    const parts = oldFormat.split(/[/.-]/);
+    const valueParts = currentValue.split(sep);
+    if (valueParts.length < 2) return currentValue;
+
+    let y = '', m = '', d = '';
+    parts.forEach((p, i) => {
+      const v = valueParts[i] || '';
+      if (p.startsWith('y')) y = v;
+      else if (p.startsWith('m')) m = v;
+      else if (p.startsWith('d')) d = v;
+    });
+
+    if (y.length === 2) y = '20' + y;
+    if (!d) d = '01';
+
+    return newFormat
+      .replace('yyyy', y.padStart(4, '0'))
+      .replace('yy', y.slice(-2))
+      .replace('mm', m.padStart(2, '0'))
+      .replace('dd', d.padStart(2, '0'))
+      .replace('d', String(parseInt(d)));
+  }
+
+  private formatISOToValidation(isoValue: string, validation: number): string {
+    if (!isoValue) return '';
+    const [y, m, d] = isoValue.split('-');
+    const format = this.getDateFormatById(validation);
+    if (!format) return isoValue;
+
+    return format
+      .replace('yyyy', y)
+      .replace('yy', y.slice(-2))
+      .replace('mm', m)
+      .replace('dd', d)
+      .replace('d', String(parseInt(d)));
+  }
+
+  private toISODate(value: string, validation: number): string {
+    if (!value) return '';
+    const format = this.getDateFormatById(validation);
+    if (!format) return value;
+
+    const sep = format.match(/[/.-]/)?.[0] || '/';
+    const parts = format.split(/[/.-]/);
+    const valueParts = value.split(sep);
+    if (valueParts.length < 2) return value;
+
+    let y = '', m = '', d = '';
+    parts.forEach((p, i) => {
+      const v = valueParts[i] || '';
+      if (p.startsWith('y')) y = v;
+      else if (p.startsWith('m')) m = v;
+      else if (p.startsWith('d')) d = v;
+    });
+
+    if (y.length === 2) y = '20' + y;
+    if (!d) d = '01';
+
+    return `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  }
+
+  handleFormatChange(newValidation: number) {
+    if (this.isDateType()) {
+      // Convert each field's date value to the new format
+      this.dataItem = this.dataItem.map(item => ({
+        ...item,
+        validation: newValidation,
+        value: this.convertDateValue(item.value || '', item.validation, newValidation),
+      }));
+    } else {
+      this.dataItem = this.dataItem.map(item => ({ ...item, validation: newValidation }));
+    }
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+    this.mutate.emit(evs);
+    this.update.emit(evs);
+  }
 
   allFieldsOptional = () => {
     if (!this.dataItem || this.dataItem.length === 0) return { isSame: true, optional: false };
@@ -226,7 +386,7 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.requiredfield')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.requiredfielddescription')}</p>
               </div>
-              <ls-toggle onValueChange={(ev) => !this.readonly && this.alter({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
+              <ls-toggle onValueChange={(ev) => !this.readonly && this.alterImmediate({ optional: !ev.detail })} checked={!this.allFieldsOptional().optional} indeterminate={this.allFieldsOptional().isSame === false} />
             </div>
 
 
@@ -235,8 +395,85 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={dvI18n.t('fieldproperties.placeholdersignhere')} disabled={this.readonly} />
+              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')} disabled={this.readonly} />
             </div>
+
+            {this.allFieldTypesSame().isSame && this.supportsValue() && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.value')}</p>
+                  <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.valuedescription')}</p>
+                </div>
+                <input
+                  value={this.allValuesSame().value}
+                  onInput={(e) => {
+                    const val = (e.target as HTMLInputElement).value;
+                    this.valueError = validateFieldValue(
+                      this.allFieldTypesSame().fieldType,
+                      this.allValidationsSame().validation,
+                      val,
+                      this.dataItem[0]?.options,
+                    );
+                    this.alter({ value: val });
+                  }}
+                  placeholder={this.allValuesSame().isSame ? getFieldPlaceholder(this.allFieldTypesSame().fieldType) : dvI18n.t('fieldproperties.mixed')}
+                  disabled={this.readonly}
+                  class={{ 'ls-dv-input-error': !!this.valueError }}
+                />
+                {this.valueError && <p class={'ls-dv-error-text'}>{this.valueError}</p>}
+              </div>
+            )}
+
+            {this.allFieldTypesSame().isSame && this.isDateType() && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.value')}</p>
+                </div>
+                <input
+                  type="date"
+                  value={this.allValuesSame().isSame ? this.toISODate(this.allValuesSame().value, this.dataItem[0].validation) : ''}
+                  onChange={(e) => {
+                    const isoValue = (e.target as HTMLInputElement).value;
+                    // Convert ISO to each field's configured format
+                    this.dataItem = this.dataItem.map(item => ({
+                      ...item,
+                      value: this.formatISOToValidation(isoValue, item.validation),
+                    }));
+                    if (this.labeltimer) { clearTimeout(this.labeltimer); this.labeltimer = null; }
+                    const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
+                    this.mutate.emit(evs);
+                    this.update.emit(evs);
+                  }}
+                  disabled={this.readonly}
+                />
+              </div>
+            )}
+
+            {this.showContentFormat() && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.contentformat')}</p>
+                  <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.contentformatdescription')}</p>
+                </div>
+                <ls-input-wrapper select>
+                  <select
+                    onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}
+                    disabled={this.readonly}
+                  >
+                    {!this.allValidationsSame().isSame && (
+                      <option disabled selected value="">{dvI18n.t('fieldproperties.mixed')}</option>
+                    )}
+                    {validationTypes
+                      .filter(type => type.formType === this.allFieldTypesSame().fieldType)
+                      .map(type => (
+                        <option selected={this.allValidationsSame().validation === type.id} value={type.id}>
+                          {type.description}
+                        </option>
+                      ))}
+                  </select>
+                </ls-input-wrapper>
+              </div>
+            )}
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} readonly={this.readonly} />
