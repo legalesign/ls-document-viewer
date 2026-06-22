@@ -84,6 +84,34 @@ export class LsStatusbar {
       });
   }
 
+  getPageFields(pageNum: number) {
+    const template = (this.editor as any)._template;
+    if (!template?.elementConnection?.templateElements) return [];
+    return template.elementConnection.templateElements.filter(el => el.page === pageNum);
+  }
+
+  renderFieldsOnCanvas(ctx: CanvasRenderingContext2D, pageNum: number, viewport: { width: number; height: number }) {
+    const fields = this.getPageFields(pageNum);
+    fields.forEach(field => {
+      const colorIndex = field.signer % 100;
+      const palette = defaultRolePalette[colorIndex] || defaultRolePalette[0];
+      const x = field.ax * viewport.width;
+      const y = field.ay * viewport.height;
+      const w = (field.bx - field.ax) * viewport.width;
+      const h = (field.by - field.ay) * viewport.height;
+
+      ctx.fillStyle = palette.s40 + '1a';
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeStyle = palette.s60;
+      ctx.lineWidth = 1;
+      if (field.signer >= 100) {
+        ctx.setLineDash([2, 2]);
+      }
+      ctx.strokeRect(x, y, w, h);
+      ctx.setLineDash([]);
+    });
+  }
+
   renderThumbnails() {
     const pdfDoc = (this.editor as any).pdfDocument;
     if (!pdfDoc) return;
@@ -128,6 +156,7 @@ export class LsStatusbar {
         // in the visible tree before getContext/render produces output.
         const ctx = canvas.getContext('2d');
         page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+          this.renderFieldsOnCanvas(ctx, i, viewport);
           // Force Safari to composit the canvas by toggling a style property
           canvas.style.opacity = '0.99';
           requestAnimationFrame(() => {
