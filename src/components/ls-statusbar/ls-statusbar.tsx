@@ -39,6 +39,7 @@ export class LsStatusbar {
     const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
     const scale = (wrapper.clientWidth - 396) / this.editor.pageDimensions[this.editor.pageNum - 1].width;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
+    requestAnimationFrame(() => wrapper.scrollTo(0, 0));
   }
 
   fitHeight() {
