@@ -555,7 +555,10 @@ export class LsDocumentViewer {
 
     // change style of selected fields
     const isMulti = event.detail.length > 1;
-    fields.forEach(f => (f as HTMLLsEditorFieldElement).selected = false);
+    fields.forEach(f => {
+      (f as HTMLLsEditorFieldElement).selected = false;
+      (f as HTMLLsEditorFieldElement).multiSelected = false;
+    });
     event.detail.forEach(fc => {
       const fu = this.component.shadowRoot.getElementById('ls-field-' + fc.id) as HTMLLsEditorFieldElement;
       if (fu) {
