@@ -42,8 +42,12 @@ export class LsStatusbar {
   }
 
   fitHeight() {
+    const midArea = this.editor.component.shadowRoot.getElementById('ls-mid-area');
     const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
-    const scale = (wrapper.clientHeight - 94) / this.editor.pageDimensions[this.editor.pageNum - 1].height;
+    const wrapperStyle = getComputedStyle(wrapper);
+    const paddingY = parseFloat(wrapperStyle.paddingTop) + parseFloat(wrapperStyle.paddingBottom);
+    const availableHeight = midArea.clientHeight - paddingY;
+    const scale = availableHeight / this.editor.pageDimensions[this.editor.pageNum - 1].height;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
