@@ -130,6 +130,8 @@ export function mouseDown(e) {
 
     // Snapshot field state before any resize/move begins
     snapshotField(this.hitField.dataItem);
+    // Snapshot all currently selected fields (for multi-field move undo)
+    this.selected.forEach(f => snapshotField(f.dataItem));
 
     // mouse down on a field, select it and note the start location
     if (this.hitField.selected === false) {
