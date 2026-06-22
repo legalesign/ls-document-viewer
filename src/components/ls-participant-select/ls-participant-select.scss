@@ -95,6 +95,42 @@
   background: $gray-10;
 }
 
+.ls-dv-skeleton-item {
+  pointer-events: none;
+  color: $primary-50;
+}
+
+.ls-dv-skeleton-circle {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: $gray-20;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.ls-dv-skeleton-line {
+  border-radius: 0.25rem;
+  background: $gray-20;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.ls-dv-skeleton-line-name {
+  width: 6rem;
+  height: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.ls-dv-skeleton-line-type {
+  width: 3rem;
+  height: 0.625rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
 .ls-dv-add-participant-row {
   all: unset;
   flex-shrink: 0;

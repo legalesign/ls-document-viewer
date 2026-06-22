@@ -35,12 +35,14 @@ export class LsParticipantSelect {
   }
 
   @State() scrollToBottom: boolean = false;
+  @State() isAddingParticipant: boolean = false;
 
   @Watch('roles')
   handleRoleLoad() {
     this.syncSelectedRole(this.signer);
     if (this.scrollToBottom) {
       this.scrollToBottom = false;
+      this.isAddingParticipant = false;
       requestAnimationFrame(() => {
         const list = this.el.shadowRoot?.querySelector('.ls-dv-dropdown-list-items');
         if (list) list.scrollTo({ top: list.scrollHeight, behavior: 'smooth' });
@@ -98,7 +100,12 @@ export class LsParticipantSelect {
 
   createHandler() {
     this.scrollToBottom = true;
+    this.isAddingParticipant = true;
     this.addParticipant.emit({type: 'SIGNER'});
+    requestAnimationFrame(() => {
+      const list = this.el.shadowRoot?.querySelector('.ls-dv-dropdown-list-items');
+      if (list) list.scrollTo({ top: list.scrollHeight, behavior: 'smooth' });
+    });
   }
 
   render() {
@@ -257,6 +264,16 @@ export class LsParticipantSelect {
                   />
                 </div>
               ))}
+              {this.isAddingParticipant && (
+                <div class="ls-dv-dropdown-item ls-dv-skeleton-item">
+                  <div class="ls-dv-skeleton-circle"></div>
+                  <div class="ls-dv-role-text">
+                    <div class="ls-dv-skeleton-line ls-dv-skeleton-line-name"></div>
+                    <div class="ls-dv-skeleton-line ls-dv-skeleton-line-type"></div>
+                  </div>
+                  <ls-loading />
+                </div>
+              )}
               </div>
               <button
                 onClick={() => this.createHandler()}
