@@ -247,12 +247,14 @@ graph TD;
   ls-field-properties-multiple --> ls-assignee-select
   ls-field-properties-multiple --> ls-field-type-select
   ls-field-properties-multiple --> ls-toggle
+  ls-field-properties-multiple --> ls-input-wrapper
   ls-field-properties-multiple --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-size
   ls-field-properties-multiple --> ls-field-alignment
   ls-field-properties-multiple --> ls-field-placement
   ls-field-properties-multiple --> ls-field-distribute
   ls-field-properties-multiple --> ls-field-footer
+  ls-field-properties-multiple --> ls-editor-field
   ls-field-size --> ls-icon
   ls-field-size --> ls-tooltip
   ls-field-alignment --> ls-icon

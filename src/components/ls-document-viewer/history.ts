@@ -1,0 +1,196 @@
+import { LSApiElement } from '../../types/LSApiElement';
+import { LSMutateEvent } from '../../types/LSMutateEvent';
+
+const MAX_HISTORY = 50;
+
+type HistoryEntry = {
+  mutations: LSMutateEvent[];
+  inverse: LSMutateEvent[];
+};
+
+let undoStack: HistoryEntry[] = [];
+let redoStack: HistoryEntry[] = [];
+let fieldSnapshots: Map<string, LSApiElement> = new Map();
+
+export function canUndo(): boolean {
+  return undoStack.length > 0;
+}
+
+export function canRedo(): boolean {
+  return redoStack.length > 0;
+}
+
+/**
+ * Snapshot a field's state before any edits occur.
+ * Only stores if no snapshot exists yet for this field.
+ * Called at mouseDown before resize/move can mutate dataItem.
+ */
+export function snapshotField(field: LSApiElement) {
+  if (field?.id && !fieldSnapshots.has(field.id)) {
+    fieldSnapshots.set(field.id, { ...field });
+  }
+}
+
+/**
+ * Record a set of mutations before they are applied.
+ * Call this with the mutations and the before-state of affected elements.
+ */
+export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<string, LSApiElement>) {
+  const inverse: LSMutateEvent[] = mutations
+    .map(m => {
+      const data = m.data as LSApiElement;
+      switch (m.action) {
+        case 'create':
+          return { action: 'delete', data };
+        case 'delete':
+          return { action: 'create', data: beforeStates.get(data.id) || { ...data } };
+        case 'update':
+          // Use snapshot (captured at selection time) or beforeState from DOM
+          const before = fieldSnapshots.get(data.id) || beforeStates.get(data.id);
+          return { action: 'update', data: before ? { ...before } : { ...data } };
+        default:
+          return null;
+      }
+    })
+    .filter(Boolean) as LSMutateEvent[];
+
+  undoStack.push({ mutations, inverse });
+  if (undoStack.length > MAX_HISTORY) {
+    undoStack.shift();
+  }
+
+  // Update snapshots to the new state (so next undo captures from this point)
+  mutations.forEach(m => {
+    const data = m.data as LSApiElement;
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
+    }
+  });
+
+  // New action clears redo
+  redoStack = [];
+
+  console.log(
+    '[History] Recorded:',
+    mutations.map(m => `${m.action} ${(m.data as any).id}`),
+  );
+  console.log('[History] Undo stack size:', undoStack.length);
+  console.log(
+    '[History] Undo stack:',
+    undoStack.map((entry, i) => `${i}: ${entry.mutations.map(m => `${m.action} ${(m.data as any).id?.slice(0, 8)}...`).join(', ')}`),
+  );
+}
+
+export function undo() {
+  if (undoStack.length === 0) {
+    console.log('[History] Nothing to undo');
+    return null;
+  }
+
+  const entry = undoStack.pop();
+  redoStack.push(entry);
+  if (redoStack.length > MAX_HISTORY) {
+    redoStack.shift();
+  }
+
+  // Update snapshots to the restored state so the next action records correctly
+  entry.inverse.forEach(m => {
+    const data = m.data as LSApiElement;
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
+    }
+  });
+
+  console.log(
+    '[History] Undo:',
+    entry.inverse.map(m => `${m.action} ${(m.data as any).id}`),
+  );
+  console.log(
+    '[History] Undo data:',
+    entry.inverse.map(m => ({
+      action: m.action,
+      w: (m.data as any).width,
+      h: (m.data as any).height,
+      t: (m.data as any).top,
+      l: (m.data as any).left,
+      value: (m.data as any).value,
+      data: m.data as any,
+    })),
+  );
+  return entry.inverse;
+}
+
+export function redo() {
+  if (redoStack.length === 0) {
+    console.log('[History] Nothing to redo');
+    return null;
+  }
+
+  const entry = redoStack.pop();
+  undoStack.push(entry);
+  if (undoStack.length > MAX_HISTORY) {
+    undoStack.shift();
+  }
+
+  // Update snapshots to the re-applied state so the next action records correctly
+  entry.mutations.forEach(m => {
+    const data = m.data as LSApiElement;
+    if (data?.id) {
+      if (m.action === 'delete') {
+        fieldSnapshots.delete(data.id);
+      } else {
+        fieldSnapshots.set(data.id, { ...data });
+      }
+    }
+  });
+
+  console.log(
+    '[History] Redo:',
+    entry.mutations.map(m => `${m.action} ${(m.data as any).id}`),
+  );
+  return entry.mutations;
+}
+
+export function clearHistory() {
+  undoStack = [];
+  redoStack = [];
+}
+
+/**
+ * After a create mutation, the API returns a server-generated ID.
+ * Update the history entries so undo/redo use the real ID.
+ */
+export function updateCreatedId(clientId: string, serverId: string) {
+  const updateEntry = (entry: HistoryEntry) => {
+    entry.mutations.forEach(m => {
+      if ((m.data as LSApiElement).id === clientId) {
+        (m.data as LSApiElement).id = serverId;
+      }
+    });
+    entry.inverse.forEach(m => {
+      if ((m.data as LSApiElement).id === clientId) {
+        (m.data as LSApiElement).id = serverId;
+      }
+    });
+  };
+
+  // Update all entries in both stacks that reference the old ID
+  undoStack.forEach(updateEntry);
+  redoStack.forEach(updateEntry);
+
+  // Update snapshot key to use server ID
+  if (fieldSnapshots.has(clientId)) {
+    const snapshot = fieldSnapshots.get(clientId);
+    fieldSnapshots.delete(clientId);
+    snapshot.id = serverId;
+    fieldSnapshots.set(serverId, snapshot);
+  }
+}

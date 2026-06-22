@@ -260,6 +260,8 @@
     "delete": "[NEEDS TRANSLATION] Delete",
     "move": "[NEEDS TRANSLATION] Move",
     "zoom": "[NEEDS TRANSLATION] Zoom",
-    "deselect": "[NEEDS TRANSLATION] Deselect"
+    "deselect": "[NEEDS TRANSLATION] Deselect",
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo"
   }
 }
