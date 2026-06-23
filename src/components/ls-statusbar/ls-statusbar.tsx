@@ -39,11 +39,16 @@ export class LsStatusbar {
     const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
     const scale = (wrapper.clientWidth - 396) / this.editor.pageDimensions[this.editor.pageNum - 1].width;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
+    requestAnimationFrame(() => wrapper.scrollTo(0, 0));
   }
 
   fitHeight() {
+    const midArea = this.editor.component.shadowRoot.getElementById('ls-mid-area');
     const wrapper = this.editor.component.shadowRoot.getElementById('document-frame-wrapper');
-    const scale = (wrapper.clientHeight - 94) / this.editor.pageDimensions[this.editor.pageNum - 1].height;
+    const wrapperStyle = getComputedStyle(wrapper);
+    const paddingY = parseFloat(wrapperStyle.paddingTop) + parseFloat(wrapperStyle.paddingBottom);
+    const availableHeight = midArea.clientHeight - paddingY;
+    const scale = availableHeight / this.editor.pageDimensions[this.editor.pageNum - 1].height;
     this.setZoom(Math.round(scale * 1e2) / 1e2);
   }
 
@@ -82,6 +87,34 @@ export class LsStatusbar {
           count,
         };
       });
+  }
+
+  getPageFields(pageNum: number) {
+    const template = (this.editor as any)._template;
+    if (!template?.elementConnection?.templateElements) return [];
+    return template.elementConnection.templateElements.filter(el => el.page === pageNum);
+  }
+
+  renderFieldsOnCanvas(ctx: CanvasRenderingContext2D, pageNum: number, viewport: { width: number; height: number }) {
+    const fields = this.getPageFields(pageNum);
+    fields.forEach(field => {
+      const colorIndex = field.signer % 100;
+      const palette = defaultRolePalette[colorIndex] || defaultRolePalette[0];
+      const x = field.ax * viewport.width;
+      const y = field.ay * viewport.height;
+      const w = (field.bx - field.ax) * viewport.width;
+      const h = (field.by - field.ay) * viewport.height;
+
+      ctx.fillStyle = palette.s40 + '1a';
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeStyle = palette.s60;
+      ctx.lineWidth = 1;
+      if (field.signer >= 100) {
+        ctx.setLineDash([2, 2]);
+      }
+      ctx.strokeRect(x, y, w, h);
+      ctx.setLineDash([]);
+    });
   }
 
   renderThumbnails() {
@@ -128,6 +161,7 @@ export class LsStatusbar {
         // in the visible tree before getContext/render produces output.
         const ctx = canvas.getContext('2d');
         page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+          this.renderFieldsOnCanvas(ctx, i, viewport);
           // Force Safari to composit the canvas by toggling a style property
           canvas.style.opacity = '0.99';
           requestAnimationFrame(() => {

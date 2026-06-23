@@ -1,5 +1,5 @@
 :host {
-  position: fixed;
+  position: absolute;
   display: flex;
   top: 0;
   left: 0;
@@ -18,8 +18,8 @@
   display: flex;
   flex-direction: column;
   background: $gray-10;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .ls-dv-compose-loader__header {
@@ -60,7 +60,7 @@
   display: flex;
   padding: 1rem;
   gap: 1.5rem;
-  height: calc(100vh - 2.375rem);
+  height: calc(100% - 2.375rem);
   position: relative;
 }
 
@@ -80,7 +80,7 @@
   border: 1px solid $gray-30;
   width: 100%;
   height: 100%;
-  max-height: calc(100vh - 5rem);
+  max-height: calc(100% - 2rem);
   overflow: hidden;
 }
 
@@ -248,7 +248,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 
