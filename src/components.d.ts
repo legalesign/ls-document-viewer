@@ -620,6 +620,11 @@ export namespace Components {
           * The parent editor control. {LsDocumentViewer}
          */
         "editor": LsDocumentViewer;
+        /**
+          * The viewer mode. {'preview' | 'editor' | 'compose'}
+          * @default 'editor'
+         */
+        "mode": 'preview' | 'editor' | 'compose';
         "page": number;
         "pageCount": number;
         /**
@@ -2171,6 +2176,11 @@ declare namespace LocalJSX {
           * The parent editor control. {LsDocumentViewer}
          */
         "editor"?: LsDocumentViewer;
+        /**
+          * The viewer mode. {'preview' | 'editor' | 'compose'}
+          * @default 'editor'
+         */
+        "mode"?: 'preview' | 'editor' | 'compose';
         "page"?: number;
         "pageCount"?: number;
         /**
