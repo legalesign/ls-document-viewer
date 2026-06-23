@@ -30,6 +30,12 @@ export class LsStatusbar {
    */
   @Prop() editor: LsDocumentViewer;
 
+  /**
+   * The viewer mode.
+   * {'preview' | 'editor' | 'compose'}
+   */
+  @Prop() mode: 'preview' | 'editor' | 'compose' = 'editor';
+
   setZoom(value: number) {
     this.editor.setZoom(value);
     this.zoom = value;
@@ -245,19 +251,22 @@ export class LsStatusbar {
   }
 
   render() {
+    const isPreview = this.mode === 'preview';
     return (
-      <Host>
-        <div class={'ls-dv-controls-bar'}>
-          <div class={'ls-dv-status-bar-section'}>
-            <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')} >
-              <ls-icon name="undo-icon" size={18} />
-            </button>
-            <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')} >
-              <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} size={18} />
-            </button>
+      <Host class={{ 'ls-dv-statusbar-preview': isPreview }}>
+        {!isPreview && (
+          <div class={'ls-dv-controls-bar'}>
+            <div class={'ls-dv-status-bar-section'}>
+              <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')} >
+                <ls-icon name="undo-icon" size={18} />
+              </button>
+              <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')} >
+                <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} size={18} />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class={'ls-dv-controls-bar'} style={{ marginLeft: '-6rem', position: 'relative' }}>
+        )}
+        <div class={{'ls-dv-controls-bar': true, 'ls-dv-page-nav': true}}>
           <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 && { display: 'none' }}>
             <button
               onClick={() => {
@@ -356,14 +365,16 @@ export class LsStatusbar {
                 <ls-icon name="zoom-in-icon" />
               </button>
             </div>
-            <div class={'ls-dv-status-bar-section'}>
-              <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitwidth')}>
-                <ls-icon name="fit-width-icon" />
-              </button>
-              <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitheight')}>
-                <ls-icon name="fit-height-icon" />
-              </button>
-            </div>
+            {!isPreview && (
+              <div class={'ls-dv-status-bar-section'}>
+                <button onClick={() => this.fitWidth()} id="fit-width-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitwidth')}>
+                  <ls-icon name="fit-width-icon" />
+                </button>
+                <button onClick={() => this.fitHeight()} id="fit-height-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.fitheight')}>
+                  <ls-icon name="fit-height-icon" />
+                </button>
+              </div>
+            )}
 
             <div class={'ls-dv-status-bar-section'} style={this.pageCount === 1 ? { display: 'none' } : {}}>
               <button
@@ -393,7 +404,7 @@ export class LsStatusbar {
               </div>
             )}
           </div>
-          <ls-helper-bar />
+          {!isPreview && <ls-helper-bar />}
           <span class="ls-dv-version">v{version}</span>
           <ls-tooltip tooltipId="ls-dv-tooltip" />
           <slot></slot>

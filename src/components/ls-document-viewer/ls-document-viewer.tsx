@@ -975,6 +975,18 @@ export class LsDocumentViewer {
       this.selected = [];
       this.setZoom(1.0);
       this.isLoading = false;
+
+      if (this.mode === 'preview') {
+        requestAnimationFrame(() => {
+          const midArea = this.component.shadowRoot.getElementById('ls-mid-area');
+          const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
+          const wrapperStyle = getComputedStyle(wrapper);
+          const paddingY = parseFloat(wrapperStyle.paddingTop) + parseFloat(wrapperStyle.paddingBottom);
+          const availableHeight = midArea.clientHeight - paddingY;
+          const scale = availableHeight / this.pageDimensions[this.pageNum - 1].height;
+          this.setZoom(Math.round(scale * 1e2) / 1e2);
+        });
+      }
     } catch (e: any) {
       this.isLoading = false;
       const isAuthError = e?.message?.includes('401') || e?.message?.includes('403') || e?.message?.includes('Unauthorized') || e?.status === 401 || e?.status === 403;
@@ -1086,7 +1098,7 @@ export class LsDocumentViewer {
             </ls-left-bar>
             <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} selected={this.selected} pageNum={this.pageNum} />
             <div id="ls-mid-area">
-              <div class={'ls-dv-document-frame-wrapper'} id="document-frame-wrapper">
+              <div class={{'ls-dv-document-frame-wrapper': true, 'ls-dv-document-frame-wrapper--preview': this.mode === 'preview'}} id="document-frame-wrapper">
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'ls-dv-hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
@@ -1111,7 +1123,7 @@ export class LsDocumentViewer {
                   )}
                 </div>
               </div>
-              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} />
+              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} mode={this.mode} />
               {this.mode === 'editor' && (
                 <div class={'ls-dv-validation-tag-wrapper'}>
                   <ls-validation-tag validationErrors={this.validationErrors} />
