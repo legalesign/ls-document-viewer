@@ -873,7 +873,6 @@ export class LsDocumentViewer {
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
       dropTarget.addEventListener('click', mouseClick.bind(this));
-      dropTarget.addEventListener('mousedown', mouseDown.bind(this));
       wrapperTarget.addEventListener('mousedown', mouseDown.bind(this));
       document.addEventListener('mousemove', mouseMove.bind(this));
       document.addEventListener('mouseup', mouseUp.bind(this));

@@ -70,13 +70,13 @@ export function mouseDown(e) {
     return;
   }
   // Only process if mousedown target is the frame, canvas, wrapper itself, or an editor field.
-  // This prevents floating UI children (select-menu, validation tag, statusbar) from triggering drags.
+  // This prevents floating UI children (select-menu) from triggering drags.
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
   const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
   if (!frame) return;
   const target = e.target as HTMLElement;
   const isValidTarget = target === frame || target === wrapper || target?.id === 'pdf-canvas' || target?.tagName?.toLowerCase() === 'canvas';
-  const isFieldTarget = e.composedPath().some((el: Element) => el.tagName?.toLowerCase() === 'ls-editor-field');
+  const isFieldTarget = target?.tagName?.toLowerCase() === 'ls-editor-field';
   if (!isValidTarget && !isFieldTarget) return;
 
   // Find if this was
