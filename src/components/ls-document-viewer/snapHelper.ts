@@ -1,4 +1,4 @@
-const SNAP_THRESHOLD = 8; // pixels proximity to trigger snap
+export const SNAP_THRESHOLD = 8; // pixels proximity to trigger snap
 
 export interface SnapResult {
   x: number | null; // snapped left position (null = no snap on x)
@@ -11,6 +11,77 @@ export interface SnapResult {
  * Snaps edges and centers. Shows guides for ALL aligned edges at the snapped position.
  * All values are in zoomed pixel coordinates relative to the document frame.
  */
+export interface ResizeSnapResult {
+  edges: { n?: number; s?: number; e?: number; w?: number };
+  guides: { orientation: 'h' | 'v'; position: number }[];
+}
+
+/**
+ * Calculate snap positions for a resizing field edge against existing fields.
+ * Only snaps the edges being dragged (determined by edgeSide).
+ */
+export function calculateResizeSnap(
+  fieldLeft: number,
+  fieldTop: number,
+  fieldWidth: number,
+  fieldHeight: number,
+  edgeSide: string,
+  fields: { offsetLeft: number; offsetTop: number; offsetWidth: number; offsetHeight: number; dataItem?: any }[],
+  currentPage: number,
+  excludeIds?: string[],
+): ResizeSnapResult {
+  const result: ResizeSnapResult = { edges: {}, guides: [] };
+
+  const fieldRight = fieldLeft + fieldWidth;
+  const fieldBottom = fieldTop + fieldHeight;
+
+  // Determine which edges are active based on edgeSide
+  const activeH: ('n' | 's')[] = [];
+  const activeV: ('e' | 'w')[] = [];
+  if (edgeSide.includes('n')) activeH.push('n');
+  if (edgeSide.includes('s')) activeH.push('s');
+  if (edgeSide.includes('e')) activeV.push('e');
+  if (edgeSide.includes('w')) activeV.push('w');
+
+  // For each active edge, find closest snap target
+  const edgePositions = { n: fieldTop, s: fieldBottom, e: fieldRight, w: fieldLeft };
+
+  for (const edge of [...activeV, ...activeH] as ('n' | 's' | 'e' | 'w')[]) {
+    const isVerticalEdge = edge === 'e' || edge === 'w';
+    const pos = edgePositions[edge];
+    let closest = SNAP_THRESHOLD + 1;
+    let snapped: number | null = null;
+
+    for (const field of fields) {
+      if (field.dataItem?.page !== currentPage) continue;
+      if (excludeIds && excludeIds.includes(field.dataItem?.id)) continue;
+
+      const fLeft = field.offsetLeft;
+      const fTop = field.offsetTop;
+      const fRight = fLeft + field.offsetWidth;
+      const fBottom = fTop + field.offsetHeight;
+      const fCenterX = fLeft + field.offsetWidth / 2;
+      const fCenterY = fTop + field.offsetHeight / 2;
+
+      const targets = isVerticalEdge ? [fLeft, fRight, fCenterX] : [fTop, fBottom, fCenterY];
+      for (const t of targets) {
+        const dist = Math.abs(pos - t);
+        if (dist < closest) {
+          closest = dist;
+          snapped = t;
+        }
+      }
+    }
+
+    if (snapped !== null && closest <= SNAP_THRESHOLD) {
+      result.edges[edge] = snapped;
+      result.guides.push({ orientation: isVerticalEdge ? 'v' : 'h', position: snapped });
+    }
+  }
+
+  return result;
+}
+
 export function calculateSnap(
   dragLeft: number,
   dragTop: number,

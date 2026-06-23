@@ -195,6 +195,8 @@ slot {
   overflow: scroll;
   padding: 5rem 23.75rem 2rem 23.75rem;
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .ls-dv-select-menu-position {

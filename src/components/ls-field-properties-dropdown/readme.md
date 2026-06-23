@@ -37,8 +37,8 @@ graph TD;
   ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-select
   ls-field-content --> ls-toggle
-  ls-field-content --> ls-icon
   ls-field-content --> ls-formfield
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-assignee-select --> ls-icon
