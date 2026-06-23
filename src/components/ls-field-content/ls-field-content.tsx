@@ -406,7 +406,6 @@ export class LsFieldContent {
                     this.alter({ value: this.formatDateFromISO(input.value) });
                     forceCloseDatePicker(input);
                   }}
-                  onBlur={e => forceCloseDatePicker(e.target as HTMLInputElement)}
                   disabled={this.readonly}
                 />
               </div>
