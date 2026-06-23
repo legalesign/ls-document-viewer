@@ -365,11 +365,13 @@ export class LsFieldContent {
           </ls-props-section>
         )}
         <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldlabel')} sectionDescription={dvI18n.t('fieldproperties.fieldlabeldescription')}>
-          <input
+          <ls-formfield
+            as="text"
+            name="field-label"
             value={this.dataItem?.label}
             placeholder={getFieldTitleSuggestion(this.dataItem?.formElementType)}
-            onInput={e => this.alter({ label: (e.target as HTMLInputElement).value })}
             disabled={this.readonly}
+            onTextChange={e => this.alter({ label: e.detail.value })}
           />
         </ls-props-section>
         {this.supportsValue() && (
