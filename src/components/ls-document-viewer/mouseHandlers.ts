@@ -69,16 +69,15 @@ export function mouseDown(e) {
   if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
-  // Only allow mousedown within the document frame or its surrounding wrapper
+  // Only allow mousedown directly on the document frame, its canvas, or the wrapper padding
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
   const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
+  if (!frame) return;
   const path = e.composedPath();
-  const isInFrame = frame && path.includes(frame);
-  const isInWrapper = wrapper && path.includes(wrapper);
-  if (!isInFrame && !isInWrapper) return;
-  // Ignore events from interactive UI (select-menu, validation tag, etc.)
-  if (path.find((el: Element) => el.tagName && (el.tagName.toLowerCase() === 'ls-select-menu' || el.tagName.toLowerCase() === 'ls-validation-tag'))) return;
-  if (path.find((el: Element) => el.classList?.contains('ls-dv-validation-tag-wrapper'))) return;
+  const isOnFrame = path.includes(frame) && (path[0] === frame || (path[0] as HTMLElement)?.id === 'pdf-canvas');
+  const isOnWrapper = path[0] === wrapper;
+  const isOnField = path.some((el: Element) => el.tagName?.toLowerCase() === 'ls-editor-field');
+  if (!isOnFrame && !isOnWrapper && !isOnField) return;
 
   // Find if this was
   // - a hit on a field edge RESIZE
@@ -87,8 +86,8 @@ export function mouseDown(e) {
   this.hitField = null;
   const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
 
-  // Only do field hit-detection if the click was inside the document frame
-  if (isInFrame) {
+  // Only do field hit-detection if the click was on the frame or a field
+  if (isOnFrame || isOnField) {
 
   fields.forEach(f => {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
