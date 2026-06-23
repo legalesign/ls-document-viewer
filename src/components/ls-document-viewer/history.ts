@@ -73,21 +73,10 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
 
   // New action clears redo
   redoStack = [];
-
-  console.log(
-    '[History] Recorded:',
-    mutations.map(m => `${m.action} ${(m.data as any).id}`),
-  );
-  console.log('[History] Undo stack size:', undoStack.length);
-  console.log(
-    '[History] Undo stack:',
-    undoStack.map((entry, i) => `${i}: ${entry.mutations.map(m => `${m.action} ${(m.data as any).id?.slice(0, 8)}...`).join(', ')}`),
-  );
 }
 
 export function undo() {
   if (undoStack.length === 0) {
-    console.log('[History] Nothing to undo');
     return null;
   }
 
@@ -109,28 +98,11 @@ export function undo() {
     }
   });
 
-  console.log(
-    '[History] Undo:',
-    entry.inverse.map(m => `${m.action} ${(m.data as any).id}`),
-  );
-  console.log(
-    '[History] Undo data:',
-    entry.inverse.map(m => ({
-      action: m.action,
-      w: (m.data as any).width,
-      h: (m.data as any).height,
-      t: (m.data as any).top,
-      l: (m.data as any).left,
-      value: (m.data as any).value,
-      data: m.data as any,
-    })),
-  );
   return entry.inverse;
 }
 
 export function redo() {
   if (redoStack.length === 0) {
-    console.log('[History] Nothing to redo');
     return null;
   }
 
@@ -152,10 +124,6 @@ export function redo() {
     }
   });
 
-  console.log(
-    '[History] Redo:',
-    entry.mutations.map(m => `${m.action} ${(m.data as any).id}`),
-  );
   return entry.mutations;
 }
 
