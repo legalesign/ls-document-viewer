@@ -69,15 +69,15 @@ export function mouseDown(e) {
   if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
-  // Only allow mousedown directly on the document frame, its canvas, or the wrapper padding
+  // Only process if mousedown target is the frame, canvas, wrapper itself, or an editor field.
+  // This prevents floating UI children (select-menu, validation tag, statusbar) from triggering drags.
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
   const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
   if (!frame) return;
-  const path = e.composedPath();
-  const isOnFrame = path.includes(frame) && (path[0] === frame || (path[0] as HTMLElement)?.id === 'pdf-canvas');
-  const isOnWrapper = path[0] === wrapper;
-  const isOnField = path.some((el: Element) => el.tagName?.toLowerCase() === 'ls-editor-field');
-  if (!isOnFrame && !isOnWrapper && !isOnField) return;
+  const target = e.target as HTMLElement;
+  const isValidTarget = target === frame || target === wrapper || target?.id === 'pdf-canvas' || target?.tagName?.toLowerCase() === 'canvas';
+  const isFieldTarget = e.composedPath().some((el: Element) => el.tagName?.toLowerCase() === 'ls-editor-field');
+  if (!isValidTarget && !isFieldTarget) return;
 
   // Find if this was
   // - a hit on a field edge RESIZE
@@ -85,9 +85,6 @@ export function mouseDown(e) {
   // - a hit on the background document SELECTMULTIPLE with a box
   this.hitField = null;
   const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
-
-  // Only do field hit-detection if the click was on the frame or a field
-  if (isOnFrame || isOnField) {
 
   fields.forEach(f => {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
@@ -132,7 +129,6 @@ export function mouseDown(e) {
       this.hitField = f;
     }
   });
-  } // end isInFrame field hit-detection
 
   if (this.hitField && e.shiftKey === false && e.altKey === false) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -558,7 +554,7 @@ export function mouseClick(e) {
     updateSelectionBox.bind(this)();
   } else {
     // reset the selection box location
-    this.selectionBox = { x: e.clientX, y: e.clientY };
+    this.selectionBox = null;
 
     let hitAny = false;
     const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field') as HTMLLsEditorFieldElement[];

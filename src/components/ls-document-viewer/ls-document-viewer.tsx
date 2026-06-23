@@ -868,11 +868,13 @@ export class LsDocumentViewer {
     if (this._template?.link) this.loadAndRender(this._template?.link);
 
     var dropTarget = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLCanvasElement;
+    var wrapperTarget = this.component.shadowRoot.getElementById('document-frame-wrapper') as HTMLElement;
 
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
       dropTarget.addEventListener('click', mouseClick.bind(this));
-      document.addEventListener('mousedown', mouseDown.bind(this));
+      dropTarget.addEventListener('mousedown', mouseDown.bind(this));
+      wrapperTarget.addEventListener('mousedown', mouseDown.bind(this));
       document.addEventListener('mousemove', mouseMove.bind(this));
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
