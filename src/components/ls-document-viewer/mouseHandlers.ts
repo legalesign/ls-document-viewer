@@ -332,38 +332,69 @@ export function mouseMove(event) {
       this.edgeSide, allFields, this.pageNum, [this.hitField.dataItem.id]
     );
 
-    if (resizeSnap.edges.n !== undefined) {
-      candidateHeight = (candidateTop + candidateHeight) - resizeSnap.edges.n;
-      candidateTop = resizeSnap.edges.n;
-    }
-    if (resizeSnap.edges.s !== undefined) {
-      candidateHeight = resizeSnap.edges.s - candidateTop;
-    }
-    if (resizeSnap.edges.w !== undefined) {
-      candidateWidth = (candidateLeft + candidateWidth) - resizeSnap.edges.w;
-      candidateLeft = resizeSnap.edges.w;
-    }
-    if (resizeSnap.edges.e !== undefined) {
-      candidateWidth = resizeSnap.edges.e - candidateLeft;
-    }
-
-    // Re-apply aspect ratio from the snapped leading edge
     if (scale) {
       const aspect = this.startMouse.width / this.startMouse.height;
-      const hasHSnap = resizeSnap.edges.e !== undefined || resizeSnap.edges.w !== undefined;
-      const hasVSnap = resizeSnap.edges.n !== undefined || resizeSnap.edges.s !== undefined;
+      const hasH = resizeSnap.edges.e !== undefined || resizeSnap.edges.w !== undefined;
+      const hasV = resizeSnap.edges.n !== undefined || resizeSnap.edges.s !== undefined;
 
-      // If only vertical snapped, derive width from height; otherwise derive height from width
-      if (hasVSnap && !hasHSnap) {
+      // When both axes snap on a corner, pick the closer one
+      let useH = hasH;
+      let useV = hasV;
+      if (hasH && hasV && this.edgeSide.length === 2) {
+        const hDist = resizeSnap.edges.e !== undefined
+          ? Math.abs((candidateLeft + candidateWidth) - resizeSnap.edges.e)
+          : Math.abs(candidateLeft - resizeSnap.edges.w);
+        const vDist = resizeSnap.edges.s !== undefined
+          ? Math.abs((candidateTop + candidateHeight) - resizeSnap.edges.s)
+          : Math.abs(candidateTop - resizeSnap.edges.n);
+        if (hDist <= vDist) { useV = false; } else { useH = false; }
+      }
+
+      if (useV && !useH) {
+        if (resizeSnap.edges.n !== undefined) {
+          candidateHeight = (candidateTop + candidateHeight) - resizeSnap.edges.n;
+          candidateTop = resizeSnap.edges.n;
+        }
+        if (resizeSnap.edges.s !== undefined) {
+          candidateHeight = resizeSnap.edges.s - candidateTop;
+        }
         candidateWidth = candidateHeight * aspect;
-      } else {
+      } else if (useH) {
+        if (resizeSnap.edges.w !== undefined) {
+          candidateWidth = (candidateLeft + candidateWidth) - resizeSnap.edges.w;
+          candidateLeft = resizeSnap.edges.w;
+        }
+        if (resizeSnap.edges.e !== undefined) {
+          candidateWidth = resizeSnap.edges.e - candidateLeft;
+        }
         candidateHeight = candidateWidth / aspect;
       }
+
       if (this.edgeSide.includes('n')) candidateTop = (this.startMouse.top + this.startMouse.height) - candidateHeight;
       if (this.edgeSide.includes('w')) candidateLeft = (this.startMouse.left + this.startMouse.width) - candidateWidth;
-    }
 
-    showSnapGuides.bind(this)(resizeSnap.guides);
+      // Only show guides for the axis we used
+      const guides = resizeSnap.guides.filter(g =>
+        (useH && g.orientation === 'v') || (useV && g.orientation === 'h')
+      );
+      showSnapGuides.bind(this)(guides);
+    } else {
+      if (resizeSnap.edges.n !== undefined) {
+        candidateHeight = (candidateTop + candidateHeight) - resizeSnap.edges.n;
+        candidateTop = resizeSnap.edges.n;
+      }
+      if (resizeSnap.edges.s !== undefined) {
+        candidateHeight = resizeSnap.edges.s - candidateTop;
+      }
+      if (resizeSnap.edges.w !== undefined) {
+        candidateWidth = (candidateLeft + candidateWidth) - resizeSnap.edges.w;
+        candidateLeft = resizeSnap.edges.w;
+      }
+      if (resizeSnap.edges.e !== undefined) {
+        candidateWidth = resizeSnap.edges.e - candidateLeft;
+      }
+      showSnapGuides.bind(this)(resizeSnap.guides);
+    }
 
     if (!outOfBounds({ ...this.hitField.dataItem, left: candidateLeft / this.zoom, top: candidateTop / this.zoom, width: candidateWidth / this.zoom, height: candidateHeight / this.zoom })) {
       this.hitField.style.left = candidateLeft + 'px';
