@@ -6,6 +6,7 @@ import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUt
 import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
 import { validationTypes } from '../ls-document-viewer/editorUtils';
 import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { forceCloseDatePicker } from '../../utils/utils';
 
 
 @Component({
@@ -477,16 +478,17 @@ export class LsFieldPropertiesMultiple {
                   type="date"
                   value={this.allValuesSame().isSame ? this.toISODate(this.allValuesSame().value, this.dataItem[0].validation) : ''}
                   onChange={(e) => {
-                    const isoValue = (e.target as HTMLInputElement).value;
+                    const input = e.target as HTMLInputElement;
                     // Convert ISO to each field's configured format
                     this.dataItem = this.dataItem.map(item => ({
                       ...item,
-                      value: this.formatISOToValidation(isoValue, item.validation),
+                      value: this.formatISOToValidation(input.value, item.validation),
                     }));
                     if (this.labeltimer) { clearTimeout(this.labeltimer); this.labeltimer = null; }
                     const evs: LSMutateEvent[] = this.dataItem.map(item => ({ action: 'update', data: item }));
                     this.mutate.emit(evs);
                     this.update.emit(evs);
+                    forceCloseDatePicker(input);
                   }}
                   disabled={this.readonly}
                 />

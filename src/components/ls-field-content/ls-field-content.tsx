@@ -6,6 +6,7 @@ import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-vie
 import { dvI18n } from '../../i18n/i18n';
 import { validateFieldValue } from '../../utils/fieldValueValidator';
 import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
+import { forceCloseDatePicker } from '../../utils/utils';
 
 @Component({
   tag: 'ls-field-content',
@@ -400,7 +401,11 @@ export class LsFieldContent {
                   class="ls-dv-date-picker-hidden"
                   type="date"
                   value={this.toISODate(this.dataItem?.value)}
-                  onInput={e => this.alter({ value: this.formatDateFromISO((e.target as HTMLInputElement).value) })}
+                  onInput={e => {
+                    const input = e.target as HTMLInputElement;
+                    this.alter({ value: this.formatDateFromISO(input.value) });
+                    forceCloseDatePicker(input);
+                  }}
                   disabled={this.readonly}
                 />
               </div>
