@@ -982,8 +982,12 @@ export class LsDocumentViewer {
           const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
           const wrapperStyle = getComputedStyle(wrapper);
           const paddingY = parseFloat(wrapperStyle.paddingTop) + parseFloat(wrapperStyle.paddingBottom);
+          const paddingX = parseFloat(wrapperStyle.paddingLeft) + parseFloat(wrapperStyle.paddingRight);
           const availableHeight = midArea.clientHeight - paddingY;
-          const scale = availableHeight / this.pageDimensions[this.pageNum - 1].height;
+          const availableWidth = midArea.clientWidth - paddingX;
+          const scaleH = availableHeight / this.pageDimensions[this.pageNum - 1].height;
+          const scaleW = availableWidth / this.pageDimensions[this.pageNum - 1].width;
+          const scale = Math.min(scaleH, scaleW);
           this.setZoom(Math.round(scale * 1e2) / 1e2);
         });
       }
