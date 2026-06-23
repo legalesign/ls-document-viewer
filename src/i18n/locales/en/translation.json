@@ -158,6 +158,7 @@
     "reassign": "Re-assign",
     "cannotreassignsender": "{{fieldTypes}} fields cannot be re-assigned to Sender. Deselect these fields to continue.",
     "cannotreassignsendersingle": "{{fieldTypes}} fields cannot be re-assigned to Sender.",
+    "cannotmovemultipage": "Cannot move fields across multiple pages",
     "signaturecannotapprover": "Signature fields cannot be re-assigned to Approvers. Deselect these fields to continue.",
     "signaturecannotapproversingle": "Signature fields cannot be re-assigned to Approvers.",
     "sender": "Sender",

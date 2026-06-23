@@ -11,6 +11,33 @@ import { dvI18n } from '../../i18n/i18n';
 
 const preventSelect = (e: Event) => e.preventDefault();
 
+function showMoveBlockedTooltip(event: MouseEvent) {
+  let tooltip = this.component.shadowRoot.getElementById('ls-move-blocked-tooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.id = 'ls-move-blocked-tooltip';
+    tooltip.style.position = 'fixed';
+    tooltip.style.padding = '0.375rem 0.75rem';
+    tooltip.style.borderRadius = '0.5rem';
+    tooltip.style.background = 'var(--gray-100, #45484d)';
+    tooltip.style.color = 'white';
+    tooltip.style.fontSize = '0.75rem';
+    tooltip.style.fontFamily = 'var(--font-family, IBM Plex Sans, sans-serif)';
+    tooltip.style.pointerEvents = 'none';
+    tooltip.style.zIndex = '10000';
+    tooltip.style.whiteSpace = 'nowrap';
+    tooltip.textContent = dvI18n.t('fieldproperties.cannotmovemultipage');
+    this.component.shadowRoot.appendChild(tooltip);
+  }
+  tooltip.style.left = (event.clientX + 12) + 'px';
+  tooltip.style.top = (event.clientY + 12) + 'px';
+}
+
+function hideMoveBlockedTooltip() {
+  const tooltip = this.component.shadowRoot?.getElementById('ls-move-blocked-tooltip');
+  if (tooltip) tooltip.remove();
+}
+
 function disableSelection() {
   document.body.style.userSelect = 'none';
   document.body.style.webkitUserSelect = 'none';
@@ -417,6 +444,13 @@ export function mouseMove(event) {
 
     // Move one or more selected items
   } else if (this.startLocations && !this.edgeSide && this.startMouse && event.buttons === 1) {
+    // Block move if selection spans multiple pages
+    const pages = new Set(this.selected?.map(f => f.dataItem?.page));
+    if (pages.size > 1) {
+      showMoveBlockedTooltip.bind(this)(event);
+      return;
+    }
+
     this.isMoving = true;
     disableSelection();
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -474,6 +508,7 @@ export function mouseUp(event) {
   this.component.style.cursor = 'auto';
   enableSelection();
   clearSnapGuides.bind(this)();
+  hideMoveBlockedTooltip.bind(this)();
 
   // find what was inside the selection box emit the select event and change their style
   if (this.selectionBox && this.isBoxing) {
@@ -526,7 +561,6 @@ export function mouseClick(e) {
             ...fx.dataItem,
             ...findDimensions(divFrame, fx, fx.dataItem.pageDimensions.height, fx.dataItem.pageDimensions.width, this.zoom),
           };
-          // TODO:: out of bounds handler (UNDO)
           // update the data in the html element
           fx.dataItem = delta;
           // send an update event to be processed
