@@ -83,8 +83,8 @@ graph TD;
   ls-field-content --> ls-assignee-select
   ls-field-content --> ls-field-type-select
   ls-field-content --> ls-toggle
-  ls-field-content --> ls-icon
   ls-field-content --> ls-formfield
+  ls-field-content --> ls-icon
   ls-field-content --> ls-input-wrapper
   ls-field-content --> ls-editor-field
   ls-assignee-select --> ls-icon
@@ -166,6 +166,7 @@ graph TD;
   ls-field-properties-multiple --> ls-assignee-select
   ls-field-properties-multiple --> ls-field-type-select
   ls-field-properties-multiple --> ls-toggle
+  ls-field-properties-multiple --> ls-formfield
   ls-field-properties-multiple --> ls-input-wrapper
   ls-field-properties-multiple --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-size

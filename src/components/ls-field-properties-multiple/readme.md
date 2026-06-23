@@ -34,6 +34,7 @@
 - [ls-assignee-select](../ls-assignee-select)
 - [ls-field-type-select](../ls-field-type-select)
 - [ls-toggle](../ls-toggle)
+- ls-formfield
 - [ls-input-wrapper](../ls-input-wrapper)
 - [ls-field-dimensions](../ls-field-dimensions)
 - [ls-field-size](../ls-field-size)
@@ -50,6 +51,7 @@ graph TD;
   ls-field-properties-multiple --> ls-assignee-select
   ls-field-properties-multiple --> ls-field-type-select
   ls-field-properties-multiple --> ls-toggle
+  ls-field-properties-multiple --> ls-formfield
   ls-field-properties-multiple --> ls-input-wrapper
   ls-field-properties-multiple --> ls-field-dimensions
   ls-field-properties-multiple --> ls-field-size
@@ -61,6 +63,23 @@ graph TD;
   ls-assignee-select --> ls-icon
   ls-assignee-select --> ls-tooltip
   ls-field-type-select --> ls-icon
+  ls-formfield --> ls-icon
+  ls-formfield --> ls-label
+  ls-formfield --> ls-text-input
+  ls-formfield --> ls-select-input
+  ls-formfield --> ls-radio-input
+  ls-formfield --> ls-textarea-input
+  ls-formfield --> ls-checkbox-input
+  ls-formfield --> ls-number-input
+  ls-formfield --> ls-tooltip
+  ls-label --> ls-icon
+  ls-text-input --> ls-icon
+  ls-text-input --> ls-icon-button
+  ls-icon-button --> ls-icon
+  ls-select-input --> ls-icon
+  ls-radio-input --> ls-icon
+  ls-textarea-input --> ls-icon
+  ls-number-input --> ls-icon
   ls-input-wrapper --> ls-icon
   ls-field-dimensions --> ls-icon
   ls-field-dimensions --> ls-tooltip
