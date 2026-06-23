@@ -901,8 +901,12 @@ export function mouseDoubleClick(event) {
     var frame = this.component.shadowRoot.getElementById('ls-document-frame') as HTMLElement;
     // Make a new API compatible id for a template element (prefix 'ele')
     const id = btoa('ele' + crypto.randomUUID());
-    const top = event.offsetY / this.zoom + frame.scrollTop;
-    const left = event.offsetX / this.zoom + frame.scrollLeft;
+    const pageWidth = this.pageDimensions[this.pageNum - 1].width;
+    const pageHeight = this.pageDimensions[this.pageNum - 1].height;
+    const rawTop = event.offsetY / this.zoom + frame.scrollTop;
+    const rawLeft = event.offsetX / this.zoom + frame.scrollLeft;
+    const top = Math.max(0, Math.min(rawTop, pageHeight - data.defaultHeight));
+    const left = Math.max(0, Math.min(rawLeft, pageWidth - data.defaultWidth));
 
     // TODO: Put these defaults somewhere sensible
     const newData: LSMutateEvent = {
