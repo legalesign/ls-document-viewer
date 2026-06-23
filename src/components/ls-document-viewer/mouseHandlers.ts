@@ -61,6 +61,8 @@ export function debounce(data, delay) {
   }, delay);
 }
 
+const MIN_DRAG_DISTANCE = 5;
+
 export function mouseDown(e) {
   if (e.offsetX < 0 || e.offsetY < 0) return;
   if (this._isToolboxDragging) return;
@@ -68,9 +70,11 @@ export function mouseDown(e) {
   if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
-  // Ignore events originating from outside the document frame
+  // Allow drag-to-select from the wrapper area (not just the document frame)
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
-  if (!frame || !e.composedPath().includes(frame)) return;
+  const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
+  const path = e.composedPath();
+  if (!frame || (!path.includes(frame) && !path.includes(wrapper))) return;
   // console.log('mousedown', e);
 
   // Find if this was
@@ -197,10 +201,11 @@ export function mouseDown(e) {
       this.selectionBox = null;
     }
   } else {
-    // move down on empty space, start a selection box
+    // move down on empty space, store pending start for selection box
     this.startLocations = null;
     this.startMouse = null;
-    this.selectionBox = { x: e.clientX, y: e.clientY };
+    this.selectionBox = null;
+    this._pendingSelectionBox = { x: e.clientX, y: e.clientY };
 
     if (!e.shiftKey && !e.altKey) {
       this.unselect();
@@ -208,8 +213,6 @@ export function mouseDown(e) {
       this.selected = [];
       updateSelectionBox.bind(this)();
     }
-
-    this.component.style.cursor = 'crosshair';
   }
 }
 
@@ -397,7 +400,17 @@ export function mouseMove(event) {
     }
 
     debounce.bind(this)({ action: 'update', data: recalculateCoordinates(this.hitField.dataItem) }, 700);
-  } else if (this.selectionBox && event.buttons === 1) {
+  } else if ((this.selectionBox || this._pendingSelectionBox) && event.buttons === 1) {
+    // Check minimum drag distance before activating selection box
+    if (!this.selectionBox && this._pendingSelectionBox) {
+      const dx = event.clientX - this._pendingSelectionBox.x;
+      const dy = event.clientY - this._pendingSelectionBox.y;
+      if (Math.abs(dx) < MIN_DRAG_DISTANCE && Math.abs(dy) < MIN_DRAG_DISTANCE) return;
+      this.selectionBox = this._pendingSelectionBox;
+      this._pendingSelectionBox = null;
+      this.component.style.cursor = 'crosshair';
+    }
+
     this.isBoxing = true;
     // draw the multiple selection box
     var dragBox = this.component.shadowRoot.getElementById('ls-drag-selector') as HTMLElement;
@@ -471,6 +484,7 @@ export function mouseMove(event) {
 export function mouseUp(event) {
   this.edgeSide = null;
   this.startMouse = null;
+  this._pendingSelectionBox = null;
   this.component.style.cursor = 'auto';
   enableSelection();
   clearSnapGuides.bind(this)();
