@@ -64,18 +64,21 @@ export function debounce(data, delay) {
 const MIN_DRAG_DISTANCE = 5;
 
 export function mouseDown(e) {
-  if (e.offsetX < 0 || e.offsetY < 0) return;
   if (this._isToolboxDragging) return;
   // Disable mouse interactions in preview mode or when template is locked
   if (this.mode === 'preview' || this._template?.locked) {
     return;
   }
-  // Allow drag-to-select from the wrapper area (not just the document frame)
+  // Only allow mousedown within the document frame or its surrounding wrapper
   const frame = this.component.shadowRoot.getElementById('ls-document-frame');
   const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
   const path = e.composedPath();
-  if (!frame || (!path.includes(frame) && !path.includes(wrapper))) return;
-  // console.log('mousedown', e);
+  const isInFrame = frame && path.includes(frame);
+  const isInWrapper = wrapper && path.includes(wrapper);
+  if (!isInFrame && !isInWrapper) return;
+  // Ignore events from interactive UI (select-menu, validation tag, etc.)
+  if (path.find((el: Element) => el.tagName && (el.tagName.toLowerCase() === 'ls-select-menu' || el.tagName.toLowerCase() === 'ls-validation-tag'))) return;
+  if (path.find((el: Element) => el.classList?.contains('ls-dv-validation-tag-wrapper'))) return;
 
   // Find if this was
   // - a hit on a field edge RESIZE
@@ -83,6 +86,9 @@ export function mouseDown(e) {
   // - a hit on the background document SELECTMULTIPLE with a box
   this.hitField = null;
   const fields = this.component.shadowRoot.querySelectorAll('ls-editor-field');
+
+  // Only do field hit-detection if the click was inside the document frame
+  if (isInFrame) {
 
   fields.forEach(f => {
     const { left, top, height, width, bottom, right } = f.getBoundingClientRect();
@@ -127,6 +133,7 @@ export function mouseDown(e) {
       this.hitField = f;
     }
   });
+  } // end isInFrame field hit-detection
 
   if (this.hitField && e.shiftKey === false && e.altKey === false) {
     var box = this.component.shadowRoot.getElementById('ls-box-selector') as HTMLElement;
@@ -206,6 +213,7 @@ export function mouseDown(e) {
     this.startMouse = null;
     this.selectionBox = null;
     this._pendingSelectionBox = { x: e.clientX, y: e.clientY };
+    disableSelection();
 
     if (!e.shiftKey && !e.altKey) {
       this.unselect();
