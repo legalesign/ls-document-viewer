@@ -1,6 +1,7 @@
 :host {
   position: absolute;
   z-index: 1000;
+  left: 23.625rem;
   right: 0.5rem;
   bottom: 1rem;
   display: flex;
@@ -10,7 +11,12 @@
   justify-content: space-between;
   height: 2.25rem;
   overflow: visible;
-  width: calc(100cqw - 23.625rem);
+}
+
+:host(.ls-dv-statusbar-preview) {
+  left: 0;
+  right: 0;
+  justify-content: center;
 }
 
 .ls-dv-status-bar-group {
@@ -28,6 +34,15 @@
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
   border-radius: 1.125rem;
   height: fit-content;
+}
+
+.ls-dv-page-nav {
+  margin-left: -6rem;
+  position: relative;
+}
+
+:host(.ls-dv-statusbar-preview) .ls-dv-page-nav {
+  margin-left: 0;
 }
 
 * {
@@ -382,4 +397,11 @@ button.ls-dv-tertiary-grey:hover {
   color: var(--gray-50, #afb0b2);
   font-size: 0.625rem;
   padding-bottom: 0.25rem;
+  display: none;
+}
+
+:host(.ls-dv-statusbar-preview) .ls-dv-version {
+  display: block;
+  bottom: -1.25rem;
+  right: -0.5rem;
 }
