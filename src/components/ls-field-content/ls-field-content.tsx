@@ -6,7 +6,7 @@ import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-vie
 import { dvI18n } from '../../i18n/i18n';
 import { validateFieldValue } from '../../utils/fieldValueValidator';
 import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
-import { forceCloseDatePicker, isSafari } from '../../utils/utils';
+import { forceCloseDatePicker } from '../../utils/utils';
 
 @Component({
   tag: 'ls-field-content',
@@ -388,18 +388,7 @@ export class LsFieldContent {
                   onClick={() => {
                     if (this.readonly) return;
                     const picker = this.component.shadowRoot.getElementById('ls-date-picker') as HTMLInputElement;
-                    if (picker) {
-                      picker.showPicker();
-                      if (!isSafari) return;
-                      const closePicker = (ev: MouseEvent) => {
-                        const wrapper = this.component.shadowRoot.querySelector('.ls-dv-date-input-wrapper');
-                        if (wrapper && !wrapper.contains(ev.target as Node)) {
-                          forceCloseDatePicker(picker);
-                          document.removeEventListener('mousedown', closePicker);
-                        }
-                      };
-                      setTimeout(() => document.addEventListener('mousedown', closePicker), 0);
-                    }
+                    if (picker) picker.showPicker();
                   }}
                 />
                 {this.dataItem?.value && !this.readonly && (
@@ -417,6 +406,7 @@ export class LsFieldContent {
                     this.alter({ value: this.formatDateFromISO(input.value) });
                     forceCloseDatePicker(input);
                   }}
+                  onBlur={e => forceCloseDatePicker(e.target as HTMLInputElement)}
                   disabled={this.readonly}
                 />
               </div>
