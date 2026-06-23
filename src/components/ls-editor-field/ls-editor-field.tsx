@@ -5,6 +5,7 @@ import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils
 import { defaultRolePalette } from '../ls-document-viewer/defaultPalette';
 import { dvI18n } from '../../i18n/i18n';
 import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { forceCloseDatePicker } from '../../utils/utils';
 
 const fieldTypeKeyMap: { [key: string]: string } = {
   'signature': 'toolbox.signature',
@@ -259,6 +260,13 @@ export class LsEditorField {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
       this.isEditing = false;
+      // Force close date picker (Safari ignores blur)
+      const input = this.component.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
+      if (input && input.type === 'date') {
+        setTimeout(() => {
+          if (!this.selected) forceCloseDatePicker(input);
+        }, 50);
+      }
     }
   }
 
@@ -437,8 +445,9 @@ export class LsEditorField {
                 this.alter({ value: this.formatDateFromISO(val) });
               }}
               onChange={e => {
-                const val = (e.target as HTMLInputElement).value;
-                this.alter({ value: this.formatDateFromISO(val) });
+                const input = e.target as HTMLInputElement;
+                this.alter({ value: this.formatDateFromISO(input.value) });
+                forceCloseDatePicker(input);
               }}
             />
           ) : (
