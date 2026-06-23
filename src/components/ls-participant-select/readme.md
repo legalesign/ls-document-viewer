@@ -31,13 +31,16 @@
 ### Depends on
 
 - ls-icon
+- ls-loading
 - ls-tooltip
 
 ### Graph
 ```mermaid
 graph TD;
   ls-participant-select --> ls-icon
+  ls-participant-select --> ls-loading
   ls-participant-select --> ls-tooltip
+  ls-loading --> ls-loading-icon
   ls-toolbar --> ls-participant-select
   style ls-participant-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
