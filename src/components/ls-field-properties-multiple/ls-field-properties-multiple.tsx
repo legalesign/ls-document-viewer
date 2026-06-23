@@ -126,6 +126,17 @@ export class LsFieldPropertiesMultiple {
     return !typesWithoutValue.includes(fieldType);
   };
 
+  isAllCheckboxes = () => {
+    return this.allFieldTypesSame().isSame && this.allFieldTypesSame().fieldType === 'checkbox';
+  };
+
+  private getCheckboxStates(): string[] {
+    if (!this.dataItem || this.dataItem.length === 0) return [];
+    const vType = validationTypes.find(v => v.id === this.dataItem[0].validation);
+    if (!vType) return [];
+    return vType.description.split('/').reverse();
+  }
+
   isDateType = () => {
     return this.allFieldTypesSame().fieldType === 'date';
   };
@@ -395,7 +406,14 @@ export class LsFieldPropertiesMultiple {
                 <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.fieldlabel')}</p>
                 <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.fieldlabeldescription')}</p>
               </div>
-              <input value={this.allLabelsSame().label} onInput={(e) => this.alter({ label: (e.target as HTMLInputElement).value })} width="30" placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')} disabled={this.readonly} />
+              <ls-formfield
+                as="text"
+                name="field-label"
+                value={this.allLabelsSame().label}
+                placeholder={this.allLabelsSame().isSame ? dvI18n.t('fieldproperties.placeholdersignhere') : dvI18n.t('fieldproperties.mixed')}
+                disabled={this.readonly}
+                onTextChange={e => this.alter({ label: e.detail.value })}
+              />
             </div>
 
             {this.allFieldTypesSame().isSame && this.supportsValue() && (
@@ -404,10 +422,17 @@ export class LsFieldPropertiesMultiple {
                   <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.value')}</p>
                   <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.valuedescription')}</p>
                 </div>
-                <input
+                <ls-formfield
+                  as="text"
+                  name="field-value"
                   value={this.allValuesSame().value}
-                  onInput={(e) => {
-                    const val = (e.target as HTMLInputElement).value;
+                  placeholder={this.allValuesSame().isSame ? getFieldPlaceholder(this.allFieldTypesSame().fieldType) : dvI18n.t('fieldproperties.mixed')}
+                  valid={!this.valueError}
+                  dirty={!!this.allValuesSame().value}
+                  errorText={this.valueError}
+                  disabled={this.readonly}
+                  onTextChange={e => {
+                    const val = e.detail.value;
                     this.valueError = validateFieldValue(
                       this.allFieldTypesSame().fieldType,
                       this.allValidationsSame().validation,
@@ -416,11 +441,30 @@ export class LsFieldPropertiesMultiple {
                     );
                     this.alter({ value: val });
                   }}
-                  placeholder={this.allValuesSame().isSame ? getFieldPlaceholder(this.allFieldTypesSame().fieldType) : dvI18n.t('fieldproperties.mixed')}
-                  disabled={this.readonly}
-                  class={{ 'ls-dv-input-error': !!this.valueError }}
                 />
                 {this.valueError && <p class={'ls-dv-error-text'}>{this.valueError}</p>}
+              </div>
+            )}
+
+            {this.isAllCheckboxes() && this.getCheckboxStates().length === 2 && (
+              <div class={'ls-dv-field-properties-section'}>
+                <div class={'ls-dv-field-properties-section-text'}>
+                  <p class={'ls-dv-field-properties-section-title'}>{dvI18n.t('fieldproperties.displaystate')}</p>
+                  <p class={'ls-dv-field-properties-section-description'}>{dvI18n.t('fieldproperties.displaystatedescription')}</p>
+                </div>
+                <div class="ls-dv-checkbox-toggle">
+                  {this.getCheckboxStates().map((state, idx) => (
+                    <button
+                      key={idx}
+                      class={{ 'ls-dv-checkbox-toggle-btn': true, 'ls-dv-active': this.allValuesSame().isSame && (idx === 0 ? this.allValuesSame().value !== 'true' : this.allValuesSame().value === 'true') }}
+                      onClick={() => !this.readonly && this.alterImmediate({ value: idx === 0 ? 'false' : 'true' })}
+                      disabled={this.readonly}
+                    >
+                      {state}
+                    </button>
+                  ))}
+                </div>
+                {!this.allValuesSame().isSame && <p class={'ls-dv-mixed-hint'}>{dvI18n.t('fieldproperties.mixed')}</p>}
               </div>
             )}
 
