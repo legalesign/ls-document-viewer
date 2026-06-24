@@ -209,7 +209,8 @@ the validate event.
 const editor = document.querySelector('ls-document-viewer');
 
 editor.addEventListener('validate', (event) => {
-  console.log('Template validation changed:', event.detail.valid);
+  console.log('Template valid:', event.detail.valid);
+  console.log('Validation errors:', event.detail.errors);
 });
 ```
 
@@ -233,8 +234,13 @@ Fired when the document template is changed, such as adding or removing fields. 
 the event that caused it but also the updated state of the template object as JSON.
 
 #### `validate` event
-Fired when the document template is changed, the `valid` property in detail shows if the
-template has become valid or invalid.
+Fired when the document template is changed. The detail includes:
+- `valid` (boolean) — whether the template is valid and ready to send
+- `errors` (array) — list of validation errors, each with:
+  - `type` — `'signature'` | `'options'` | `'value'`
+  - `title` — human-readable error title
+  - `description` — detailed error description
+  - `signerIndex` — the affected signer index
 
 #### `selectFields` event
 Fired when a field is selected in the editor.
