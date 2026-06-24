@@ -102,7 +102,7 @@ export class LsLeftBar {
             <ls-icon name="x-icon" size={20} />
           </button>
         </div>
-        <ls-field-properties id="my-field-panel" dataItem={this.selectedDataItems} template={this.template} readonly={this.template?.locked || false}></ls-field-properties>
+        <ls-field-properties id="my-field-panel" dataItem={this.selectedDataItems} template={this.template} readonly={this.template?.locked || false} filtertoolbox={this.filtertoolbox}></ls-field-properties>
       </div>
     );
   }

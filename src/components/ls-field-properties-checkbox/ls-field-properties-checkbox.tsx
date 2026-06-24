@@ -12,6 +12,7 @@ export class LsFieldPropertiesCheckbox {
   @Prop({ mutable: true }) dataItem: LSApiElement;
   @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
+  @Prop() filtertoolbox: string = null;
 
   @Listen('mutate')
   handleChildMutate(event: CustomEvent<LSMutateEvent[]>) {
@@ -28,7 +29,7 @@ export class LsFieldPropertiesCheckbox {
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-field-content dataItem={this.dataItem} roles={this.roles} showValidationTypes={true} readonly={this.readonly} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} showValidationTypes={true} readonly={this.readonly} filtertoolbox={this.filtertoolbox} />
             <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

@@ -391,6 +391,7 @@ export class LsDocumentViewer {
   updateHandler(event: CustomEvent<LSMutateEvent[]>) {
     const details = event.detail;
     if (!details || !Array.isArray(details) || details.length === 0) return;
+    event.stopPropagation();
 
     const source = event.target as HTMLElement;
     const isFromEditorField = source?.tagName === 'LS-EDITOR-FIELD';

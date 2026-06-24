@@ -7,14 +7,15 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                                      | Type          | Default      |
-| ----------- | ------------ | ---------------------------------------------------------------- | ------------- | ------------ |
-| `assignee`  | `assignee`   | Signer index for colour                                          | `number`      | `1`          |
-| `disabled`  | `disabled`   | Whether the select is disabled                                   | `boolean`     | `false`      |
-| `fieldType` | `field-type` | Current field type (e.g. 'text', 'signature')                    | `string`      | `'text'`     |
-| `mixed`     | `mixed`      | Show mixed state when multi-select has different field types     | `boolean`     | `false`      |
-| `roleTypes` | --           | Role types of the selected field(s) — used to filter valid types | `string[]`    | `['SIGNER']` |
-| `roles`     | --           | Roles from the template for determining valid types              | `LSApiRole[]` | `[]`         |
+| Property        | Attribute       | Description                                                      | Type          | Default      |
+| --------------- | --------------- | ---------------------------------------------------------------- | ------------- | ------------ |
+| `assignee`      | `assignee`      | Signer index for colour                                          | `number`      | `1`          |
+| `disabled`      | `disabled`      | Whether the select is disabled                                   | `boolean`     | `false`      |
+| `fieldType`     | `field-type`    | Current field type (e.g. 'text', 'signature')                    | `string`      | `'text'`     |
+| `filtertoolbox` | `filtertoolbox` | Pipe-delimited filter for allowed field types                    | `string`      | `null`       |
+| `mixed`         | `mixed`         | Show mixed state when multi-select has different field types     | `boolean`     | `false`      |
+| `roleTypes`     | --              | Role types of the selected field(s) — used to filter valid types | `string[]`    | `['SIGNER']` |
+| `roles`         | --              | Roles from the template for determining valid types              | `LSApiRole[]` | `[]`         |
 
 
 ## Events
