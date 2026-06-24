@@ -131,6 +131,11 @@ export class LsEditorField {
       return;
     }
 
+    // Let Delete/Backspace propagate for date fields (no text to edit)
+    if ((e.key === 'Delete' || e.key === 'Backspace') && this.isDateField()) {
+      return;
+    }
+
     e.stopPropagation();
   }
 
@@ -179,14 +184,21 @@ export class LsEditorField {
 
   @Listen('dblclick', { capture: true })
   handleDoubleClick(e: MouseEvent) {
-    if (this.readonly || LsEditorField.NO_EDIT_TYPES.includes(this.dataItem.formElementType as string)) {
+    if (this.readonly) {
       e.preventDefault();
       e.stopPropagation();
       return;
     }
 
-    // Date fields use selection to open picker, skip dblclick
+    // Date fields open the picker on double-click
     if (this.isDateField()) {
+      this.isEditing = true;
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    if (LsEditorField.NO_EDIT_TYPES.includes(this.dataItem.formElementType as string)) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -433,23 +445,37 @@ export class LsEditorField {
             />
           )}
           {this.isDateField() ? (
-            <input
-              id="editing-input"
-              class="ls-dv-date-field-input"
-              type="date"
-              style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, textAlign: 'inherit' }}
-              value={this.toISODate(this.dataItem?.value)}
-              checked={this.dataItem?.value ? true : false}
-              onInput={e => {
-                const val = (e.target as HTMLInputElement).value;
-                this.alter({ value: this.formatDateFromISO(val) });
-              }}
-              onChange={e => {
-                const input = e.target as HTMLInputElement;
-                this.alter({ value: this.formatDateFromISO(input.value) });
-                forceCloseDatePicker(input);
-              }}
-            />
+            this.isEditing ? (
+              <input
+                id="editing-input"
+                class="ls-dv-date-field-input ls-dv-date-field-active"
+                type="date"
+                aria-label={dvI18n.t('toolbox.date')}
+                style={{ color: `${defaultRolePalette[this.dataItem?.signer % 100].s100}`, textAlign: 'inherit' }}
+                value={this.toISODate(this.dataItem?.value)}
+                onInput={e => {
+                  const val = (e.target as HTMLInputElement).value;
+                  this.alter({ value: this.formatDateFromISO(val) });
+                }}
+                onChange={e => {
+                  const input = e.target as HTMLInputElement;
+                  this.alter({ value: this.formatDateFromISO(input.value) });
+                  this.isEditing = false;
+                  forceCloseDatePicker(input);
+                }}
+                onBlur={() => {
+                  this.isEditing = false;
+                }}
+                ref={el => {
+                  if (el) {
+                    requestAnimationFrame(() => {
+                      el.focus();
+                      el.showPicker?.();
+                    });
+                  }
+                }}
+              />
+            ) : null
           ) : (
             <textarea
               id="editing-input"
