@@ -68,8 +68,12 @@
   pointer-events: none;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 0.5rem;
   left: 0;
+}
+
+.ls-dv-date-field-active {
+  pointer-events: auto;
 }
 
 input, textarea {
