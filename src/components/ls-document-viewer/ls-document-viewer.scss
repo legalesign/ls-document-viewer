@@ -5,11 +5,6 @@
   box-sizing: border-box;
 }
 
-/* Preserve content-box for editor fields — their width/height is set
-   directly via inline styles and a 2px border must NOT eat into that. */
-ls-editor-field {
-  box-sizing: content-box;
-}
 
 /* 2. Remove default margin */
 * {

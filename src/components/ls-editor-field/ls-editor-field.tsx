@@ -399,8 +399,8 @@ export class LsEditorField {
       : defaultRolePalette[this.dataItem?.signer % 100].s60;
 
     const hostStyle = this.floatingActive && !this.readonly
-      ? { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': borderColor }
-      : { border: `2px ${borderColor} ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'}`, '--field-border-color': borderColor };
+      ? { outline: `2px ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'} ${borderColor}`, outlineOffset: '-2px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', '--field-border-color': borderColor }
+      : { outline: `2px ${this.dataItem?.signer > 99 ? 'dashed' : 'solid'} ${borderColor}`, outlineOffset: '-2px', '--field-border-color': borderColor };
 
     const zoomValue = parseFloat(this.zoom) || 1;
     // const topOffset = (this.dataItem.height ?? 1) + 4;
