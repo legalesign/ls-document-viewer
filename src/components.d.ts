@@ -233,6 +233,10 @@ export namespace Components {
     interface LsFieldContent {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -283,6 +287,10 @@ export namespace Components {
     interface LsFieldProperties {
         "dataItem": LSApiElement[];
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -309,6 +317,10 @@ export namespace Components {
     interface LsFieldPropertiesCheckbox {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -328,6 +340,10 @@ export namespace Components {
     interface LsFieldPropertiesDate {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -339,12 +355,20 @@ export namespace Components {
     interface LsFieldPropertiesDropdown {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default []
          */
         "roles": LSApiRole[];
     }
     interface LsFieldPropertiesEmail {
         "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
         /**
           * @default false
          */
@@ -357,6 +381,10 @@ export namespace Components {
     interface LsFieldPropertiesFile {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -367,6 +395,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesGeneral {
         "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
         /**
           * @default false
          */
@@ -379,6 +411,10 @@ export namespace Components {
     interface LsFieldPropertiesMultiple {
         "dataItem": LSApiElement1[];
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -389,6 +425,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesNumber {
         "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
         /**
           * @default false
          */
@@ -401,6 +441,10 @@ export namespace Components {
     interface LsFieldPropertiesSignature {
         "dataItem": LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
           * @default false
          */
         "readonly": boolean;
@@ -412,6 +456,10 @@ export namespace Components {
     }
     interface LsFieldPropertiesText {
         "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
         /**
           * @default false
          */
@@ -451,6 +499,11 @@ export namespace Components {
           * @default 'text'
          */
         "fieldType": string;
+        /**
+          * Pipe-delimited filter for allowed field types
+          * @default null
+         */
+        "filtertoolbox": string;
         /**
           * Show mixed state when multi-select has different field types
           * @default false
@@ -1758,6 +1811,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldContent {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
         "onMutate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldContentCustomEvent<LSMutateEvent1[]>) => void;
         /**
@@ -1819,6 +1876,10 @@ declare namespace LocalJSX {
     interface LsFieldProperties {
         "dataItem"?: LSApiElement[];
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1846,6 +1907,10 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesCheckbox {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1865,6 +1930,10 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesDate {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1876,12 +1945,20 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesDropdown {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default []
          */
         "roles"?: LSApiRole[];
     }
     interface LsFieldPropertiesEmail {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
         /**
           * @default false
          */
@@ -1894,6 +1971,10 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesFile {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1905,6 +1986,10 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesGeneral {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1915,6 +2000,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesMultiple {
         "dataItem"?: LSApiElement1[];
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
         "onMutate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
         "onUpdate"?: (event: LsFieldPropertiesMultipleCustomEvent<LSMutateEvent1[]>) => void;
         /**
@@ -1929,6 +2018,10 @@ declare namespace LocalJSX {
     interface LsFieldPropertiesNumber {
         "dataItem"?: LSApiElement1;
         /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        /**
           * @default false
          */
         "readonly"?: boolean;
@@ -1939,6 +2032,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesSignature {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
         /**
           * @default false
          */
@@ -1951,6 +2048,10 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesText {
         "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
         /**
           * @default false
          */
@@ -1991,6 +2092,11 @@ declare namespace LocalJSX {
           * @default 'text'
          */
         "fieldType"?: string;
+        /**
+          * Pipe-delimited filter for allowed field types
+          * @default null
+         */
+        "filtertoolbox"?: string;
         /**
           * Show mixed state when multi-select has different field types
           * @default false

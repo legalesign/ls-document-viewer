@@ -233,6 +233,9 @@ export class LsValidationTag {
                   <div class="ls-dv-validation-section">
                     <div class="ls-dv-validation-tag-header">
                       <p class="ls-dv-validation-tag-title">{dvI18n.t('common.fieldsrequired')}</p>
+                       <p class="ls-dv-validation-tag-description-compose">
+                        {signatureErrors.length} {signatureErrors.length === 1 ? dvI18n.t('validation.recipientrequiressignature') : dvI18n.t('validation.recipientsrequiressignatures')}
+                      </p>
                     </div>
                     {signatureErrors.map((field, idx) => {
                       const signerIndex = field?.role?.signerIndex ? field?.role?.signerIndex % 100 : null;
@@ -248,6 +251,7 @@ export class LsValidationTag {
                             });
                             this.isExpanded = false;
                           }}
+                          // style={{ background: pallette.s10, border: `1px solid ${pallette.s40}` }}
                         >
                           <div class="ls-dv-validation-tag-bar" style={{ background: pallette.s60 }}></div>
                           <div class="ls-dv-validation-tag-details">
@@ -265,6 +269,10 @@ export class LsValidationTag {
                   <div class="ls-dv-validation-section">
                     <div class="ls-dv-validation-tag-header">
                       <p class="ls-dv-validation-tag-title">{dvI18n.t('validation.optionsrequired')}</p>
+                      <p class="ls-dv-validation-tag-description-compose">
+                        {elementErrors.length} {elementErrors.length === 1 ? dvI18n.t('validation.fieldneedsoptions') : dvI18n.t('validation.fieldsneedoptions')}
+                      </p>
+                      
                     </div>
                     {elementErrors.map((field, idx) => {
                       const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
@@ -292,6 +300,9 @@ export class LsValidationTag {
                   <div class="ls-dv-validation-section">
                     <div class="ls-dv-validation-tag-header">
                       <p class="ls-dv-validation-tag-title">{dvI18n.t('validation.invalidvalues')}</p>
+                      <p class="ls-dv-validation-tag-description-compose">
+                        {valueErrors.length} {valueErrors.length === 1 ? dvI18n.t('validation.fieldhasinvalidvalue') : dvI18n.t('validation.fieldshaveinvalidvalues')}
+                      </p>
                     </div>
                     {valueErrors.map((field, idx) => {
                       const signerIndex = field?.element?.signer ? field?.element?.signer % 100 : 0;
