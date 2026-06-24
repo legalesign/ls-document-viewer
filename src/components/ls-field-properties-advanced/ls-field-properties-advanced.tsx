@@ -85,7 +85,7 @@ export class LsFieldPropertiesAdvanced {
         {this.expanded && (
           <div class={'ls-dv-field-set'}>
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldorder')} sectionDescription={dvI18n.t('fieldproperties.fieldorderdescription')}>
-              <input value={this.getValue('fieldOrder')} type="number" placeholder={dvI18n.t('fieldproperties.placeholdereg1')} onInput={e => {
+              <input type="number" placeholder={dvI18n.t('fieldproperties.placeholdereg1')} value={this.getValue('fieldOrder')} onInput={e => {
                 console.log(e);
                 this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
               }} 
