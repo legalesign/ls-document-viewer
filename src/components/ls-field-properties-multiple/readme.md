@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type             | Default     |
-| ---------- | ---------- | ----------- | ---------------- | ----------- |
-| `dataItem` | --         |             | `LSApiElement[]` | `undefined` |
-| `readonly` | `readonly` |             | `boolean`        | `false`     |
-| `roles`    | --         |             | `LSApiRole[]`    | `[]`        |
+| Property        | Attribute       | Description | Type             | Default     |
+| --------------- | --------------- | ----------- | ---------------- | ----------- |
+| `dataItem`      | --              |             | `LSApiElement[]` | `undefined` |
+| `filtertoolbox` | `filtertoolbox` |             | `string`         | `null`      |
+| `readonly`      | `readonly`      |             | `boolean`        | `false`     |
+| `roles`         | --              |             | `LSApiRole[]`    | `[]`        |
 
 
 ## Events

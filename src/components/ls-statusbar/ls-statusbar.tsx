@@ -222,7 +222,7 @@ export class LsStatusbar {
     this.editor.mutate.emit(mutations);
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.zoom = this.editor.zoom;
   }
 

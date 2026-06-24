@@ -19,6 +19,7 @@ export class LsFieldContent {
   @Prop() roles: LSApiRole[] = [];
   @Prop() showValidationTypes: boolean = true;
   @Prop() readonly: boolean = false;
+  @Prop() filtertoolbox: string = null;
 
   @State() valueError: string | null = null;
   @State() isDirty: boolean = false;
@@ -357,6 +358,7 @@ export class LsFieldContent {
             roles={this.roles}
             roleTypes={[this.getRoleType()]}
             disabled={this.readonly}
+            filtertoolbox={this.filtertoolbox}
             onFieldTypeChange={ev => this.handleFieldTypeChange(ev.detail)}
           />
         </ls-props-section>

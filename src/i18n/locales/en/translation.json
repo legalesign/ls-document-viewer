@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}} is missing a signature",
     "recipientneedsignature": "Recipient needs a Signature Field placed for them",
     "recipientsneedsignatures": "Recipients need Signature Fields placed for them",
+    "recipientrequiressignature": "Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "Recipients require Signature Fields",
     "optionsrequired": "Dropdown Options Required",
     "fieldneedsoptions": "Dropdown field needs options added",
     "fieldsneedoptions": "Dropdown fields need options added",

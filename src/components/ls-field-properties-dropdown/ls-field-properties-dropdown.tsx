@@ -10,13 +10,14 @@ import { LSApiRole } from '../../types/LSApiRole';
 export class LsFieldPropertiesDropdown {
   @Prop() dataItem: LSApiElement;
   @Prop() roles: LSApiRole[] = [];
+  @Prop() filtertoolbox: string = null;
 
   render() {
     return (
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-field-content dataItem={this.dataItem} roles={this.roles} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} filtertoolbox={this.filtertoolbox} />
             <ls-field-properties-advanced dataItem={this.dataItem} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

@@ -91,7 +91,6 @@ export class LsRecipientCard {
   render() {
     const recipientFields = this.template.elementConnection.templateElements.filter(f => f.signer === this.recipient.signerIndex) || [];
     const recipientSignatures = recipientFields.filter(f => f.elementType === 'signature' || f.elementType === 'auto sign');
-    const dropdownsMissingOptions = recipientFields.filter(f => f.validation === 20 && (!f.options || f.options.length === 0));
     return (
       <Host>
         <div
@@ -135,7 +134,7 @@ export class LsRecipientCard {
               />
               <div
                 class="ls-dv-dot"
-                style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && this.validationErrors.filter(v => v?.signerIndex === this.recipient.signerIndex).length > 0 ? 'block' : 'none' }}
+                style={{ display: (!this.isHovered || this.recipient.signerIndex === this.activeRecipient) && this.validationErrors.filter(v => v?.signerIndex === this.recipient.signerIndex && v?.title === 'Missing signature').length > 0 ? 'block' : 'none' }}
               />
             </div>
 
@@ -295,7 +294,6 @@ export class LsRecipientCard {
                   icon="dropdown-icon"
                   tooltip={dvI18n.t('toolbox.dropdowntooltip')}
                   signer={this.recipient.signerIndex}
-                  redDot={dropdownsMissingOptions.length > 0}
                 />
               )}
 
