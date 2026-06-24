@@ -275,7 +275,7 @@ export class LsDocumentViewer {
   @Event() update: EventEmitter<{ event: LSMutateEvent; template: LSApiTemplate }>;
 
   // Send an external validation event to be monitored by an external developer
-  @Event() validate: EventEmitter<{ valid: boolean }>;
+  @Event() validate: EventEmitter<{ valid: boolean; errors: ValidationError[] }>;
 
   @Event({
     bubbles: true,
@@ -856,7 +856,7 @@ export class LsDocumentViewer {
     }
 
     this.validationErrors = validate.bind(this)(this._template);
-    this.validate.emit({ valid: this.validationErrors.length === 0 });
+    this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
   initViewer() {
@@ -970,7 +970,7 @@ export class LsDocumentViewer {
 
       //Revalidate
       this.validationErrors = validate.bind(this)(this._template);
-      this.validate.emit({ valid: this.validationErrors.length === 0 });
+      this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
       this.pageCount = this._template.pageCount;
       this.selected = [];
       this.setZoom(1.0);
