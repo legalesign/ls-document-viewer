@@ -118,7 +118,7 @@ export class LsDocumentViewer {
    * {string}
    */
   @Prop() recipients: string;
-  @Prop({ mutable: true }) _recipients: any[];
+  @Prop() _recipients: any[];
 
   /**
    * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de').
