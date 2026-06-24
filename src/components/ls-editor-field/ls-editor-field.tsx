@@ -294,14 +294,16 @@ export class LsEditorField {
     this.update.emit([{ action: 'delete', data: this.dataItem }]);
   };
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.valueError = validateFieldValue(
       this.dataItem?.formElementType,
       this.dataItem?.validation,
       this.dataItem?.value,
       this.dataItem?.options,
     );
+  }
 
+  componentDidLoad() {
     this.sizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.contentRect) {
