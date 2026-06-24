@@ -9,9 +9,9 @@ import { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 import { LSApiTemplate } from "./types/LSApiTemplate";
 import { LSMutateEvent } from "./types/LSMutateEvent";
 import { LSApiElement } from "./types/LSApiElement";
+import { ValidationError } from "./types/ValidationError";
 import { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 import { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
-import { ValidationError } from "./types/ValidationError";
 import { IToolboxField } from "./components/interfaces/IToolboxField";
 import { LSApiRecipient } from "./types/LSApiRecipient";
 import { Icon as Icon1 } from "./types/Icon";
@@ -19,9 +19,9 @@ export { LSApiRole, LSApiRoleType } from "./types/LSApiRole";
 export { LSApiTemplate } from "./types/LSApiTemplate";
 export { LSMutateEvent } from "./types/LSMutateEvent";
 export { LSApiElement } from "./types/LSApiElement";
+export { ValidationError } from "./types/ValidationError";
 export { unknown as Icon, LSApiElement as LSApiElement1, LSApiTemplate as LSApiTemplate1, LsDocumentViewer as LsDocumentViewer1, LSMutateEvent as LSMutateEvent1 } from "./components";
 export { LsDocumentViewer } from "./components/ls-document-viewer/ls-document-viewer";
-export { ValidationError } from "./types/ValidationError";
 export { IToolboxField } from "./components/interfaces/IToolboxField";
 export { LSApiRecipient } from "./types/LSApiRecipient";
 export { Icon as Icon1 } from "./types/Icon";
@@ -904,7 +904,7 @@ declare global {
         "selectFields": LSApiElement[];
         "mutate": LSMutateEvent[];
         "update": { event: LSMutateEvent; template: LSApiTemplate };
-        "validate": { valid: boolean };
+        "validate": { valid: boolean; errors: ValidationError[] };
         "addParticipant": { name?: string | null; type: LSApiRoleType; parent?: string | null; signerIndex?: number };
     }
     /**
@@ -1638,7 +1638,7 @@ declare namespace LocalJSX {
         "onPageRendered"?: (event: LsDocumentViewerCustomEvent<number>) => void;
         "onSelectFields"?: (event: LsDocumentViewerCustomEvent<LSApiElement[]>) => void;
         "onUpdate"?: (event: LsDocumentViewerCustomEvent<{ event: LSMutateEvent; template: LSApiTemplate }>) => void;
-        "onValidate"?: (event: LsDocumentViewerCustomEvent<{ valid: boolean }>) => void;
+        "onValidate"?: (event: LsDocumentViewerCustomEvent<{ valid: boolean; errors: ValidationError[] }>) => void;
         /**
           * @default 1
          */
