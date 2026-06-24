@@ -260,6 +260,12 @@ export class LsEditorField {
       this.component.style.background = 'rgba(255,255,255,0.5)';
       this.component.style.boxShadow = 'none';
       this.isEditing = false;
+      // Flush pending debounced mutate so validation fires immediately
+      if (this.labeltimer) {
+        clearTimeout(this.labeltimer);
+        this.labeltimer = null;
+        this.mutate.emit([{ action: 'update', data: this.dataItem }]);
+      }
       // Force close date picker (Safari ignores blur)
       const input = this.component.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
       if (input && input.type === 'date') {
