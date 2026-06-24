@@ -88,6 +88,8 @@ export class LsFieldTypeSelect {
   @Prop() disabled: boolean = false;
   /** Show mixed state when multi-select has different field types */
   @Prop() mixed: boolean = false;
+  /** Pipe-delimited filter for allowed field types */
+  @Prop() filtertoolbox: string = null;
 
   @State() isOpen: boolean = false;
 
@@ -112,7 +114,7 @@ export class LsFieldTypeSelect {
 
   render() {
     const color = defaultRolePalette[this.assignee % 100];
-    const validTypes = getValidFieldTypes(this.roleTypes);
+    const validTypes = getValidFieldTypes(this.roleTypes).filter(t => this.filtertoolbox === null || this.filtertoolbox.split('|').includes(t));
     const displayLabel = this.mixed
       ? dvI18n.t('fieldproperties.mixed')
       : dvI18n.t(fieldTypeKeyMap[this.fieldType] || 'toolbox.text');

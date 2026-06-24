@@ -18,6 +18,7 @@ export class LsFieldPropertiesMultiple {
   @Prop({ mutable: true }) dataItem: LSApiElement[];
   @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
+  @Prop() filtertoolbox: string = null;
   @State() valueError: string | null = null;
 
   @Watch('dataItem')
@@ -390,6 +391,7 @@ export class LsFieldPropertiesMultiple {
                 roleTypes={this.getAllRoleTypes()}
                 disabled={this.readonly}
                 mixed={!this.allFieldTypesSame().isSame}
+                filtertoolbox={this.filtertoolbox}
                 onFieldTypeChange={ev => this.handleFieldTypeChange(ev.detail)}
               />
             </div>
