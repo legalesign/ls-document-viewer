@@ -47,6 +47,13 @@ export class LsFieldContent {
     }
   }
 
+  disconnectedCallback() {
+    if (this.labeltimer) {
+      clearTimeout(this.labeltimer);
+      this.labeltimer = null;
+    }
+  }
+
   @Event({
     bubbles: true,
     cancelable: true,
