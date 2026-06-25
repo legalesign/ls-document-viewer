@@ -377,7 +377,12 @@ export class LsDocumentViewer {
             }
             matchData.bind(this)(result);
           })
-          .then(() => this.syncChange(me)),
+          .then(() => this.syncChange(me))
+          .catch(() => {
+            // Revalidate against current template state on API failure
+            this.validationErrors = validate.bind(this)(this._template);
+            this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
+          }),
       );
       Promise.all(promises).finally(() => {
         requestAnimationFrame(() => {
@@ -422,6 +427,20 @@ export class LsDocumentViewer {
         }
       }
     }
+
+    // Optimistic validation: run validate against a temp template with the updated element
+    const optimisticTemplate = {
+      ...this._template,
+      elementConnection: {
+        ...this._template.elementConnection,
+        templateElements: this._template.elementConnection.templateElements.map(el => {
+          const updated = details.find(d => d.action === 'update' && d.data?.id === el.id);
+          return updated ? { ...el, ...updated.data } : el;
+        }),
+      },
+    };
+    this.validationErrors = validate.bind(this)(optimisticTemplate);
+    this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
   @Listen('fieldTypeSelected')
