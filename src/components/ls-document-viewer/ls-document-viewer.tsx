@@ -900,6 +900,11 @@ export class LsDocumentViewer {
       document.addEventListener('keydown', keyDown.bind(this));
     }
 
+    // Listen for flushed mutations from destroyed sidebar components
+    document.addEventListener('ls-flush-mutate', ((e: CustomEvent) => {
+      this.mutate.emit(e.detail);
+    }) as EventListener);
+
     // Pinch-to-zoom (trackpad) and Ctrl/Cmd+scroll zoom
     const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
     wrapper.addEventListener('wheel', (e: WheelEvent) => {
