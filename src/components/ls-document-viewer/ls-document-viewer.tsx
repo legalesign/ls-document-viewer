@@ -889,6 +889,10 @@ export class LsDocumentViewer {
     this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
+  private _boundKeyDown: ((e: KeyboardEvent) => void) | null = null;
+  private _boundMouseMove: ((e: MouseEvent) => void) | null = null;
+  private _boundMouseUp: ((e: MouseEvent) => void) | null = null;
+
   initViewer() {
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
@@ -902,12 +906,21 @@ export class LsDocumentViewer {
 
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
+      // Remove previous document-level listeners to prevent duplicates on re-load
+      if (this._boundKeyDown) document.removeEventListener('keydown', this._boundKeyDown);
+      if (this._boundMouseMove) document.removeEventListener('mousemove', this._boundMouseMove);
+      if (this._boundMouseUp) document.removeEventListener('mouseup', this._boundMouseUp);
+
+      this._boundKeyDown = keyDown.bind(this);
+      this._boundMouseMove = mouseMove.bind(this);
+      this._boundMouseUp = mouseUp.bind(this);
+
       dropTarget.addEventListener('click', mouseClick.bind(this));
       wrapperTarget.addEventListener('mousedown', mouseDown.bind(this));
-      document.addEventListener('mousemove', mouseMove.bind(this));
-      document.addEventListener('mouseup', mouseUp.bind(this));
+      document.addEventListener('mousemove', this._boundMouseMove);
+      document.addEventListener('mouseup', this._boundMouseUp);
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-      document.addEventListener('keydown', keyDown.bind(this));
+      document.addEventListener('keydown', this._boundKeyDown);
     }
 
     // Listen for flushed mutations from destroyed sidebar components
