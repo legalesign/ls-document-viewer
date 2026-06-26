@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Watch, Event, EventEmitter, Element, State } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Element, State } from '@stencil/core';
 import { LSApiTemplate } from '../../types/LSApiTemplate';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { dvI18n } from '../../i18n/i18n';
@@ -18,10 +18,7 @@ export class LsDocumentOptions {
 
   @State() editTitle: boolean = false;
 
-  @Watch('template')
-  selectedHandler(newSelected, _oldSelected) {
-    console.log(newSelected, 'document manager');
-  }
+
 
   @Event({
     bubbles: true,
@@ -161,9 +158,10 @@ export class LsDocumentOptions {
             <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.documentretention')}</p>
             <p>
               <input
+                type='number'
+                min='0'
                 value={this.template?.documentRetentionDays}
                 style={{ width: '100%' }}
-                type='number'
                 onInput={e => {
                   e.preventDefault();
                   this.alter({ documentRetentionDays: (e.target as HTMLInputElement).value });
