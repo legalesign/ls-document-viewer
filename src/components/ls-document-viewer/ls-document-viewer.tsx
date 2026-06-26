@@ -435,11 +435,11 @@ export class LsDocumentViewer {
         ...this._template.elementConnection,
         templateElements: this._template.elementConnection.templateElements.map(el => {
           const updated = details.find(d => d.action === 'update' && d.data?.id === el.id);
-          return updated ? { ...el, ...updated.data } : el;
+          return updated ? { ...el, ...updated.data } as LSApiElement : el;
         }),
       },
     };
-    this.validationErrors = validate.bind(this)(optimisticTemplate);
+    this.validationErrors = validate.bind(this)(optimisticTemplate as LSApiTemplate);
     this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
@@ -899,6 +899,11 @@ export class LsDocumentViewer {
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
       document.addEventListener('keydown', keyDown.bind(this));
     }
+
+    // Listen for flushed mutations from destroyed sidebar components
+    document.addEventListener('ls-flush-mutate', ((e: CustomEvent) => {
+      this.mutate.emit(e.detail);
+    }) as EventListener);
 
     // Pinch-to-zoom (trackpad) and Ctrl/Cmd+scroll zoom
     const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');

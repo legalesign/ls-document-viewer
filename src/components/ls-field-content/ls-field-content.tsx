@@ -51,6 +51,13 @@ export class LsFieldContent {
     if (this.labeltimer) {
       clearTimeout(this.labeltimer);
       this.labeltimer = null;
+      // Component is already detached from DOM so events can't bubble.
+      // Dispatch on document and let ls-document-viewer pick it up.
+      document.dispatchEvent(
+        new CustomEvent('ls-flush-mutate', {
+          detail: [{ action: 'update', data: this.dataItem }],
+        }),
+      );
     }
   }
 

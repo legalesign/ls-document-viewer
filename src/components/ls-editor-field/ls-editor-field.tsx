@@ -276,9 +276,8 @@ export class LsEditorField {
       if (this.labeltimer) {
         clearTimeout(this.labeltimer);
         this.labeltimer = null;
+        this.mutate.emit([{ action: 'update', data: this.dataItem }]);
       }
-      // Always emit mutate on deselect to catch pending changes from ls-field-content
-      this.mutate.emit([{ action: 'update', data: this.dataItem }]);
       // Force close date picker (Safari ignores blur)
       const input = this.component.shadowRoot?.getElementById('editing-input') as HTMLInputElement;
       if (input && input.type === 'date') {
