@@ -113,6 +113,11 @@ export class LsDocumentViewer {
    */
   @Prop() templateid: string;
 
+  @Watch('templateid')
+  templateIdChanged() {
+    if (this.token) this.load();
+  }
+
   /**
    * A JSON string containing the recipient details. Only used in COMPOSE mode.
    * {string}
