@@ -18,6 +18,7 @@ export class LsDocumentAdapter {
   }
 
   handleEvent = async (event: LSMutateEvent, accessToken: string) => {
+    console.log('[Adapter] handleEvent:', event.action, (event.data as any)?.id);
     axios.defaults.headers.common['Authorization'] = accessToken;
 
     // Determine the object type being processed
