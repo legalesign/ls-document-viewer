@@ -397,11 +397,10 @@ button.ls-dv-tertiary-grey:hover {
   color: var(--gray-50, #afb0b2);
   font-size: 0.625rem;
   padding-bottom: 0.25rem;
-  display: none;
+  display: block;
 }
 
 :host(.ls-dv-statusbar-preview) .ls-dv-version {
-  display: block;
   bottom: -1.25rem;
-  right: -0.5rem;
+  margin-right: 0.5rem;
 }
