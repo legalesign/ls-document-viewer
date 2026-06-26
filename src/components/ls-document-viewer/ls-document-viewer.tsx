@@ -295,6 +295,7 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
+    console.log('[mutateHandler] entered, token:', !!this.token, 'adapter:', !!this.adapter, 'detail:', event.detail?.map(m => ({ action: m.action, id: (m.data as any)?.id })));
     if (this.token && this.adapter) {
       const mutations = Array.isArray(event.detail) ? event.detail : [event.detail];
 
