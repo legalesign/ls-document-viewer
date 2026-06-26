@@ -41,6 +41,7 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
       const data = m.data as LSApiElement;
       switch (m.action) {
         case 'create':
+          console.log('[History] Create inverse - same ref:', data === m.data, 'id:', data.id);
           return { action: 'delete', data };
         case 'delete':
           return { action: 'create', data: beforeStates.get(data.id) || { ...data } };
@@ -55,6 +56,7 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
     .filter(Boolean) as LSMutateEvent[];
 
   undoStack.push({ mutations, inverse });
+  console.log('[History] After push - mutations[0].data.id:', (undoStack[undoStack.length-1].mutations[0].data as LSApiElement).id, 'inverse[0].data.id:', (undoStack[undoStack.length-1].inverse[0].data as LSApiElement).id, 'same ref:', undoStack[undoStack.length-1].mutations[0].data === undoStack[undoStack.length-1].inverse[0].data);
   if (undoStack.length > MAX_HISTORY) {
     undoStack.shift();
   }
@@ -151,6 +153,7 @@ export function clearHistory() {
  * Update the history entries so undo/redo use the real ID.
  */
 export function updateCreatedId(clientId: string, serverId: string) {
+  console.log('[History] updateCreatedId:', clientId, '→', serverId);
   const updateEntry = (entry: HistoryEntry) => {
     entry.mutations.forEach(m => {
       if ((m.data as LSApiElement).id === clientId) {

@@ -290,6 +290,7 @@ export class LsDocumentViewer {
 
   private adapter: LsDocumentAdapter;
   public _skipHistory: boolean = false;
+  private _loadGeneration: number = 0;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
@@ -319,11 +320,14 @@ export class LsDocumentViewer {
       this._skipHistory = false;
 
       this.isMutating = true;
+      const currentGeneration = this._loadGeneration;
       const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
             if (result === 'invalid') return;
+            // Discard stale responses from a previous template
+            if (this._loadGeneration !== currentGeneration) return;
             // Cascade name change to witness if it still matches a default pattern
             // Must check before matchData/syncRoles overwrites this._template.roles
             if (me.action === 'update' && (me.data as LSApiRole).roleType !== 'WITNESS') {
@@ -968,6 +972,7 @@ export class LsDocumentViewer {
 
   async load() {
     this.isLoading = true;
+    this._loadGeneration++;
     clearHistory();
     // Get all template and group listing data.
     try {
