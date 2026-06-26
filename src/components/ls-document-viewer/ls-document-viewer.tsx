@@ -115,7 +115,7 @@ export class LsDocumentViewer {
 
   @Watch('templateid')
   templateIdChanged() {
-    if (this.token) this.load();
+    if (this.token && this._initialized) this.reload();
   }
 
   /**
@@ -295,7 +295,6 @@ export class LsDocumentViewer {
   // Action an external data action and use the result (if required)
   @Listen('mutate')
   mutateHandler(event: CustomEvent<LSMutateEvent[]>) {
-    console.log('[mutateHandler] entered, token:', !!this.token, 'adapter:', !!this.adapter, 'detail:', event.detail?.map(m => ({ action: m.action, id: (m.data as any)?.id })));
     if (this.token && this.adapter) {
       const mutations = Array.isArray(event.detail) ? event.detail : [event.detail];
 
@@ -889,9 +888,7 @@ export class LsDocumentViewer {
     this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
-  private _boundKeyDown: ((e: KeyboardEvent) => void) | null = null;
-  private _boundMouseMove: ((e: MouseEvent) => void) | null = null;
-  private _boundMouseUp: ((e: MouseEvent) => void) | null = null;
+  private _initialized: boolean = false;
 
   initViewer() {
     // Generate a canvas to draw the background PDF on.
@@ -906,21 +903,12 @@ export class LsDocumentViewer {
 
     // Used for single field selection
     if (this.mode !== 'preview' || this._template?.locked === true) {
-      // Remove previous document-level listeners to prevent duplicates on re-load
-      if (this._boundKeyDown) document.removeEventListener('keydown', this._boundKeyDown);
-      if (this._boundMouseMove) document.removeEventListener('mousemove', this._boundMouseMove);
-      if (this._boundMouseUp) document.removeEventListener('mouseup', this._boundMouseUp);
-
-      this._boundKeyDown = keyDown.bind(this);
-      this._boundMouseMove = mouseMove.bind(this);
-      this._boundMouseUp = mouseUp.bind(this);
-
       dropTarget.addEventListener('click', mouseClick.bind(this));
       wrapperTarget.addEventListener('mousedown', mouseDown.bind(this));
-      document.addEventListener('mousemove', this._boundMouseMove);
-      document.addEventListener('mouseup', this._boundMouseUp);
+      document.addEventListener('mousemove', mouseMove.bind(this));
+      document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-      document.addEventListener('keydown', this._boundKeyDown);
+      document.addEventListener('keydown', keyDown.bind(this));
     }
 
     // Listen for flushed mutations from destroyed sidebar components
@@ -950,6 +938,7 @@ export class LsDocumentViewer {
     }, { passive: false });
 
     this.generateFields();
+    this._initialized = true;
   }
 
   // Generate all the field HTML elements that are required (for every page)
@@ -1053,6 +1042,31 @@ export class LsDocumentViewer {
         this.errorTitle = dvI18n.t('viewer.loaderror');
         this.error = dvI18n.t('viewer.loaderrormessage');
       }
+    }
+  }
+
+  async reload() {
+    this.isLoading = true;
+    this._loadGeneration++;
+    clearHistory();
+    try {
+      this.adapter = new LsDocumentAdapter(this.endpoint);
+      const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
+      this.parseTemplate(JSON.stringify(result.template));
+      const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
+      this.groupInfo = resultGroup.group;
+      this.generateFields();
+      this.showPageFields(this.pageNum);
+      this.validationErrors = validate.bind(this)(this._template);
+      this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
+      this.pageCount = this._template.pageCount;
+      this.selected = [];
+      this.setZoom(1.0);
+      this.isLoading = false;
+      if (this._template?.link) this.loadAndRender(this._template.link);
+    } catch (e: any) {
+      this.isLoading = false;
+      console.error('Failed to reload template.', e?.message || e);
     }
   }
 
