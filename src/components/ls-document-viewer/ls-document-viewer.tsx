@@ -889,6 +889,7 @@ export class LsDocumentViewer {
   }
 
   private _initialized: boolean = false;
+  private _boundKeyDown: (e: KeyboardEvent) => void;
 
   initViewer() {
     // Generate a canvas to draw the background PDF on.
@@ -908,7 +909,10 @@ export class LsDocumentViewer {
       document.addEventListener('mousemove', mouseMove.bind(this));
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-      document.addEventListener('keydown', keyDown.bind(this));
+      if (!this._boundKeyDown) {
+        this._boundKeyDown = keyDown.bind(this);
+        document.addEventListener('keydown', this._boundKeyDown);
+      }
     }
 
     // Listen for flushed mutations from destroyed sidebar components
