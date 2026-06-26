@@ -19,7 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { recordMutations } from './history';
+import { recordMutations, clearHistory } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -963,6 +963,7 @@ export class LsDocumentViewer {
 
   async load() {
     this.isLoading = true;
+    clearHistory();
     // Get all template and group listing data.
     try {
       this.adapter = new LsDocumentAdapter(this.endpoint);
