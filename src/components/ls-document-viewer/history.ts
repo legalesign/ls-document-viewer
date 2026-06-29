@@ -89,6 +89,7 @@ export function undo() {
 
   const entry = undoStack.pop();
   console.log('[History] Undo - applying:', entry.inverse.map(m => ({ action: m.action, id: (m.data as LSApiElement).id })));
+  console.trace('[History] Undo caller');
   console.log('[History] Undo stack:', undoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id, inverse: e.inverse.map(i => ({ action: i.action, id: (i.data as LSApiElement).id })) }))));
   console.log('[History] Redo stack:', redoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id }))));
   redoStack.push(entry);
