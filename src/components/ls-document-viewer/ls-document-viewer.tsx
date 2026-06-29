@@ -321,10 +321,12 @@ export class LsDocumentViewer {
 
       this.isMutating = true;
       const currentGeneration = this._loadGeneration;
+      console.log('[mutateHandler] processing', mutations.length, 'mutations, generation:', currentGeneration);
       const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
+            console.log('[mutateHandler] adapter returned for', me.action, (me.data as any)?.id, 'result:', result === 'invalid' ? 'invalid' : 'ok', 'gen match:', this._loadGeneration === currentGeneration);
             if (result === 'invalid') return;
             // Discard stale responses from a previous template
             if (this._loadGeneration !== currentGeneration) return;
