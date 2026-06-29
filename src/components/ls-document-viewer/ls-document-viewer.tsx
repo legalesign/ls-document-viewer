@@ -35,6 +35,9 @@ import { generateRoles } from './generateRoles';
 
 GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.worker.min.mjs`;
 
+// Module-level reference to the document keydown listener so it can be cleaned up across remounts
+let _activeKeyDownListener: ((e: KeyboardEvent) => void) | null = null;
+
 /**
  * The Legalesign page viewer converted to stencil. To use pass the standard
  * Template information from GraphQL (see Readme).
@@ -892,7 +895,6 @@ export class LsDocumentViewer {
   }
 
   private _initialized: boolean = false;
-  private _boundKeyDown: (e: KeyboardEvent) => void;
 
   initViewer() {
     // Generate a canvas to draw the background PDF on.
@@ -912,10 +914,12 @@ export class LsDocumentViewer {
       document.addEventListener('mousemove', mouseMove.bind(this));
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-      if (!this._boundKeyDown) {
-        this._boundKeyDown = keyDown.bind(this);
-        document.addEventListener('keydown', this._boundKeyDown);
+      // Remove any previous keydown listener before adding a new one
+      if (_activeKeyDownListener) {
+        document.removeEventListener('keydown', _activeKeyDownListener);
       }
+      _activeKeyDownListener = keyDown.bind(this);
+      document.addEventListener('keydown', _activeKeyDownListener);
     }
 
     // Listen for flushed mutations from destroyed sidebar components
