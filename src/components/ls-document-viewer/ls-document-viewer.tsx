@@ -19,7 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { recordMutations, clearHistory } from './history';
+import { recordMutations, clearHistory, canUndo, canRedo } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -1199,7 +1199,7 @@ export class LsDocumentViewer {
                   )}
                 </div>
               </div>
-              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} mode={this.mode} />
+              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} mode={this.mode} canUndo={canUndo()} canRedo={canRedo()} />
               {this.mode === 'editor' && (
                 <div class={'ls-dv-validation-tag-wrapper'}>
                   <ls-validation-tag validationErrors={this.validationErrors} />

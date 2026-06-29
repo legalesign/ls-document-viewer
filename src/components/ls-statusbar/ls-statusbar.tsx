@@ -29,6 +29,8 @@ export class LsStatusbar {
    * {LsDocumentViewer}
    */
   @Prop() editor: LsDocumentViewer;
+  @Prop() canUndo: boolean = false;
+  @Prop() canRedo: boolean = false;
 
   /**
    * The viewer mode.
@@ -257,10 +259,10 @@ export class LsStatusbar {
         {!isPreview && (
           <div class={'ls-dv-controls-bar'}>
             <div class={'ls-dv-status-bar-section'}>
-              <button onClick={() => this.applyUndo()} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')} >
+              <button onClick={() => this.applyUndo()} disabled={!this.canUndo} id="undo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.undo')} >
                 <ls-icon name="undo-icon" size={18} />
               </button>
-              <button onClick={() => this.applyRedo()} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')} >
+              <button onClick={() => this.applyRedo()} disabled={!this.canRedo} id="redo-btn" data-tooltip-id="ls-dv-tooltip" data-tooltip-content={dvI18n.t('statusbar.redo')} >
                 <ls-icon name="redo-icon" style={{transform: "scale(-1, 1)", marginLeft: '0.25rem'}} size={18} />
               </button>
             </div>
