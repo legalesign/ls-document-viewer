@@ -100,19 +100,13 @@ export class LsFieldContent {
     const isMod = e.ctrlKey || e.metaKey;
     if (isMod && (e.key === 'z' || e.key === 'Z' || e.key === 'y' || e.key === 'Y')) {
       e.preventDefault();
-      e.stopPropagation();
       // Cancel any pending debounce (discard uncommitted changes)
       if (this.labeltimer) {
         clearTimeout(this.labeltimer);
         this.labeltimer = null;
       }
-      // Dispatch to document so our undo/redo handler picks it up
-      document.dispatchEvent(new KeyboardEvent('keydown', {
-        key: e.key,
-        ctrlKey: e.ctrlKey,
-        metaKey: e.metaKey,
-        shiftKey: e.shiftKey,
-      }));
+      // Don't stopPropagation — let the event reach the document-level keydown handler
+      return;
     }
   }
 
