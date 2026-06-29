@@ -670,6 +670,14 @@ export namespace Components {
     }
     interface LsStatusbar {
         /**
+          * @default false
+         */
+        "canRedo": boolean;
+        /**
+          * @default false
+         */
+        "canUndo": boolean;
+        /**
           * The parent editor control. {LsDocumentViewer}
          */
         "editor": LsDocumentViewer;
@@ -2278,6 +2286,14 @@ declare namespace LocalJSX {
         "selected"?: any[];
     }
     interface LsStatusbar {
+        /**
+          * @default false
+         */
+        "canRedo"?: boolean;
+        /**
+          * @default false
+         */
+        "canUndo"?: boolean;
         /**
           * The parent editor control. {LsDocumentViewer}
          */
