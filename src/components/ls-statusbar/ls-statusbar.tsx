@@ -212,14 +212,14 @@ export class LsStatusbar {
     const mutations = undo();
     if (!mutations) return;
     this.editor._skipHistory = true;
-    this.editor.mutate.emit(mutations);
+    this.editor.mutateHandler(new CustomEvent('mutate', { detail: mutations }));
   }
 
   private applyRedo() {
     const mutations = redo();
     if (!mutations) return;
     this.editor._skipHistory = true;
-    this.editor.mutate.emit(mutations);
+    this.editor.mutateHandler(new CustomEvent('mutate', { detail: mutations }));
   }
 
   componentWillLoad() {
