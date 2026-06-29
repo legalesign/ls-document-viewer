@@ -117,17 +117,8 @@ export class LsEditorField {
       if (this.labeltimer) {
         clearTimeout(this.labeltimer);
         this.labeltimer = null;
-        // Revert to the last committed value by re-reading from the DOM
-        // The textarea will update on next render via dataItem binding
-        return;
       }
-      // No pending debounce — dispatch to document for history undo/redo
-      document.dispatchEvent(new KeyboardEvent('keydown', {
-        key: e.key,
-        ctrlKey: e.ctrlKey,
-        metaKey: e.metaKey,
-        shiftKey: e.shiftKey,
-      }));
+      // Don't stopPropagation — let the event reach the document-level keydown handler
       return;
     }
 

@@ -9,6 +9,8 @@
 
 | Property    | Attribute    | Description                                           | Type                                 | Default     |
 | ----------- | ------------ | ----------------------------------------------------- | ------------------------------------ | ----------- |
+| `canRedo`   | `can-redo`   |                                                       | `boolean`                            | `false`     |
+| `canUndo`   | `can-undo`   |                                                       | `boolean`                            | `false`     |
 | `editor`    | --           | The parent editor control. {LsDocumentViewer}         | `LsDocumentViewer`                   | `undefined` |
 | `mode`      | `mode`       | The viewer mode. {'preview' \| 'editor' \| 'compose'} | `"compose" \| "editor" \| "preview"` | `'editor'`  |
 | `page`      | `page`       |                                                       | `number`                             | `undefined` |

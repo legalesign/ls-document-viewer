@@ -130,6 +130,7 @@ export function redo() {
 export function clearHistory() {
   undoStack = [];
   redoStack = [];
+  fieldSnapshots = new Map();
 }
 
 /**
