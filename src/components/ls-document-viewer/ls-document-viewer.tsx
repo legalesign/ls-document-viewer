@@ -19,7 +19,7 @@ import { addField, moveField } from './editorCalculator';
 import { DEFAULT_FONT_SIZE, DEFAULT_FONT_NAME, FIELD_DEFAULTS } from '../../constants/fieldDefaults';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { keyDown } from './keyHandlers';
-import { recordMutations } from './history';
+import { recordMutations, clearHistory, canUndo, canRedo } from './history';
 import { mouseClick, mouseDoubleClick, mouseDown, mouseMove, mouseUp, toolboxDragStart } from './mouseHandlers';
 import { getApiType, getInputType, matchData } from './editorUtils';
 import { updateSelectionBox } from './mouseHandlers';
@@ -34,6 +34,9 @@ import { IToolboxField } from '../interfaces/IToolboxField';
 import { generateRoles } from './generateRoles';
 
 GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.4.449/build/pdf.worker.min.mjs`;
+
+// Module-level reference to the document keydown listener so it can be cleaned up across remounts
+let _activeKeyDownListener: ((e: KeyboardEvent) => void) | null = null;
 
 /**
  * The Legalesign page viewer converted to stencil. To use pass the standard
@@ -112,6 +115,11 @@ export class LsDocumentViewer {
    * {string}
    */
   @Prop() templateid: string;
+
+  @Watch('templateid')
+  templateIdChanged() {
+    if (this.token && this._initialized) this.reload();
+  }
 
   /**
    * A JSON string containing the recipient details. Only used in COMPOSE mode.
@@ -285,6 +293,7 @@ export class LsDocumentViewer {
 
   private adapter: LsDocumentAdapter;
   public _skipHistory: boolean = false;
+  private _loadGeneration: number = 0;
 
   // Action an external data action and use the result (if required)
   @Listen('mutate')
@@ -314,11 +323,14 @@ export class LsDocumentViewer {
       this._skipHistory = false;
 
       this.isMutating = true;
+      const currentGeneration = this._loadGeneration;
       const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
             if (result === 'invalid') return;
+            // Discard stale responses from a previous template
+            if (this._loadGeneration !== currentGeneration) return;
             // Cascade name change to witness if it still matches a default pattern
             // Must check before matchData/syncRoles overwrites this._template.roles
             if (me.action === 'update' && (me.data as LSApiRole).roleType !== 'WITNESS') {
@@ -879,6 +891,8 @@ export class LsDocumentViewer {
     this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
   }
 
+  private _initialized: boolean = false;
+
   initViewer() {
     // Generate a canvas to draw the background PDF on.
     this.canvas = this.component.shadowRoot.getElementById('pdf-canvas') as HTMLCanvasElement;
@@ -897,7 +911,12 @@ export class LsDocumentViewer {
       document.addEventListener('mousemove', mouseMove.bind(this));
       document.addEventListener('mouseup', mouseUp.bind(this));
       dropTarget.addEventListener('dblclick', mouseDoubleClick.bind(this));
-      document.addEventListener('keydown', keyDown.bind(this));
+      // Remove any previous keydown listener before adding a new one
+      if (_activeKeyDownListener) {
+        document.removeEventListener('keydown', _activeKeyDownListener);
+      }
+      _activeKeyDownListener = keyDown.bind(this);
+      document.addEventListener('keydown', _activeKeyDownListener);
     }
 
     // Listen for flushed mutations from destroyed sidebar components
@@ -927,6 +946,7 @@ export class LsDocumentViewer {
     }, { passive: false });
 
     this.generateFields();
+    this._initialized = true;
   }
 
   // Generate all the field HTML elements that are required (for every page)
@@ -963,6 +983,8 @@ export class LsDocumentViewer {
 
   async load() {
     this.isLoading = true;
+    this._loadGeneration++;
+    clearHistory();
     // Get all template and group listing data.
     try {
       this.adapter = new LsDocumentAdapter(this.endpoint);
@@ -1028,6 +1050,31 @@ export class LsDocumentViewer {
         this.errorTitle = dvI18n.t('viewer.loaderror');
         this.error = dvI18n.t('viewer.loaderrormessage');
       }
+    }
+  }
+
+  async reload() {
+    this.isLoading = true;
+    this._loadGeneration++;
+    clearHistory();
+    try {
+      this.adapter = new LsDocumentAdapter(this.endpoint);
+      const result = (await this.adapter.execute(this.token, getTemplate(this.templateid))) as any;
+      this.parseTemplate(JSON.stringify(result.template));
+      const resultGroup = (await this.adapter.execute(this.token, getGroupData(this._template.groupId))) as any;
+      this.groupInfo = resultGroup.group;
+      this.generateFields();
+      this.showPageFields(this.pageNum);
+      this.validationErrors = validate.bind(this)(this._template);
+      this.validate.emit({ valid: this.validationErrors.length === 0, errors: this.validationErrors });
+      this.pageCount = this._template.pageCount;
+      this.selected = [];
+      this.setZoom(1.0);
+      this.isLoading = false;
+      if (this._template?.link) this.loadAndRender(this._template.link);
+    } catch (e: any) {
+      this.isLoading = false;
+      console.error('Failed to reload template.', e?.message || e);
     }
   }
 
@@ -1152,7 +1199,7 @@ export class LsDocumentViewer {
                   )}
                 </div>
               </div>
-              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} mode={this.mode} />
+              <ls-statusbar editor={this} page={this.pageNum} pageCount={this.pageCount} mode={this.mode} canUndo={canUndo()} canRedo={canRedo()} />
               {this.mode === 'editor' && (
                 <div class={'ls-dv-validation-tag-wrapper'}>
                   <ls-validation-tag validationErrors={this.validationErrors} />

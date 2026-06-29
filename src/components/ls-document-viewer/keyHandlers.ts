@@ -151,16 +151,15 @@ function selectAll() {
 function applyUndo() {
   const mutations = undo();
   if (!mutations) return;
-  // Emit with _skipHistory flag so mutateHandler doesn't record it
   this._skipHistory = true;
-  this.mutate.emit(mutations);
+  this.mutateHandler(new CustomEvent('mutate', { detail: mutations }));
 }
 
 function applyRedo() {
   const mutations = redo();
   if (!mutations) return;
   this._skipHistory = true;
-  this.mutate.emit(mutations);
+  this.mutateHandler(new CustomEvent('mutate', { detail: mutations }));
 }
 
 // Buffered version of alter that batches rapid key presses
