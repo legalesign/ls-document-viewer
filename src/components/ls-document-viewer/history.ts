@@ -41,7 +41,6 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
       const data = m.data as LSApiElement;
       switch (m.action) {
         case 'create':
-          console.log('[History] Create inverse - same ref:', data === m.data, 'id:', data.id);
           return { action: 'delete', data };
         case 'delete':
           return { action: 'create', data: beforeStates.get(data.id) || { ...data } };
@@ -56,14 +55,9 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
     .filter(Boolean) as LSMutateEvent[];
 
   undoStack.push({ mutations, inverse });
-  console.log('[History] After push - mutations[0].data.id:', (undoStack[undoStack.length-1].mutations[0].data as LSApiElement).id, 'inverse[0].data.id:', (undoStack[undoStack.length-1].inverse[0].data as LSApiElement).id, 'same ref:', undoStack[undoStack.length-1].mutations[0].data === undoStack[undoStack.length-1].inverse[0].data);
   if (undoStack.length > MAX_HISTORY) {
     undoStack.shift();
   }
-
-  console.log('[History] Recorded:', mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id })));
-  console.log('[History] Undo stack:', undoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id, inverse: e.inverse.map(i => ({ action: i.action, id: (i.data as LSApiElement).id })) }))));
-  console.log('[History] Redo stack:', redoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id }))));
 
   // Update snapshots to the new state (so next undo captures from this point)
   mutations.forEach(m => {
@@ -83,15 +77,10 @@ export function recordMutations(mutations: LSMutateEvent[], beforeStates: Map<st
 
 export function undo() {
   if (undoStack.length === 0) {
-    console.log('[History] Undo - nothing to undo');
     return null;
   }
 
   const entry = undoStack.pop();
-  console.log('[History] Undo - applying:', entry.inverse.map(m => ({ action: m.action, id: (m.data as LSApiElement).id })));
-  console.trace('[History] Undo caller');
-  console.log('[History] Undo stack:', undoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id, inverse: e.inverse.map(i => ({ action: i.action, id: (i.data as LSApiElement).id })) }))));
-  console.log('[History] Redo stack:', redoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id }))));
   redoStack.push(entry);
   if (redoStack.length > MAX_HISTORY) {
     redoStack.shift();
@@ -114,14 +103,10 @@ export function undo() {
 
 export function redo() {
   if (redoStack.length === 0) {
-    console.log('[History] Redo - nothing to redo');
     return null;
   }
 
   const entry = redoStack.pop();
-  console.log('[History] Redo - applying:', entry.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id })));
-  console.log('[History] Undo stack:', undoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id, inverse: e.inverse.map(i => ({ action: i.action, id: (i.data as LSApiElement).id })) }))));
-  console.log('[History] Redo stack:', redoStack.map(e => e.mutations.map(m => ({ action: m.action, id: (m.data as LSApiElement).id }))));
   undoStack.push(entry);
   if (undoStack.length > MAX_HISTORY) {
     undoStack.shift();
@@ -143,7 +128,6 @@ export function redo() {
 }
 
 export function clearHistory() {
-  console.log('[History] Clearing history');
   undoStack = [];
   redoStack = [];
   fieldSnapshots = new Map();
@@ -154,7 +138,6 @@ export function clearHistory() {
  * Update the history entries so undo/redo use the real ID.
  */
 export function updateCreatedId(clientId: string, serverId: string) {
-  console.log('[History] updateCreatedId:', clientId, '→', serverId);
   const updateEntry = (entry: HistoryEntry) => {
     entry.mutations.forEach(m => {
       if ((m.data as LSApiElement).id === clientId) {

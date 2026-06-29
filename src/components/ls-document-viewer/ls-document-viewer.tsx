@@ -324,12 +324,10 @@ export class LsDocumentViewer {
 
       this.isMutating = true;
       const currentGeneration = this._loadGeneration;
-      console.log('[mutateHandler] processing', mutations.length, 'mutations, generation:', currentGeneration);
       const promises = mutations.map(me =>
         this.adapter
           .handleEvent(me, this.token)
           .then(result => {
-            console.log('[mutateHandler] adapter returned for', me.action, (me.data as any)?.id, 'result:', result === 'invalid' ? 'invalid' : 'ok', 'gen match:', this._loadGeneration === currentGeneration);
             if (result === 'invalid') return;
             // Discard stale responses from a previous template
             if (this._loadGeneration !== currentGeneration) return;
@@ -879,7 +877,6 @@ export class LsDocumentViewer {
         updateSelectionBox.bind(this)();
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
-        console.log('[syncChange] delete - looking for:', 'ls-field-' + update.data.id, 'found:', !!fi);
         if (!fi) return;
         const fields = this._template.elementConnection.templateElements;
         this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
