@@ -876,6 +876,7 @@ export class LsDocumentViewer {
         updateSelectionBox.bind(this)();
       } else if (update.action === 'delete') {
         const fi = this.component.shadowRoot.getElementById('ls-field-' + update.data.id) as HTMLLsEditorFieldElement;
+        console.log('[syncChange] delete - looking for:', 'ls-field-' + update.data.id, 'found:', !!fi);
         if (!fi) return;
         const fields = this._template.elementConnection.templateElements;
         this._template = { ...this._template, elementConnection: { ...this._template.elementConnection, templateElements: fields.filter(f => f.id !== update.data.id) } };
