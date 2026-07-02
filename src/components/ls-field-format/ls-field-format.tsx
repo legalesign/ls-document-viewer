@@ -80,7 +80,7 @@ export class LsFieldFormat {
                   {dvI18n.t('fieldproperties.mixed')}
                 </option>
                 <option value="arial">Arial</option>
-                <option value="liberation sans">Liberation Sans</option>
+                <option value="liberation">Liberation Sans</option>
                 <option value="courier">Courier</option>
                 <option value="helvetica">Helvetica</option>
                 <option value="verdana">Verdana</option>
@@ -150,7 +150,7 @@ export class LsFieldFormat {
                 class={'ls-dv-has-leading-icon ls-dv-has-trailing-icon'}
               >
                 <option value="arial">Arial</option>
-                <option value="liberation sans">Liberation Sans</option>
+                <option value="liberation">Liberation Sans</option>
                 <option value="courier">Courier</option>
                 <option value="helvetica">Helvetica</option>
                 <option value="verdana">Verdana</option>
