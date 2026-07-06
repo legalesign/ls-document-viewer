@@ -95,21 +95,21 @@ export class LsFieldPropertiesAdvanced {
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.refname')}>
-              <input value={this.getValue('link')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ link: (e.target as HTMLInputElement).value }, 300)} disabled={this.readonly} />
+              <input value={this.getValue('mapTo')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ mapTo: (e.target as HTMLInputElement).value }, 300)} disabled={this.readonly} />
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
-              <select onChange={e => this.alter({ linkType: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
-                <option value="0" selected={this.getValue('linkType') === '0'}>
+              <select onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
+                <option value="0" selected={this.getValue('logicAction') === 0}>
                   {dvI18n.t('fieldproperties.linktypenoption')}
                 </option>
-                <option value="1" selected={this.getValue('linkType') === '1'}>
+                <option value="1" selected={this.getValue('logicAction') === 1}>
                   {dvI18n.t('fieldproperties.linktypeoneofgroup')}
                 </option>
-                <option value="2" selected={this.getValue('linkType') === '2'}>
+                <option value="2" selected={this.getValue('logicAction') === 2}>
                   {dvI18n.t('fieldproperties.linktypeaddtotal')}
                 </option>
-                <option value="3" selected={this.getValue('linkType') === '3'}>
+                <option value="3" selected={this.getValue('logicAction') === 3}>
                   {dvI18n.t('fieldproperties.linktypeconditional')}
                 </option>
               </select>
@@ -117,10 +117,10 @@ export class LsFieldPropertiesAdvanced {
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linkvalue')} sectionDescription={dvI18n.t('fieldproperties.linkvaluedescription')}>
               <input
-                value={this.getValue('logicAction')}
+                value={this.getValue('logicGroup')}
                 width="30"
                 placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')}
-                onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })}
+                onChange={e => this.alter({ logicGroup: (e.target as HTMLInputElement).value })}
                 disabled={this.readonly}
               />
             </ls-props-section>
