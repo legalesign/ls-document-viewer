@@ -960,6 +960,8 @@ export function mouseDoubleClick(event) {
         defaultHeight: FIELD_DEFAULTS['auto sign'].defaultHeight,
         defaultWidth: FIELD_DEFAULTS['auto sign'].defaultWidth,
       };
+    } else if (this.signer === 0 && data.elementType !== 'admin') {
+      data = { ...data, elementType: 'admin' };
     }
     // Unselect all current selected items
     this.component.shadowRoot.querySelectorAll('ls-editor-field').forEach(f => (f.selected = false));

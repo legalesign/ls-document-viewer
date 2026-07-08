@@ -255,16 +255,14 @@ export class LsFieldContent {
   }
 
   private getSenderDisabledReason(): string {
-    const signerOnlyTypes = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const signerOnlyTypes = ['file', 'drawn', 'drawn field', 'initials'];
     const fieldType = this.dataItem?.formElementType as string;
     if (signerOnlyTypes.includes(fieldType)) {
       const nameMap = {
-        'signing date': dvI18n.t('toolbox.signingdate'),
-        'regular expression': dvI18n.t('toolbox.regex'),
-        'image': dvI18n.t('toolbox.image'),
         'file': dvI18n.t('toolbox.file'),
         'drawn': dvI18n.t('toolbox.drawn'),
         'drawn field': dvI18n.t('toolbox.drawn'),
+        'initials': dvI18n.t('toolbox.initials'),
       };
       return dvI18n.t('fieldproperties.cannotreassignsendersingle', { fieldTypes: nameMap[fieldType] || fieldType });
     }
@@ -283,6 +281,12 @@ export class LsFieldContent {
     // Signature reassigned to Sender → becomes Auto Sign
     if (fieldType === 'signature' && newSigner === 0) {
       this.alterImmediate({ signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 });
+      return;
+    }
+
+    // Initials reassigned to Sender → becomes Text (sender can't have initials)
+    if (fieldType === 'initials' && newSigner === 0) {
+      this.alterImmediate({ signer: newSigner, formElementType: 'text', elementType: 'admin', validation: 0 });
       return;
     }
 
