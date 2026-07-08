@@ -304,15 +304,12 @@ export class LsFieldPropertiesMultiple {
   }
 
   private getSenderDisabledReason(): string {
-    const signerOnly = ['signing date', 'regular expression', 'image', 'file', 'drawn', 'drawn field'];
+    const signerOnly = ['file', 'drawn', 'drawn field', 'initials'];
     const nameMap = {
-      'signing date': dvI18n.t('toolbox.signingdate'),
-      'regex': dvI18n.t('toolbox.regex'),
-      'regular expression': dvI18n.t('toolbox.regex'),
-      'image': dvI18n.t('toolbox.image'),
       'file': dvI18n.t('toolbox.file'),
       'drawn': dvI18n.t('toolbox.drawn'),
       'drawn field': dvI18n.t('toolbox.drawn'),
+      'initials': dvI18n.t('toolbox.initials'),
     };
     const disallowedTypes = [...new Set(
       this.dataItem
@@ -336,6 +333,10 @@ export class LsFieldPropertiesMultiple {
       // Signature reassigned to Sender → becomes Auto Sign
       if (fieldType === 'signature' && newSigner === 0) {
         return { ...item, signer: newSigner, formElementType: 'auto sign' as any, elementType: 'admin', validation: 3000 };
+      }
+      // Initials reassigned to Sender → becomes Text (sender can't have initials)
+      if (fieldType === 'initials' && newSigner === 0) {
+        return { ...item, signer: newSigner, formElementType: 'text' as any, elementType: 'admin', validation: 0 };
       }
       // Any field reassigned to Sender → elementType becomes 'admin'
       if (newSigner === 0) {

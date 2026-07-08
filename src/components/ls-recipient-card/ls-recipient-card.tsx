@@ -255,7 +255,7 @@ export class LsRecipientCard {
                 />
               )}
 
-              {this.showTool('initials') && (
+              {this.showTool('initials') && this.recipient.signerIndex > 0 && (
                 <ls-toolbox-field
                   elementType="initials"
                   formElementType="initials"
@@ -311,7 +311,7 @@ export class LsRecipientCard {
                 />
               )}
 
-              {this.recipient.signerIndex > 0 && this.showTool('regex') && (
+              {this.showTool('regex') && (
                 <ls-toolbox-field
                   elementType="text"
                   formElementType="regular expression"
