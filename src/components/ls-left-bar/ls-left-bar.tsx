@@ -157,7 +157,7 @@ export class LsLeftBar {
               isSelected={this.fieldTypeSelected?.formElementType === 'text'}
             />
           )}
-          {this.signer > 0 && this.showTool('signing date') && (
+          {this.showTool('signing date') && (
             <ls-toolbox-field
               elementType="text"
               formElementType="signing date"
@@ -199,7 +199,7 @@ export class LsLeftBar {
               isSelected={this.fieldTypeSelected?.formElementType === 'email'}
             />
           )}
-          {this.showTool('initials') && (
+          {this.showTool('initials') && this.signer > 0 && (
             <ls-toolbox-field
               elementType="initials"
               formElementType="initials"
@@ -255,7 +255,7 @@ export class LsLeftBar {
               isSelected={this.fieldTypeSelected?.formElementType === 'checkbox'}
             />
           )}
-          {this.signer > 0 && this.showTool('regex') && (
+          {this.showTool('regex') && (
             <ls-toolbox-field
               elementType="text"
               formElementType="regular expression"

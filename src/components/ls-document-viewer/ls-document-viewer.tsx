@@ -163,6 +163,7 @@ export class LsDocumentViewer {
   @State() selected: HTMLLsEditorFieldElement[] = [];
   @State() isLoading: boolean = true;
   @State() isMutating: boolean = false;
+  @State() loaderSize: number = 200;
   @State() selectedDataItems: LSApiElement[] = [];
   @State() fieldTypeSelected: IToolboxField = {
     label: 'Signature',
@@ -1085,7 +1086,19 @@ export class LsDocumentViewer {
     if (this.token && !this._template) this.load();
   }
 
-  componentDidLoad() {}
+  private _resizeObserver: ResizeObserver;
+
+  componentDidLoad() {
+    this._resizeObserver = new ResizeObserver(entries => {
+      const { width, height } = entries[0].contentRect;
+      this.loaderSize = Math.min(200, Math.floor(Math.min(width, height) * 0.4));
+    });
+    this._resizeObserver.observe(this.component);
+  }
+
+  disconnectedCallback() {
+    this._resizeObserver?.disconnect();
+  }
 
   handleManagerChange(manager: string) {
     this.manager = manager as any;
@@ -1106,12 +1119,12 @@ export class LsDocumentViewer {
 
   render() {
     return (
-      <Host>
+      <Host class={{ 'ls-dv-preview-mode': this.mode === 'preview' }}>
         <>
           {this.isLoading && (
             <>
               <div class={'ls-dv-page-loader'}>
-                <ls-loading-logo size={200} colour="var(--primary-60)" />
+                <ls-loading-logo size={this.loaderSize} colour="var(--primary-60)" />
               </div>
               <div class={'ls-dv-custom-loader-slot'}>
                 <slot name="custom-loader"></slot>
@@ -1128,6 +1141,7 @@ export class LsDocumentViewer {
               </div>
             </div>
           )}
+          {this.mode !== 'preview' && (
           <div class="ls-dv-page-header">
             <div class={'ls-dv-left-slot-wrapper'}>
               <slot name="left-button" />
@@ -1148,6 +1162,7 @@ export class LsDocumentViewer {
               </div>
             )}
           </div>
+          )}
 
           <form id="ls-editor-form">
             <ls-left-bar

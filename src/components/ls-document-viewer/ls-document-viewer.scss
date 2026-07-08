@@ -206,7 +206,11 @@ slot {
 
 .ls-dv-document-frame-wrapper--preview {
   align-items: center;
-  padding: 2rem;
+  padding: 0 2rem;
+}
+
+:host(.ls-dv-preview-mode) #ls-editor-form {
+  height: 100cqh;
 }
 
 .ls-dv-select-menu-position {
