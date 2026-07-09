@@ -87,7 +87,7 @@ export class LsFieldPropertiesAdvanced {
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.fieldorder')} sectionDescription={dvI18n.t('fieldproperties.fieldorderdescription')}>
               <input type="number" placeholder={dvI18n.t('fieldproperties.placeholdereg1')} value={this.getValue('fieldOrder')} onInput={e => {
                 console.log(e);
-                this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 100)
+                this.alter({ fieldOrder: (e.target as HTMLInputElement).value }, 1500)
               }} 
               onChange={() => { console.log('onchange')}}
               disabled={this.readonly}
@@ -95,11 +95,11 @@ export class LsFieldPropertiesAdvanced {
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.refname')}>
-              <input value={this.getValue('mapTo')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ mapTo: (e.target as HTMLInputElement).value }, 300)} disabled={this.readonly} />
+              <input value={this.getValue('mapTo')} placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')} onInput={e => this.alter({ mapTo: (e.target as HTMLInputElement).value }, 1500)} disabled={this.readonly} />
             </ls-props-section>
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
-              <select onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value })} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
+              <select onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value }, 1500)} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
                 <option value="0" selected={this.getValue('logicAction') === 0}>
                   {dvI18n.t('fieldproperties.linktypenoption')}
                 </option>
