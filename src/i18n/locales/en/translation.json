@@ -129,7 +129,7 @@
   "fieldproperties": {
     "advancedproperties": "Advanced Properties",
     "fieldorder": "Field Order",
-    "fieldorderdescription": "Determines what order fields will be filled in by the user",
+    "fieldorderdescription": "Determines what order fields will be filled in by the user (-1 removes the field from auto-forwarding)",
     "displaystate": "Display State",
     "displaystatedescription": "Choose the default display state for this checkbox",
     "refname": "Ref. Name",
