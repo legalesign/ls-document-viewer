@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "خصائص متقدمة",
     "fieldorder": "الترتيب الميداني",
-    "fieldorderdescription": "يحدد حقول الطلبات التي سيتم ملؤها من قبل المستخدم",
+    "fieldorderdescription": "يحدد الترتيب الذي سيتم به ملء الحقول من قبل المستخدم (-1 يزيل الحقل من التقديم التلقائي)",
     "displaystate": "حالة العرض",
     "displaystatedescription": "اختر حالة العرض الافتراضية لمربع الاختيار هذا",
     "refname": "المرجع. الاسم",

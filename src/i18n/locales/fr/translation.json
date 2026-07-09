@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Propriétés avancées",
     "fieldorder": "Ordre des champs",
-    "fieldorderdescription": "Détermine les champs de commande qui seront remplis par l'utilisateur",
+    "fieldorderdescription": "Détermine l'ordre dans lequel les champs seront remplis par l'utilisateur (-1 supprime le champ du transfert automatique)",
     "displaystate": "État d'affichage",
     "displaystatedescription": "Choisissez l'état d'affichage par défaut pour cette case à cocher",
     "refname": "Réf. Nom",

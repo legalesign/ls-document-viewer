@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Propriedades avançadas",
     "fieldorder": "Ordem de campo",
-    "fieldorderdescription": "Determina quais campos do pedido serão preenchidos pelo usuário",
+    "fieldorderdescription": "Determina a ordem em que os campos serão preenchidos pelo usuário (-1 remove o campo do avanço automático)",
     "displaystate": "Estado de exibição",
     "displaystatedescription": "Escolha o estado de exibição padrão para essa caixa de seleção",
     "refname": "Árbitro. Nome",

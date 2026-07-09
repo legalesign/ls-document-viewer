@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Edistyneet ominaisuudet",
     "fieldorder": "Kenttäjärjestys",
-    "fieldorderdescription": "Määrittää, mitkä tilauskentät käyttäjä täyttää",
+    "fieldorderdescription": "Määrittää järjestyksen, jossa käyttäjä täyttää kentät (-1 poistaa kentän automaattisesta eteenpäin siirtymisestä)",
     "displaystate": "Näytön tila",
     "displaystatedescription": "Valitse tämän valintaruudun oletusnäyttötila",
     "refname": "Viite. Nimi",

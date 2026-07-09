@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Eiddo Uwch",
     "fieldorder": "Gorchymyn Maes",
-    "fieldorderdescription": "Yn penderfynu pa feysydd archeb fydd yn cael eu llenwi gan y defnyddiwr",
+    "fieldorderdescription": "Yn penderfynu pa orchymyn y bydd meysydd yn cael eu llenwi gan y defnyddiwr (-1 yn tynnu'r maes o'r ymlaen awtomatig)",
     "displaystate": "Cyflwr Arddangos",
     "displaystatedescription": "Dewiswch y cyflwr arddangos diofyn ar gyfer y blwch gwirio hwn",
     "refname": "Cyf. Enw",

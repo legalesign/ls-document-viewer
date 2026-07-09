@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Geavanceerde eigenschappen",
     "fieldorder": "Bestelling in het veld",
-    "fieldorderdescription": "Bepaalt welke bestelvelden door de gebruiker worden ingevuld",
+    "fieldorderdescription": "Bepaalt in welke volgorde velden door de gebruiker worden ingevuld (-1 verwijdert het veld uit automatisch doorsturen)",
     "displaystate": "Status van het scherm",
     "displaystatedescription": "Kies de standaard weergavestatus voor dit selectievakje",
     "refname": "Ref. Naam",

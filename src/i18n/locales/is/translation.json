@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Ítarlegri eiginleikar",
     "fieldorder": "Vettvangspöntun",
-    "fieldorderdescription": "Ákvarðar hvaða pöntunarreiti notandinn fyllir út",
+    "fieldorderdescription": "Ákvarðar í hvaða röð reitirnir verða fylltir út af notandanum (-1 fjarlægir reitinn úr sjálfvirkri framsendingu)",
     "displaystate": "Sýna ástand",
     "displaystatedescription": "Veldu sjálfgefið skjáástand fyrir þennan gátreit",
     "refname": "Ref. Nafn",

@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Propiedades avanzadas",
     "fieldorder": "Orden de campo",
-    "fieldorderdescription": "Determina qué campos de pedido rellenará el usuario",
+    "fieldorderdescription": "Determina el orden en que el usuario rellenará los campos (-1 elimina el campo del avance automático)",
     "displaystate": "Estado de visualización",
     "displaystatedescription": "Seleccione el estado de visualización predeterminado para esta casilla",
     "refname": "Árbitro. Nombre",
