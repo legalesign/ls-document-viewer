@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Avancerade egenskaper",
     "fieldorder": "Fältordning",
-    "fieldorderdescription": "Bestämmer vilka orderfält som ska fyllas i av användaren",
+    "fieldorderdescription": "Bestämmer i vilken ordning fälten fylls i av användaren (-1 tar bort fältet från automatisk vidarebefordran)",
     "displaystate": "Visningstillstånd",
     "displaystatedescription": "Välj standardvisningsläge för den här kryssrutan",
     "refname": "Ref. Namn",

@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "מאפיינים מתקדמים",
     "fieldorder": "סדר שדה",
-    "fieldorderdescription": "קובע אילו שדות הזמנה ימלאו על ידי המשתמש",
+    "fieldorderdescription": "קובע את הסדר שבו ימולאו השדות על ידי המשתמש (-1 מסיר את השדה מהקידום אוטומטי)",
     "displaystate": "מצב תצוגה",
     "displaystatedescription": "בחר את מצב התצוגה המוגדר כברירת מחדל עבור תיבת סימון זו",
     "refname": "אסמכתה שם",

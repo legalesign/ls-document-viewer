@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Proprietăți avansate",
     "fieldorder": "Ordinea câmpului",
-    "fieldorderdescription": "Determină ce câmpuri de ordine vor fi completate de utilizator",
+    "fieldorderdescription": "Determină ordinea în care câmpurile vor fi completate de utilizator (-1 elimină câmpul din avansarea automată)",
     "displaystate": "Stare de afișare",
     "displaystatedescription": "Alegeți starea de afișare implicită pentru această casetă de selectare",
     "refname": "Ref. Nume",

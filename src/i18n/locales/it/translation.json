@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Proprietà avanzate",
     "fieldorder": "Ordine sul campo",
-    "fieldorderdescription": "Determina quali campi dell'ordine verranno compilati dall'utente",
+    "fieldorderdescription": "Determina l'ordine in cui i campi verranno compilati dall'utente (-1 rimuove il campo dall'avanzamento automatico)",
     "displaystate": "Stato di visualizzazione",
     "displaystatedescription": "Scegli lo stato di visualizzazione predefinito per questa casella di controllo",
     "refname": "Rif. Nome",

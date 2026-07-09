@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Erweiterte Eigenschaften",
     "fieldorder": "Reihenfolge der Felder",
-    "fieldorderdescription": "Legt fest, welche Felder in welcher Reihenfolge vom Benutzer ausgefüllt werden",
+    "fieldorderdescription": "Legt fest, in welcher Reihenfolge die Felder vom Benutzer ausgefüllt werden (-1 entfernt das Feld aus der automatischen Weiterleitung)",
     "displaystate": "Status anzeigen",
     "displaystatedescription": "Wählen Sie den Standardanzeigestatus für dieses Kontrollkästchen",
     "refname": "Ref. Name",

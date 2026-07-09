@@ -127,7 +127,7 @@
   "fieldproperties": {
     "advancedproperties": "Feartan adhartach",
     "fieldorder": "Òrdugh raoin",
-    "fieldorderdescription": "Suidhichidh seo an t-òrdugh anns an lìon an cleachdaiche na raointean",
+    "fieldorderdescription": "Suidhichidh seo an t-òrdugh anns an lìon an cleachdaiche na raointean (-1 a' toirt air falbh an raon bho fhèin-ghluasad air adhart)",
     "displaystate": "[NEEDS TRANSLATION] Display State",
     "displaystatedescription": "[NEEDS TRANSLATION] Choose the default display state for this checkbox",
     "refname": "Ainm iomraidh",
