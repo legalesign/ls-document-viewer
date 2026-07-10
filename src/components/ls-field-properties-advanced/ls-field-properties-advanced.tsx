@@ -48,7 +48,7 @@ export class LsFieldPropertiesAdvanced {
       diffs = [{ action: 'update', data: { ...this.dataItem, ...diff } }];
     }
 
-    if (bounceDelay === 0) {
+    if (!bounceDelay || bounceDelay === 0) {
       this.mutate.emit(diffs);
     }
     else {
@@ -125,13 +125,8 @@ export class LsFieldPropertiesAdvanced {
               />
             </ls-props-section>
 
-             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.excludefrompdf')} sectionDescription={dvI18n.t('fieldproperties.excludefrompdfdescription')}>
-              <input
-                type="checkbox"
-                checked={!!this.getValue('excludeFromPdf')}
-                onChange={e => this.alter({ excludeFromPdf: (e.target as HTMLInputElement).checked })}
-                disabled={this.readonly}
-              />
+             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.excludefrompdf')} row={true} sectionDescription={dvI18n.t('fieldproperties.excludefrompdfdescription')}>              
+              <ls-toggle id="toggle-excludefrompdf" checked={this.getValue('excludeFromPdf')} onValueChange={ev => !this.readonly && this.alter({ excludeFromPdf: ev.detail })} />
             </ls-props-section>
           </div>
         )}
