@@ -168,7 +168,9 @@
     "placeholdereg1": "eg. 1",
     "placeholdercheckboxgroup": "eg. checkbox group",
     "placeholdersignhere": "eg. Sign Here",
-    "changefieldtype": "Change Field Type"
+    "changefieldtype": "Change Field Type",
+    "excludefrompdf": "Exclude from PDF",
+    "excludefrompdfdescription": "This field will not appear on the final PDF"
   },
   "alignment": {
     "alignleft": "Align Left",

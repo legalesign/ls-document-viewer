@@ -164,7 +164,9 @@
     "placeholdereg1": "למשל. 1",
     "placeholdercheckboxgroup": "למשל. קבוצת תיבות סימון",
     "placeholdersignhere": "למשל. לחתום כאן",
-    "changefieldtype": "שינוי סוג שדה"
+    "changefieldtype": "שינוי סוג שדה",
+    "excludefrompdf": "הוצאה מה-PDF",
+    "excludefrompdfdescription": "שדה זה לא יופיע ב-PDF הסופי"
   },
   "alignment": {
     "alignleft": "יישור שמאלה",

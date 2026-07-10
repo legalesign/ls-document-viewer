@@ -164,7 +164,9 @@
     "placeholdereg1": "على سبيل المثال. 1",
     "placeholdercheckboxgroup": "على سبيل المثال. مجموعة مربعات الاختيار",
     "placeholdersignhere": "على سبيل المثال. قم بالتوقيع هنا",
-    "changefieldtype": "تغيير نوع الحقل"
+    "changefieldtype": "تغيير نوع الحقل",
+    "excludefrompdf": "استبعاد من ملف PDF",
+    "excludefrompdfdescription": "لن يظهر هذا الحقل في ملف PDF النهائي"
   },
   "alignment": {
     "alignleft": "محاذاة إلى اليسار",

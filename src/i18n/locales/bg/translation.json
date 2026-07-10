@@ -164,7 +164,9 @@
     "placeholdereg1": "напр. 1",
     "placeholdercheckboxgroup": "напр. група квадратчета за отметка",
     "placeholdersignhere": "напр. Подпишете тук",
-    "changefieldtype": "Промяна на типа на полето"
+    "changefieldtype": "Промяна на типа на полето",
+    "excludefrompdf": "Изключване от PDF",
+    "excludefrompdfdescription": "Това поле няма да се появи в окончателния PDF"
   },
   "alignment": {
     "alignleft": "Подравнете наляво",

@@ -70,7 +70,7 @@ const getTemplate = (id: string) => {
                 page
                 role
                 signer
-                substantive
+                excludeFromPdf
                 validation
                 value
               }

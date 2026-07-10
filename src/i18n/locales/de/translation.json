@@ -164,7 +164,9 @@
     "placeholdereg1": "z. B. 1",
     "placeholdercheckboxgroup": "z.B. Checkbox-Gruppe",
     "placeholdersignhere": "z. B. Unterschreiben Sie hier",
-    "changefieldtype": "Feldtyp ändern"
+    "changefieldtype": "Feldtyp ändern",
+    "excludefrompdf": "Aus PDF ausschließen",
+    "excludefrompdfdescription": "Dieses Feld wird nicht im endgültigen PDF angezeigt"
   },
   "alignment": {
     "alignleft": "Links ausrichten",

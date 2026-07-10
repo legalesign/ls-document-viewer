@@ -164,7 +164,9 @@
     "placeholdereg1": "e.e. 1",
     "placeholdercheckboxgroup": "e.e. grŵp blwch gwirio",
     "placeholdersignhere": "ee. Llofnodi Yma",
-    "changefieldtype": "Newid Math o Faes"
+    "changefieldtype": "Newid Math o Faes",
+    "excludefrompdf": "Eithrio o PDF",
+    "excludefrompdfdescription": "Ni fydd y maes hwn yn ymddangos ar y PDF terfynol"
   },
   "alignment": {
     "alignleft": "Alinio Chwith",

@@ -164,7 +164,9 @@
     "placeholdereg1": "por ejemplo, 1",
     "placeholdercheckboxgroup": "p. ej., grupo de casillas de verificación",
     "placeholdersignhere": "por ejemplo. Firma aquí",
-    "changefieldtype": "Cambiar tipo de campo"
+    "changefieldtype": "Cambiar tipo de campo",
+    "excludefrompdf": "Excluir del PDF",
+    "excludefrompdfdescription": "Este campo no aparecerá en el PDF final"
   },
   "alignment": {
     "alignleft": "Alinear a la izquierda",
