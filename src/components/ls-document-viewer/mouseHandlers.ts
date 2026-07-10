@@ -883,7 +883,7 @@ export function toolboxDragStart(fieldData: IToolboxField) {
           formElementType: fieldData.formElementType,
           elementType: fieldData.elementType,
           validation: fieldData.validation,
-          substantive: false,
+          excludeFromPdf: false,
           top: constrainedTop,
           left: constrainedLeft,
           hideBorder: false,
