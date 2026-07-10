@@ -124,6 +124,15 @@ export class LsFieldPropertiesAdvanced {
                 disabled={this.readonly}
               />
             </ls-props-section>
+
+             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.excludefrompdf')} sectionDescription={dvI18n.t('fieldproperties.excludefrompdfdescription')}>
+              <input
+                type="checkbox"
+                checked={!!this.getValue('excludeFromPdf')}
+                onChange={e => this.alter({ excludeFromPdf: (e.target as HTMLInputElement).checked })}
+                disabled={this.readonly}
+              />
+            </ls-props-section>
           </div>
         )}
       </Host>

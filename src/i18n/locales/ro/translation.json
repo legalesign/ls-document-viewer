@@ -164,7 +164,9 @@
     "placeholdereg1": "ex. 1",
     "placeholdercheckboxgroup": "de ex. grup de casete de selectare",
     "placeholdersignhere": "de ex. Semnează aici",
-    "changefieldtype": "Schimbați tipul câmpului"
+    "changefieldtype": "Schimbați tipul câmpului",
+    "excludefrompdf": "Excludere din PDF",
+    "excludefrompdfdescription": "Acest câmp nu va apărea în PDF-ul final"
   },
   "alignment": {
     "alignleft": "Aliniați la stânga",

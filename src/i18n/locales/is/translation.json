@@ -164,7 +164,9 @@
     "placeholdereg1": "td. 1",
     "placeholdercheckboxgroup": "td gátreitahópur",
     "placeholdersignhere": "td. Skráðu þig hér",
-    "changefieldtype": "Breyta tegund sviðs"
+    "changefieldtype": "Breyta tegund sviðs",
+    "excludefrompdf": "Undanskilja frá PDF",
+    "excludefrompdfdescription": "Þessi reitur mun ekki birtast í lokaskjalinu PDF"
   },
   "alignment": {
     "alignleft": "Stilltu til vinstri",

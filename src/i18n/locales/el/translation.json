@@ -164,7 +164,9 @@
     "placeholdereg1": "π.χ. 1",
     "placeholdercheckboxgroup": "π.χ. ομάδα πλαισίων ελέγχου",
     "placeholdersignhere": "π.χ. Υπογράψτε εδώ",
-    "changefieldtype": "Αλλαγή τύπου πεδίου"
+    "changefieldtype": "Αλλαγή τύπου πεδίου",
+    "excludefrompdf": "Εξαίρεση από PDF",
+    "excludefrompdfdescription": "Αυτό το πεδίο δεν θα εμφανίζεται στο τελικό PDF"
   },
   "alignment": {
     "alignleft": "Ευθυγράμμιση αριστερά",

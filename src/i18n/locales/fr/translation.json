@@ -164,7 +164,9 @@
     "placeholdereg1": "par exemple 1",
     "placeholdercheckboxgroup": "par exemple, groupe de cases à cocher",
     "placeholdersignhere": "par exemple. Signez ici",
-    "changefieldtype": "Modifier le type de champ"
+    "changefieldtype": "Modifier le type de champ",
+    "excludefrompdf": "Exclure du PDF",
+    "excludefrompdfdescription": "Ce champ n'apparaître pas dans le PDF final"
   },
   "alignment": {
     "alignleft": "Aligner à gauche",

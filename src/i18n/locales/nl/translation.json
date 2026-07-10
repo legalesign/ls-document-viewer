@@ -164,7 +164,9 @@
     "placeholdereg1": "bijv. 1",
     "placeholdercheckboxgroup": "bijv. checkbox-groep",
     "placeholdersignhere": "bijv. Hier aanmelden",
-    "changefieldtype": "Veldtype wijzigen"
+    "changefieldtype": "Veldtype wijzigen",
+    "excludefrompdf": "Uitsluiten van PDF",
+    "excludefrompdfdescription": "Dit veld verschijnt niet in de definitieve PDF"
   },
   "alignment": {
     "alignleft": "Links uitlijnen",

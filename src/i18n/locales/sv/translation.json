@@ -164,7 +164,9 @@
     "placeholdereg1": "t.ex. 1",
     "placeholdercheckboxgroup": "t.ex. kryssrutegrupp",
     "placeholdersignhere": "t.ex. Signera här",
-    "changefieldtype": "Ändra fälttyp"
+    "changefieldtype": "Ändra fälttyp",
+    "excludefrompdf": "Uteslut från PDF",
+    "excludefrompdfdescription": "Det här fältet visas inte i den slutliga PDF:en"
   },
   "alignment": {
     "alignleft": "Justera vänster",

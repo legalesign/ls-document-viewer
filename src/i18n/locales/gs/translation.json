@@ -164,7 +164,9 @@
     "placeholdereg1": "m.e. 1",
     "placeholdercheckboxgroup": "m.e. buidheann bhogsa-tice",
     "placeholdersignhere": "m.e. Soidhnig an seo",
-    "changefieldtype": "[NEEDS TRANSLATION] Change Field Type"
+    "changefieldtype": "[NEEDS TRANSLATION] Change Field Type",
+    "excludefrompdf": "A' dùnadh a-mach à PDF",
+    "excludefrompdfdescription": "Chan eil an raon seo a' nochdadh air a' PDF dheireannach"
   },
   "alignment": {
     "alignleft": "Co-thaobhaich clì",

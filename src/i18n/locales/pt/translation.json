@@ -164,7 +164,9 @@
     "placeholdereg1": "por exemplo, 1",
     "placeholdercheckboxgroup": "por exemplo, grupo de caixas de seleção",
     "placeholdersignhere": "por exemplo. Assine aqui",
-    "changefieldtype": "Alterar tipo de campo"
+    "changefieldtype": "Alterar tipo de campo",
+    "excludefrompdf": "Excluir do PDF",
+    "excludefrompdfdescription": "Este campo não aparecerá no PDF final"
   },
   "alignment": {
     "alignleft": "Alinhar à esquerda",

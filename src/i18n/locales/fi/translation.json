@@ -164,7 +164,9 @@
     "placeholdereg1": "esim. 1",
     "placeholdercheckboxgroup": "esim. valintaruuturyhmä",
     "placeholdersignhere": "esim. Allekirjoita tästä",
-    "changefieldtype": "Muuta kenttätyyppiä"
+    "changefieldtype": "Muuta kenttätyyppiä",
+    "excludefrompdf": "Sulje pois PDF:stä",
+    "excludefrompdfdescription": "Tämä kenttä ei näy lopullisessa PDF:ssä"
   },
   "alignment": {
     "alignleft": "Kohdista vasemmalle",
