@@ -23,7 +23,7 @@ export type LSApiElement = {
   options?: string;
   page?: number;
   role?: LSApiRole;
-  substantive?: boolean;
+  excludeFromPdf?: boolean;
   validation?: number;
   value?: string;
   logicGroup?: string;
