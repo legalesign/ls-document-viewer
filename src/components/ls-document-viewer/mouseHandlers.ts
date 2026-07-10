@@ -984,7 +984,7 @@ export function mouseDoubleClick(event) {
         formElementType: data.formElementType,
         elementType: data.elementType,
         validation: data.validation,
-        substantive: false,
+        excludeFromPdf: false,
         top,
         left,
         hideBorder: false,
