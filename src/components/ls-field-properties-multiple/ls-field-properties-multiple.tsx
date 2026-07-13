@@ -523,6 +523,7 @@ export class LsFieldPropertiesMultiple {
                 </ls-input-wrapper>
               </div>
             )}
+            <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} readonly={this.readonly} />
