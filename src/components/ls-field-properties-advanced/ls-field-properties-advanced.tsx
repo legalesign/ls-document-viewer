@@ -120,7 +120,7 @@ export class LsFieldPropertiesAdvanced {
                 value={this.getValue('logicGroup')}
                 width="30"
                 placeholder={dvI18n.t('fieldproperties.placeholdercheckboxgroup')}
-                onChange={e => this.alter({ logicGroup: (e.target as HTMLInputElement).value })}
+                onInput={e => this.alter({ logicGroup: (e.target as HTMLInputElement).value }, 350)}
                 disabled={this.readonly}
               />
             </ls-props-section>
