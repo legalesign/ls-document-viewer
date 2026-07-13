@@ -14,7 +14,7 @@ export class LsFieldPropertiesAdvanced {
 
   private static readonly STORAGE_KEY = 'ls-field-properties-advanced-expanded';
 
-  @State() expanded: boolean = localStorage.getItem(LsFieldPropertiesAdvanced.STORAGE_KEY) !== 'false';
+  @State() expanded: boolean = localStorage.getItem(LsFieldPropertiesAdvanced.STORAGE_KEY) !== 'true';
 
   @Event({
     bubbles: true,

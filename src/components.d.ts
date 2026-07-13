@@ -301,10 +301,6 @@ export namespace Components {
         /**
           * @default false
          */
-        "expanded": boolean;
-        /**
-          * @default false
-         */
         "readonly": boolean;
     }
     interface LsFieldPropertiesAutosign {
@@ -1895,10 +1891,6 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem"?: LSApiElement | LSApiElement[];
-        /**
-          * @default false
-         */
-        "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
         /**
           * @default false
