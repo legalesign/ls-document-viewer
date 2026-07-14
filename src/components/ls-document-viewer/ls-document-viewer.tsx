@@ -353,36 +353,18 @@ export class LsDocumentViewer {
             }
             // Swap/delete: after structural changes, sync default names to new ordinals
             if (me.action === 'swap' || me.action === 'delete') {
-              // For swap, capture which roles had default names before the sync
-              const preSwapDefaults = me.action === 'swap' ? [
-                { id: (me.data as LSApiRole).id, hadDefault: (me.data as LSApiRole).name === 'Participant ' + (me.data as LSApiRole).ordinal },
-                { id: (me.data2 as LSApiRole).id, hadDefault: (me.data2 as LSApiRole).name === 'Participant ' + (me.data2 as LSApiRole).ordinal },
-              ] : null;
-              // For delete, snapshot all roles with default names before ordinals shift
-              const preDeleteDefaults = me.action === 'delete'
-                ? this._template.roles.filter(r => r.name === 'Participant ' + r.ordinal).map(r => r.id)
-                : null;
+              // Snapshot all roles with default names before ordinals shift
+              const preChangeDefaults = this._template.roles
+                .filter(r => r.name === 'Participant ' + r.ordinal)
+                .map(r => r.id);
               return Promise.resolve(matchData.bind(this)(result)).then(() => {
                 const updates: Promise<any>[] = [];
-                if (preSwapDefaults) {
-                  for (const { id, hadDefault } of preSwapDefaults) {
-                    if (!hadDefault) continue;
-                    const fresh = this._template.roles.find(r => r.id === id);
-                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
-                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
-                        if (r !== 'invalid') matchData.bind(this)(r);
-                      }));
-                    }
-                  }
-                }
-                if (preDeleteDefaults) {
-                  for (const id of preDeleteDefaults) {
-                    const fresh = this._template.roles.find(r => r.id === id);
-                    if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
-                      updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
-                        if (r !== 'invalid') matchData.bind(this)(r);
-                      }));
-                    }
+                for (const id of preChangeDefaults) {
+                  const fresh = this._template.roles.find(r => r.id === id);
+                  if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
+                    updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                      if (r !== 'invalid') matchData.bind(this)(r);
+                    }));
                   }
                 }
                 return Promise.all(updates);
