@@ -64,7 +64,7 @@ export class LsFieldPropertiesNumber {
               />
 
             </ls-props-section>
-            <ls-field-properties-content dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-content dataItem={this.dataItem} readonly={this.readonly} />
             <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
