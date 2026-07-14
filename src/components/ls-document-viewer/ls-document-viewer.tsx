@@ -343,7 +343,11 @@ export class LsDocumentViewer {
                   const hasDefaultName = witness.name === 'Participant ' + witness.ordinal;
                   const hasParentWitnessName = witness.name === oldRole.name + ' Witness';
                   if (hasDefaultName || hasParentWitnessName) {
-                    const updatedWitness = { ...witness, name: role.name + ' Witness' };
+                    // If parent reverts to default, witness should also revert to default
+                    const newWitnessName = role.name === 'Participant ' + role.ordinal
+                      ? 'Participant ' + witness.ordinal
+                      : role.name + ' Witness';
+                    const updatedWitness = { ...witness, name: newWitnessName };
                     this.adapter.handleEvent({ action: 'update', data: updatedWitness }, this.token).then(wr => {
                       if (wr !== 'invalid') matchData.bind(this)(wr);
                     });
@@ -351,8 +355,8 @@ export class LsDocumentViewer {
                 }
               }
             }
-            // Swap/delete: after structural changes, sync default names to new ordinals
-            if (me.action === 'swap' || me.action === 'delete') {
+            // Swap/delete/create: after structural changes, sync default names to new ordinals
+            if (me.action === 'swap' || me.action === 'delete' || me.action === 'create') {
               // Snapshot all roles with default names before ordinals shift
               const preChangeDefaults = this._template.roles
                 .filter(r => r.name === 'Participant ' + r.ordinal)
