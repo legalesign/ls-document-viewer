@@ -29,6 +29,10 @@ export const validateFieldValue = (
     return validateDropdownValue(value, options);
   }
 
+  if (formElementType === 'regular expression') {
+    return validateRegex(value);
+  }
+
   return null;
 };
 
@@ -118,4 +122,13 @@ const validateDropdownValue = (value: string, options?: string): string | null =
     return dvI18n.t('fieldvalidation.dropdownoption');
   }
   return null;
+};
+
+const validateRegex = (value: string): string | null => {
+  try {
+    new RegExp(value);
+    return null;
+  } catch {
+    return dvI18n.t('fieldvalidation.invalidregex');
+  }
 };
