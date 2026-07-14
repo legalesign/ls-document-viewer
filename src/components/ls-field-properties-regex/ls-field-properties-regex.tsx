@@ -6,8 +6,8 @@ import { validateFieldValue } from '../../utils/fieldValueValidator';
 import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
 @Component({
-  tag: 'ls-field-properties-number',
-  styleUrl: 'ls-field-properties-number.scss',
+  tag: 'ls-field-properties-regex',
+  styleUrl: 'ls-field-properties-regex.scss',
   shadow: true,
 })
 export class LsFieldPropertiesNumber {
