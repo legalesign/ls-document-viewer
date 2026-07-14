@@ -36,6 +36,10 @@ export class LsFieldProperties {
           return <ls-field-properties-file dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} filtertoolbox={this.filtertoolbox} />
         case 'checkbox':
           return <ls-field-properties-checkbox dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} filtertoolbox={this.filtertoolbox} />
+        case 'regex':
+          return <ls-field-properties-regex dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} filtertoolbox={this.filtertoolbox} />
+        case 'regular expression' :
+          return <ls-field-properties-regex dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} filtertoolbox={this.filtertoolbox} />          
         default:
           return <ls-field-properties-general dataItem={this.dataItem[0]} readonly={this.readonly} roles={roles} filtertoolbox={this.filtertoolbox} />
 
