@@ -2,8 +2,6 @@ import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
 import { dvI18n } from '../../i18n/i18n';
-import { validateFieldValue } from '../../utils/fieldValueValidator';
-import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
 @Component({
   tag: 'ls-field-properties-regex',
