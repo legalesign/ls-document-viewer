@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}vantar undirskrift",
     "recipientneedsignature": "Viðtakandi þarf undirskriftarreit fyrir þá",
     "recipientsneedsignatures": "Viðtakendur þurfa undirskriftarreitina sett fyrir þá",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Fellivalkostir krafist",
     "fieldneedsoptions": "Fellireitur þarf valkostum bætt við",
     "fieldsneedoptions": "Fellireitum þarf að bæta við valkostum",
@@ -145,6 +147,7 @@
     "options": "Valkostir",
     "optionsdescription": "Skilgreindu valkostina sem eru í boði í fellilistanum. Einn valkostur á hverri línu.",
     "requiredfield": "Nauðsynlegt reitur",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Innihaldssnið",
     "contentformatdescription": "Veldu tiltekið snið sem þú vilt að viðtakandinn slá inn.",
     "linktypenoption": "Enginn",
@@ -157,6 +160,7 @@
     "reassign": "Úthluta aftur",
     "cannotreassignsender": "{{fieldTypes}}Ekki er hægt að úthluta reitum aftur til sendanda. Afvelja þessa reiti til að halda áfram.",
     "cannotreassignsendersingle": "{{fieldTypes}}Ekki er hægt að úthluta reitum aftur til sendanda.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Ekki er hægt að úthluta undirskriftarreitum aftur til Samþykjenda. Afvelja þessa reiti til að halda áfram.",
     "signaturecannotapproversingle": "Ekki er hægt að úthluta undirskriftarreitum aftur til Samþykjenda.",
     "sender": "Sendandi",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "td. Skráðu þig hér",
     "changefieldtype": "Breyta tegund sviðs",
     "excludefrompdf": "Undanskilja frá PDF",
-    "excludefrompdfdescription": "Þessi reitur mun ekki birtast í lokaskjalinu PDF"
+    "excludefrompdfdescription": "Þessi reitur mun ekki birtast í lokaskjalinu PDF",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Stilltu til vinstri",
@@ -220,6 +226,8 @@
     "format": "snið"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Smámyndir síðunnar",
     "zoomin": "Aðdráttur",
     "zoomout": "Aðdráttur",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Setja reiti fyrir",
     "sender": "Sendandi",
     "you": "Þú",
-    "addnewsigner": "Bæta við nýjum undirritara"
+    "addnewsigner": "Bæta við nýjum undirritara",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Verður að vera nákvæmlega {{count}}persóna (s)",

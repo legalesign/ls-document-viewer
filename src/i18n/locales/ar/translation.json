@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}يفتقد التوقيع",
     "recipientneedsignature": "يحتاج المستلم إلى حقل توقيع تم وضعه له",
     "recipientsneedsignatures": "يحتاج المستلمون إلى حقول التوقيع الموضوعة لهم",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "خيارات القائمة المنسدلة مطلوبة",
     "fieldneedsoptions": "يحتاج حقل القائمة المنسدلة إلى إضافة خيارات",
     "fieldsneedoptions": "تحتاج الحقول المنسدلة إلى إضافة خيارات",
@@ -145,6 +147,7 @@
     "options": "خيارات",
     "optionsdescription": "حدد الخيارات المتاحة في القائمة المنسدلة. خيار واحد لكل سطر.",
     "requiredfield": "الحقل المطلوب",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "صيغة المحتوى",
     "contentformatdescription": "حدد التنسيق المحدد الذي تريد أن يدخله المستلم.",
     "linktypenoption": "لا شيء",
@@ -157,6 +160,7 @@
     "reassign": "إعادة التعيين",
     "cannotreassignsender": "{{fieldTypes}}لا يمكن إعادة تعيين الحقول إلى المرسل. قم بإلغاء تحديد هذه الحقول للمتابعة.",
     "cannotreassignsendersingle": "{{fieldTypes}}لا يمكن إعادة تعيين الحقول إلى المرسل.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "لا يمكن إعادة تعيين حقول التوقيع إلى المعتمدين. قم بإلغاء تحديد هذه الحقول للمتابعة.",
     "signaturecannotapproversingle": "لا يمكن إعادة تعيين حقول التوقيع إلى المعتمدين.",
     "sender": "المُرسِل",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "على سبيل المثال. قم بالتوقيع هنا",
     "changefieldtype": "تغيير نوع الحقل",
     "excludefrompdf": "استبعاد من ملف PDF",
-    "excludefrompdfdescription": "لن يظهر هذا الحقل في ملف PDF النهائي"
+    "excludefrompdfdescription": "لن يظهر هذا الحقل في ملف PDF النهائي",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "محاذاة إلى اليسار",
@@ -220,6 +226,8 @@
     "format": "صيغة"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "مصغرات الصفحة",
     "zoomin": "زووم إن",
     "zoomout": "زووم أوت",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "وضع الحقول لـ",
     "sender": "المُرسِل",
     "you": "أنت",
-    "addnewsigner": "إضافة موقّع جديد"
+    "addnewsigner": "إضافة موقّع جديد",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "يجب أن تكون بالضبط {{count}}الشخصية (الشخصيات)",

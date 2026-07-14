@@ -108,6 +108,8 @@
     "recipientmissingsignature": "[NEEDS TRANSLATION] {{name}} is missing a signature",
     "recipientneedsignature": "Tha feum aig an fhaightear air raon ainm-sgrìobhte air a chur dhaibh",
     "recipientsneedsignatures": "Tha feum aig faightearan air raointean ainm-sgrìobhte air an cur dhaibh",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "[NEEDS TRANSLATION] Dropdown Options Required",
     "fieldneedsoptions": "[NEEDS TRANSLATION] Dropdown field needs options added",
     "fieldsneedoptions": "[NEEDS TRANSLATION] Dropdown fields need options added",
@@ -145,6 +147,7 @@
     "options": "Roghainnean",
     "optionsdescription": "Mìnich na roghainnean a tha ri fhaighinn sa chlàr-taice. Aon roghainn gach loidhne.",
     "requiredfield": "Raon riatanach",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Cruth susbaint",
     "contentformatdescription": "Tagh an cruth sònraichte a tha thu ag iarraidh air an Fhaightear a chur a-steach.",
     "linktypenoption": "Chan eil gin",
@@ -157,6 +160,7 @@
     "reassign": "[NEEDS TRANSLATION] Re-assign",
     "cannotreassignsender": "[NEEDS TRANSLATION] {{fieldTypes}} fields cannot be re-assigned to Sender. Deselect these fields to continue.",
     "cannotreassignsendersingle": "[NEEDS TRANSLATION] {{fieldTypes}} fields cannot be re-assigned to Sender.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "[NEEDS TRANSLATION] Signature fields cannot be re-assigned to Approvers. Deselect these fields to continue.",
     "signaturecannotapproversingle": "[NEEDS TRANSLATION] Signature fields cannot be re-assigned to Approvers.",
     "sender": "[NEEDS TRANSLATION] Sender",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "m.e. Soidhnig an seo",
     "changefieldtype": "[NEEDS TRANSLATION] Change Field Type",
     "excludefrompdf": "A' dùnadh a-mach à PDF",
-    "excludefrompdfdescription": "Chan eil an raon seo a' nochdadh air a' PDF dheireannach"
+    "excludefrompdfdescription": "Chan eil an raon seo a' nochdadh air a' PDF dheireannach",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Co-thaobhaich clì",
@@ -220,6 +226,8 @@
     "format": "Cruth"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Dealbhan-beaga dhuilleagan",
     "zoomin": "Sùm a-steach",
     "zoomout": "Sùm a-mach",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "A' cur raointean airson",
     "sender": "Neach-cuir",
     "you": "Thu fhèin",
-    "addnewsigner": "Cuir Neach-soidhnigidh ùr ris"
+    "addnewsigner": "Cuir Neach-soidhnigidh ùr ris",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "[NEEDS TRANSLATION] Must be exactly {{count}} character(s)",

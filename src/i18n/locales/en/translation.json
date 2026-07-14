@@ -170,7 +170,9 @@
     "placeholdersignhere": "eg. Sign Here",
     "changefieldtype": "Change Field Type",
     "excludefrompdf": "Exclude from PDF",
-    "excludefrompdfdescription": "This field will not appear on the final PDF"
+    "excludefrompdfdescription": "This field will not appear on the final PDF",
+    "expression": "Expression",
+    "expressiondescription": "Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Align Left",

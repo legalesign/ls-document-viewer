@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}fehlt eine Signatur",
     "recipientneedsignature": "Der Empfänger muss ein Unterschriftsfeld für ihn eingerichtet haben",
     "recipientsneedsignatures": "Empfänger müssen Unterschriftsfelder für sie platziert haben",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Drop-down-Optionen erforderlich",
     "fieldneedsoptions": "Für das Dropdownfeld müssen Optionen hinzugefügt werden",
     "fieldsneedoptions": "Für Dropdownfelder müssen Optionen hinzugefügt werden",
@@ -145,6 +147,7 @@
     "options": "Optionen",
     "optionsdescription": "Definieren Sie die verfügbaren Optionen in der Dropdownliste. Eine Option pro Zeile.",
     "requiredfield": "Erforderliches Feld",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Format des Inhalts",
     "contentformatdescription": "Wählen Sie das spezifische Format aus, das der Empfänger eingeben soll.",
     "linktypenoption": "Keine",
@@ -157,6 +160,7 @@
     "reassign": "Neu zuweisen",
     "cannotreassignsender": "{{fieldTypes}}Felder können dem Absender nicht erneut zugewiesen werden. Deaktivieren Sie diese Felder, um fortzufahren.",
     "cannotreassignsendersingle": "{{fieldTypes}}Felder können dem Absender nicht erneut zugewiesen werden.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Signaturfelder können Genehmigern nicht erneut zugewiesen werden. Deaktivieren Sie diese Felder, um fortzufahren.",
     "signaturecannotapproversingle": "Signaturfelder können Genehmigern nicht erneut zugewiesen werden.",
     "sender": "Absender",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "z. B. Unterschreiben Sie hier",
     "changefieldtype": "Feldtyp ändern",
     "excludefrompdf": "Aus PDF ausschließen",
-    "excludefrompdfdescription": "Dieses Feld wird nicht im endgültigen PDF angezeigt"
+    "excludefrompdfdescription": "Dieses Feld wird nicht im endgültigen PDF angezeigt",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Links ausrichten",
@@ -220,6 +226,8 @@
     "format": "Formatieren"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Seiten-Thumbnails",
     "zoomin": "Hineinzoomen",
     "zoomout": "Verkleinern",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Felder platzieren für",
     "sender": "Absender",
     "you": "Du",
-    "addnewsigner": "Neuen Unterzeichner hinzufügen"
+    "addnewsigner": "Neuen Unterzeichner hinzufügen",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Muss genau aus {{count}}Zeichen bestehen",

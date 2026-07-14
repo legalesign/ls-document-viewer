@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}липсва подпис",
     "recipientneedsignature": "Получателят се нуждае от поставено поле за подпис за него",
     "recipientsneedsignatures": "Получателите трябва да бъдат поставени за тях полета за подпис",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Изискват се падащи опции",
     "fieldneedsoptions": "Падащото поле изисква добавяне на опции",
     "fieldsneedoptions": "Падащите полета се нуждаят от добавяне на опции",
@@ -145,6 +147,7 @@
     "options": "Опции",
     "optionsdescription": "Определете наличните опции в падащото меню. Една опция на ред.",
     "requiredfield": "Задължително поле",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Формат на съдържанието",
     "contentformatdescription": "Изберете конкретния формат, който искате получателят да въведе.",
     "linktypenoption": "Няма",
@@ -157,6 +160,7 @@
     "reassign": "Повторно възлагане",
     "cannotreassignsender": "{{fieldTypes}}Полетата не могат да бъдат превъзложени на Изпращача. Премахнете отметката на тези полета, за да продължите.",
     "cannotreassignsendersingle": "{{fieldTypes}}Полетата не могат да бъдат превъзложени на Изпращача.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Полетата за подпис не могат да бъдат превъзложени на одобрителите. Премахнете отметката на тези полета, за да продължите.",
     "signaturecannotapproversingle": "Полетата за подпис не могат да бъдат превъзложени на одобрителите.",
     "sender": "Изпращач",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "напр. Подпишете тук",
     "changefieldtype": "Промяна на типа на полето",
     "excludefrompdf": "Изключване от PDF",
-    "excludefrompdfdescription": "Това поле няма да се появи в окончателния PDF"
+    "excludefrompdfdescription": "Това поле няма да се появи в окончателния PDF",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Подравнете наляво",
@@ -220,6 +226,8 @@
     "format": "Формат"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Миниатюри на страници",
     "zoomin": "Увеличаване",
     "zoomout": "Омаловажаване",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Поставяне на полета за",
     "sender": "Изпращач",
     "you": "Ти",
-    "addnewsigner": "Добавяне на нов подписващ"
+    "addnewsigner": "Добавяне на нов подписващ",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Трябва да е точно {{count}}знак (и)",

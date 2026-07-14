@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}manca una firma",
     "recipientneedsignature": "Il destinatario deve inserire un campo firma per lui",
     "recipientsneedsignatures": "I destinatari devono inserire campi di firma per loro",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Opzioni a discesa obbligatorie",
     "fieldneedsoptions": "Il campo a discesa richiede l'aggiunta di opzioni",
     "fieldsneedoptions": "I campi a discesa richiedono l'aggiunta di opzioni",
@@ -145,6 +147,7 @@
     "options": "Opzioni",
     "optionsdescription": "Definisci le opzioni disponibili nel menu a discesa. Un'opzione per riga.",
     "requiredfield": "Campo obbligatorio",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Formato del contenuto",
     "contentformatdescription": "Seleziona il formato specifico che desideri che il destinatario inserisca.",
     "linktypenoption": "Nessuna",
@@ -157,6 +160,7 @@
     "reassign": "Riassegna",
     "cannotreassignsender": "{{fieldTypes}}i campi non possono essere riassegnati al mittente. Deseleziona questi campi per continuare.",
     "cannotreassignsendersingle": "{{fieldTypes}}i campi non possono essere riassegnati al mittente.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "I campi della firma non possono essere riassegnati agli approvatori. Deseleziona questi campi per continuare.",
     "signaturecannotapproversingle": "I campi della firma non possono essere riassegnati agli approvatori.",
     "sender": "Mittente",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "ad esempio. Firma qui",
     "changefieldtype": "Cambia tipo di campo",
     "excludefrompdf": "Escludi dal PDF",
-    "excludefrompdfdescription": "Questo campo non apparirà nel PDF finale"
+    "excludefrompdfdescription": "Questo campo non apparirà nel PDF finale",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Allinea a sinistra",
@@ -220,6 +226,8 @@
     "format": "Formato"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Anteprime delle pagine",
     "zoomin": "Ingrandisci",
     "zoomout": "Rimpicciolisci",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Posizionamento dei campi per",
     "sender": "Mittente",
     "you": "Tu",
-    "addnewsigner": "Aggiungi un nuovo firmatario"
+    "addnewsigner": "Aggiungi un nuovo firmatario",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Deve essere esattamente uno {{count}}o più caratteri",

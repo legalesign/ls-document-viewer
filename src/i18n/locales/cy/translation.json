@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}ar goll llofnod",
     "recipientneedsignature": "Mae angen Maes Llofnod wedi'i osod ar ei gyfer y derbynnydd",
     "recipientsneedsignatures": "Mae angen i dderbynwyr osod Meysydd Llofnod ar eu cyfer",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Opsiynau gwymplen sy'n ofynnol",
     "fieldneedsoptions": "Maes gwymplen angen ychwanegu opsiynau",
     "fieldsneedoptions": "Mae angen ychwanegu opsiynau ar feysydd gwymplen",
@@ -145,6 +147,7 @@
     "options": "Opsiynau",
     "optionsdescription": "Diffiniwch yr opsiynau sydd ar gael yn y gwymplen. Un opsiwn fesul llinell.",
     "requiredfield": "Maes Gofynnol",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Fformat Cynnwys",
     "contentformatdescription": "Dewiswch y fformat penodol rydych chi am i'r Derbynnydd ei nodi.",
     "linktypenoption": "Dim",
@@ -157,6 +160,7 @@
     "reassign": "Ail-aseinio",
     "cannotreassignsender": "{{fieldTypes}}Ni ellir ail-neilltuo meysydd i Anfonwr. Dadddewis y meysydd hyn i barhau.",
     "cannotreassignsendersingle": "{{fieldTypes}}Ni ellir ail-neilltuo meysydd i Anfonwr.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Ni ellir ail-neilltuo meysydd llofnod i Gymeradwywyr. Dadddewis y meysydd hyn i barhau.",
     "signaturecannotapproversingle": "Ni ellir ail-neilltuo meysydd llofnod i Gymeradwywyr.",
     "sender": "Trosglwyddydd",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "ee. Llofnodi Yma",
     "changefieldtype": "Newid Math o Faes",
     "excludefrompdf": "Eithrio o PDF",
-    "excludefrompdfdescription": "Ni fydd y maes hwn yn ymddangos ar y PDF terfynol"
+    "excludefrompdfdescription": "Ni fydd y maes hwn yn ymddangos ar y PDF terfynol",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Alinio Chwith",
@@ -220,6 +226,8 @@
     "format": "Fformat"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Mân-luniau Tudalen",
     "zoomin": "Chwyddo i Mewn",
     "zoomout": "Chwyddo Allan",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Gosod Meysydd ar gyfer",
     "sender": "Trosglwyddydd",
     "you": "Chi",
-    "addnewsigner": "Ychwanegu Llofnodwr newydd"
+    "addnewsigner": "Ychwanegu Llofnodwr newydd",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Rhaid bod yn union {{count}}gymeriad (au)",

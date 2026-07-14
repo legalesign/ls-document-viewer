@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}Saknar en signatur",
     "recipientneedsignature": "Mottagaren behöver ett signaturfält placerat för dem",
     "recipientsneedsignatures": "Mottagare behöver signaturfält placerade för dem",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Rullgardinsalternativ krävs",
     "fieldneedsoptions": "Rullgardinsfältet behöver alternativ läggas till",
     "fieldsneedoptions": "Rullgardinsfält behöver alternativ tillagda",
@@ -145,6 +147,7 @@
     "options": "Alternativ",
     "optionsdescription": "Definiera de alternativ som finns tillgängliga i rullgardinsmenyn. Ett alternativ per rad.",
     "requiredfield": "Obligatoriskt fält",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Innehållsformat",
     "contentformatdescription": "Välj det specifika format som du vill att mottagaren ska ange.",
     "linktypenoption": "Ingen",
@@ -157,6 +160,7 @@
     "reassign": "Omtilldela",
     "cannotreassignsender": "{{fieldTypes}}fält kan inte tilldelas avsändaren på nytt. Avmarkera dessa fält för att fortsätta.",
     "cannotreassignsendersingle": "{{fieldTypes}}fält kan inte tilldelas avsändaren på nytt.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Signaturfält kan inte tilldelas godkännare igen. Avmarkera dessa fält för att fortsätta.",
     "signaturecannotapproversingle": "Signaturfält kan inte tilldelas godkännare igen.",
     "sender": "Avsändare",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "t.ex. Signera här",
     "changefieldtype": "Ändra fälttyp",
     "excludefrompdf": "Uteslut från PDF",
-    "excludefrompdfdescription": "Det här fältet visas inte i den slutliga PDF:en"
+    "excludefrompdfdescription": "Det här fältet visas inte i den slutliga PDF:en",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Justera vänster",
@@ -220,6 +226,8 @@
     "format": "Formatera"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Sidminiatyrer",
     "zoomin": "Zooma in",
     "zoomout": "Zooma ut",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Placera fält för",
     "sender": "Avsändare",
     "you": "Du",
-    "addnewsigner": "Lägg till en ny signerare"
+    "addnewsigner": "Lägg till en ny signerare",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Måste vara exakt {{count}}tecken (er)",
