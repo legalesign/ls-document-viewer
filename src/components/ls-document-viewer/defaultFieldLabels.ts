@@ -51,7 +51,7 @@ export const defaultFieldPlaceholders: { [key: string]: string } = {
   'dropdown': 'Dropdown',
   'file': 'File',
   'drawn field': 'Draw',
-  'regular expression': 'RegEx',
+  'regular expression': '/^\d*\.\d+$/',
 };
 
 export function getFieldPlaceholder(key: string): string | undefined {
