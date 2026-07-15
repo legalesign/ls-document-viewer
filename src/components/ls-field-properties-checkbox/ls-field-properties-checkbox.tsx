@@ -1,7 +1,6 @@
-import { Component, Host, Prop, h, Listen, Element } from '@stencil/core';
+import { Component, Host, Prop, h, Element } from '@stencil/core';
 import { LSApiElement } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
-import { LSMutateEvent } from '../../types/LSMutateEvent';
 
 @Component({
   tag: 'ls-field-properties-checkbox',
@@ -13,14 +12,6 @@ export class LsFieldPropertiesCheckbox {
   @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
   @Prop() filtertoolbox: string = null;
-
-  @Listen('mutate')
-  handleChildMutate(event: CustomEvent<LSMutateEvent[]>) {
-    const update = event.detail?.[0];
-    if (update?.action === 'update' && update.data) {
-      this.dataItem = update.data as LSApiElement;
-    }
-  }
 
   @Element() el: HTMLElement;
 
