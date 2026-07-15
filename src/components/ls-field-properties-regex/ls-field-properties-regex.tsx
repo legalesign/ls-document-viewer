@@ -2,7 +2,6 @@ import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
 import { dvI18n } from '../../i18n/i18n';
-import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
 @Component({
   tag: 'ls-field-properties-regex',
   styleUrl: 'ls-field-properties-regex.scss',
@@ -57,8 +56,8 @@ export class LsFieldPropertiesNumber {
               <ls-formfield
                 as="text"
                 name="field-value"
-                value={this.dataItem?.value}
-                placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
+                value={this.dataItem?.options || ''}
+                placeholder={'/^d.d+$/'}
                 disabled={this.readonly}
                 onTextChange={e => this.alter({ options: e.detail.value })}
               />
