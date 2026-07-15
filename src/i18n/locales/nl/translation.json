@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}mist een handtekening",
     "recipientneedsignature": "De ontvanger moet een handtekeningveld hebben dat voor hem of haar is geplaatst",
     "recipientsneedsignatures": "Ontvangers hebben handtekeningvelden nodig die voor hen zijn geplaatst",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Vervolgkeuzevakken vereist",
     "fieldneedsoptions": "In het dropdown-veld zijn opties toegevoegd",
     "fieldsneedoptions": "Voor dropdown-velden moeten opties worden toegevoegd",
@@ -145,6 +147,7 @@
     "options": "Opties",
     "optionsdescription": "Definieer de beschikbare opties in de keuzelijst. Eén optie per regel.",
     "requiredfield": "Verplicht veld",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Inhoudsindeling",
     "contentformatdescription": "Selecteer het specifieke formaat dat de ontvanger moet invoeren.",
     "linktypenoption": "Geen",
@@ -157,6 +160,7 @@
     "reassign": "Opnieuw toewijzen",
     "cannotreassignsender": "{{fieldTypes}}velden kunnen niet opnieuw worden toegewezen aan de afzender. Vink deze velden uit om door te gaan.",
     "cannotreassignsendersingle": "{{fieldTypes}}velden kunnen niet opnieuw worden toegewezen aan de afzender.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Handtekeningvelden kunnen niet opnieuw worden toegewezen aan goedkeurders. Vink deze velden uit om door te gaan.",
     "signaturecannotapproversingle": "Handtekeningvelden kunnen niet opnieuw worden toegewezen aan goedkeurders.",
     "sender": "Afzender",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "bijv. Hier aanmelden",
     "changefieldtype": "Veldtype wijzigen",
     "excludefrompdf": "Uitsluiten van PDF",
-    "excludefrompdfdescription": "Dit veld verschijnt niet in de definitieve PDF"
+    "excludefrompdfdescription": "Dit veld verschijnt niet in de definitieve PDF",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Links uitlijnen",
@@ -220,6 +226,8 @@
     "format": "Formaat"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Miniaturen van pagina's",
     "zoomin": "Inzoomen",
     "zoomout": "Uitzoomen",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Velden plaatsen voor",
     "sender": "Afzender",
     "you": "Jij",
-    "addnewsigner": "Een nieuwe ondertekenaar toevoegen"
+    "addnewsigner": "Een nieuwe ondertekenaar toevoegen",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Moet exact het {{count}}teken (s) zijn",

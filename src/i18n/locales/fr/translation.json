@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}il manque une signature",
     "recipientneedsignature": "Le destinataire a besoin qu'un champ de signature soit placé pour lui",
     "recipientsneedsignatures": "Les destinataires ont besoin de champs de signature placés pour eux",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Options de liste déroulante requises",
     "fieldneedsoptions": "Le champ déroulant nécessite l'ajout d'options",
     "fieldsneedoptions": "Les champs déroulants nécessitent l'ajout d'options",
@@ -145,6 +147,7 @@
     "options": "Options",
     "optionsdescription": "Définissez les options disponibles dans la liste déroulante. Une option par ligne.",
     "requiredfield": "Champ obligatoire",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Format du contenu",
     "contentformatdescription": "Sélectionnez le format spécifique que vous souhaitez que le destinataire saisisse.",
     "linktypenoption": "Aucune",
@@ -157,6 +160,7 @@
     "reassign": "Réattribuer",
     "cannotreassignsender": "{{fieldTypes}}les champs ne peuvent pas être réaffectés à l'expéditeur. Désélectionnez ces champs pour continuer.",
     "cannotreassignsendersingle": "{{fieldTypes}}les champs ne peuvent pas être réaffectés à l'expéditeur.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Les champs de signature ne peuvent pas être réaffectés aux approbateurs. Désélectionnez ces champs pour continuer.",
     "signaturecannotapproversingle": "Les champs de signature ne peuvent pas être réaffectés aux approbateurs.",
     "sender": "Expéditeur",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "par exemple. Signez ici",
     "changefieldtype": "Modifier le type de champ",
     "excludefrompdf": "Exclure du PDF",
-    "excludefrompdfdescription": "Ce champ n'apparaître pas dans le PDF final"
+    "excludefrompdfdescription": "Ce champ n'apparaître pas dans le PDF final",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Aligner à gauche",
@@ -220,6 +226,8 @@
     "format": "Formater"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Miniatures des pages",
     "zoomin": "Zoomer",
     "zoomout": "Zoom arrière",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Placer des champs pour",
     "sender": "Expéditeur",
     "you": "Vous",
-    "addnewsigner": "Ajouter un nouveau signataire"
+    "addnewsigner": "Ajouter un nouveau signataire",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Doit être exactement le (s) {{count}}caractère (s)",

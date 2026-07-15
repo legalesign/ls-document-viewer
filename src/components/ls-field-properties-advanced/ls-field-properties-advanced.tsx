@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, State } from '@stencil/core';
 import { LSApiElement } from '../../types/LSApiElement';
 import { LSMutateEvent } from '../../types/LSMutateEvent';
 import { dvI18n } from '../../i18n/i18n';
@@ -10,8 +10,11 @@ import { dvI18n } from '../../i18n/i18n';
 })
 export class LsFieldPropertiesAdvanced {
   @Prop({ mutable: true }) dataItem: LSApiElement | LSApiElement[];
-  @Prop({ mutable: true }) expanded: boolean = false;
   @Prop() readonly: boolean = false;
+
+  private static readonly STORAGE_KEY = 'ls-field-properties-advanced-expanded';
+
+  @State() expanded: boolean = localStorage.getItem(LsFieldPropertiesAdvanced.STORAGE_KEY) !== 'true';
 
   @Event({
     bubbles: true,
@@ -78,7 +81,7 @@ export class LsFieldPropertiesAdvanced {
   render() {
     return (
       <Host>
-        <div class={'ls-dv-expand-fields-row'} onClick={() => (this.expanded = !this.expanded)}>
+        <div class={'ls-dv-expand-fields-row'} onClick={() => { this.expanded = !this.expanded; localStorage.setItem(LsFieldPropertiesAdvanced.STORAGE_KEY, String(this.expanded)); }}>
           <ls-icon name={this.expanded ? 'expand-icon' : 'collapse-icon'} size={20} solid />
           <p>{dvI18n.t('fieldproperties.advancedproperties')}</p>
         </div>

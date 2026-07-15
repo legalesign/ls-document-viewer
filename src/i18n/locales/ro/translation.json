@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}Lipseşte o semnătură",
     "recipientneedsignature": "Destinatarul are nevoie de un câmp de semnătură plasat pentru ei",
     "recipientsneedsignatures": "Destinatarii au nevoie de câmpuri de semnătură plasate pentru ei",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Opțiuni derulante necesare",
     "fieldneedsoptions": "Câmpul derulant necesită opțiuni adăugate",
     "fieldsneedoptions": "Câmpurile derulante necesită opțiuni adăugate",
@@ -145,6 +147,7 @@
     "options": "Opțiuni",
     "optionsdescription": "Definiți opțiunile disponibile în meniul derulant. O opțiune pe linie.",
     "requiredfield": "Câmp obligatoriu",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Formatul conținutului",
     "contentformatdescription": "Selectați formatul specific pe care doriți să îl introducă destinatarul.",
     "linktypenoption": "Niciuna",
@@ -157,6 +160,7 @@
     "reassign": "Re-atribuiți",
     "cannotreassignsender": "{{fieldTypes}}câmpurile nu pot fi reatribuite expeditorului. Deselectați aceste câmpuri pentru a continua.",
     "cannotreassignsendersingle": "{{fieldTypes}}câmpurile nu pot fi reatribuite expeditorului.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Câmpurile de semnătură nu pot fi reatribuite aprobatorilor. Deselectați aceste câmpuri pentru a continua.",
     "signaturecannotapproversingle": "Câmpurile de semnătură nu pot fi reatribuite aprobatorilor.",
     "sender": "Expeditorul",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "de ex. Semnează aici",
     "changefieldtype": "Schimbați tipul câmpului",
     "excludefrompdf": "Excludere din PDF",
-    "excludefrompdfdescription": "Acest câmp nu va apărea în PDF-ul final"
+    "excludefrompdfdescription": "Acest câmp nu va apărea în PDF-ul final",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Aliniați la stânga",
@@ -220,6 +226,8 @@
     "format": "Formatul"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Miniaturi de pagină",
     "zoomin": "Măriți",
     "zoomout": "Măriți micșorarea",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Plasarea câmpurilor pentru",
     "sender": "Expeditorul",
     "you": "Tu",
-    "addnewsigner": "Adăugarea unui semnatar nou"
+    "addnewsigner": "Adăugarea unui semnatar nou",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Trebuie să fie exact {{count}}caracterul (caracterele)",

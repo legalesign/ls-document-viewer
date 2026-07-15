@@ -20,7 +20,6 @@ export class LsFieldPropertiesSignature {
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
             <ls-field-content dataItem={this.dataItem} roles={this.roles} showValidationTypes={false} readonly={this.readonly} filtertoolbox={this.filtertoolbox} />
-            <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">
             <ls-field-dimensions dataItem={this.dataItem} template={this.template} readonly={this.readonly} />

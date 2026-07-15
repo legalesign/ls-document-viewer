@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}puuttuu allekirjoitus",
     "recipientneedsignature": "Vastaanottaja tarvitsee allekirjoituskentän.",
     "recipientsneedsignatures": "Vastaanottajat tarvitsevat allekirjoituskentät",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Tarvittavat pudotusvalikkovaihtoehdot",
     "fieldneedsoptions": "Avattava kenttä tarvitsee lisätyt vaihtoehdot",
     "fieldsneedoptions": "Avattavat kentät tarvitsevat lisävaihtoehtoja",
@@ -145,6 +147,7 @@
     "options": "Vaihtoehdot",
     "optionsdescription": "Määritä avattavasta valikosta käytettävissä olevat vaihtoehdot. Yksi vaihtoehto riviä kohden.",
     "requiredfield": "Pakollinen kenttä",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Sisällön muoto",
     "contentformatdescription": "Valitse tietty muoto, jonka haluat Vastaanottajan antavan.",
     "linktypenoption": "Ei mitään",
@@ -157,6 +160,7 @@
     "reassign": "Määritä uudelleen",
     "cannotreassignsender": "{{fieldTypes}}kenttiä ei voi määrittää uudelleen lähettäjälle. Poista näiden kenttien valinta jatkaaksesi.",
     "cannotreassignsendersingle": "{{fieldTypes}}kenttiä ei voi määrittää uudelleen lähettäjälle.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Allekirjoituskenttiä ei voi määrittää uudelleen Hyväksyjille. Poista näiden kenttien valinta jatkaaksesi.",
     "signaturecannotapproversingle": "Allekirjoituskenttiä ei voi määrittää uudelleen Hyväksyjille.",
     "sender": "Lähettäjä",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "esim. Allekirjoita tästä",
     "changefieldtype": "Muuta kenttätyyppiä",
     "excludefrompdf": "Sulje pois PDF:stä",
-    "excludefrompdfdescription": "Tämä kenttä ei näy lopullisessa PDF:ssä"
+    "excludefrompdfdescription": "Tämä kenttä ei näy lopullisessa PDF:ssä",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Kohdista vasemmalle",
@@ -220,6 +226,8 @@
     "format": "Muoto"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Sivun pikkukuvat",
     "zoomin": "Lähennä",
     "zoomout": "Lähennä",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Kenttien sijoittaminen",
     "sender": "Lähettäjä",
     "you": "Sinä",
-    "addnewsigner": "Lisää uusi allekirjoittaja"
+    "addnewsigner": "Lisää uusi allekirjoittaja",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Täytyy olla täsmälleen {{count}}merkki (t)",

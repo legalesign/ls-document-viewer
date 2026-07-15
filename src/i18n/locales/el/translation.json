@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}Λείπει μια υπογραφή",
     "recipientneedsignature": "Ο παραλήπτης χρειάζεται ένα πεδίο υπογραφής τοποθετημένο για αυτόν",
     "recipientsneedsignatures": "Οι παραλήπτες χρειάζονται πεδία υπογραφής τοποθετημένα για αυτούς",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "Απαιτούνται επιλογές αναπτυσσόμενου μενού",
     "fieldneedsoptions": "Το αναπτυσσόμενο πεδίο χρειάζεται πρόσθετες επιλογές",
     "fieldsneedoptions": "Τα αναπτυσσόμενα πεδία χρειάζονται πρόσθετες επιλογές",
@@ -145,6 +147,7 @@
     "options": "Επιλογές",
     "optionsdescription": "Ορίστε τις διαθέσιμες επιλογές στο αναπτυσσόμενο μενού. Μία επιλογή ανά γραμμή.",
     "requiredfield": "Απαραίτητο πεδίο",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "Μορφή περιεχομένου",
     "contentformatdescription": "Επιλέξτε τη συγκεκριμένη μορφή που θέλετε να εισαγάγει ο παραλήπτης.",
     "linktypenoption": "Κανένα",
@@ -157,6 +160,7 @@
     "reassign": "Επανατοποθετήστε",
     "cannotreassignsender": "{{fieldTypes}}τα πεδία δεν μπορούν να εκχωρηθούν εκ νέου στον αποστολέα. Αποεπιλέξτε αυτά τα πεδία για να συνεχίσετε.",
     "cannotreassignsendersingle": "{{fieldTypes}}τα πεδία δεν μπορούν να εκχωρηθούν εκ νέου στον αποστολέα.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "Τα πεδία υπογραφής δεν μπορούν να εκχωρηθούν εκ νέου στους εγκρίνοντες. Αποεπιλέξτε αυτά τα πεδία για να συνεχίσετε.",
     "signaturecannotapproversingle": "Τα πεδία υπογραφής δεν μπορούν να εκχωρηθούν εκ νέου στους εγκρίνοντες.",
     "sender": "Αποστολέας",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "π.χ. Υπογράψτε εδώ",
     "changefieldtype": "Αλλαγή τύπου πεδίου",
     "excludefrompdf": "Εξαίρεση από PDF",
-    "excludefrompdfdescription": "Αυτό το πεδίο δεν θα εμφανίζεται στο τελικό PDF"
+    "excludefrompdfdescription": "Αυτό το πεδίο δεν θα εμφανίζεται στο τελικό PDF",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "Ευθυγράμμιση αριστερά",
@@ -220,6 +226,8 @@
     "format": "Μορφή"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "Μικρογραφίες σελίδας",
     "zoomin": "Μεγέθυνση",
     "zoomout": "Σμείωση",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "Τοποθέτηση πεδίων για",
     "sender": "Αποστολέας",
     "you": "Εσύ",
-    "addnewsigner": "Προσθήκη νέου υπογράφοντος"
+    "addnewsigner": "Προσθήκη νέου υπογράφοντος",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "Πρέπει να είναι ακριβώς {{count}}χαρακτήρας (-ες)",

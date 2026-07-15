@@ -301,10 +301,6 @@ export namespace Components {
         /**
           * @default false
          */
-        "expanded": boolean;
-        /**
-          * @default false
-         */
         "readonly": boolean;
     }
     interface LsFieldPropertiesAutosign {
@@ -424,6 +420,21 @@ export namespace Components {
         "roles": LSApiRole[];
     }
     interface LsFieldPropertiesNumber {
+        "dataItem": LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox": string;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * @default []
+         */
+        "roles": LSApiRole[];
+    }
+    interface LsFieldPropertiesRegex {
         "dataItem": LSApiElement1;
         /**
           * @default null
@@ -855,6 +866,10 @@ export interface LsFieldPropertiesMultipleCustomEvent<T> extends CustomEvent<T> 
     detail: T;
     target: HTMLLsFieldPropertiesMultipleElement;
 }
+export interface LsFieldPropertiesRegexCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLLsFieldPropertiesRegexElement;
+}
 export interface LsFieldSizeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLLsFieldSizeElement;
@@ -1247,6 +1262,24 @@ declare global {
         prototype: HTMLLsFieldPropertiesNumberElement;
         new (): HTMLLsFieldPropertiesNumberElement;
     };
+    interface HTMLLsFieldPropertiesRegexElementEventMap {
+        "mutate": LSMutateEvent1[];
+        "update": LSMutateEvent1[];
+    }
+    interface HTMLLsFieldPropertiesRegexElement extends Components.LsFieldPropertiesRegex, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLLsFieldPropertiesRegexElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesRegexElement, ev: LsFieldPropertiesRegexCustomEvent<HTMLLsFieldPropertiesRegexElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLLsFieldPropertiesRegexElementEventMap>(type: K, listener: (this: HTMLLsFieldPropertiesRegexElement, ev: LsFieldPropertiesRegexCustomEvent<HTMLLsFieldPropertiesRegexElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLLsFieldPropertiesRegexElement: {
+        prototype: HTMLLsFieldPropertiesRegexElement;
+        new (): HTMLLsFieldPropertiesRegexElement;
+    };
     interface HTMLLsFieldPropertiesSignatureElement extends Components.LsFieldPropertiesSignature, HTMLStencilElement {
     }
     var HTMLLsFieldPropertiesSignatureElement: {
@@ -1588,6 +1621,7 @@ declare global {
         "ls-field-properties-general": HTMLLsFieldPropertiesGeneralElement;
         "ls-field-properties-multiple": HTMLLsFieldPropertiesMultipleElement;
         "ls-field-properties-number": HTMLLsFieldPropertiesNumberElement;
+        "ls-field-properties-regex": HTMLLsFieldPropertiesRegexElement;
         "ls-field-properties-signature": HTMLLsFieldPropertiesSignatureElement;
         "ls-field-properties-text": HTMLLsFieldPropertiesTextElement;
         "ls-field-size": HTMLLsFieldSizeElement;
@@ -1895,10 +1929,6 @@ declare namespace LocalJSX {
     }
     interface LsFieldPropertiesAdvanced {
         "dataItem"?: LSApiElement | LSApiElement[];
-        /**
-          * @default false
-         */
-        "expanded"?: boolean;
         "onMutate"?: (event: LsFieldPropertiesAdvancedCustomEvent<LSMutateEvent[]>) => void;
         /**
           * @default false
@@ -2029,6 +2059,23 @@ declare namespace LocalJSX {
           * @default null
          */
         "filtertoolbox"?: string;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * @default []
+         */
+        "roles"?: LSApiRole[];
+    }
+    interface LsFieldPropertiesRegex {
+        "dataItem"?: LSApiElement1;
+        /**
+          * @default null
+         */
+        "filtertoolbox"?: string;
+        "onMutate"?: (event: LsFieldPropertiesRegexCustomEvent<LSMutateEvent1[]>) => void;
+        "onUpdate"?: (event: LsFieldPropertiesRegexCustomEvent<LSMutateEvent1[]>) => void;
         /**
           * @default false
          */
@@ -2461,6 +2508,7 @@ declare namespace LocalJSX {
         "ls-field-properties-general": LsFieldPropertiesGeneral;
         "ls-field-properties-multiple": LsFieldPropertiesMultiple;
         "ls-field-properties-number": LsFieldPropertiesNumber;
+        "ls-field-properties-regex": LsFieldPropertiesRegex;
         "ls-field-properties-signature": LsFieldPropertiesSignature;
         "ls-field-properties-text": LsFieldPropertiesText;
         "ls-field-size": LsFieldSize;
@@ -2522,6 +2570,7 @@ declare module "@stencil/core" {
             "ls-field-properties-general": LocalJSX.LsFieldPropertiesGeneral & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesGeneralElement>;
             "ls-field-properties-multiple": LocalJSX.LsFieldPropertiesMultiple & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesMultipleElement>;
             "ls-field-properties-number": LocalJSX.LsFieldPropertiesNumber & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesNumberElement>;
+            "ls-field-properties-regex": LocalJSX.LsFieldPropertiesRegex & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesRegexElement>;
             "ls-field-properties-signature": LocalJSX.LsFieldPropertiesSignature & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesSignatureElement>;
             "ls-field-properties-text": LocalJSX.LsFieldPropertiesText & JSXBase.HTMLAttributes<HTMLLsFieldPropertiesTextElement>;
             "ls-field-size": LocalJSX.LsFieldSize & JSXBase.HTMLAttributes<HTMLLsFieldSizeElement>;

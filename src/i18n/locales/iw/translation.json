@@ -108,6 +108,8 @@
     "recipientmissingsignature": "{{name}}חסרה חתימה",
     "recipientneedsignature": "הנמען זקוק לשדה חתימה שיוצב עבורו",
     "recipientsneedsignatures": "הנמענים צריכים להציב עבורם שדות חתימה",
+    "recipientrequiressignature": "[NEEDS TRANSLATION] Recipient requires a Signature Field",
+    "recipientsrequiressignatures": "[NEEDS TRANSLATION] Recipients require Signature Fields",
     "optionsrequired": "נדרשות אפשרויות נפתחת",
     "fieldneedsoptions": "השדה הנפתח זקוק לאפשרויות נוספות",
     "fieldsneedoptions": "שדות נפתחים זקוקים לאפשרויות נוספות",
@@ -145,6 +147,7 @@
     "options": "אופציות",
     "optionsdescription": "הגדר את האפשרויות הזמינות בתפריט הנפתח. אפשרות אחת לכל שורה.",
     "requiredfield": "שדה חובה",
+    "requiredfielddescription": "[NEEDS TRANSLATION] Must be completed by the Recipient",
     "contentformat": "פורמט תוכן",
     "contentformatdescription": "בחר את הפורמט הספציפי שברצונך שהנמען יזן.",
     "linktypenoption": "אף אחד",
@@ -157,6 +160,7 @@
     "reassign": "להקצות מחדש",
     "cannotreassignsender": "{{fieldTypes}}לא ניתן להקצות מחדש שדות לשולח. בטל את הבחירה בשדות אלה כדי להמשיך.",
     "cannotreassignsendersingle": "{{fieldTypes}}לא ניתן להקצות מחדש שדות לשולח.",
+    "cannotmovemultipage": "[NEEDS TRANSLATION] Cannot move fields across multiple pages",
     "signaturecannotapprover": "לא ניתן להקצות מחדש שדות חתימה למאשרים. בטל את הבחירה בשדות אלה כדי להמשיך.",
     "signaturecannotapproversingle": "לא ניתן להקצות מחדש שדות חתימה למאשרים.",
     "sender": "שולח",
@@ -166,7 +170,9 @@
     "placeholdersignhere": "למשל. לחתום כאן",
     "changefieldtype": "שינוי סוג שדה",
     "excludefrompdf": "הוצאה מה-PDF",
-    "excludefrompdfdescription": "שדה זה לא יופיע ב-PDF הסופי"
+    "excludefrompdfdescription": "שדה זה לא יופיע ב-PDF הסופי",
+    "expression": "[NEEDS TRANSLATION] Expression",
+    "expressiondescription": "[NEEDS TRANSLATION] Define a formula to calculate this field's value from other fields using their Ref. Names"
   },
   "alignment": {
     "alignleft": "יישור שמאלה",
@@ -220,6 +226,8 @@
     "format": "פורמט"
   },
   "statusbar": {
+    "undo": "[NEEDS TRANSLATION] Undo",
+    "redo": "[NEEDS TRANSLATION] Redo",
     "pagethumbnails": "תמונות ממוזערות של עמוד",
     "zoomin": "התקרב",
     "zoomout": "התרחקות",
@@ -238,7 +246,24 @@
     "placingfieldsfor": "הצבת שדות עבור",
     "sender": "שולח",
     "you": "אתה",
-    "addnewsigner": "הוספת חותם חדש"
+    "addnewsigner": "הוספת חותם חדש",
+    "fieldsselected": "[NEEDS TRANSLATION] {{total}} Fields Selected: {{thispage}} on this page, {{otherpages}} on other pages",
+    "fieldsselectedcount": "[NEEDS TRANSLATION] {{total}} Fields Selected:",
+    "fieldsselecteddetail": "[NEEDS TRANSLATION] {{thispage}} on this page, {{otherpages}} on other pages",
+    "deselectall": "[NEEDS TRANSLATION] Deselect All",
+    "templatelocked": "[NEEDS TRANSLATION] Template locked",
+    "editingdisabled": "[NEEDS TRANSLATION] Editing is disabled",
+    "unlock": "[NEEDS TRANSLATION] Unlock"
+  },
+  "selectmenu": {
+    "title": "[NEEDS TRANSLATION] Select Fields",
+    "titlefloating": "[NEEDS TRANSLATION] Select More Fields",
+    "selectall": "[NEEDS TRANSLATION] All",
+    "selectallonpage": "[NEEDS TRANSLATION] Current Page",
+    "sameparticipant": "[NEEDS TRANSLATION] Same Participant",
+    "sametype": "[NEEDS TRANSLATION] Same Type",
+    "sameparticipantandtype": "[NEEDS TRANSLATION] Same Participant and Type",
+    "disabledtooltip": "[NEEDS TRANSLATION] Select a field first to match by its properties"
   },
   "fieldvalidation": {
     "exactcharacters": "חייב להיות {{count}}תווים בדיוק",
