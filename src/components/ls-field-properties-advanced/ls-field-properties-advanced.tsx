@@ -103,16 +103,16 @@ export class LsFieldPropertiesAdvanced {
 
             <ls-props-section sectionTitle={dvI18n.t('fieldproperties.linktype')} sectionDescription={dvI18n.t('fieldproperties.linktypedescription')}>
               <select onChange={e => this.alter({ logicAction: (e.target as HTMLInputElement).value }, 1500)} name="Link Field" aria-label="Link Field" disabled={this.readonly}>
-                <option value="0" selected={this.getValue('logicAction') === 0}>
+                <option value="0" selected={this.getValue('logicAction') === 0 || this.getValue('logicAction') === "0"}>
                   {dvI18n.t('fieldproperties.linktypenoption')}
                 </option>
-                <option value="1" selected={this.getValue('logicAction') === 1}>
+                <option value="1" selected={this.getValue('logicAction') === 1 || this.getValue('logicAction') === "1" }>
                   {dvI18n.t('fieldproperties.linktypeoneofgroup')}
                 </option>
-                <option value="2" selected={this.getValue('logicAction') === 2}>
+                <option value="2" selected={this.getValue('logicAction') === 2 || this.getValue('logicAction') === "2" }>
                   {dvI18n.t('fieldproperties.linktypeaddtotal')}
                 </option>
-                <option value="3" selected={this.getValue('logicAction') === 3}>
+                <option value="3" selected={this.getValue('logicAction') === 3 || this.getValue('logicAction') === "3" }>
                   {dvI18n.t('fieldproperties.linktypeconditional')}
                 </option>
               </select>
