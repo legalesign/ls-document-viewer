@@ -52,6 +52,10 @@ export class LsParticipantCard {
     if (this.labeltimer) clearTimeout(this.labeltimer);
 
     this.labeltimer = setTimeout(() => {
+      if (!data.name || data.name.trim() === '') {
+        data = { ...data, name: 'Participant ' + data.ordinal };
+        this.signer = data;
+      }
       const diffs: LSMutateEvent[] = [{ action: 'update', data }];
       this.mutate.emit(diffs);
     }, delay);
