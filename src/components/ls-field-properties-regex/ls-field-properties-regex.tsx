@@ -1,14 +1,13 @@
 import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
 import { LSApiElement, LSMutateEvent } from '../../components';
 import { LSApiRole } from '../../types/LSApiRole';
-import { dvI18n } from '../../i18n/i18n';
-import { getFieldPlaceholder } from '../ls-document-viewer/defaultFieldLabels';
+
 @Component({
   tag: 'ls-field-properties-regex',
   styleUrl: 'ls-field-properties-regex.scss',
   shadow: true,
 })
-export class LsFieldPropertiesNumber {
+export class LsFieldPropertiesRegex {
   @Prop() dataItem: LSApiElement;
   @Prop() roles: LSApiRole[] = [];
   @Prop() readonly: boolean = false;
@@ -53,18 +52,7 @@ export class LsFieldPropertiesNumber {
       <Host>
         <ls-field-properties-container tabs={['content', 'placement', 'dimensions']}>
           <div class={'ls-dv-field-set'} slot="content">
-            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.expression')} sectionDescription={dvI18n.t('fieldproperties.expressiondescription')}>
-              <ls-formfield
-                as="text"
-                name="field-value"
-                value={this.dataItem?.value}
-                placeholder={getFieldPlaceholder(this.dataItem?.formElementType)}
-                disabled={this.readonly}
-                onTextChange={e => this.alter({ options: e.detail.value })}
-              />
-
-            </ls-props-section>
-            <ls-field-content dataItem={this.dataItem} readonly={this.readonly} />
+            <ls-field-content dataItem={this.dataItem} roles={this.roles} readonly={this.readonly} filtertoolbox={this.filtertoolbox} />
             <ls-field-properties-advanced dataItem={this.dataItem} readonly={this.readonly} />
           </div>
           <div class={'ls-dv-field-set'} slot="dimensions">

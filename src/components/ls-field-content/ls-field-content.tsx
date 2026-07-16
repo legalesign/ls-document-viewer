@@ -4,7 +4,7 @@ import { LSApiRole } from '../../types/LSApiRole';
 import { validationTypes, getInputType } from '../ls-document-viewer/editorUtils';
 import { getFieldPlaceholder, getFieldTitleSuggestion } from '../ls-document-viewer/defaultFieldLabels';
 import { dvI18n } from '../../i18n/i18n';
-import { validateFieldValue } from '../../utils/fieldValueValidator';
+import { validateFieldValue, validateRegexPattern } from '../../utils/fieldValueValidator';
 import { getDefaultValidationForType } from '../ls-field-type-select/fieldTypeUtils';
 import { forceCloseDatePicker } from '../../utils/utils';
 
@@ -22,28 +22,54 @@ export class LsFieldContent {
   @Prop() filtertoolbox: string = null;
 
   @State() valueError: string | null = null;
+  @State() regexValueError: string | null = null;
   @State() isDirty: boolean = false;
+  @State() isRegexValueDirty: boolean = false;
 
   @Watch('dataItem')
   watchDataItemHandler() {
-    this.valueError = validateFieldValue(
-      this.dataItem?.formElementType,
-      this.dataItem?.validation,
-      this.dataItem?.value,
-      this.dataItem?.options,
-    );
-    this.isDirty = !!this.dataItem?.value && this.dataItem.value.length > 0;
+    if (this.dataItem?.formElementType === 'regular expression') {
+      const pattern = (this.dataItem?.options || '').split('\n')[0];
+      this.valueError = validateRegexPattern(pattern);
+      this.isDirty = pattern.length > 0;
+      const value = this.dataItem?.value;
+      if (pattern && value) {
+        try {
+          this.regexValueError = new RegExp(pattern).test(value) ? null : dvI18n.t('fieldvalidation.invalidregexvalue');
+        } catch {
+          this.regexValueError = null;
+        }
+      } else {
+        this.regexValueError = null;
+      }
+    } else {
+      this.valueError = validateFieldValue(this.dataItem?.formElementType, this.dataItem?.validation, this.dataItem?.value, this.dataItem?.options);
+      this.isDirty = !!this.dataItem?.value && this.dataItem.value.length > 0;
+    }
   }
 
   componentWillLoad() {
-    if (this.dataItem?.value) {
-      this.isDirty = true;
-      this.valueError = validateFieldValue(
-        this.dataItem?.formElementType,
-        this.dataItem?.validation,
-        this.dataItem?.value,
-        this.dataItem?.options,
-      );
+    if (this.dataItem?.formElementType === 'regular expression') {
+      const pattern = (this.dataItem?.options || '').split('\n')[0];
+      if (pattern) {
+        this.isDirty = true;
+        this.valueError = validateRegexPattern(pattern);
+      }
+      const value = this.dataItem?.value;
+      if (pattern && value) {
+        this.isRegexValueDirty = true;
+        try {
+          this.regexValueError = new RegExp(pattern).test(value) ? null : dvI18n.t('fieldvalidation.invalidregexvalue');
+        } catch {
+          this.regexValueError = null;
+        }
+      }
+    } else {
+      const value = this.dataItem?.value;
+      if (value) {
+        this.isDirty = true;
+        this.valueError = validateFieldValue(this.dataItem?.formElementType, this.dataItem?.validation, value, this.dataItem?.options);
+      }
     }
   }
 
@@ -112,13 +138,38 @@ export class LsFieldContent {
 
   handleValueChange(value: string) {
     this.isDirty = value.length > 0;
-    this.valueError = validateFieldValue(
-      this.dataItem?.formElementType,
-      this.dataItem?.validation,
-      value,
-      this.dataItem?.options,
-    );
+    this.valueError = validateFieldValue(this.dataItem?.formElementType, this.dataItem?.validation, value, this.dataItem?.options);
     this.alter({ value });
+  }
+
+  handleRegexValueChange(value: string) {
+    this.isRegexValueDirty = true;
+    const pattern = this.getRegexPattern();
+    if (pattern && value) {
+      try {
+        this.regexValueError = new RegExp(pattern).test(value) ? null : dvI18n.t('fieldvalidation.invalidregexvalue');
+      } catch {
+        this.regexValueError = null;
+      }
+    } else {
+      this.regexValueError = null;
+    }
+    this.alter({ value });
+  }
+
+  private getRegexPattern(): string {
+    const lines = (this.dataItem?.options || '').split('\n');
+    return lines[0] || '';
+  }
+
+  private getRegexDescription(): string {
+    const lines = (this.dataItem?.options || '').split('\n');
+    return lines[1] || '';
+  }
+
+  private setRegexOptions(pattern: string, description: string) {
+    const options = description ? `${pattern}\n${description}` : pattern;
+    this.alter({ options });
   }
 
   private labeltimer;
@@ -133,7 +184,7 @@ export class LsFieldContent {
   }
 
   supportsValue() {
-    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field'];
+    const typesWithValue = ['signature', 'initials', 'file', 'signing', 'autosign', 'signing date', 'auto sign', 'dropdown', 'checkbox', 'drawn field', 'regular expression'];
 
     return !typesWithValue.includes(this.dataItem?.formElementType);
   }
@@ -295,7 +346,7 @@ export class LsFieldContent {
     if (newSigner === 0) {
       this.alterImmediate({ signer: newSigner, elementType: 'admin' });
     } else if (this.dataItem?.signer === 0) {
-      const elType = (fieldType === 'initials') ? 'initials' : 'text';
+      const elType = fieldType === 'initials' ? 'initials' : 'text';
       this.alterImmediate({ signer: newSigner, elementType: elType });
     } else {
       this.alterImmediate({ signer: newSigner });
@@ -448,29 +499,77 @@ export class LsFieldContent {
             />
           </ls-props-section>
         )}
+        {this.dataItem?.formElementType === 'regular expression' && [
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.expression')} sectionDescription={dvI18n.t('fieldproperties.expressiondescription')}>
+            <ls-formfield
+              as="text"
+              name="regex-pattern"
+              value={this.getRegexPattern()}
+              placeholder="e.g. ^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$"
+              valid={!this.valueError}
+              dirty={this.getRegexPattern().length > 0}
+              errorText={this.valueError}
+              disabled={this.readonly}
+              onTextChange={e => {
+                const pattern = e.detail.value;
+                this.valueError = validateRegexPattern(pattern);
+                this.setRegexOptions(pattern, this.getRegexDescription());
+              }}
+            />
+          </ls-props-section>,
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.helptext')} sectionDescription={dvI18n.t('fieldproperties.helptextdescription')}>
+            <ls-formfield
+              as="text"
+              name="regex-helptext"
+              value={this.getRegexDescription()}
+              placeholder={dvI18n.t('fieldproperties.helptextplaceholder')}
+              disabled={this.readonly}
+              onTextChange={e => this.setRegexOptions(this.getRegexPattern(), e.detail.value)}
+            />
+          </ls-props-section>,
+          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.value')} sectionDescription={dvI18n.t('fieldproperties.valuedescription')}>
+            <ls-formfield
+              as="text"
+              name="field-value"
+              value={this.dataItem?.value}
+              placeholder="e.g. SW1A 1AA"
+              valid={!this.regexValueError}
+              dirty={this.isRegexValueDirty}
+              errorText={this.regexValueError}
+              disabled={this.readonly}
+              onTextChange={e => this.handleRegexValueChange(e.detail.value)}
+            />
+          </ls-props-section>,
+        ]}
 
-        {this.showValidationTypes && this.dataItem?.formElementType !== 'drawn field' && this.dataItem?.formElementType !== 'regular expression' && this.dataItem?.formElementType !== 'initials' && (
-          <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
-            <ls-input-wrapper select>
-              <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
-                {validationTypes
-                  .filter(type => type.formType === this.dataItem?.formElementType)
-                  .map(type => (
-                    <option selected={this.dataItem?.validation === type.id} value={type.id}>
-                      {type.description}
-                    </option>
-                  ))}
-              </select>
-            </ls-input-wrapper>
-          </ls-props-section>
-        )}
+        {this.showValidationTypes &&
+          this.dataItem?.formElementType !== 'drawn field' &&
+          this.dataItem?.formElementType !== 'regular expression' &&
+          this.dataItem?.formElementType !== 'initials' && (
+            <ls-props-section sectionTitle={dvI18n.t('fieldproperties.contentformat')} sectionDescription={dvI18n.t('fieldproperties.contentformatdescription')}>
+              <ls-input-wrapper select>
+                <select onChange={ev => !this.readonly && this.handleFormatChange(parseInt((ev.target as HTMLSelectElement).value))}>
+                  {validationTypes
+                    .filter(type => type.formType === this.dataItem?.formElementType)
+                    .map(type => (
+                      <option selected={this.dataItem?.validation === type.id} value={type.id}>
+                        {type.description}
+                      </option>
+                    ))}
+                </select>
+              </ls-input-wrapper>
+            </ls-props-section>
+          )}
         {this.dataItem?.formElementType === 'checkbox' && this.getCheckboxStates().length === 2 && (
           <ls-props-section sectionTitle={dvI18n.t('fieldproperties.displaystate')} sectionDescription={dvI18n.t('fieldproperties.displaystatedescription')}>
             <div class="ls-dv-checkbox-toggle">
               {this.getCheckboxStates().map((state, idx) => (
                 <button
                   key={idx}
-                  class={{ 'ls-dv-checkbox-toggle-btn': true, 'ls-dv-active': idx === 0 ? this.dataItem?.value?.toString() !== 'true' : this.dataItem?.value?.toString() === 'true' }}
+                  class={{
+                    'ls-dv-checkbox-toggle-btn': true,
+                    'ls-dv-active': idx === 0 ? this.dataItem?.value?.toString() !== 'true' : this.dataItem?.value?.toString() === 'true',
+                  }}
                   onClick={() => !this.readonly && this.alterImmediate({ value: idx === 0 ? 'false' : 'true' })}
                   disabled={this.readonly}
                 >

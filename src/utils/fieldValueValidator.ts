@@ -30,7 +30,7 @@ export const validateFieldValue = (
   }
 
   if (formElementType === 'regular expression') {
-    return validateRegex(value);
+    return validateRegexValue(value, options);
   }
 
   return null;
@@ -124,7 +124,17 @@ const validateDropdownValue = (value: string, options?: string): string | null =
   return null;
 };
 
-const validateRegex = (value: string): string | null => {
+const validateRegexValue = (value: string, options?: string): string | null => {
+  const pattern = (options || '').split('\n')[0];
+  if (!pattern) return null;
+  try {
+    return new RegExp(pattern).test(value) ? null : dvI18n.t('fieldvalidation.invalidregexvalue');
+  } catch {
+    return null;
+  }
+};
+
+export const validateRegexPattern = (value: string): string | null => {
   try {
     new RegExp(value);
     return null;
@@ -132,3 +142,4 @@ const validateRegex = (value: string): string | null => {
     return dvI18n.t('fieldvalidation.invalidregex');
   }
 };
+
