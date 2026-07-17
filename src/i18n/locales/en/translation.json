@@ -172,7 +172,10 @@
     "excludefrompdf": "Exclude from PDF",
     "excludefrompdfdescription": "This field will not appear on the final PDF",
     "expression": "Expression",
-    "expressiondescription": "Define a formula to calculate this field's value from other fields using their Ref. Names"
+    "expressiondescription": "Define a formula to calculate this field's value from other fields using their Ref. Names",
+    "helptext": "Help Text",
+    "helptextdescription": "A description shown to the recipient explaining what format is expected",
+    "helptextplaceholder": "e.g. Enter a valid UK postcode"
   },
   "alignment": {
     "alignleft": "Align Left",
@@ -275,7 +278,9 @@
     "currency": "Must be a currency value (e.g. 10.00)",
     "exactdigits": "Must be exactly {{count}} digit(s)",
     "email": "Must be a valid email address",
-    "dropdownoption": "Must be one of the available options"
+    "dropdownoption": "Must be one of the available options",
+    "invalidregex": "Must be a valid regular expression",
+    "invalidregexvalue": "Value does not match the expression"
   },
   "shortcuts": {
     "title": "Keyboard Shortcuts",
