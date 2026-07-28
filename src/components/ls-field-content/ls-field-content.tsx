@@ -359,44 +359,8 @@ export class LsFieldContent {
       this.alterImmediate({ validation: newValidation });
       return;
     }
-
-    // Parse current value to ISO using the old format
-    const oldFormat = this.getDateFormat();
-    const newFormat = this.getDateFormatById(newValidation);
-    if (!oldFormat || !newFormat) {
-      this.alterImmediate({ validation: newValidation });
-      return;
-    }
-
-    const parts = oldFormat.split(/[/.-]/);
-    const sep = oldFormat.match(/[/.-]/)?.[0] || '/';
-    const valueParts = currentValue.split(sep);
-    if (valueParts.length < 2) {
-      this.alterImmediate({ validation: newValidation });
-      return;
-    }
-
-    let y = '',
-      m = '',
-      d = '';
-    parts.forEach((p, i) => {
-      const v = valueParts[i] || '';
-      if (p.startsWith('y')) y = v;
-      else if (p.startsWith('m')) m = v;
-      else if (p.startsWith('d')) d = v;
-    });
-
-    if (y.length === 2) y = '20' + y;
-    if (!d) d = '01';
-
-    const newValue = newFormat
-      .replace('yyyy', y.padStart(4, '0'))
-      .replace('yy', y.slice(-2))
-      .replace('mm', m.padStart(2, '0'))
-      .replace('dd', d.padStart(2, '0'))
-      .replace('d', String(parseInt(d)));
-
-    this.alterImmediate({ validation: newValidation, value: newValue });
+    // value is stored as yyyy-MM-dd, just update validation — display will reformat automatically
+    this.alterImmediate({ validation: newValidation });
   }
 
   render() {
@@ -447,7 +411,7 @@ export class LsFieldContent {
                 <input
                   class="ls-dv-date-display"
                   type="text"
-                  value={this.dataItem?.value}
+                  value={this.dataItem?.value ? this.formatDateFromISO(this.dataItem.value) : ''}
                   placeholder={this.getDateFormat()}
                   readOnly
                   onClick={() => {
