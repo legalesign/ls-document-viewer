@@ -204,45 +204,37 @@ export class LsFieldContent {
    */
   toISODate(value: string): string {
     if (!value) return '';
-    const format = this.getDateFormat();
-    if (!format) return value;
+    // Already ISO yyyy-MM-dd or full ISO string
+    if (/^\d{4}-\d{2}-\d{2}/.test(value)) return value.slice(0, 10);
+    const fmt = this.getDateFormat();
+    if (!fmt) return value;
 
-    const sep = format.match(/[/.-]/)?.[0] || '/';
-    const parts = format.split(/[/.-]/);
-    const valueParts = value.split(sep);
-    if (valueParts.length < 2) return value;
+    const sep = fmt.match(/[/.-]/)?.[0] || '/';
+    const fmtParts = fmt.split(/[/.-]/);
+    const valParts = value.split(sep);
 
-    let y = '',
-      m = '',
-      d = '';
-    parts.forEach((p, i) => {
-      const v = valueParts[i] || '';
-      if (p.startsWith('y')) y = v;
-      else if (p.startsWith('m')) m = v;
-      else if (p.startsWith('d')) d = v;
+    let y = '', m = '', d = '';
+    fmtParts.forEach((p, i) => {
+      const v = valParts[i] || '';
+      if (p === 'yyyy') y = v;
+      else if (p === 'yy') y = v.length === 2 ? '20' + v : v;
+      else if (p === 'mm') m = v;
+      else if (p === 'dd') d = v;
     });
-
-    if (y.length === 2) y = '20' + y;
     if (!d) d = '01';
+    if (!y) y = new Date().getFullYear().toString();
 
     return `${y.padStart(4, '0')}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
   }
 
   /**
-   * Convert an ISO date (yyyy-mm-dd) to the configured format.
+   * Convert an ISO date (yyyy-mm-dd or full ISO string) to the configured display format.
    */
   formatDateFromISO(isoValue: string): string {
     if (!isoValue) return '';
-    const [y, m, d] = isoValue.split('-');
-    const format = this.getDateFormat();
-    if (!format) return isoValue;
-
-    return format
-      .replace('yyyy', y)
-      .replace('yy', y.slice(-2))
-      .replace('mm', m)
-      .replace('dd', d)
-      .replace('d', String(parseInt(d)));
+    const fmt = this.getDateFormat();
+    if (!fmt) return isoValue;
+    return this.formatDateWithFormat(isoValue.slice(0, 10), fmt);
   }
 
   private getDateFormat(): string | null {
@@ -359,8 +351,24 @@ export class LsFieldContent {
       this.alterImmediate({ validation: newValidation });
       return;
     }
-    // value is stored as yyyy-MM-dd, just update validation — display will reformat automatically
-    this.alterImmediate({ validation: newValidation });
+    // Convert current display value to ISO using the old format, then reformat with the new one
+    const isoDate = this.toISODate(currentValue);
+    const newFormat = this.getDateFormatById(newValidation);
+    const reformatted = newFormat ? this.formatDateWithFormat(isoDate, newFormat) : currentValue;
+    this.alterImmediate({ validation: newValidation, value: reformatted });
+  }
+
+  private formatDateWithFormat(isoValue: string, fmt: string): string {
+    if (!isoValue) return '';
+    const [y, m, d] = isoValue.slice(0, 10).split('-');
+    const sep = fmt.match(/[/.-]/)?.[0] || '/';
+    return fmt.split(/[/.-]/).map(p => {
+      if (p === 'yyyy') return y;
+      if (p === 'yy') return y.slice(-2);
+      if (p === 'mm') return m;
+      if (p === 'dd') return d;
+      return p;
+    }).join(sep);
   }
 
   render() {
@@ -411,7 +419,7 @@ export class LsFieldContent {
                 <input
                   class="ls-dv-date-display"
                   type="text"
-                  value={this.dataItem?.value ? this.formatDateFromISO(this.dataItem.value) : ''}
+                  value={this.dataItem?.value ? (/^\d{4}-\d{2}-\d{2}/.test(this.dataItem.value) ? this.formatDateFromISO(this.dataItem.value) : this.dataItem.value) : ''}
                   placeholder={this.getDateFormat()}
                   readOnly
                   onClick={() => {
