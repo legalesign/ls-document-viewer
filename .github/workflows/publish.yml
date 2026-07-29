@@ -101,3 +101,30 @@ jobs:
           git tag "v${{ env.NEW_VERSION }}"
           git push
           git push --tags
+
+      - name: Generate changelog
+        run: |
+          PREV_TAG=$(git tag --sort=-version:refname | grep -v "v${{ env.NEW_VERSION }}" | head -n 1)
+          if [ -z "$PREV_TAG" ]; then
+            CHANGES=$(git log --pretty=format:"%s%n%b" | grep -v "^Merge pull request" | grep -v "^Merge branch" | grep -v "^$" | grep -v "\[skip ci\]" | sed 's/^/- /')
+          else
+            CHANGES=$(git log "${PREV_TAG}"..HEAD --pretty=format:"%s%n%b" | grep -v "^Merge pull request" | grep -v "^Merge branch" | grep -v "^$" | grep -v "\[skip ci\]" | sed 's/^/- /')
+          fi
+          echo "CHANGES<<EOF" >> $GITHUB_ENV
+          echo "$CHANGES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          script: |
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: `v${process.env.NEW_VERSION}`,
+              name: `v${process.env.NEW_VERSION}`,
+              body: process.env.CHANGES,
+              draft: false,
+              prerelease: false,
+            });
