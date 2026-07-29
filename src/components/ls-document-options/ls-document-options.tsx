@@ -18,8 +18,6 @@ export class LsDocumentOptions {
 
   @State() editTitle: boolean = false;
 
-
-
   @Event({
     bubbles: true,
     cancelable: true,
@@ -53,8 +51,7 @@ export class LsDocumentOptions {
     }, delay);
   }
 
-  componentDidLoad() {
-  }
+  componentDidLoad() {}
 
   render() {
     function formatDate(isoString) {
@@ -78,44 +75,47 @@ export class LsDocumentOptions {
           <p class="ls-dv-toolbox-section-description">{dvI18n.t('documentoptions.description')}</p>
         </div>
         <div class={'ls-dv-template-details'}>
-          <div class={'ls-dv-template-detail-section ls-dv-column'}>
-            <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.name')}</p>
-            <div
-              class="ls-dv-edit-button"
-              onClick={() => {
-                this.editTitle = !this.editTitle;
-              }}
-            >
-              <ls-icon
-                name={this.editTitle ? 'check-icon' : 'pencil-alt-icon'}
-                size={20}
-                id="edit-name-btn"
-                data-tooltip-id="ls-dv-tooltip" data-tooltip-content={this.editTitle ? dvI18n.t('common.save') : dvI18n.t('documentoptions.editname')}
-              />
-            </div>
-            {this.editTitle ? (
-              <input
-                value={this.template?.title}
-                style={{ width: '100%' }}
-                onInput={e => {
-                  e.preventDefault();
-                  this.alter({ title: (e.target as HTMLInputElement).value });
-                }}
-                onKeyUp={e => {
-                  if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
-                }}
-              />
-            ) : (
+          {this.template?.title !== '[deleted]' && (
+            <div class={'ls-dv-template-detail-section ls-dv-column'}>
+              <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.name')}</p>
               <div
-                class="ls-dv-template-title"
+                class="ls-dv-edit-button"
                 onClick={() => {
                   this.editTitle = !this.editTitle;
                 }}
               >
-                <p>{this.template?.title}</p>
+                <ls-icon
+                  name={this.editTitle ? 'check-icon' : 'pencil-alt-icon'}
+                  size={20}
+                  id="edit-name-btn"
+                  data-tooltip-id="ls-dv-tooltip"
+                  data-tooltip-content={this.editTitle ? dvI18n.t('common.save') : dvI18n.t('documentoptions.editname')}
+                />
               </div>
-            )}
-          </div>
+              {this.editTitle ? (
+                <input
+                  value={this.template?.title}
+                  style={{ width: '100%' }}
+                  onInput={e => {
+                    e.preventDefault();
+                    this.alter({ title: (e.target as HTMLInputElement).value });
+                  }}
+                  onKeyUp={e => {
+                    if (e.key === 'Enter' || e.keyCode === 13) this.editTitle = false;
+                  }}
+                />
+              ) : (
+                <div
+                  class="ls-dv-template-title"
+                  onClick={() => {
+                    this.editTitle = !this.editTitle;
+                  }}
+                >
+                  <p>{this.template?.title}</p>
+                </div>
+              )}
+            </div>
+          )}
           <div class={'ls-dv-template-detail-section'}>
             <div>
               <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.autoarchive')}</p>
@@ -143,7 +143,12 @@ export class LsDocumentOptions {
           </div>
           <div class={'ls-dv-template-detail-section'}>
             <div>
-              <p class="ls-dv-template-detail-section-title" tooltip-data="Fixes the aspect ratio of all signatures on the document. This allows Participants to re-use the same signature throughout the signing process. If this setting is turned on after several signature fields have been placed, fields will automatically re-size to match the aspect ratio of the first signature on the Template.">{dvI18n.t('documentoptions.fixedsignatureaspect')}</p>
+              <p
+                class="ls-dv-template-detail-section-title"
+                tooltip-data="Fixes the aspect ratio of all signatures on the document. This allows Participants to re-use the same signature throughout the signing process. If this setting is turned on after several signature fields have been placed, fields will automatically re-size to match the aspect ratio of the first signature on the Template."
+              >
+                {dvI18n.t('documentoptions.fixedsignatureaspect')}
+              </p>
               <p class={'ls-dv-template-detail-section-info'}>{dvI18n.t('documentoptions.fixedsignatureaspectdescription')}</p>
             </div>
 
@@ -158,8 +163,8 @@ export class LsDocumentOptions {
             <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.documentretention')}</p>
             <p>
               <input
-                type='number'
-                min='0'
+                type="number"
+                min="0"
                 value={this.template?.documentRetentionDays}
                 style={{ width: '100%' }}
                 onInput={e => {
@@ -167,7 +172,7 @@ export class LsDocumentOptions {
                   this.alter({ documentRetentionDays: (e.target as HTMLInputElement).value });
                 }}
               />
-              </p>
+            </p>
           </div>
           <div class={'ls-dv-template-detail-section ls-dv-column'}>
             <p class="ls-dv-template-detail-section-title">{dvI18n.t('documentoptions.pages')}</p>
