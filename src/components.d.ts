@@ -89,6 +89,10 @@ export namespace Components {
         "filtertoolbox"?: string;
         "groupInfo": any;
         /**
+          * @default false
+         */
+        "isNested": boolean;
+        /**
           * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
          */
         "language": string;
@@ -131,6 +135,10 @@ export namespace Components {
           * Page and field resize on zoom change
          */
         "setZoom": (z: number) => Promise<void>;
+        /**
+          * @default true
+         */
+        "showHeader": boolean;
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
           * @default false
@@ -1714,6 +1722,10 @@ declare namespace LocalJSX {
         "filtertoolbox"?: string;
         "groupInfo"?: any;
         /**
+          * @default false
+         */
+        "isNested"?: boolean;
+        /**
           * Override the detected language. Pass a BCP 47 language code (e.g. 'fr', 'de'). {string}
          */
         "language"?: string;
@@ -1751,6 +1763,10 @@ declare namespace LocalJSX {
           * A JSON string containing the recipient details. Only used in COMPOSE mode. {string}
          */
         "recipients"?: string;
+        /**
+          * @default true
+         */
+        "showHeader"?: boolean;
         /**
           * Whether the page previewvertical ribbon will be shown {boolean}
           * @default false
