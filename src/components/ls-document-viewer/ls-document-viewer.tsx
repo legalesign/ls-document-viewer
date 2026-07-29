@@ -180,6 +180,9 @@ export class LsDocumentViewer {
    */
   @Prop() mode: 'preview' | 'editor' | 'compose' = 'editor';
 
+  @Prop() showHeader: boolean = true;
+  @Prop() isNested: boolean = false;
+
   @Watch('mode')
   modeHandler(_newMode, _oldMode) {
     if (_newMode === 'preview') {
@@ -192,7 +195,7 @@ export class LsDocumentViewer {
       this.showstatusbar = true;
       this.readonly = false;
     }
-    
+
     // Update readonly attribute on all existing fields
     const fields = this.component.shadowRoot?.querySelectorAll('ls-editor-field');
     if (fields) {
@@ -344,9 +347,7 @@ export class LsDocumentViewer {
                   const hasParentWitnessName = witness.name === oldRole.name + ' Witness';
                   if (hasDefaultName || hasParentWitnessName) {
                     // If parent reverts to default, witness should also revert to default
-                    const newWitnessName = role.name === 'Participant ' + role.ordinal
-                      ? 'Participant ' + witness.ordinal
-                      : role.name + ' Witness';
+                    const newWitnessName = role.name === 'Participant ' + role.ordinal ? 'Participant ' + witness.ordinal : role.name + ' Witness';
                     const updatedWitness = { ...witness, name: newWitnessName };
                     this.adapter.handleEvent({ action: 'update', data: updatedWitness }, this.token).then(wr => {
                       if (wr !== 'invalid') matchData.bind(this)(wr);
@@ -358,17 +359,17 @@ export class LsDocumentViewer {
             // Swap/delete/create: after structural changes, sync default names to new ordinals
             if (me.action === 'swap' || me.action === 'delete' || me.action === 'create') {
               // Snapshot all roles with default names before ordinals shift
-              const preChangeDefaults = this._template.roles
-                .filter(r => r.name === 'Participant ' + r.ordinal)
-                .map(r => r.id);
+              const preChangeDefaults = this._template.roles.filter(r => r.name === 'Participant ' + r.ordinal).map(r => r.id);
               return Promise.resolve(matchData.bind(this)(result)).then(() => {
                 const updates: Promise<any>[] = [];
                 for (const id of preChangeDefaults) {
                   const fresh = this._template.roles.find(r => r.id === id);
                   if (fresh && fresh.name !== 'Participant ' + fresh.ordinal) {
-                    updates.push(this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
-                      if (r !== 'invalid') matchData.bind(this)(r);
-                    }));
+                    updates.push(
+                      this.adapter.handleEvent({ action: 'update', data: { ...fresh, name: 'Participant ' + fresh.ordinal } }, this.token).then(r => {
+                        if (r !== 'invalid') matchData.bind(this)(r);
+                      }),
+                    );
                   }
                 }
                 return Promise.all(updates);
@@ -405,16 +406,12 @@ export class LsDocumentViewer {
         const updatedData = detail.data as LSApiElement;
 
         // Sync selectedDataItems so sidebar reflects the latest value
-        this.selectedDataItems = this.selectedDataItems.map(item =>
-          item.id === updatedData.id ? { ...updatedData } : item,
-        );
+        this.selectedDataItems = this.selectedDataItems.map(item => (item.id === updatedData.id ? { ...updatedData } : item));
 
         // Sync toolbar dataItem so format/alignment changes use current values
         const toolbar = this.component.shadowRoot.getElementById('ls-toolbar') as HTMLLsToolbarElement;
         if (toolbar?.dataItem) {
-          toolbar.dataItem = toolbar.dataItem.map(item =>
-            item.id === updatedData.id ? { ...updatedData } : item,
-          );
+          toolbar.dataItem = toolbar.dataItem.map(item => (item.id === updatedData.id ? { ...updatedData } : item));
         }
 
         // Only sync editor field if the change came from the sidebar
@@ -434,7 +431,7 @@ export class LsDocumentViewer {
         ...this._template.elementConnection,
         templateElements: this._template.elementConnection.templateElements.map(el => {
           const updated = details.find(d => d.action === 'update' && d.data?.id === el.id);
-          return updated ? { ...el, ...updated.data } as LSApiElement : el;
+          return updated ? ({ ...el, ...updated.data } as LSApiElement) : el;
         }),
       },
     };
@@ -482,7 +479,9 @@ export class LsDocumentViewer {
           name: event.detail.name
             ? event.detail.name
             : event.detail.type === 'WITNESS'
-              ? (parent?.name === 'Participant ' + parent?.ordinal ? 'Participant ' + (parent?.ordinal + 1) : parent?.name + ' Witness')
+              ? parent?.name === 'Participant ' + parent?.ordinal
+                ? 'Participant ' + (parent?.ordinal + 1)
+                : parent?.name + ' Witness'
               : 'Participant ' + (this._template.roles.length + 1),
           roleType: event.detail.type,
           signerIndex: resolvedSignerIndex,
@@ -517,7 +516,7 @@ export class LsDocumentViewer {
 
     // Build the field data directly from defaults
     const defaults = FIELD_DEFAULTS[fieldType] || FIELD_DEFAULTS['signature'];
-    
+
     // Map formElementType to elementType correctly
     let elementType: 'text' | 'signature' | 'initials' | 'admin';
     if (fieldType === 'signature') {
@@ -529,7 +528,7 @@ export class LsDocumentViewer {
     } else {
       elementType = 'text';
     }
-    
+
     this.fieldTypeSelected = {
       label: fieldType,
       formElementType: fieldType,
@@ -601,8 +600,6 @@ export class LsDocumentViewer {
 
     updateSelectionBox.bind(this)();
     this.validationErrors = validate.bind(this)(this._template);
-
-
   }
 
   // Send role selection changes to bars and panels
@@ -830,9 +827,7 @@ export class LsDocumentViewer {
           moveField.bind(this)(fi, update.data);
           // Update assignee label when signer changes
           const signer = (update.data as any).signer;
-          const assignee = this.mode === 'compose'
-            ? this._recipients?.find(r => r.signerIndex === signer)
-            : this._template.roles.find(r => r.signerIndex === signer);
+          const assignee = this.mode === 'compose' ? this._recipients?.find(r => r.signerIndex === signer) : this._template.roles.find(r => r.signerIndex === signer);
           fi.setAttribute(
             'assignee',
             signer === 0
@@ -913,24 +908,28 @@ export class LsDocumentViewer {
 
     // Pinch-to-zoom (trackpad) and Ctrl/Cmd+scroll zoom
     const wrapper = this.component.shadowRoot.getElementById('document-frame-wrapper');
-    wrapper.addEventListener('wheel', (e: WheelEvent) => {
-      if (!e.ctrlKey && !e.metaKey) return;
-      e.preventDefault();
-      const factor = e.deltaY > 0 ? 0.95 : 1.05;
-      const newZoom = Math.min(Math.max(this.zoom * factor, 0.25), 5);
-      const scale = newZoom / this.zoom;
+    wrapper.addEventListener(
+      'wheel',
+      (e: WheelEvent) => {
+        if (!e.ctrlKey && !e.metaKey) return;
+        e.preventDefault();
+        const factor = e.deltaY > 0 ? 0.95 : 1.05;
+        const newZoom = Math.min(Math.max(this.zoom * factor, 0.25), 5);
+        const scale = newZoom / this.zoom;
 
-      // Cursor position relative to wrapper viewport
-      const rect = wrapper.getBoundingClientRect();
-      const cursorX = e.clientX - rect.left;
-      const cursorY = e.clientY - rect.top;
+        // Cursor position relative to wrapper viewport
+        const rect = wrapper.getBoundingClientRect();
+        const cursorX = e.clientX - rect.left;
+        const cursorY = e.clientY - rect.top;
 
-      // Adjust scroll so the point under cursor stays fixed
-      wrapper.scrollLeft = (wrapper.scrollLeft + cursorX) * scale - cursorX;
-      wrapper.scrollTop = (wrapper.scrollTop + cursorY) * scale - cursorY;
+        // Adjust scroll so the point under cursor stays fixed
+        wrapper.scrollLeft = (wrapper.scrollLeft + cursorX) * scale - cursorX;
+        wrapper.scrollTop = (wrapper.scrollTop + cursorY) * scale - cursorY;
 
-      this.setZoom(Math.round(newZoom * 1e2) / 1e2);
-    }, { passive: false });
+        this.setZoom(Math.round(newZoom * 1e2) / 1e2);
+      },
+      { passive: false },
+    );
 
     this.generateFields();
     this._initialized = true;
@@ -1127,30 +1126,30 @@ export class LsDocumentViewer {
               </div>
             </div>
           )}
-          {this.mode !== 'preview' && (
-          <div class="ls-dv-page-header">
-            <div class={'ls-dv-left-slot-wrapper'}>
-              <slot name="left-button" />
-            </div>
-            <div class={'ls-dv-right-slot-wrapper'}>
-              <slot name="right-button" />
-            </div>
-            {this.mode === 'editor' && (
-              <div>
-                <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
-                <span>/</span>
-                <span class="ls-dv-header-text-2">{this._template?.title}</span>
+          {this.mode !== 'preview' && this.showHeader && (
+            <div class="ls-dv-page-header">
+              <div class={'ls-dv-left-slot-wrapper'}>
+                <slot name="left-button" />
               </div>
-            )}
-            {this.mode === 'compose' && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                <slot name="top-bar"></slot>
+              <div class={'ls-dv-right-slot-wrapper'}>
+                <slot name="right-button" />
               </div>
-            )}
-          </div>
+              {this.mode === 'editor' && (
+                <div>
+                  <span class="ls-dv-header-text-1">{dvI18n.t('viewer.templatecreation')}</span>
+                  <span>/</span>
+                  <span class="ls-dv-header-text-2">{this._template?.title}</span>
+                </div>
+              )}
+              {this.mode === 'compose' && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <slot name="top-bar"></slot>
+                </div>
+              )}
+            </div>
           )}
 
-          <form id="ls-editor-form">
+          <form id="ls-editor-form" class={!this.isNested ? 'ls-dv-editor-form-bg' : ''}>
             <ls-left-bar
               mode={this.mode}
               selected={this.selected}
@@ -1173,30 +1172,28 @@ export class LsDocumentViewer {
             >
               <slot name="recipient-panel" slot="recipient-panel" />
             </ls-left-bar>
-            <ls-toolbar id="ls-toolbar" template={this._template} editor={this} groupInfo={this.groupInfo} mode={this.mode} signer={this.signer} selected={this.selected} pageNum={this.pageNum} />
+            <ls-toolbar
+              id="ls-toolbar"
+              template={this._template}
+              editor={this}
+              groupInfo={this.groupInfo}
+              mode={this.mode}
+              signer={this.signer}
+              selected={this.selected}
+              pageNum={this.pageNum}
+            />
             <div id="ls-mid-area">
-              <div class={{'ls-dv-document-frame-wrapper': true, 'ls-dv-document-frame-wrapper--preview': this.mode === 'preview'}} id="document-frame-wrapper">
+              <div class={{ 'ls-dv-document-frame-wrapper': true, 'ls-dv-document-frame-wrapper--preview': this.mode === 'preview' }} id="document-frame-wrapper">
                 <div id="ls-document-frame">
                   <canvas id="pdf-canvas" class={this.displayTable || this.isLoading ? 'ls-dv-hidden' : ''}></canvas>
                   <ls-editor-table editor={this} class={this.displayTable ? '' : 'ls-dv-hidden'} />
                   <div id="ls-box-selector"></div>
                   <div id="ls-drag-selector"></div>
                   {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
-                    <ls-select-menu
-                      class="ls-dv-select-menu-position"
-                      selected={this.selected}
-                      pageNum={this.pageNum}
-                      editor={this}
-                    />
+                    <ls-select-menu class="ls-dv-select-menu-position" selected={this.selected} pageNum={this.pageNum} editor={this} />
                   )}
                   {this.mode !== 'preview' && !this._template?.locked && !this.isLoading && this._template?.elementConnection?.templateElements?.length > 0 && (
-                    <ls-select-menu
-                      class="ls-dv-select-menu-floating"
-                      selected={this.selected}
-                      pageNum={this.pageNum}
-                      editor={this}
-                      floating={true}
-                    />
+                    <ls-select-menu class="ls-dv-select-menu-floating" selected={this.selected} pageNum={this.pageNum} editor={this} floating={true} />
                   )}
                 </div>
               </div>
